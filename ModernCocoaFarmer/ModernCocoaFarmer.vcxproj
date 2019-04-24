@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{96250022-4933-47D8-99CD-934295D7F368}</ProjectGuid>
+    <RootNamespace>ModernCocoaFarmer</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="Resources\Animations\Worker\Chop\Chop.anim" />
+    <None Include="Resources\Resources\Audio.meta" />
+    <None Include="Resources\Resources\Audio\Birth.wav.meta" />
+    <None Include="Resources\Resources\Audio\ChildTrafficked.wav.meta" />
+    <None Include="Resources\Resources\Audio\Click.wav.meta" />
+    <None Include="Resources\Resources\Audio\Death.wav.meta" />
+    <None Include="Resources\Resources\Audio\Home.wav.meta" />
+    <None Include="Resources\Resources\Audio\Hospital.wav.meta" />
+    <None Include="Resources\Resources\Audio\kalimba breeze V1.mp3.meta" />
+    <None Include="Resources\Resources\Audio\Market.wav.meta" />
+    <None Include="Resources\Resources\Audio\Money.wav.meta" />
+    <None Include="Resources\Resources\Audio\Mosque.wav.meta" />
+    <None Include="Resources\Resources\Audio\School.wav.meta" />
+    <None Include="Resources\Resources\Audio\Well.wav.meta" />
+    <None Include="Resources\Resources\Audio\Work.wav.meta" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Animations\Worker\Chop\chop1.png" />
+    <Image Include="Resources\Animations\Worker\Chop\chop2.png" />
+    <Image Include="Resources\Animations\Worker\Chop\chop3.png" />
+    <Image Include="Resources\Animations\Worker\IdleNoMachete\IdleNoMachete.png" />
+    <Image Include="Resources\Animations\Worker\Idle\Idle.png" />
+    <Image Include="Resources\Animations\Worker\WalkingNoMachete\sprite 1.png" />
+    <Image Include="Resources\Animations\Worker\WalkingNoMachete\Sprite 2.png" />
+    <Image Include="Resources\Animations\Worker\WalkingNoMachete\Sprite 3.png" />
+    <Image Include="Resources\Animations\Worker\WalkingNoMachete\Sprite 4.png" />
+    <Image Include="Resources\Animations\Worker\Walking\walk1.png" />
+    <Image Include="Resources\Animations\Worker\Walking\walk2.png" />
+    <Image Include="Resources\Animations\Worker\Walking\walk3.png" />
+    <Image Include="Resources\Animations\Worker\Walking\walk4.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Childworker.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Clouds.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Farmer.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Ground.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Hills.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\OrangePod.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Payslip.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\PurplePod.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Sky.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Sky1.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Soil.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\TopSoil.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Tree.png" />
+    <Image Include="Resources\Sprites\Cocoa Pod Collection\Tree2.png" />
+    <Image Include="Resources\Sprites\Screens\About.png" />
+    <Image Include="Resources\Sprites\Screens\halfeatenbiscuitproductions.png" />
+    <Image Include="Resources\Sprites\Screens\Instructions.png" />
+    <Image Include="Resources\Sprites\Screens\SplashScreen.png" />
+    <Image Include="Resources\Sprites\UI\AudioMuted.png" />
+    <Image Include="Resources\Sprites\UI\AudioPlaying.png" />
+    <Image Include="Resources\Sprites\UI\Bar.png" />
+    <Image Include="Resources\Sprites\UI\Book.png" />
+    <Image Include="Resources\Sprites\UI\Child.png" />
+    <Image Include="Resources\Sprites\UI\Cross.png" />
+    <Image Include="Resources\Sprites\UI\Donate.png" />
+    <Image Include="Resources\Sprites\UI\GameLogo.png" />
+    <Image Include="Resources\Sprites\UI\GameLogoForIOS.png" />
+    <Image Include="Resources\Sprites\UI\Happiness.png" />
+    <Image Include="Resources\Sprites\UI\Health.png" />
+    <Image Include="Resources\Sprites\UI\Menu.png" />
+    <Image Include="Resources\Sprites\UI\Outline.png" />
+    <Image Include="Resources\Sprites\UI\Pause.png" />
+    <Image Include="Resources\Sprites\UI\Play.png" />
+    <Image Include="Resources\Sprites\UI\Safety.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\BlankSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\FarmSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\HomeSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\HospitalSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\MarketSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\MosqueSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\SchoolSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Symbols\WellSymbol.png" />
+    <Image Include="Resources\Sprites\UI\Text Box.png" />
+    <Image Include="Resources\Sprites\Village\Background\Background.png" />
+    <Image Include="Resources\Sprites\Village\Background\BoundaryLine.png" />
+    <Image Include="Resources\Sprites\Village\Background\Mali.png" />
+    <Image Include="Resources\Sprites\Village\Background\Plant.png" />
+    <Image Include="Resources\Sprites\Village\Background\Rock1.png" />
+    <Image Include="Resources\Sprites\Village\Background\Rock2.png" />
+    <Image Include="Resources\Sprites\Village\Background\Rock3.png" />
+    <Image Include="Resources\Sprites\Village\Background\Sand.png" />
+    <Image Include="Resources\Sprites\Village\Background\TheIvoryCoast.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\BareCocoaTree.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Bench.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\ChairFront.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\ChairSide.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\CocoaBag.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\CocoaBagMultiple.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\CocoaTree.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Farm.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Grave1.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Grave2.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\GraveDestroyed.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Home.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Hospital.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\House1.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\House2.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\House3.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\House4.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\MarketFoodStalls.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\MarketFoodStalls2.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\MarketStall.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\MarketStallMultiple.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Mosque.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Playground.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Pylon.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\SacksOfFood.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\School.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Sign.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Toilet.png" />
+    <Image Include="Resources\Sprites\Village\Buildings\Well.png" />
+    <Image Include="Resources\Sprites\Village\Child(Life).png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resources\Audio\Donate.wav" />
+    <Media Include="Resources\Resources\Audio\Birth.wav" />
+    <Media Include="Resources\Resources\Audio\ChildTrafficked.wav" />
+    <Media Include="Resources\Resources\Audio\Click.wav" />
+    <Media Include="Resources\Resources\Audio\Death.wav" />
+    <Media Include="Resources\Resources\Audio\Home.wav" />
+    <Media Include="Resources\Resources\Audio\Hospital.wav" />
+    <Media Include="Resources\Resources\Audio\kalimba breeze V1.mp3" />
+    <Media Include="Resources\Resources\Audio\Market.wav" />
+    <Media Include="Resources\Resources\Audio\Money.wav" />
+    <Media Include="Resources\Resources\Audio\Mosque.wav" />
+    <Media Include="Resources\Resources\Audio\School.wav" />
+    <Media Include="Resources\Resources\Audio\Well.wav" />
+    <Media Include="Resources\Resources\Audio\Work.wav" />
+    <Media Include="Resources\StreamingAssets\IntroMovie.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\Calculator.ttf" />
+    <Font Include="Resources\Fonts\PressStart2P.ttf" />
+    <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
