@@ -15,7 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Animations\Worker\Chop\Chop.anim" />
     <None Include="Resources\Resources\Audio\Birth.wav.meta" />
     <None Include="Resources\Resources\Audio\ChildTrafficked.wav.meta" />
     <None Include="Resources\Resources\Audio\Click.wav.meta" />
@@ -30,6 +29,9 @@
     <None Include="Resources\Resources\Audio\Well.wav.meta" />
     <None Include="Resources\Resources\Audio\Work.wav.meta" />
     <None Include="Resources\Resources\Audio.meta" />
+    <None Include="Build Events\CopyDependencyDLLs.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Animations\Worker\Chop\chop1.png">
@@ -322,48 +324,53 @@
     <Media Include="Resources\Audio\Donate.wav">
       <Filter>Resource Files</Filter>
     </Media>
-    <Media Include="Resources\Resources\Audio\Birth.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\ChildTrafficked.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Click.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Death.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Home.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Hospital.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\kalimba breeze V1.mp3" />
-    <Media Include="Resources\Resources\Audio\Market.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Money.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Mosque.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\School.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Well.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Resources\Audio\Work.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
     <Media Include="Resources\StreamingAssets\IntroMovie.mp4" />
+    <Media Include="Resources\Audio\Birth.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\ChildTrafficked.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Click.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Death.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Home.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Hospital.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\kalimba breeze V1.mp3" />
+    <Media Include="Resources\Audio\Market.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Money.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Mosque.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\School.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Well.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\Work.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Fonts\Calculator.ttf" />
     <Font Include="Resources\Fonts\PressStart2P.ttf" />
     <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

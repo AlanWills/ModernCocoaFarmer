@@ -69,7 +69,24 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -87,10 +104,16 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(OutputDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc140-mt.lib;liblua53.a;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>call "$(ProjectDir)Build Events\CopyDependencyDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -115,15 +138,21 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(OutputDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc140-mt.lib;liblua53.a;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>call "$(ProjectDir)Build Events\CopyDependencyDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Resources\Animations\Worker\Chop\Chop.anim" />
+    <None Include="Build Events\CopyDependencyDLLs.bat" />
     <None Include="Resources\Resources\Audio.meta" />
     <None Include="Resources\Resources\Audio\Birth.wav.meta" />
     <None Include="Resources\Resources\Audio\ChildTrafficked.wav.meta" />
@@ -238,25 +267,28 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Audio\Donate.wav" />
-    <Media Include="Resources\Resources\Audio\Birth.wav" />
-    <Media Include="Resources\Resources\Audio\ChildTrafficked.wav" />
-    <Media Include="Resources\Resources\Audio\Click.wav" />
-    <Media Include="Resources\Resources\Audio\Death.wav" />
-    <Media Include="Resources\Resources\Audio\Home.wav" />
-    <Media Include="Resources\Resources\Audio\Hospital.wav" />
-    <Media Include="Resources\Resources\Audio\kalimba breeze V1.mp3" />
-    <Media Include="Resources\Resources\Audio\Market.wav" />
-    <Media Include="Resources\Resources\Audio\Money.wav" />
-    <Media Include="Resources\Resources\Audio\Mosque.wav" />
-    <Media Include="Resources\Resources\Audio\School.wav" />
-    <Media Include="Resources\Resources\Audio\Well.wav" />
-    <Media Include="Resources\Resources\Audio\Work.wav" />
+    <Media Include="Resources\Audio\Birth.wav" />
+    <Media Include="Resources\Audio\ChildTrafficked.wav" />
+    <Media Include="Resources\Audio\Click.wav" />
+    <Media Include="Resources\Audio\Death.wav" />
+    <Media Include="Resources\Audio\Home.wav" />
+    <Media Include="Resources\Audio\Hospital.wav" />
+    <Media Include="Resources\Audio\kalimba breeze V1.mp3" />
+    <Media Include="Resources\Audio\Market.wav" />
+    <Media Include="Resources\Audio\Money.wav" />
+    <Media Include="Resources\Audio\Mosque.wav" />
+    <Media Include="Resources\Audio\School.wav" />
+    <Media Include="Resources\Audio\Well.wav" />
+    <Media Include="Resources\Audio\Work.wav" />
     <Media Include="Resources\StreamingAssets\IntroMovie.mp4" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Fonts\Calculator.ttf" />
     <Font Include="Resources\Fonts\PressStart2P.ttf" />
     <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
