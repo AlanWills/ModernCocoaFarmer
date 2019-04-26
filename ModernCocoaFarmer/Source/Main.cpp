@@ -1,4 +1,5 @@
-#include "Game/Game.h"
+//#include "Game/Game.h"
+#include "Resources/ResourceManager.h"
 
 // Disables console window
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
@@ -10,8 +11,8 @@
 int main()
 {
 	// Don't need to use unique_ptr as it will be deleted through 'current' unique_ptr
-	CelesteEngine::Game* game = new CelesteEngine::Game();
-	game->run();
+	//CelesteEngine::Game* game = new CelesteEngine::Game();
+	//game->run();
 
 	return 0;
 }
