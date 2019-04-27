@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModernCocoaFarmer", "ModernCocoaFarmer\ModernCocoaFarmer.vcxproj", "{96250022-4933-47D8-99CD-934295D7F368}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CelesteEngine", "CelesteEngine", "{B53E4C92-7F4E-4D50-91FC-20630BA518FB}"
 EndProject
