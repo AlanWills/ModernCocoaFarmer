@@ -8,7 +8,8 @@ namespace MCF
 {
   namespace Settings
   {
-    REGISTER_SCRIPTABLE_OBJECT(PlayerSettings);
+    //REGISTER_SCRIPTABLE_OBJECT(PlayerSettings);
+    bool PlayerSettings::m_registered = CelesteEngine::ScriptableObjectRegistry::addScriptableObject<PlayerSettings>();
 
     //------------------------------------------------------------------------------------------------
     PlayerSettings::PlayerSettings() :
