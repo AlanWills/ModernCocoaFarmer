@@ -9,7 +9,7 @@
 // The MAIN function, from here we start the application and run the game loop
 int main()
 {
-  std::unique_ptr<CelesteEngine::Game> game(new CelesteEngine::Game());
+  CelesteEngine::Game* game = new CelesteEngine::Game();
   game->run();
 
 	return 0;
