@@ -15,308 +15,295 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Resources\Audio\Birth.wav.meta" />
-    <None Include="Resources\Resources\Audio\ChildTrafficked.wav.meta" />
-    <None Include="Resources\Resources\Audio\Click.wav.meta" />
-    <None Include="Resources\Resources\Audio\Death.wav.meta" />
-    <None Include="Resources\Resources\Audio\Home.wav.meta" />
-    <None Include="Resources\Resources\Audio\Hospital.wav.meta" />
-    <None Include="Resources\Resources\Audio\kalimba breeze V1.mp3.meta" />
-    <None Include="Resources\Resources\Audio\Market.wav.meta" />
-    <None Include="Resources\Resources\Audio\Money.wav.meta" />
-    <None Include="Resources\Resources\Audio\Mosque.wav.meta" />
-    <None Include="Resources\Resources\Audio\School.wav.meta" />
-    <None Include="Resources\Resources\Audio\Well.wav.meta" />
-    <None Include="Resources\Resources\Audio\Work.wav.meta" />
-    <None Include="Resources\Resources\Audio.meta" />
     <None Include="Build Events\CopyDependencyDLLs.bat">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Resources\Scripts\Game.lua" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Animations\Worker\Chop\chop1.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Chop\chop2.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Clouds.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Chop\chop3.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Farmer.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Idle\Idle.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Ground.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\IdleNoMachete\IdleNoMachete.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Hills.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Walking\walk1.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\OrangePod.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Walking\walk2.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Payslip.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Walking\walk3.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\PurplePod.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\Walking\walk4.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Sky.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\WalkingNoMachete\sprite 1.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Sky1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\WalkingNoMachete\Sprite 2.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Soil.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\WalkingNoMachete\Sprite 3.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\TopSoil.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Animations\Worker\WalkingNoMachete\Sprite 4.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Tree.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Childworker.png">
+    <Image Include="Resources\Textures\Cocoa Pod Collection\Tree2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Clouds.png">
+    <Image Include="Resources\Textures\Screens\About.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Farmer.png">
+    <Image Include="Resources\Textures\Screens\halfeatenbiscuitproductions.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Ground.png">
+    <Image Include="Resources\Textures\Screens\Instructions.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Hills.png">
+    <Image Include="Resources\Textures\Screens\SplashScreen.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\OrangePod.png">
+    <Image Include="Resources\Textures\UI\Symbols\BlankSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Payslip.png">
+    <Image Include="Resources\Textures\UI\Symbols\FarmSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\PurplePod.png">
+    <Image Include="Resources\Textures\UI\Symbols\HomeSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Sky.png">
+    <Image Include="Resources\Textures\UI\Symbols\HospitalSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Sky1.png">
+    <Image Include="Resources\Textures\UI\Symbols\MarketSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Soil.png">
+    <Image Include="Resources\Textures\UI\Symbols\MosqueSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\TopSoil.png">
+    <Image Include="Resources\Textures\UI\Symbols\SchoolSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Tree.png">
+    <Image Include="Resources\Textures\UI\Symbols\WellSymbol.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cocoa Pod Collection\Tree2.png">
+    <Image Include="Resources\Textures\UI\AudioMuted.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Screens\About.png">
+    <Image Include="Resources\Textures\UI\AudioPlaying.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Screens\halfeatenbiscuitproductions.png">
+    <Image Include="Resources\Textures\UI\Bar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Screens\Instructions.png">
+    <Image Include="Resources\Textures\UI\Book.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Screens\SplashScreen.png">
+    <Image Include="Resources\Textures\UI\Child.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\AudioMuted.png">
+    <Image Include="Resources\Textures\UI\Cross.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\AudioPlaying.png">
+    <Image Include="Resources\Textures\UI\Donate.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Bar.png">
+    <Image Include="Resources\Textures\UI\GameLogo.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Book.png">
+    <Image Include="Resources\Textures\UI\GameLogoForIOS.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Child.png">
+    <Image Include="Resources\Textures\UI\Happiness.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Cross.png">
+    <Image Include="Resources\Textures\UI\Health.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Donate.png">
+    <Image Include="Resources\Textures\UI\Menu.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\GameLogo.png">
+    <Image Include="Resources\Textures\UI\Outline.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\GameLogoForIOS.png">
+    <Image Include="Resources\Textures\UI\Pause.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Happiness.png">
+    <Image Include="Resources\Textures\UI\Play.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Health.png">
+    <Image Include="Resources\Textures\UI\Safety.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Menu.png">
+    <Image Include="Resources\Textures\UI\Text Box.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Outline.png">
+    <Image Include="Resources\Textures\Village\Background\Background.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Pause.png">
+    <Image Include="Resources\Textures\Village\Background\BoundaryLine.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Play.png">
+    <Image Include="Resources\Textures\Village\Background\Mali.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Safety.png">
+    <Image Include="Resources\Textures\Village\Background\Plant.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Text Box.png">
+    <Image Include="Resources\Textures\Village\Background\Rock1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Background.png">
+    <Image Include="Resources\Textures\Village\Background\Rock2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\BoundaryLine.png">
+    <Image Include="Resources\Textures\Village\Background\Rock3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Mali.png">
+    <Image Include="Resources\Textures\Village\Background\Sand.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Plant.png">
+    <Image Include="Resources\Textures\Village\Background\TheIvoryCoast.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Rock1.png">
+    <Image Include="Resources\Textures\Village\Buildings\BareCocoaTree.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Rock2.png">
+    <Image Include="Resources\Textures\Village\Buildings\Bench.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Rock3.png">
+    <Image Include="Resources\Textures\Village\Buildings\ChairFront.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\Sand.png">
+    <Image Include="Resources\Textures\Village\Buildings\ChairSide.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Background\TheIvoryCoast.png">
+    <Image Include="Resources\Textures\Village\Buildings\CocoaBag.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\BareCocoaTree.png">
+    <Image Include="Resources\Textures\Village\Buildings\CocoaBagMultiple.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Bench.png">
+    <Image Include="Resources\Textures\Village\Buildings\CocoaTree.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\ChairFront.png">
+    <Image Include="Resources\Textures\Village\Buildings\Farm.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\ChairSide.png">
+    <Image Include="Resources\Textures\Village\Buildings\Grave1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\CocoaBag.png">
+    <Image Include="Resources\Textures\Village\Buildings\Grave2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\CocoaBagMultiple.png">
+    <Image Include="Resources\Textures\Village\Buildings\GraveDestroyed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\CocoaTree.png">
+    <Image Include="Resources\Textures\Village\Buildings\Home.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Farm.png">
+    <Image Include="Resources\Textures\Village\Buildings\Hospital.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Grave1.png">
+    <Image Include="Resources\Textures\Village\Buildings\House1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Grave2.png">
+    <Image Include="Resources\Textures\Village\Buildings\House2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\GraveDestroyed.png">
+    <Image Include="Resources\Textures\Village\Buildings\House3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Home.png">
+    <Image Include="Resources\Textures\Village\Buildings\House4.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Hospital.png">
+    <Image Include="Resources\Textures\Village\Buildings\MarketFoodStalls.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\House1.png">
+    <Image Include="Resources\Textures\Village\Buildings\MarketFoodStalls2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\House2.png">
+    <Image Include="Resources\Textures\Village\Buildings\MarketStall.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\House3.png">
+    <Image Include="Resources\Textures\Village\Buildings\MarketStallMultiple.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\House4.png">
+    <Image Include="Resources\Textures\Village\Buildings\Mosque.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\MarketFoodStalls.png">
+    <Image Include="Resources\Textures\Village\Buildings\Playground.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\MarketFoodStalls2.png">
+    <Image Include="Resources\Textures\Village\Buildings\Pylon.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\MarketStall.png">
+    <Image Include="Resources\Textures\Village\Buildings\SacksOfFood.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\MarketStallMultiple.png">
+    <Image Include="Resources\Textures\Village\Buildings\School.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Mosque.png">
+    <Image Include="Resources\Textures\Village\Buildings\Sign.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Playground.png">
+    <Image Include="Resources\Textures\Village\Buildings\Toilet.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Pylon.png">
+    <Image Include="Resources\Textures\Village\Buildings\Well.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\SacksOfFood.png">
+    <Image Include="Resources\Textures\Village\Child%28Life%29.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\School.png">
+    <Image Include="Resources\Textures\Worker\Chop\chop1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Sign.png">
+    <Image Include="Resources\Textures\Worker\Chop\chop2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Toilet.png">
+    <Image Include="Resources\Textures\Worker\Chop\chop3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Buildings\Well.png">
+    <Image Include="Resources\Textures\Worker\Idle\Idle.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Village\Child(Life).png">
+    <Image Include="Resources\Textures\Worker\IdleNoMachete\IdleNoMachete.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\BlankSymbol.png">
+    <Image Include="Resources\Textures\Worker\Walking\walk1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\FarmSymbol.png">
+    <Image Include="Resources\Textures\Worker\Walking\walk2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\HomeSymbol.png">
+    <Image Include="Resources\Textures\Worker\Walking\walk3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\HospitalSymbol.png">
+    <Image Include="Resources\Textures\Worker\Walking\walk4.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\MarketSymbol.png">
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\sprite 1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\MosqueSymbol.png">
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\Sprite 2.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\SchoolSymbol.png">
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\Sprite 3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Sprites\UI\Symbols\WellSymbol.png">
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\Sprite 4.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -324,7 +311,6 @@
     <Media Include="Resources\Audio\Donate.wav">
       <Filter>Resource Files</Filter>
     </Media>
-    <Media Include="Resources\StreamingAssets\IntroMovie.mp4" />
     <Media Include="Resources\Audio\Birth.wav">
       <Filter>Resource Files</Filter>
     </Media>
@@ -362,6 +348,7 @@
     <Media Include="Resources\Audio\Work.wav">
       <Filter>Resource Files</Filter>
     </Media>
+    <Media Include="Resources\Videos\IntroMovie.mp4" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Fonts\Calculator.ttf" />
@@ -372,5 +359,19 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Settings\PlayerSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\Settings\PlayerSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
