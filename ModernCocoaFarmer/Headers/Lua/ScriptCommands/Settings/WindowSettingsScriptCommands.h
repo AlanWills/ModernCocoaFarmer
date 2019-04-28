@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 
 namespace MCF
 {
@@ -7,11 +9,11 @@ namespace MCF
   {
     namespace Settings
     {
-      namespace PlayerSettingsScriptCommands
+      namespace WindowSettingsScriptCommands
       {
         namespace Internals
         {
-          void apply(const std::string& playerSettingsPath);
+          void apply(const std::string& windowSettingsPath);
         }
 
         void initialize();

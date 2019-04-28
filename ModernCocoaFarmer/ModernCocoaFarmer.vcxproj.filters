@@ -19,7 +19,7 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="Resources\Scripts\Game.lua" />
-    <None Include="Resources\Data\Settings\PlayerSettings.asset" />
+    <None Include="Resources\Data\Settings\WindowSettings.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -304,6 +304,12 @@
     <Image Include="Resources\Textures\UI\Text Box.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Textures\UI\AudioMuted.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Icons\WindowIcon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Audio\Donate.wav">
@@ -357,24 +363,24 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Settings\PlayerSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Settings\WindowSettingsScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Settings\WindowSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Settings\PlayerSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Settings\WindowSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Settings\WindowSettingsScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

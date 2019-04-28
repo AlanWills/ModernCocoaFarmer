@@ -10,19 +10,19 @@ namespace MCF
 {
   namespace Settings
   {
-    class PlayerSettings : public CelesteEngine::ScriptableObject
+    class WindowSettings : public CelesteEngine::ScriptableObject
     {
-      DECLARE_SCRIPTABLE_OBJECT(PlayerSettings)
+      DECLARE_SCRIPTABLE_OBJECT(WindowSettings)
 
       public:
         const std::string& getWindowName() const { return m_windowName->getValue(); }
-        Handle<CelesteEngine::Resources::Texture2D> getWindowIcon() const { return m_windowIcon->getValue(); }
+        const std::string& getWindowIcon() const { return m_windowIcon->getValue(); }
 
       private:
         using Inherited = CelesteEngine::ScriptableObject;
 
         ReferenceField<std::string>* m_windowName;
-        HandleField<CelesteEngine::Resources::Texture2D>* m_windowIcon;
+        ReferenceField<std::string>* m_windowIcon;
     };
   }
 }

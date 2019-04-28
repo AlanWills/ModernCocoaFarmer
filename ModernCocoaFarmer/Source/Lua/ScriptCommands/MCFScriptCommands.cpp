@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
-#include "Lua/ScriptCommands//Settings/PlayerSettingsScriptCommands.h"
+#include "Lua/ScriptCommands//Settings/WindowSettingsScriptCommands.h"
 
 
 namespace MCF
@@ -13,7 +13,7 @@ namespace MCF
       //------------------------------------------------------------------------------------------------
       void initialize()
       {
-        Settings::PlayerSettingsScriptCommands::initialize();
+        Settings::WindowSettingsScriptCommands::initialize();
       }
     }
   }

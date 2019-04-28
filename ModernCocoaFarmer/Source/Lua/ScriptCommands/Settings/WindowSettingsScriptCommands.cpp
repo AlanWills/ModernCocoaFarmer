@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include "Settings/PlayerSettings.h"
+#include "Settings/WindowSettings.h"
 #include "Screens/ScreenManager.h"
 
-#include "Lua/ScriptCommands/Settings/PlayerSettingsScriptCommands.h"
+#include "Lua/ScriptCommands/Settings/WindowSettingsScriptCommands.h"
 #include "Lua/LuaState.h"
 
 #include <memory>
@@ -24,9 +24,14 @@ namespace MCF
         {
           void apply(const std::string& playerSettingsPath)
           {
-            std::unique_ptr<PlayerSettings> settings(ScriptableObject::load<PlayerSettings>(playerSettingsPath));
-            
-            getScreenManager()->getWindow()->setTitle(settings->getWindowName());
+            std::unique_ptr<WindowSettings> settings(ScriptableObject::load<WindowSettings>(playerSettingsPath));
+            ASSERT(settings.get() != nullptr);
+
+            if (settings != nullptr)
+            {
+              getScreenManager()->getWindow()->setTitle(settings->getWindowName());
+              getScreenManager()->getWindow()->setIcon(Path(Resources::getResourcesDirectory(), settings->getWindowIcon()).as_string());
+            }
           }
         }
 
@@ -35,9 +40,8 @@ namespace MCF
         {
           sol::state& state = LuaState::instance();
 
-          // make usertype metatable
-          state.new_usertype<PlayerSettings>(
-            "PlayerSettings",
+          state.new_usertype<WindowSettings>(
+            "WindowSettings",
             "apply", &Internals::apply);
         }
       }

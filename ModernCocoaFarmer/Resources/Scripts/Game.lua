@@ -2,7 +2,9 @@ package.path = Resources.getResourcesDirectory() .. "\\..\\..\\CelesteEngine\\Ce
 
 require "Engine"
 
-PlayerSettings.apply(path.combine(Resources.getResourcesDirectory(), "Data", "Settings", "PlayerSettings.asset"))
+-- Delete these when we make the application automatic
+WindowSettings.apply(path.combine(Resources.getResourcesDirectory(), "Data", "Settings", "WindowSettings.asset"))
+GameSettings.apply(path.combine(Resources.getResourcesDirectory(), "Data", "Settings", "GameSettings.asset"))
 
 --[[local settingsPath = path.combine(Resources.getResourcesDirectory(), "Data", "Settings", "GameSettings.asset")
 local settings = GameSettings.load(settingsPath)

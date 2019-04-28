@@ -153,10 +153,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyDLLs.bat" />
-    <None Include="Resources\Data\Settings\PlayerSettings.asset" />
+    <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Resources\Scripts\Game.lua" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Textures\Icons\WindowIcon.png" />
+    <Image Include="Resources\Textures\UI\AudioMuted.png" />
     <Image Include="Resources\Textures\UI\AudioPlaying.png" />
     <Image Include="Resources\Textures\UI\Bar.png" />
     <Image Include="Resources\Textures\UI\Book.png" />
@@ -276,14 +278,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
-    <ClCompile Include="Source\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Settings\WindowSettingsScriptCommands.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Settings\PlayerSettings.cpp" />
+    <ClCompile Include="Source\Settings\WindowSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
-    <ClInclude Include="Headers\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.h" />
-    <ClInclude Include="Headers\Settings\PlayerSettings.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Settings\WindowSettingsScriptCommands.h" />
+    <ClInclude Include="Headers\Settings\WindowSettings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
