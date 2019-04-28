@@ -103,7 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -137,7 +137,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -153,9 +153,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyDLLs.bat" />
+    <None Include="Resources\Data\Settings\PlayerSettings.asset" />
     <None Include="Resources\Scripts\Game.lua" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resources\Textures\UI\AudioPlaying.png" />
+    <Image Include="Resources\Textures\UI\Bar.png" />
+    <Image Include="Resources\Textures\UI\Book.png" />
+    <Image Include="Resources\Textures\UI\Child.png" />
+    <Image Include="Resources\Textures\UI\Cross.png" />
+    <Image Include="Resources\Textures\UI\Donate.png" />
+    <Image Include="Resources\Textures\UI\GameLogo.png" />
+    <Image Include="Resources\Textures\UI\GameLogoForIOS.png" />
+    <Image Include="Resources\Textures\UI\Happiness.png" />
+    <Image Include="Resources\Textures\UI\Health.png" />
+    <Image Include="Resources\Textures\UI\Menu.png" />
+    <Image Include="Resources\Textures\UI\Outline.png" />
+    <Image Include="Resources\Textures\UI\Pause.png" />
+    <Image Include="Resources\Textures\UI\Play.png" />
+    <Image Include="Resources\Textures\UI\Safety.png" />
+    <Image Include="Resources\Textures\UI\Text Box.png" />
     <Image Include="Resources\Textures\Worker\Chop\chop1.png" />
     <Image Include="Resources\Textures\Worker\Chop\chop2.png" />
     <Image Include="Resources\Textures\Worker\Chop\chop3.png" />
@@ -187,22 +204,6 @@
     <Image Include="Resources\Textures\Screens\halfeatenbiscuitproductions.png" />
     <Image Include="Resources\Textures\Screens\Instructions.png" />
     <Image Include="Resources\Textures\Screens\SplashScreen.png" />
-    <Image Include="Resources\Textures\UI\AudioMuted.png" />
-    <Image Include="Resources\Textures\UI\AudioPlaying.png" />
-    <Image Include="Resources\Textures\UI\Bar.png" />
-    <Image Include="Resources\Textures\UI\Book.png" />
-    <Image Include="Resources\Textures\UI\Child.png" />
-    <Image Include="Resources\Textures\UI\Cross.png" />
-    <Image Include="Resources\Textures\UI\Donate.png" />
-    <Image Include="Resources\Textures\UI\GameLogo.png" />
-    <Image Include="Resources\Textures\UI\GameLogoForIOS.png" />
-    <Image Include="Resources\Textures\UI\Happiness.png" />
-    <Image Include="Resources\Textures\UI\Health.png" />
-    <Image Include="Resources\Textures\UI\Menu.png" />
-    <Image Include="Resources\Textures\UI\Outline.png" />
-    <Image Include="Resources\Textures\UI\Pause.png" />
-    <Image Include="Resources\Textures\UI\Play.png" />
-    <Image Include="Resources\Textures\UI\Safety.png" />
     <Image Include="Resources\Textures\UI\Symbols\BlankSymbol.png" />
     <Image Include="Resources\Textures\UI\Symbols\FarmSymbol.png" />
     <Image Include="Resources\Textures\UI\Symbols\HomeSymbol.png" />
@@ -211,7 +212,6 @@
     <Image Include="Resources\Textures\UI\Symbols\MosqueSymbol.png" />
     <Image Include="Resources\Textures\UI\Symbols\SchoolSymbol.png" />
     <Image Include="Resources\Textures\UI\Symbols\WellSymbol.png" />
-    <Image Include="Resources\Textures\UI\Text Box.png" />
     <Image Include="Resources\Textures\Village\Background\Background.png" />
     <Image Include="Resources\Textures\Village\Background\BoundaryLine.png" />
     <Image Include="Resources\Textures\Village\Background\Mali.png" />
@@ -275,11 +275,13 @@
     <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Settings\PlayerSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Settings\PlayerSettingsScriptCommands.h" />
     <ClInclude Include="Headers\Settings\PlayerSettings.h" />
   </ItemGroup>

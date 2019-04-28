@@ -1,11 +1,12 @@
 #include "stdafx.h"
 
-#include "Lua/ScriptCommands/Settings/PlayerSettingsScriptCommands.h"
-#include "Lua/ScriptCommands/ScriptCommandUtils.h"
-#include "Lua/LuaState.h"
-
 #include "Settings/PlayerSettings.h"
 #include "Screens/ScreenManager.h"
+
+#include "Lua/ScriptCommands/Settings/PlayerSettingsScriptCommands.h"
+#include "Lua/LuaState.h"
+
+#include <memory>
 
 using namespace CelesteEngine::Lua;
 using namespace MCF::Settings;

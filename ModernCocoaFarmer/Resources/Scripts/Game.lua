@@ -1,6 +1,8 @@
-addToLuaPath(Resources.getResourcesDirectory() .. "\\..\\..\\CelesteEngine\\Resources\\Scripts\\?.lua;")
+package.path = Resources.getResourcesDirectory() .. "\\..\\..\\CelesteEngine\\CelesteEngine\\Resources\\Scripts\\?.lua;" .. package.path
 
 require "Engine"
+
+PlayerSettings.apply(path.combine(Resources.getResourcesDirectory(), "Data", "Settings", "PlayerSettings.asset"))
 
 --[[local settingsPath = path.combine(Resources.getResourcesDirectory(), "Data", "Settings", "GameSettings.asset")
 local settings = GameSettings.load(settingsPath)
