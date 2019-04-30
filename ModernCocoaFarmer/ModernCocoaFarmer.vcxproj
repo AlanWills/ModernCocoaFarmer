@@ -116,7 +116,8 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>call "$(ProjectDir)Build Events\CopyDependencyDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
+      <Command>call "$(ProjectDir)Build Events\CopyDependencyDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform) 
+call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -156,11 +157,13 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>call "$(ProjectDir)Build Events\CopyDependencyDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
+      <Command>call "$(ProjectDir)Build Events\CopyDependencyDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform) 
+call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyDLLs.bat" />
+    <None Include="Build Events\CopyResources.bat" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Resources\Scripts\Game.lua" />
   </ItemGroup>

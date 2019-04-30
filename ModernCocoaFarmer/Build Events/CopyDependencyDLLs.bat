@@ -6,4 +6,4 @@ rem echo %OutputDir% > log.txt
 
 cd %OutputDir%
 
-(robocopy ..\..\..\..\CelesteEngine\CelesteEngine\bin\%Platform%\%Configuration%\ .\ /IS /IT /xo) & exit 0
+(robocopy ..\..\..\..\CelesteEngine\CelesteEngine\bin\%Platform%\%Configuration%\ .\ /E /IS /IT /xo)

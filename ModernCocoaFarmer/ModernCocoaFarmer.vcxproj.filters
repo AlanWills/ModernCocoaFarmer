@@ -20,6 +20,9 @@
     </None>
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
+    <None Include="Build Events\CopyResources.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
