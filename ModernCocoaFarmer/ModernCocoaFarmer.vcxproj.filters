@@ -366,21 +366,9 @@
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Lua\ScriptCommands\Settings\WindowSettingsScriptCommands.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Settings\WindowSettings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Settings\WindowSettings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Lua\ScriptCommands\Settings\WindowSettingsScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

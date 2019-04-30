@@ -17,6 +17,6 @@ int main()
 
   CelesteEngine::Game* game = new CelesteEngine::Game();
   game->run();
-
-	return 0;
+  
+  return 0;
 }
