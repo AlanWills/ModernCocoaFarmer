@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Build Events\CopyDependencyDLLs.bat">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Build Events\CopyResources.bat">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Build Events\CopyDependencyFiles.bat">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
