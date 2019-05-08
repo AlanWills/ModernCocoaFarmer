@@ -7,4 +7,4 @@ rem echo %OutputDir%..\..\..\..\3rdParty\DLL >> log.txt
 
 cd %OutputDir%
 
-(robocopy ..\..\..\Resources .\Resources /E /IS /IT) & exit 0
+(robocopy ..\..\..\Resources .\Resources /E /IS /IT /XO) & exit 0
