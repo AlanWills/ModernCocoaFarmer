@@ -70,64 +70,16 @@
     <Image Include="Resources\Textures\Screens\About.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Screens\halfeatenbiscuitproductions.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\Textures\Screens\Instructions.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Screens\SplashScreen.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Symbols\BlankSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\FarmSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\HomeSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\HospitalSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\MarketSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\MosqueSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\SchoolSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\UI\Symbols\WellSymbol.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\Textures\Village\Background\Background.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Village\Background\BoundaryLine.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\Mali.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\Plant.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\Rock1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\Rock2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\Rock3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\Sand.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Background\TheIvoryCoast.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Village\Buildings\BareCocoaTree.png">
@@ -217,145 +169,169 @@
     <Image Include="Resources\Textures\Village\Buildings\Well.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Village\Child%28Life%29.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Worker\Chop\chop1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Worker\Chop\chop2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Worker\Chop\chop3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\Textures\Worker\Idle\Idle.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Worker\IdleNoMachete\IdleNoMachete.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\Walking\walk1.png">
+    <Image Include="Resources\Textures\UI\Settings\AudioMuted.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\Walking\walk2.png">
+    <Image Include="Resources\Textures\UI\Settings\AudioPlaying.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\Walking\walk3.png">
+    <Image Include="Resources\Textures\UI\Settings\Play.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\Walking\walk4.png">
+    <Image Include="Resources\Textures\UI\Settings\Pause.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\WalkingNoMachete\sprite 1.png">
+    <Image Include="Resources\Textures\UI\StatIcons\Book.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\WalkingNoMachete\Sprite 2.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Blank.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\WalkingNoMachete\Sprite 3.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Farm.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\WalkingNoMachete\Sprite 4.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Home.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\AudioPlaying.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Hospital.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Bar.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Market.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Book.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Mosque.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Child.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\School.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Cross.png">
+    <Image Include="Resources\Textures\UI\BuildingIcons\Well.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Donate.png">
+    <Image Include="Resources\Textures\UI\StatIcons\Health.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\GameLogo.png">
+    <Image Include="Resources\Textures\UI\Utility\Bar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\GameLogoForIOS.png">
+    <Image Include="Resources\Textures\UI\Utility\Cross.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Happiness.png">
+    <Image Include="Resources\Textures\UI\Utility\Menu.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Health.png">
+    <Image Include="Resources\Textures\UI\Utility\Donate.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Menu.png">
+    <Image Include="Resources\Textures\Icons\IOSIcon.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Outline.png">
+    <Image Include="Resources\Textures\Icons\Icon.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Pause.png">
+    <Image Include="Resources\Textures\Icons\DesktopIcon.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Play.png">
+    <Image Include="Resources\Textures\UI\StatIcons\Happiness.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Safety.png">
+    <Image Include="Resources\Textures\UI\Utility\Outline.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\Text Box.png">
+    <Image Include="Resources\Textures\UI\StatIcons\Safety.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\AudioMuted.png">
+    <Image Include="Resources\Textures\UI\Utility\TextBox.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Icons\WindowIcon.png">
+    <Image Include="Resources\Textures\Village\Background\MaliText.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Background\TheIvoryCoastText.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Walking\Walk1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Walking\Walk2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Walking\Walk3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Walking\Walk4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Chop\Chop1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Chop\Chop2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Chop\Chop3.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Resources\Audio\Donate.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Birth.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\ChildTrafficked.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Click.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Death.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Home.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Hospital.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\kalimba breeze V1.mp3" />
-    <Media Include="Resources\Audio\Market.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Money.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Mosque.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\School.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Well.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="Resources\Audio\Work.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
     <Media Include="Resources\Videos\IntroMovie.mp4" />
+    <Media Include="Resources\Audio\Music\KalimbaBreeze.mp3" />
+    <Media Include="Resources\Audio\SFX\Birth.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\ChildTrafficked.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Click.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Death.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Donate.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Home.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Hospital.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Market.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Money.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Mosque.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\School.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Well.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\Work.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Fonts\Calculator.ttf" />
