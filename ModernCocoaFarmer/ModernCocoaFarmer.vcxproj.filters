@@ -289,6 +289,15 @@
     <Image Include="Resources\Textures\Worker\Chop\Chop3.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Textures\Worker\Chop\ChopAnimation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\Walking\WalkAnimation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkNoMacheteAnimation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Videos\IntroMovie.mp4" />

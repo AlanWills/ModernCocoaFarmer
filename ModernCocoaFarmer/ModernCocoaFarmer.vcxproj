@@ -188,12 +188,14 @@ call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuratio
     <Image Include="Resources\Textures\Worker\Chop\Chop1.png" />
     <Image Include="Resources\Textures\Worker\Chop\Chop2.png" />
     <Image Include="Resources\Textures\Worker\Chop\Chop3.png" />
+    <Image Include="Resources\Textures\Worker\Chop\ChopAnimation.png" />
     <Image Include="Resources\Textures\Worker\IdleNoMachete\IdleNoMachete.png" />
     <Image Include="Resources\Textures\Worker\Idle\Idle.png" />
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete1.png" />
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete2.png" />
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete3.png" />
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete4.png" />
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkNoMacheteAnimation.png" />
     <Image Include="Resources\Textures\Worker\Walking\Walk1.png" />
     <Image Include="Resources\Textures\Worker\Walking\Walk2.png" />
     <Image Include="Resources\Textures\Worker\Walking\Walk3.png" />
@@ -256,6 +258,7 @@ call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuratio
     <Image Include="Resources\Textures\Village\Buildings\Sign.png" />
     <Image Include="Resources\Textures\Village\Buildings\Toilet.png" />
     <Image Include="Resources\Textures\Village\Buildings\Well.png" />
+    <Image Include="Resources\Textures\Worker\Walking\WalkAnimation.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Audio\SFX\Donate.wav" />
