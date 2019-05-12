@@ -31,6 +31,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCelesteEngine", "CelesteEngine\TestCelesteEngine\TestCelesteEngine.vcxproj", "{E07541B6-55FF-4134-B937-1C62821EE5FB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCelesteEngineRuntime", "CelesteEngine\TestCelesteEngineRuntime\TestCelesteEngineRuntime.vcxproj", "{A51B7AB5-82CB-41E4-970A-2034F81EE3FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BB04BA24-E88D-4697-B55C-7C518AFD6BF8} = {BB04BA24-E88D-4697-B55C-7C518AFD6BF8}
+		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestUtils", "CelesteEngine\TestUtils\TestUtils.vcxproj", "{7F06E53E-178C-4E7E-8F24-061F18AA402A}"
 EndProject
