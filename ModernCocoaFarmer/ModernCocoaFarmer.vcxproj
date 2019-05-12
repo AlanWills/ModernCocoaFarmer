@@ -164,6 +164,10 @@ call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuratio
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
     <None Include="Build Events\CopyResources.bat" />
+    <None Include="Resources\Data\Screens\MainMenuScreen.asset" />
+    <None Include="Resources\Data\Screens\OptionsScreen.asset" />
+    <None Include="Resources\Data\Screens\SplashScreen.asset" />
+    <None Include="Resources\Data\Screens\StartupMusic.asset" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Resources\Scripts\Game.lua" />
   </ItemGroup>
@@ -185,6 +189,7 @@ call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuratio
     <Image Include="Resources\Textures\UI\Settings\Play.png" />
     <Image Include="Resources\Textures\UI\StatIcons\Safety.png" />
     <Image Include="Resources\Textures\UI\Utility\TextBox.png" />
+    <Image Include="Resources\Textures\UI\Utility\WhitePixel.png" />
     <Image Include="Resources\Textures\Worker\Chop\Chop1.png" />
     <Image Include="Resources\Textures\Worker\Chop\Chop2.png" />
     <Image Include="Resources\Textures\Worker\Chop\Chop3.png" />
