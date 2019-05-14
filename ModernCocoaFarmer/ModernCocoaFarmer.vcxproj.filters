@@ -17,16 +17,13 @@
   <ItemGroup>
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
-    <None Include="Build Events\CopyResources.bat">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Build Events\CopyDependencyFiles.bat">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="Resources\Data\Screens\MainMenuScreen.asset" />
     <None Include="Resources\Data\Screens\OptionsScreen.asset" />
     <None Include="Resources\Data\Screens\SplashScreen.asset" />
     <None Include="Resources\Data\Screens\StartupMusic.asset" />
+    <None Include="Build Events\CopyDependencyFiles.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

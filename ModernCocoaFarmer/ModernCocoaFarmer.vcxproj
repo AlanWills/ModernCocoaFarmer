@@ -81,11 +81,15 @@
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,9 +120,15 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>call "$(ProjectDir)Build Events\CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform) 
-call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>call "$(ProjectDir)Build Events\CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform) </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>Force.txt</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -157,13 +167,18 @@ call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuratio
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>call "$(ProjectDir)Build Events\CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform) 
-call "$(ProjectDir)Build Events\CopyResources.bat" "$(TargetDir)" $(Configuration) $(Platform)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
+    <CustomBuildStep>
+      <Command>call "$(ProjectDir)Build Events\CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform) </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>Force.txt</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
-    <None Include="Build Events\CopyResources.bat" />
     <None Include="Resources\Data\Screens\MainMenuScreen.asset" />
     <None Include="Resources\Data\Screens\OptionsScreen.asset" />
     <None Include="Resources\Data\Screens\SplashScreen.asset" />
