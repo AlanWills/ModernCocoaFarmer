@@ -179,15 +179,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Resources\Data\Screens\DebugTools.asset" />
     <None Include="Resources\Data\Screens\MainMenuScreen.asset" />
     <None Include="Resources\Data\Screens\OptionsScreen.asset" />
     <None Include="Resources\Data\Screens\SplashScreen.asset" />
     <None Include="Resources\Data\Screens\StartupMusic.asset" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
+    <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Scripts\Game.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Icons\DesktopIcon.png" />
+    <Image Include="Resources\Textures\Screens\SplashScreenSmall.png" />
+    <Image Include="Resources\Textures\UI\ButtonClicked.png" />
+    <Image Include="Resources\Textures\UI\ButtonDefault.png" />
+    <Image Include="Resources\Textures\UI\ButtonHighlighted.png" />
     <Image Include="Resources\Textures\UI\Settings\AudioMuted.png" />
     <Image Include="Resources\Textures\UI\Settings\AudioPlaying.png" />
     <Image Include="Resources\Textures\UI\Utility\Bar.png" />
@@ -281,6 +287,8 @@
     <Image Include="Resources\Textures\Worker\Walking\WalkAnimation.png" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Resources\Audio\SFX\ButtonClicked.wav" />
+    <Media Include="Resources\Audio\SFX\ButtonHover.wav" />
     <Media Include="Resources\Audio\SFX\Donate.wav" />
     <Media Include="Resources\Audio\SFX\Birth.wav" />
     <Media Include="Resources\Audio\SFX\ChildTrafficked.wav" />

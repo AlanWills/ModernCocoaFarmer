@@ -1,5 +1,6 @@
 set "OutputDir=%1"
-set "Platform=%2"
+set "Configuration=%2"
+set "Platform=%3"
 
 rem Debugging
 rem echo %OutputDir% > log.txt

@@ -24,6 +24,8 @@
     <None Include="Build Events\CopyDependencyFiles.bat">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Resources\Data\Screens\DebugTools.asset" />
+    <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -302,6 +304,18 @@
     <Image Include="Resources\Textures\UI\Utility\WhitePixel.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Textures\Screens\SplashScreenSmall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\UI\ButtonClicked.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\UI\ButtonDefault.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\UI\ButtonHighlighted.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Videos\IntroMovie.mp4" />
@@ -343,6 +357,12 @@
       <Filter>Resource Files</Filter>
     </Media>
     <Media Include="Resources\Audio\SFX\Work.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\ButtonClicked.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Resources\Audio\SFX\ButtonHover.wav">
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>

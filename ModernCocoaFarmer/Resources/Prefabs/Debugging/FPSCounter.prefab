@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+        <GameObject name="Canvas" Tag="Debug" position="0.1%,0.1%,1">
+            <Components>
+                <Canvas dimensions="1%,1%"/>
+            </Components>
+        </GameObject>
+        <GameObject name="FPSCounter" Tag="Debug" should_render="true" parent="Canvas">
+            <Components>
+                <KeyboardVisibility visibility_key="F" invisibility_key="F" mode="Toggle" target="FPSCounter"/>
+                <TextRenderer>
+                <Lines>
+                    <Line>0</Line>
+                </Lines>
+                </TextRenderer>
+                <FPSCounter/>
+            </Components>
+        </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

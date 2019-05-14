@@ -31,7 +31,6 @@
           <SpriteRenderer/>
           <RectangleCollider/>
           <MouseInteractionHandler/>
-          <AudioSource audio_type="SFX"/>
           <Button>
             <LeftClickCallbacks>
               <Callback name="KillOwnerScreen"/>
@@ -53,7 +52,6 @@
           <SpriteRenderer/>
           <RectangleCollider/>
           <MouseInteractionHandler/>
-          <AudioSource audio_type="SFX"/>
           <Button>
             <LeftClickCallbacks>
               <Callback name="TransitionToScreen" arg="Data\Screens\OptionsScreen.asset"/>
@@ -75,7 +73,6 @@
           <SpriteRenderer/>
           <RectangleCollider/>
           <MouseInteractionHandler/>
-          <AudioSource audio_type="SFX"/>
           <Button>
             <LeftClickCallbacks>
               <Callback name="ExitGame"/>
