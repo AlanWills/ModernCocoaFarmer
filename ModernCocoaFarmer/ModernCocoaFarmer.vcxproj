@@ -209,6 +209,7 @@
     <Image Include="Resources\Textures\UI\Settings\Pause.png" />
     <Image Include="Resources\Textures\UI\Settings\Play.png" />
     <Image Include="Resources\Textures\UI\StatIcons\Safety.png" />
+    <Image Include="Resources\Textures\UI\Utility\ProgressBar.png" />
     <Image Include="Resources\Textures\UI\Utility\TextBox.png" />
     <Image Include="Resources\Textures\UI\Utility\WhitePixel.png" />
     <Image Include="Resources\Textures\Worker\Chop\Chop1.png" />

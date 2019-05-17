@@ -316,6 +316,9 @@
     <Image Include="Resources\Textures\UI\ButtonHighlighted.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Textures\UI\Utility\ProgressBar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Videos\IntroMovie.mp4" />

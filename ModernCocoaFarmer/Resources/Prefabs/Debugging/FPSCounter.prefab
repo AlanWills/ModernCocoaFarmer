@@ -4,16 +4,21 @@
     <GameObjects>
         <GameObject name="Canvas" Tag="Debug" position="0.1%,0.1%,1">
             <Components>
-                <Canvas dimensions="1%,1%"/>
+                <KeyboardVisibility visibility_key="F" invisibility_key="F" mode="Toggle" target="Canvas"/>
+                <Canvas dimensions="1%,1%" projection_mode="Orthographic"/>
             </Components>
         </GameObject>
-        <GameObject name="FPSCounter" Tag="Debug" should_render="true" parent="Canvas">
+        <GameObject name="Background" Tag="Debug" parent="Canvas">
             <Components>
-                <KeyboardVisibility visibility_key="F" invisibility_key="F" mode="Toggle" target="FPSCounter"/>
-                <TextRenderer>
-                <Lines>
-                    <Line>0</Line>
-                </Lines>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="20,20" colour="1,1,1,1"/>
+            </Components>
+        </GameObject>
+        <GameObject name="FPSCounter" Tag="Debug" parent="Background">
+            <Components>
+                <TextRenderer colour="0,0,0,1">
+                    <Lines>
+                        <Line>0</Line>
+                    </Lines>
                 </TextRenderer>
                 <FPSCounter/>
             </Components>

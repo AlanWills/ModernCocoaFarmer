@@ -19,7 +19,7 @@
       </GameObject>
       <GameObject name="Title" position="0.5%, 0.8%, 0" parent="Canvas2">
         <Components>
-          <TextRenderer font_height="32" horizontal_alignment="centre">
+          <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1">
             <Lines>
               <Line>Modern Cocoa Farmer</Line>
             </Lines>
@@ -40,7 +40,7 @@
       </GameObject>
       <GameObject name="PlayText" parent="PlayButton" position="0,1,0">
         <Components>
-          <TextRenderer font_height="24">
+          <TextRenderer font_height="24" colour="0,0,0,1">
             <Lines>
               <Line>Play</Line>
             </Lines>
@@ -61,7 +61,7 @@
       </GameObject>
       <GameObject name="OptionsText" parent="OptionsButton" position="0,1,0">
         <Components>
-          <TextRenderer font_height="24">
+          <TextRenderer font_height="24" colour="0,0,0,1">
             <Lines>
               <Line>Options</Line>
             </Lines>
@@ -82,7 +82,7 @@
       </GameObject>
       <GameObject name="ExitText" parent="ExitButton" position="0,1,0">
         <Components>
-          <TextRenderer font_height="24">
+          <TextRenderer font_height="24" colour="0,0,0,1">
             <Lines>
               <Line>Exit</Line>
             </Lines>

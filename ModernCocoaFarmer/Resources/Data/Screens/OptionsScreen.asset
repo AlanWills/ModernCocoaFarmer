@@ -4,7 +4,7 @@
     <GameObjects>
       <GameObject name="Canvas">
         <Components>
-          <Canvas/>
+          <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
         </Components>
       </GameObject>
       <GameObject position="0.5%, 0.8%, 0" name="Title" parent="Canvas">
@@ -19,14 +19,14 @@
       <!--Master Volume-->
       <GameObject name="MasterVolumeSlider">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Rectangle.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="1,0,0"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="1,0,0"/>
           <RectangleCollider dimensions="400,30"/>
           <Slider min="0" max="1" value="1"/>
         </Components>
       </GameObject>
       <GameObject name="MasterVolumeSliderBackground" parent="MasterVolumeSlider" position="0,0,-0.1">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Rectangle.png" size="400,30"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
         </Components>
       </GameObject>
       <GameObject name="MasterVolumeValueText" position="220,0,0" parent="MasterVolumeSlider">
@@ -50,14 +50,14 @@
       <!--Music Volume-->
       <GameObject name="MusicVolumeSlider">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Rectangle.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,1,0"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,1,0"/>
           <RectangleCollider dimensions="400,30"/>
           <Slider min="0" max="1" value="0"/>
         </Components>
       </GameObject>
       <GameObject name="MusicVolumeSliderBackground" parent="MusicVolumeSlider" position="0,0,-0.1">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Rectangle.png" size="400,30"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
         </Components>
       </GameObject>
       <GameObject name="MusicVolumeValueText" position="220,0,0" parent="MusicVolumeSlider">
@@ -81,14 +81,14 @@
       <!--SFX Volume-->
       <GameObject name="SFXVolumeSlider">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Rectangle.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,0,1"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,0,1"/>
           <RectangleCollider dimensions="400,30"/>
           <Slider min="0" max="1" value="0"/>
         </Components>
       </GameObject>
       <GameObject name="SFXVolumeSliderBackground" parent="SFXVolumeSlider" position="0,0,-0.1">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Rectangle.png" size="400,30"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
         </Components>
       </GameObject>
       <GameObject name="SFXVolumeValueText" position="220,0,0" parent="SFXVolumeSlider">
@@ -126,7 +126,6 @@
           <SpriteRenderer/>
           <RectangleCollider/>
           <MouseInteractionHandler/>
-          <AudioSource audio_type="SFX"/>
           <Button font_height="20">
             <LeftClickCallbacks>
               <Callback name="TransitionToScreen" arg="Data\Screens\MainMenuScreen.asset"/>
