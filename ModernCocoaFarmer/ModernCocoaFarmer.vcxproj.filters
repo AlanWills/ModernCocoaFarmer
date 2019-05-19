@@ -26,6 +26,8 @@
     </None>
     <None Include="Resources\Data\Screens\DebugTools.asset" />
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
+    <None Include="Resources\Data\Screens\VideoIntroScreen.asset" />
+    <None Include="Resources\Videos\IntroMovie.mpeg" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

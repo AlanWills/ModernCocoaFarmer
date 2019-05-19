@@ -33,7 +33,7 @@
           <MouseInteractionHandler/>
           <Button>
             <LeftClickCallbacks>
-              <Callback name="KillOwnerScreen"/>
+              <Callback name="TransitionToScreen" arg="Data\Screens\VideoIntroScreen.asset"/>
             </LeftClickCallbacks>
           </Button>
         </Components>
