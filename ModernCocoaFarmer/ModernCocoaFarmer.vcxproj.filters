@@ -17,17 +17,17 @@
   <ItemGroup>
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
-    <None Include="Resources\Data\Screens\MainMenuScreen.asset" />
-    <None Include="Resources\Data\Screens\OptionsScreen.asset" />
-    <None Include="Resources\Data\Screens\SplashScreen.asset" />
-    <None Include="Resources\Data\Screens\StartupMusic.asset" />
     <None Include="Build Events\CopyDependencyFiles.bat">
       <Filter>Source Files</Filter>
     </None>
     <None Include="Resources\Data\Screens\DebugTools.asset" />
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
-    <None Include="Resources\Data\Screens\VideoIntroScreen.asset" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
+    <None Include="Resources\Data\Screens\Gameplay.asset" />
+    <None Include="Resources\Data\Screens\MainMenu.asset" />
+    <None Include="Resources\Data\Screens\Options.asset" />
+    <None Include="Resources\Data\Screens\Splash.asset" />
+    <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
