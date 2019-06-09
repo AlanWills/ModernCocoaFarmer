@@ -2,7 +2,7 @@
 
 #include "Media/VideoPlayer.h"
 #include "Objects/GameObject.h"
-#include "Media/ffplay.h"
+#include "Media/Video.h"
 
 //#define INBUF_SIZE 4096
 
@@ -40,7 +40,7 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void VideoPlayer::play() const
     {
-      CelesteEngine::Media::ffplay::playVideo(m_videoPath.as_string(), m_autoExit);
+      CelesteEngine::Media::Video::play(m_videoPath.as_string(), m_autoExit);
     }
 
 //#define ALPHA_MIX(A,BACK,FORE) (((255-(A)) * (BACK) + (A) * (FORE)) / 255)
