@@ -184,7 +184,6 @@
     <None Include="Resources\Data\Screens\OptionsScreen.asset" />
     <None Include="Resources\Data\Screens\SplashScreen.asset" />
     <None Include="Resources\Data\Screens\StartupMusic.asset" />
-    <None Include="Resources\Data\Screens\VideoIntroScreen.asset" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Scripts\Game.lua" />
@@ -316,7 +315,6 @@
   <ItemGroup>
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Media\VideoPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
