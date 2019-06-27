@@ -388,8 +388,5 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Media\VideoPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

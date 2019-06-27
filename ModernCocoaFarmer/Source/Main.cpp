@@ -1,10 +1,9 @@
-#include "stdafx.h"
-
 #include "Game/Game.h"
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
+#include "UtilityHeaders/PlatformHeaders.h"
 
 // Disables console window
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+#if WINDOWS && !defined(__CYGWIN__)
 #ifndef _DEBUG
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif

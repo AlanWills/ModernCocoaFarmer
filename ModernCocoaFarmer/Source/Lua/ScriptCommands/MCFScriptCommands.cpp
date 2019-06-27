@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
 
 

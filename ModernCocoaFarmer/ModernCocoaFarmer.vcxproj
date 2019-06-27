@@ -319,7 +319,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
-    <ClInclude Include="Headers\Media\VideoPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
