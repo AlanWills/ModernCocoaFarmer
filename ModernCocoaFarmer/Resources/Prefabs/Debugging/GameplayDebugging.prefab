@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="GameplayDebuggingCanvas" Tag="Debug" position="0.5%,0.5%,1" should_render="false">
+        <Components>
+          <KeyboardVisibility visibility_key="R" invisibility_key="R" mode="Toggle" target="GameplayDebuggingCanvas"/>
+          <Canvas dimensions="1%,1%" projection_mode="Orthographic"/>
+        </Components>
+      </GameObject>
+      <GameObject name="Background" Tag="Debug" parent="GameplayDebuggingCanvas">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,1%" colour="0.2,0.2,0.2,0"/>
+        </Components>
+      </GameObject>
+      <GameObject name="ReloadScreenButton" parent="Background">
+        <Components>
+          <SpriteRenderer/>
+          <RectangleCollider/>
+          <MouseInteractionHandler/>
+          <Button>
+            <LeftClickCallbacks>
+              <Callback name="KillScreen" arg="Gameplay"/>
+              <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
+            </LeftClickCallbacks>
+          </Button>
+        </Components>
+      </GameObject>
+      <GameObject name="ReloadScreenText" parent="ReloadScreenButton">
+        <Components>
+          <TextRenderer font_height="24" colour="0,0,0,1">
+            <Lines>
+              <Line>Restart Gameplay</Line>
+            </Lines>
+          </TextRenderer>
+        </Components>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

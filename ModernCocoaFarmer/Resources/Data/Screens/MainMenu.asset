@@ -33,8 +33,9 @@
           <MouseInteractionHandler/>
           <Button>
             <LeftClickCallbacks>
+              <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\ShowIntroVideo.lua"/>
+              <Callback name="KillOwnerScreen"/>
               <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
-              <Callback name="TransitionToScreen" arg="Data\Screens\Gameplay.asset"/>
             </LeftClickCallbacks>
           </Button>
         </Components>

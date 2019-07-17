@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <Screen name="Splash" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
+  <Screen name="Gameplay" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
     <GameObjects>
       <GameObject name="Canvas">
         <Components>
           <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
         </Components>
       </GameObject>
-      <GameObject position="0.5%, 0.5%, 0" name="Video" parent="Canvas">
+      <GameObject name="Background" position="0.5%,0.5%,-1" parent="Canvas">
         <Components>
+          <SpriteRenderer sprite="Textures\Village\Background\Background.png" size="1%,1%"/>
         </Components>
       </GameObject>
+      <!--Interactable Buildings-->
+      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\School.prefab" parent="Canvas"/>
+      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab" parent="Canvas"/>
+      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" parent="Canvas"/>
+      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" parent="Canvas"/>
     </GameObjects>
   </Screen>
 </Root>

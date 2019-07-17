@@ -2,13 +2,13 @@
 <Root>
   <Prefab>
     <GameObjects>
-        <GameObject name="Canvas" Tag="Debug" position="0.1%,0.1%,1">
+        <GameObject name="FPSCounterCanvas" Tag="Debug" position="0.1%,0.1%,1">
             <Components>
-                <KeyboardVisibility visibility_key="F" invisibility_key="F" mode="Toggle" target="Canvas"/>
+                <KeyboardVisibility visibility_key="F" invisibility_key="F" mode="Toggle" target="FPSCounterCanvas"/>
                 <Canvas dimensions="1%,1%" projection_mode="Orthographic"/>
             </Components>
         </GameObject>
-        <GameObject name="Background" Tag="Debug" parent="Canvas">
+        <GameObject name="Background" Tag="Debug" parent="FPSCounterCanvas">
             <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="20,20" colour="1,1,1,1"/>
             </Components>

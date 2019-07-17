@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="Home" position="0.35%,0.45%,0">
+        <Components>
+          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Home.png"
+                          size="80,80"
+                          preserve_aspect_ratio="true"/>
+        </Components>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

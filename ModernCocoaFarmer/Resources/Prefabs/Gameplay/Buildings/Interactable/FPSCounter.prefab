@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="School" position="0.25%,0.75%,0">
+        <Components>
+          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\School.png"
+                          size="100,100"
+                          preserve_aspect_ratio="true"/>
+        </Components>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

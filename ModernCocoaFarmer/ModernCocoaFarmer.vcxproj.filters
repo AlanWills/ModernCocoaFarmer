@@ -27,7 +27,13 @@
     <None Include="Resources\Data\Screens\MainMenu.asset" />
     <None Include="Resources\Data\Screens\Options.asset" />
     <None Include="Resources\Data\Screens\Splash.asset" />
+    <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
+    <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -85,93 +91,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Village\Background\BoundaryLine.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\BareCocoaTree.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Bench.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\ChairFront.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\ChairSide.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\CocoaBag.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\CocoaBagMultiple.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\CocoaTree.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Farm.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Grave1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Grave2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\GraveDestroyed.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Home.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Hospital.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\House1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\House2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\House3.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\House4.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\MarketFoodStalls.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\MarketFoodStalls2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\MarketStall.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\MarketStallMultiple.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Mosque.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Playground.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Pylon.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\SacksOfFood.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\School.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Sign.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Toilet.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Resources\Textures\Village\Buildings\Well.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Worker\Idle\Idle.png">
@@ -319,6 +238,93 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\UI\Utility\ProgressBar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\Home.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\School.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\Well.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\Mosque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\MarketFoodStalls.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\MarketFoodStalls2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\MarketStall.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\MarketStallMultiple.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Interactable\Hospital.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\BareCocoaTree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Bench.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\ChairFront.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\ChairSide.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\CocoaBag.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\CocoaBagMultiple.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\CocoaTree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Farm.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Grave1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Grave2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\GraveDestroyed.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\House1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\House2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\House3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\House4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Playground.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Pylon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\SacksOfFood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Sign.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Village\Buildings\Decals\Toilet.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
