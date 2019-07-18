@@ -17,6 +17,8 @@
       <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab" parent="Canvas"/>
       <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" parent="Canvas"/>
       <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" parent="Canvas"/>
+      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Well.prefab" parent="Canvas"/>
+      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab" parent="Canvas"/>
     </GameObjects>
   </Screen>
 </Root>

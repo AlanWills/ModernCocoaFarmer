@@ -2,10 +2,10 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="School" position="0.25%,0.75%,0">
+      <GameObject name="Well" position="0.55%,0.55%,0">
         <Components>
-          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\School.png"
-                          size="100,100"
+          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Well.png"
+                          size="80,80"
                           preserve_aspect_ratio="true"/>
         </Components>
       </GameObject>

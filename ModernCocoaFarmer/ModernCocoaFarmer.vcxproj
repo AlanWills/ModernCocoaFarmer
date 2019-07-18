@@ -188,12 +188,15 @@
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Market.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
+    <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
   </ItemGroup>
   <ItemGroup>

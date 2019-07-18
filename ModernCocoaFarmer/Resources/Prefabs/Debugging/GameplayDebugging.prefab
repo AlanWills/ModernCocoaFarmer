@@ -21,6 +21,7 @@
           <Button>
             <LeftClickCallbacks>
               <Callback name="KillScreen" arg="Gameplay"/>
+              <Callback name="ExecuteLuaScript" arg="Scripts\Utility\RefreshResources.lua"/>
               <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
             </LeftClickCallbacks>
           </Button>

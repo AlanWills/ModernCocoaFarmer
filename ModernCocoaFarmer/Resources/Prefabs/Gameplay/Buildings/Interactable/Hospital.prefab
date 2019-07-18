@@ -2,10 +2,10 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="Hospital" position="0.15%,0.15%,0">
+      <GameObject name="Hospital" position="0.5%,0.15%,0">
         <Components>
-          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Mosque.png"
-                          size="100,100"
+          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Hospital.png"
+                          size="200,200"
                           preserve_aspect_ratio="true"/>
         </Components>
       </GameObject>

@@ -5,7 +5,7 @@
       <GameObject name="Mosque" position="0.75%,0.65%,0">
         <Components>
           <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Mosque.png"
-                          size="100,100"
+                          size="200,200"
                           preserve_aspect_ratio="true"/>
         </Components>
       </GameObject>
