@@ -1,3 +1,3 @@
-local screenPath = path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Gameplay.asset")
+local screenPath = path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Gameplay.screen")
 
 Screen.load(screenPath)

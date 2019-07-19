@@ -179,11 +179,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
-    <None Include="Resources\Data\Screens\DebugTools.asset" />
-    <None Include="Resources\Data\Screens\MainMenu.asset" />
-    <None Include="Resources\Data\Screens\Options.asset" />
-    <None Include="Resources\Data\Screens\Splash.asset" />
-    <None Include="Resources\Data\Screens\Gameplay.asset" />
+    <None Include="Resources\Data\Screens\DebugTools.screen" />
+    <None Include="Resources\Data\Screens\MainMenu.screen" />
+    <None Include="Resources\Data\Screens\Options.screen" />
+    <None Include="Resources\Data\Screens\Splash.screen" />
+    <None Include="Resources\Data\Screens\Gameplay.screen" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
