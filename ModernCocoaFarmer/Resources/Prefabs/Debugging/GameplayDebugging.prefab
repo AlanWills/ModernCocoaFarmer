@@ -2,20 +2,16 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="GameplayDebugging" Tag="Debug" position="0.5%,0.5%,1">
-        <Components>
-          <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="GameplayDebuggingCanvas"/>
-        </Components>
-      </GameObject>
-      <GameObject name="GameplayDebuggingCanvas" Tag="Debug" position="0.5%,0.5%,1" should_render="false" active="false">
-        <Components>
-          <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingCanvas"/>
-          <Canvas dimensions="1%,1%" projection_mode="Orthographic"/>
-        </Components>
-      </GameObject>
-      <GameObject name="Background" Tag="Debug" parent="GameplayDebuggingCanvas">
+      <GameObject name="Background" Tag="Debug" parent="GameplayDebuggingCanvas" active="false">
         <Components>
           <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,1%" colour="0.2,0.2,0.2,0"/>
+        </Components>
+      </GameObject>
+      <GameObject name="GameplayDebuggingCanvas" Tag="Debug" position="0.5%,0.5%,1" should_render="false">
+        <Components>
+          <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingCanvas"/>
+          <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="Background"/>
+          <Canvas dimensions="1%,1%" projection_mode="Orthographic"/>
         </Components>
       </GameObject>
       <GameObject name="ReloadScreenButton" parent="Background">

@@ -15,17 +15,21 @@
       </GameObject>
       <GameObject name="BoundaryLine" position="0.25%,0.5%,-0.5" parent="Canvas">
         <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\BoundaryLine.png" size="1%,1%"/>
+          <SpriteRenderer sprite="Textures\Village\Background\BoundaryLine.png"/>
         </Components>
       </GameObject>
       <GameObject name="MaliText" position="0.5%,0.85%,-0.5" parent="Canvas">
         <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\MaliText.png" size="1%,1%"/>
+          <SpriteRenderer sprite="Textures\Village\Background\MaliText.png"
+                          size="200,200"
+                          preserve_aspect_ratio="true"/>
         </Components>
       </GameObject>
       <GameObject name="TheIvoryCoastText" position="0.15%,0.5%,-0.5" parent="Canvas">
         <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\TheIvoryCoastText.png" size="1%,1%"/>
+          <SpriteRenderer sprite="Textures\Village\Background\TheIvoryCoastText.png"
+                          size="200,200"
+                          preserve_aspect_ratio="true"/>
         </Components>
       </GameObject>
       <!--Interactable Buildings-->
