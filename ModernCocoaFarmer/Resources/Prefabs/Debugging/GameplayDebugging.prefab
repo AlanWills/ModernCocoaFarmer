@@ -2,19 +2,18 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="Background" Tag="Debug" parent="GameplayDebuggingCanvas" active="false">
+      <GameObject name="GameplayDebuggingBackground" Tag="Debug" parent="GameplayDebugging" active="false" should_render="false">
         <Components>
-          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,1%" colour="0.2,0.2,0.2,0"/>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,1%" colour="0.2,0.2,0.2" opacity="0.4"/>
         </Components>
       </GameObject>
-      <GameObject name="GameplayDebuggingCanvas" Tag="Debug" position="0.5%,0.5%,1" should_render="false">
+      <GameObject name="GameplayDebugging" Tag="Debug" position="0.5%,0.5%,1">
         <Components>
-          <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingCanvas"/>
-          <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="Background"/>
-          <Canvas dimensions="1%,1%" projection_mode="Orthographic"/>
+          <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
+          <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
         </Components>
       </GameObject>
-      <GameObject name="ReloadScreenButton" parent="Background">
+      <GameObject name="ReloadScreenButton" parent="GameplayDebuggingBackground">
         <Components>
           <SpriteRenderer/>
           <RectangleCollider/>

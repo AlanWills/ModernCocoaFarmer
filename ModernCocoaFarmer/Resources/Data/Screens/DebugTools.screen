@@ -19,8 +19,13 @@
       </VertexShaders>
     </Resources>
     <GameObjects>
-      <Prefab path="Prefabs\Debugging\FPSCounter.prefab"/>
-      <Prefab path="Prefabs\Debugging\GameplayDebugging.prefab"/>
+      <GameObject name="DebugToolsCanvas">
+        <Components>
+          <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+        </Components>
+      </GameObject>
+      <Prefab path="Prefabs\Debugging\FPSCounter.prefab" parent="DebugToolsCanvas"/>
+      <Prefab path="Prefabs\Debugging\GameplayDebugging.prefab" parent="DebugToolsCanvas"/>
     </GameObjects>
   </Screen>
 </Root>

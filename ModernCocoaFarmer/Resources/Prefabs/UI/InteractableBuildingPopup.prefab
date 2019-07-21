@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="InteractableBuildingPopup" active="false" should_render="false">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.3%,0.3%,0" colour="0.8,0.8,0.8" opacity="0.5"/>
+        </Components>
+      </GameObject>
+      <GameObject name="CloseButton" parent="InteractableBuildingPopup" position="0.15%, 0.15%">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>
+          <RectangleCollider dimensions="50,50"/>
+          <MouseInteractionHandler/>
+        </Components>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

@@ -2,11 +2,20 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="Mosque" position="0.75%,0.65%,0">
+      <GameObject name="Mosque" position="0.8%,0.5%,0">
         <Components>
           <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Mosque.png"
                           size="200,200"
                           preserve_aspect_ratio="true"/>
+        </Components>
+      </GameObject>
+      <GameObject name="Icon" tag="BuildingIcon" position="0,75,0" parent="Mosque">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\BuildingIcons\Mosque.png"
+                          size="50,50"
+                          preserve_aspect_ratio="true"/>
+          <RectangleCollider dimensions="50,50"/>
+          <MouseInteractionHandler/>
         </Components>
       </GameObject>
     </GameObjects>

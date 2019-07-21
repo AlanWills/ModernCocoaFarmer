@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="" position="0,0,0">
+        <Components>
+        </Components>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

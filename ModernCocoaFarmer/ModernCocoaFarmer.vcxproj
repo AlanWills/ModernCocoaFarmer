@@ -193,6 +193,8 @@
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
+    <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
+    <None Include="Resources\Prefabs\UI\InteractableBuildingPopup.prefab" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
@@ -323,11 +325,19 @@
     <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Managers\GameplayManager.cpp" />
+    <ClCompile Include="Source\Managers\InteractableBuildingsManager.cpp" />
+    <ClCompile Include="Source\UI\InteractableBuildingDialog.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.h" />
+    <ClInclude Include="Headers\Managers\InteractableBuildingsManager.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
+    <ClInclude Include="Headers\Managers\GameplayManager.h" />
+    <ClInclude Include="Headers\UI\InteractableBuildingDialog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

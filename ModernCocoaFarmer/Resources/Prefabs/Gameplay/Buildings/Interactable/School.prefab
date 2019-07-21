@@ -2,11 +2,20 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="School" position="0.25%,0.75%,0">
+      <GameObject name="School" position="0.35%,0.75%,0">
         <Components>
           <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\School.png"
                           size="200,200"
                           preserve_aspect_ratio="true"/>
+        </Components>
+      </GameObject>
+      <GameObject name="Icon" tag="BuildingIcon" position="0,50,0" parent="School">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\BuildingIcons\School.png"
+                          size="50,50"
+                          preserve_aspect_ratio="true"/>
+          <RectangleCollider dimensions="50,50"/>
+          <MouseInteractionHandler/>
         </Components>
       </GameObject>
     </GameObjects>

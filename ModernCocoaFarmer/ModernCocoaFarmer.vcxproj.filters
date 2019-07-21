@@ -37,6 +37,8 @@
     <None Include="Resources\Data\Screens\MainMenu.screen" />
     <None Include="Resources\Data\Screens\Options.screen" />
     <None Include="Resources\Data\Screens\Splash.screen" />
+    <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
+    <None Include="Resources\Prefabs\UI\InteractableBuildingPopup.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -392,9 +394,33 @@
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Managers\InteractableBuildingsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Managers\GameplayManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\InteractableBuildingDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Managers\GameplayManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Managers\InteractableBuildingsManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\UI\InteractableBuildingDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
