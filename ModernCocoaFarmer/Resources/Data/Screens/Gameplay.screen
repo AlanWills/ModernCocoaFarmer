@@ -13,7 +13,7 @@
         </Components>
       </GameObject>
       <!--Background-->
-      <GameObject name="Background" position="0.5%,0.5%,-1" parent="Canvas">
+      <GameObject name="GameplayBackground" position="0.5%,0.5%,-1" parent="Canvas">
         <Components>
           <SpriteRenderer sprite="Textures\Village\Background\Background.png" size="1%,1%"/>
         </Components>

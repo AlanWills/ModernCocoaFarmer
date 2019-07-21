@@ -6,6 +6,7 @@
             <Components>
                 <KeyboardVisibility visibility_key="F" invisibility_key="F" input_mode="Toggle" target="FPSCounterBackground"/>
                 <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="20,20" colour="1,1,1,1"/>
+                <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
             </Components>
         </GameObject>
         <GameObject name="FPSCounter" Tag="Debug" parent="FPSCounterBackground">

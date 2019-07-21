@@ -10,7 +10,7 @@
                           preserve_aspect_ratio="true"/>
         </Components>
       </GameObject>
-      <GameObject name="Icon" tag="BuildingIcon" position="0,50,1" parent="Market">
+      <GameObject name="Icon" tag="BuildingIcon" position="0,50,0" parent="Market">
         <Components>
           <SpriteRenderer sprite="Textures\UI\BuildingIcons\Market.png"
                           size="50,50"
