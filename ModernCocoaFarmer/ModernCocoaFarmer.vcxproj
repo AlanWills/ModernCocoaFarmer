@@ -80,14 +80,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform)\$(Configuration);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform)\$(Configuration);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
@@ -97,6 +97,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>CURL_STATICLIB;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,11 +110,12 @@
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2;$(ProjectDir)..\CelesteEngine\3rdParty\Include\ffmpeg</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CURL_STATICLIB;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(ProjectDir)..\CelesteEngine\CelesteEngine\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>swscale.lib;avutil.lib;avcodec.lib;avformat.lib;CelesteEngine.lib;assimp-vc140-mt.lib;liblua53.a;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;curlcpp.lib;Crypt32.lib;ws2_32.lib;winmm.lib;wldap32.lib;swscale.lib;avutil.lib;avcodec.lib;avformat.lib;CelesteEngine.lib;assimp-vc140-mt.lib;liblua53.a;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -138,6 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>CURL_STATICLIB;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,14 +156,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2;$(ProjectDir)..\CelesteEngine\3rdParty\Include\ffmpeg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\$(ProjectName)\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2;$(ProjectDir)..\CelesteEngine\3rdParty\Include\curlpp;$(ProjectDir)..\CelesteEngine\3rdParty\Include\ffmpeg</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CURL_STATICLIB;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)..\CelesteEngine\CelesteEngine\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>swscale.lib;avutil.lib;avcodec.lib;avformat.lib;CelesteEngine.lib;assimp-vc140-mt.lib;liblua53.a;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;curlcpp.lib;Crypt32.lib;ws2_32.lib;winmm.lib;wldap32.lib;swscale.lib;avutil.lib;avcodec.lib;avformat.lib;CelesteEngine.lib;assimp-vc140-mt.lib;liblua53.a;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
