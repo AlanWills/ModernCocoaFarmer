@@ -6,6 +6,7 @@
 #include "curlpp/curl_form.h"
 #include "curlpp/curl_ios.h"
 #include "curlpp/curl_exception.h"
+#include "curlpp/curl_multi.h"
 
 // Disables console window
 #if WINDOWS && !defined(__CYGWIN__)
@@ -15,47 +16,50 @@
 #endif
 
 
-std::stringstream get_response(std::string url)
+void get_response(std::string url)
 {
-  std::stringstream str;
-  try
-  {
-    curl::curl_ios<std::stringstream> writer(str);
-    curl::curl_easy easy(writer);
+    while (true)
+    {
+      try
+      {
+        std::stringstream str;
+        curl::curl_ios<std::stringstream> writer(str);
+        curl::curl_easy easy(writer);
+        struct curl_slist* headers = NULL;
+        headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
 
-    easy.add<CURLOPT_URL>(url.data());
-    easy.add<CURLOPT_VERBOSE>(true);
+        easy.add<CURLOPT_URL>(url.data());
+        easy.add<CURLOPT_VERBOSE>(true);
+        easy.add<CURLOPT_HTTPHEADER>(headers);
+        easy.add<CURLOPT_POSTFIELDS>("abcd");
+        easy.add<CURLOPT_POSTFIELDSIZE>(5);
+        easy.add<CURLOPT_PORT>(13000);
+        easy.add<CURLOPT_CONNECTTIMEOUT>(10);
+        easy.add<CURLOPT_TIMEOUT>(10);
 
-    struct curl_slist* headers = NULL;
-    headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
-    easy.add<CURLOPT_HTTPHEADER>(headers);
+        easy.perform();
+      
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+      }
+      catch (curl::curl_easy_exception const& error)
+      {
+        auto errors = error.get_traceback();
+        error.print_traceback();
 
-    easy.add<CURLOPT_POSTFIELDS>("abcd");
-    easy.add<CURLOPT_POSTFIELDSIZE>(5);
-    easy.add<CURLOPT_PORT>(13000);
-
-    easy.perform();
+        if (error.get_code() != CURLE_OPERATION_TIMEDOUT)
+        {
+          return;
+        }
+      }
   }
-  catch (curl::curl_easy_exception const& error)
-  {
-    auto errors = error.get_traceback();
-    error.print_traceback();
-  }
-
-  return str;
 }
 
 int main()
 {
-  while (true)
-  {
-    using namespace std::string_literals;
+  using namespace std::string_literals;
 
-    auto url = "http://localhost/";
-    auto json = get_response(url);
-
-    std::cout << json.str() << std::endl;
-  }
+  auto url = "http://localhost/";
+  get_response(url);
 
   return 0;
 }
