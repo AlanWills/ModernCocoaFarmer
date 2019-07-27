@@ -38,18 +38,19 @@ void get_response(std::string url)
         easy.add<CURLOPT_TIMEOUT>(10);
 
         easy.perform();
-      
+
         std::this_thread::sleep_for(std::chrono::seconds(1));
       }
       catch (curl::curl_easy_exception const& error)
       {
         auto errors = error.get_traceback();
         error.print_traceback();
+        error.clear_traceback();
 
-        if (error.get_code() != CURLE_OPERATION_TIMEDOUT)
+        /*if (error.get_code() != CURLE_OPERATION_TIMEDOUT)
         {
           return;
-        }
+        }*/
       }
   }
 }
