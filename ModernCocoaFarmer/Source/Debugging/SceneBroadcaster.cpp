@@ -46,13 +46,13 @@ namespace MCF
 
       while (m_isBroadcasting)
       {
+        // Reset the string
+        output.clear();
+
         for (const Screen* screen : screenManager)
         {
           // Should be empty from previous screen because of complete traversal
           ASSERT(gameObjects.empty());
-
-          // Reset the string
-          output.clear();
 
           // Start delimiter for content
           output.append("[[");
@@ -76,12 +76,9 @@ namespace MCF
 
           // End delimiter for content
           output.append("]]");
-          
-          Networking::sendRequest("http://localhost/", 13000, output);
-
-          // Only send one screen for now
-          break;
         }
+
+        Networking::sendRequest("http://localhost/", 13000, output);
       }
     }
 
