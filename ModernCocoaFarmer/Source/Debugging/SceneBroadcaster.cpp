@@ -4,6 +4,8 @@
 #include "Screens/ScreenManager.h"
 #include "Screens/Screen.h"
 
+#include "Objects/GameObject.h"
+
 using namespace CelesteEngine;
 
 
@@ -11,6 +13,8 @@ namespace MCF
 {
   namespace Debugging
   {
+    char SceneBroadcaster::m_delimiter = ',';
+
     //------------------------------------------------------------------------------------------------
     SceneBroadcaster::SceneBroadcaster() :
       m_isBroadcasting(false),
@@ -33,28 +37,67 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void SceneBroadcaster::continuallySendData(const ScreenManager& screenManager)
+    void SceneBroadcaster::continuallySendData(const ScreenManager& screenManager) const
     {
-      std::string str;
-      str.reserve(4096);
+      std::queue<const GameObject*> gameObjects;
+
+      std::string output;
+      output.reserve(4096);
 
       while (m_isBroadcasting)
       {
-        str.clear();
-
         for (const Screen* screen : screenManager)
         {
-          str.append(deinternString(screen->getName()));
-          str.push_back('\n');
+          // Should be empty from previous screen because of complete traversal
+          ASSERT(gameObjects.empty());
 
-          for (const GameObject* gameObject : *screen)
+          // Reset the string
+          output.clear();
+
+          // Start delimiter for content
+          output.append("[[");
+
+          // Add screen name
+          output.append(deinternString(screen->getName()));
+          output.push_back(m_delimiter);
+
+          // And number of root children
+          output.append(std::to_string(screen->getScreenRoot()->getChildCount()));
+          output.push_back(m_delimiter);
+
+          Transform* root = const_cast<Transform*>(screen->getScreenRoot());
+
+          // Then serialize each child using left side tree traversal
+          for (size_t childIndex = 0, n = root->getChildCount(); childIndex < n; ++childIndex)
           {
-            str.append(deinternString(gameObject->getName()));
-            str.push_back('\n');
+            // Yeah this isn't great - we need api for getting const children
+            serializeGameObject(const_cast<GameObject&>(*root->getChildTransform(childIndex)->getGameObject()), output);
           }
-        }
 
-        Networking::sendRequest("http://localhost/", 13000, str);
+          // End delimiter for content
+          output.append("]]");
+          
+          Networking::sendRequest("http://localhost/", 13000, output);
+
+          // Only send one screen for now
+          break;
+        }
+      }
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SceneBroadcaster::serializeGameObject(GameObject& gameObject, std::string& output) const
+    {
+      output.append(deinternString(gameObject.getName()));
+      output.push_back(m_delimiter);
+
+      output.append(std::to_string(gameObject.getChildCount()));
+      output.push_back(m_delimiter);
+
+      // Then serialize each child using left side tree traversal
+      for (size_t childIndex = 0, n = gameObject.getChildCount(); childIndex < n; ++childIndex)
+      {
+        serializeGameObject(*gameObject.getChildGameObject(childIndex), output);
       }
     }
   }

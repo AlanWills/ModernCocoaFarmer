@@ -2,11 +2,13 @@
 
 #include <thread>
 #include <atomic>
+#include <string>
 
 
 namespace CelesteEngine
 {
   class ScreenManager;
+  class GameObject;
 }
 
 namespace MCF
@@ -26,10 +28,13 @@ namespace MCF
         void startBroadcasting(const CelesteEngine::ScreenManager& screenManager);
 
       private:
-        void continuallySendData(const CelesteEngine::ScreenManager& screenManager);
+        void continuallySendData(const CelesteEngine::ScreenManager& screenManager) const;
+        void serializeGameObject(CelesteEngine::GameObject& gameObject, std::string& output) const;
 
         std::atomic<bool> m_isBroadcasting;
         std::thread m_communicationThread;
+
+        static char m_delimiter;
     };
   }
 }
