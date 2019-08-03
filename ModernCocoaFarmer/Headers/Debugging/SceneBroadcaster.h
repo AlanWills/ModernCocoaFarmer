@@ -34,7 +34,8 @@ namespace MCF
         std::atomic<bool> m_isBroadcasting;
         std::thread m_communicationThread;
 
-        static char m_delimiter;
+        static char m_fieldDelimiter;
+        static char m_vectorDelimiter;
     };
   }
 }

@@ -19,6 +19,7 @@ namespace MCF
         curl::curl_ios<std::stringstream> writer(str);
         curl::curl_easy easy(writer);
         struct curl_slist* headers = NULL;
+        headers = curl_slist_append(headers, "Expect:");  // Disables waiting for confirmation before sending data - this was causing communication problems, but may be necessary in the future
         headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
 
         easy.add<CURLOPT_URL>(url.data());
