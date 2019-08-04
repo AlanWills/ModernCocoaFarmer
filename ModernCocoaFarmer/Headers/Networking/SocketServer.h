@@ -3,9 +3,12 @@
 
 namespace MCF
 {
-  class SocketServer
+  namespace Networking
   {
-    public:
-      SocketServer();
-  };
+    class SocketServer
+    {
+      public:
+        SocketServer();
+    };
+  }
 }
