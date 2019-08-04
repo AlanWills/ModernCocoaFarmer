@@ -14,8 +14,8 @@
 // The MAIN function, from here we start the application and run the game loop
 int main()
 {
-  MCF::SocketClient client;
-  //MCF::SocketServer server;
+  MCF::SocketServer server;
+  //MCF::SocketClient client;
 
   while (true) {}
 

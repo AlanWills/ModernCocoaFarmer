@@ -7,6 +7,7 @@
 #include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
 
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -96,6 +97,15 @@ namespace MCF
       iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
       if (iResult > 0) {
         printf("Bytes received: %d\n", iResult);
+        
+        std::string result;
+        result.reserve(iResult);
+
+        for (int i = 0; i < iResult; ++i)
+        {
+          result.push_back(recvbuf[i]);
+        }
+        printf("Message received: %s\n", result.c_str());
 
         // Echo the buffer back to the sender
         iSendResult = send(ClientSocket, recvbuf, iResult, 0);
