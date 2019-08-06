@@ -8,19 +8,11 @@
 #endif
 #endif
 
-#include "Networking/SocketClient.h"
-#include "Networking/SocketServer.h"
-
 // The MAIN function, from here we start the application and run the game loop
 int main()
 {
-  MCF::SocketServer server;
-  //MCF::SocketClient client;
-
-  while (true) {}
-
-  /*MCF::MCFGame* game = new MCF::MCFGame();
+  MCF::MCFGame* game = new MCF::MCFGame();
   game->run();
 
-  return 0;*/
+  return 0;
 }

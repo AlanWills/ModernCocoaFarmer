@@ -8,7 +8,7 @@ namespace MCF
     class SocketServer
     {
       public:
-        SocketServer();
+        void Connect(int port);
     };
   }
 }

@@ -1,20 +1,15 @@
 #include "Networking/SocketServer.h"
 
-#define WIN32_LEAN_AND_MEAN
+#include "UtilityHeaders/NetworkingHeaders.h"
+#include "Networking/RAII/AutoWSACleanup.h"
+#include "Networking/RAII/AutoFreeAddressInfo.h"
+#include "Networking/RAII/AutoCloseSocket.h"
 
-#include <windows.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
 
-// Need to link with Ws2_32.lib
-#pragma comment (lib, "Ws2_32.lib")
-// #pragma comment (lib, "Mswsock.lib")
-
 #define DEFAULT_BUFLEN 512
-#define DEFAULT_PORT "27015"
 
 
 namespace MCF
@@ -22,8 +17,10 @@ namespace MCF
   namespace Networking
   {
     //------------------------------------------------------------------------------------------------
-    SocketServer::SocketServer()
+    void SocketServer::Connect(int port)
     {
+      AutoWSACleanup wsaCleanup;
+
       WSADATA wsaData;
       int iResult;
 
@@ -50,48 +47,39 @@ namespace MCF
       hints.ai_flags = AI_PASSIVE;
 
       // Resolve the server address and port
-      iResult = getaddrinfo(NULL, DEFAULT_PORT, &hints, &result);
+      iResult = getaddrinfo(NULL, std::to_string(port).c_str(), &hints, &result);
       if (iResult != 0) {
         printf("getaddrinfo failed with error: %d\n", iResult);
-        WSACleanup();
       }
+
+      AutoFreeAddressInfo freeAddressInfo(result);
 
       // Create a SOCKET for connecting to server
       ListenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
       if (ListenSocket == INVALID_SOCKET) {
         printf("socket failed with error: %ld\n", WSAGetLastError());
-        freeaddrinfo(result);
-        WSACleanup();
       }
+
+      AutoCloseSocket closeListenSocket(ListenSocket);
 
       // Setup the TCP listening socket
       iResult = bind(ListenSocket, result->ai_addr, (int)result->ai_addrlen);
       if (iResult == SOCKET_ERROR) {
         printf("bind failed with error: %d\n", WSAGetLastError());
-        freeaddrinfo(result);
-        closesocket(ListenSocket);
-        WSACleanup();
       }
-
-      freeaddrinfo(result);
 
       iResult = listen(ListenSocket, SOMAXCONN);
       if (iResult == SOCKET_ERROR) {
         printf("listen failed with error: %d\n", WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
       }
 
       // Accept a client socket
       ClientSocket = accept(ListenSocket, NULL, NULL);
       if (ClientSocket == INVALID_SOCKET) {
         printf("accept failed with error: %d\n", WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
       }
 
-      // No longer need server socket
-      closesocket(ListenSocket);
+      AutoCloseSocket closeClientSocket(ClientSocket);
 
       // Receive until the peer shuts down the connection
       do {
@@ -113,8 +101,6 @@ namespace MCF
           iSendResult = send(ClientSocket, recvbuf, iResult, 0);
           if (iSendResult == SOCKET_ERROR) {
             printf("send failed with error: %d\n", WSAGetLastError());
-            closesocket(ClientSocket);
-            WSACleanup();
           }
           printf("Bytes sent: %d\n", iSendResult);
         }
@@ -122,8 +108,6 @@ namespace MCF
           printf("Connection closing...\n");
         else {
           printf("recv failed with error: %d\n", WSAGetLastError());
-          closesocket(ClientSocket);
-          WSACleanup();
         }
 
       } while (iResult > 0);
@@ -132,13 +116,7 @@ namespace MCF
       iResult = shutdown(ClientSocket, SD_SEND);
       if (iResult == SOCKET_ERROR) {
         printf("shutdown failed with error: %d\n", WSAGetLastError());
-        closesocket(ClientSocket);
-        WSACleanup();
       }
-
-      // cleanup
-      closesocket(ClientSocket);
-      WSACleanup();
     }
   }
 }

@@ -421,6 +421,9 @@
     <ClCompile Include="Source\Networking\SocketClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h">
@@ -451,6 +454,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Networking\SocketClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Debugging\LuaScriptReceiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Networking\RAII\AutoCloseSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Networking\RAII\AutoFreeAddressInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Networking\RAII\AutoWSACleanup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\UtilityHeaders\NetworkingHeaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

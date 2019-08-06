@@ -329,6 +329,7 @@
     <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.cpp" />
@@ -342,6 +343,7 @@
     <ClCompile Include="Source\UI\InteractableBuildingDialog.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Debugging\LuaScriptReceiver.h" />
     <ClInclude Include="Headers\Debugging\SceneBroadcaster.h" />
     <ClInclude Include="Headers\Game\MCFGame.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.h" />
@@ -349,9 +351,13 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
     <ClInclude Include="Headers\Managers\GameplayManager.h" />
     <ClInclude Include="Headers\Networking\NetworkUtils.h" />
+    <ClInclude Include="Headers\Networking\RAII\AutoCloseSocket.h" />
+    <ClInclude Include="Headers\Networking\RAII\AutoFreeAddressInfo.h" />
+    <ClInclude Include="Headers\Networking\RAII\AutoWSACleanup.h" />
     <ClInclude Include="Headers\Networking\SocketClient.h" />
     <ClInclude Include="Headers\Networking\SocketServer.h" />
     <ClInclude Include="Headers\UI\InteractableBuildingDialog.h" />
+    <ClInclude Include="Headers\UtilityHeaders\NetworkingHeaders.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
