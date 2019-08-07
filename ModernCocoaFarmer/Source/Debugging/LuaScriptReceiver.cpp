@@ -21,12 +21,16 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void LuaScriptReceiver::startListening() const
+    void LuaScriptReceiver::startListening()
     {
-      while (m_isListening)
-      {
+      m_isListening = true;
+      m_communicationThread.swap(std::thread(&LuaScriptReceiver::continuallyListenForLua, this));
+    }
 
-      }
+    //------------------------------------------------------------------------------------------------
+    void LuaScriptReceiver::continuallyListenForLua() const
+    {
+      m_server.Connect(27015);
     }
   }
 }

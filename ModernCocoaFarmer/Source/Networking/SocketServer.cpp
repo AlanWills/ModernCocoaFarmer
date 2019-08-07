@@ -17,7 +17,7 @@ namespace MCF
   namespace Networking
   {
     //------------------------------------------------------------------------------------------------
-    void SocketServer::Connect(int port)
+    void SocketServer::Connect(int port) const
     {
       AutoWSACleanup wsaCleanup;
 

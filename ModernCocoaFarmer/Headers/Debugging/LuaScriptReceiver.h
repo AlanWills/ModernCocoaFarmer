@@ -20,9 +20,11 @@ namespace MCF
 
         LuaScriptReceiver& operator=(const LuaScriptReceiver&) = delete;
 
-        void startListening() const;
+        void startListening();
 
       private:
+        void continuallyListenForLua() const;
+
         std::atomic<bool> m_isListening;
         std::thread m_communicationThread;
 

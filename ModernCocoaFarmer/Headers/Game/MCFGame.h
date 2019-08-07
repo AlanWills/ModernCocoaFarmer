@@ -10,6 +10,7 @@ namespace MCF
   namespace Debugging
   {
     class SceneBroadcaster;
+    class LuaScriptReceiver;
   }
 
   class MCFGame : public CelesteEngine::Game 
@@ -27,5 +28,6 @@ namespace MCF
       using Inherited = CelesteEngine::Game;
 
       std::unique_ptr<Debugging::SceneBroadcaster> m_sceneBroadcaster;
+      std::unique_ptr<Debugging::LuaScriptReceiver> m_luaScriptReceiver;
   };
 }

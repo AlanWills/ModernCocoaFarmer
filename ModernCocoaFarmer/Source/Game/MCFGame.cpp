@@ -2,13 +2,15 @@
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
 #include "Screens/ScreenUtils.h"
 #include "Debugging/SceneBroadcaster.h"
+#include "Debugging/LuaScriptReceiver.h"
 
 
 namespace MCF
 {
   //------------------------------------------------------------------------------------------------
   MCFGame::MCFGame() :
-    m_sceneBroadcaster(nullptr)
+    m_sceneBroadcaster(nullptr),
+    m_luaScriptReceiver(nullptr)
   {
   }
 
@@ -22,5 +24,8 @@ namespace MCF
 
     m_sceneBroadcaster.reset(new Debugging::SceneBroadcaster());
     m_sceneBroadcaster->startBroadcasting(*getScreenManager());
+
+    m_luaScriptReceiver.reset(new Debugging::LuaScriptReceiver());
+    m_luaScriptReceiver->startListening();
   }
 }
