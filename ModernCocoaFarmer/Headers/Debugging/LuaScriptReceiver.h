@@ -1,9 +1,11 @@
 #pragma once
 
-#include <thread>
-#include <atomic>
-
 #include "Networking/SocketServer.h"
+
+#include <thread>
+#include <mutex>
+#include <atomic>
+#include <queue>
 
 
 namespace MCF
@@ -20,13 +22,24 @@ namespace MCF
 
         LuaScriptReceiver& operator=(const LuaScriptReceiver&) = delete;
 
-        void startListening();
+        void start();
+        void processRequest();
 
       private:
-        void continuallyListenForLua() const;
+        void continuallyListenForRequests();
+        void continuallySendResponses();
 
         std::atomic<bool> m_isListening;
-        std::thread m_communicationThread;
+        std::atomic<bool> m_isSending;
+
+        std::thread m_listenThread;
+        std::thread m_sendThread;
+
+        std::mutex m_incomingRequestQueueLock;
+        std::queue<std::string> m_incomingRequestQueue;
+
+        std::mutex m_outgoingResponseQueueLock;
+        std::queue<std::string> m_outgoingResponseQueue;
 
         Networking::SocketServer m_server;
     };
