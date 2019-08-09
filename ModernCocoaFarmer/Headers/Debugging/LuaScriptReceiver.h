@@ -23,7 +23,7 @@ namespace MCF
         LuaScriptReceiver& operator=(const LuaScriptReceiver&) = delete;
 
         void start();
-        void processRequest();
+        void update();
 
       private:
         void continuallyListenForRequests();

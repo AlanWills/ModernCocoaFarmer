@@ -26,6 +26,12 @@ namespace MCF
     m_sceneBroadcaster->startBroadcasting(*getScreenManager());
 
     m_luaScriptReceiver.reset(new Debugging::LuaScriptReceiver());
-    m_luaScriptReceiver->startListening();
+    m_luaScriptReceiver->start();
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void MCFGame::onUpdate(float elapsedGameTime)
+  {
+    m_luaScriptReceiver->update();
   }
 }

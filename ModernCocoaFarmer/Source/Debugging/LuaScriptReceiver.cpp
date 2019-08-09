@@ -1,5 +1,5 @@
 #include "Debugging/LuaScriptReceiver.h"
-
+#include "Lua/LuaState.h"
 
 namespace MCF
 {
@@ -22,8 +22,11 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     LuaScriptReceiver::~LuaScriptReceiver()
     {
+      m_server.disconnect();
+
       m_isListening = false;
       m_isSending = false;
+
       m_listenThread.join();
       m_sendThread.join();
     }
@@ -40,25 +43,83 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void LuaScriptReceiver::continuallyListenForRequests()
     {
-      m_server.Connect(27015);
+      m_server.connect(27015, [&](const char* data, int numReceivedBytes) -> void
+      {
+          std::lock_guard<std::mutex> lockGuard(m_incomingRequestQueueLock);
+          std::string receiveBuffer;
+          receiveBuffer.reserve(numReceivedBytes);
 
-      // Receive request
-      // Add request to request queue (checking mutex)
+          for (int i = 0; i < numReceivedBytes; ++i)
+          {
+            receiveBuffer.push_back(data[i]);
+          }
+
+          m_incomingRequestQueue.push(receiveBuffer);
+      });
+
+      m_server.receiveAsync();
     }
 
     //------------------------------------------------------------------------------------------------
     void LuaScriptReceiver::continuallySendResponses()
     {
-      // Pop response off response queue
-      // Send response
+      bool gotResponse = false;
+      std::string response;
+
+      while (m_isSending)
+      {
+        // Scope to minimise time spent using response queue lock
+        {
+          std::lock_guard<std::mutex> responseLockGuard(m_outgoingResponseQueueLock);
+
+          if (!m_outgoingResponseQueue.empty())
+          {
+            response.assign(m_outgoingResponseQueue.front());
+            m_outgoingResponseQueue.pop();
+            gotResponse = true;
+          }
+        }
+
+        if (gotResponse)
+        {
+          m_server.sendAsync(response);
+        }
+      }
     }
 
     //------------------------------------------------------------------------------------------------
-    void LuaScriptReceiver::processRequest()
+    void LuaScriptReceiver::update()
     {
-      // Pop first request off request queue (checking mutex)
-      // Run it
-      // Get response and add onto outgoing response queue
+      bool gotRequest = false;
+      std::string request;
+
+      // Scope to minimise time spent using request queue lock
+      {
+        std::lock_guard<std::mutex> requestLockGuard(m_incomingRequestQueueLock);
+
+        if (!m_incomingRequestQueue.empty())
+        {
+          request.assign(m_incomingRequestQueue.front());
+          m_incomingRequestQueue.pop();
+          gotRequest = true;
+        }
+      }
+
+      if (gotRequest)
+      {
+        auto functionResult = CelesteEngine::Lua::LuaState::script(request);
+        std::lock_guard<std::mutex> responseLockGuard(m_outgoingResponseQueueLock);
+
+        if (!functionResult.valid())
+        {
+          sol::error error = functionResult;
+          m_outgoingResponseQueue.push(error.what());
+        }
+        else if (functionResult.return_count() == 1)
+        {
+          m_outgoingResponseQueue.push(functionResult.get<std::string>(0));
+        }
+      }
     }
   }
 }

@@ -4,12 +4,11 @@
 #include "Networking/RAII/AutoWSACleanup.h"
 #include "Networking/RAII/AutoFreeAddressInfo.h"
 #include "Networking/RAII/AutoCloseSocket.h"
+#include "Debug/Debug.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
-
-#define DEFAULT_BUFLEN 512
 
 
 namespace MCF
@@ -17,22 +16,42 @@ namespace MCF
   namespace Networking
   {
     //------------------------------------------------------------------------------------------------
-    void SocketServer::Connect(int port) const
+    SocketServer::SocketServer() :
+      m_isReceiving(false),
+      m_receiveThread(),
+      m_isSending(false),
+      m_sendQueueLock(),
+      m_sendThread(),
+      m_sendQueue(),
+      m_clientSocket()
     {
+    }
+
+    //------------------------------------------------------------------------------------------------
+    SocketServer::~SocketServer()
+    {
+      m_isReceiving = false;
+      m_isSending = false;
+      m_receiveThread.join();
+      m_sendThread.join();
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::connect(int port, const SocketServer::OnDataReceivedCallback& onDataReceivedCallback)
+    {
+      m_onDataReceivedCallback = onDataReceivedCallback;
+
       AutoWSACleanup wsaCleanup;
 
       WSADATA wsaData;
       int iResult;
 
       SOCKET ListenSocket = INVALID_SOCKET;
-      SOCKET ClientSocket = INVALID_SOCKET;
 
       struct addrinfo* result = NULL;
       struct addrinfo hints;
 
       int iSendResult;
-      char recvbuf[DEFAULT_BUFLEN];
-      int recvbuflen = DEFAULT_BUFLEN;
 
       // Initialize Winsock
       iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -74,49 +93,74 @@ namespace MCF
       }
 
       // Accept a client socket
-      ClientSocket = accept(ListenSocket, NULL, NULL);
-      if (ClientSocket == INVALID_SOCKET) {
+      m_clientSocket = accept(ListenSocket, NULL, NULL);
+      if (m_clientSocket == INVALID_SOCKET) {
         printf("accept failed with error: %d\n", WSAGetLastError());
       }
 
-      AutoCloseSocket closeClientSocket(ClientSocket);
+      m_isSending = true;
+      m_sendThread.swap(std::thread(&SocketServer::continuouslySendData, this));
+    }
 
-      // Receive until the peer shuts down the connection
-      do {
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::receiveAsync()
+    {
+      m_isReceiving = true;
 
-        iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
-        if (iResult > 0) {
-          printf("Bytes received: %d\n", iResult);
+      const int bufferLength = 512;
+      char receiveBuffer[bufferLength];
 
-          std::string result;
-          result.reserve(iResult);
+      while (m_isReceiving)
+      {
+        int received = recv(m_clientSocket, receiveBuffer, bufferLength, 0);
 
-          for (int i = 0; i < iResult; ++i)
+        if (received > 0)
+        {
+          if (m_onDataReceivedCallback)
           {
-            result.push_back(recvbuf[i]);
+            m_onDataReceivedCallback(receiveBuffer, received);
           }
-          printf("Message received: %s\n", result.c_str());
-
-          // Echo the buffer back to the sender
-          iSendResult = send(ClientSocket, recvbuf, iResult, 0);
-          if (iSendResult == SOCKET_ERROR) {
-            printf("send failed with error: %d\n", WSAGetLastError());
-          }
-          printf("Bytes sent: %d\n", iSendResult);
         }
-        else if (iResult == 0)
-          printf("Connection closing...\n");
-        else {
-          printf("recv failed with error: %d\n", WSAGetLastError());
-        }
-
-      } while (iResult > 0);
-
-      // shutdown the connection since we're done
-      iResult = shutdown(ClientSocket, SD_SEND);
-      if (iResult == SOCKET_ERROR) {
-        printf("shutdown failed with error: %d\n", WSAGetLastError());
       }
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::sendAsync(const std::string& message)
+    {
+      std::lock_guard<std::mutex> sendQueueGuard(m_sendQueueLock);
+      m_sendQueue.push(message);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::continuouslySendData()
+    {
+      std::string message;
+
+      while (m_isSending)
+      {
+        // Scope to remove guard as quickly as possible
+        {
+          std::lock_guard<std::mutex> sendQueueGuard(m_sendQueueLock);
+
+          if (!m_sendQueue.empty())
+          {
+            message.assign(m_sendQueue.front());
+            m_sendQueue.pop();
+          }
+        }
+
+        send(m_clientSocket, message.c_str(), message.size(), 0);
+      }
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::disconnect()
+    {
+      // shutdown the connection since we're done
+      int iResult = shutdown(m_clientSocket, SD_SEND);
+      ASSERT(iResult != SOCKET_ERROR);
+
+      closesocket(m_clientSocket);
     }
   }
 }
