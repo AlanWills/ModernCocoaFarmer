@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Networking/SocketServer.h"
+
 #include <thread>
 #include <atomic>
 #include <string>
@@ -28,14 +30,17 @@ namespace MCF
         void startBroadcasting(const CelesteEngine::ScreenManager& screenManager);
 
       private:
-        void continuallySendData(const CelesteEngine::ScreenManager& screenManager) const;
+        void continuallySendData(const CelesteEngine::ScreenManager& screenManager);
         void serializeGameObject(CelesteEngine::GameObject& gameObject, std::string& output) const;
 
         std::atomic<bool> m_isBroadcasting;
         std::thread m_communicationThread;
 
-        static char m_fieldDelimiter;
-        static char m_vectorDelimiter;
+        Networking::SocketServer m_server;
+
+        static const char m_fieldDelimiter;
+        static const char m_vectorDelimiter;
+        static const char* m_messageEndDelimiter;
     };
   }
 }

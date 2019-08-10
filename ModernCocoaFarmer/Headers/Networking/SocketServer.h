@@ -22,6 +22,7 @@ namespace MCF
         SocketServer();
         ~SocketServer();
 
+        void connect(int port);
         void connect(int port, const OnDataReceivedCallback& onDataReceivedCallback);
         void receiveAsync();
         void sendAsync(const std::string& message);

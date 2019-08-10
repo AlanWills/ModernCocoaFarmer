@@ -13,8 +13,9 @@ namespace MCF
 {
   namespace Debugging
   {
-    char SceneBroadcaster::m_fieldDelimiter = ',';
-    char SceneBroadcaster::m_vectorDelimiter = '/';
+    const char SceneBroadcaster::m_fieldDelimiter = ',';
+    const char SceneBroadcaster::m_vectorDelimiter = '/';
+    const char* SceneBroadcaster::m_messageEndDelimiter = "END";
 
     //------------------------------------------------------------------------------------------------
     SceneBroadcaster::SceneBroadcaster() :
@@ -38,8 +39,10 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void SceneBroadcaster::continuallySendData(const ScreenManager& screenManager) const
+    void SceneBroadcaster::continuallySendData(const ScreenManager& screenManager)
     {
+      m_server.connect(13000);
+
       std::queue<const GameObject*> gameObjects;
 
       std::string output;
@@ -79,7 +82,9 @@ namespace MCF
           output.append("]]");
         }
 
-        Networking::sendRequest("http://localhost/", 13000, output);
+        output.append(m_messageEndDelimiter);
+
+        m_server.sendAsync(output);
       }
     }
 

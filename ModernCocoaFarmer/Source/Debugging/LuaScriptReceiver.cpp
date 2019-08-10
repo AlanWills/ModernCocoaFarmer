@@ -22,11 +22,8 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     LuaScriptReceiver::~LuaScriptReceiver()
     {
-      m_server.disconnect();
-
       m_isListening = false;
       m_isSending = false;
-
       m_listenThread.join();
       m_sendThread.join();
     }
@@ -63,11 +60,12 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void LuaScriptReceiver::continuallySendResponses()
     {
-      bool gotResponse = false;
       std::string response;
 
       while (m_isSending)
       {
+        bool gotResponse = false;
+
         // Scope to minimise time spent using response queue lock
         {
           std::lock_guard<std::mutex> responseLockGuard(m_outgoingResponseQueueLock);

@@ -34,6 +34,8 @@ namespace MCF
       m_isSending = false;
       m_receiveThread.join();
       m_sendThread.join();
+
+      disconnect();
     }
 
     //------------------------------------------------------------------------------------------------
@@ -41,6 +43,12 @@ namespace MCF
     {
       m_onDataReceivedCallback = onDataReceivedCallback;
 
+      connect(port);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::connect(int port)
+    {
       AutoWSACleanup wsaCleanup;
 
       WSADATA wsaData;
@@ -138,6 +146,8 @@ namespace MCF
 
       while (m_isSending)
       {
+        bool hasMessage = false;
+
         // Scope to remove guard as quickly as possible
         {
           std::lock_guard<std::mutex> sendQueueGuard(m_sendQueueLock);
@@ -146,10 +156,14 @@ namespace MCF
           {
             message.assign(m_sendQueue.front());
             m_sendQueue.pop();
+            hasMessage = true;
           }
         }
 
-        send(m_clientSocket, message.c_str(), message.size(), 0);
+        if (hasMessage)
+        {
+          send(m_clientSocket, message.c_str(), message.size(), 0);
+        }
       }
     }
 
