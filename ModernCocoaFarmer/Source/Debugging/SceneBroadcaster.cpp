@@ -19,23 +19,67 @@ namespace MCF
 
     //------------------------------------------------------------------------------------------------
     SceneBroadcaster::SceneBroadcaster() :
-      m_isBroadcasting(false),
-      m_communicationThread()
+      m_message()
     {
+      m_message.reserve(4096);
     }
 
     //------------------------------------------------------------------------------------------------
     SceneBroadcaster::~SceneBroadcaster()
     {
-      m_isBroadcasting = false;
-      m_communicationThread.join();
     }
 
     //------------------------------------------------------------------------------------------------
-    void SceneBroadcaster::startBroadcasting(const ScreenManager& screenManager)
+    void SceneBroadcaster::start(const ScreenManager& screenManager)
     {
-      m_isBroadcasting = true;
-      m_communicationThread.swap(std::thread(&SceneBroadcaster::continuallySendData, this, std::ref(screenManager)));
+      m_server.connectAsync(13000);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SceneBroadcaster::update(const ScreenManager& screenManager)
+    {
+      if (!m_server.isConnected())
+      {
+        return;
+      }
+
+      std::queue<const GameObject*> gameObjects;
+
+      // Reset the string
+      m_message.clear();
+
+      for (const Screen* screen : screenManager)
+      {
+        // Should be empty from previous screen because of complete traversal
+        ASSERT(gameObjects.empty());
+
+        // Start delimiter for content
+        m_message.append("[[");
+
+        // Add screen name
+        m_message.append(deinternString(screen->getName()));
+        m_message.push_back(m_fieldDelimiter);
+
+        // And number of root children
+        m_message.append(std::to_string(screen->getScreenRoot()->getChildCount()));
+        m_message.push_back(m_fieldDelimiter);
+
+        Transform* root = const_cast<Transform*>(screen->getScreenRoot());
+
+        // Then serialize each child using left side tree traversal
+        for (size_t childIndex = 0, n = root->getChildCount(); childIndex < n; ++childIndex)
+        {
+          // Yeah this isn't great - we need api for getting const children
+          serializeGameObject(const_cast<GameObject&>(*root->getChildTransform(childIndex)->getGameObject()), m_message);
+        }
+
+        // End delimiter for content
+        m_message.append("]]");
+      }
+
+      m_message.append(m_messageEndDelimiter);
+
+      m_server.sendAsync(m_message);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -48,7 +92,7 @@ namespace MCF
       std::string output;
       output.reserve(4096);
 
-      while (m_isBroadcasting)
+      while (false)
       {
         // Reset the string
         output.clear();

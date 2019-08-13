@@ -22,16 +22,26 @@ namespace MCF
         SocketServer();
         ~SocketServer();
 
+        bool isConnected() const { return m_connected; }
+
         void connect(int port);
         void connect(int port, const OnDataReceivedCallback& onDataReceivedCallback);
+        void connectAsync(int port);
+        void connectAsync(int port, const OnDataReceivedCallback& onDataReceivedCallback);
+
         void receiveAsync();
         void sendAsync(const std::string& message);
+
         void disconnect();
 
       private:
         void continuouslySendData();
+        void continuouslyReceiveData();
 
         OnDataReceivedCallback m_onDataReceivedCallback;
+        
+        std::atomic<bool> m_connected;
+        std::thread m_connectingThread;
 
         std::atomic<bool> m_isReceiving;
         std::thread m_receiveThread;

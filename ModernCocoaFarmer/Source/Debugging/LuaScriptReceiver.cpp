@@ -24,8 +24,16 @@ namespace MCF
     {
       m_isListening = false;
       m_isSending = false;
-      m_listenThread.join();
-      m_sendThread.join();
+
+      if (m_listenThread.joinable())
+      {
+        m_listenThread.join();
+      }
+
+      if (m_sendThread.joinable())
+      {
+        m_sendThread.join();
+      }
     }
 
     //------------------------------------------------------------------------------------------------

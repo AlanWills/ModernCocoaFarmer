@@ -1,7 +1,6 @@
 #include "Networking/SocketServer.h"
 
 #include "UtilityHeaders/NetworkingHeaders.h"
-#include "Networking/RAII/AutoWSACleanup.h"
 #include "Networking/RAII/AutoFreeAddressInfo.h"
 #include "Networking/RAII/AutoCloseSocket.h"
 #include "Debug/Debug.h"
@@ -17,6 +16,8 @@ namespace MCF
   {
     //------------------------------------------------------------------------------------------------
     SocketServer::SocketServer() :
+      m_connected(false),
+      m_connectingThread(),
       m_isReceiving(false),
       m_receiveThread(),
       m_isSending(false),
@@ -30,11 +31,6 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     SocketServer::~SocketServer()
     {
-      m_isReceiving = false;
-      m_isSending = false;
-      m_receiveThread.join();
-      m_sendThread.join();
-
       disconnect();
     }
 
@@ -49,23 +45,10 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void SocketServer::connect(int port)
     {
-      AutoWSACleanup wsaCleanup;
-
-      WSADATA wsaData;
-      int iResult;
-
       SOCKET ListenSocket = INVALID_SOCKET;
 
       struct addrinfo* result = NULL;
       struct addrinfo hints;
-
-      int iSendResult;
-
-      // Initialize Winsock
-      iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-      if (iResult != 0) {
-        printf("WSAStartup failed with error: %d\n", iResult);
-      }
 
       ZeroMemory(&hints, sizeof(hints));
       hints.ai_family = AF_INET;
@@ -74,7 +57,7 @@ namespace MCF
       hints.ai_flags = AI_PASSIVE;
 
       // Resolve the server address and port
-      iResult = getaddrinfo(NULL, std::to_string(port).c_str(), &hints, &result);
+      int iResult = getaddrinfo(NULL, std::to_string(port).c_str(), &hints, &result);
       if (iResult != 0) {
         printf("getaddrinfo failed with error: %d\n", iResult);
       }
@@ -106,15 +89,41 @@ namespace MCF
         printf("accept failed with error: %d\n", WSAGetLastError());
       }
 
-      m_isSending = true;
-      m_sendThread.swap(std::thread(&SocketServer::continuouslySendData, this));
+      m_connected = true;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::connectAsync(int port)
+    {
+      void(SocketServer::*connectFunc)(int) = &SocketServer::connect;
+      m_connectingThread.swap(std::thread(connectFunc, this, port));
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::connectAsync(int port, const OnDataReceivedCallback& onDataReceivedCallback)
+    {
+      m_onDataReceivedCallback = onDataReceivedCallback;
+
+      connectAsync(port);
     }
 
     //------------------------------------------------------------------------------------------------
     void SocketServer::receiveAsync()
     {
+      if (!m_connected)
+      {
+        ASSERT_FAIL();
+        return;
+      }
+       
       m_isReceiving = true;
+      m_receiveThread.swap(std::thread(&SocketServer::continuouslyReceiveData, this));
+    }
 
+    //------------------------------------------------------------------------------------------------
+    void SocketServer::continuouslyReceiveData()
+    {
+      // In the future need to handle messages bigger than 512 bytes
       const int bufferLength = 512;
       char receiveBuffer[bufferLength];
 
@@ -135,6 +144,18 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void SocketServer::sendAsync(const std::string& message)
     {
+      if (!m_connected)
+      {
+        ASSERT_FAIL();
+        return;
+      }
+
+      if (!m_isSending)
+      {
+        m_isSending = true;
+        m_sendThread.swap(std::thread(&SocketServer::continuouslySendData, this));
+      }
+
       std::lock_guard<std::mutex> sendQueueGuard(m_sendQueueLock);
       m_sendQueue.push(message);
     }
@@ -170,11 +191,33 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void SocketServer::disconnect()
     {
-      // shutdown the connection since we're done
-      int iResult = shutdown(m_clientSocket, SD_SEND);
-      ASSERT(iResult != SOCKET_ERROR);
+      if (m_connected)
+      {
+        // shutdown the connection since we're done
+        int iResult = shutdown(m_clientSocket, SD_SEND);
+        ASSERT(iResult != SOCKET_ERROR);
 
-      closesocket(m_clientSocket);
+        closesocket(m_clientSocket);
+      }
+
+      m_connected = false;
+      m_isReceiving = false;
+      m_isSending = false;
+
+      if (m_connectingThread.joinable())
+      {
+        m_connectingThread.join();
+      }
+
+      if (m_receiveThread.joinable())
+      {
+        m_receiveThread.join();
+      }
+
+      if (m_sendThread.joinable())
+      {
+        m_sendThread.join();
+      }
     }
   }
 }

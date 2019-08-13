@@ -22,8 +22,16 @@ namespace MCF
     // Set up game specific script commands
     MCF::Lua::MCFScriptCommands::initialize();
 
+    // Initialize Winsock
+    WSADATA wsaData;
+    int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+    if (result != 0) {
+      printf("WSAStartup failed with error: %d\n", result);
+    }
+
     m_sceneBroadcaster.reset(new Debugging::SceneBroadcaster());
-    m_sceneBroadcaster->startBroadcasting(*getScreenManager());
+    m_sceneBroadcaster->start(*getScreenManager());
 
     m_luaScriptReceiver.reset(new Debugging::LuaScriptReceiver());
     m_luaScriptReceiver->start();
@@ -32,6 +40,7 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   void MCFGame::onUpdate(float elapsedGameTime)
   {
+    m_sceneBroadcaster->update(*getScreenManager());
     m_luaScriptReceiver->update();
   }
 }

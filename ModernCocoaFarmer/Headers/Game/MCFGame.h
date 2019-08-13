@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Game.h"
+#include "Networking/RAII/AutoWSACleanup.h"
 
 #include <memory>
 
@@ -30,5 +31,7 @@ namespace MCF
 
       std::unique_ptr<Debugging::SceneBroadcaster> m_sceneBroadcaster;
       std::unique_ptr<Debugging::LuaScriptReceiver> m_luaScriptReceiver;
+
+      Networking::AutoWSACleanup wsaCleanup;
   };
 }
