@@ -1,5 +1,6 @@
 #include "Debugging/LuaScriptReceiver.h"
 #include "Lua/LuaState.h"
+#include "Debug/Debug.h"
 
 namespace MCF
 {
@@ -22,18 +23,38 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     LuaScriptReceiver::~LuaScriptReceiver()
     {
-      m_isListening = false;
-      m_isSending = false;
+      //m_isListening = false;
+      //m_isSending = false;
+      bool listenThreadJoined = false;
+      bool sendThreadJoined = false;
 
       if (m_listenThread.joinable())
       {
         m_listenThread.join();
+        listenThreadJoined = true;
       }
 
       if (m_sendThread.joinable())
       {
         m_sendThread.join();
+        sendThreadJoined = true;
       }
+      
+      m_server.disconnect();
+
+      while (!m_incomingRequestQueueLock.try_lock())
+      {
+        ASSERT(listenThreadJoined);
+        std::string error;
+      }
+      m_incomingRequestQueueLock.unlock();
+
+      while (!m_outgoingResponseQueueLock.try_lock())
+      {
+        ASSERT(sendThreadJoined);
+        std::string error;
+      }
+      m_outgoingResponseQueueLock.unlock();
     }
 
     //------------------------------------------------------------------------------------------------
@@ -48,7 +69,8 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void LuaScriptReceiver::continuallyListenForRequests()
     {
-      m_server.connect(27015, [&](const char* data, int numReceivedBytes) -> void
+      m_server.connect(27015);
+      m_server.setOnDataReceived([&](const char* data, int numReceivedBytes) -> void
       {
           std::lock_guard<std::mutex> lockGuard(m_incomingRequestQueueLock);
           std::string receiveBuffer;
@@ -91,6 +113,8 @@ namespace MCF
           m_server.sendAsync(response);
         }
       }
+
+      ASSERT_FAIL();
     }
 
     //------------------------------------------------------------------------------------------------

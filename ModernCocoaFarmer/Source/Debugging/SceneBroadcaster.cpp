@@ -27,6 +27,7 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     SceneBroadcaster::~SceneBroadcaster()
     {
+      m_server.disconnect();
     }
 
     //------------------------------------------------------------------------------------------------
@@ -38,8 +39,15 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void SceneBroadcaster::update(const ScreenManager& screenManager)
     {
+      // This should be checking the socket is connected, not the server
       if (!m_server.isConnected())
       {
+        if (!m_server.isConnecting())
+        {
+          m_server.disconnect();
+          m_server.connectAsync(13000);
+        }
+
         return;
       }
 

@@ -16,6 +16,7 @@ namespace MCF
   {
     //------------------------------------------------------------------------------------------------
     SocketServer::SocketServer() :
+      m_connecting(false),
       m_connected(false),
       m_connectingThread(),
       m_isReceiving(false),
@@ -35,16 +36,15 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void SocketServer::connect(int port, const SocketServer::OnDataReceivedCallback& onDataReceivedCallback)
-    {
-      m_onDataReceivedCallback = onDataReceivedCallback;
-
-      connect(port);
-    }
-
-    //------------------------------------------------------------------------------------------------
     void SocketServer::connect(int port)
     {
+      if (m_connecting)
+      {
+        return;
+      }
+
+      m_connecting = true;
+
       SOCKET ListenSocket = INVALID_SOCKET;
 
       struct addrinfo* result = NULL;
@@ -90,21 +90,19 @@ namespace MCF
       }
 
       m_connected = true;
+      m_connecting = false;
     }
 
     //------------------------------------------------------------------------------------------------
     void SocketServer::connectAsync(int port)
     {
+      if (m_connecting)
+      {
+        return;
+      }
+
       void(SocketServer::*connectFunc)(int) = &SocketServer::connect;
       m_connectingThread.swap(std::thread(connectFunc, this, port));
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void SocketServer::connectAsync(int port, const OnDataReceivedCallback& onDataReceivedCallback)
-    {
-      m_onDataReceivedCallback = onDataReceivedCallback;
-
-      connectAsync(port);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -137,6 +135,11 @@ namespace MCF
           {
             m_onDataReceivedCallback(receiveBuffer, received);
           }
+        }
+        else
+        {
+          // Client has disconnected
+          m_connected = false;
         }
       }
     }
@@ -183,7 +186,10 @@ namespace MCF
 
         if (hasMessage)
         {
-          send(m_clientSocket, message.c_str(), message.size(), 0);
+          if (send(m_clientSocket, message.c_str(), message.size(), 0) == SOCKET_ERROR)
+          {
+            m_connected = false;
+          }
         }
       }
     }
@@ -194,12 +200,11 @@ namespace MCF
       if (m_connected)
       {
         // shutdown the connection since we're done
-        int iResult = shutdown(m_clientSocket, SD_SEND);
-        ASSERT(iResult != SOCKET_ERROR);
-
+        shutdown(m_clientSocket, SD_SEND);
         closesocket(m_clientSocket);
       }
 
+      m_connecting = false;
       m_connected = false;
       m_isReceiving = false;
       m_isSending = false;
