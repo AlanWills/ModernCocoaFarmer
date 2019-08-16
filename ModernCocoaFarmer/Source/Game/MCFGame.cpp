@@ -43,4 +43,11 @@ namespace MCF
     m_sceneBroadcaster->update(*getScreenManager());
     m_luaScriptReceiver->update();
   }
+
+  //------------------------------------------------------------------------------------------------
+  void MCFGame::onExit()
+  {
+    m_sceneBroadcaster->stop();
+    m_luaScriptReceiver->stop();
+  }
 }

@@ -8,7 +8,6 @@ namespace MCF
   {
     //------------------------------------------------------------------------------------------------
     LuaScriptReceiver::LuaScriptReceiver() :
-      m_isListening(false),
       m_isSending(false),
       m_listenThread(),
       m_sendThread(),
@@ -23,44 +22,16 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     LuaScriptReceiver::~LuaScriptReceiver()
     {
-      //m_isListening = false;
-      //m_isSending = false;
-      bool listenThreadJoined = false;
-      bool sendThreadJoined = false;
-
-      if (m_listenThread.joinable())
-      {
-        m_listenThread.join();
-        listenThreadJoined = true;
-      }
-
-      if (m_sendThread.joinable())
-      {
-        m_sendThread.join();
-        sendThreadJoined = true;
-      }
-      
-      m_server.disconnect();
-
-      while (!m_incomingRequestQueueLock.try_lock())
-      {
-        ASSERT(listenThreadJoined);
-        std::string error;
-      }
-      m_incomingRequestQueueLock.unlock();
-
-      while (!m_outgoingResponseQueueLock.try_lock())
-      {
-        ASSERT(sendThreadJoined);
-        std::string error;
-      }
-      m_outgoingResponseQueueLock.unlock();
+      ASSERT(!m_isSending);
+      ASSERT(!m_listenThread.joinable());
+      ASSERT(!m_sendThread.joinable());
+      ASSERT(!m_server.isConnected());
+      ASSERT(!m_server.isConnecting());
     }
 
     //------------------------------------------------------------------------------------------------
     void LuaScriptReceiver::start()
     {
-      m_isListening = true;
       m_isSending = true;
       m_listenThread.swap(std::thread(&LuaScriptReceiver::continuallyListenForRequests, this));
       m_sendThread.swap(std::thread(&LuaScriptReceiver::continuallySendResponses, this));
@@ -69,7 +40,6 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void LuaScriptReceiver::continuallyListenForRequests()
     {
-      m_server.connect(27015);
       m_server.setOnDataReceived([&](const char* data, int numReceivedBytes) -> void
       {
           std::lock_guard<std::mutex> lockGuard(m_incomingRequestQueueLock);
@@ -83,8 +53,11 @@ namespace MCF
 
           m_incomingRequestQueue.push(receiveBuffer);
       });
-
-      m_server.receiveAsync();
+      
+      m_server.connectAsync(27015, [&]() -> void
+      {
+        m_server.receiveAsync();
+      });
     }
 
     //------------------------------------------------------------------------------------------------
@@ -113,8 +86,6 @@ namespace MCF
           m_server.sendAsync(response);
         }
       }
-
-      ASSERT_FAIL();
     }
 
     //------------------------------------------------------------------------------------------------
@@ -149,6 +120,24 @@ namespace MCF
         {
           m_outgoingResponseQueue.push(functionResult.get<std::string>(0));
         }
+      }
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void LuaScriptReceiver::stop()
+    {
+      m_isSending = false;
+
+      m_server.disconnect();
+
+      if (m_listenThread.joinable())
+      {
+        m_listenThread.join();
+      }
+
+      if (m_sendThread.joinable())
+      {
+        m_sendThread.join();
       }
     }
   }

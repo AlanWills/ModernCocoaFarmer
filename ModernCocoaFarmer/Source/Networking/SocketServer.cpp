@@ -36,7 +36,7 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void SocketServer::connect(int port)
+    void SocketServer::connect(int port, const OnConnectedCallback& onConnected)
     {
       if (m_connecting)
       {
@@ -70,6 +70,9 @@ namespace MCF
         printf("socket failed with error: %ld\n", WSAGetLastError());
       }
 
+      //u_long nonblocking = 1;
+      //ioctlsocket(ListenSocket, FIONBIO, &nonblocking);
+
       AutoCloseSocket closeListenSocket(ListenSocket);
 
       // Setup the TCP listening socket
@@ -91,18 +94,51 @@ namespace MCF
 
       m_connected = true;
       m_connecting = false;
+
+      if (onConnected)
+      {
+        onConnected();
+      }
+
+      /*fd_set set;
+      set.fd_array[0] = m_clientSocket;
+      set.fd_count = 1;
+
+      timeval timeout;
+      timeout.tv_sec = 1;
+
+      while (m_connecting)
+      {
+        int numberOfSocketsReady = select(0, nullptr, &set, nullptr, &timeout);
+
+        if (numberOfSocketsReady == INVALID_SOCKET)
+        {
+          int lastError = WSAGetLastError();
+          ASSERT_FAIL();
+        }
+
+        if (numberOfSocketsReady > 0)
+        {
+          m_connected = true;
+          m_connecting = false;
+
+          if (onConnected)
+          {
+            onConnected();
+          }
+        }
+      }*/
     }
 
     //------------------------------------------------------------------------------------------------
-    void SocketServer::connectAsync(int port)
+    void SocketServer::connectAsync(int port, const OnConnectedCallback& onConnected)
     {
       if (m_connecting)
       {
         return;
       }
 
-      void(SocketServer::*connectFunc)(int) = &SocketServer::connect;
-      m_connectingThread.swap(std::thread(connectFunc, this, port));
+      m_connectingThread.swap(std::thread(&SocketServer::connect, this, port, onConnected));
     }
 
     //------------------------------------------------------------------------------------------------
@@ -202,6 +238,8 @@ namespace MCF
         // shutdown the connection since we're done
         shutdown(m_clientSocket, SD_SEND);
         closesocket(m_clientSocket);
+
+        m_clientSocket = INVALID_SOCKET;
       }
 
       m_connecting = false;

@@ -25,6 +25,7 @@ namespace MCF
     protected:
       void onInitialize() override;
       void onUpdate(float elapsedGameTime) override;
+      void onExit() override;
 
     private:
       using Inherited = CelesteEngine::Game;

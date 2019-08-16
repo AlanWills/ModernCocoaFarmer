@@ -24,12 +24,12 @@ namespace MCF
 
         void start();
         void update();
+        void stop();
 
       private:
         void continuallyListenForRequests();
         void continuallySendResponses();
 
-        std::atomic<bool> m_isListening;
         std::atomic<bool> m_isSending;
 
         std::thread m_listenThread;

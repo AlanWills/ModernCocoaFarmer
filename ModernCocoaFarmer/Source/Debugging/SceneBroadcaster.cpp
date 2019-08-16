@@ -27,7 +27,8 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     SceneBroadcaster::~SceneBroadcaster()
     {
-      m_server.disconnect();
+      ASSERT(!m_server.isConnected());
+      ASSERT(!m_server.isConnecting());
     }
 
     //------------------------------------------------------------------------------------------------
@@ -88,56 +89,6 @@ namespace MCF
       m_message.append(m_messageEndDelimiter);
 
       m_server.sendAsync(m_message);
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void SceneBroadcaster::continuallySendData(const ScreenManager& screenManager)
-    {
-      m_server.connect(13000);
-
-      std::queue<const GameObject*> gameObjects;
-
-      std::string output;
-      output.reserve(4096);
-
-      while (false)
-      {
-        // Reset the string
-        output.clear();
-
-        for (const Screen* screen : screenManager)
-        {
-          // Should be empty from previous screen because of complete traversal
-          ASSERT(gameObjects.empty());
-
-          // Start delimiter for content
-          output.append("[[");
-
-          // Add screen name
-          output.append(deinternString(screen->getName()));
-          output.push_back(m_fieldDelimiter);
-
-          // And number of root children
-          output.append(std::to_string(screen->getScreenRoot()->getChildCount()));
-          output.push_back(m_fieldDelimiter);
-
-          Transform* root = const_cast<Transform*>(screen->getScreenRoot());
-
-          // Then serialize each child using left side tree traversal
-          for (size_t childIndex = 0, n = root->getChildCount(); childIndex < n; ++childIndex)
-          {
-            // Yeah this isn't great - we need api for getting const children
-            serializeGameObject(const_cast<GameObject&>(*root->getChildTransform(childIndex)->getGameObject()), output);
-          }
-
-          // End delimiter for content
-          output.append("]]");
-        }
-
-        output.append(m_messageEndDelimiter);
-
-        m_server.sendAsync(output);
-      }
     }
 
     //------------------------------------------------------------------------------------------------
@@ -212,6 +163,12 @@ namespace MCF
       {
         serializeGameObject(*gameObject.getChildGameObject(childIndex), output);
       }
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void SceneBroadcaster::stop()
+    {
+      m_server.disconnect();
     }
   }
 }

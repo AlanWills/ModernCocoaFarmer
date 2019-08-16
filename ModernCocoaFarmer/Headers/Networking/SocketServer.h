@@ -17,6 +17,7 @@ namespace MCF
     class SocketServer
     {
       public:
+        using OnConnectedCallback = std::function<void()>;
         using OnDataReceivedCallback = std::function<void(const char* receivedData, int numReceivedBytes)>;
 
         SocketServer();
@@ -25,8 +26,7 @@ namespace MCF
         bool isConnecting() const { return m_connecting; }
         bool isConnected() const { return m_connected; }
 
-        void connect(int port);
-        void connectAsync(int port);
+        void connectAsync(int port, const OnConnectedCallback& onConnected = OnConnectedCallback());
 
         void setOnDataReceived(const OnDataReceivedCallback& onDataReceived) { m_onDataReceivedCallback = onDataReceived; }
 
@@ -36,6 +36,7 @@ namespace MCF
         void disconnect();
 
       private:
+        void connect(int port, const OnConnectedCallback& onConnected);
         void continuouslySendData();
         void continuouslyReceiveData();
 
