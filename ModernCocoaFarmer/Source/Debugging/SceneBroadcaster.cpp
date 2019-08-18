@@ -52,6 +52,8 @@ namespace MCF
         return;
       }
 
+      auto current = std::chrono::system_clock::now();
+
       std::queue<const GameObject*> gameObjects;
 
       // Reset the string
@@ -88,6 +90,13 @@ namespace MCF
 
       m_message.append(m_messageEndDelimiter);
 
+      auto now = std::chrono::system_clock::now();
+      std::chrono::duration<double> diff = now - current;
+      auto count = diff.count();
+
+      printf("%f", count * 1000.0f);
+      printf("\n");
+      
       m_server.sendAsync(m_message);
     }
 

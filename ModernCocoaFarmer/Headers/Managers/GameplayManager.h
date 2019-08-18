@@ -1,23 +1,24 @@
 #pragma once
 
-#include "Objects/Script.h"
 #include "Managers/InteractableBuildingsManager.h"
+#include "Memory/Handle.h"
 
+
+namespace CelesteEngine
+{
+  class Screen;
+}
 
 namespace MCF
 {
   namespace Managers
   {
-    class GameplayManager : public CelesteEngine::Script
+    class GameplayManager
     {
-      DECLARE_SCRIPT(GameplayManager)
-
       public:
-        void startGameplay();
+        GameplayManager();
 
-      protected:
-        void onInitialize() override;
-        void onDeath() override;
+        void startGameplay(const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
 
       private:
         std::unique_ptr<InteractableBuildingsManager> m_interactableBuildingsManager;

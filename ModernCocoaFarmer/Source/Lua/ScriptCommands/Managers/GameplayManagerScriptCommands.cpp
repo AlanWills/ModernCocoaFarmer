@@ -12,7 +12,7 @@ namespace MCF
       //------------------------------------------------------------------------------------------------
       void initialize()
       {
-        CelesteEngine::Lua::registerHandleUserType<Managers::GameplayManager>(
+        CelesteEngine::Lua::registerUserType<Managers::GameplayManager>(
           "GameplayManager",
           "startGameplay", &Managers::GameplayManager::startGameplay);
       }

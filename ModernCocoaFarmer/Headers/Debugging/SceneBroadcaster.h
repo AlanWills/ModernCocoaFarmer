@@ -19,7 +19,7 @@ namespace MCF
   {
     class SceneBroadcaster
     {
-      public:
+      public:    
         SceneBroadcaster();
         SceneBroadcaster(const SceneBroadcaster&) = delete;
         SceneBroadcaster(SceneBroadcaster&&) = default;

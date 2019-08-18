@@ -29,8 +29,7 @@ namespace MCF
         interactableBuilding->findChildGameObject("Icon")->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
           [&](EventArgs& e, Handle<GameObject> caller) -> void
           {
-            Handle<GameObject> popup = UI::showInteractableBuildingDialog(screen);
-            popup->setParent(caller);
+            UI::showInteractableBuildingDialog(screen);
           });
 
         m_buildings.push_back(interactableBuilding);

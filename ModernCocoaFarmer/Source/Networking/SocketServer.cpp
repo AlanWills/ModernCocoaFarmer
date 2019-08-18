@@ -1,6 +1,5 @@
 #include "Networking/SocketServer.h"
 
-#include "UtilityHeaders/NetworkingHeaders.h"
 #include "Networking/RAII/AutoFreeAddressInfo.h"
 #include "Networking/RAII/AutoCloseSocket.h"
 #include "Debug/Debug.h"
@@ -104,12 +103,12 @@ namespace MCF
 
           m_connected = true;
           m_connecting = false;
-        }
-      }
 
-      if (onConnected)
-      {
-        onConnected();
+          if (onConnected)
+          {
+            onConnected();
+          }
+        }
       }
     }
 

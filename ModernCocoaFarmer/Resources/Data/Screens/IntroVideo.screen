@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Screen name="Intro Video" guid="61a34bb6-809c-4b7d-867b-97939a06cb42">
+    <GameObjects>
+      <GameObject position="0.5%, 0.5%, 0" name="VideoCloseListener" active="true">
+        <Components>
+          <LimitedLifeTime lifetime="100000000" trigger_key="esc">
+            <OnDeathCallbacks>
+              <Callback name="TransitionToScreen" arg="Data\Screens\MainMenu.screen"/>
+            </OnDeathCallbacks>
+          </LimitedLifeTime>
+        </Components>
+      </GameObject>
+    </GameObjects>
+  </Screen>
+</Root>

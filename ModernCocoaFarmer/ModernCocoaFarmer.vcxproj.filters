@@ -39,6 +39,7 @@
     <None Include="Resources\Data\Screens\Splash.screen" />
     <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingPopup.prefab" />
+    <None Include="Resources\Data\Screens\IntroVideo.screen" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -441,9 +442,6 @@
     <ClInclude Include="Headers\UI\InteractableBuildingDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Networking\NetworkUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Game\MCFGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -466,9 +464,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Networking\RAII\AutoWSACleanup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\UtilityHeaders\NetworkingHeaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "Screens/ScreenUtils.h"
 #include "Debugging/SceneBroadcaster.h"
 #include "Debugging/LuaScriptReceiver.h"
+#include "Networking/NetworkUtils.h"
 
 
 namespace MCF
@@ -22,13 +23,7 @@ namespace MCF
     // Set up game specific script commands
     MCF::Lua::MCFScriptCommands::initialize();
 
-    // Initialize Winsock
-    WSADATA wsaData;
-    int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
-
-    if (result != 0) {
-      printf("WSAStartup failed with error: %d\n", result);
-    }
+    CelesteEngine::Networking::initialize();
 
     m_sceneBroadcaster.reset(new Debugging::SceneBroadcaster());
     m_sceneBroadcaster->start(*getScreenManager());
@@ -50,6 +45,6 @@ namespace MCF
     m_sceneBroadcaster->stop();
     m_luaScriptReceiver->stop();
 
-    WSACleanup();
+    CelesteEngine::Networking::exit();
   }
 }

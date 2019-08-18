@@ -184,6 +184,7 @@
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
     <None Include="Resources\Data\Screens\DebugTools.screen" />
+    <None Include="Resources\Data\Screens\IntroVideo.screen" />
     <None Include="Resources\Data\Screens\MainMenu.screen" />
     <None Include="Resources\Data\Screens\Options.screen" />
     <None Include="Resources\Data\Screens\Splash.screen" />
@@ -350,14 +351,12 @@
     <ClInclude Include="Headers\Managers\InteractableBuildingsManager.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\MCFScriptCommands.h" />
     <ClInclude Include="Headers\Managers\GameplayManager.h" />
-    <ClInclude Include="Headers\Networking\NetworkUtils.h" />
     <ClInclude Include="Headers\Networking\RAII\AutoCloseSocket.h" />
     <ClInclude Include="Headers\Networking\RAII\AutoFreeAddressInfo.h" />
     <ClInclude Include="Headers\Networking\RAII\AutoWSACleanup.h" />
     <ClInclude Include="Headers\Networking\SocketClient.h" />
     <ClInclude Include="Headers\Networking\SocketServer.h" />
     <ClInclude Include="Headers\UI\InteractableBuildingDialog.h" />
-    <ClInclude Include="Headers\UtilityHeaders\NetworkingHeaders.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

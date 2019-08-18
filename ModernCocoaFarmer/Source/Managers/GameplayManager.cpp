@@ -1,13 +1,12 @@
 #include "Managers/GameplayManager.h"
 #include "UtilityHeaders/ComponentHeaders.h"
+#include "Screens/Screen.h"
 
 
 namespace MCF
 {
   namespace Managers
   {
-    REGISTER_SCRIPT(GameplayManager, 1)
-
     //------------------------------------------------------------------------------------------------
     GameplayManager::GameplayManager() :
       m_interactableBuildingsManager(nullptr)
@@ -15,28 +14,10 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    GameplayManager::~GameplayManager()
+    void GameplayManager::startGameplay(const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void GameplayManager::onInitialize()
-    {
-      ASSERT(m_interactableBuildingsManager.get() == nullptr);
       m_interactableBuildingsManager.reset(new InteractableBuildingsManager());
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void GameplayManager::onDeath()
-    {
-      ASSERT(m_interactableBuildingsManager.get() != nullptr);
-      m_interactableBuildingsManager.reset(nullptr);
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void GameplayManager::startGameplay()
-    {
-      m_interactableBuildingsManager->initialize(getGameObject()->getScreen());
+      m_interactableBuildingsManager->initialize(screen);
     }
   }
 }
