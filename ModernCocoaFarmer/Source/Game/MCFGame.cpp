@@ -49,5 +49,7 @@ namespace MCF
   {
     m_sceneBroadcaster->stop();
     m_luaScriptReceiver->stop();
+
+    WSACleanup();
   }
 }

@@ -36,7 +36,7 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void SocketServer::connect(int port, const OnConnectedCallback& onConnected)
+    void SocketServer::connectImpl(int port, const OnConnectedCallback& onConnected)
     {
       if (m_connecting)
       {
@@ -70,10 +70,12 @@ namespace MCF
         printf("socket failed with error: %ld\n", WSAGetLastError());
       }
 
-      //u_long nonblocking = 1;
-      //ioctlsocket(ListenSocket, FIONBIO, &nonblocking);
-
       AutoCloseSocket closeListenSocket(ListenSocket);
+
+      sockaddr_in clientService;
+      clientService.sin_family = AF_INET;
+      clientService.sin_addr.s_addr = inet_addr("127.0.0.1");
+      clientService.sin_port = htons(port);
 
       // Setup the TCP listening socket
       iResult = bind(ListenSocket, result->ai_addr, (int)result->ai_addrlen);
@@ -86,48 +88,29 @@ namespace MCF
         printf("listen failed with error: %d\n", WSAGetLastError());
       }
 
-      // Accept a client socket
-      m_clientSocket = accept(ListenSocket, NULL, NULL);
-      if (m_clientSocket == INVALID_SOCKET) {
-        printf("accept failed with error: %d\n", WSAGetLastError());
-      }
+      while (!m_connected && m_connecting)
+      {
+        timeval timeout = { 1, 0 };
+        fd_set fds;
+        FD_ZERO(&fds);
+        FD_SET(ListenSocket, &fds);
 
-      m_connected = true;
-      m_connecting = false;
+        select(ListenSocket + 1, &fds, NULL, NULL, &timeout);
+
+        if (FD_ISSET(ListenSocket, &fds))
+        {
+          m_clientSocket = accept(ListenSocket, NULL, NULL);
+          ASSERT(m_clientSocket != INVALID_SOCKET);
+
+          m_connected = true;
+          m_connecting = false;
+        }
+      }
 
       if (onConnected)
       {
         onConnected();
       }
-
-      /*fd_set set;
-      set.fd_array[0] = m_clientSocket;
-      set.fd_count = 1;
-
-      timeval timeout;
-      timeout.tv_sec = 1;
-
-      while (m_connecting)
-      {
-        int numberOfSocketsReady = select(0, nullptr, &set, nullptr, &timeout);
-
-        if (numberOfSocketsReady == INVALID_SOCKET)
-        {
-          int lastError = WSAGetLastError();
-          ASSERT_FAIL();
-        }
-
-        if (numberOfSocketsReady > 0)
-        {
-          m_connected = true;
-          m_connecting = false;
-
-          if (onConnected)
-          {
-            onConnected();
-          }
-        }
-      }*/
     }
 
     //------------------------------------------------------------------------------------------------
@@ -138,7 +121,7 @@ namespace MCF
         return;
       }
 
-      m_connectingThread.swap(std::thread(&SocketServer::connect, this, port, onConnected));
+      m_connectingThread.swap(std::thread(&SocketServer::connectImpl, this, port, onConnected));
     }
 
     //------------------------------------------------------------------------------------------------

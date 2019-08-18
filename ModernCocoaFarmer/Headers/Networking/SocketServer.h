@@ -36,7 +36,7 @@ namespace MCF
         void disconnect();
 
       private:
-        void connect(int port, const OnConnectedCallback& onConnected);
+        void connectImpl(int port, const OnConnectedCallback& onConnected);
         void continuouslySendData();
         void continuouslyReceiveData();
 
