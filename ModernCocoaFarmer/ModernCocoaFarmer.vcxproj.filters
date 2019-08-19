@@ -38,8 +38,8 @@
     <None Include="Resources\Data\Screens\Options.screen" />
     <None Include="Resources\Data\Screens\Splash.screen" />
     <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
-    <None Include="Resources\Prefabs\UI\InteractableBuildingPopup.prefab" />
     <None Include="Resources\Data\Screens\IntroVideo.screen" />
+    <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

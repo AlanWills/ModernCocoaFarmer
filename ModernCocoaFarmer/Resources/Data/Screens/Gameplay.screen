@@ -42,7 +42,7 @@
       <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab" parent="InteractableBuildings"/>
       <!--UI-->
       <GameObject name="UI" position="0,0,0" parent="Canvas"/>
-      <Prefab path="Prefabs\UI\InteractableBuildingPopup.prefab" parent="UI"/>
+      <Prefab path="Prefabs\UI\InteractableBuildingDialog.prefab" parent="UI"/>
     </GameObjects>
   </Screen>
 </Root>

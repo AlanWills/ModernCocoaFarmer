@@ -11,16 +11,35 @@ namespace MCF
 {
   namespace Managers
   {
+    const std::string InteractableBuildingsManager::INTERACTABE_BUILDINGS = "InteractableBuildings";
+
     //------------------------------------------------------------------------------------------------
     InteractableBuildingsManager::InteractableBuildingsManager() :
-      m_buildings()
+      m_buildings(),
+      m_interactableBuildingDialog()
     {
     }
 
     //------------------------------------------------------------------------------------------------
-    void InteractableBuildingsManager::initialize(const Handle<Screen>& screen)
+    void InteractableBuildingsManager::initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
-      Handle<GameObject> interactableBuildings = screen->findGameObject("InteractableBuildings");
+      m_interactableBuildingDialog = screen->findGameObject("InteractableBuildingPopup");
+      m_interactableBuildingDialog->setActive(true);
+      m_interactableBuildingDialog->setShouldRender(true);
+
+      // Set up close button disabling popup
+      m_interactableBuildingDialog->getChildGameObject(0)->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
+        [&](EventArgs& e, Handle<GameObject> caller) -> void
+        {
+          caller->getParent()->setActive(false);
+          caller->getParent()->setShouldRender(false);
+
+          // This is a hack because without killing the prefab or unsubscribing from the event
+          // we need to reset the collider so that this callback is not instantly called when we next left click
+          caller->findComponent<Physics::Collider>()->setHitByRay(false);
+        });
+
+      Handle<GameObject> interactableBuildings = screen->findGameObject(INTERACTABE_BUILDINGS);
       ASSERT(!interactableBuildings.is_null());
 
       for (size_t childIndex = 0, childCount = interactableBuildings->getChildCount(); childIndex < childCount; ++childIndex)
@@ -29,7 +48,8 @@ namespace MCF
         interactableBuilding->findChildGameObject("Icon")->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
           [&](EventArgs& e, Handle<GameObject> caller) -> void
           {
-            UI::showInteractableBuildingDialog(screen);
+            m_interactableBuildingDialog->setActive(true);
+            m_interactableBuildingDialog->setShouldRender(true);
           });
 
         m_buildings.push_back(interactableBuilding);

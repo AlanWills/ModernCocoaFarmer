@@ -199,7 +199,7 @@
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
     <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
-    <None Include="Resources\Prefabs\UI\InteractableBuildingPopup.prefab" />
+    <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />

@@ -2,17 +2,28 @@
 
 #include "Memory/Handle.h"
 
+#include <string>
+
 
 namespace CelesteEngine
 {
-  class GameObject;
   class Screen;
+  class GameObject;
 }
 
 namespace MCF
 {
   namespace UI
   {
-    CelesteEngine::Handle<CelesteEngine::GameObject> showInteractableBuildingDialog(const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
+    class InteractableBuildingDialog
+    {
+      public:
+        void initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
+
+      private:
+        CelesteEngine::Handle<CelesteEngine::GameObject> m_gameObject;
+
+        static const std::string INTERACTABLE_BUILDING_DIALOG;
+    };
   }
 }

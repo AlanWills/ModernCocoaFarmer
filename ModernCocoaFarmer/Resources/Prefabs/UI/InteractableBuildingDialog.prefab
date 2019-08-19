@@ -2,7 +2,7 @@
 <Root>
   <Prefab>
     <GameObjects>
-      <GameObject name="InteractableBuildingDialog" active="false" should_render="false">
+      <GameObject name="InteractableBuildingPopup" active="false" should_render="false">
         <Components>
           <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.3%,0.3%,0" colour="0.8,0.8,0.8" opacity="0.5"/>
         </Components>
