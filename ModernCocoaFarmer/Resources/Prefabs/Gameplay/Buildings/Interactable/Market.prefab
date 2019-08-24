@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="Market" position="0.85%,0.15%,0"/>
-    <GameObject name="MarketFoodStalls" position="0,0,0" parent="Market">
-      <Components>
-        <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\MarketFoodStalls.png"
-                        size="200,200"
-                        preserve_aspect_ratio="true"/>
-      </Components>
-      <GameObject>
+    <GameObject name="Market" position="0.85%,0.15%,0">
+      <GameObjects>
+        <GameObject name="MarketFoodStalls" position="0,0,0">
+          <Components>
+            <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\MarketFoodStalls.png"
+                            size="200,200"
+                            preserve_aspect_ratio="true"/>
+          </Components>
+        </GameObject>
         <GameObject name="Icon" tag="BuildingIcon" position="0,50,0">
           <Components>
             <SpriteRenderer sprite="Textures\UI\BuildingIcons\Market.png"
@@ -18,7 +19,7 @@
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-      </GameObject>
+      </GameObjects>
     </GameObject>
   </GameObjects>
 </Prefab>

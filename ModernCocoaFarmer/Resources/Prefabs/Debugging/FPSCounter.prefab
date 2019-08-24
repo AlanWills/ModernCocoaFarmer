@@ -7,7 +7,7 @@
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="20,20" colour="1,1,1,1"/>
         <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
       </Components>
-      <GameObject>
+      <GameObjects>
         <GameObject name="FPSCounter" Tag="Debug">
           <Components>
             <TextRenderer colour="0,0,0,1">
@@ -18,7 +18,7 @@
             <FPSCounter/>
           </Components>
         </GameObject>
-      </GameObject>
+      </GameObjects>
     </GameObject>
   </GameObjects>
 </Prefab>

@@ -20,10 +20,10 @@ namespace MCF
       public:
         void initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
 
+        static const std::string INTERACTABLE_BUILDING_DIALOG;
+
       private:
         CelesteEngine::Handle<CelesteEngine::GameObject> m_gameObject;
-
-        static const std::string INTERACTABLE_BUILDING_DIALOG;
     };
   }
 }

@@ -2,6 +2,7 @@
 #include "Screens/Screen.h"
 #include "Input/MouseInteractionHandler.h"
 #include "UI/InteractableBuildingDialog.h"
+#include "Screens/ScreenUtils.h"
 
 using namespace CelesteEngine;
 using namespace CelesteEngine::Input;
@@ -23,7 +24,7 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void InteractableBuildingsManager::initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
-      m_interactableBuildingDialog = screen->findGameObject("InteractableBuildingPopup");
+      m_interactableBuildingDialog = screen->findGameObject(UI::InteractableBuildingDialog::INTERACTABLE_BUILDING_DIALOG);
 
       // Set up close button disabling popup
       m_interactableBuildingDialog->getChildGameObject(0)->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
@@ -46,6 +47,7 @@ namespace MCF
         interactableBuilding->findChildGameObject("Icon")->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
           [&](EventArgs& e, Handle<GameObject> caller) -> void
           {
+            m_interactableBuildingDialog->getTransform()->setTranslation(getViewportDimensions() * 0.5f);
             m_interactableBuildingDialog->setActive(true);
             m_interactableBuildingDialog->setShouldRender(true);
           });
