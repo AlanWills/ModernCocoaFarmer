@@ -8,15 +8,17 @@
                         size="200,200"
                         preserve_aspect_ratio="true"/>
       </Components>
-    </GameObject>
-    <GameObject name="Icon" tag="BuildingIcon" position="0,50,0" parent="Market">
-      <Components>
-        <SpriteRenderer sprite="Textures\UI\BuildingIcons\Market.png"
-                        size="50,50"
-                        preserve_aspect_ratio="true"/>
-        <RectangleCollider dimensions="50,50"/>
-        <MouseInteractionHandler/>
-      </Components>
+      <GameObject>
+        <GameObject name="Icon" tag="BuildingIcon" position="0,50,0">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\BuildingIcons\Market.png"
+                            size="50,50"
+                            preserve_aspect_ratio="true"/>
+            <RectangleCollider dimensions="50,50"/>
+            <MouseInteractionHandler/>
+          </Components>
+        </GameObject>
+      </GameObject>
     </GameObject>
   </GameObjects>
 </Prefab>

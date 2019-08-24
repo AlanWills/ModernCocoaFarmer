@@ -1,40 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="GameplayDebuggingBackground" Tag="Debug" parent="GameplayDebugging" active="false" should_render="false">
-      <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,1%" colour="0.2,0.2,0.2" opacity="0.4"/>
-      </Components>
-    </GameObject>
     <GameObject name="GameplayDebugging" Tag="Debug" position="0.5%,0.5%,1">
       <Components>
         <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
         <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
         <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
       </Components>
-    </GameObject>
-    <GameObject name="ReloadScreenButton" parent="GameplayDebuggingBackground">
-      <Components>
-        <SpriteRenderer/>
-        <RectangleCollider/>
-        <MouseInteractionHandler/>
-        <Button>
-          <LeftClickCallbacks>
-            <Callback name="KillScreen" arg="Gameplay"/>
-            <Callback name="ExecuteLuaScript" arg="Scripts\Utility\RefreshResources.lua"/>
-            <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
-          </LeftClickCallbacks>
-        </Button>
-      </Components>
-    </GameObject>
-    <GameObject name="ReloadScreenText" parent="ReloadScreenButton">
-      <Components>
-        <TextRenderer font_height="24" colour="0,0,0,1">
-          <Lines>
-            <Line>Restart Gameplay</Line>
-          </Lines>
-        </TextRenderer>
-      </Components>
+      <GameObjects>
+        <GameObject name="GameplayDebuggingBackground" Tag="Debug" active="false" should_render="false">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,1%" colour="0.2,0.2,0.2" opacity="0.4"/>
+          </Components>
+          <GameObjects>
+            <GameObject name="ReloadScreenButton">
+              <Components>
+                <SpriteRenderer/>
+                <RectangleCollider/>
+                <MouseInteractionHandler/>
+                <Button>
+                  <LeftClickCallbacks>
+                    <Callback name="KillScreen" arg="Gameplay"/>
+                    <Callback name="ExecuteLuaScript" arg="Scripts\Utility\RefreshResources.lua"/>
+                    <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
+                  </LeftClickCallbacks>
+                </Button>
+              </Components>
+              <GameObjects>
+                <GameObject name="ReloadScreenText">
+                  <Components>
+                    <TextRenderer font_height="24" colour="0,0,0,1">
+                      <Lines>
+                        <Line>Restart Gameplay</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+      </GameObjects>
     </GameObject>
   </GameObjects>
 </Prefab>
