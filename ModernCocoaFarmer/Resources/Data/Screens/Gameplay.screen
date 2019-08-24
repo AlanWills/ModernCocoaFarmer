@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Root>
-  <Screen name="Gameplay" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
-    <GameObjects>
-      <GameObject name="Canvas">
-        <Components>
-          <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
-        </Components>
-      </GameObject>
-      <!--Background-->
-      <GameObject name="GameplayBackground" position="0.5%,0.5%,-1" parent="Canvas">
-        <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\Background.png" size="1%,1%"/>
-        </Components>
-      </GameObject>
-      <GameObject name="BoundaryLine" position="0.25%,0.5%,-0.5" parent="Canvas">
-        <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\BoundaryLine.png"/>
-        </Components>
-      </GameObject>
-      <GameObject name="MaliText" position="0.75%,0.7%,-0.5" parent="Canvas">
-        <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\MaliText.png"
-                          size="200,200"
-                          preserve_aspect_ratio="true"/>
-        </Components>
-      </GameObject>
-      <GameObject name="TheIvoryCoastText" position="0.1%,0.65%,-0.5" parent="Canvas">
-        <Components>
-          <SpriteRenderer sprite="Textures\Village\Background\TheIvoryCoastText.png"
-                          size="200,200"
-                          preserve_aspect_ratio="true"/>
-        </Components>
-      </GameObject>
-      <!--Interactable Buildings-->
-      <GameObject name="InteractableBuildings" position="0,0,0" parent="Canvas"/>
-      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\School.prefab" parent="InteractableBuildings"/>
-      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab" parent="InteractableBuildings"/>
-      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" parent="InteractableBuildings"/>
-      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" parent="InteractableBuildings"/>
-      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Well.prefab" parent="InteractableBuildings"/>
-      <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab" parent="InteractableBuildings"/>
-      <!--UI-->
-      <GameObject name="UI" position="0,0,0" parent="Canvas"/>
-      <Prefab path="Prefabs\UI\InteractableBuildingDialog.prefab" parent="UI"/>
-    </GameObjects>
-  </Screen>
-</Root>
+<Screen name="Gameplay" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
+  <GameObjects>
+    <GameObject name="Canvas">
+      <Components>
+        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+      </Components>
+    </GameObject>
+    <!--Background-->
+    <GameObject name="GameplayBackground" position="0.5%,0.5%,-1" parent="Canvas">
+      <Components>
+        <SpriteRenderer sprite="Textures\Village\Background\Background.png" size="1%,1%"/>
+      </Components>
+    </GameObject>
+    <GameObject name="BoundaryLine" position="0.25%,0.5%,-0.5" parent="Canvas">
+      <Components>
+        <SpriteRenderer sprite="Textures\Village\Background\BoundaryLine.png"/>
+      </Components>
+    </GameObject>
+    <GameObject name="MaliText" position="0.75%,0.7%,-0.5" parent="Canvas">
+      <Components>
+        <SpriteRenderer sprite="Textures\Village\Background\MaliText.png"
+                        size="200,200"
+                        preserve_aspect_ratio="true"/>
+      </Components>
+    </GameObject>
+    <GameObject name="TheIvoryCoastText" position="0.1%,0.65%,-0.5" parent="Canvas">
+      <Components>
+        <SpriteRenderer sprite="Textures\Village\Background\TheIvoryCoastText.png"
+                        size="200,200"
+                        preserve_aspect_ratio="true"/>
+      </Components>
+    </GameObject>
+    <!--Interactable Buildings-->
+    <GameObject name="InteractableBuildings" position="0,0,0" parent="Canvas"/>
+    <Prefab path="Prefabs\Gameplay\Buildings\Interactable\School.prefab" parent="InteractableBuildings"/>
+    <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab" parent="InteractableBuildings"/>
+    <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" parent="InteractableBuildings"/>
+    <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" parent="InteractableBuildings"/>
+    <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Well.prefab" parent="InteractableBuildings"/>
+    <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab" parent="InteractableBuildings"/>
+    <!--UI-->
+    <GameObject name="UI" position="0,0,0" parent="Canvas"/>
+    <Prefab path="Prefabs\UI\InteractableBuildingDialog.prefab" parent="UI"/>
+  </GameObjects>
+</Screen>

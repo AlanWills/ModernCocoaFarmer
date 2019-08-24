@@ -11,7 +11,7 @@ namespace MCF
 {
   namespace Managers
   {
-    const std::string InteractableBuildingsManager::INTERACTABE_BUILDINGS = "InteractableBuildings";
+    const std::string InteractableBuildingsManager::INTERACTABLE_BUILDINGS = "InteractableBuildings";
 
     //------------------------------------------------------------------------------------------------
     InteractableBuildingsManager::InteractableBuildingsManager() :
@@ -24,8 +24,6 @@ namespace MCF
     void InteractableBuildingsManager::initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
       m_interactableBuildingDialog = screen->findGameObject("InteractableBuildingPopup");
-      m_interactableBuildingDialog->setActive(true);
-      m_interactableBuildingDialog->setShouldRender(true);
 
       // Set up close button disabling popup
       m_interactableBuildingDialog->getChildGameObject(0)->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
@@ -39,7 +37,7 @@ namespace MCF
           caller->findComponent<Physics::Collider>()->setHitByRay(false);
         });
 
-      Handle<GameObject> interactableBuildings = screen->findGameObject(INTERACTABE_BUILDINGS);
+      Handle<GameObject> interactableBuildings = screen->findGameObject(INTERACTABLE_BUILDINGS);
       ASSERT(!interactableBuildings.is_null());
 
       for (size_t childIndex = 0, childCount = interactableBuildings->getChildCount(); childIndex < childCount; ++childIndex)

@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Root>
-  <Screen name="DebugTools">
-    <Resources>
-      <Fonts>
-        
-      </Fonts>
-      <FragmentShaders>
-        
-      </FragmentShaders>
-      <Sounds>
-        
-      </Sounds>
-      <Textures>
-        
-      </Textures>
-      <VertexShaders>
-        
-      </VertexShaders>
-    </Resources>
-    <GameObjects>
-      <Prefab path="Prefabs\Debugging\FPSCounter.prefab"/>
-      <Prefab path="Prefabs\Debugging\GameplayDebugging.prefab"/>
-    </GameObjects>
-  </Screen>
-</Root>
+<Screen name="DebugTools" guid="5b9db7f6-b9bb-483f-807c-5d9fa981f1dd">
+  <Resources>
+    <Fonts>
+
+    </Fonts>
+    <FragmentShaders>
+
+    </FragmentShaders>
+    <Sounds>
+
+    </Sounds>
+    <Textures>
+
+    </Textures>
+    <VertexShaders>
+
+    </VertexShaders>
+  </Resources>
+  <GameObjects>
+    <Prefab path="Prefabs\Debugging\FPSCounter.prefab"/>
+    <Prefab path="Prefabs\Debugging\GameplayDebugging.prefab"/>
+  </GameObjects>
+</Screen>

@@ -1,13 +1,15 @@
 #pragma once
 
-#include "Objects/GameObject.h"
+#include "Memory/Handle.h"
 
 #include <string>
+#include <vector>
 
 
 namespace CelesteEngine
 {
   class Screen;
+  class GameObject;
 }
 
 namespace MCF
@@ -22,10 +24,10 @@ namespace MCF
         void initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
 
       private:
-        Handle<GameObject> m_interactableBuildingDialog;
+        CelesteEngine::Handle<CelesteEngine::GameObject> m_interactableBuildingDialog;
         std::vector<CelesteEngine::Handle<CelesteEngine::GameObject>> m_buildings;
 
-        static const std::string INTERACTABE_BUILDINGS;
+        static const std::string INTERACTABLE_BUILDINGS;
     };
   }
 }

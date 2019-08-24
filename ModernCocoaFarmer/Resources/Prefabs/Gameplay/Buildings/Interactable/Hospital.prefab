@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Root>
-  <Prefab>
-    <GameObjects>
-      <GameObject name="Hospital" position="0.6%,0.25%,0">
-        <Components>
-          <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Hospital.png"
-                          size="200,200"
-                          preserve_aspect_ratio="true"/>
-        </Components>
-      </GameObject>
-      <GameObject name="Icon" tag="BuildingIcon" position="0,75,0" parent="Hospital">
-        <Components>
-          <SpriteRenderer sprite="Textures\UI\BuildingIcons\Hospital.png"
-                          size="50,50"
-                          preserve_aspect_ratio="true"/>
-          <RectangleCollider dimensions="50,50"/>
-          <MouseInteractionHandler/>
-        </Components>
-      </GameObject>
-    </GameObjects>
-  </Prefab>
-</Root>
+<Prefab>
+  <GameObjects>
+    <GameObject name="Hospital" position="0.6%,0.25%,0">
+      <Components>
+        <SpriteRenderer sprite="Textures\Village\Buildings\Interactable\Hospital.png"
+                        size="200,200"
+                        preserve_aspect_ratio="true"/>
+      </Components>
+    </GameObject>
+    <GameObject name="Icon" tag="BuildingIcon" position="0,75,0" parent="Hospital">
+      <Components>
+        <SpriteRenderer sprite="Textures\UI\BuildingIcons\Hospital.png"
+                        size="50,50"
+                        preserve_aspect_ratio="true"/>
+        <RectangleCollider dimensions="50,50"/>
+        <MouseInteractionHandler/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Prefab>
