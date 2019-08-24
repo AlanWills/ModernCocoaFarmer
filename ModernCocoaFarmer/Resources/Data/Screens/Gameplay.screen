@@ -34,17 +34,17 @@
         <!--Interactable Buildings-->
         <GameObject name="InteractableBuildings" position="0,0,0">
           <GameObjects>
-            <Prefab path="Prefabs\Gameplay\Buildings\Interactable\School.prefab"/>
-            <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab"/>
-            <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab"/>
-            <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab"/>
-            <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Well.prefab"/>
-            <Prefab path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab"/>
+            <Prefab name="School" path="Prefabs\Gameplay\Buildings\Interactable\School.prefab"/>
+            <Prefab name="Home" path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab"/>
+            <Prefab name="Mosque" path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab"/>
+            <Prefab name="Hospital" path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab"/>
+            <Prefab name="Well" path="Prefabs\Gameplay\Buildings\Interactable\Well.prefab"/>
+            <Prefab name="Market" path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab"/>
           </GameObjects>
         </GameObject>
         <!--UI-->
         <GameObject name="UI" position="0,0,0">
-          <Prefab path="Prefabs\UI\InteractableBuildingDialog.prefab"/>
+          <Prefab name="InteractableBuildingDialog" path="Prefabs\UI\InteractableBuildingDialog.prefab"/>
         </GameObject>
       </GameObjects>
     </GameObject>

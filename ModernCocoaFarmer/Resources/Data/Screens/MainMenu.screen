@@ -27,7 +27,7 @@
             </TextRenderer>
           </Components>
         </GameObject>
-        <GameObject position="0.5%, 0.5%, 0" name="LayoutStackPanel">
+        <GameObject name="LayoutStackPanel" position="0.5%, 0.5%, 0">
           <Components>
             <StackPanel orientation="vertical" vertical_alignment="centre" padding="20">
               <Children>
@@ -37,76 +37,78 @@
               </Children>
             </StackPanel>
           </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <GameObject name="PlayButton">
-      <Components>
-        <SpriteRenderer/>
-        <RectangleCollider/>
-        <MouseInteractionHandler/>
-        <Button>
-          <LeftClickCallbacks>
-            <Callback name="KillOwnerScreen"/>
-            <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
-          </LeftClickCallbacks>
-        </Button>
-      </Components>
-      <GameObjects>
-        <GameObject name="PlayText" position="0,1,0">
-          <Components>
-            <TextRenderer font_height="24" colour="0,0,0,1">
-              <Lines>
-                <Line>Play</Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <GameObject name="OptionsButton">
-      <Components>
-        <SpriteRenderer/>
-        <RectangleCollider/>
-        <MouseInteractionHandler/>
-        <Button>
-          <LeftClickCallbacks>
-            <Callback name="TransitionToScreen" arg="Data\Screens\Options.screen"/>
-          </LeftClickCallbacks>
-        </Button>
-      </Components>
-      <GameObjects>
-        <GameObject name="OptionsText" position="0,1,0">
-          <Components>
-            <TextRenderer font_height="24" colour="0,0,0,1">
-              <Lines>
-                <Line>Options</Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <GameObject name="ExitButton">
-      <Components>
-        <SpriteRenderer/>
-        <RectangleCollider/>
-        <MouseInteractionHandler/>
-        <Button>
-          <LeftClickCallbacks>
-            <Callback name="ExitGame"/>
-          </LeftClickCallbacks>
-        </Button>
-      </Components>
-      <GameObjects>
-        <GameObject name="ExitText" position="0,1,0">
-          <Components>
-            <TextRenderer font_height="24" colour="0,0,0,1">
-              <Lines>
-                <Line>Exit</Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
+          <GameObjects>
+            <GameObject name="PlayButton">
+              <Components>
+                <SpriteRenderer/>
+                <RectangleCollider/>
+                <MouseInteractionHandler/>
+                <Button>
+                  <LeftClickCallbacks>
+                    <Callback name="KillOwnerScreen"/>
+                    <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
+                  </LeftClickCallbacks>
+                </Button>
+              </Components>
+              <GameObjects>
+                <GameObject name="PlayText" position="0,1,0">
+                  <Components>
+                    <TextRenderer font_height="24" colour="0,0,0,1">
+                      <Lines>
+                        <Line>Play</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+            <GameObject name="OptionsButton">
+              <Components>
+                <SpriteRenderer/>
+                <RectangleCollider/>
+                <MouseInteractionHandler/>
+                <Button>
+                  <LeftClickCallbacks>
+                    <Callback name="TransitionToScreen" arg="Data\Screens\Options.screen"/>
+                  </LeftClickCallbacks>
+                </Button>
+              </Components>
+              <GameObjects>
+                <GameObject name="OptionsText" position="0,1,0">
+                  <Components>
+                    <TextRenderer font_height="24" colour="0,0,0,1">
+                      <Lines>
+                        <Line>Options</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+            <GameObject name="ExitButton">
+              <Components>
+                <SpriteRenderer/>
+                <RectangleCollider/>
+                <MouseInteractionHandler/>
+                <Button>
+                  <LeftClickCallbacks>
+                    <Callback name="ExitGame"/>
+                  </LeftClickCallbacks>
+                </Button>
+              </Components>
+              <GameObjects>
+                <GameObject name="ExitText" position="0,1,0">
+                  <Components>
+                    <TextRenderer font_height="24" colour="0,0,0,1">
+                      <Lines>
+                        <Line>Exit</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>

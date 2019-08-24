@@ -18,7 +18,7 @@
     </VertexShaders>
   </Resources>
   <GameObjects>
-    <Prefab path="Prefabs\Debugging\FPSCounter.prefab"/>
-    <Prefab path="Prefabs\Debugging\GameplayDebugging.prefab"/>
+    <Prefab name="FSPCounter" path="Prefabs\Debugging\FPSCounter.prefab"/>
+    <Prefab name="GameplayDebugging" path="Prefabs\Debugging\GameplayDebugging.prefab"/>
   </GameObjects>
 </Screen>
