@@ -18,134 +18,130 @@
         <!--Volume Grouper-->
         <GameObject name="VolumeStackPanel" position="0.5%,0.5%,0">
           <Components>
-            <StackPanel orientation="vertical" vertical_alignment="centre" padding="50">
-              <Children>
-                <Child>MasterVolumeSlider</Child>
-                <Child>MusicVolumeSlider</Child>
-                <Child>SFXVolumeSlider</Child>
-              </Children>
-            </StackPanel>
-          </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <!--Master Volume-->
-    <GameObject name="MasterVolumeSlider">
-      <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="1,0,0"/>
-        <RectangleCollider dimensions="400,30"/>
-        <Slider min="0" max="1" value="1"/>
-      </Components>
-      <GameObjects>
-        <GameObject name="MasterVolumeSliderBackground" position="0,0,-0.1">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
-          </Components>
-        </GameObject>
-        <GameObject name="MasterVolumeValueText" position="220,0,0">
-          <Components>
-            <TextRenderer font_height="16" horizontal_alignment="left">
-              <Lines>
-                <Line></Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-        <GameObject name="MasterVolumeLabelText" position="-220,0,0">
-          <Components>
-            <TextRenderer font_height="16" horizontal_alignment="right">
-              <Lines>
-                <Line>Master Volume</Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <!--Music Volume-->
-    <GameObject name="MusicVolumeSlider">
-      <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,1,0"/>
-        <RectangleCollider dimensions="400,30"/>
-        <Slider min="0" max="1" value="0"/>
-      </Components>
-      <GameObjects>
-        <GameObject name="MusicVolumeSliderBackground" position="0,0,-0.1">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
-          </Components>
-        </GameObject>
-        <GameObject name="MusicVolumeValueText" position="220,0,0">
-          <Components>
-            <TextRenderer font_height="16" horizontal_alignment="left">
-              <Lines>
-                <Line></Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-        <GameObject name="MusicVolumeLabelText" position="-220,0,0">
-          <Components>
-            <TextRenderer font_height="16" horizontal_alignment="right">
-              <Lines>
-                <Line>Music Volume</Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <!--SFX Volume-->
-    <GameObject name="SFXVolumeSlider">
-      <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,0,1"/>
-        <RectangleCollider dimensions="400,30"/>
-        <Slider min="0" max="1" value="0"/>
-      </Components>
-      <GameObjects>
-        <GameObject name="SFXVolumeSliderBackground" position="0,0,-0.1">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
-          </Components>
-        </GameObject>
-        <GameObject name="SFXVolumeValueText" position="220,0,0">
-          <Components>
-            <TextRenderer font_height="16" horizontal_alignment="left">
-              <Lines>
-                <Line></Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-        <GameObject name="SFXVolumeLabelText" position="-220,0,0">
-          <Components>
-            <TextRenderer font_height="16" horizontal_alignment="right">
-              <Lines>
-                <Line>SFX Volume</Line>
-              </Lines>
-            </TextRenderer>
-          </Components>
-        </GameObject>
-        <GameObject name="CloseButton" parent="SFXVolumeSlider" position="0,-200,0">
-          <Components>
-            <SpriteRenderer/>
-            <RectangleCollider/>
-            <MouseInteractionHandler/>
-            <Button font_height="20">
-              <LeftClickCallbacks>
-                <Callback name="TransitionToScreen" arg="Data\Screens\MainMenu.screen"/>
-              </LeftClickCallbacks>
-            </Button>
+            <StackPanel orientation="vertical" vertical_alignment="centre" padding="50"/
           </Components>
           <GameObjects>
-            <GameObject name="CloseButtonText">
+            <!--Master Volume-->
+            <GameObject name="MasterVolumeSlider">
               <Components>
-                <TextRenderer>
-                  <Lines>
-                    <Line>Close</Line>
-                  </Lines>
-                </TextRenderer>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="1,0,0"/>
+                <RectangleCollider dimensions="400,30"/>
+                <Slider min="0" max="1" value="1"/>
               </Components>
+              <GameObjects>
+                <GameObject name="MasterVolumeSliderBackground" position="0,0,-0.1">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="MasterVolumeValueText" position="220,0,0">
+                  <Components>
+                    <TextRenderer font_height="16" horizontal_alignment="left">
+                      <Lines>
+                        <Line></Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+                <GameObject name="MasterVolumeLabelText" position="-220,0,0">
+                  <Components>
+                    <TextRenderer font_height="16" horizontal_alignment="right">
+                      <Lines>
+                        <Line>Master Volume</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+            <!--Music Volume-->
+            <GameObject name="MusicVolumeSlider">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,1,0"/>
+                <RectangleCollider dimensions="400,30"/>
+                <Slider min="0" max="1" value="0"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="MusicVolumeSliderBackground" position="0,0,-0.1">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="MusicVolumeValueText" position="220,0,0">
+                  <Components>
+                    <TextRenderer font_height="16" horizontal_alignment="left">
+                      <Lines>
+                        <Line></Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+                <GameObject name="MusicVolumeLabelText" position="-220,0,0">
+                  <Components>
+                    <TextRenderer font_height="16" horizontal_alignment="right">
+                      <Lines>
+                        <Line>Music Volume</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+            <!--SFX Volume-->
+            <GameObject name="SFXVolumeSlider">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,0,1"/>
+                <RectangleCollider dimensions="400,30"/>
+                <Slider min="0" max="1" value="0"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="SFXVolumeSliderBackground" position="0,0,-0.1">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="SFXVolumeValueText" position="220,0,0">
+                  <Components>
+                    <TextRenderer font_height="16" horizontal_alignment="left">
+                      <Lines>
+                        <Line></Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+                <GameObject name="SFXVolumeLabelText" position="-220,0,0">
+                  <Components>
+                    <TextRenderer font_height="16" horizontal_alignment="right">
+                      <Lines>
+                        <Line>SFX Volume</Line>
+                      </Lines>
+                    </TextRenderer>
+                  </Components>
+                </GameObject>
+                <GameObject name="CloseButton" parent="SFXVolumeSlider" position="0,-200,0">
+                  <Components>
+                    <SpriteRenderer/>
+                    <RectangleCollider/>
+                    <MouseInteractionHandler/>
+                    <Button font_height="20">
+                      <LeftClickCallbacks>
+                        <Callback name="TransitionToScreen" arg="Data\Screens\MainMenu.screen"/>
+                      </LeftClickCallbacks>
+                    </Button>
+                  </Components>
+                  <GameObjects>
+                    <GameObject name="CloseButtonText">
+                      <Components>
+                        <TextRenderer>
+                          <Lines>
+                            <Line>Close</Line>
+                          </Lines>
+                        </TextRenderer>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
+              </GameObjects>
             </GameObject>
           </GameObjects>
         </GameObject>
