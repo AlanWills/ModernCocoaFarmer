@@ -1,57 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists(&apos;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&apos;)"/>
-    <PropertyGroup>
-        <Configuration Condition=" &apos;$(Configuration)&apos; == &apos;&apos; ">Debug</Configuration>
-        <Platform Condition=" &apos;$(Platform)&apos; == &apos;&apos; ">AnyCPU</Platform>
-        <ProjectGuid>{55EA1166-8697-4C2F-94F3-5591AE46B29E}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>ModernCocoaFarmerBindings</RootNamespace>
-        <AssemblyName>ModernCocoaFarmerBindings</AssemblyName>
-        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <Deterministic>true</Deterministic>
-    </PropertyGroup>
-    <PropertyGroup Condition=" &apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos; ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" &apos;$(Configuration)|$(Platform)&apos; == &apos;Release|AnyCPU&apos; ">
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Xml.Linq"/>
-        <Reference Include="System.Data.DataSetExtensions"/>
-        <Reference Include="Microsoft.CSharp"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Net.Http"/>
-        <Reference Include="System.Xml"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="BuildEvents\CopyCreatedDLLs.bat"/>
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-    <PropertyGroup>
-        <PostBuildEvent>call "$(ProjectDir)Build Events\CopyCreatedDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform)</PostBuildEvent>
-    </PropertyGroup>
-    <ItemGroup>
-        <Folder Include="Bindings\"/>
-        <Compile Include="Bindings\Building.cs"/>
-    </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55EA1166-8697-4C2F-94F3-5591AE46B29E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModernCocoaFarmerBindings</RootNamespace>
+    <AssemblyName>ModernCocoaFarmerBindings</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(ProjectDir)Build Events\CopyCreatedDLLs.bat" "$(TargetDir)" $(Configuration) $(Platform)</PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CelesteEngine\BindingsKernel\BindingsKernel.csproj">
+      <Project>{CBD493A8-DFC5-444A-9BC6-CA02CCD76410}</Project>
+      <Name>BindingsKernel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bindings\Building.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Build Events\CopyCreatedDLLs.bat" />
+  </ItemGroup>
 </Project>

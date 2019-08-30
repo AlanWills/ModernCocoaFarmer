@@ -13,10 +13,6 @@ namespace MCF.Buildings
 	public class Building : ScriptableObject
 	{
 		[Serialize, DisplayPriority(1)]
-		[XmlAttribute("name"), DisplayName("Name")]
-		public string Name { get; set; } = "";
-
-		[Serialize, DisplayPriority(2)]
 		[XmlAttribute("description"), DisplayName("Description")]
 		public string Description { get; set; } = "";
 	}

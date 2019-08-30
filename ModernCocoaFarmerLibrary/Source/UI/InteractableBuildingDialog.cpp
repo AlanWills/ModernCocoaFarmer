@@ -21,6 +21,7 @@ namespace MCF
     const std::string InteractableBuildingDialog::m_dialogPrefabPath = "Prefabs\\UI\\InteractableBuildingDialog.prefab";
     const std::string InteractableBuildingDialog::TITLE_TEXT_NAME = "TitleText";
     const std::string InteractableBuildingDialog::DESCRIPTION_TEXT_NAME = "DescriptionText";
+    const std::string InteractableBuildingDialog::CLOSE_BUTTON_NAME = "CloseButton";
 
     //------------------------------------------------------------------------------------------------
     InteractableBuildingDialog::InteractableBuildingDialog() :
@@ -42,23 +43,18 @@ namespace MCF
       Handle<GameObject> dialog = m_dialogPrefab->instantiate(screen);
 
       // Set up close button disabling popup
-      dialog->getChildGameObject(0)->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
+      dialog->findChildGameObject(CLOSE_BUTTON_NAME)->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
         [&](EventArgs& e, Handle<GameObject> caller) -> void
         {
-          caller->getParent()->setActive(false);
           caller->getParent()->setShouldRender(false);
-
-          // This is a hack because without killing the prefab or unsubscribing from the event
-          // we need to reset the collider so that this callback is not instantly called when we next left click
-          caller->findComponent<Physics::Collider>()->setHitByRay(false);
 
           // Mark this object to be killed next frame
           Handle<LimitedLifeTime> limitedLifeTime = caller->addComponent<LimitedLifeTime>();
           limitedLifeTime->setLifeTime(0);
         });
 
-      dialog->findChildGameObject(TITLE_TEXT_NAME)->findComponent<TextRenderer>()->addLine(building->getName());
-      dialog->findChildGameObject(DESCRIPTION_TEXT_NAME)->findComponent<TextRenderer>()->addLine(building->getDescription());
+      //dialog->findChildGameObject(TITLE_TEXT_NAME)->findComponent<TextRenderer>()->addLine(building->getName());
+      //dialog->findChildGameObject(DESCRIPTION_TEXT_NAME)->findComponent<TextRenderer>()->addLine(building->getDescription());
     }
   }
 }

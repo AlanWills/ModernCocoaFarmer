@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "Memory/Handle.h"
 
 #include <string>
@@ -22,7 +23,7 @@ namespace MCF
 
   namespace Managers
   {
-    class InteractableBuildingsManager
+    class MCFLibraryDllExport InteractableBuildingsManager
     {
       public:
         InteractableBuildingsManager();

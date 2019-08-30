@@ -331,6 +331,14 @@
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CelesteEngine\CelesteEngine\CelesteEngine.vcxproj">
+      <Project>{e9980a8d-828e-44f0-978e-a57abc348f47}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ModernCocoaFarmerLibrary\ModernCocoaFarmerLibrary.vcxproj">
+      <Project>{d3bb94cf-318b-4b33-8618-f5d3824015b8}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

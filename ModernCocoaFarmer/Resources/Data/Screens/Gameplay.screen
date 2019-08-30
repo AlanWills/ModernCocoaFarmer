@@ -43,11 +43,7 @@
           </GameObjects>
         </GameObject>
         <!--UI-->
-        <GameObject name="UI" position="0,0,0">
-          <GameObjects>
-            <Prefab name="InteractableBuildingDialog" path="Prefabs\UI\InteractableBuildingDialog.prefab"/>
-          </GameObjects>
-        </GameObject>
+        <GameObject name="UI" position="0,0,0"/>
       </GameObjects>
     </GameObject>
   </GameObjects>

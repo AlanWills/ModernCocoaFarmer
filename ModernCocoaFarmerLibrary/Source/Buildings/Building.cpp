@@ -9,12 +9,10 @@ namespace MCF
     REGISTER_SCRIPTABLE_OBJECT(Building);
 
     //------------------------------------------------------------------------------------------------
-    const std::string Building::NAME_FIELD_NAME = "name";
     const std::string Building::DESCRIPTION_FIELD_NAME = "description";
 
     //------------------------------------------------------------------------------------------------
     Building::Building() :
-      m_name(createReferenceField<std::string>(NAME_FIELD_NAME)),
       m_description(createReferenceField<std::string>(DESCRIPTION_FIELD_NAME))
     {
     }
