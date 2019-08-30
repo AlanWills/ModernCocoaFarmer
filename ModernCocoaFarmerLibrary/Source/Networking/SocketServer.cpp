@@ -73,7 +73,7 @@ namespace MCF
 
       sockaddr_in clientService;
       clientService.sin_family = AF_INET;
-      clientService.sin_addr.s_addr = inet_addr("127.0.0.1");
+      inet_pton(AF_INET, "127.0.0.1", &clientService.sin_addr.s_addr);
       clientService.sin_port = htons(port);
 
       // Setup the TCP listening socket
@@ -119,8 +119,9 @@ namespace MCF
       {
         return;
       }
-
-      m_connectingThread.swap(std::thread(&SocketServer::connectImpl, this, port, onConnected));
+      
+      std::thread newConnectingThread(&SocketServer::connectImpl, this, port, onConnected);
+      m_connectingThread.swap(newConnectingThread);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -133,7 +134,9 @@ namespace MCF
       }
        
       m_isReceiving = true;
-      m_receiveThread.swap(std::thread(&SocketServer::continuouslyReceiveData, this));
+
+      std::thread newReceiveThread(&SocketServer::continuouslyReceiveData, this);
+      m_receiveThread.swap(newReceiveThread);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -174,7 +177,9 @@ namespace MCF
       if (!m_isSending)
       {
         m_isSending = true;
-        m_sendThread.swap(std::thread(&SocketServer::continuouslySendData, this));
+
+        std::thread newSendThread(&SocketServer::continuouslySendData, this);
+        m_sendThread.swap(newSendThread);
       }
 
       std::lock_guard<std::mutex> sendQueueGuard(m_sendQueueLock);

@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 
 namespace CelesteEngine
@@ -14,20 +15,26 @@ namespace CelesteEngine
 
 namespace MCF
 {
+  namespace UI
+  {
+    class InteractableBuildingDialog;
+  }
+
   namespace Managers
   {
     class InteractableBuildingsManager
     {
       public:
         InteractableBuildingsManager();
+        ~InteractableBuildingsManager();
 
         void initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
 
       private:
-        CelesteEngine::Handle<CelesteEngine::GameObject> m_interactableBuildingDialog;
+        std::unique_ptr<UI::InteractableBuildingDialog> m_interactableBuildingDialog;
         std::vector<CelesteEngine::Handle<CelesteEngine::GameObject>> m_buildings;
 
-        static const std::string INTERACTABLE_BUILDINGS;
+        static const std::string INTERACTABLE_BUILDINGS_NAME;
     };
   }
 }

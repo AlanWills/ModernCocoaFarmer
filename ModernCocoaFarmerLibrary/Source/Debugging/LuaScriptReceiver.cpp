@@ -33,8 +33,12 @@ namespace MCF
     void LuaScriptReceiver::start()
     {
       m_isSending = true;
-      m_listenThread.swap(std::thread(&LuaScriptReceiver::continuallyListenForRequests, this));
-      m_sendThread.swap(std::thread(&LuaScriptReceiver::continuallySendResponses, this));
+
+      std::thread newListenThread(&LuaScriptReceiver::continuallyListenForRequests, this);
+      m_listenThread.swap(newListenThread);
+
+      std::thread newSendThread(&LuaScriptReceiver::continuallySendResponses, this);
+      m_sendThread.swap(newSendThread);
     }
 
     //------------------------------------------------------------------------------------------------

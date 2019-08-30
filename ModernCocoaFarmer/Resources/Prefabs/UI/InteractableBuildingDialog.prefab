@@ -1,11 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="InteractableBuildingPopup" active="false" should_render="false" position="0.5%,0.5%">
+    <GameObject name="InteractableBuildingPopup" active="true" should_render="true" position="0.5%,0.5%">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.3%,0.3%,0" colour="0.8,0.8,0.8" opacity="0.5"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="500,300,0" colour="0.8,0.8,0.8" opacity="0.5"/>
       </Components>
       <GameObjects>
+        <GameObject name="TitleText" position="0,250,0">
+          <Components>
+            <TextRenderer/>
+          </Components>
+        </GameObject>
+        <GameObject name="DescriptionText" position="0,100" horizontal_alignment="Left">
+          <Components>
+            <TextRenderer/>
+          </Components>
+        </GameObject>
         <GameObject name="CloseButton" position="0.15%, 0.15%">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>

@@ -18,7 +18,7 @@
         <!--Volume Grouper-->
         <GameObject name="VolumeStackPanel" position="0.5%,0.5%,0">
           <Components>
-            <StackPanel orientation="vertical" vertical_alignment="centre" padding="50"/
+            <StackPanel orientation="vertical" vertical_alignment="centre" padding="50"/>
           </Components>
           <GameObjects>
             <!--Master Volume-->
