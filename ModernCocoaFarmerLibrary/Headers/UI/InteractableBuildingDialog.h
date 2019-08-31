@@ -21,7 +21,7 @@ namespace MCF
 {
   namespace Buildings
   {
-    class Building;
+    class BuildingInformation;
   }
 
   namespace UI
@@ -29,20 +29,13 @@ namespace MCF
     class MCFLibraryDllExport InteractableBuildingDialog
     {
       public:
-        InteractableBuildingDialog();
-
-        void initialize();
         void show(
-          const CelesteEngine::Handle<CelesteEngine::Screen>& screen, 
-          const std::unique_ptr<Buildings::Building>& building);
+          const CelesteEngine::Handle<CelesteEngine::Screen>& screen);
 
         static const std::string m_dialogPrefabPath;
         static const std::string TITLE_TEXT_NAME;
         static const std::string DESCRIPTION_TEXT_NAME;
         static const std::string CLOSE_BUTTON_NAME;
-
-      private:
-        CelesteEngine::Handle<CelesteEngine::Resources::Prefab> m_dialogPrefab;
     };
   }
 }

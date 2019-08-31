@@ -183,6 +183,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Data\Screens\DebugTools.screen" />
     <None Include="Resources\Data\Screens\MainMenu.screen" />
     <None Include="Resources\Data\Screens\Options.screen" />

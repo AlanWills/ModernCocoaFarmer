@@ -3,7 +3,7 @@
 #include "Input/MouseInteractionHandler.h"
 #include "Resources/ResourceManager.h"
 #include "Rendering/TextRenderer.h"
-#include "Buildings/Building.h"
+#include "Buildings/BuildingInformation.h"
 #include "ObjectFX/LimitedLifeTime.h"
 #include "Resources/Data/Prefab.h"
 
@@ -24,23 +24,12 @@ namespace MCF
     const std::string InteractableBuildingDialog::CLOSE_BUTTON_NAME = "CloseButton";
 
     //------------------------------------------------------------------------------------------------
-    InteractableBuildingDialog::InteractableBuildingDialog() :
-      m_dialogPrefab()
-    {
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void InteractableBuildingDialog::initialize()
-    {
-      m_dialogPrefab = getResourceManager()->load<Prefab>(m_dialogPrefabPath);
-    }
-
-    //------------------------------------------------------------------------------------------------
     void InteractableBuildingDialog::show(
-      const CelesteEngine::Handle<CelesteEngine::Screen>& screen,
-      const std::unique_ptr<Buildings::Building>& building)
+      const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
-      Handle<GameObject> dialog = m_dialogPrefab->instantiate(screen);
+      ASSERT_FAIL_MSG("Move this to lua class");
+
+      Handle<GameObject> dialog = getResourceManager()->load<Prefab>(m_dialogPrefabPath)->instantiate(screen);
 
       // Set up close button disabling popup
       dialog->findChildGameObject(CLOSE_BUTTON_NAME)->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(

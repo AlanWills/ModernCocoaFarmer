@@ -73,7 +73,7 @@ namespace MCF
 
       sockaddr_in clientService;
       clientService.sin_family = AF_INET;
-      inet_pton(AF_INET, "127.0.0.1", &clientService.sin_addr.s_addr);
+      InetPton(AF_INET, (PCWSTR)"127.0.0.1", &clientService.sin_addr.s_addr);
       clientService.sin_port = htons(port);
 
       // Setup the TCP listening socket

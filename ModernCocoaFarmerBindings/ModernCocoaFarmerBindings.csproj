@@ -58,9 +58,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bindings\Building.cs" />
+    <None Include="Build Events\CopyCreatedDLLs.bat" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Build Events\CopyCreatedDLLs.bat" />
+    <Folder Include="Bindings\" />
   </ItemGroup>
 </Project>

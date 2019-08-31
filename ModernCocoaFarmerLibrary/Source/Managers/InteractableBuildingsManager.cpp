@@ -3,7 +3,7 @@
 #include "Input/MouseInteractionHandler.h"
 #include "UI/InteractableBuildingDialog.h"
 #include "Screens/ScreenUtils.h"
-#include "Buildings/Building.h"
+#include "Buildings/BuildingInformation.h"
 
 using namespace CelesteEngine;
 using namespace CelesteEngine::Input;
@@ -29,8 +29,6 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void InteractableBuildingsManager::initialize(const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
-      m_interactableBuildingDialog->initialize();
-
       Handle<GameObject> interactableBuildings = screen->findGameObject(INTERACTABLE_BUILDINGS_NAME);
       ASSERT(!interactableBuildings.is_null());
 
@@ -40,7 +38,7 @@ namespace MCF
         interactableBuilding->findChildGameObject("Icon")->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
           [&](EventArgs& e, Handle<GameObject> caller) -> void
           {
-            m_interactableBuildingDialog->show(caller->getScreen(), CelesteEngine::ScriptableObject::create<Buildings::Building>("Building"));
+            //m_interactableBuildingDialog->show(caller->getScreen(), CelesteEngine::ScriptableObject::create<Buildings::BuildingInformation>("Building"));
           });
 
         m_buildings.push_back(interactableBuilding);

@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Buildings\Building.h" />
+    <ClInclude Include="Headers\Buildings\BuildingInformation.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\UI\UIScriptCommands.h" />
     <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Debugging\LuaScriptReceiver.h" />
     <ClInclude Include="Headers\Debugging\SceneBroadcaster.h" />
@@ -36,12 +37,13 @@
     <ClInclude Include="Headers\UI\InteractableBuildingDialog.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Buildings\Building.cpp" />
+    <ClCompile Include="Source\Buildings\BuildingInformation.cpp" />
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Managers\GameplayManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\UI\UIScriptCommands.cpp" />
     <ClCompile Include="Source\Managers\GameplayManager.cpp" />
     <ClCompile Include="Source\Managers\InteractableBuildingsManager.cpp" />
     <ClCompile Include="Source\Networking\NetworkUtils.cpp" />
