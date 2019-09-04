@@ -27,8 +27,6 @@ namespace MCF
     void InteractableBuildingDialog::show(
       const CelesteEngine::Handle<CelesteEngine::Screen>& screen)
     {
-      ASSERT_FAIL_MSG("Move this to lua class");
-
       Handle<GameObject> dialog = getResourceManager()->load<Prefab>(m_dialogPrefabPath)->instantiate(screen);
 
       // Set up close button disabling popup
