@@ -1,2 +1,9 @@
-Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Splash.screen"))
+local quickStart = true
+
 Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "DebugTools.screen"))
+
+if not quickStart then
+    Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Splash.screen"))
+else
+    require 'Gameplay.StartGameplay'
+end

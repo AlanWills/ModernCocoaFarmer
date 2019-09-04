@@ -1,7 +1,6 @@
 #include "Game/MCFGame.h"
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
 #include "Screens/ScreenUtils.h"
-#include "Managers/GameplayManager.h"
 #include "Debugging/SceneBroadcaster.h"
 #include "Debugging/LuaScriptReceiver.h"
 #include "Networking/NetworkUtils.h"
@@ -11,7 +10,6 @@ namespace MCF
 {
   //------------------------------------------------------------------------------------------------
   MCFGame::MCFGame() :
-    m_gameplayManager(new Managers::GameplayManager()),
     m_sceneBroadcaster(nullptr),
     m_luaScriptReceiver(nullptr)
   {
