@@ -41,6 +41,7 @@
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
+    <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

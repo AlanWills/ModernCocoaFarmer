@@ -1,4 +1,5 @@
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
+#include "Lua/ScriptCommands/Buildings/BuildingInformationScriptCommands.h"
 
 
 namespace MCF
@@ -10,6 +11,7 @@ namespace MCF
       //------------------------------------------------------------------------------------------------
       void initialize()
       {
+        BuildingInformationScriptCommands::initialize();
       }
     }
   }

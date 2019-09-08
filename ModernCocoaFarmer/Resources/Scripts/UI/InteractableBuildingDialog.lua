@@ -20,31 +20,16 @@ function ibd.load()
 end
 
 ----------------------------------------------------------------------------------------
-function ibd.show(screen)
+function ibd.show(screen, buildingInformation)
     local dialogPrefab = ibd.load()
     local dialogGameObject = dialogPrefab:instantiate(screen)
+
+    local titleText = dialogGameObject:findChildGameObject(ibd.TITLE_TEXT_NAME)
+    titleText:findComponent("TextRenderer"):setLine
+
     local closeButton = dialogGameObject:findChildGameObject(ibd.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
     mouseInteractionHandler:subscribeOnLeftButtonClickedCallback(closeCallback)
 end
 
 return ibd
-
---[[
-InteractableBuildings
-
-    Handle<GameObject> interactableBuildings = screen->findGameObject(INTERACTABLE_BUILDINGS_NAME);
-      ASSERT(!interactableBuildings.is_null());
-
-      for (size_t childIndex = 0, childCount = interactableBuildings->getChildCount(); childIndex < childCount; ++childIndex)
-      {
-        Handle<GameObject> interactableBuilding = interactableBuildings->getChildGameObject(childIndex);
-        interactableBuilding->findChildGameObject("Icon")->findComponent<MouseInteractionHandler>()->getOnLeftButtonClickedEvent().subscribe(
-          [&](EventArgs& e, Handle<GameObject> caller) -> void
-          {
-            //m_interactableBuildingDialog->show(caller->getScreen(), CelesteEngine::ScriptableObject::create<Buildings::BuildingInformation>("Building"));
-          });
-
-        m_buildings.push_back(interactableBuilding);
-      }
-]]

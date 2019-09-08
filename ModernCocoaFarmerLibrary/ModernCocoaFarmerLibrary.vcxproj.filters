@@ -48,6 +48,9 @@
     <ClInclude Include="Headers\Buildings\BuildingInformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
@@ -72,6 +75,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Buildings\BuildingInformation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -204,6 +204,7 @@
     <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
+    <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
   </ItemGroup>
