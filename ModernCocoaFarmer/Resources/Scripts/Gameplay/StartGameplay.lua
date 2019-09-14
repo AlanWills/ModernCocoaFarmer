@@ -5,7 +5,7 @@ local screenPath = path.combine(Resources.getResourcesDirectory(), "Data", "Scre
 local gameplayScreen = Screen.load(screenPath)
 
 -- Set up Interactable Buildings manager to set up callbacks
---ibm.initialize(gameplayScreen)
+ibm.initialize(gameplayScreen)
 
 -- Load interactable building dialog into resource manager so that it is cached
---ibd.load()
+ibd.load()
