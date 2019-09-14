@@ -42,6 +42,12 @@
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
+    <None Include="Resources\Data\Buildings\Home.asset" />
+    <None Include="Resources\Data\Buildings\Hospital.asset" />
+    <None Include="Resources\Data\Buildings\Market.asset" />
+    <None Include="Resources\Data\Buildings\Mosque.asset" />
+    <None Include="Resources\Data\Buildings\Well.asset" />
+    <None Include="Resources\Data\Screens\Loading.screen" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -227,9 +233,6 @@
     <Image Include="Resources\Textures\Worker\Walking\WalkAnimation.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkNoMacheteAnimation.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\Textures\UI\Utility\WhitePixel.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -333,6 +336,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Village\Buildings\Decals\Toilet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

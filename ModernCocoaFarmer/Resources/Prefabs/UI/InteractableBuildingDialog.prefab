@@ -9,10 +9,10 @@
       <GameObjects>
         <GameObject name="TitleText" position="0,0.12%,0">
           <Components>
-            <TextRenderer/>
+            <TextRenderer font_height="20"/>
           </Components>
         </GameObject>
-        <GameObject name="DescriptionText" position="0,0.09%,0" horizontal_alignment="Left">
+        <GameObject name="DescriptionText" position="0,0,0" horizontal_alignment="Left" vertical_alignment="Centre">
           <Components>
             <TextRenderer/>
           </Components>

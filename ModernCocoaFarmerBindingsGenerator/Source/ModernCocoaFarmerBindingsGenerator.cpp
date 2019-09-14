@@ -11,7 +11,7 @@ using namespace BindingsGenerator;
 
 int main()
 {
-  Path projectPath(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING, UPDIR_STRING, "ModernCocoaFarmerBindings");
+  Path projectPath(Directory::getExecutingAppDirectory(), UPDIR_STRING, "ModernCocoaFarmerBindings");
   Project project(projectPath, "ModernCocoaFarmerBindings", "MCF");
   project.generateBindings();
 

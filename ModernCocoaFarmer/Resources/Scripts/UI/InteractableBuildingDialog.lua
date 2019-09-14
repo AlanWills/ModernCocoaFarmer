@@ -25,7 +25,10 @@ function ibd.show(screen, buildingInformation)
     local dialogGameObject = dialogPrefab:instantiate(screen)
 
     local titleText = dialogGameObject:findChildGameObject(ibd.TITLE_TEXT_NAME)
-    titleText:findComponent("TextRenderer"):setLine
+    titleText:findComponent("TextRenderer"):setText(buildingInformation:getName())
+
+    local descriptionText = dialogGameObject:findChildGameObject(ibd.DESCRIPTION_TEXT_NAME)
+    descriptionText:findComponent("TextRenderer"):setText(buildingInformation:getDescription())
 
     local closeButton = dialogGameObject:findChildGameObject(ibd.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")

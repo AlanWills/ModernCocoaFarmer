@@ -13,9 +13,10 @@ namespace MCF
       //------------------------------------------------------------------------------------------------
       void initialize()
       {
-        CelesteEngine::Lua::registerUserType<Buildings::BuildingInformation>(
+        CelesteEngine::Lua::registerScriptableObjectUserType<Buildings::BuildingInformation>(
           "BuildingInformation",
-          "load", &CelesteEngine::Lua::loadScriptableObject<Buildings::BuildingInformation>);
+          sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+          "getDescription", &Buildings::BuildingInformation::getDescription);
       }
     }
   }

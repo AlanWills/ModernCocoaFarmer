@@ -183,8 +183,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Resources\Data\Buildings\Home.asset" />
+    <None Include="Resources\Data\Buildings\Hospital.asset" />
+    <None Include="Resources\Data\Buildings\Market.asset" />
+    <None Include="Resources\Data\Buildings\Mosque.asset" />
     <None Include="Resources\Data\Buildings\School.asset" />
+    <None Include="Resources\Data\Buildings\Well.asset" />
     <None Include="Resources\Data\Screens\DebugTools.screen" />
+    <None Include="Resources\Data\Screens\Loading.screen" />
     <None Include="Resources\Data\Screens\MainMenu.screen" />
     <None Include="Resources\Data\Screens\Options.screen" />
     <None Include="Resources\Data\Screens\Splash.screen" />
@@ -242,7 +248,7 @@
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete2.png" />
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete3.png" />
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMachete4.png" />
-    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkNoMacheteAnimation.png" />
+    <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" />
     <Image Include="Resources\Textures\Worker\Walking\Walk1.png" />
     <Image Include="Resources\Textures\Worker\Walking\Walk2.png" />
     <Image Include="Resources\Textures\Worker\Walking\Walk3.png" />
