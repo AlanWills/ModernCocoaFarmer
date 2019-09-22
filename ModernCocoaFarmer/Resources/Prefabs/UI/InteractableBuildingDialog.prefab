@@ -9,12 +9,18 @@
       <GameObjects>
         <GameObject name="TitleText" position="0,0.12%,0">
           <Components>
+            <TextRenderer font_height="30"/>
+          </Components>
+        </GameObject>
+        <GameObject name="DescriptionText" position="0,0,0" horizontal_alignment="Centre" vertical_alignment="Centre">
+          <Components>
             <TextRenderer font_height="20"/>
           </Components>
         </GameObject>
-        <GameObject name="DescriptionText" position="0,0,0" horizontal_alignment="Left" vertical_alignment="Centre">
+        <GameObject name="HelpText" position="0,-0.075%,0" horizontal_alignment="Centre" vertical_alignment="Centre">
           <Components>
-            <TextRenderer/>
+            <TextRenderer text="Select a child using the icons at the top and click on this building to send them here."
+                          font_height="20"/>
           </Components>
         </GameObject>
         <GameObject name="CloseButton" position="0.15%, 0.15%">
@@ -22,6 +28,11 @@
             <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>
             <RectangleCollider dimensions="50,50"/>
             <MouseInteractionHandler/>
+          </Components>
+        </GameObject>
+        <GameObject name="StatsBackground" position="-0.25%,-0.45%,0">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.15%, 0.1%"/>
           </Components>
         </GameObject>
       </GameObjects>

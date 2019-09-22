@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuildingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Home" description="The village home" />
+<BuildingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Home" description="No place like it." health_change="5" safety_change="5" education_change="5" happiness_change="5" is_health_change_for_all_children="true" is_safety_change_for_all_children="true" is_education_change_for_all_children="true" is_happiness_change_for_all_children="true" cost="46124" months_to_complete="4" />
