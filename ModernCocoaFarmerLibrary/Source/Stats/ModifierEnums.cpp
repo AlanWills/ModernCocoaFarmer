@@ -5,6 +5,7 @@
 namespace CelesteEngine
 {
   //------------------------------------------------------------------------------------------------
+  template <>
   std::string to_string(MCF::Stats::ChangeType changeType)
   {
     if (changeType == MCF::Stats::ChangeType::kAbsolute)
@@ -23,6 +24,7 @@ namespace CelesteEngine
   }
 
   //------------------------------------------------------------------------------------------------
+  template <>
   std::string to_string(MCF::Stats::Occurrence occurrence)
   {
     if (occurrence == MCF::Stats::Occurrence::kInstant)
