@@ -20,11 +20,11 @@ namespace MCF
 
       public:
         const std::string& getDescription() const { return m_description.getValue(); }
-        const Stats::Modifier& getHealthModifier() const { return m_healthModifier.getValue(); }
-        const Stats::Modifier& getSafetyModifier() const { return m_safetyModifier.getValue(); }
-        const Stats::Modifier& getEducationModifier() const { return m_educationModifier.getValue(); }
-        const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier.getValue(); }
-        const Stats::Modifier& getCostModifier() const { return m_costModifier.getValue(); }
+        const Stats::Modifier& getHealthModifier() const { return m_healthModifier; }
+        const Stats::Modifier& getSafetyModifier() const { return m_safetyModifier; }
+        const Stats::Modifier& getEducationModifier() const { return m_educationModifier; }
+        const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier; }
+        const Stats::Modifier& getCostModifier() const { return m_costModifier; }
         float getMonthsToComplete() const { return m_monthsToComplete.getValue(); }
 
         static const std::string DESCRIPTION_FIELD_NAME;
@@ -37,11 +37,11 @@ namespace MCF
 
       private:
         CelesteEngine::ReferenceField<std::string>& m_description;
-        CelesteEngine::ReferenceField<Stats::Modifier>& m_healthModifier;
-        CelesteEngine::ReferenceField<Stats::Modifier>& m_safetyModifier;
-        CelesteEngine::ReferenceField<Stats::Modifier>& m_educationModifier;
-        CelesteEngine::ReferenceField<Stats::Modifier>& m_happinessModifier;
-        CelesteEngine::ReferenceField<Stats::Modifier>& m_costModifier;
+        Stats::Modifier& m_healthModifier;
+        Stats::Modifier& m_safetyModifier;
+        Stats::Modifier& m_educationModifier;
+        Stats::Modifier& m_happinessModifier;
+        Stats::Modifier& m_costModifier;
         CelesteEngine::ValueField<float>& m_monthsToComplete;
     };
   }

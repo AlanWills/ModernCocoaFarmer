@@ -20,11 +20,11 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     BuildingInformation::BuildingInformation() :
       m_description(createReferenceField<std::string>(DESCRIPTION_FIELD_NAME)),
-      m_healthModifier(createReferenceField<Stats::Modifier>(HEALTH_MODIFIER_FIELD_NAME)),
-      m_safetyModifier(createReferenceField<Stats::Modifier>(SAFETY_MODIFIER_FIELD_NAME)),
-      m_educationModifier(createReferenceField<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),
-      m_happinessModifier(createReferenceField<Stats::Modifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
-      m_costModifier(createReferenceField<Stats::Modifier>(COST_MODIFIER_FIELD_NAME)),
+      m_healthModifier(createScriptableObject<Stats::Modifier>(HEALTH_MODIFIER_FIELD_NAME)),
+      m_safetyModifier(createScriptableObject<Stats::Modifier>(SAFETY_MODIFIER_FIELD_NAME)),
+      m_educationModifier(createScriptableObject<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),
+      m_happinessModifier(createScriptableObject<Stats::Modifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
+      m_costModifier(createScriptableObject<Stats::Modifier>(COST_MODIFIER_FIELD_NAME)),
       m_monthsToComplete(createValueField<float>(MONTHS_TO_COMPLETE_FIELD_NAME))
     {
     }

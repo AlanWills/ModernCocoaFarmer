@@ -94,7 +94,7 @@ namespace MCF
         FD_ZERO(&fds);
         FD_SET(ListenSocket, &fds);
 
-        select(ListenSocket + 1, &fds, NULL, NULL, &timeout);
+        select(static_cast<int>(ListenSocket + 1), &fds, NULL, NULL, &timeout);
 
         if (FD_ISSET(ListenSocket, &fds))
         {
@@ -209,7 +209,7 @@ namespace MCF
 
         if (hasMessage)
         {
-          if (send(m_clientSocket, message.c_str(), message.size(), 0) == SOCKET_ERROR)
+          if (send(m_clientSocket, message.c_str(), static_cast<int>(message.size()), 0) == SOCKET_ERROR)
           {
             m_connected = false;
           }
