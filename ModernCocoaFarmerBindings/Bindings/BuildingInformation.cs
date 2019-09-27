@@ -1,3 +1,4 @@
+using MCF.Stats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,23 +22,23 @@ namespace MCF.Buildings
 		public float MonthsToComplete { get; set; } = 0.000000f;
 
 		[Serialize, DisplayPriority(3)]
-		[DisplayName("health_modifier")]
-		public Modifier Health_modifier { get; set; }
+		[DisplayName("HealthModifier")]
+		public Modifier HealthModifier { get; set; }
 
 		[Serialize, DisplayPriority(4)]
-		[DisplayName("safety_modifier")]
-		public Modifier Safety_modifier { get; set; }
+		[DisplayName("SafetyModifier")]
+		public Modifier SafetyModifier { get; set; }
 
 		[Serialize, DisplayPriority(5)]
-		[DisplayName("education_modifier")]
-		public Modifier Education_modifier { get; set; }
+		[DisplayName("EducationModifier")]
+		public Modifier EducationModifier { get; set; }
 
 		[Serialize, DisplayPriority(6)]
-		[DisplayName("happiness_modifier")]
-		public Modifier Happiness_modifier { get; set; }
+		[DisplayName("HappinessModifier")]
+		public Modifier HappinessModifier { get; set; }
 
 		[Serialize, DisplayPriority(7)]
-		[DisplayName("cost_modifier")]
-		public Modifier Cost_modifier { get; set; }
+		[DisplayName("CostModifier")]
+		public Modifier CostModifier { get; set; }
 	}
 }
