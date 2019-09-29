@@ -38,7 +38,7 @@ namespace MCF.Buildings
 		public Modifier HappinessModifier { get; set; }
 
 		[Serialize, DisplayPriority(7)]
-		[DisplayName("CostModifier")]
-		public Modifier CostModifier { get; set; }
+		[DisplayName("MoneyModifier")]
+		public Modifier MoneyModifier { get; set; }
 	}
 }

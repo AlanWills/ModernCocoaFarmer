@@ -24,7 +24,7 @@ namespace MCF
         const Stats::Modifier& getSafetyModifier() const { return m_safetyModifier; }
         const Stats::Modifier& getEducationModifier() const { return m_educationModifier; }
         const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier; }
-        const Stats::Modifier& getCostModifier() const { return m_costModifier; }
+        const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
         float getMonthsToComplete() const { return m_monthsToComplete.getValue(); }
 
         static const std::string DESCRIPTION_FIELD_NAME;
@@ -32,7 +32,7 @@ namespace MCF
         static const std::string SAFETY_MODIFIER_FIELD_NAME;
         static const std::string EDUCATION_MODIFIER_FIELD_NAME;
         static const std::string HAPPINESS_MODIFIER_FIELD_NAME;
-        static const std::string COST_MODIFIER_FIELD_NAME;
+        static const std::string MONEY_MODIFIER_FIELD_NAME;
         static const std::string MONTHS_TO_COMPLETE_FIELD_NAME;
 
       private:
@@ -41,7 +41,7 @@ namespace MCF
         Stats::Modifier& m_safetyModifier;
         Stats::Modifier& m_educationModifier;
         Stats::Modifier& m_happinessModifier;
-        Stats::Modifier& m_costModifier;
+        Stats::Modifier& m_moneyModifier;
         CelesteEngine::ValueField<float>& m_monthsToComplete;
     };
   }

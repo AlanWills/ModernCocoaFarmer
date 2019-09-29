@@ -18,7 +18,7 @@ namespace MCF
       public:
         int getAmount() const { return m_amount.getValue(); }
         ChangeType getChangeType() const { return m_changeType.getValue(); }
-        Occurrence getOccurrency() const { return m_occurrence.getValue(); }
+        Occurrence getOccurrence() const { return m_occurrence.getValue(); }
         float getMonthlyFrequency() const { return m_monthlyFrequency.getValue(); }
 
         static const std::string AMOUNT_FIELD_NAME;
@@ -34,7 +34,3 @@ namespace MCF
     };
   }
 }
-
-//NOW, we need to make a UI for this in the editor so that fields will toggle
-//on and off depending on choices.  E.g. monthly frequency should be hidden if
-//occurrence is instant.

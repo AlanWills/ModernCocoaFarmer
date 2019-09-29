@@ -23,7 +23,7 @@ namespace MCF
           "getSafetyModifier", &BuildingInformation::getSafetyModifier,
           "getEducationModifier", &BuildingInformation::getEducationModifier,
           "getHappinessModifier", &BuildingInformation::getHappinessModifier,
-          "getCostModifier", &BuildingInformation::getCostModifier,
+          "getMoneyModifier", &BuildingInformation::getMoneyModifier,
           "getMonthsToComplete", &BuildingInformation::getMonthsToComplete);
       }
     }

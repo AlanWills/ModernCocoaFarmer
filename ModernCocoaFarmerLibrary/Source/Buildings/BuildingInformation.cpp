@@ -14,7 +14,7 @@ namespace MCF
     const std::string BuildingInformation::SAFETY_MODIFIER_FIELD_NAME = "SafetyModifier";
     const std::string BuildingInformation::EDUCATION_MODIFIER_FIELD_NAME = "EducationModifier";
     const std::string BuildingInformation::HAPPINESS_MODIFIER_FIELD_NAME = "HappinessModifier";
-    const std::string BuildingInformation::COST_MODIFIER_FIELD_NAME = "CostModifier";
+    const std::string BuildingInformation::MONEY_MODIFIER_FIELD_NAME = "MoneyModifier";
     const std::string BuildingInformation::MONTHS_TO_COMPLETE_FIELD_NAME = "months_to_complete";
 
     //------------------------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ namespace MCF
       m_safetyModifier(createScriptableObject<Stats::Modifier>(SAFETY_MODIFIER_FIELD_NAME)),
       m_educationModifier(createScriptableObject<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),
       m_happinessModifier(createScriptableObject<Stats::Modifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
-      m_costModifier(createScriptableObject<Stats::Modifier>(COST_MODIFIER_FIELD_NAME)),
+      m_moneyModifier(createScriptableObject<Stats::Modifier>(MONEY_MODIFIER_FIELD_NAME)),
       m_monthsToComplete(createValueField<float>(MONTHS_TO_COMPLETE_FIELD_NAME))
     {
     }
