@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuildingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="School" description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." health_change="0" safety_change="5" education_change="10" happiness_change="5" is_health_change_for_all_children="false" is_safety_change_for_all_children="false" is_education_change_for_all_children="false" is_happiness_change_for_all_children="false" cost="3075" months_to_complete="12" />
+<BuildingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="School" description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." months_to_complete="12" />
