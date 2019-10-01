@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuildingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Mosque" description="The village mosque" />
+<BuildingInformation description="The village mosque" months_to_complete="0" HealthModifier="\Data\Modifiers\Mosque\MosqueHealthModifier.asset" SafetyModifier="\Data\Modifiers\Mosque\MosqueSafetyModifier.asset" EducationModifier="\Data\Modifiers\Mosque\MosqueEducationModifier.asset" HappinessModifier="\Data\Modifiers\Mosque\MosqueHappinessModifier.asset" MoneyModifier="\Data\Modifiers\Mosque\MosqueMoneyModifier.asset" name="Mosque" />

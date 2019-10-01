@@ -48,6 +48,36 @@
     <None Include="Resources\Data\Buildings\Mosque.asset" />
     <None Include="Resources\Data\Buildings\Well.asset" />
     <None Include="Resources\Data\Screens\Loading.screen" />
+    <None Include="Resources\Data\Modifiers\Home\HomeEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Home\HomeHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Home\HomeHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Home\HomeMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Home\HomeSafetyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Hospital\HospitalEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Hospital\HospitalHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Hospital\HospitalHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Hospital\HospitalMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Hospital\HospitalSafetyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Market\MarketEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Market\MarketHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Market\MarketHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Market\MarketMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Market\MarketSafetyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Mosque\MosqueEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Mosque\MosqueHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Mosque\MosqueHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Mosque\MosqueMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Mosque\MosqueSafetyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\School\SchoolEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\School\SchoolHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\School\SchoolHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\School\SchoolMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\School\SchoolSafetyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Well\WellEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Well\WellHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Well\WellHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Well\WellMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Well\WellSafetyModifier.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

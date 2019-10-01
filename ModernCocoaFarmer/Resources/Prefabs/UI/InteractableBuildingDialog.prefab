@@ -30,9 +30,9 @@
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-        <GameObject name="StatsBackground" position="-0.25%,-0.45%,0">
+        <GameObject name="StatsBackground" position="-0.075%,-0.2%,0">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.15%, 0.1%"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.15%, 0.1%" colour="0.8,0.8,0.8" opacity="0.5"/>
           </Components>
         </GameObject>
       </GameObjects>

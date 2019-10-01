@@ -5,5 +5,6 @@ Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "
 if not quickStart then
     Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Splash.screen"))
 else
-    Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Loading.screen"))
+    --Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Loading.screen"))
+    require 'Gameplay.StartGameplay'
 end

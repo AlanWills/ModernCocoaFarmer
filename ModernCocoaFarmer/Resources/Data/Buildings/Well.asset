@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuildingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Well" description="The village well" />
+<BuildingInformation description="The village well" months_to_complete="0" HealthModifier="\Data\Modifiers\Well\WellHealthModifier.asset" SafetyModifier="\Data\Modifiers\Well\WellSafetyModifier.asset" EducationModifier="\Data\Modifiers\Well\WellEducationModifier.asset" HappinessModifier="\Data\Modifiers\Well\WellHappinessModifier.asset" MoneyModifier="\Data\Modifiers\Well\WellMoneyModifier.asset" name="Well" />
