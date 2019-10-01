@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<BuildingInformation description="No place like it." months_to_complete="4" HealthModifier="32fbfd65-35d1-44c6-ba91-57d606e4b453" SafetyModifier="1bc1d030-2f11-4d7b-8e57-ec12ffd28f80" name="Home" />
+<ScriptableObjectAsset description="No place like it." months_to_complete="4" HealthModifier="\Data\Modifiers\Home\HomeHealthModifier.asset" name="Home" />
