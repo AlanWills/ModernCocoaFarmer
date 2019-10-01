@@ -155,9 +155,6 @@
     <Image Include="Resources\Textures\UI\Settings\Pause.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\UI\StatIcons\Book.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\Textures\UI\BuildingIcons\Blank.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -369,6 +366,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\UI\StatIcons\Education.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

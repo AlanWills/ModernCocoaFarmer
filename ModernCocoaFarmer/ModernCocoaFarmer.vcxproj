@@ -253,7 +253,7 @@
     <Image Include="Resources\Textures\UI\Settings\AudioMuted.png" />
     <Image Include="Resources\Textures\UI\Settings\AudioPlaying.png" />
     <Image Include="Resources\Textures\UI\Utility\Bar.png" />
-    <Image Include="Resources\Textures\UI\StatIcons\Book.png" />
+    <Image Include="Resources\Textures\UI\StatIcons\Education.png" />
     <Image Include="Resources\Textures\UI\Utility\Cross.png" />
     <Image Include="Resources\Textures\UI\Utility\Donate.png" />
     <Image Include="Resources\Textures\Icons\Icon.png" />
