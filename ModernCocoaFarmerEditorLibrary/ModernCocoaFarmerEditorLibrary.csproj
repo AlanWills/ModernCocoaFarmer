@@ -69,12 +69,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Editors\ChildModifier\ChildModifierEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Editors\Modifier\ModifierEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editors\ChildModifier\ChildModifierEditor.xaml.cs">
+      <DependentUpon>ChildModifierEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\ChildModifier\ChildModifierEditorViewModel.cs" />
     <Compile Include="Editors\Modifier\ModifierEditor.xaml.cs">
       <DependentUpon>ModifierEditor.xaml</DependentUpon>
     </Compile>

@@ -19,21 +19,24 @@ using System.Windows.Shapes;
 namespace ModernCocoaFarmerEditorLibrary.Editors
 {
     /// <summary>
-    /// Interaction logic for ModifierEditor.xaml
+    /// Interaction logic for ChildModifierEditor.xaml
     /// </summary>
-    [CustomEditor(typeof(Modifier), "Modifier Editor")]
-    public partial class ModifierEditor : Editor
+    [CustomEditor(typeof(ChildModifier), "Child Modifier Editor")]
+    public partial class ChildModifierEditor : Editor
     {
-        public ModifierEditor(Modifier modifier) :
-            base(new ModifierEditorViewModel(modifier))
-        {
-            InitializeComponent();
-        }
+        #region Properties and Fields
 
-        public ModifierEditor(ModifierEditorViewModel viewModel) :
-            base(viewModel)
+        private ModifierEditor ModifierEditor { get; set; }
+
+        #endregion
+
+        public ChildModifierEditor(ChildModifier modifier) :
+            base(new ChildModifierEditorViewModel(modifier))
         {
             InitializeComponent();
+
+            ModifierEditor = new ModifierEditor(ViewModel as ModifierEditorViewModel);
+            Content.Content = ModifierEditor;
         }
     }
 }

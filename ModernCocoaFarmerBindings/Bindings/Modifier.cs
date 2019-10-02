@@ -25,7 +25,7 @@ namespace MCF.Stats
 		public Occurrence Occurrence { get; set; } = Occurrence.Instant;
 
 		[Serialize, DisplayPriority(4)]
-		[XmlAttribute("monthly_frequency"), DisplayName("Monthly Frequency")]
-		public float MonthlyFrequency { get; set; } = 0.000000f;
+		[XmlAttribute("period_in_months"), DisplayName("Period In Months")]
+		public int PeriodInMonths { get; set; } = 0;
 	}
 }

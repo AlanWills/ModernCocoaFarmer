@@ -19,18 +19,18 @@ namespace MCF
         int getAmount() const { return m_amount.getValue(); }
         ChangeType getChangeType() const { return m_changeType.getValue(); }
         Occurrence getOccurrence() const { return m_occurrence.getValue(); }
-        float getMonthlyFrequency() const { return m_monthlyFrequency.getValue(); }
+        int getPeriodInMonths() const { return m_periodInMonths.getValue(); }
 
         static const std::string AMOUNT_FIELD_NAME;
         static const std::string CHANGE_TYPE_FIELD_NAME;
         static const std::string OCCURRENCE_FIELD_NAME;
-        static const std::string MONTHLY_FREQUENCY_FIELD_NAME;
+        static const std::string PERIOD_IN_MONTHS_FIELD_NAME;
 
       private:
         CelesteEngine::ValueField<int>& m_amount;
         CelesteEngine::ValueField<ChangeType>& m_changeType;
         CelesteEngine::ValueField<Occurrence>& m_occurrence;
-        CelesteEngine::ValueField<float>& m_monthlyFrequency;
+        CelesteEngine::ValueField<int>& m_periodInMonths;
     };
   }
 }

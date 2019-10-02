@@ -34,7 +34,7 @@ local function createModifierText(modifier)
 
     if modifier:isPeriodicChange() then
         modifierText = modifierText .. " every "
-        modifierText = modifierText .. modifier:getMonthlyFrequency()
+        modifierText = modifierText .. modifier:getPeriodInMonths()
     end
 
     if modifier:getAppliesToAllChildren() then

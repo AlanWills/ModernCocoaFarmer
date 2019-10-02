@@ -32,19 +32,19 @@ namespace ModernCocoaFarmerEditorLibrary.Editors
             set 
             { 
                 Modifier.Occurrence = value;
-                MonthlyFrequency = MonthlyFrequencyVisible ? MonthlyFrequency : 0;
+                PeriodInMonths = PeriodInMonthsVisible ? PeriodInMonths : 0;
 
-                NotifyOnPropertyChanged(nameof(MonthlyFrequencyVisible));
+                NotifyOnPropertyChanged(nameof(PeriodInMonthsVisible));
             }
         }
 
-        public float MonthlyFrequency
+        public int PeriodInMonths
         {
-            get { return Modifier.MonthlyFrequency; }
-            set { Modifier.MonthlyFrequency = value; }
+            get { return Modifier.PeriodInMonths; }
+            set { Modifier.PeriodInMonths = value; }
         }
 
-        public bool MonthlyFrequencyVisible
+        public bool PeriodInMonthsVisible
         {
             get { return Occurrence == Occurrence.Periodic; }
         }

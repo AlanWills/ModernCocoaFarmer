@@ -38,7 +38,7 @@ namespace MCF
             "getAmount", &Modifier::getAmount,
             "isDeltaChange", &Internals::isDeltaChange,
             "isPeriodicChange", &Internals::isPeriodicChange,
-            "getMonthlyFrequency", &Modifier::getMonthlyFrequency);
+            "getPeriodInMonths", &Modifier::getPeriodInMonths);
         }
       }
     }

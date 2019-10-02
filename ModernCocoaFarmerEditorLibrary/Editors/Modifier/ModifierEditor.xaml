@@ -8,7 +8,7 @@
              xmlns:converters="clr-namespace:CelesteEngineEditor.Converters;assembly=CelesteEngineEditorLibrary"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
-    <Grid>
+    <Grid Margin="0,5,0,5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
@@ -33,18 +33,18 @@
                       ItemsSource="{Binding Path=ChangeType, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
                       SelectedValuePath="Value"
                       DisplayMemberPath="Description"
-                      SelectedValue="{Binding Path=ChangeType}" />
+                      SelectedValue="{Binding ChangeType}" />
         <TextBlock Grid.Column="0" Grid.Row="4" Text="Occurrence"
                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <ComboBox Grid.Column="2" Grid.Row="4"
                       ItemsSource="{Binding Path=Occurrence, Converter={converters:EnumToCollectionConverter}, Mode=OneTime}"
                       SelectedValuePath="Value"
                       DisplayMemberPath="Description"
-                      SelectedValue="{Binding Path=Occurrence}" />
-        <TextBlock Grid.Column="0" Grid.Row="6" Text="Monthly Frequency" Visibility="{Binding MonthlyFrequencyVisible, Converter={converters:BoolToCollapsedVisibilityConverter}}"
+                      SelectedValue="{Binding Occurrence}" />
+        <TextBlock Grid.Column="0" Grid.Row="6" Text="Period In Months" Visibility="{Binding PeriodInMonthsVisible, Converter={converters:BoolToCollapsedVisibilityConverter}}"
                    HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <xctk:SingleUpDown Grid.Column="2" Grid.Row="6" Value="{Binding MonthlyFrequency}"
-                           Visibility="{Binding MonthlyFrequencyVisible, Converter={converters:BoolToCollapsedVisibilityConverter}}"
+        <xctk:SingleUpDown Grid.Column="2" Grid.Row="6" Value="{Binding PeriodInMonths}"
+                           Visibility="{Binding PeriodInMonthsVisible, Converter={converters:BoolToCollapsedVisibilityConverter}}"
                            Style="{DynamicResource SingleNumericUpDownBox}"/>
     </Grid>
 </editors:Editor>
