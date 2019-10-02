@@ -22,7 +22,9 @@
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
     <ClInclude Include="Headers\Buildings\BuildingInformation.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ModifierScriptCommands.h" />
+    <ClInclude Include="Headers\Stats\ChildModifier.h" />
     <ClInclude Include="Headers\Stats\ModifierEnums.h" />
     <ClInclude Include="Headers\Stats\Modifier.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.h" />
@@ -45,10 +47,12 @@
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Stats\ModifierScriptCommands.cpp" />
     <ClCompile Include="Source\Networking\NetworkUtils.cpp" />
     <ClCompile Include="Source\Networking\SocketClient.cpp" />
     <ClCompile Include="Source\Networking\SocketServer.cpp" />
+    <ClCompile Include="Source\Stats\ChildModifier.cpp" />
     <ClCompile Include="Source\Stats\Modifier.cpp" />
     <ClCompile Include="Source\Stats\ModifierEnums.cpp" />
   </ItemGroup>

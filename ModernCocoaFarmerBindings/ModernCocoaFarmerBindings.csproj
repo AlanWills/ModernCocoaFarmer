@@ -68,6 +68,7 @@
     <ItemGroup>
         <Folder Include="Bindings\"/>
         <Compile Include="Bindings\Modifier.cs"/>
+        <Compile Include="Bindings\ChildModifier.cs"/>
         <Compile Include="Bindings\BuildingInformation.cs"/>
     </ItemGroup>
 </Project>

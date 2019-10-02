@@ -23,19 +23,19 @@ namespace MCF.Buildings
 
 		[Serialize, DisplayPriority(3)]
 		[DisplayName("HealthModifier")]
-		public Modifier HealthModifier { get; set; }
+		public ChildModifier HealthModifier { get; set; }
 
 		[Serialize, DisplayPriority(4)]
 		[DisplayName("SafetyModifier")]
-		public Modifier SafetyModifier { get; set; }
+		public ChildModifier SafetyModifier { get; set; }
 
 		[Serialize, DisplayPriority(5)]
 		[DisplayName("EducationModifier")]
-		public Modifier EducationModifier { get; set; }
+		public ChildModifier EducationModifier { get; set; }
 
 		[Serialize, DisplayPriority(6)]
 		[DisplayName("HappinessModifier")]
-		public Modifier HappinessModifier { get; set; }
+		public ChildModifier HappinessModifier { get; set; }
 
 		[Serialize, DisplayPriority(7)]
 		[DisplayName("MoneyModifier")]

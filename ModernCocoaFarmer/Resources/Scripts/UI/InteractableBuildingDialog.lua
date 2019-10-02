@@ -21,7 +21,27 @@ end
 
 ----------------------------------------------------------------------------------------
 local function createModifierText(modifier)
-    return ""
+    local modifierText = "";
+
+    if modifier:isDeltaChange() then
+        modifierText = modifierText .. "+"
+    else
+        modifierText = modifierText .. "set to "
+    end
+
+    modifierText = modifierText .. modifier:getAmount()
+    modifierText = modifierText .. "%"
+
+    if modifier:isPeriodicChange() then
+        modifierText = modifierText .. " every "
+        modifierText = modifierText .. modifier:getMonthlyFrequency()
+    end
+
+    if modifier:getAppliesToAllChildren() then
+        modifierText = modifierText .. " for all children"
+    end
+
+    return modifierText
 end
 
 ----------------------------------------------------------------------------------------

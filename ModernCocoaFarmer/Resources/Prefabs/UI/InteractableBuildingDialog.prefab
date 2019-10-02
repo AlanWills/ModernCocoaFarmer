@@ -40,9 +40,9 @@
                 <SpriteRenderer sprite="Textures\UI\StatIcons\Health.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
               </Components>
             </GameObject>
-            <GameObject name="HealthModifierText" position="0, 0.06%">
+            <GameObject name="HealthModifierText" position="-0.025%, 0.06%">
               <Components>
-                <TextRenderer text="Health Modifier"/>
+                <TextRenderer text="Health Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
               </Components>
             </GameObject>
             <GameObject name="SafetyModifierIcon" position="-0.05%, 0.02%">
@@ -50,9 +50,9 @@
                 <SpriteRenderer sprite="Textures\UI\StatIcons\Safety.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
               </Components>
             </GameObject>
-            <GameObject name="SafetyModifierText" position="0, 0.02%">
+            <GameObject name="SafetyModifierText" position="-0.025%, 0.02%">
               <Components>
-                <TextRenderer text="Safety Modifier"/>
+                <TextRenderer text="Safety Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
               </Components>
             </GameObject>
             <GameObject name="EducationModifierIcon" position="-0.05%, -0.02%">
@@ -60,9 +60,9 @@
                 <SpriteRenderer sprite="Textures\UI\StatIcons\Education.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
               </Components>
             </GameObject>
-            <GameObject name="EducationModifierText" position="0, -0.02%">
+            <GameObject name="EducationModifierText" position="-0.025%, -0.02%">
               <Components>
-                <TextRenderer text="Education Modifier"/>
+                <TextRenderer text="Education Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
               </Components>
             </GameObject>
             <GameObject name="HappinessModifierIcon" position="-0.05%, -0.06%">
@@ -70,9 +70,9 @@
                 <SpriteRenderer sprite="Textures\UI\StatIcons\Happiness.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
               </Components>
             </GameObject>
-            <GameObject name="HappinessModifierText" position="0, -0.06%">
+            <GameObject name="HappinessModifierText" position="-0.025%, -0.06%">
               <Components>
-                <TextRenderer text="Happiness Modifier"/>
+                <TextRenderer text="Happiness Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
               </Components>
             </GameObject>
           </GameObjects>

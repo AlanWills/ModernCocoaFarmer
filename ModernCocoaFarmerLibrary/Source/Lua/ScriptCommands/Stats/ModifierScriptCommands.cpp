@@ -12,6 +12,21 @@ namespace MCF
     {
       namespace ModifierScriptCommands
       {
+        namespace Internals
+        {
+          //------------------------------------------------------------------------------------------------
+          bool isDeltaChange(MCF::Stats::Modifier& modifier)
+          {
+            return modifier.getChangeType() == MCF::Stats::ChangeType::kDelta;
+          }
+
+          //------------------------------------------------------------------------------------------------
+          bool isPeriodicChange(MCF::Stats::Modifier& modifier)
+          {
+            return modifier.getOccurrence() == MCF::Stats::Occurrence::kPeriodic;
+          }
+        }
+
         //------------------------------------------------------------------------------------------------
         void initialize()
         {
@@ -20,13 +35,10 @@ namespace MCF
           CelesteEngine::Lua::registerScriptableObjectUserType<Modifier>(
             "Modifier",
             sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
-            "getDescription", &BuildingInformation::getDescription,
-            "getHealthModifier", &BuildingInformation::getHealthModifier,
-            "getSafetyModifier", &BuildingInformation::getSafetyModifier,
-            "getEducationModifier", &BuildingInformation::getEducationModifier,
-            "getHappinessModifier", &BuildingInformation::getHappinessModifier,
-            "getMoneyModifier", &BuildingInformation::getMoneyModifier,
-            "getMonthsToComplete", &BuildingInformation::getMonthsToComplete);
+            "getAmount", &Modifier::getAmount,
+            "isDeltaChange", &Internals::isDeltaChange,
+            "isPeriodicChange", &Internals::isPeriodicChange,
+            "getMonthlyFrequency", &Modifier::getMonthlyFrequency);
         }
       }
     }

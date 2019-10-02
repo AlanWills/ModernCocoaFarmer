@@ -2,7 +2,7 @@
 
 #include "Objects/ScriptableObject.h"
 #include "MCFLibraryDllExport.h"
-#include "Stats/Modifier.h"
+#include "Stats/ChildModifier.h"
 
 
 namespace MCF
@@ -20,10 +20,10 @@ namespace MCF
 
       public:
         const std::string& getDescription() const { return m_description.getValue(); }
-        const Stats::Modifier& getHealthModifier() const { return m_healthModifier; }
-        const Stats::Modifier& getSafetyModifier() const { return m_safetyModifier; }
-        const Stats::Modifier& getEducationModifier() const { return m_educationModifier; }
-        const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier; }
+        const Stats::ChildModifier& getHealthModifier() const { return m_healthModifier; }
+        const Stats::ChildModifier& getSafetyModifier() const { return m_safetyModifier; }
+        const Stats::ChildModifier& getEducationModifier() const { return m_educationModifier; }
+        const Stats::ChildModifier& getHappinessModifier() const { return m_happinessModifier; }
         const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
         float getMonthsToComplete() const { return m_monthsToComplete.getValue(); }
 
@@ -37,10 +37,10 @@ namespace MCF
 
       private:
         CelesteEngine::ReferenceField<std::string>& m_description;
-        Stats::Modifier& m_healthModifier;
-        Stats::Modifier& m_safetyModifier;
-        Stats::Modifier& m_educationModifier;
-        Stats::Modifier& m_happinessModifier;
+        Stats::ChildModifier& m_healthModifier;
+        Stats::ChildModifier& m_safetyModifier;
+        Stats::ChildModifier& m_educationModifier;
+        Stats::ChildModifier& m_happinessModifier;
         Stats::Modifier& m_moneyModifier;
         CelesteEngine::ValueField<float>& m_monthsToComplete;
     };
