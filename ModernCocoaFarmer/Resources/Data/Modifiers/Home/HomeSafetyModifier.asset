@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ChildModifier applies_to_all_children="False" amount="0" change_type="Delta" occurrence="Instant" period_in_months="0" name="" />
+<ChildModifier applies_to_all_children="True" amount="2" change_type="Delta" occurrence="Periodic" period_in_months="12" name="" />

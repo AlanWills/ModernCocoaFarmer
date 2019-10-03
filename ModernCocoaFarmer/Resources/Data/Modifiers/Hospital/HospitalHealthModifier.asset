@@ -1,2 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ChildModifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="" amount="0" change_type="Delta" occurrence="Instant" monthly_frequency="0" />
+<ChildModifier applies_to_all_children="False" amount="100" change_type="Absolute" occurrence="Instant" period_in_months="0" name="" />
