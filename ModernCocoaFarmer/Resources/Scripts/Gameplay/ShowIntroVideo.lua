@@ -1,5 +1,7 @@
 local videoSettings = { }
+
 videoSettings["AutoExit"] = true
+videoSettings["Volume"] = Audio.getMasterVolume()
 videoSettings["OnVideoComplete"] = function()
     local screenPath = path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "MainMenu.screen")
     Screen.load(screenPath)
