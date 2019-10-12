@@ -24,6 +24,7 @@
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ModifierScriptCommands.h" />
+    <ClInclude Include="Headers\Persistence\LocalData.h" />
     <ClInclude Include="Headers\Stats\ChildModifier.h" />
     <ClInclude Include="Headers\Stats\ModifierEnums.h" />
     <ClInclude Include="Headers\Stats\Modifier.h" />

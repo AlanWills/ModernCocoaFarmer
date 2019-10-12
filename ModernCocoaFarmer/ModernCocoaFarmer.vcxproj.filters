@@ -78,6 +78,12 @@
     <None Include="Resources\Data\Modifiers\Well\WellHealthModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellMoneyModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellSafetyModifier.asset" />
+    <None Include="Resources\Data\Buildings\Farm.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmSafetyModifier.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

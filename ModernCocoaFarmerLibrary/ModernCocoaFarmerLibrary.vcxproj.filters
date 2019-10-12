@@ -72,6 +72,9 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Persistence\LocalData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">

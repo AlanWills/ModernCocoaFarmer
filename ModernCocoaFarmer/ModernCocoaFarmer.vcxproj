@@ -183,12 +183,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Resources\Data\Buildings\Farm.asset" />
     <None Include="Resources\Data\Buildings\Home.asset" />
     <None Include="Resources\Data\Buildings\Hospital.asset" />
     <None Include="Resources\Data\Buildings\Market.asset" />
     <None Include="Resources\Data\Buildings\Mosque.asset" />
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Data\Buildings\Well.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmHappinessModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmMoneyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Farm\FarmSafetyModifier.asset" />
     <None Include="Resources\Data\Modifiers\Home\HomeEducationModifier.asset" />
     <None Include="Resources\Data\Modifiers\Home\HomeHappinessModifier.asset" />
     <None Include="Resources\Data\Modifiers\Home\HomeHealthModifier.asset" />
