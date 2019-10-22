@@ -8,23 +8,26 @@ namespace MCF
 {
   namespace Lua
   {
-    namespace BuildingInformationScriptCommands
+    namespace Buildings
     {
-      //------------------------------------------------------------------------------------------------
-      void initialize()
+      namespace BuildingInformationScriptCommands
       {
-        using BuildingInformation = Buildings::BuildingInformation;
+        //------------------------------------------------------------------------------------------------
+        void initialize()
+        {
+          using BuildingInformation = MCF::Buildings::BuildingInformation;
 
-        CelesteEngine::Lua::registerScriptableObjectUserType<BuildingInformation>(
-          "BuildingInformation",
-          sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
-          "getDescription", &BuildingInformation::getDescription,
-          "getHealthModifier", &BuildingInformation::getHealthModifier,
-          "getSafetyModifier", &BuildingInformation::getSafetyModifier,
-          "getEducationModifier", &BuildingInformation::getEducationModifier,
-          "getHappinessModifier", &BuildingInformation::getHappinessModifier,
-          "getMoneyModifier", &BuildingInformation::getMoneyModifier,
-          "getMonthsToComplete", &BuildingInformation::getMonthsToComplete);
+          CelesteEngine::Lua::registerScriptableObjectUserType<BuildingInformation>(
+            "BuildingInformation",
+            sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+            "getDescription", &BuildingInformation::getDescription,
+            "getHealthModifier", &BuildingInformation::getHealthModifier,
+            "getSafetyModifier", &BuildingInformation::getSafetyModifier,
+            "getEducationModifier", &BuildingInformation::getEducationModifier,
+            "getHappinessModifier", &BuildingInformation::getHappinessModifier,
+            "getMoneyModifier", &BuildingInformation::getMoneyModifier,
+            "getMonthsToComplete", &BuildingInformation::getMonthsToComplete);
+        }
       }
     }
   }

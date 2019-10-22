@@ -23,7 +23,6 @@
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
-    <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
@@ -84,6 +83,9 @@
     <None Include="Resources\Data\Modifiers\Farm\FarmHealthModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmMoneyModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmSafetyModifier.asset" />
+    <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
+    <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
+    <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

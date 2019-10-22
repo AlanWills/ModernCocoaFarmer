@@ -1,7 +1,7 @@
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
-#include "Lua/ScriptCommands/Buildings/BuildingInformationScriptCommands.h"
-#include "Lua/ScriptCommands/Stats/ModifierScriptCommands.h"
-#include "Lua/ScriptCommands/Stats/ChildModifierScriptCommands.h"
+#include "Lua/ScriptCommands/Buildings/BuildingsScriptCommands.h"
+#include "Lua/ScriptCommands/Stats/StatsScriptCommands.h"
+#include "Lua/ScriptCommands/Persistence/PersistenceScriptCommands.h"
 
 
 namespace MCF
@@ -13,9 +13,9 @@ namespace MCF
       //------------------------------------------------------------------------------------------------
       void initialize()
       {
-        BuildingInformationScriptCommands::initialize();
-        Stats::ModifierScriptCommands::initialize();
-        Stats::ChildModifierScriptCommands::initialize();
+        Buildings::ScriptCommands::initialize();
+        Stats::ScriptCommands::initialize();
+        Persistence::ScriptCommands::initialize();
       }
     }
   }

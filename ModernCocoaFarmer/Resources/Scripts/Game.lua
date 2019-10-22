@@ -1,4 +1,4 @@
-local quickStart = true
+local quickStart = false
 
 Screen.load(path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "DebugTools.screen"))
 

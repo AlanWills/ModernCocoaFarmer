@@ -5,9 +5,9 @@ namespace MCF
 {
   namespace Lua
   {
-    namespace Buildings
+    namespace Persistence
     {
-      namespace BuildingInformationScriptCommands
+      namespace ScriptCommands
       {
         void initialize();
       }

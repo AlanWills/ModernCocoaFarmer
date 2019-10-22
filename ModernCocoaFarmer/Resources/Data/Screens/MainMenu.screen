@@ -20,11 +20,7 @@
       <GameObjects>
         <GameObject name="Title" position="0.5%, 0.8%, 0">
           <Components>
-            <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1">
-              <Lines>
-                <Line>Modern Cocoa Farmer</Line>
-              </Lines>
-            </TextRenderer>
+            <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1" text="Modern Cocoa Farmer"/>
           </Components>
         </GameObject>
         <GameObject name="LayoutStackPanel" position="0.5%, 0.5%, 0">
@@ -47,11 +43,7 @@
               <GameObjects>
                 <GameObject name="PlayText" position="0,1,0">
                   <Components>
-                    <TextRenderer font_height="24" colour="0,0,0,1">
-                      <Lines>
-                        <Line>Play</Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="24" colour="0,0,0,1" text="Play"/>
                   </Components>
                 </GameObject>
               </GameObjects>
@@ -70,11 +62,7 @@
               <GameObjects>
                 <GameObject name="OptionsText" position="0,1,0">
                   <Components>
-                    <TextRenderer font_height="24" colour="0,0,0,1">
-                      <Lines>
-                        <Line>Options</Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="24" colour="0,0,0,1" text="Options"/>
                   </Components>
                 </GameObject>
               </GameObjects>
@@ -93,11 +81,7 @@
               <GameObjects>
                 <GameObject name="ExitText" position="0,1,0">
                   <Components>
-                    <TextRenderer font_height="24" colour="0,0,0,1">
-                      <Lines>
-                        <Line>Exit</Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="24" colour="0,0,0,1" text="Exit"/>
                   </Components>
                 </GameObject>
               </GameObjects>

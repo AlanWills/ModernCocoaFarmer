@@ -7,7 +7,7 @@ namespace MCF
   {
     namespace Buildings
     {
-      namespace BuildingInformationScriptCommands
+      namespace ScriptCommands
       {
         void initialize();
       }
