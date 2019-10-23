@@ -13,12 +13,14 @@ namespace MCF
 
     DataStore::SerializeMap DataStore::m_serializeMap
     {
-      { DataStore::DataType::kBool, &DataStore::serializeBool }
+      { DataStore::DataType::kBool, &DataStore::serialize<bool> },
+      { DataStore::DataType::kInt, &DataStore::serialize<int> }
     };
 
     DataStore::DeserializeMap DataStore::m_deserializeMap
     {
-      { DataStore::DataType::kBool, &DataStore::deserializeBool }
+      { DataStore::DataType::kBool, &DataStore::deserializeBool },
+      { DataStore::DataType::kInt, &DataStore::deserializeInt }
     };
 
     //------------------------------------------------------------------------------------------------
@@ -48,42 +50,15 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    DataStore::DataStore(DataStore&&) = default;
+    DataStore::DataStore(DataStore&& rhs) noexcept :
+      m_dataLookup(std::move(rhs.m_dataLookup))
+    {
+    }
 
     //------------------------------------------------------------------------------------------------
-    bool DataStore::hasData(const std::string& dataKey) const
+    bool DataStore::has(const std::string& dataKey) const
     {
       return m_dataLookup.find(dataKey) != m_dataLookup.end();
-    }
-
-    //------------------------------------------------------------------------------------------------
-    bool DataStore::getBool(const std::string& dataKey, bool defaultValue) const
-    {
-      return hasData(dataKey) ? m_dataLookup.at(dataKey).m_data.m_bool : defaultValue;
-    }
-
-    //------------------------------------------------------------------------------------------------
-    bool DataStore::setBool(const std::string& dataKey, bool value)
-    {
-      auto it = m_dataLookup.find(dataKey);
-
-      if (it == m_dataLookup.end())
-      {
-        Data data;
-        data.m_dataType = DataType::kBool;
-        data.m_data.m_bool = value;
-
-        m_dataLookup.insert(std::make_pair(dataKey, data));
-        return true;
-      }
-      else if ((*it).second.m_dataType == DataType::kBool)
-      {
-        (*it).second.m_data.m_bool = value;
-        return true;
-      }
-      
-      ASSERT_FAIL();
-      return false;
     }
 
     //------------------------------------------------------------------------------------------------
@@ -94,20 +69,16 @@ namespace MCF
         tinyxml2::XMLElement* element = dataElementRoot.GetDocument()->NewElement("Data");
         dataElementRoot.InsertEndChild(element);
 
+        DataType dataType = static_cast<DataType>(dataPair.second.index());
+
         element->SetAttribute(KEY_ATTRIBUTE_NAME, dataPair.first.c_str());
-        element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(dataPair.second.m_dataType));
+        element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(dataType));
         
-        if (m_serializeMap.find(dataPair.second.m_dataType) != m_serializeMap.end())
+        if (m_serializeMap.find(dataType) != m_serializeMap.end())
         {
-          m_serializeMap.at(dataPair.second.m_dataType)(*element, dataPair.second);
+          m_serializeMap.at(dataType)(*element, dataPair.second);
         }
       }
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void DataStore::serializeBool(tinyxml2::XMLElement& value, const Data& data)
-    {
-      value.SetAttribute(VALUE_ATTRIBUTE_NAME, data.m_data.m_bool);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -130,8 +101,11 @@ namespace MCF
           const tinyxml2::XMLAttribute* valueAttr = element->FindAttribute(VALUE_ATTRIBUTE_NAME);
           ASSERT(valueAttr != nullptr);
           
+          // Check key and value exists, the key is unique and the value deserializes properly
           Data data;
-          if (key != nullptr && valueAttr != nullptr && m_deserializeMap.at(dataType)(*valueAttr, data))
+          if (key != nullptr && valueAttr != nullptr && 
+              dataLookup.find(key) == dataLookup.end() &&
+              m_deserializeMap.at(dataType)(*valueAttr, data))
           {
             dataLookup.insert(std::make_pair(key, data));
           }
@@ -144,9 +118,24 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     bool DataStore::deserializeBool(const tinyxml2::XMLAttribute& value, Data& data)
     {
-      if (value.QueryBoolValue(&data.m_data.m_bool) == tinyxml2::XMLError::XML_SUCCESS)
+      bool t = false;
+      if (value.QueryBoolValue(&t) == tinyxml2::XMLError::XML_SUCCESS)
       {
-        data.m_dataType = DataType::kBool;
+        data.emplace<bool>(t);
+        return true;
+      }
+
+      ASSERT_FAIL();
+      return false;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    bool DataStore::deserializeInt(const tinyxml2::XMLAttribute& value, Data& data)
+    {
+      int i = 0;
+      if (value.QueryIntValue(&i) == tinyxml2::XMLError::XML_SUCCESS)
+      {
+        data.emplace<int>(i);
         return true;
       }
 

@@ -59,9 +59,9 @@ namespace MCF
             "DataStore",
             "loadOrCreate", sol::factories(&Internals::loadOrCreate),
             "save", &Internals::save,
-            "hasData", &DataStore::hasData,
-            "getBool", &DataStore::getBool,
-            "setBool", &DataStore::setBool);
+            "isBool", &DataStore::is<bool>,
+            "getBool", &DataStore::get<bool>,
+            "setBool", &DataStore::set<bool>);
         }
       }
     }
