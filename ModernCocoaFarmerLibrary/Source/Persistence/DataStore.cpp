@@ -48,7 +48,10 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    DataStore::DataStore(DataStore&&) = default;
+    DataStore::DataStore(DataStore&& rhs) noexcept :
+      m_dataLookup(std::move(rhs.m_dataLookup))
+    {
+    }
 
     //------------------------------------------------------------------------------------------------
     bool DataStore::hasData(const std::string& dataKey) const
@@ -59,31 +62,13 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     bool DataStore::getBool(const std::string& dataKey, bool defaultValue) const
     {
-      return hasData(dataKey) ? m_dataLookup.at(dataKey).m_data.m_bool : defaultValue;
+      return get<bool>(dataKey, defaultValue);
     }
 
     //------------------------------------------------------------------------------------------------
     bool DataStore::setBool(const std::string& dataKey, bool value)
     {
-      auto it = m_dataLookup.find(dataKey);
-
-      if (it == m_dataLookup.end())
-      {
-        Data data;
-        data.m_dataType = DataType::kBool;
-        data.m_data.m_bool = value;
-
-        m_dataLookup.insert(std::make_pair(dataKey, data));
-        return true;
-      }
-      else if ((*it).second.m_dataType == DataType::kBool)
-      {
-        (*it).second.m_data.m_bool = value;
-        return true;
-      }
-      
-      ASSERT_FAIL();
-      return false;
+      return set<bool>(dataKey, value);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -94,12 +79,14 @@ namespace MCF
         tinyxml2::XMLElement* element = dataElementRoot.GetDocument()->NewElement("Data");
         dataElementRoot.InsertEndChild(element);
 
+        DataType dataType = static_cast<DataType>(dataPair.second.index());
+
         element->SetAttribute(KEY_ATTRIBUTE_NAME, dataPair.first.c_str());
-        element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(dataPair.second.m_dataType));
+        element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(dataType));
         
-        if (m_serializeMap.find(dataPair.second.m_dataType) != m_serializeMap.end())
+        if (m_serializeMap.find(dataType) != m_serializeMap.end())
         {
-          m_serializeMap.at(dataPair.second.m_dataType)(*element, dataPair.second);
+          m_serializeMap.at(dataType)(*element, dataPair.second);
         }
       }
     }
@@ -107,7 +94,7 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     void DataStore::serializeBool(tinyxml2::XMLElement& value, const Data& data)
     {
-      value.SetAttribute(VALUE_ATTRIBUTE_NAME, data.m_data.m_bool);
+      value.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<bool>(data));
     }
 
     //------------------------------------------------------------------------------------------------
@@ -144,9 +131,10 @@ namespace MCF
     //------------------------------------------------------------------------------------------------
     bool DataStore::deserializeBool(const tinyxml2::XMLAttribute& value, Data& data)
     {
-      if (value.QueryBoolValue(&data.m_data.m_bool) == tinyxml2::XMLError::XML_SUCCESS)
+      bool t = false;
+      if (value.QueryBoolValue(&t) == tinyxml2::XMLError::XML_SUCCESS)
       {
-        data.m_dataType = DataType::kBool;
+        data = t;
         return true;
       }
 

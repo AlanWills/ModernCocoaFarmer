@@ -1,13 +1,17 @@
 #pragma once
 
-#include "tinyxml2.h"
-#include "MCFLibraryDllExport.h"
-
 #include <unordered_map>
 #include <string>
 #include <functional>
 #include <memory>
+#include <variant>
 
+
+namespace tinyxml2
+{
+  class XMLElement;
+  class XMLAttribute;
+}
 
 namespace CelesteEngine
 {
@@ -28,16 +32,7 @@ namespace MCF
         };
 
       private:
-        struct Data
-        {
-          DataType m_dataType = DataType::kNumDataTypes;
-
-          union
-          {
-            bool m_bool;
-          } m_data;
-        };
-
+        using Data = std::variant<bool>;
         using DataLookup = std::unordered_map<std::string, Data>;
         using SerializeFunction = std::function<void(tinyxml2::XMLElement& value, const Data& data)>;
         using SerializeMap = const std::unordered_map<DataType, SerializeFunction>;
@@ -47,7 +42,7 @@ namespace MCF
       public:
         DataStore();
         ~DataStore();
-        DataStore(DataStore&&);
+        DataStore(DataStore&&) noexcept;
         DataStore(const DataStore&) = delete;
         DataStore& operator=(const DataStore&) = delete;
 
@@ -71,10 +66,51 @@ namespace MCF
         static void serializeBool(tinyxml2::XMLElement& value, const Data& data);
         static bool deserializeBool(const tinyxml2::XMLAttribute& value, Data& data);
 
+        template <typename T>
+        bool hasData(const std::string& dataKey) const;
+
+        template <typename T>
+        T get(const std::string& dataKey, T defaultValue) const;
+
+        template <typename T>
+        bool set(const std::string& dataKey, T value);
+
         DataLookup m_dataLookup;
 
         static SerializeMap m_serializeMap;
         static DeserializeMap m_deserializeMap;
     };
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    bool DataStore::hasData(const std::string& dataKey) const
+    {
+      return hasData(dataKey) && std::holds_alternative<T>(m_dataLookup.at(dataKey));
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    T DataStore::get(const std::string& dataKey, T defaultValue) const
+    {
+      return hasData<T>(dataKey) ? std::get<T>(m_dataLookup.at(dataKey)) : defaultValue;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    bool DataStore::set(const std::string& dataKey, T value)
+    {
+      if (!hasData(dataKey))
+      {
+        m_dataLookup.insert(std::make_pair(dataKey, Data(value)));
+        return true;
+      }
+      else if (std::holds_alternative<T>(m_dataLookup.at(dataKey)))
+      {
+        m_dataLookup.at(dataKey) = value;
+        return true;
+      }
+
+      return false;
+    }
   }
 }
