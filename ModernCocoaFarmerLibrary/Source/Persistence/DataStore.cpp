@@ -13,12 +13,14 @@ namespace MCF
 
     DataStore::SerializeMap DataStore::m_serializeMap
     {
-      { DataStore::DataType::kBool, &DataStore::serializeBool }
+      { DataStore::DataType::kBool, &DataStore::serialize<bool> },
+      { DataStore::DataType::kInt, &DataStore::serialize<int> }
     };
 
     DataStore::DeserializeMap DataStore::m_deserializeMap
     {
-      { DataStore::DataType::kBool, &DataStore::deserializeBool }
+      { DataStore::DataType::kBool, &DataStore::deserializeBool },
+      { DataStore::DataType::kInt, &DataStore::deserializeInt }
     };
 
     //------------------------------------------------------------------------------------------------
@@ -54,21 +56,9 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    bool DataStore::hasData(const std::string& dataKey) const
+    bool DataStore::has(const std::string& dataKey) const
     {
       return m_dataLookup.find(dataKey) != m_dataLookup.end();
-    }
-
-    //------------------------------------------------------------------------------------------------
-    bool DataStore::getBool(const std::string& dataKey, bool defaultValue) const
-    {
-      return get<bool>(dataKey, defaultValue);
-    }
-
-    //------------------------------------------------------------------------------------------------
-    bool DataStore::setBool(const std::string& dataKey, bool value)
-    {
-      return set<bool>(dataKey, value);
     }
 
     //------------------------------------------------------------------------------------------------
@@ -92,12 +82,6 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void DataStore::serializeBool(tinyxml2::XMLElement& value, const Data& data)
-    {
-      value.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<bool>(data));
-    }
-
-    //------------------------------------------------------------------------------------------------
     DataStore DataStore::deserialize(const tinyxml2::XMLElement& dataElementRoot)
     {
       std::unordered_map<std::string, Data> dataLookup;
@@ -117,8 +101,11 @@ namespace MCF
           const tinyxml2::XMLAttribute* valueAttr = element->FindAttribute(VALUE_ATTRIBUTE_NAME);
           ASSERT(valueAttr != nullptr);
           
+          // Check key and value exists, the key is unique and the value deserializes properly
           Data data;
-          if (key != nullptr && valueAttr != nullptr && m_deserializeMap.at(dataType)(*valueAttr, data))
+          if (key != nullptr && valueAttr != nullptr && 
+              dataLookup.find(key) == dataLookup.end() &&
+              m_deserializeMap.at(dataType)(*valueAttr, data))
           {
             dataLookup.insert(std::make_pair(key, data));
           }
@@ -134,7 +121,21 @@ namespace MCF
       bool t = false;
       if (value.QueryBoolValue(&t) == tinyxml2::XMLError::XML_SUCCESS)
       {
-        data = t;
+        data.emplace<bool>(t);
+        return true;
+      }
+
+      ASSERT_FAIL();
+      return false;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    bool DataStore::deserializeInt(const tinyxml2::XMLAttribute& value, Data& data)
+    {
+      int i = 0;
+      if (value.QueryIntValue(&i) == tinyxml2::XMLError::XML_SUCCESS)
+      {
+        data.emplace<int>(i);
         return true;
       }
 

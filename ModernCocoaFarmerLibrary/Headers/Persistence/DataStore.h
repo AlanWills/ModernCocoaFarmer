@@ -1,17 +1,13 @@
 #pragma once
 
+#include "tinyxml2.h"
+
 #include <unordered_map>
 #include <string>
 #include <functional>
 #include <memory>
 #include <variant>
 
-
-namespace tinyxml2
-{
-  class XMLElement;
-  class XMLAttribute;
-}
 
 namespace CelesteEngine
 {
@@ -28,11 +24,12 @@ namespace MCF
         enum class DataType : unsigned int
         {
           kBool = 0,
-          kNumDataTypes = 1
+          kInt = 1,
+          kNumDataTypes = 2
         };
 
       private:
-        using Data = std::variant<bool>;
+        using Data = std::variant<bool, int>;
         using DataLookup = std::unordered_map<std::string, Data>;
         using SerializeFunction = std::function<void(tinyxml2::XMLElement& value, const Data& data)>;
         using SerializeMap = const std::unordered_map<DataType, SerializeFunction>;
@@ -48,10 +45,16 @@ namespace MCF
 
         size_t getSize() const { return m_dataLookup.size(); }
 
-        bool hasData(const std::string& dataKey) const;
+        bool has(const std::string& dataKey) const;
 
-        bool getBool(const std::string& dataKey, bool defaultValue = false) const;
-        bool setBool(const std::string& dataKey, bool value);
+        template <typename T>
+        bool is(const std::string& dataKey) const;
+
+        template <typename T>
+        T get(const std::string& dataKey, T defaultValue = T()) const;
+
+        template <typename T>
+        bool set(const std::string& dataKey, T value);
 
         void serialize(tinyxml2::XMLElement& dataElementRoot) const;
         static DataStore deserialize(const tinyxml2::XMLElement& dataElementRoot);
@@ -63,17 +66,14 @@ namespace MCF
       private:
         DataStore(const std::unordered_map<std::string, Data>& data);
 
-        static void serializeBool(tinyxml2::XMLElement& value, const Data& data);
+        template <typename T>
+        bool unsafe_is(const std::string& dataKey) const;
+
+        template <typename T>
+        static void serialize(tinyxml2::XMLElement& value, const Data& data);
+
         static bool deserializeBool(const tinyxml2::XMLAttribute& value, Data& data);
-
-        template <typename T>
-        bool hasData(const std::string& dataKey) const;
-
-        template <typename T>
-        T get(const std::string& dataKey, T defaultValue) const;
-
-        template <typename T>
-        bool set(const std::string& dataKey, T value);
+        static bool deserializeInt(const tinyxml2::XMLAttribute& value, Data& data);
 
         DataLookup m_dataLookup;
 
@@ -83,34 +83,48 @@ namespace MCF
 
     //------------------------------------------------------------------------------------------------
     template <typename T>
-    bool DataStore::hasData(const std::string& dataKey) const
+    bool DataStore::unsafe_is(const std::string& dataKey) const
     {
-      return hasData(dataKey) && std::holds_alternative<T>(m_dataLookup.at(dataKey));
+      return std::holds_alternative<T>(m_dataLookup.at(dataKey));
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    bool DataStore::is(const std::string& dataKey) const
+    {
+      return has(dataKey) && unsafe_is<T>(dataKey);
     }
 
     //------------------------------------------------------------------------------------------------
     template <typename T>
     T DataStore::get(const std::string& dataKey, T defaultValue) const
     {
-      return hasData<T>(dataKey) ? std::get<T>(m_dataLookup.at(dataKey)) : defaultValue;
+      return is<T>(dataKey) ? std::get<T>(m_dataLookup.at(dataKey)) : defaultValue;
     }
 
     //------------------------------------------------------------------------------------------------
     template <typename T>
     bool DataStore::set(const std::string& dataKey, T value)
     {
-      if (!hasData(dataKey))
+      if (!has(dataKey))
       {
         m_dataLookup.insert(std::make_pair(dataKey, Data(value)));
         return true;
       }
-      else if (std::holds_alternative<T>(m_dataLookup.at(dataKey)))
+      else if (unsafe_is<T>(dataKey))
       {
         m_dataLookup.at(dataKey) = value;
         return true;
       }
 
       return false;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    void DataStore::serialize(tinyxml2::XMLElement& value, const Data& data)
+    {
+      value.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<T>(data));
     }
   }
 }
