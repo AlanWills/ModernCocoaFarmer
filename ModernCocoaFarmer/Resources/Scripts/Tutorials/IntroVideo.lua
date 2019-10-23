@@ -1,15 +1,12 @@
 local tuts = require "Tutorials.Tutorials"
 
-local siv = {}
+local iv = {}
 
 ---------------------------------------------------------------------------------
-local function loadMainMenu()
-    local screenPath = path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "MainMenu.screen")
-    Screen.load(screenPath)
-end
+iv.INTRO_VIDEO_PATH = path.combine(Resources.getResourcesDirectory(), "Videos", "IntroMovie.mp4")
 
 ---------------------------------------------------------------------------------
-function siv.showIntroVideoIfNecessary()
+function iv.showIntroVideoIfNecessary(videoCompleteCallback)
     if not tuts.isIntroVideoShown() then
         tuts.setIntroVideoAsShown()
 
@@ -17,13 +14,12 @@ function siv.showIntroVideoIfNecessary()
 
         videoSettings["AutoExit"] = true
         videoSettings["Volume"] = Audio.getMasterVolume()
-        videoSettings["OnVideoComplete"] = loadMainMenu
+        videoSettings["OnVideoComplete"] = videoCompleteCallback
 
-        local videoPath = path.combine(Resources.getResourcesDirectory(), "Videos", "IntroMovie.mp4")
-        Video.play(videoPath, videoSettings)
+        Video.play(iv.INTRO_VIDEO_PATH, videoSettings)
     else
-        loadMainMenu()
+        videoCompleteCallback()
     end
 end
 
-return siv
+return iv

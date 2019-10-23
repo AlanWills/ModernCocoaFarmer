@@ -1,7 +1,7 @@
 local tuts = {}
 
 ---------------------------------------------------------------------------------
-tuts.DATA_STORE_PATH = "Data\\AppData\\TutorialDataStore.xml"
+tuts.DATA_STORE_PATH = path.combine("Data", "AppData", "TutorialDataStore.xml")
 tuts.INTRO_VIDEO_SHOWN_KEY = "IntroVideoShown"
 
 ---------------------------------------------------------------------------------

@@ -85,7 +85,7 @@
     <None Include="Resources\Data\Modifiers\Farm\FarmSafetyModifier.asset" />
     <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
-    <None Include="Resources\Scripts\Gameplay\ShowIntroVideo.lua" />
+    <None Include="Resources\Scripts\Screens\GameplayScreen.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
