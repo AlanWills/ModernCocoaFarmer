@@ -1,5 +1,5 @@
 #include "Stats/ModifierEnums.h"
-#include "Debug/Debug.h"
+#include "Debug/Assert.h"
 
 
 namespace CelesteEngine

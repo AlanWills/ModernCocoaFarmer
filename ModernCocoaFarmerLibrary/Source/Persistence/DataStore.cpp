@@ -1,5 +1,5 @@
 #include "Persistence/DataStore.h"
-#include "Debug/Debug.h"
+#include "Debug/Assert.h"
 #include "XML/ChildXMLElementWalker.h"
 
 

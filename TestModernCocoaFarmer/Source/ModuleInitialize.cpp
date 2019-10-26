@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Game/Game.h"
-#include "Debug/Debug.h"
+#include "Debug/Assert.h"
 #include "Debug/NullAsserter.h"
 #include "OpenGL/GL.h"
 #include "Lua/LuaState.h"

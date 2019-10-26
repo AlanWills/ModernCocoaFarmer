@@ -2,7 +2,7 @@
 #include "UtilityHeaders/ScriptCommandHeaders.h"
 #include "Persistence/DataStore.h"
 #include "Resources/ResourceUtils.h"
-#include "Debug/Debug.h"
+#include "Debug/Assert.h"
 
 
 namespace MCF

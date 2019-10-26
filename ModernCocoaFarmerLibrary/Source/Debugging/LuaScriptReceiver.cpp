@@ -1,6 +1,6 @@
 #include "Debugging/LuaScriptReceiver.h"
 #include "Lua/LuaState.h"
-#include "Debug/Debug.h"
+#include "Debug/Assert.h"
 
 
 namespace MCF
