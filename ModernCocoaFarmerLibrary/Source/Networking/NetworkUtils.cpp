@@ -26,7 +26,7 @@ namespace MCF
         easy.add<CURLOPT_VERBOSE>(true);
         easy.add<CURLOPT_HTTPHEADER>(headers);
         easy.add<CURLOPT_POSTFIELDS>(content.c_str());
-        easy.add<CURLOPT_POSTFIELDSIZE>(content.size());
+        easy.add<CURLOPT_POSTFIELDSIZE>(static_cast<long>(content.size()));
         easy.add<CURLOPT_PORT>(port);
         easy.add<CURLOPT_CONNECTTIMEOUT>(10);
         easy.add<CURLOPT_TIMEOUT>(10);

@@ -1,6 +1,5 @@
 #include "Game/MCFGame.h"
 #include "UtilityHeaders/PlatformHeaders.h"
-#include "Persistence/DataStore.h"
 
 // Disables console window
 #if WINDOWS && !defined(__CYGWIN__)
@@ -14,9 +13,6 @@ int main()
 {
   MCF::MCFGame* game = new MCF::MCFGame();
   game->run();
-
-  MCF::Persistence::DataStore dataStore;
-  dataStore.hasData("Test");
 
   return 0;
 }

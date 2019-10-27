@@ -1,6 +1,5 @@
 #pragma once
 
-#include "MCFLibraryDllExport.h"
 #include "Utils/ToString.h"
 
 #include <string>
@@ -28,9 +27,9 @@ namespace CelesteEngine
 {
   //------------------------------------------------------------------------------------------------
   template <>
-  MCFLibraryDllExport std::string to_string(MCF::Stats::ChangeType changeType);
+  std::string to_string(MCF::Stats::ChangeType changeType);
 
   //------------------------------------------------------------------------------------------------
   template <>
-  MCFLibraryDllExport std::string to_string(MCF::Stats::Occurrence occurrence);
+  std::string to_string(MCF::Stats::Occurrence occurrence);
 }

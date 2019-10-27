@@ -179,9 +179,6 @@
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Headers\stdafx.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

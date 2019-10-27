@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Objects/ScriptableObject.h"
-#include "MCFLibraryDllExport.h"
 #include "Stats/ChildModifier.h"
 
 
@@ -14,7 +13,7 @@ namespace MCF
 
   namespace Buildings
   {
-    class MCFLibraryDllExport BuildingInformation : public CelesteEngine::ScriptableObject
+    class BuildingInformation : public CelesteEngine::ScriptableObject
     {
       DECLARE_SCRIPTABLE_OBJECT(BuildingInformation)
 

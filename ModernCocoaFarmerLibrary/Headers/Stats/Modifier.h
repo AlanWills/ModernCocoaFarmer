@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Objects/ScriptableObject.h"
-#include "MCFLibraryDllExport.h"
 #include "ModifierEnums.h"
 #include "Bindings/Stats/ModifierEnumsDataBindingGenerators.h"
 #include "Deserialization/Stats/ModifierEnumsDeserializers.h"
@@ -11,7 +10,7 @@ namespace MCF
 {
   namespace Stats
   {
-    class MCFLibraryDllExport Modifier : public CelesteEngine::ScriptableObject
+    class Modifier : public CelesteEngine::ScriptableObject
     {
       DECLARE_SCRIPTABLE_OBJECT(Modifier);
 
@@ -21,10 +20,10 @@ namespace MCF
         Occurrence getOccurrence() const { return m_occurrence.getValue(); }
         int getPeriodInMonths() const { return m_periodInMonths.getValue(); }
 
-        static const std::string AMOUNT_FIELD_NAME;
-        static const std::string CHANGE_TYPE_FIELD_NAME;
-        static const std::string OCCURRENCE_FIELD_NAME;
-        static const std::string PERIOD_IN_MONTHS_FIELD_NAME;
+        static const char* const AMOUNT_FIELD_NAME;
+        static const char* const CHANGE_TYPE_FIELD_NAME;
+        static const char* const OCCURRENCE_FIELD_NAME;
+        static const char* const PERIOD_IN_MONTHS_FIELD_NAME;
 
       private:
         CelesteEngine::ValueField<int>& m_amount;

@@ -33,7 +33,6 @@
     <ClInclude Include="Headers\Stats\ModifierEnums.h" />
     <ClInclude Include="Headers\Stats\Modifier.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.h" />
-    <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Debugging\LuaScriptReceiver.h" />
     <ClInclude Include="Headers\Debugging\SceneBroadcaster.h" />
     <ClInclude Include="Headers\Game\MCFGame.h" />
@@ -143,7 +142,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>BUILDING_MCF_LIBRARY_DLL;CURL_STATICLIB;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CURL_STATICLIB;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2;$(ProjectDir)..\CelesteEngine\3rdParty\Include\ffmpeg</AdditionalIncludeDirectories>

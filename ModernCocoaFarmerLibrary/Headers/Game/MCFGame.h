@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Game.h"
-#include "MCFLibraryDllExport.h"
 #include "Networking/RAII/AutoWSACleanup.h"
 
 #include <memory>
@@ -15,7 +14,7 @@ namespace MCF
     class LuaScriptReceiver;
   }
 
-  class MCFLibraryDllExport MCFGame : public CelesteEngine::Game 
+  class MCFGame : public CelesteEngine::Game 
   {
     public:
       MCFGame();
