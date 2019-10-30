@@ -84,6 +84,9 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\MCFLibraryDllExport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
