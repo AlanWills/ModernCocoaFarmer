@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="TopBarBackground" position="0.5%,0.95%,0">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,0.1%" colour="0.5,0.5,0.5,0.5"/>
+        </Components>
+        <GameObjects>
+          <Prefab path="Prefabs\Gameplay\Family\FamilyPanel.prefab"/>
+        </GameObjects>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>

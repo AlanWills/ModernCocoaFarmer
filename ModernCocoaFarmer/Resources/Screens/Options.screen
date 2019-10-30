@@ -125,7 +125,7 @@
                     <MouseInteractionHandler/>
                     <Button font_height="20">
                       <LeftClickCallbacks>
-                        <Callback name="TransitionToScreen" arg="Data\Screens\MainMenu.screen"/>
+                        <Callback name="TransitionToScreen" arg="Screens\MainMenu.screen"/>
                       </LeftClickCallbacks>
                     </Button>
                   </Components>

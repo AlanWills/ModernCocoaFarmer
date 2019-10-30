@@ -55,7 +55,7 @@
                 <MouseInteractionHandler/>
                 <Button>
                   <LeftClickCallbacks>
-                    <Callback name="TransitionToScreen" arg="Data\Screens\Options.screen"/>
+                    <Callback name="TransitionToScreen" arg="Screens\Options.screen"/>
                   </LeftClickCallbacks>
                 </Button>
               </Components>

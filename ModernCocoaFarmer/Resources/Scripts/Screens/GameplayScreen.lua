@@ -4,7 +4,7 @@ local ibd = require 'UI.InteractableBuildingDialog'
 local gps = {}
 
 ---------------------------------------------------------------------------------
-gps.GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Data", "Screens", "Gameplay.screen")
+gps.GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen")
 
 ---------------------------------------------------------------------------------
 function gps.show()

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <Prefab>
+    <GameObjects>
+      <GameObject name="FamilyPanelStackPanel" position="0.1%,0.95%,0">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.5%,0.1%,0" colour="1,1,1,0"/>
+          <StackPanel orientation="horizontal" horizontal_alignment="left"/>
+        </Components>
+        <GameObjects>
+          <Prefab path="Prefabs\Gameplay\Family\ChildIcon.prefab"/>
+          <Prefab path="Prefabs\Gameplay\Family\ChildIcon.prefab"/>
+        </GameObjects>
+      </GameObject>
+    </GameObjects>
+  </Prefab>
+</Root>
