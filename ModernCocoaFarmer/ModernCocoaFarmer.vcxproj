@@ -248,6 +248,7 @@
     <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
+    <None Include="Resources\Scripts\Family\FamilyManager.lua" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
     <None Include="Resources\Scripts\Screens\GameplayScreen.lua" />

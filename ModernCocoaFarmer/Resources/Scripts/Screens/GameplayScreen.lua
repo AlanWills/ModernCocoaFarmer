@@ -1,5 +1,6 @@
 local ibm = require "UI.InteractableBuildingsManager"
-local ibd = require 'UI.InteractableBuildingDialog'
+local ibd = require "UI.InteractableBuildingDialog"
+local fam = require "Family.FamilyManager"
 
 local gps = {}
 
@@ -12,6 +13,9 @@ function gps.show()
 
     -- Set up Interactable Buildings manager to set up callbacks
     ibm.initialize(gameplayScreen)
+
+    -- Set up Family
+    fam.initialize(gameplayScreen)
 
     -- Load interactable building dialog into resource manager so that it is cached and quicker to create at runtime
     ibd.load()

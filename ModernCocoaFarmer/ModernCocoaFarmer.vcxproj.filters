@@ -89,6 +89,7 @@
     <None Include="Resources\Screens\MainMenu.screen" />
     <None Include="Resources\Screens\Options.screen" />
     <None Include="Resources\Screens\Splash.screen" />
+    <None Include="Resources\Scripts\Family\FamilyManager.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

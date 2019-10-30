@@ -43,7 +43,7 @@
           </GameObjects>
         </GameObject>
         <!--UI-->
-        <Prefab path="Prefabs\UI\TopBar.prefab"/>
+        <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
       </GameObjects>
     </GameObject>
   </GameObjects>
