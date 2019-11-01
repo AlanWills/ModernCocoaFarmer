@@ -2,6 +2,7 @@
 
 #include "tinyxml2.h"
 #include "Debug/Assert.h"
+#include "XML/tinyxml2_ext.h"
 
 #include <unordered_map>
 #include <string>
@@ -22,26 +23,24 @@ namespace MCF
   {
     class DataStore
     {
-      public:
-        enum class DataType : unsigned int
-        {
-          kBool = 0,
-          kInt = 1,
-          kNumDataTypes = 2
-        };
-
       private:
         using Data = std::variant<bool, int>;
         using DataLookup = std::unordered_map<std::string, Data>;
         using SerializeFunction = void (*)(tinyxml2::XMLElement& value, const Data& data);
-        using DeserializeFunction = std::function<bool(const tinyxml2::XMLAttribute& value, Data& data)>;
-        using DeserializeMap = const std::unordered_map<DataType, DeserializeFunction>;
+        using DeserializeFunction = bool (*)(const tinyxml2::XMLAttribute& value, Data& data);
 
-        struct SerializeMap
+        struct SerializeFunctions
         {
           constexpr size_t size() const { return std::variant_size<Data>(); }
 
           SerializeFunction m_functions[std::variant_size<Data>()];
+        };
+
+        struct DeserializeFunctions
+        {
+          constexpr size_t size() const { return std::variant_size<Data>(); }
+
+          DeserializeFunction m_functions[std::variant_size<Data>()];
         };
 
       public:
@@ -74,35 +73,48 @@ namespace MCF
       private:
         DataStore(const std::unordered_map<std::string, Data>& data);
 
-        static constexpr SerializeMap createSerializeMap();
+        static constexpr SerializeFunctions createSerializeFunctions();
+        static constexpr DeserializeFunctions createDeserializeFunctions();
 
         template <size_t index>
-        static constexpr void setSerializeFunction(SerializeMap& serializeMap)
-        {
-          serializeMap.m_functions[index] = &DataStore::serialize<typename std::variant_alternative<index, Data>::type>;
-          setSerializeFunction<index - 1>(serializeMap);
-        }
+        static constexpr void setSerializeFunction(SerializeFunctions& serializeFunctions);
+
+        template <size_t index>
+        static constexpr void setDeserializeFunction(DeserializeFunctions& deserializeFunctions);
 
         template <>
-        static void setSerializeFunction<0>(SerializeMap& serializeMap)
-        {
-          serializeMap.m_functions[0] = &DataStore::serialize<typename std::variant_alternative<0, Data>::type>;
-        }
+        static void setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions);
 
         template <typename T>
         bool unsafe_is(const std::string& dataKey) const;
 
         template <typename T>
-        static void serialize(tinyxml2::XMLElement& value, const Data& data);
+        static void serialize(tinyxml2::XMLElement& element, const Data& data);
 
-        static bool deserializeBool(const tinyxml2::XMLAttribute& value, Data& data);
-        static bool deserializeInt(const tinyxml2::XMLAttribute& value, Data& data);
+        template <typename T>
+        static bool deserialize(const tinyxml2::XMLAttribute& attribute, Data& data);
 
         DataLookup m_dataLookup;
 
-        static SerializeMap m_serializeMap;
-        static DeserializeMap m_deserializeMap;
+        static SerializeFunctions m_serializeFunctions;
+        static DeserializeFunctions m_deserializeFunctions;
     };
+
+    //------------------------------------------------------------------------------------------------
+    template <size_t index>
+    static constexpr void DataStore::setSerializeFunction(SerializeFunctions& serializeFunctions)
+    {
+      serializeFunctions.m_functions[index] = &DataStore::serialize<typename std::variant_alternative<index, Data>::type>;
+      setSerializeFunction<index - 1>(serializeFunctions);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <size_t index>
+    static constexpr void DataStore::setDeserializeFunction(DeserializeFunctions& deserializeFunctions)
+    {
+      deserializeFunctions.m_functions[index] = &DataStore::deserialize<typename std::variant_alternative<index, Data>::type>;
+      setDeserializeFunction<index - 1>(deserializeFunctions);
+    }
 
     //------------------------------------------------------------------------------------------------
     template <typename T>
@@ -145,9 +157,24 @@ namespace MCF
 
     //------------------------------------------------------------------------------------------------
     template <typename T>
-    void DataStore::serialize(tinyxml2::XMLElement& value, const Data& data)
+    void DataStore::serialize(tinyxml2::XMLElement& element, const Data& data)
     {
-      value.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<T>(data));
+      element.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<T>(data));
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    bool DataStore::deserialize(const tinyxml2::XMLAttribute& attribute, Data& data)
+    {
+      T t;
+      if (CelesteEngine::XML::getAttributeData(&attribute, t) == CelesteEngine::XML::XMLValueError::kSuccess)
+      {
+        data.emplace<T>(t);
+        return true;
+      }
+
+      ASSERT_FAIL();
+      return false;
     }
   }
 }

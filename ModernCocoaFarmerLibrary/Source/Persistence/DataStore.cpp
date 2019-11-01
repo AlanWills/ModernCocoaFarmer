@@ -11,13 +11,8 @@ namespace MCF
     const char* const DataStore::KEY_ATTRIBUTE_NAME = "key";
     const char* const DataStore::VALUE_ATTRIBUTE_NAME = "value";
 
-    DataStore::SerializeMap DataStore::m_serializeMap = DataStore::createSerializeMap();
-
-    DataStore::DeserializeMap DataStore::m_deserializeMap
-    {
-      { DataStore::DataType::kBool, &DataStore::deserializeBool },
-      { DataStore::DataType::kInt, &DataStore::deserializeInt }
-    };
+    DataStore::SerializeFunctions DataStore::m_serializeFunctions = DataStore::createSerializeFunctions();
+    DataStore::DeserializeFunctions DataStore::m_deserializeFunctions = DataStore::createDeserializeFunctions();
 
     //------------------------------------------------------------------------------------------------
     DataStore::DataStore() :
@@ -38,12 +33,35 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    constexpr DataStore::SerializeMap DataStore::createSerializeMap()
+    constexpr DataStore::SerializeFunctions DataStore::createSerializeFunctions()
     {
-      DataStore::SerializeMap serializeMap = DataStore::SerializeMap();
-      setSerializeFunction<serializeMap.size() - 1>(serializeMap);
+      DataStore::SerializeFunctions serializeFunctions = DataStore::SerializeFunctions();
+      setSerializeFunction<serializeFunctions.size() - 1>(serializeFunctions);
 
-      return serializeMap;
+      return serializeFunctions;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    constexpr DataStore::DeserializeFunctions DataStore::createDeserializeFunctions()
+    {
+      DataStore::DeserializeFunctions deserializeFunctions = DataStore::DeserializeFunctions();
+      setDeserializeFunction<deserializeFunctions.size() - 1>(deserializeFunctions);
+
+      return deserializeFunctions;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <>
+    static void DataStore::setSerializeFunction<0>(SerializeFunctions& serializeFunctions)
+    {
+      serializeFunctions.m_functions[0] = &DataStore::serialize<typename std::variant_alternative<0, Data>::type>;
+    }
+
+    //------------------------------------------------------------------------------------------------
+    template <>
+    static void DataStore::setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions)
+    {
+      deserializeFunctions.m_functions[0] = &DataStore::deserialize<typename std::variant_alternative<0, Data>::type>;
     }
 
     //------------------------------------------------------------------------------------------------
@@ -67,7 +85,7 @@ namespace MCF
         
         if (typeIndex < std::variant_size<DataStore::Data>())
         {
-          m_serializeMap.m_functions[typeIndex](*element, dataPair.second);
+          m_serializeFunctions.m_functions[typeIndex](*element, dataPair.second);
         }
       }
     }
@@ -79,9 +97,8 @@ namespace MCF
 
       for (const auto& element : CelesteEngine::XML::children(&dataElementRoot))
       {
-        unsigned int defaultDataType = static_cast<unsigned int>(DataType::kNumDataTypes);
-        DataType dataType = static_cast<DataType>(element->UnsignedAttribute(DATA_TYPE_ATTRIBUTE_NAME, defaultDataType));
-        bool deserializeFuncExists = m_deserializeMap.find(dataType) != m_deserializeMap.end();
+        size_t dataType = static_cast<size_t>(element->UnsignedAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(m_deserializeFunctions.size())));
+        bool deserializeFuncExists = dataType < m_deserializeFunctions.size();
 
         ASSERT(deserializeFuncExists);
         if (deserializeFuncExists)
@@ -96,7 +113,7 @@ namespace MCF
           Data data;
           if (key != nullptr && valueAttr != nullptr && 
               dataLookup.find(key) == dataLookup.end() &&
-              m_deserializeMap.at(dataType)(*valueAttr, data))
+              m_deserializeFunctions.m_functions[dataType](*valueAttr, data))
           {
             dataLookup.insert(std::make_pair(key, data));
           }
@@ -104,34 +121,6 @@ namespace MCF
       }
       
       return DataStore(dataLookup);
-    }
-    
-    //------------------------------------------------------------------------------------------------
-    bool DataStore::deserializeBool(const tinyxml2::XMLAttribute& value, Data& data)
-    {
-      bool t = false;
-      if (value.QueryBoolValue(&t) == tinyxml2::XMLError::XML_SUCCESS)
-      {
-        data.emplace<bool>(t);
-        return true;
-      }
-
-      ASSERT_FAIL();
-      return false;
-    }
-
-    //------------------------------------------------------------------------------------------------
-    bool DataStore::deserializeInt(const tinyxml2::XMLAttribute& value, Data& data)
-    {
-      int i = 0;
-      if (value.QueryIntValue(&i) == tinyxml2::XMLError::XML_SUCCESS)
-      {
-        data.emplace<int>(i);
-        return true;
-      }
-
-      ASSERT_FAIL();
-      return false;
     }
   }
 }
