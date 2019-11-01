@@ -11,11 +11,7 @@ namespace MCF
     const char* const DataStore::KEY_ATTRIBUTE_NAME = "key";
     const char* const DataStore::VALUE_ATTRIBUTE_NAME = "value";
 
-    DataStore::SerializeMap DataStore::m_serializeMap
-    {
-      { DataStore::DataType::kBool, &DataStore::serialize<bool> },
-      { DataStore::DataType::kInt, &DataStore::serialize<int> }
-    };
+    DataStore::SerializeMap DataStore::m_serializeMap = DataStore::createSerializeMap();
 
     DataStore::DeserializeMap DataStore::m_deserializeMap
     {
@@ -33,26 +29,21 @@ namespace MCF
     DataStore::DataStore(const std::unordered_map<std::string, Data>& data) :
       m_dataLookup(data)
     {
-      ASSERT(m_serializeMap.size() == static_cast<size_t>(DataType::kNumDataTypes));
-      ASSERT(m_deserializeMap.size() == static_cast<size_t>(DataType::kNumDataTypes));
-    }
-
-    //------------------------------------------------------------------------------------------------
-    DataStore::~DataStore()
-    {
-      /*for (const auto& dataPair : m_dataLookup)
-      {
-        if (dataPair.second.m_dataType == DataType::kString)
-        {
-          delete dataPair.second.m_data.m_string;
-        }
-      }*/
     }
 
     //------------------------------------------------------------------------------------------------
     DataStore::DataStore(DataStore&& rhs) noexcept :
       m_dataLookup(std::move(rhs.m_dataLookup))
     {
+    }
+
+    //------------------------------------------------------------------------------------------------
+    constexpr DataStore::SerializeMap DataStore::createSerializeMap()
+    {
+      DataStore::SerializeMap serializeMap = DataStore::SerializeMap();
+      setSerializeFunction<serializeMap.size() - 1>(serializeMap);
+
+      return serializeMap;
     }
 
     //------------------------------------------------------------------------------------------------
@@ -69,14 +60,14 @@ namespace MCF
         tinyxml2::XMLElement* element = dataElementRoot.GetDocument()->NewElement("Data");
         dataElementRoot.InsertEndChild(element);
 
-        DataType dataType = static_cast<DataType>(dataPair.second.index());
+        size_t typeIndex = dataPair.second.index();
 
         element->SetAttribute(KEY_ATTRIBUTE_NAME, dataPair.first.c_str());
-        element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(dataType));
+        element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(typeIndex));
         
-        if (m_serializeMap.find(dataType) != m_serializeMap.end())
+        if (typeIndex < std::variant_size<DataStore::Data>())
         {
-          m_serializeMap.at(dataType)(*element, dataPair.second);
+          m_serializeMap.m_functions[typeIndex](*element, dataPair.second);
         }
       }
     }

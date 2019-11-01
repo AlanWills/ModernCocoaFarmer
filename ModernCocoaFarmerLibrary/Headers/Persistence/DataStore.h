@@ -1,12 +1,14 @@
 #pragma once
 
 #include "tinyxml2.h"
+#include "Debug/Assert.h"
 
 #include <unordered_map>
 #include <string>
 #include <functional>
 #include <memory>
 #include <variant>
+#include <array>
 
 
 namespace CelesteEngine
@@ -31,14 +33,20 @@ namespace MCF
       private:
         using Data = std::variant<bool, int>;
         using DataLookup = std::unordered_map<std::string, Data>;
-        using SerializeFunction = std::function<void(tinyxml2::XMLElement& value, const Data& data)>;
-        using SerializeMap = const std::unordered_map<DataType, SerializeFunction>;
+        using SerializeFunction = void (*)(tinyxml2::XMLElement& value, const Data& data);
         using DeserializeFunction = std::function<bool(const tinyxml2::XMLAttribute& value, Data& data)>;
         using DeserializeMap = const std::unordered_map<DataType, DeserializeFunction>;
 
+        struct SerializeMap
+        {
+          constexpr size_t size() const { return std::variant_size<Data>(); }
+
+          SerializeFunction m_functions[std::variant_size<Data>()];
+        };
+
       public:
         DataStore();
-        ~DataStore();
+        ~DataStore() = default;
         DataStore(DataStore&&) noexcept;
         DataStore(const DataStore&) = delete;
         DataStore& operator=(const DataStore&) = delete;
@@ -65,6 +73,21 @@ namespace MCF
 
       private:
         DataStore(const std::unordered_map<std::string, Data>& data);
+
+        static constexpr SerializeMap createSerializeMap();
+
+        template <size_t index>
+        static constexpr void setSerializeFunction(SerializeMap& serializeMap)
+        {
+          serializeMap.m_functions[index] = &DataStore::serialize<typename std::variant_alternative<index, Data>::type>;
+          setSerializeFunction<index - 1>(serializeMap);
+        }
+
+        template <>
+        static void setSerializeFunction<0>(SerializeMap& serializeMap)
+        {
+          serializeMap.m_functions[0] = &DataStore::serialize<typename std::variant_alternative<0, Data>::type>;
+        }
 
         template <typename T>
         bool unsafe_is(const std::string& dataKey) const;
