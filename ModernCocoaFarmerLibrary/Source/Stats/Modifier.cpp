@@ -9,10 +9,10 @@ namespace MCF
     REGISTER_SCRIPTABLE_OBJECT(Modifier);
 
     //------------------------------------------------------------------------------------------------
-    const std::string Modifier::AMOUNT_FIELD_NAME = "amount";
-    const std::string Modifier::CHANGE_TYPE_FIELD_NAME = "change_type";
-    const std::string Modifier::OCCURRENCE_FIELD_NAME = "occurrence";
-    const std::string Modifier::PERIOD_IN_MONTHS_FIELD_NAME = "period_in_months";
+    const char* const Modifier::AMOUNT_FIELD_NAME = "amount";
+    const char* const Modifier::CHANGE_TYPE_FIELD_NAME = "change_type";
+    const char* const Modifier::OCCURRENCE_FIELD_NAME = "occurrence";
+    const char* const Modifier::PERIOD_IN_MONTHS_FIELD_NAME = "period_in_months";
 
     //------------------------------------------------------------------------------------------------
     Modifier::Modifier() :

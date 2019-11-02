@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="FamilyPanelStackPanel" position="-0.15%,0,1">
+      <Components>
+        <StackPanel orientation="horizontal" horizontal_alignment="left"/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Prefab>

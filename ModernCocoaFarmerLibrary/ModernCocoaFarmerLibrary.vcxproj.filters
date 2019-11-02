@@ -42,9 +42,6 @@
     <ClInclude Include="Headers\Networking\SocketServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\MCFLibraryDllExport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Buildings\BuildingInformation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -85,6 +82,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\MCFLibraryDllExport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

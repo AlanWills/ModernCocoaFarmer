@@ -1,7 +1,7 @@
-#include "stdafx.h"
-
+#include "UtilityHeaders/UnitTestHeaders.h"
 #include "Persistence/DataStore.h"
 
+using namespace tinyxml2;
 using namespace MCF::Persistence;
 
 

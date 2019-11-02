@@ -28,12 +28,12 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ModifierScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\StatsScriptCommands.h" />
+    <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Persistence\DataStore.h" />
     <ClInclude Include="Headers\Stats\ChildModifier.h" />
     <ClInclude Include="Headers\Stats\ModifierEnums.h" />
     <ClInclude Include="Headers\Stats\Modifier.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.h" />
-    <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Debugging\LuaScriptReceiver.h" />
     <ClInclude Include="Headers\Debugging\SceneBroadcaster.h" />
     <ClInclude Include="Headers\Game\MCFGame.h" />
@@ -69,6 +69,11 @@
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CelesteEngine\CelesteEngine\CelesteEngine.vcxproj">
+      <Project>{e9980a8d-828e-44f0-978e-a57abc348f47}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{D3BB94CF-318B-4B33-8618-F5D3824015B8}</ProjectGuid>
@@ -91,7 +96,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -127,6 +132,7 @@
     <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform)\$(Configuration);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>

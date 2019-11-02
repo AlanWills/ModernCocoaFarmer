@@ -15,11 +15,11 @@ namespace MCF
     class LuaScriptReceiver;
   }
 
-  class MCFLibraryDllExport MCFGame : public CelesteEngine::Game 
+  class MCFGame : public CelesteEngine::Game 
   {
     public:
-      MCFGame();
-      ~MCFGame();
+      MCFLibraryDllExport MCFGame();
+      MCFLibraryDllExport ~MCFGame();
       MCFGame(const MCFGame&) = delete;
 
       MCFGame& operator=(const MCFGame&) = delete;

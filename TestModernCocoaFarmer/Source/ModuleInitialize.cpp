@@ -1,11 +1,10 @@
-#include "stdafx.h"
-
 #include "Game/Game.h"
 #include "Debug/Assert.h"
-#include "Debug/NullAsserter.h"
+#include "Debug/Asserting/NullAsserter.h"
 #include "OpenGL/GL.h"
 #include "Lua/LuaState.h"
 #include "Resources/TestResources.h"
+#include "UtilityHeaders/UnitTestHeaders.h"
 
 
 namespace TestCelesteEngine
@@ -14,7 +13,7 @@ namespace TestCelesteEngine
   TEST_MODULE_INITIALIZE(TestCelesteEnginePlus_Initialize)
   {
     // Issues with unique_ptrs over dll boundaries so have to do this in the test project
-    Debug::setAsserter(new NullAsserter());
+    Assertion::setAsserter(new NullAsserter());
 
     CelesteEngineTestUtils::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
     CelesteEngineTestUtils::TestResources::initialize();
