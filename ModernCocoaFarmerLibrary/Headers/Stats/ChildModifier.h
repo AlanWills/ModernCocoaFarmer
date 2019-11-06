@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "Stats/Modifier.h"
 
 
@@ -9,7 +10,7 @@ namespace MCF
   {
     class ChildModifier : public Modifier
     {
-      DECLARE_SCRIPTABLE_OBJECT(ChildModifier);
+      DECLARE_SCRIPTABLE_OBJECT(ChildModifier, MCFLibraryDllExport);
 
       public:
         bool getAppliesToAllChildren() const { return m_appliesToAllChildren.getValue(); }

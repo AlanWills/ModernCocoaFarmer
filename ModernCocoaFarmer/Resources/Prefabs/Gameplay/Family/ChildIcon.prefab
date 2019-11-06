@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="ChildIconBackground">
+    <GameObject name="ChildImage" position="0,0,0">
+      <Components>
+        <SpriteRenderer sprite="Textures\Worker\Idle\Idle.png" size="0.05%,0.08%,0" preserve_aspect_ratio="true"/>
+      </Components>
       <GameObjects>
-        <GameObject name="ChildImage" position="0,0,0">
-          <Components>
-            <SpriteRenderer sprite="Textures\Worker\Idle\Idle.png" size="0.05%,0.08%,0" preserve_aspect_ratio="true"/>
-          </Components>
-        </GameObject>
-        <GameObject name="ChildName" position="0,-0.45%,0">
+        <GameObject name="ChildName" position="0,-0.045%,0">
           <Components>
             <TextRenderer text="Name"/>
           </Components>

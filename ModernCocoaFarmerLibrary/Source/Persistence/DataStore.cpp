@@ -52,14 +52,14 @@ namespace MCF
 
     //------------------------------------------------------------------------------------------------
     template <>
-    static void DataStore::setSerializeFunction<0>(SerializeFunctions& serializeFunctions)
+    constexpr void DataStore::setSerializeFunction<0>(SerializeFunctions& serializeFunctions)
     {
       serializeFunctions.m_functions[0] = &DataStore::serialize<typename std::variant_alternative<0, Data>::type>;
     }
 
     //------------------------------------------------------------------------------------------------
     template <>
-    static void DataStore::setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions)
+    constexpr void DataStore::setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions)
     {
       deserializeFunctions.m_functions[0] = &DataStore::deserialize<typename std::variant_alternative<0, Data>::type>;
     }

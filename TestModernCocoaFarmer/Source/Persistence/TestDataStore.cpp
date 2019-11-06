@@ -377,7 +377,7 @@ namespace TestMCF
     XMLElement* valueElement = element->FirstChildElement();
 
     Assert::IsNotNull(valueElement);
-    Assert::AreEqual(static_cast<int>(DataStore::DataType::kBool), valueElement->IntAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME));
+    Assert::AreEqual(0, valueElement->IntAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME));
   }
 
   //------------------------------------------------------------------------------------------------
@@ -453,7 +453,7 @@ namespace TestMCF
     XMLElement* valueElement = element->FirstChildElement();
 
     Assert::IsNotNull(valueElement);
-    Assert::AreEqual(static_cast<int>(DataStore::DataType::kInt), valueElement->IntAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME));
+    Assert::AreEqual(1, valueElement->IntAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME));
   }
 
   //------------------------------------------------------------------------------------------------
@@ -517,12 +517,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* int2 = document.NewElement("Int2");
-    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt2");
     int2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, 5);
 
@@ -547,12 +547,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* bool2 = document.NewElement("Bool2");
-    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool2");
     bool2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, false);
     
@@ -575,7 +575,7 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
@@ -598,12 +598,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* bool2 = document.NewElement("Bool2");
-    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, false);
 
     element->InsertFirstChild(bool1);
@@ -621,12 +621,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* bool2 = document.NewElement("Bool2");
-    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool2");
 
     element->InsertFirstChild(bool1);
@@ -644,12 +644,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* bool2 = document.NewElement("Bool2");
-    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kNumDataTypes));
+    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 100);
     bool2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool2");
     bool2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, false);
 
@@ -668,12 +668,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* bool2 = document.NewElement("Bool2");
-    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, false);
 
@@ -693,12 +693,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* bool1 = document.NewElement("Bool1");
-    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool1");
     bool1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, true);
 
     XMLElement* bool2 = document.NewElement("Bool2");
-    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kBool));
+    bool2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 0);
     bool2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestBool2");
     bool2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, "WubbaLubbaDubDub");
 
@@ -721,12 +721,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
     XMLElement* int2 = document.NewElement("Int2");
-    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt2");
     int2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, 5);
 
@@ -749,7 +749,7 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
@@ -772,12 +772,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
     XMLElement* int2 = document.NewElement("Int2");
-    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, 5);
 
     element->InsertFirstChild(int1);
@@ -795,12 +795,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
     XMLElement* int2 = document.NewElement("Int2");
-    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt2");
 
     element->InsertFirstChild(int1);
@@ -818,7 +818,7 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
@@ -842,12 +842,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
     XMLElement* int2 = document.NewElement("Int2");
-    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, 10);
 
@@ -867,12 +867,12 @@ namespace TestMCF
     XMLDocument document;
     XMLElement* element = document.NewElement("Test");
     XMLElement* int1 = document.NewElement("Int1");
-    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int1->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int1->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt1");
     int1->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, -10);
 
     XMLElement* int2 = document.NewElement("Int2");
-    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, static_cast<int>(DataStore::DataType::kInt));
+    int2->SetAttribute(DataStore::DATA_TYPE_ATTRIBUTE_NAME, 1);
     int2->SetAttribute(DataStore::KEY_ATTRIBUTE_NAME, "TestInt2");
     int2->SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, "WubbaLubbaDubDub");
 

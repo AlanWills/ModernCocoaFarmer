@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
 #include "ModifierEnums.h"
 #include "Bindings/Stats/ModifierEnumsDataBindingGenerators.h"
@@ -12,7 +13,7 @@ namespace MCF
   {
     class Modifier : public CelesteEngine::ScriptableObject
     {
-      DECLARE_SCRIPTABLE_OBJECT(Modifier);
+      DECLARE_SCRIPTABLE_OBJECT(Modifier, MCFLibraryDllExport);
 
       public:
         int getAmount() const { return m_amount.getValue(); }

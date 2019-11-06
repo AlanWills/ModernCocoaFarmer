@@ -14,10 +14,9 @@ function family.initialize(screen)
     local childInstance = childPrefab:instantiate(screen);
     childInstance:setParent(familyPanel);
     familyPanelStackPanel:addChild(childInstance);
+
+    local childName = childInstance:findChildGameObject(family.CHILD_NAME_NAME)
+    childName:findComponent("TextRenderer"):setText("Child Name")
 end
 
 return family
-
--- Make stack panel script commands
--- Don't forget 'addChild'
--- Unit Test GameObjectScriptCommands setParent

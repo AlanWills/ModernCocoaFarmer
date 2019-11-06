@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "tinyxml2.h"
 #include "Debug/Assert.h"
 #include "XML/tinyxml2_ext.h"
@@ -44,15 +45,15 @@ namespace MCF
         };
 
       public:
-        DataStore();
-        ~DataStore() = default;
-        DataStore(DataStore&&) noexcept;
+        MCFLibraryDllExport DataStore();
+        MCFLibraryDllExport ~DataStore() = default;
+        MCFLibraryDllExport DataStore(DataStore&&) noexcept;
         DataStore(const DataStore&) = delete;
         DataStore& operator=(const DataStore&) = delete;
 
         size_t getSize() const { return m_dataLookup.size(); }
 
-        bool has(const std::string& dataKey) const;
+        MCFLibraryDllExport bool has(const std::string& dataKey) const;
 
         template <typename T>
         bool is(const std::string& dataKey) const;
@@ -63,12 +64,12 @@ namespace MCF
         template <typename T>
         bool set(const std::string& dataKey, T value);
 
-        void serialize(tinyxml2::XMLElement& dataElementRoot) const;
-        static DataStore deserialize(const tinyxml2::XMLElement& dataElementRoot);
+        MCFLibraryDllExport void serialize(tinyxml2::XMLElement& dataElementRoot) const;
+        MCFLibraryDllExport static DataStore deserialize(const tinyxml2::XMLElement& dataElementRoot);
 
-        static const char* const DATA_TYPE_ATTRIBUTE_NAME;
-        static const char* const KEY_ATTRIBUTE_NAME;
-        static const char* const VALUE_ATTRIBUTE_NAME;
+        MCFLibraryDllExport static const char* const DATA_TYPE_ATTRIBUTE_NAME;
+        MCFLibraryDllExport static const char* const KEY_ATTRIBUTE_NAME;
+        MCFLibraryDllExport static const char* const VALUE_ATTRIBUTE_NAME;
 
       private:
         DataStore(const std::unordered_map<std::string, Data>& data);
@@ -79,11 +80,14 @@ namespace MCF
         template <size_t index>
         static constexpr void setSerializeFunction(SerializeFunctions& serializeFunctions);
 
+        template <>
+        static constexpr void setSerializeFunction<0>(SerializeFunctions& serializeFunctions);
+
         template <size_t index>
         static constexpr void setDeserializeFunction(DeserializeFunctions& deserializeFunctions);
 
         template <>
-        static void setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions);
+        static constexpr void setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions);
 
         template <typename T>
         bool unsafe_is(const std::string& dataKey) const;

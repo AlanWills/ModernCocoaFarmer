@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
 #include "Stats/ChildModifier.h"
 
@@ -15,7 +16,7 @@ namespace MCF
   {
     class BuildingInformation : public CelesteEngine::ScriptableObject
     {
-      DECLARE_SCRIPTABLE_OBJECT(BuildingInformation)
+      DECLARE_SCRIPTABLE_OBJECT(BuildingInformation, MCFLibraryDllExport)
 
       public:
         const std::string& getDescription() const { return m_description.getValue(); }
