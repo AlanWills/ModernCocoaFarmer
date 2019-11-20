@@ -90,6 +90,8 @@
     <None Include="Resources\Screens\Options.screen" />
     <None Include="Resources\Screens\Splash.screen" />
     <None Include="Resources\Scripts\Family\FamilyManager.lua" />
+    <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
+    <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

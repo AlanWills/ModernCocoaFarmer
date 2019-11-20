@@ -229,6 +229,7 @@
     <None Include="Resources\Data\Modifiers\Well\WellHealthModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellMoneyModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellSafetyModifier.asset" />
+    <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
     <None Include="Resources\Screens\DebugTools.screen" />
     <None Include="Resources\Screens\Loading.screen" />
     <None Include="Resources\Screens\MainMenu.screen" />
@@ -255,6 +256,7 @@
     <None Include="Resources\Scripts\Screens\GameplayScreen.lua" />
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
     <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
+    <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
