@@ -22,7 +22,10 @@
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
     <ClInclude Include="Headers\Buildings\BuildingInformation.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
+    <ClInclude Include="Headers\Family\ChildInformation.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Family\FamilyScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Family\ChildInformationScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\PersistenceScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h" />
@@ -49,9 +52,12 @@
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
     <ClCompile Include="Source\Deserialization\Stats\ModifierEnumsDeserializers.cpp" />
+    <ClCompile Include="Source\Family\ChildInformation.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Family\ChildInformationScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Family\FamilyScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Persistence\PersistenceScriptCommands.cpp" />

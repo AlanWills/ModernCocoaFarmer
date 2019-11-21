@@ -1,5 +1,6 @@
 local ibm = require "UI.InteractableBuildingsManager"
 local ibd = require "UI.InteractableBuildingDialog"
+local csd = require "UI.Family.ChildStatsDialog"
 local fam = require "Family.FamilyManager"
 
 local gps = {}
@@ -17,8 +18,13 @@ function gps.show()
     -- Set up Family
     fam.initialize(gameplayScreen)
 
-    -- Load interactable building dialog into resource manager so that it is cached and quicker to create at runtime
+    -- Load UI
     ibd.load()
+    csd.load()
+
+    -- Temporarily show the dialog for UI testing
+    local dummyChildInfo = ChildInformation.create("Test")
+    csd.show(gameplayScreen, dummyChildInfo)
 end
 
 return gps
