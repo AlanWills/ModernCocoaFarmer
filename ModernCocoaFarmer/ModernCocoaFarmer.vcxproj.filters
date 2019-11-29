@@ -92,6 +92,8 @@
     <None Include="Resources\Scripts\Family\FamilyManager.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
+    <None Include="Resources\Scripts\UI\TopBar.lua" />
+    <None Include="Resources\Scripts\Family\Child.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

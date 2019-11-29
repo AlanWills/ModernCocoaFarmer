@@ -1,14 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="ChildImage" position="0,0,0">
+    <GameObject name="ChildImage" position="0,0.005%,0">
       <Components>
         <SpriteRenderer sprite="Textures\Worker\Idle\Idle.png" size="0.05%,0.08%,0" preserve_aspect_ratio="true"/>
+        <RectangleCollider dimensions="0.05%,0.08%"/>
+        <MouseInteractionHandler/>
       </Components>
       <GameObjects>
         <GameObject name="ChildName" position="0,-0.045%,0">
           <Components>
             <TextRenderer text="Name"/>
+          </Components>
+        </GameObject>
+        <GameObject name="ChildSelectedIcon" position="0,-0.005%, 0" should_render="false">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\Outline.png" size="0.05%, 0.1%"/>
           </Components>
         </GameObject>
       </GameObjects>

@@ -250,6 +250,7 @@
     <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
+    <None Include="Resources\Scripts\Family\Child.lua" />
     <None Include="Resources\Scripts\Family\FamilyManager.lua" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
@@ -259,6 +260,7 @@
     <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
+    <None Include="Resources\Scripts\UI\TopBar.lua" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
   </ItemGroup>

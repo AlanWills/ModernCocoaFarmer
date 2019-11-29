@@ -45,6 +45,8 @@ function csd.show(screen, childInformation)
 
     -- Happiness
     setUpProgressBar(dialogGameObject, "Happiness", csd.HAPPINESS_PROGRESS_BAR_NAME, childInformation:getHappiness())
+
+    return dialogGameObject;
 end
 
 return csd

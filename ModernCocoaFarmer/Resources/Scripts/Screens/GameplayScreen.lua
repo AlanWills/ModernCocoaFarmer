@@ -1,7 +1,8 @@
 local ibm = require "UI.InteractableBuildingsManager"
 local ibd = require "UI.InteractableBuildingDialog"
 local csd = require "UI.Family.ChildStatsDialog"
-local fam = require "Family.FamilyManager"
+local topBar = require "UI.TopBar"
+local familyManager = require "Family.FamilyManager"
 
 local gps = {}
 
@@ -9,22 +10,25 @@ local gps = {}
 gps.GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen")
 
 ---------------------------------------------------------------------------------
-function gps.show()
-    local gameplayScreen = Screen.load(gps.GAMEPLAY_SCREEN_PATH)
+local function initializeModel()
+    familyManager.initialize()
+end
 
-    -- Set up Interactable Buildings manager to set up callbacks
-    ibm.initialize(gameplayScreen)
-
-    -- Set up Family
-    fam.initialize(gameplayScreen)
-
-    -- Load UI
+---------------------------------------------------------------------------------
+local function initializeUI(gameplayScreen)
+    -- Either caches instances or resources in memory to allow quicker prefab instancing
     ibd.load()
     csd.load()
+    
+    local gameplayScreen = Screen.load(gps.GAMEPLAY_SCREEN_PATH)
+    ibm.initialize(gameplayScreen)
+    topBar.initialize(gameplayScreen)
+end
 
-    -- Temporarily show the dialog for UI testing
-    local dummyChildInfo = ChildInformation.create("Test")
-    csd.show(gameplayScreen, dummyChildInfo)
+---------------------------------------------------------------------------------
+function gps.show()
+    initializeModel()
+    initializeUI()
 end
 
 return gps
