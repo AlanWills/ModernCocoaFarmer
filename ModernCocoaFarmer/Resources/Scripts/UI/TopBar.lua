@@ -1,57 +1,29 @@
-local csd = require 'UI.Family.ChildStatsDialog'
+local ChildIcon = require 'UI.Family.ChildIcon'
+local InGameMenu = require 'UI.InGameMenu'
 
-local topBar = {}
-
----------------------------------------------------------------------------------
-topBar.TOP_BAR_NAME = "TopBar"
-topBar.FAMILY_PANEL_NAME = "FamilyPanelStackPanel"
-topBar.CHILD_ICON_PREFAB = path.combine("Prefabs", "Gameplay", "Family", "ChildIcon.prefab")
-topBar.CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon"
-topBar.CHILD_NAME_NAME = "ChildName"
-topBar.MENU_BUTTON_NAME = "MenuButton"
+local TopBar = {}
 
 ---------------------------------------------------------------------------------
-local function selectChild(eventArgs, caller)
-    local outline = caller:findChildGameObject(topBar.CHILD_SELECTED_ICON_NAME)
-    outline:setShouldRender(true)
+TopBar.FAMILY_PANEL_NAME = "FamilyPanelStackPanel"
+TopBar.MENU_BUTTON_NAME = "MenuButton"
 
-    -- Update this to hide all the other children
+---------------------------------------------------------------------------------
+local function showInGameMenu(eventArgs, caller)
+    InGameMenu.show(caller:getScreen())
 end
 
 ---------------------------------------------------------------------------------
-local function showChildInformation(eventArgs, caller)
-    local statsDialog = csd.show(caller:getScreen(), ChildInformation.create("Test"))
-    statsDialog:setParent(caller);
-    statsDialog:getTransform():translate(0, -240)
-end
-
----------------------------------------------------------------------------------
-local function hideChildInformation(eventArgs, caller)
-    local statsDialog = caller:findChildGameObject("ChildStatsBackground")
-    statsDialog:die()
-end
-
----------------------------------------------------------------------------------
-function topBar.initialize(screen)
+function TopBar.initialize(topBarGameObject, familyManager)
     -- Set up family UI being populated
-    local familyPanel = screen:findGameObject(topBar.FAMILY_PANEL_NAME)
-    local familyPanelStackPanel = familyPanel:findComponent("StackPanel")
+    local familyPanel = topBarGameObject:findChildGameObject(TopBar.FAMILY_PANEL_NAME)
 
-    -- Refactor this out into a child icon lua module?
-    local childPrefab = Resources.loadPrefab(topBar.CHILD_ICON_PREFAB)
-    local childInstance = childPrefab:instantiate(screen);
-    childInstance:setParent(familyPanel);
-    familyPanelStackPanel:addChild(childInstance);
+    for k, v in ipairs(familyManager.children) do
+        local childInstance = ChildIcon.initialize(familyPanel, v)
+    end
 
-    local childInteractionHandler = childInstance:findComponent("MouseInteractionHandler")
-    childInteractionHandler:subscribeOnLeftButtonClickedCallback(selectChild)
-    childInteractionHandler:subscribeOnEnterCallback(showChildInformation)
-    childInteractionHandler:subscribeOnLeaveCallback(hideChildInformation)
-
-    local childName = childInstance:findChildGameObject(topBar.CHILD_NAME_NAME)
-    childName:findComponent("TextRenderer"):setText("Child Name")
-    
-    -- Set up menu button loading menu prefab here
+    local menuButton = topBarGameObject:findChildGameObject(TopBar.MENU_BUTTON_NAME)
+    local menuButtonInteractionHandler = menuButton:findComponent("MouseInteractionHandler")
+    menuButtonInteractionHandler:subscribeOnLeftButtonClickedCallback(showInGameMenu)
 end
 
-return topBar
+return TopBar

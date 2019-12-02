@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="InGameMenu" position="0.5%,0.5%">
+      <Components>
+        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.2%,0.5%" colour="0.5,0.5,0.5" opacity="1"/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Prefab>

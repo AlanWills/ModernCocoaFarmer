@@ -8,6 +8,7 @@ local gps = {}
 
 ---------------------------------------------------------------------------------
 gps.GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen")
+gps.TOP_BAR_NAME = "TopBarBackground"
 
 ---------------------------------------------------------------------------------
 local function initializeModel()
@@ -22,7 +23,9 @@ local function initializeUI(gameplayScreen)
     
     local gameplayScreen = Screen.load(gps.GAMEPLAY_SCREEN_PATH)
     ibm.initialize(gameplayScreen)
-    topBar.initialize(gameplayScreen)
+
+    local topBarGameObject = gameplayScreen:findGameObject(gps.TOP_BAR_NAME)
+    topBar.initialize(topBarGameObject, familyManager)
 end
 
 ---------------------------------------------------------------------------------
