@@ -4,8 +4,18 @@
     <GameObject name="InGameMenu" position="0.5%,0.5%">
       <Components>
         <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.2%,0.5%" colour="0.5,0.5,0.5" opacity="1"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.2%,0.5%" colour="0.5,0.5,0.5" opacity="0.8"/>
       </Components>
+      <GameObjects>
+        <GameObject name="CloseInGameMenuButton" position="0.1%,0.25%,0.1">
+        <Components>
+          <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
+          <RectangleCollider/>
+          <MouseInteractionHandler/>
+          <Button/>
+        </Components>
+      </GameObject>
+      </GameObjects>
     </GameObject>
   </GameObjects>
 </Prefab>

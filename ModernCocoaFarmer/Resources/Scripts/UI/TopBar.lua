@@ -5,11 +5,38 @@ local TopBar = {}
 
 ---------------------------------------------------------------------------------
 TopBar.FAMILY_PANEL_NAME = "FamilyPanelStackPanel"
+TopBar.PLAY_BUTTON_NAME = "PlayButton"
+TopBar.PAUSE_BUTTON_NAME = "PauseButton"
 TopBar.MENU_BUTTON_NAME = "MenuButton"
+TopBar.DONATE_BUTTON_NAME = "DonateButton"
+
+---------------------------------------------------------------------------------
+local function toggleUI(caller, otherButtonName)
+    caller:setActive(false)
+    caller:setShouldRender(false)
+
+    local otherButton = caller:getParent():findChildGameObject(otherButtonName)
+    otherButton:setActive(true)
+    otherButton:setShouldRender(true)
+end
+
+---------------------------------------------------------------------------------
+local function play(eventArgs, caller)
+    toggleUI(caller, TopBar.PLAY_BUTTON_NAME)
+end
+
+---------------------------------------------------------------------------------
+local function pause(eventArgs, caller)
+    toggleUI(caller, TopBar.PAUSE_BUTTON_NAME)
+end
 
 ---------------------------------------------------------------------------------
 local function showInGameMenu(eventArgs, caller)
     InGameMenu.show(caller:getScreen())
+end
+
+---------------------------------------------------------------------------------
+local function showDonateMenu(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
@@ -21,9 +48,10 @@ function TopBar.initialize(topBarGameObject, familyManager)
         local childInstance = ChildIcon.initialize(familyPanel, v)
     end
 
-    local menuButton = topBarGameObject:findChildGameObject(TopBar.MENU_BUTTON_NAME)
-    local menuButtonInteractionHandler = menuButton:findComponent("MouseInteractionHandler")
-    menuButtonInteractionHandler:subscribeOnLeftButtonClickedCallback(showInGameMenu)
+    topBarGameObject:setupChildLeftClickCallback(TopBar.PLAY_BUTTON_NAME, pause)
+    topBarGameObject:setupChildLeftClickCallback(TopBar.PAUSE_BUTTON_NAME, play)
+    topBarGameObject:setupChildLeftClickCallback(TopBar.MENU_BUTTON_NAME, showInGameMenu)
+    topBarGameObject:setupChildLeftClickCallback(TopBar.DONATE_BUTTON_NAME, showDonateMenu)
 end
 
 return TopBar
