@@ -13,10 +13,7 @@ ibd.HAPPINESS_MODIFIER_TEXT_NAME = "HappinessModifierText"
 
 ----------------------------------------------------------------------------------------
 local function closeCallback(eventArgs, caller)
-    caller:getParent():setShouldRender(false)
-
-    local limitedLifeTime = caller:addComponent("LimitedLifeTime")
-    limitedLifeTime:setLifeTime(0)
+    caller:getParent():die()
 end
 
 ----------------------------------------------------------------------------------------

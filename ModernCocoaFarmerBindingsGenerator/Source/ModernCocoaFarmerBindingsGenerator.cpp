@@ -1,5 +1,4 @@
 #include "Project.h"
-#include "Objects/Component.h"
 
 #include <iostream>
 #include <chrono>
