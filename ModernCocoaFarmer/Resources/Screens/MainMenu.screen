@@ -33,12 +33,7 @@
                 <SpriteRenderer/>
                 <RectangleCollider/>
                 <MouseInteractionHandler/>
-                <Button>
-                  <LeftClickCallbacks>
-                    <Callback name="KillOwnerScreen"/>
-                    <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
-                  </LeftClickCallbacks>
-                </Button>
+                <Button/>
               </Components>
               <GameObjects>
                 <GameObject name="PlayText" position="0,1,0">
@@ -53,11 +48,7 @@
                 <SpriteRenderer/>
                 <RectangleCollider/>
                 <MouseInteractionHandler/>
-                <Button>
-                  <LeftClickCallbacks>
-                    <Callback name="TransitionToScreen" arg="Screens\Options.screen"/>
-                  </LeftClickCallbacks>
-                </Button>
+                <Button/>
               </Components>
               <GameObjects>
                 <GameObject name="OptionsText" position="0,1,0">
@@ -73,9 +64,7 @@
                 <RectangleCollider/>
                 <MouseInteractionHandler/>
                 <Button>
-                  <LeftClickCallbacks>
-                    <Callback name="ExitGame"/>
-                  </LeftClickCallbacks>
+                  <LeftClickCallbacks/>
                 </Button>
               </Components>
               <GameObjects>

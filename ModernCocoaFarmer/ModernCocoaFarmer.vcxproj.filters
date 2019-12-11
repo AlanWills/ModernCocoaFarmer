@@ -23,7 +23,6 @@
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
-    <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" />
@@ -98,6 +97,8 @@
     <None Include="Resources\Prefabs\UI\InGameMenu.prefab" />
     <None Include="Resources\Scripts\UI\InGameMenu.lua" />
     <None Include="Resources\Scripts\Screens\MainMenuScreen.lua" />
+    <None Include="Resources\Scripts\Commands\StartGameplayCommand.lua" />
+    <None Include="Resources\Scripts\Screens\OptionsScreen.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

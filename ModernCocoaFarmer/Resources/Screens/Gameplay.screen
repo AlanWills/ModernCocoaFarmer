@@ -6,6 +6,12 @@
         <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
       </Components>
       <GameObjects>
+        <!--Music-->
+        <GameObject name="AmbientMusic">
+          <Components>
+            <AudioSource sound="Audio\Music\KalimbaBreeze.wav" is_playing="true" is_looping="true" audio_type="Music"/>
+          </Components>
+        </GameObject>
         <!--Background-->
         <GameObject name="GameplayBackground" position="0.5%,0.5%,-1">
           <Components>

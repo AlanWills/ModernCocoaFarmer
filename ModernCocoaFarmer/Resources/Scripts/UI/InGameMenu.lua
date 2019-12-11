@@ -1,7 +1,3 @@
--- requireing GameplayScreen here causes circular dependencies.  Thought this wasn't a thing.  How do we get around it?
-local GameplayScreen = require 'Screens.GameplayScreen'
-local MainMenuScreen = require 'Screens.MainMenuScreen'
-
 local InGameMenu = {}
 
 ---------------------------------------------------------------------------------
@@ -14,6 +10,7 @@ InGameMenu.TO_MAIN_MENU_BUTTON_NAME = "ToMainMenuButton"
 InGameMenu.QUIT_GAME_BUTTON_NAME = "QuitGameButton"
 InGameMenu.AUDIO_MUTED_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioMuted.png")
 InGameMenu.AUDIO_PLAYING_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioPlaying.png")
+InGameMenu.oldMasterVolume = 1
 
 ----------------------------------------------------------------------------------------
 local function close(eventArgs, caller)
@@ -42,12 +39,16 @@ end
 ---------------------------------------------------------------------------------
 local function restartGame(eventArgs, caller)
     caller:getScreen():die()
+    
+    local GameplayScreen = require 'Screens.GameplayScreen'
     GameplayScreen.show();
 end
 
 ---------------------------------------------------------------------------------
 local function toMainMenu(eventArgs, caller)
     caller:getScreen():die()
+
+    local MainMenuScreen = require 'Screens.MainMenuScreen'
     MainMenuScreen.show()
 end
 
