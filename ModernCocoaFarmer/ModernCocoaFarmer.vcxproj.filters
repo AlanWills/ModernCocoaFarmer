@@ -97,6 +97,7 @@
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
     <None Include="Resources\Prefabs\UI\InGameMenu.prefab" />
     <None Include="Resources\Scripts\UI\InGameMenu.lua" />
+    <None Include="Resources\Scripts\Screens\MainMenuScreen.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

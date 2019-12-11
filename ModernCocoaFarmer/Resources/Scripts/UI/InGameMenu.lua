@@ -1,3 +1,7 @@
+-- requireing GameplayScreen here causes circular dependencies.  Thought this wasn't a thing.  How do we get around it?
+local GameplayScreen = require 'Screens.GameplayScreen'
+local MainMenuScreen = require 'Screens.MainMenuScreen'
+
 local InGameMenu = {}
 
 ---------------------------------------------------------------------------------
@@ -38,11 +42,13 @@ end
 ---------------------------------------------------------------------------------
 local function restartGame(eventArgs, caller)
     caller:getScreen():die()
+    GameplayScreen.show();
 end
 
 ---------------------------------------------------------------------------------
 local function toMainMenu(eventArgs, caller)
     caller:getScreen():die()
+    MainMenuScreen.show()
 end
 
 ---------------------------------------------------------------------------------

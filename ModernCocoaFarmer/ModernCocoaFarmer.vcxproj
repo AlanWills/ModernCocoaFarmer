@@ -256,6 +256,7 @@
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Gameplay\StartGameplay.lua" />
     <None Include="Resources\Scripts\Screens\GameplayScreen.lua" />
+    <None Include="Resources\Scripts\Screens\MainMenuScreen.lua" />
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
     <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
