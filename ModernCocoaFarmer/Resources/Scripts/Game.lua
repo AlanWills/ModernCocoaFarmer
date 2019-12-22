@@ -1,9 +1,12 @@
+local SplashScreen = require 'Screens.SplashScreen'
+local StartGameplayCommand = require 'Commands.StartGameplayCommand'
+
 local quickStart = true
 
 Screen.load(path.combine(Resources.getResourcesDirectory(), "Screens", "DebugTools.screen"))
 
 if not quickStart then
-    Screen.load(path.combine(Resources.getResourcesDirectory(), "Screens", "Splash.screen"))
+    SplashScreen.show()
 else
-    require 'Gameplay.StartGameplay'
+    StartGameplayCommand.execute()
 end

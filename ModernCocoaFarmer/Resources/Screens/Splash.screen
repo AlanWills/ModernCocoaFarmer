@@ -15,11 +15,11 @@
           <Components>
             <SpriteRenderer sprite="Textures\Screens\SplashScreenSmall.png" size="1%,1%" opacity="0" preserve_aspect_ratio="true"/>
             <OpacityLerper lerping_up="true" lerp_down_time="0" lerp_up_time="1" min_wait_time="0" max_wait_time="2.2"/>
-            <LimitedLifeTime lifetime="3.2" trigger_key="esc">
-              <OnDeathCallbacks>
-                <Callback name="TransitionToScreen" arg="Screens\MainMenu.screen"/>
-              </OnDeathCallbacks>
-            </LimitedLifeTime>
+          </Components>
+        </GameObject>
+        <GameObject name="ScreenTransitioner">
+          <Components>
+            <LimitedLifeTime lifetime="3.2" trigger_key="esc"/>
           </Components>
         </GameObject>
       </GameObjects>

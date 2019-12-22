@@ -1,19 +1,12 @@
+local Class = require 'OOP.Class'
 local ChildStatsDialog = require 'UI.Family.ChildStatsDialog'
 
-local childIcon = {}
-
 ---------------------------------------------------------------------------------
-childIcon.CHILD_ICON_PREFAB = path.combine("Prefabs", "Gameplay", "Family", "ChildIcon.prefab")
-childIcon.CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon"
-childIcon.CHILD_NAME_NAME = "ChildName"
-
----------------------------------------------------------------------------------
-local function selectChild(eventArgs, caller)
-    local outline = caller:findChildGameObject(childIcon.CHILD_SELECTED_ICON_NAME)
-    outline:setShouldRender(true)
-
-    -- Update this to hide all the other children
-end
+local ChildIcon = Class.declare()
+ChildIcon.CHILD_ICON_PREFAB = path.combine("Prefabs", "Gameplay", "Family", "ChildIcon.prefab")
+ChildIcon.CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon"
+ChildIcon.CHILD_NAME_NAME = "ChildName"
+ChildIcon.ON_SELECTED_CHANGED_CALLBACK_NAME = "ChildIcon_OnSelectedChanged"
 
 ---------------------------------------------------------------------------------
 local function showChildInformation(eventArgs, caller)
@@ -29,22 +22,39 @@ local function hideChildInformation(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-function childIcon.initialize(familyPanel, child)
+local function onChildSelectedChanged(child, isNowSelected, childIcon)
+    childIcon:updateSelectionUI(isNowSelected)
+end
+
+---------------------------------------------------------------------------------
+function ChildIcon.new(familyPanel, child)
+    local childIcon = Class.new(ChildIcon)
     local familyPanelStackPanel = familyPanel:findComponent("StackPanel")
-    local childPrefab = Resources.loadPrefab(childIcon.CHILD_ICON_PREFAB)
-    local childInstance = childPrefab:instantiate(familyPanel:getScreen());
-    childInstance:setParent(familyPanel);
+    local childPrefab = Resources.loadPrefab(ChildIcon.CHILD_ICON_PREFAB)
+    local childInstance = childPrefab:instantiate(familyPanel:getScreen())
+    childInstance:setParent(familyPanel)
+    childInstance:setName(child.name)
     familyPanelStackPanel:addChild(childInstance);
 
     local childInteractionHandler = childInstance:findComponent("MouseInteractionHandler")
-    childInteractionHandler:subscribeOnLeftButtonClickedCallback(selectChild)
     childInteractionHandler:subscribeOnEnterCallback(showChildInformation)
     childInteractionHandler:subscribeOnLeaveCallback(hideChildInformation)
 
-    local childName = childInstance:findChildGameObject(childIcon.CHILD_NAME_NAME)
+    local childName = childInstance:findChildGameObject(ChildIcon.CHILD_NAME_NAME)
     childName:findComponent("TextRenderer"):setText(child.name)
+    
+    child:subscribeOnSelectedChangedCallback(ChildIcon.ON_SELECTED_CHANGED_CALLBACK_NAME, onChildSelectedChanged, childIcon)
 
-    return childInstance
+    childIcon.child = child
+    childIcon.gameObject = childInstance
+    childIcon.selectedIcon = childInstance:findChildGameObject(ChildIcon.CHILD_SELECTED_ICON_NAME)
+
+    return childIcon
 end
 
-return childIcon
+---------------------------------------------------------------------------------
+function ChildIcon:updateSelectionUI(isNowSelected)
+    self.selectedIcon:setShouldRender(isNowSelected)
+end
+
+return ChildIcon

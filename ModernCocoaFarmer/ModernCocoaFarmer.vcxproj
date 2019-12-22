@@ -255,9 +255,11 @@
     <None Include="Resources\Scripts\Family\FamilyManager.lua" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Commands\StartGameplayCommand.lua" />
+    <None Include="Resources\Scripts\OOP\Class.lua" />
     <None Include="Resources\Scripts\Screens\GameplayScreen.lua" />
     <None Include="Resources\Scripts\Screens\MainMenuScreen.lua" />
     <None Include="Resources\Scripts\Screens\OptionsScreen.lua" />
+    <None Include="Resources\Scripts\Screens\SplashScreen.lua" />
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
     <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
@@ -402,6 +404,9 @@
     <ProjectReference Include="..\ModernCocoaFarmerLibrary\ModernCocoaFarmerLibrary.vcxproj">
       <Project>{d3bb94cf-318b-4b33-8618-f5d3824015b8}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\Scripts\Commands\SelectSingleChildCommand.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

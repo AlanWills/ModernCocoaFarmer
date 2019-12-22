@@ -1,7 +1,9 @@
+local Class = require 'OOP.Class'
+local SelectSingleChildCommand = require 'Commands.SelectSingleChildCommand'
 local ChildIcon = require 'UI.Family.ChildIcon'
 local InGameMenu = require 'UI.InGameMenu'
 
-local TopBar = {}
+local TopBar = Class.declare()
 
 ---------------------------------------------------------------------------------
 TopBar.FAMILY_PANEL_NAME = "FamilyPanelStackPanel"
@@ -9,6 +11,8 @@ TopBar.PLAY_BUTTON_NAME = "PlayButton"
 TopBar.PAUSE_BUTTON_NAME = "PauseButton"
 TopBar.MENU_BUTTON_NAME = "MenuButton"
 TopBar.DONATE_BUTTON_NAME = "DonateButton"
+TopBar._familyManager = nil
+TopBar._childIcons = {}
 
 ---------------------------------------------------------------------------------
 local function toggleUI(caller, otherButtonName)
@@ -40,18 +44,34 @@ local function showDonateMenu(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-function TopBar.initialize(topBarGameObject, familyManager)
-    -- Set up family UI being populated
-    local familyPanel = topBarGameObject:findChildGameObject(TopBar.FAMILY_PANEL_NAME)
+local function childIconLeftClicked(eventArgs, caller, extraArgs)
+    SelectSingleChildCommand.execute(extraArgs.familyManager, extraArgs.childToSelect)
+end
 
-    for k, v in ipairs(familyManager.children) do
-        local childInstance = ChildIcon.initialize(familyPanel, v)
+---------------------------------------------------------------------------------
+function TopBar.new(topBarGameObject, familyManager)
+    local topBar = Class.new(TopBar)
+
+    topBar._familyManager = familyManager
+
+    -- Set up family UI being populated
+    local familyPanel = topBarGameObject:findChildGameObject(topBar.FAMILY_PANEL_NAME)
+
+    for k, child in ipairs(familyManager.children) do
+        local childIcon = ChildIcon.new(familyPanel, child)
+        topBar._childIcons[child.name] = childIcon
+
+        local childInteractionHandler = childIcon.gameObject:findComponent("MouseInteractionHandler")
+        local extraArgs = {}
+        extraArgs.familyManager = familyManager
+        extraArgs.childToSelect = childIcon.child
+        childInteractionHandler:subscribeOnLeftButtonClickedCallback(childIconLeftClicked, extraArgs)
     end
 
-    topBarGameObject:setupChildLeftClickCallback(TopBar.PLAY_BUTTON_NAME, pause)
-    topBarGameObject:setupChildLeftClickCallback(TopBar.PAUSE_BUTTON_NAME, play)
-    topBarGameObject:setupChildLeftClickCallback(TopBar.MENU_BUTTON_NAME, showInGameMenu)
-    topBarGameObject:setupChildLeftClickCallback(TopBar.DONATE_BUTTON_NAME, showDonateMenu)
+    topBarGameObject:setupChildLeftClickCallback(topBar.PLAY_BUTTON_NAME, pause)
+    topBarGameObject:setupChildLeftClickCallback(topBar.PAUSE_BUTTON_NAME, play)
+    topBarGameObject:setupChildLeftClickCallback(topBar.MENU_BUTTON_NAME, showInGameMenu)
+    topBarGameObject:setupChildLeftClickCallback(topBar.DONATE_BUTTON_NAME, showDonateMenu)
 end
 
 return TopBar

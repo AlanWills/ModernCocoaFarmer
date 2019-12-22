@@ -99,6 +99,8 @@
     <None Include="Resources\Scripts\Screens\MainMenuScreen.lua" />
     <None Include="Resources\Scripts\Commands\StartGameplayCommand.lua" />
     <None Include="Resources\Scripts\Screens\OptionsScreen.lua" />
+    <None Include="Resources\Scripts\Screens\SplashScreen.lua" />
+    <None Include="Resources\Scripts\OOP\Class.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -451,5 +453,8 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\Scripts\Commands\SelectSingleChildCommand.lua" />
   </ItemGroup>
 </Project>

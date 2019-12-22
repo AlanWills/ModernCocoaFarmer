@@ -1,37 +1,42 @@
+local Class = require 'OOP.Class'
 local ibm = require "UI.InteractableBuildingsManager"
 local ibd = require "UI.InteractableBuildingDialog"
 local csd = require "UI.Family.ChildStatsDialog"
-local topBar = require "UI.TopBar"
-local familyManager = require "Family.FamilyManager"
+local TopBar = require "UI.TopBar"
+local FamilyManager = require "Family.FamilyManager"
 
-local gps = {}
-
----------------------------------------------------------------------------------
-gps.GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen")
-gps.TOP_BAR_NAME = "TopBarBackground"
+local GameplayScreen = Class.declare()
 
 ---------------------------------------------------------------------------------
-local function initializeModel()
-    familyManager.initialize()
+GameplayScreen.GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen")
+GameplayScreen.TOP_BAR_NAME = "TopBarBackground"
+
+---------------------------------------------------------------------------------
+function GameplayScreen.new()
+    local gameplayScreen = Class.new(GameplayScreen)
+
+    gameplayScreen:initializeModel()
+    gameplayScreen:initializeScene()
+
+    return gameplayScreen
 end
 
 ---------------------------------------------------------------------------------
-local function initializeUI(gameplayScreen)
+function GameplayScreen:initializeModel()
+    self._familyManager = FamilyManager.new()
+end
+
+---------------------------------------------------------------------------------
+function GameplayScreen:initializeScene()
     -- Either caches instances or resources in memory to allow quicker prefab instancing
     ibd.load()
     csd.load()
     
-    local gameplayScreen = Screen.load(gps.GAMEPLAY_SCREEN_PATH)
+    local gameplayScreen = Screen.load(GameplayScreen.GAMEPLAY_SCREEN_PATH)
     ibm.initialize(gameplayScreen)
 
-    local topBarGameObject = gameplayScreen:findGameObject(gps.TOP_BAR_NAME)
-    topBar.initialize(topBarGameObject, familyManager)
+    local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
+    self._topBar = TopBar.new(topBarGameObject, self._familyManager)
 end
 
----------------------------------------------------------------------------------
-function gps.show()
-    initializeModel()
-    initializeUI()
-end
-
-return gps
+return GameplayScreen

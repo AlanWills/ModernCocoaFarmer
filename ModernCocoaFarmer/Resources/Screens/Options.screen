@@ -36,20 +36,12 @@
                 </GameObject>
                 <GameObject name="MasterVolumeValueText" position="220,0,0">
                   <Components>
-                    <TextRenderer font_height="16" horizontal_alignment="left">
-                      <Lines>
-                        <Line></Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="16" horizontal_alignment="left"/>
                   </Components>
                 </GameObject>
                 <GameObject name="MasterVolumeLabelText" position="-220,0,0">
                   <Components>
-                    <TextRenderer font_height="16" horizontal_alignment="right">
-                      <Lines>
-                        <Line>Master Volume</Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="16" horizontal_alignment="right" text="Master Volume"/>
                   </Components>
                 </GameObject>
               </GameObjects>
@@ -69,20 +61,12 @@
                 </GameObject>
                 <GameObject name="MusicVolumeValueText" position="220,0,0">
                   <Components>
-                    <TextRenderer font_height="16" horizontal_alignment="left">
-                      <Lines>
-                        <Line></Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="16" horizontal_alignment="left"/>
                   </Components>
                 </GameObject>
                 <GameObject name="MusicVolumeLabelText" position="-220,0,0">
                   <Components>
-                    <TextRenderer font_height="16" horizontal_alignment="right">
-                      <Lines>
-                        <Line>Music Volume</Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="16" horizontal_alignment="right" text="Music Volume"/>
                   </Components>
                 </GameObject>
               </GameObjects>
@@ -102,20 +86,12 @@
                 </GameObject>
                 <GameObject name="SFXVolumeValueText" position="220,0,0">
                   <Components>
-                    <TextRenderer font_height="16" horizontal_alignment="left">
-                      <Lines>
-                        <Line></Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="16" horizontal_alignment="left"/>
                   </Components>
                 </GameObject>
                 <GameObject name="SFXVolumeLabelText" position="-220,0,0">
                   <Components>
-                    <TextRenderer font_height="16" horizontal_alignment="right">
-                      <Lines>
-                        <Line>SFX Volume</Line>
-                      </Lines>
-                    </TextRenderer>
+                    <TextRenderer font_height="16" horizontal_alignment="right" text="SFX Volume"/>
                   </Components>
                 </GameObject>
                 <GameObject name="CloseButton" parent="SFXVolumeSlider" position="0,-200,0">
@@ -123,20 +99,12 @@
                     <SpriteRenderer/>
                     <RectangleCollider/>
                     <MouseInteractionHandler/>
-                    <Button font_height="20">
-                      <LeftClickCallbacks>
-                        <Callback name="TransitionToScreen" arg="Screens\MainMenu.screen"/>
-                      </LeftClickCallbacks>
-                    </Button>
+                    <Button font_height="20"/>
                   </Components>
                   <GameObjects>
                     <GameObject name="CloseButtonText">
                       <Components>
-                        <TextRenderer>
-                          <Lines>
-                            <Line>Close</Line>
-                          </Lines>
-                        </TextRenderer>
+                        <TextRenderer text="Close"/>
                       </Components>
                     </GameObject>
                   </GameObjects>
