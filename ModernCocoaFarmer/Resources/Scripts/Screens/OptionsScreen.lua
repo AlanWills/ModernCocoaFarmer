@@ -75,7 +75,7 @@ function OptionsScreen.show()
     setValueText(sfxVolumeSlider:findChildGameObject(OptionsScreen.SFX_VOLUME_VALUE_NAME), Audio.getSFXVolume())
 
     local closeButton = optionsScreen:findGameObject(OptionsScreen.CLOSE_BUTTON_NAME)
-    closeButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonClickedCallback(saveAndTransitionToMainMenu)
+    closeButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(saveAndTransitionToMainMenu)
 end
 
 return OptionsScreen

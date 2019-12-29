@@ -2,7 +2,6 @@ local InGameMenu = {}
 
 ---------------------------------------------------------------------------------
 InGameMenu.IN_GAME_MENU_PREFAB_PATH = path.combine("Prefabs", "UI", "InGameMenu.prefab")
-InGameMenu.CLOSE_BUTTON_NAME = "CloseInGameMenuButton"
 InGameMenu.TOGGLE_AUDIO_BUTTON_NAME = "ToggleAudioButton"
 InGameMenu.RESUME_GAME_BUTTON_NAME = "ResumeGameButton"
 InGameMenu.RESTART_GAME_BUTTON_NAME = "RestartGameButton"
@@ -67,12 +66,11 @@ function InGameMenu.show(screen, familyManager)
     local menuPrefab = InGameMenu.load()
     local menuInstance = menuPrefab:instantiate(screen)
 
-    menuInstance:setupChildLeftClickCallback(InGameMenu.CLOSE_BUTTON_NAME, close)
-    menuInstance:setupChildLeftClickCallback(InGameMenu.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
-    menuInstance:setupChildLeftClickCallback(InGameMenu.RESUME_GAME_BUTTON_NAME, resumeGame)
-    menuInstance:setupChildLeftClickCallback(InGameMenu.RESTART_GAME_BUTTON_NAME, restartGame)
-    menuInstance:setupChildLeftClickCallback(InGameMenu.TO_MAIN_MENU_BUTTON_NAME, toMainMenu)
-    menuInstance:setupChildLeftClickCallback(InGameMenu.QUIT_GAME_BUTTON_NAME, quitGame)
+    menuInstance:setupChildLeftButtonUpCallback(InGameMenu.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
+    menuInstance:setupChildLeftButtonUpCallback(InGameMenu.RESUME_GAME_BUTTON_NAME, resumeGame)
+    menuInstance:setupChildLeftButtonUpCallback(InGameMenu.RESTART_GAME_BUTTON_NAME, restartGame)
+    menuInstance:setupChildLeftButtonUpCallback(InGameMenu.TO_MAIN_MENU_BUTTON_NAME, toMainMenu)
+    menuInstance:setupChildLeftButtonUpCallback(InGameMenu.QUIT_GAME_BUTTON_NAME, quitGame)
 end
 
 return InGameMenu

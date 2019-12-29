@@ -1,24 +1,19 @@
 local Class = require 'OOP.Class'
+local Event = require 'Events.Event'
 
-local Child = Class.declare()
+local Child = {}
 
 ---------------------------------------------------------------------------------
-function Child.new(childInformation)
-    local child = Class.new(Child)
-
-    child.childInformation = childInformation
-    child.name = childInformation:getName()
-    child._selected = false
-    child._onSelectedChanged = {}
-
-    return child
+function Child:new(childInformation)
+    self.childInformation = childInformation
+    self.name = childInformation:getName()
+    self._selected = false
+    self._onSelectedChanged = Class.new(Event)
 end
 
 ---------------------------------------------------------------------------------
 local function invokeSelectedChanged(self)
-    for k, event in pairs(self._onSelectedChanged) do
-        event.callback(self, self._selected, event.extraArgs)
-    end
+    self._onSelectedChanged:invoke(self, self._selected)
 end
 
 ---------------------------------------------------------------------------------
@@ -40,11 +35,7 @@ end
 
 ---------------------------------------------------------------------------------
 function Child:subscribeOnSelectedChangedCallback(key, callback, extraArgs)
-    local event = {}
-    event.callback = callback
-    event.extraArgs = extraArgs
-
-    self._onSelectedChanged[key] = event
+    self._onSelectedChanged:subscribe(key, callback, extraArgs)
 end
 
 return Child

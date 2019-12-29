@@ -50,6 +50,11 @@
         </GameObject>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
+        <GameObject name="TimeComponent">
+          <Components>
+            <TimeComponent/>
+          </Components>
+        </GameObject>
       </GameObjects>
     </GameObject>
   </GameObjects>

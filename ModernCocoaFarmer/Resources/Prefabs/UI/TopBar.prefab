@@ -6,39 +6,26 @@
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,0.1%" colour="0.5,0.5,0.5" opacity="0.5"/>
       </Components>
       <GameObjects>
-        <Prefab name="FamilyPanel" path="Prefabs\Gameplay\Family\FamilyPanel.prefab"/>
-        <GameObject name="PlayButton" position="0.39%,0.025%,0">
+        <Prefab name="MoneyPanel" path="Prefabs\UI\Information\MoneyPanel.prefab"/>
+        <Prefab name="FamilyPanel" path="Prefabs\UI\Family\FamilyPanel.prefab"/>
+        <Prefab name="TimePanel" path="Prefabs\UI\Information\TimePanel.prefab"/>
+        <GameObject name="UtilityButtonsStackPanel" position="0.47%,0,0">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
-            <RectangleCollider dimensions="0.04%, 0.04%"/>
-            <MouseInteractionHandler/>
-          </Components>
-        </GameObject>
-        <GameObject name="PauseButton" position="0.39%,0.025%,0" active="false" should_render="false">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
-            <RectangleCollider dimensions="0.04%, 0.04%"/>
-            <MouseInteractionHandler/>
-          </Components>
-        </GameObject>
-        <GameObject name="MenuButton" position="0.45%,0.025%,0">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
-            <RectangleCollider dimensions="0.04%, 0.04%"/>
-            <MouseInteractionHandler/>
-          </Components>
-        </GameObject>
-        <GameObject name="DonateButton" position="0.42%,-0.025%,0">
-          <Components>
-            <SpriteRenderer size="0.1%,0.04%"/>
-            <RectangleCollider/>
-            <MouseInteractionHandler/>
-            <Button/>
+            <StackPanel orientation="horizontal" horizontal_alignment="right" padding="20"/>
           </Components>
           <GameObjects>
-            <GameObject name="DonateText" position="0,0,0">
+            <GameObject name="DonateButton">
               <Components>
-                <TextRenderer font_height="24" colour="1,1,1,1" text="Donate"/>
+                <SpriteRenderer size="0.04%,0.04%" sprite="Textures\UI\Utility\Donate.png" preserve_aspect_ratio="true"/>
+                <RectangleCollider/>
+                <MouseInteractionHandler/>
+              </Components>
+            </GameObject>
+            <GameObject name="MenuButton">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
+                <RectangleCollider dimensions="0.04%, 0.04%"/>
+                <MouseInteractionHandler/>
               </Components>
             </GameObject>
           </GameObjects>

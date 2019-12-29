@@ -1,7 +1,7 @@
 local csd = {}
 
 ----------------------------------------------------------------------------------------
-csd.DIALOG_PREFAB_PATH = "Prefabs\\UI\\Family\\ChildStatsDialog.prefab"
+csd.DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Family", "ChildStatsDialog.prefab")
 csd.DIALOG_PREFAB = nil
 csd.HEALTH_PROGRESS_BAR_NAME = "HealthProgressBar"
 csd.SAFETY_PROGRESS_BAR_NAME = "SafetyProgressBar"

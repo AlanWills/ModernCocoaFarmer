@@ -1,17 +1,17 @@
 local Class = {}
 
 ---------------------------------------------------------------------------------
-function Class.declare()
-    local class = {}
-    class.__index = class
+function Class.new(type, ...)
+    if type.__index ~= type then
+        type.__index = type
+    end
 
-    return class
-end
-
----------------------------------------------------------------------------------
-function Class.new(type)
     local instance = {}
     setmetatable(instance, type)
+
+    if type.new ~= nil then
+        instance:new(...)
+    end
 
     return instance
 end

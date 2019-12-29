@@ -1,12 +1,13 @@
-local Class = require 'OOP.Class'
 local ChildStatsDialog = require 'UI.Family.ChildStatsDialog'
 
 ---------------------------------------------------------------------------------
-local ChildIcon = Class.declare()
-ChildIcon.CHILD_ICON_PREFAB = path.combine("Prefabs", "Gameplay", "Family", "ChildIcon.prefab")
-ChildIcon.CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon"
-ChildIcon.CHILD_NAME_NAME = "ChildName"
-ChildIcon.ON_SELECTED_CHANGED_CALLBACK_NAME = "ChildIcon_OnSelectedChanged"
+local ChildIcon =
+{
+    CHILD_ICON_PREFAB = path.combine("Prefabs", "UI", "Family", "ChildIcon.prefab"),
+    CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon",
+    CHILD_NAME_NAME = "ChildName",
+    ON_SELECTED_CHANGED_CALLBACK_NAME = "ChildIcon_OnSelectedChanged"
+}
 
 ---------------------------------------------------------------------------------
 local function showChildInformation(eventArgs, caller)
@@ -22,15 +23,14 @@ local function hideChildInformation(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-local function onChildSelectedChanged(child, isNowSelected, childIcon)
+local function onChildSelectedChanged(childIcon, child, isNowSelected)
     childIcon:updateSelectionUI(isNowSelected)
 end
 
 ---------------------------------------------------------------------------------
-function ChildIcon.new(familyPanel, child)
-    local childIcon = Class.new(ChildIcon)
+function ChildIcon:new(familyPanel, child)
     local familyPanelStackPanel = familyPanel:findComponent("StackPanel")
-    local childPrefab = Resources.loadPrefab(ChildIcon.CHILD_ICON_PREFAB)
+    local childPrefab = Resources.loadPrefab(self.CHILD_ICON_PREFAB)
     local childInstance = childPrefab:instantiate(familyPanel:getScreen())
     childInstance:setParent(familyPanel)
     childInstance:setName(child.name)
@@ -40,16 +40,14 @@ function ChildIcon.new(familyPanel, child)
     childInteractionHandler:subscribeOnEnterCallback(showChildInformation)
     childInteractionHandler:subscribeOnLeaveCallback(hideChildInformation)
 
-    local childName = childInstance:findChildGameObject(ChildIcon.CHILD_NAME_NAME)
+    local childName = childInstance:findChildGameObject(self.CHILD_NAME_NAME)
     childName:findComponent("TextRenderer"):setText(child.name)
     
-    child:subscribeOnSelectedChangedCallback(ChildIcon.ON_SELECTED_CHANGED_CALLBACK_NAME, onChildSelectedChanged, childIcon)
+    child:subscribeOnSelectedChangedCallback(self.ON_SELECTED_CHANGED_CALLBACK_NAME, onChildSelectedChanged, self)
 
-    childIcon.child = child
-    childIcon.gameObject = childInstance
-    childIcon.selectedIcon = childInstance:findChildGameObject(ChildIcon.CHILD_SELECTED_ICON_NAME)
-
-    return childIcon
+    self.child = child
+    self.gameObject = childInstance
+    self.selectedIcon = childInstance:findChildGameObject(self.CHILD_SELECTED_ICON_NAME)
 end
 
 ---------------------------------------------------------------------------------

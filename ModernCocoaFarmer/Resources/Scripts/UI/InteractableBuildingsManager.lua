@@ -63,7 +63,7 @@ end
 local function setUpBuilding(managerGameObject, gameObjectName, gameObjectPath, buildingClickedCallback)
     local building = managerGameObject:findChildGameObject(gameObjectName)
     local icon = building:findChildGameObject("Icon")
-    icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonClickedCallback(buildingClickedCallback)
+    icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(buildingClickedCallback)
 end
 
 ----------------------------------------------------------------------------------------

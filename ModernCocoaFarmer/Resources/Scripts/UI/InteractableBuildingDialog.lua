@@ -65,7 +65,7 @@ function ibd.show(screen, buildingInformation)
 
     local closeButton = dialogGameObject:findChildGameObject(ibd.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
-    mouseInteractionHandler:subscribeOnLeftButtonClickedCallback(closeCallback)
+    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback)
 
     local statsBackground = dialogGameObject:findChildGameObject(ibd.STATS_BACKGROUND_NAME)
     setModifierText(statsBackground, ibd.HEALTH_MODIFIER_TEXT_NAME, buildingInformation:getHealthModifier())

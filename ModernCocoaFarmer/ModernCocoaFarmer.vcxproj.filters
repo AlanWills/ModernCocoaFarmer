@@ -80,8 +80,6 @@
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
     <None Include="Resources\Scripts\Screens\GameplayScreen.lua" />
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Family\ChildIcon.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Family\FamilyPanel.prefab" />
     <None Include="Resources\Screens\DebugTools.screen" />
     <None Include="Resources\Screens\Gameplay.screen" />
     <None Include="Resources\Screens\Loading.screen" />
@@ -101,6 +99,17 @@
     <None Include="Resources\Scripts\Screens\OptionsScreen.lua" />
     <None Include="Resources\Scripts\Screens\SplashScreen.lua" />
     <None Include="Resources\Scripts\OOP\Class.lua" />
+    <None Include="Resources\Prefabs\UI\Family\ChildIcon.prefab" />
+    <None Include="Resources\Prefabs\UI\Family\FamilyPanel.prefab" />
+    <None Include="Resources\Prefabs\UI\Information\MoneyPanel.prefab" />
+    <None Include="Resources\Prefabs\UI\Information\TimePanel.prefab" />
+    <None Include="Resources\Scripts\UI\Information\MoneyPanel.lua" />
+    <None Include="Resources\Scripts\UI\Information\TimePanel.lua" />
+    <None Include="Resources\Scripts\Time\TimeManager.lua" />
+    <None Include="Resources\Scripts\Money\MoneyManager.lua" />
+    <None Include="Resources\Scripts\Events\Event.lua" />
+    <None Include="Resources\Scripts\Time\TimeComponent.lua" />
+    <None Include="Resources\Scripts\Components\MCFComponents.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

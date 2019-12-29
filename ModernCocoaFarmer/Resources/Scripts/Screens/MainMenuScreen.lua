@@ -32,9 +32,9 @@ function MainMenuScreen.show()
     local mainMenuScreen = Screen.load(MainMenuScreen.MAIN_MENU_SCREEN_PATH)
     local layoutStackPanel = mainMenuScreen:findGameObject("Canvas2"):findChildGameObject("LayoutStackPanel")
     
-    layoutStackPanel:setupChildLeftClickCallback(MainMenuScreen.PLAY_BUTTON_NAME, play)
-    layoutStackPanel:setupChildLeftClickCallback(MainMenuScreen.OPTIONS_BUTTON_NAME, toOptions)
-    layoutStackPanel:setupChildLeftClickCallback(MainMenuScreen.EXIT_BUTTON_NAME, exitGame)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenuScreen.PLAY_BUTTON_NAME, play)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenuScreen.OPTIONS_BUTTON_NAME, toOptions)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenuScreen.EXIT_BUTTON_NAME, exitGame)
 end
 
 return MainMenuScreen
