@@ -21,19 +21,37 @@ local function toggleUI(caller, otherButtonName)
 end
 
 ---------------------------------------------------------------------------------
-local function play(eventArgs, caller)
+local function play(eventArgs, caller, self)
     toggleUI(caller, TimePanel.PLAY_BUTTON_NAME)
+    self._timeManager:play()
 end
 
 ---------------------------------------------------------------------------------
-local function pause(eventArgs, caller)
+local function pause(eventArgs, caller, self)
     toggleUI(caller, TimePanel.PAUSE_BUTTON_NAME)
+    self._timeManager:pause()
 end
 
 ---------------------------------------------------------------------------------
-function TimePanel:new(timePanelGameObject)
-    timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, pause)
-    timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, play)
+local function tryUpdateMonthText(self)
+    self:setMonthText(self._timeManager:getMonthString())
+end
+
+---------------------------------------------------------------------------------
+function TimePanel:new(timePanelGameObject, timeManager)
+    self._monthText = timePanelGameObject:findChildGameObject(self.MONTH_TEXT_NAME):findComponent("TextRenderer")
+    self._timeManager = timeManager
+    tryUpdateMonthText(self)
+
+    timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, pause, self)
+    timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, play, self)
+
+    timeManager:subscribeOnMonthPassedCallback("TimeManager_OnMonthPassed", tryUpdateMonthText, self)
+end
+
+---------------------------------------------------------------------------------
+function TimePanel:setMonthText(monthText)
+    self._monthText:setText(monthText)
 end
 
 return TimePanel

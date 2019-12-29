@@ -1,7 +1,6 @@
 ---------------------------------------------------------------------------------
 local MoneyPanel = 
 {
-    MONEY_ICON = "MoneyIcon",
     MONEY_TEXT_NAME = "MoneyText"
 }
 
@@ -12,7 +11,9 @@ end
 
 ---------------------------------------------------------------------------------
 function MoneyPanel:new(moneyPanelGameObject, moneyManager)
-    self._moneyText = moneyPanelGameObject:findChildGameObject(self.MONEY_TEXT_NAME):findComponent("TextRenderer")
+    local moneyText = moneyPanelGameObject:findChildGameObject(self.MONEY_TEXT_NAME)
+
+    self._moneyText = moneyText:findComponent("TextRenderer")
     moneyManager:subscribeOnMoneyChangedCallback(updateMoneyText, self._moneyText)
 end
 

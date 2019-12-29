@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="MoneyIcon" position="-0.45%,0,1">
+    <GameObject name="MoneyPanel" position="-0.45%,0,1">
       <Components>
         <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
         <RectangleCollider dimensions="0.04%, 0.04%"/>

@@ -4,25 +4,16 @@
 #include "Stats/ChildModifier.h"
 
 
-namespace MCF
+namespace MCF::Lua::Stats::ChildModifierScriptCommands
 {
-  namespace Lua
+  //------------------------------------------------------------------------------------------------
+  void initialize()
   {
-    namespace Stats
-    {
-      namespace ChildModifierScriptCommands
-      {
-        //------------------------------------------------------------------------------------------------
-        void initialize()
-        {
-          using ChildModifier = MCF::Stats::ChildModifier;
+    using ChildModifier = MCF::Stats::ChildModifier;
 
-          CelesteEngine::Lua::registerScriptableObjectUserType<ChildModifier>(
-            "ChildModifier",
-            sol::base_classes, sol::bases<MCF::Stats::Modifier, CelesteEngine::ScriptableObject>(),
-            "getAppliesToAllChildren", &ChildModifier::getAppliesToAllChildren);
-        }
-      }
-    }
+    CelesteEngine::Lua::registerScriptableObjectUserType<ChildModifier>(
+      "ChildModifier",
+      sol::base_classes, sol::bases<MCF::Stats::Modifier, CelesteEngine::ScriptableObject>(),
+      "getAppliesToAllChildren", &ChildModifier::getAppliesToAllChildren);
   }
 }

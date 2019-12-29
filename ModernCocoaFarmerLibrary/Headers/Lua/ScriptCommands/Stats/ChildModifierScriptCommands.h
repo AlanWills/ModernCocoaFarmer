@@ -1,16 +1,7 @@
 #pragma once
 
 
-namespace MCF
+namespace MCF::Lua::Stats::ChildModifierScriptCommands
 {
-  namespace Lua
-  {
-    namespace Stats
-    {
-      namespace ChildModifierScriptCommands
-      {
-        void initialize();
-      }
-    }
-  }
+  void initialize();
 }

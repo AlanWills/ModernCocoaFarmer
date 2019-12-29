@@ -11,7 +11,7 @@ local GameplayScreen =
 {
     GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen"),
     TOP_BAR_NAME = "TopBarBackground",
-    TIME_COMPONENT_NAME = "TimeComponent"
+    TIME_NOTIFIER_NAME = "TimeNotifier"
 }
 
 ---------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ function GameplayScreen.show()
     local gameplayScreen = Screen.load(GameplayScreen.GAMEPLAY_SCREEN_PATH)
     ibm.initialize(gameplayScreen)
 
-    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_COMPONENT_NAME):findComponent("TimeComponent")
+    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
     GameplayScreen._timeManager = Class.new(TimeManager, timeComponent)
     GameplayScreen._moneyManager = Class.new(MoneyManager)
     GameplayScreen._familyManager = Class.new(FamilyManager)

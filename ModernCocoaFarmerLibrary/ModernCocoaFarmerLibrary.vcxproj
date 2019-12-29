@@ -31,6 +31,7 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ModifierScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\StatsScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Time\TimeNotifierScriptCommands.h" />
     <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Persistence\DataStore.h" />
     <ClInclude Include="Headers\Stats\ChildModifier.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="Headers\Networking\RAII\AutoWSACleanup.h" />
     <ClInclude Include="Headers\Networking\SocketClient.h" />
     <ClInclude Include="Headers\Networking\SocketServer.h" />
+    <ClInclude Include="Headers\Time\TimeNotifier.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Buildings\BuildingInformation.cpp" />
@@ -64,6 +66,7 @@
     <ClCompile Include="Source\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Stats\ModifierScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Stats\StatsScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Time\TimeNotifierScriptCommands.cpp" />
     <ClCompile Include="Source\Networking\NetworkUtils.cpp" />
     <ClCompile Include="Source\Networking\SocketClient.cpp" />
     <ClCompile Include="Source\Networking\SocketServer.cpp" />
@@ -71,6 +74,7 @@
     <ClCompile Include="Source\Stats\ChildModifier.cpp" />
     <ClCompile Include="Source\Stats\Modifier.cpp" />
     <ClCompile Include="Source\Stats\ModifierEnums.cpp" />
+    <ClCompile Include="Source\Time\TimeNotifier.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
