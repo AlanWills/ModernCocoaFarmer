@@ -194,6 +194,9 @@
     <None Include="Resources\Data\Buildings\Mosque.asset" />
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Data\Buildings\Well.asset" />
+    <None Include="Resources\Data\Events\PayBills.asset" />
+    <None Include="Resources\Data\Events\SalaryDecreased.asset" />
+    <None Include="Resources\Data\Events\SalaryIncreased.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmEducationModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmHappinessModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmHealthModifier.asset" />
@@ -229,6 +232,7 @@
     <None Include="Resources\Data\Modifiers\Well\WellHealthModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellMoneyModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellSafetyModifier.asset" />
+    <None Include="Resources\Prefabs\UI\Events\EventNotification.prefab" />
     <None Include="Resources\Prefabs\UI\Information\MoneyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
     <None Include="Resources\Prefabs\UI\Information\TimePanel.prefab" />
@@ -250,11 +254,14 @@
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Family\FamilyPanel.prefab" />
-    <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
     <None Include="Resources\Scripts\Events\Event.lua" />
+    <None Include="Resources\Scripts\Events\GameEventManager.lua" />
+    <None Include="Resources\Scripts\Events\PayBills.lua" />
+    <None Include="Resources\Scripts\Events\SalaryDecreased.lua" />
+    <None Include="Resources\Scripts\Events\SalaryIncreased.lua" />
     <None Include="Resources\Scripts\Family\Child.lua" />
     <None Include="Resources\Scripts\Family\FamilyManager.lua" />
     <None Include="Resources\Scripts\Game.lua" />
@@ -265,10 +272,13 @@
     <None Include="Resources\Scripts\Screens\MainMenuScreen.lua" />
     <None Include="Resources\Scripts\Screens\OptionsScreen.lua" />
     <None Include="Resources\Scripts\Screens\SplashScreen.lua" />
+    <None Include="Resources\Scripts\Settings\GameSettings.lua" />
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Time\TimeManager.lua" />
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
     <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
+    <None Include="Resources\Scripts\UI\Events\EventDialog.lua" />
+    <None Include="Resources\Scripts\UI\Events\EventNotification.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
     <None Include="Resources\Scripts\UI\Information\MoneyPanel.lua" />
@@ -296,7 +306,9 @@
     <Image Include="Resources\Textures\Icons\IOSIcon.png" />
     <Image Include="Resources\Textures\UI\StatIcons\Happiness.png" />
     <Image Include="Resources\Textures\UI\StatIcons\Health.png" />
+    <Image Include="Resources\Textures\UI\Utility\DonateButton.png" />
     <Image Include="Resources\Textures\UI\Utility\Menu.png" />
+    <Image Include="Resources\Textures\UI\Utility\Money.png" />
     <Image Include="Resources\Textures\UI\Utility\Outline.png" />
     <Image Include="Resources\Textures\UI\Settings\Pause.png" />
     <Image Include="Resources\Textures\UI\Settings\Play.png" />
@@ -416,6 +428,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resources\Scripts\Commands\SelectSingleChildCommand.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\Prefabs\UI\Events\EventDialog.prefab" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

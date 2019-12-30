@@ -50,6 +50,11 @@
         </GameObject>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
+        <GameObject name="EventNotifications" position="0.02%,0.02%">
+          <Components>
+            <StackPanel orientation="vertical" vertical_alignment="bottom"/>
+          </Components>
+        </GameObject>
         <GameObject name="TimeNotifier">
           <Components>
             <TimeNotifier/>

@@ -69,6 +69,8 @@
         <Folder Include="Bindings\"/>
         <Compile Include="Bindings\Modifier.cs"/>
         <Compile Include="Bindings\ChildModifier.cs"/>
+        <Compile Include="Bindings\GameEvent.cs"/>
         <Compile Include="Bindings\BuildingInformation.cs"/>
+        <Compile Include="Bindings\TimeNotifier.cs"/>
     </ItemGroup>
 </Project>

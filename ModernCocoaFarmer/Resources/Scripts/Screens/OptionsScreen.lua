@@ -1,8 +1,9 @@
+require 'Settings.GameSettings'
+
 local OptionsScreen = {}
 
 ---------------------------------------------------------------------------------
 OptionsScreen.OPTIONS_SCREEN_PATH = path.combine("Screens", "Options.screen")
-OptionsScreen.GAME_SETTINGS_FILE_PATH = path.combine("Data", "Settings", "GameSettings.asset")
 OptionsScreen.MASTER_VOLUME_SLIDER_NAME = "MasterVolumeSlider"
 OptionsScreen.MASTER_VOLUME_VALUE_NAME = "MasterVolumeValueText"
 OptionsScreen.MUSIC_VOLUME_SLIDER_NAME = "MusicVolumeSlider"
@@ -42,12 +43,9 @@ end
 
 ---------------------------------------------------------------------------------
 local function saveAndTransitionToMainMenu(eventArgs, caller)
-    local gameSettings = GameSettings.load(OptionsScreen.GAME_SETTINGS_FILE_PATH) or GameSettings.create("GameSettings")
-    
-    gameSettings:setMasterVolume(Audio.getMasterVolume())
-    gameSettings:setMusicVolume(Audio.getMusicVolume())
-    gameSettings:setSFXVolume(Audio.getSFXVolume())
-    gameSettings:save(OptionsScreen.GAME_SETTINGS_FILE_PATH)
+    local gameSettings = GameSettings.loadFromDefaultOrCreate()
+    gameSettings:synchronizeAudioSettings()
+    gameSettings:saveToDefault()
 
     caller:getScreen():die()
 

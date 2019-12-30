@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="EventDialog" position="0.5%,0.5%,0">
+      <Components>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.3%,0.3%,0" colour="0.8,0.8,0.8" opacity="0.5"/>
+      </Components>
+      <GameObjects>
+        <GameObject name="EventDialogTitle" position="0,0.12%,0">
+          <TextRenderer font_height="30" colour="0,0,0" text="Event Name" horizontal_alignment="Centre" vertical_alignment="Centre"/>
+        </GameObject>
+        <GameObject name="EventDialogDescription">
+          <TextRenderer font_height="24" colour="0,0,0" text="Event Text" horizontal_alignment="Centre" vertical_alignment="Centre"/>
+        </GameObject>
+        <GameObject name="CloseEventDialogButton" position="0.25%,0.25%,0">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
+            <RectangleCollider dimensions="0.04%,0.04%"/>
+            <MouseInteractionHandler/>
+          </Components>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Prefab>

@@ -1,3 +1,5 @@
+require 'Settings.GameSettings'
+
 local InGameMenu = {}
 
 ---------------------------------------------------------------------------------
@@ -16,18 +18,32 @@ local function close(eventArgs, caller)
     caller:getParent():die()
 end
 
+---------------------------------------------------------------------------------
+local function setToggleAudioButtonTexture(audioButton, volume)
+    if volume > 0 then
+        audioButton:findComponent("SpriteRenderer"):setTexture(InGameMenu.AUDIO_PLAYING_TEXTURE_PATH)
+    else
+        audioButton:findComponent("SpriteRenderer"):setTexture(InGameMenu.AUDIO_MUTED_TEXTURE_PATH)
+    end
+end
+
 ----------------------------------------------------------------------------------------
 local function toggleAudio(eventArgs, caller)
     local masterVolume = Audio.getMasterVolume()
 
     if masterVolume > 0 then
-        caller:findComponent("SpriteRenderer"):setTexture(InGameMenu.AUDIO_MUTED_TEXTURE_PATH)
         InGameMenu.oldMasterVolume = masterVolume
-        Audio.setMasterVolume(0)
+        masterVolume = 0
     else
-        caller:findComponent("SpriteRenderer"):setTexture(InGameMenu.AUDIO_PLAYING_TEXTURE_PATH)
-        Audio.setMasterVolume(InGameMenu.oldMasterVolume)
+        masterVolume = InGameMenu.oldMasterVolume
     end
+
+    Audio.setMasterVolume(masterVolume)
+    setToggleAudioButtonTexture(caller, masterVolume)
+
+    local gameSettings = GameSettings.loadFromDefaultOrCreate()
+    gameSettings:synchronizeAudioSettings()
+    gameSettings:saveToDefault()
 end
 
 ---------------------------------------------------------------------------------
@@ -71,6 +87,8 @@ function InGameMenu.show(screen, familyManager)
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.RESTART_GAME_BUTTON_NAME, restartGame)
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.TO_MAIN_MENU_BUTTON_NAME, toMainMenu)
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.QUIT_GAME_BUTTON_NAME, quitGame)
+
+    setToggleAudioButtonTexture(menuInstance:findChildGameObject(InGameMenu.TOGGLE_AUDIO_BUTTON_NAME), Audio.getMasterVolume())
 end
 
 return InGameMenu

@@ -10,7 +10,7 @@
         <GameObject name="ToggleAudioButton" position="0,0.20%,0.1">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\AudioPlaying.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
-            <RectangleCollider/>
+            <RectangleCollider dimensions="0.04%,0.04%"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>

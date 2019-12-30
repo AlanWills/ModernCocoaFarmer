@@ -30,7 +30,6 @@
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Market.prefab" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
-    <None Include="Resources\Prefabs\UI\EventPopup.prefab" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
@@ -110,6 +109,17 @@
     <None Include="Resources\Scripts\Events\Event.lua" />
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
+    <None Include="Resources\Scripts\Events\GameEventManager.lua" />
+    <None Include="Resources\Prefabs\UI\Events\EventNotification.prefab" />
+    <None Include="Resources\Data\Events\PayBills.asset" />
+    <None Include="Resources\Data\Events\SalaryDecreased.asset" />
+    <None Include="Resources\Data\Events\SalaryIncreased.asset" />
+    <None Include="Resources\Scripts\Events\PayBills.lua" />
+    <None Include="Resources\Scripts\Events\SalaryDecreased.lua" />
+    <None Include="Resources\Scripts\Events\SalaryIncreased.lua" />
+    <None Include="Resources\Scripts\Settings\GameSettings.lua" />
+    <None Include="Resources\Scripts\UI\Events\EventNotification.lua" />
+    <None Include="Resources\Scripts\UI\Events\EventDialog.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -403,6 +413,12 @@
     <Image Include="Resources\Textures\UI\StatIcons\Education.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Textures\UI\Utility\Money.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\UI\Utility\DonateButton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\Videos\IntroMovie.mp4" />
@@ -465,5 +481,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resources\Scripts\Commands\SelectSingleChildCommand.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Resources\Prefabs\UI\Events\EventDialog.prefab" />
   </ItemGroup>
 </Project>
