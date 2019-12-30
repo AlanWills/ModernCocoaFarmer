@@ -1,13 +1,7 @@
 #pragma once
 
 
-namespace MCF
+namespace MCF::Lua::MCFScriptCommands
 {
-  namespace Lua
-  {
-    namespace MCFScriptCommands
-    {
-      void initialize();
-    }
-  }
+  void initialize();
 }

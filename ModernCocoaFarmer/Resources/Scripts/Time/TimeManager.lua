@@ -49,6 +49,11 @@ function TimeManager:new(timeNotifier)
 end
 
 ---------------------------------------------------------------------------------
+function TimeManager:getMonthIndex()
+    return self._monthIndex
+end
+
+---------------------------------------------------------------------------------
 function TimeManager:getMonthString()
     return self.MONTHS[self._monthIndex]
 end

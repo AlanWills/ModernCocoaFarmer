@@ -26,6 +26,7 @@ local function setUpProgressBar(dialogGameObject, categoryName, progressBarName,
     local categoryBackground = category:findChildGameObject(categoryName .. "ProgressBarBackground")
     local categoryProgressBarGameObject = categoryBackground:findChildGameObject(progressBarName)
     local categoryProgressBar = categoryProgressBarGameObject:findComponent("ProgressBar")
+    
     categoryProgressBar:setProgress(value)
 end
 

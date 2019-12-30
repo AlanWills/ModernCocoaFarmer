@@ -17,10 +17,10 @@
             </GameObject>
             <GameObject name="HealthProgressBarBackground" position="30, 0">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Bar.png" size="120,15"/>
               </Components>
               <GameObjects>
-                <GameObject name="HealthProgressBar">
+                <GameObject name="HealthProgressBar" position="0,0,-0.1">
                   <Components>
                     <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
                     <ProgressBar/>
@@ -39,10 +39,10 @@
             </GameObject>
             <GameObject name="SafetyProgressBarBackground" position="30, 0">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Bar.png" size="120,15"/>
               </Components>
               <GameObjects>
-                <GameObject name="SafetyProgressBar">
+                <GameObject name="SafetyProgressBar" position="0,0,-0.1">
                   <Components>
                     <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
                     <ProgressBar/>
@@ -61,10 +61,10 @@
             </GameObject>
             <GameObject name="EducationProgressBarBackground" position="30, 0">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Bar.png" size="120,15"/>
               </Components>
               <GameObjects>
-                <GameObject name="EducationProgressBar">
+                <GameObject name="EducationProgressBar" position="0,0,-0.1">
                   <Components>
                     <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
                     <ProgressBar/>
@@ -83,10 +83,10 @@
             </GameObject>
             <GameObject name="HappinessProgressBarBackground" position="30, 0">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Bar.png" size="120,15"/>
               </Components>
               <GameObjects>
-                <GameObject name="HappinessProgressBar">
+                <GameObject name="HappinessProgressBar" position="0,0,-0.1">
                   <Components>
                     <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="120,15"/>
                     <ProgressBar/>

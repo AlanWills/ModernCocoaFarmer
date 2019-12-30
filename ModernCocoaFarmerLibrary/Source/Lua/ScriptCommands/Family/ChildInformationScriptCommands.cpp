@@ -15,6 +15,7 @@ namespace MCF::Lua::Family::ChildInformationScriptCommands
       "ChildInformation",
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
       "getHealth", &ChildInformation::getHealth,
+      "setHealth", &ChildInformation::setHealth,
       "getSafety", &ChildInformation::getSafety,
       "getEducation", &ChildInformation::getEducation,
       "getHappiness", &ChildInformation::getHappiness);

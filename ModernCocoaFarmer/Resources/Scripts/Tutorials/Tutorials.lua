@@ -1,8 +1,9 @@
-local tuts = {}
-
 ---------------------------------------------------------------------------------
-tuts.DATA_STORE_PATH = path.combine("Data", "AppData", "TutorialDataStore.xml")
-tuts.INTRO_VIDEO_SHOWN_KEY = "IntroVideoShown"
+local tuts = 
+{
+    DATA_STORE_PATH = path.combine("Data", "AppData", "TutorialDataStore.xml"),
+    INTRO_VIDEO_SHOWN_KEY = "IntroVideoShown"
+}
 
 ---------------------------------------------------------------------------------
 function tuts.isIntroVideoShown()

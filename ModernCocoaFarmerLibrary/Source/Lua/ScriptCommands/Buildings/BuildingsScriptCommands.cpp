@@ -2,20 +2,11 @@
 #include "Lua/ScriptCommands/Buildings/BuildingInformationScriptCommands.h"
 
 
-namespace MCF
+namespace MCF::Lua::Buildings::ScriptCommands
 {
-  namespace Lua
+  //------------------------------------------------------------------------------------------------
+  void initialize()
   {
-    namespace Buildings
-    {
-      namespace ScriptCommands
-      {
-        //------------------------------------------------------------------------------------------------
-        void initialize()
-        {
-          BuildingInformationScriptCommands::initialize();
-        }
-      }
-    }
+    BuildingInformationScriptCommands::initialize();
   }
 }

@@ -8,6 +8,7 @@ local FamilyManager = require "Family.FamilyManager"
 local MoneyManager = require 'Money.MoneyManager'
 local TimeManager = require 'Time.TimeManager'
 local GameEventManager = require 'Events.GameEventManager'
+local WelcomeToZegoua = require 'Events.WelcomeToZegoua'
 
 local GameplayScreen = 
 {
@@ -32,7 +33,9 @@ function GameplayScreen.show()
     GameplayScreen._familyManager = Class.new(FamilyManager)
     GameplayScreen._eventManager = Class.new(
         GameEventManager, 
-        gameplayScreen:findGameObject(GameplayScreen.EVENT_NOTIFICATIONS_NAME, 
+        gameplayScreen:findGameObject(GameplayScreen.EVENT_NOTIFICATIONS_NAME), 
+        GameplayScreen._familyManager,
+        GameplayScreen._moneyManager,
         GameplayScreen._timeManager)
 
     local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
@@ -42,6 +45,8 @@ function GameplayScreen.show()
         GameplayScreen._familyManager, 
         GameplayScreen._moneyManager,
         GameplayScreen._timeManager)
+
+    GameplayScreen._eventManager:triggerEvent(WelcomeToZegoua)
 end
 
 return GameplayScreen

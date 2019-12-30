@@ -1,4 +1,5 @@
 local Class = require 'OOP.Class'
+local EventDialog = require 'UI.Events.EventDialog'
 
 local EventNotification = 
 {
@@ -14,7 +15,6 @@ end
 local function showEventDialog(eventArgs, caller, self)
     squelchNotification(eventArgs, caller)
 
-    local EventDialog = require 'UI.Events.EventDialog'
     Class.new(EventDialog, caller:getScreen(), self._gameEvent)
 end
 
@@ -23,8 +23,10 @@ function EventNotification:new(screen, gameEvent)
     self._gameEvent = gameEvent
 
     local notificationPrefab = Resources.loadPrefab(self.EVENT_NOTIFICATION_PREFAB_PATH)
-    local notificationInstance = notificationPrefab:instantiate(screen)
-    local notificationInteractionHandler = notificationInstance:findComponent("MouseInteractionHandler")
+    self.gameObject = notificationPrefab:instantiate(screen)
+    local notificationInteractionHandler = self.gameObject:findComponent("MouseInteractionHandler")
     notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showEventDialog, self)
     notificationInteractionHandler:subscribeOnRightButtonUpCallback(squelchNotification)
 end
+
+return EventNotification

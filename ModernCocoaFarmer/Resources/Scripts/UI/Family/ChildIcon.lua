@@ -10,8 +10,8 @@ local ChildIcon =
 }
 
 ---------------------------------------------------------------------------------
-local function showChildInformation(eventArgs, caller)
-    local statsDialog = ChildStatsDialog.show(caller:getScreen(), ChildInformation.create("Test"))
+local function showChildInformation(eventArgs, caller, childInformation)
+    local statsDialog = ChildStatsDialog.show(caller:getScreen(), childInformation)
     statsDialog:setParent(caller);
     statsDialog:getTransform():translate(0, -240)
 end
@@ -37,7 +37,7 @@ function ChildIcon:new(familyPanel, child)
     familyPanelStackPanel:addChild(childInstance);
 
     local childInteractionHandler = childInstance:findComponent("MouseInteractionHandler")
-    childInteractionHandler:subscribeOnEnterCallback(showChildInformation)
+    childInteractionHandler:subscribeOnEnterCallback(showChildInformation, child.childInformation)
     childInteractionHandler:subscribeOnLeaveCallback(hideChildInformation)
 
     local childName = childInstance:findChildGameObject(self.CHILD_NAME_NAME)

@@ -1,16 +1,7 @@
 #pragma once
 
 
-namespace MCF
+namespace MCF::Lua::Buildings::BuildingInformationScriptCommands
 {
-  namespace Lua
-  {
-    namespace Buildings
-    {
-      namespace BuildingInformationScriptCommands
-      {
-        void initialize();
-      }
-    }
-  }
+  void initialize();
 }

@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="EventNotification">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04%,0.04%" colour="1" opacity="1"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04%,0.04%" colour="1" opacity="1" preserve_aspect_ratio="true"/>
         <RectangleCollider dimensions="0.04%,0.04%"/>
         <MouseInteractionHandler/>
       </Components>

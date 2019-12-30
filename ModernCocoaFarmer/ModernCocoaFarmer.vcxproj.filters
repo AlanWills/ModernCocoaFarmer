@@ -120,6 +120,8 @@
     <None Include="Resources\Scripts\Settings\GameSettings.lua" />
     <None Include="Resources\Scripts\UI\Events\EventNotification.lua" />
     <None Include="Resources\Scripts\UI\Events\EventDialog.lua" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua.asset" />
+    <None Include="Resources\Scripts\Events\WelcomeToZegoua.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -473,6 +475,7 @@
     <Font Include="Resources\Fonts\Calculator.ttf" />
     <Font Include="Resources\Fonts\PressStart2P.ttf" />
     <Font Include="Resources\Fonts\RosesareFF0000.ttf" />
+    <Font Include="Resources\Fonts\Arial.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">

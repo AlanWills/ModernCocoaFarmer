@@ -1,5 +1,6 @@
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
 #include "Lua/ScriptCommands/Buildings/BuildingsScriptCommands.h"
+#include "Lua/ScriptCommands/Events/EventScriptCommands.h"
 #include "Lua/ScriptCommands/Family/FamilyScriptCommands.h"
 #include "Lua/ScriptCommands/Stats/StatsScriptCommands.h"
 #include "Lua/ScriptCommands/Persistence/PersistenceScriptCommands.h"
@@ -16,6 +17,7 @@ namespace MCF
       void initialize()
       {
         Buildings::ScriptCommands::initialize();
+        Events::ScriptCommands::initialize();
         Family::ScriptCommands::initialize();
         Stats::ScriptCommands::initialize();
         Persistence::ScriptCommands::initialize();

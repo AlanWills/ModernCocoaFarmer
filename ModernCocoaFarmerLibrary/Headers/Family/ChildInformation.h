@@ -12,6 +12,8 @@ namespace MCF::Family
 
     public:
       float getHealth() const { return m_health.getValue(); }
+      void setHealth(float health) const { return m_health.setValue(health); }
+
       float getSafety() const { return m_safety.getValue(); }
       float getEducation() const { return m_education.getValue(); }
       float getHappiness() const { return m_happiness.getValue(); }

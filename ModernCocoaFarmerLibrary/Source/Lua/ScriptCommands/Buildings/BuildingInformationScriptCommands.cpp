@@ -4,31 +4,22 @@
 #include "Buildings/BuildingInformation.h"
 
 
-namespace MCF
+namespace MCF::Lua::Buildings::BuildingInformationScriptCommands
 {
-  namespace Lua
+  //------------------------------------------------------------------------------------------------
+  void initialize()
   {
-    namespace Buildings
-    {
-      namespace BuildingInformationScriptCommands
-      {
-        //------------------------------------------------------------------------------------------------
-        void initialize()
-        {
-          using BuildingInformation = MCF::Buildings::BuildingInformation;
+    using BuildingInformation = MCF::Buildings::BuildingInformation;
 
-          CelesteEngine::Lua::registerScriptableObjectUserType<BuildingInformation>(
-            "BuildingInformation",
-            sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
-            "getDescription", &BuildingInformation::getDescription,
-            "getHealthModifier", &BuildingInformation::getHealthModifier,
-            "getSafetyModifier", &BuildingInformation::getSafetyModifier,
-            "getEducationModifier", &BuildingInformation::getEducationModifier,
-            "getHappinessModifier", &BuildingInformation::getHappinessModifier,
-            "getMoneyModifier", &BuildingInformation::getMoneyModifier,
-            "getMonthsToComplete", &BuildingInformation::getMonthsToComplete);
-        }
-      }
-    }
+    CelesteEngine::Lua::registerScriptableObjectUserType<BuildingInformation>(
+      "BuildingInformation",
+      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      "getDescription", &BuildingInformation::getDescription,
+      "getHealthModifier", &BuildingInformation::getHealthModifier,
+      "getSafetyModifier", &BuildingInformation::getSafetyModifier,
+      "getEducationModifier", &BuildingInformation::getEducationModifier,
+      "getHappinessModifier", &BuildingInformation::getHappinessModifier,
+      "getMoneyModifier", &BuildingInformation::getMoneyModifier,
+      "getMonthsToComplete", &BuildingInformation::getMonthsToComplete);
   }
 }
