@@ -87,12 +87,6 @@
     <ClInclude Include="Headers\MCFLibraryDllExport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Family\ChildInformation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers\Lua\ScriptCommands\Family\ChildInformationScriptCommands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Lua\ScriptCommands\Family\FamilyScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,6 +103,36 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\EventScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Family\Child.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Family\ChildScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Family\FamilyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Family\FamilyManagerScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Money\MoneyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Money\MoneyManagerScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Money\MoneyScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Time\TimeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Time\TimeScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Time\TimeManagerScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -173,13 +197,7 @@
     <ClCompile Include="Source\Lua\ScriptCommands\Stats\StatsScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Family\ChildInformation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Lua\ScriptCommands\Family\FamilyScriptCommands.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Lua\ScriptCommands\Family\ChildInformationScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Time\TimeNotifier.cpp">
@@ -195,6 +213,36 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Family\Child.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Family\ChildScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Family\FamilyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Family\FamilyManagerScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Money\MoneyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Money\MoneyManagerScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Money\MoneyScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Time\TimeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Time\TimeScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Time\TimeManagerScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

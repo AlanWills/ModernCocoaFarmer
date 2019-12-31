@@ -28,12 +28,14 @@ function PayBills:execute(state)
     -- $700 a year for 32 m2 apartment
     -- $52 a year for food per person
 
-    self._hasEnoughMoney = state.moneyManager:getMoney() >= 430500 + 31980 * #(state.familyManager.children)
+    self._hasEnoughMoney = state.moneyManager:getMoney() >= 430500 + 31980 * state.familyManager:getChildCount()
     
     if not self._hasEnoughMoney then
         -- Apply detrimental modifiers to children
-        for k, child in ipairs(state.familyManager.children) do
-            child.childInformation:setHealth(50)
+        local childCount = 0
+        while childCount < state.familyManager:getChildCount() do
+            state.familyManager:getChild(childCount):setHealth(50)
+            childCount = childCount + 1
         end
     end
 end

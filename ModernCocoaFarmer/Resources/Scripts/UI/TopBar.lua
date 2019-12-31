@@ -1,5 +1,4 @@
 local Class = require 'OOP.Class'
-local SelectSingleChildCommand = require 'Commands.SelectSingleChildCommand'
 local ChildIcon = require 'UI.Family.ChildIcon'
 local InGameMenu = require 'UI.InGameMenu'
 local MoneyPanel = require 'UI.Information.MoneyPanel'
@@ -27,7 +26,7 @@ end
 
 ---------------------------------------------------------------------------------
 local function childIconLeftClicked(eventArgs, caller, extraArgs)
-    SelectSingleChildCommand.execute(extraArgs.familyManager, extraArgs.childToSelect)
+    extraArgs.familyManager:selectOnlyThisChild(extraArgs.childToSelect)
 end
 
 ---------------------------------------------------------------------------------
@@ -40,15 +39,19 @@ function TopBar:new(topBarGameObject, familyManager, moneyManager, timeManager)
     -- Set up family UI being populated
     local familyPanel = topBarGameObject:findChildGameObject(self.FAMILY_PANEL_NAME)
 
-    for k, child in ipairs(familyManager.children) do
+    local childCount = 0
+    while childCount < familyManager:getChildCount() do
+        local child = familyManager:getChild(childCount)
         local childIcon = Class.new(ChildIcon, familyPanel, child)
-        self._childIcons[child.name] = childIcon
+        self._childIcons[child:getName()] = childIcon
 
         local childInteractionHandler = childIcon.gameObject:findComponent("MouseInteractionHandler")
         local extraArgs = {}
         extraArgs.familyManager = familyManager
-        extraArgs.childToSelect = childIcon.child
+        extraArgs.childToSelect = child
         childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClicked, extraArgs)
+
+        childCount = childCount + 1
     end
 
     local buttonsStackPanel = topBarGameObject:findChildGameObject(self.UTILITY_BUTTONS_STACK_PANEL_NAME)

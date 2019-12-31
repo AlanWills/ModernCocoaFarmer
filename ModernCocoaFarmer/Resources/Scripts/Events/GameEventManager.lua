@@ -5,20 +5,20 @@ local PayBills = require 'Events.PayBills'
 local GameEventManager = {}
 
 ---------------------------------------------------------------------------------
-local function onDayPassed(self)
+local function onDayPassed(eventArgs, self)
     -- Trigger appropriate events
 end
 
 ---------------------------------------------------------------------------------
-local function onMonthPassed(self)
+local function onMonthPassed(eventArgs, self)
     -- Trigger appropriate events
-    if self._state.timeManager:getMonthIndex() == 4 then
+    if self._state.timeManager:getCurrentMonth() == 3 then
         self:triggerEvent(PayBills)
     end
 end
 
 ---------------------------------------------------------------------------------
-local function onYearPassed(self)
+local function onYearPassed(eventArgs, self)
     -- Trigger appropriate events
 end
 
@@ -32,9 +32,9 @@ function GameEventManager:new(eventNotificationsGameObject, familyManager, money
     state.timeManager = timeManager
     self._state = state;
 
-    timeManager:subscribeOnDayPassedCallback("GameEventManager_OnDayPassed", onDayPassed, self)
-    timeManager:subscribeOnMonthPassedCallback("GameEventManager_OnMonthPassed", onMonthPassed, self)
-    timeManager:subscribeOnYearPassedCallback("GameEventManager_OnYearPassed", onYearPassed, self)
+    timeManager:subscribeOnDayPassedCallback(onDayPassed, self)
+    timeManager:subscribeOnMonthPassedCallback(onMonthPassed, self)
+    timeManager:subscribeOnYearPassedCallback(onYearPassed, self)
 end
 
 ---------------------------------------------------------------------------------

@@ -85,11 +85,9 @@
     <None Include="Resources\Screens\MainMenu.screen" />
     <None Include="Resources\Screens\Options.screen" />
     <None Include="Resources\Screens\Splash.screen" />
-    <None Include="Resources\Scripts\Family\FamilyManager.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
     <None Include="Resources\Scripts\UI\TopBar.lua" />
-    <None Include="Resources\Scripts\Family\Child.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
     <None Include="Resources\Prefabs\UI\InGameMenu.prefab" />
     <None Include="Resources\Scripts\UI\InGameMenu.lua" />
@@ -104,8 +102,6 @@
     <None Include="Resources\Prefabs\UI\Information\TimePanel.prefab" />
     <None Include="Resources\Scripts\UI\Information\MoneyPanel.lua" />
     <None Include="Resources\Scripts\UI\Information\TimePanel.lua" />
-    <None Include="Resources\Scripts\Time\TimeManager.lua" />
-    <None Include="Resources\Scripts\Money\MoneyManager.lua" />
     <None Include="Resources\Scripts\Events\Event.lua" />
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
@@ -481,9 +477,6 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Resources\Scripts\Commands\SelectSingleChildCommand.lua" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Resources\Prefabs\UI\Events\EventDialog.prefab" />

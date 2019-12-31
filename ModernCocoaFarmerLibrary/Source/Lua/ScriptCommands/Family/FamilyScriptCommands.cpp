@@ -1,5 +1,6 @@
 #include "Lua/ScriptCommands/Family/FamilyScriptCommands.h"
-#include "Lua/ScriptCommands/Family/ChildInformationScriptCommands.h"
+#include "Lua/ScriptCommands/Family/FamilyManagerScriptCommands.h"
+#include "Lua/ScriptCommands/Family/ChildScriptCommands.h"
 
 
 namespace MCF::Lua::Family::ScriptCommands
@@ -7,6 +8,7 @@ namespace MCF::Lua::Family::ScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    ChildInformationScriptCommands::initialize();
+    FamilyManagerScriptCommands::initialize();
+    ChildScriptCommands::initialize();
   }
 }

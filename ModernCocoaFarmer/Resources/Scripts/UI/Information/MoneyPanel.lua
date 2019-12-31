@@ -5,7 +5,7 @@ local MoneyPanel =
 }
 
 ---------------------------------------------------------------------------------
-local function updateMoneyText(money, moneyText)
+local function updateMoneyText(eventArgs, money, moneyText)
     moneyText:setText(tostring(money))
 end
 

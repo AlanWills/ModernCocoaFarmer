@@ -4,9 +4,6 @@ local ibd = require "UI.InteractableBuildingDialog"
 local csd = require "UI.Family.ChildStatsDialog"
 local TopBar = require "UI.TopBar"
 local EventNotification = require 'UI.Events.EventNotification'
-local FamilyManager = require "Family.FamilyManager"
-local MoneyManager = require 'Money.MoneyManager'
-local TimeManager = require 'Time.TimeManager'
 local GameEventManager = require 'Events.GameEventManager'
 local WelcomeToZegoua = require 'Events.WelcomeToZegoua'
 
@@ -19,6 +16,11 @@ local GameplayScreen =
 }
 
 ---------------------------------------------------------------------------------
+local function onTimeChanged(eventArgs, deltaTime, timeManager)
+    timeManager:update(deltaTime)
+end
+
+---------------------------------------------------------------------------------
 function GameplayScreen.show()
     -- Either caches instances or resources in memory to allow quicker prefab instancing
     ibd.load()
@@ -27,17 +29,16 @@ function GameplayScreen.show()
     local gameplayScreen = Screen.load(GameplayScreen.GAMEPLAY_SCREEN_PATH)
     ibm.initialize(gameplayScreen)
 
-    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
-    GameplayScreen._timeManager = Class.new(TimeManager, timeComponent)
-    GameplayScreen._moneyManager = Class.new(MoneyManager)
-    GameplayScreen._familyManager = Class.new(FamilyManager)
+    GameplayScreen._timeManager = TimeManager.create("TimeManager")
+    GameplayScreen._moneyManager = MoneyManager.create("MoneyManager")
+    GameplayScreen._familyManager = FamilyManager.create("FamilyManager")
     GameplayScreen._eventManager = Class.new(
         GameEventManager, 
         gameplayScreen:findGameObject(GameplayScreen.EVENT_NOTIFICATIONS_NAME), 
         GameplayScreen._familyManager,
         GameplayScreen._moneyManager,
         GameplayScreen._timeManager)
-
+        
     local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
     GameplayScreen._topBar = Class.new(
         TopBar, 
@@ -45,6 +46,9 @@ function GameplayScreen.show()
         GameplayScreen._familyManager, 
         GameplayScreen._moneyManager,
         GameplayScreen._timeManager)
+        
+    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
+    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, GameplayScreen._timeManager)
 
     GameplayScreen._eventManager:triggerEvent(WelcomeToZegoua)
 end
