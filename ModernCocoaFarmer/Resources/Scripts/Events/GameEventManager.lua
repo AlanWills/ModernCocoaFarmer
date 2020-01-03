@@ -46,7 +46,7 @@ function GameEventManager:triggerEvent(event)
             eventInstance:execute(self._state)
         end
 
-        -- Create notification prefab
+        -- Move this to separate UI class that hooks into GameEventManager on event triggered
         local notification = Class.new(EventNotification, self._eventNotificationsGameObject:getScreen(), eventInstance)
         self._eventNotificationsGameObject:findComponent("StackPanel"):addChild(notification.gameObject)
     end

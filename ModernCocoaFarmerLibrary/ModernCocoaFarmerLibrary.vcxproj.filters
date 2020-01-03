@@ -135,6 +135,18 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Time\TimeManagerScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\GameEventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Conditions\ICondition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Conditions\TimeComparisonCondition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
@@ -243,6 +255,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Lua\ScriptCommands\Time\TimeManagerScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\GameEventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

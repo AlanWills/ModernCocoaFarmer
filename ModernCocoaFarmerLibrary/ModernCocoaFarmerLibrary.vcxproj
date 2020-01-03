@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -22,10 +22,14 @@
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
     <ClInclude Include="Headers\Buildings\BuildingInformation.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
+    <ClInclude Include="Headers\Events\Conditions\ICondition.h" />
+    <ClInclude Include="Headers\Events\Conditions\TimeComparisonCondition.h" />
+    <ClInclude Include="Headers\Events\GameEventManager.h" />
     <ClInclude Include="Headers\Events\GameEvent.h" />
     <ClInclude Include="Headers\Family\Child.h" />
     <ClInclude Include="Headers\Family\FamilyManager.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\EventScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Family\FamilyManagerScriptCommands.h" />
@@ -65,12 +69,14 @@
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
     <ClCompile Include="Source\Deserialization\Stats\ModifierEnumsDeserializers.cpp" />
+    <ClCompile Include="Source\Events\GameEventManager.cpp" />
     <ClCompile Include="Source\Events\GameEvent.cpp" />
     <ClCompile Include="Source\Family\Child.cpp" />
     <ClCompile Include="Source\Family\FamilyManager.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\EventScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Family\ChildScriptCommands.cpp" />

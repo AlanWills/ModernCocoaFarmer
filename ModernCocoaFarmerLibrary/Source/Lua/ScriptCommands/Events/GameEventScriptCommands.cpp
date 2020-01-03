@@ -1,6 +1,7 @@
 #include "Lua/ScriptCommands/Events/GameEventScriptCommands.h"
-#include "Events/GameEvent.h"
 #include "Lua/ScriptCommands/ScriptCommandUtils.h"
+
+#include "Events/GameEvent.h"
 
 
 namespace MCF::Lua::Events::GameEventScriptCommands
