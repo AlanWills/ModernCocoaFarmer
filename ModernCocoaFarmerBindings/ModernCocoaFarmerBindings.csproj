@@ -67,10 +67,16 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Bindings\"/>
-        <Compile Include="Bindings\Modifier.cs"/>
-        <Compile Include="Bindings\ChildModifier.cs"/>
+        <Compile Include="Bindings\FamilyManager.cs"/>
+        <Compile Include="Bindings\Child.cs"/>
         <Compile Include="Bindings\GameEvent.cs"/>
         <Compile Include="Bindings\BuildingInformation.cs"/>
+        <Compile Include="Bindings\TimeComparisonCondition.cs"/>
+        <Compile Include="Bindings\GameEventManager.cs"/>
+        <Compile Include="Bindings\MoneyManager.cs"/>
+        <Compile Include="Bindings\ChildModifier.cs"/>
+        <Compile Include="Bindings\Modifier.cs"/>
+        <Compile Include="Bindings\TimeManager.cs"/>
         <Compile Include="Bindings\TimeNotifier.cs"/>
     </ItemGroup>
 </Project>

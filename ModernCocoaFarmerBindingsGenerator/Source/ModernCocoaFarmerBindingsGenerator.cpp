@@ -1,7 +1,4 @@
 #include "Project.h"
-#include "Stats/ChildModifier.h"
-#include "Events/GameEvent.h"
-#include "Buildings/BuildingInformation.h"
 
 #include <iostream>
 #include <chrono>
@@ -13,10 +10,6 @@ using namespace BindingsGenerator;
 
 int main()
 {
-  ScriptableObject::create<MCF::Stats::ChildModifier>("Test");
-  ScriptableObject::create<MCF::Events::GameEvent>("Test");
-  ScriptableObject::create<MCF::Buildings::BuildingInformation>("Test");
-
   Path projectPath(Directory::getExecutingAppDirectory(), UPDIR_STRING, "ModernCocoaFarmerBindings");
   Project project(projectPath, "ModernCocoaFarmerBindings", "MCF");
   project.generateBindings();

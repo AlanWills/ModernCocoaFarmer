@@ -21,13 +21,17 @@
   <ItemGroup>
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
     <ClInclude Include="Headers\Buildings\BuildingInformation.h" />
+    <ClInclude Include="Headers\DataConverters\Events\Conditions\ConditionDataConverter.h" />
+    <ClInclude Include="Headers\Deserialization\Logic\LogicDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
-    <ClInclude Include="Headers\Events\Conditions\ICondition.h" />
+    <ClInclude Include="Headers\Deserialization\Time\TimeDeserializers.h" />
+    <ClInclude Include="Headers\Events\Conditions\Condition.h" />
     <ClInclude Include="Headers\Events\Conditions\TimeComparisonCondition.h" />
     <ClInclude Include="Headers\Events\GameEventManager.h" />
     <ClInclude Include="Headers\Events\GameEvent.h" />
     <ClInclude Include="Headers\Family\Child.h" />
     <ClInclude Include="Headers\Family\FamilyManager.h" />
+    <ClInclude Include="Headers\Logic\ComparisonOperator.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\EventScriptCommands.h" />
@@ -63,17 +67,23 @@
     <ClInclude Include="Headers\Networking\SocketServer.h" />
     <ClInclude Include="Headers\Time\TimeManager.h" />
     <ClInclude Include="Headers\Time\TimeNotifier.h" />
+    <ClInclude Include="Headers\Time\TimePeriod.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Buildings\BuildingInformation.cpp" />
+    <ClCompile Include="Source\DataConverters\Events\Conditions\ConditionDataConverter.cpp" />
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
+    <ClCompile Include="Source\Deserialization\Logic\LogicDeserializers.cpp" />
     <ClCompile Include="Source\Deserialization\Stats\ModifierEnumsDeserializers.cpp" />
+    <ClCompile Include="Source\Deserialization\Time\TimeDeserializers.cpp" />
+    <ClCompile Include="Source\Events\Conditions\TimeComparisonCondition.cpp" />
     <ClCompile Include="Source\Events\GameEventManager.cpp" />
     <ClCompile Include="Source\Events\GameEvent.cpp" />
     <ClCompile Include="Source\Family\Child.cpp" />
     <ClCompile Include="Source\Family\FamilyManager.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
+    <ClCompile Include="Source\Logic\ComparisonOperator.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingInformationScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.cpp" />
@@ -103,6 +113,7 @@
     <ClCompile Include="Source\Stats\ModifierEnums.cpp" />
     <ClCompile Include="Source\Time\TimeManager.cpp" />
     <ClCompile Include="Source\Time\TimeNotifier.cpp" />
+    <ClCompile Include="Source\Time\TimePeriod.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />

@@ -116,8 +116,11 @@
     <None Include="Resources\Scripts\Settings\GameSettings.lua" />
     <None Include="Resources\Scripts\UI\Events\EventNotification.lua" />
     <None Include="Resources\Scripts\UI\Events\EventDialog.lua" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua.asset" />
     <None Include="Resources\Scripts\Events\WelcomeToZegoua.lua" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Day0.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Month0.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Year0.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\WelcomeToZegoua.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

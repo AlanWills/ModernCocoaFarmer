@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GameEvent description="Click on the icons to find out about the buildings." name="Welcome To Zegoua!">
+  <Conditions>
+    <Condition path="Data\Events\WelcomeToZegoua\Day0.asset"/>
+    <Condition path="Data\Events\WelcomeToZegoua\Month0.asset"/>
+    <Condition path="Data\Events\WelcomeToZegoua\Year0.asset"/>
+  </Conditions>
+</GameEvent>

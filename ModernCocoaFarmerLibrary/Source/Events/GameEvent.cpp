@@ -1,6 +1,7 @@
 #include "Events/GameEvent.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
-#include "Events/Conditions/ICondition.h"
+#include "Events/Conditions/Condition.h"
+#include "XML/Elements/DataConverterListElement.h"
 
 
 namespace MCF::Events
@@ -9,21 +10,36 @@ namespace MCF::Events
 
   //------------------------------------------------------------------------------------------------
   const char* const GameEvent::DESCRIPTION_ATTRIBUTE_NAME = "description";
-  const char* const GameEvent::CONDITIONS_ATTRIBUTE_NAME = "conditions";
+  const char* const GameEvent::CONDITIONS_ELEMENT_NAME = "Conditions";
+  const char* const GameEvent::CONDITION_ELEMENT_NAME = "Condition";
 
   //------------------------------------------------------------------------------------------------
   GameEvent::GameEvent() :
     m_description(createReferenceField<std::string>(DESCRIPTION_ATTRIBUTE_NAME)),
-    m_conditions(createReferenceField<Conditions>(CONDITIONS_ATTRIBUTE_NAME))
+    m_conditions()
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  bool GameEvent::canTrigger() const
+  bool GameEvent::doDeserialize(const tinyxml2::XMLElement* element)
   {
-    for (const auto& condition : m_conditions.getValue())
+    CelesteEngine::XML::DataConverterListElement<
+
+    return true;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void GameEvent::doSerialize(tinyxml2::XMLElement* element) const
+  {
+
+  }
+
+  //------------------------------------------------------------------------------------------------
+  bool GameEvent::canTrigger(Time::TimeManager& timeManager) const
+  {
+    for (const auto& condition : m_conditions)
     {
-      if (!condition->isConditionMet())
+      if (!condition->isConditionMet(timeManager))
       {
         return false;
       }
@@ -33,7 +49,7 @@ namespace MCF::Events
   }
 
   //------------------------------------------------------------------------------------------------
-  void GameEvent::trigger() const
+  void GameEvent::trigger(Time::TimeManager&) const
   {
 
   }

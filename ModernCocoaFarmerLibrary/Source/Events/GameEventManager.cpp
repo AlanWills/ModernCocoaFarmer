@@ -36,6 +36,8 @@ namespace MCF::Events
   //------------------------------------------------------------------------------------------------
   void GameEventManager::setTimeManager(observer_ptr<Time::TimeManager> timeManager)
   {
+    ASSERT(timeManager != nullptr);
+
     if (m_timeManager != nullptr)
     {
       m_timeManager->getOnDayPassedEvent().unsubscribe(m_onDayPassedHandle);
@@ -58,9 +60,9 @@ namespace MCF::Events
   {
     for (const auto& event : m_events)
     {
-      if (event->canTrigger())
+      if (event->canTrigger(*m_timeManager))
       {
-        event->trigger();
+        event->trigger(*m_timeManager);
       }
     }
   }

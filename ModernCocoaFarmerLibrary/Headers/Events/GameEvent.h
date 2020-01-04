@@ -6,11 +6,16 @@
 #include <string>
 
 
+namespace MCF::Time
+{
+  class TimeManager;
+}
+
 namespace MCF::Events
 {
   namespace Conditions
   {
-    class ICondition;
+    class Condition;
   }
 
   class GameEvent : public CelesteEngine::ScriptableObject
@@ -18,19 +23,23 @@ namespace MCF::Events
     DECLARE_SCRIPTABLE_OBJECT(GameEvent, MCFLibraryDllExport);
 
     public:
-      bool canTrigger() const;
-      void trigger() const;
+      bool canTrigger(Time::TimeManager& tiemManager) const;
+      void trigger(Time::TimeManager& timeManager) const;
       
       const std::string& getDescription() const { return m_description.getValue(); }
 
       static const char* const DESCRIPTION_ATTRIBUTE_NAME;
-      static const char* const CONDITIONS_ATTRIBUTE_NAME;
+      static const char* const CONDITIONS_ELEMENT_NAME;
+      static const char* const CONDITION_ELEMENT_NAME;
+
+    protected:
+      bool doDeserialize(const tinyxml2::XMLElement* element) override;
+      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
-      using Conditions = std::vector<std::unique_ptr<Conditions::ICondition>>;
-      using ConditionsField = CelesteEngine::ReferenceField<Conditions>;
+      using Conditions = std::vector<std::unique_ptr<Conditions::Condition>>;
 
       CelesteEngine::ReferenceField<std::string>& m_description;
-      ConditionsField& m_conditions;
+      Conditions m_conditions;
   };
 }

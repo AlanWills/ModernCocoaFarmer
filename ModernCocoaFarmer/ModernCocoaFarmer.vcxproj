@@ -197,7 +197,10 @@
     <None Include="Resources\Data\Events\PayBills.asset" />
     <None Include="Resources\Data\Events\SalaryDecreased.asset" />
     <None Include="Resources\Data\Events\SalaryIncreased.asset" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\WelcomeToZegoua.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Day0.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Month0.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Year0.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmEducationModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmHappinessModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmHealthModifier.asset" />
