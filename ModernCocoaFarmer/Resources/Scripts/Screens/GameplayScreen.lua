@@ -3,16 +3,14 @@ local ibm = require "UI.InteractableBuildingsManager"
 local ibd = require "UI.InteractableBuildingDialog"
 local csd = require "UI.Family.ChildStatsDialog"
 local TopBar = require "UI.TopBar"
-local EventNotification = require 'UI.Events.EventNotification'
-local GameEventManager = require 'Events.GameEventManager'
-local WelcomeToZegoua = require 'Events.WelcomeToZegoua'
+local GameEventsBar = require 'UI.Events.GameEventsBar'
 
 local GameplayScreen = 
 {
     GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen"),
     TOP_BAR_NAME = "TopBarBackground",
     TIME_NOTIFIER_NAME = "TimeNotifier",
-    EVENT_NOTIFICATIONS_NAME = "EventNotifications"
+    GAME_EVENTS_BAR_NAME = "GameEventsBar"
 }
 
 ---------------------------------------------------------------------------------
@@ -29,28 +27,32 @@ function GameplayScreen.show()
     local gameplayScreen = Screen.load(GameplayScreen.GAMEPLAY_SCREEN_PATH)
     ibm.initialize(gameplayScreen)
 
-    GameplayScreen._timeManager = TimeManager.create("TimeManager")
-    GameplayScreen._moneyManager = MoneyManager.create("MoneyManager")
-    GameplayScreen._familyManager = FamilyManager.create("FamilyManager")
-    GameplayScreen._eventManager = Class.new(
-        GameEventManager, 
-        gameplayScreen:findGameObject(GameplayScreen.EVENT_NOTIFICATIONS_NAME), 
-        GameplayScreen._familyManager,
-        GameplayScreen._moneyManager,
-        GameplayScreen._timeManager)
-        
+    local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
+    local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
+    local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
+    local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
+    gameEventManager:setTimeManager(timeManager)
+    gameEventManager:setMoneyManager(moneyManager)
+    gameEventManager:setFamilyManager(familyManager)
+      
     local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
     GameplayScreen._topBar = Class.new(
         TopBar, 
         topBarGameObject, 
-        GameplayScreen._familyManager, 
-        GameplayScreen._moneyManager,
-        GameplayScreen._timeManager)
+        familyManager, 
+        moneyManager,
+        timeManager)
         
     local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
-    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, GameplayScreen._timeManager)
+    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, timeManager)
 
-    GameplayScreen._eventManager:triggerEvent(WelcomeToZegoua)
+    local gameEventsBar = gameplayScreen:findGameObject(GameplayScreen.GAME_EVENTS_BAR_NAME)
+    GameplayScreen._gameEventsBar = Class.new(GameEventsBar, gameEventsBar, gameEventManager)
+      
+    GameplayScreen._timeManager = timeManager
+    GameplayScreen._moneyManager = moneyManager
+    GameplayScreen._familyManager = familyManager
+    GameplayScreen._gameEventManager = gameEventManager
 end
 
 return GameplayScreen

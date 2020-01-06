@@ -22,14 +22,21 @@ namespace MCF::Money
       int getMoney() const { return m_money.getValue(); }
       void setMoney(int money);
 
+      unsigned int getSalaryLevel() const { return m_salaryLevel.getValue(); }
+      void setSalaryLevel(unsigned int salaryLevel) { m_salaryLevel.setValue(salaryLevel); }
+      void incrementSalaryLevel() { setSalaryLevel(getSalaryLevel() + 1); }
+      void decrementSalaryLevel() { if (getSalaryLevel() > 0) { setSalaryLevel(getSalaryLevel() - 1); } }
+
       void applyMoneyModifier(Stats::Modifier& modifier);
 
       const MoneyChangedEvent& getOnMoneyChangedEvent() const { return m_onMoneyChanged; }
 
       static const char* const MONEY_ATTRIBUTE_NAME;
+      static const char* const SALARY_LEVEL_ATTRIBUTE_NAME;
 
     private:
       CelesteEngine::ValueField<int>& m_money;
+      CelesteEngine::ValueField<unsigned int>& m_salaryLevel;
 
       MoneyChangedEvent m_onMoneyChanged;
   };

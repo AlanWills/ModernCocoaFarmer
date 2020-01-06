@@ -1,9 +1,9 @@
 local Class = require 'OOP.Class'
-local EventDialog = require 'UI.Events.EventDialog'
+local GameEventDialog = require 'UI.Events.GameEventDialog'
 
-local EventNotification = 
+local GameEventNotification = 
 {
-    EVENT_NOTIFICATION_PREFAB_PATH = path.combine("Prefabs", "UI", "Events", "EventNotification.prefab")
+    GAME_EVENT_NOTIFICATION_PREFAB_PATH = path.combine("Prefabs", "UI", "Events", "GameEventNotification.prefab")
 }
 
 ---------------------------------------------------------------------------------
@@ -12,21 +12,21 @@ local function squelchNotification(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-local function showEventDialog(eventArgs, caller, self)
+local function showGameEventDialog(eventArgs, caller, self)
     squelchNotification(eventArgs, caller)
 
-    Class.new(EventDialog, caller:getScreen(), self._gameEvent)
+    Class.new(GameEventDialog, caller:getScreen(), self._gameEvent)
 end
 
 ---------------------------------------------------------------------------------
-function EventNotification:new(screen, gameEvent)
+function GameEventNotification:new(screen, gameEvent)
     self._gameEvent = gameEvent
 
-    local notificationPrefab = Resources.loadPrefab(self.EVENT_NOTIFICATION_PREFAB_PATH)
+    local notificationPrefab = Resources.loadPrefab(self.GAME_EVENT_NOTIFICATION_PREFAB_PATH)
     self.gameObject = notificationPrefab:instantiate(screen)
     local notificationInteractionHandler = self.gameObject:findComponent("MouseInteractionHandler")
-    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showEventDialog, self)
+    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showGameEventDialog, self)
     notificationInteractionHandler:subscribeOnRightButtonUpCallback(squelchNotification)
 end
 
-return EventNotification
+return GameEventNotification

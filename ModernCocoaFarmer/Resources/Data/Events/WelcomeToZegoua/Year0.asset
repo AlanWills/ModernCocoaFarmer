@@ -1,2 +1,3 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TimeComparisonCondition time_period="Day" comparison_operator="Equals" value="0" name="Year 0" />
+<TimeComparisonCondition time_period="Year" comparison_operator="Equals" value="0" name="Year 0"
+                         guid="74ac5fa9-8bdd-4f53-8e52-edbb4332f8fc"/>

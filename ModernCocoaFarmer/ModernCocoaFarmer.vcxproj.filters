@@ -105,8 +105,6 @@
     <None Include="Resources\Scripts\Events\Event.lua" />
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
-    <None Include="Resources\Scripts\Events\GameEventManager.lua" />
-    <None Include="Resources\Prefabs\UI\Events\EventNotification.prefab" />
     <None Include="Resources\Data\Events\PayBills.asset" />
     <None Include="Resources\Data\Events\SalaryDecreased.asset" />
     <None Include="Resources\Data\Events\SalaryIncreased.asset" />
@@ -114,13 +112,19 @@
     <None Include="Resources\Scripts\Events\SalaryDecreased.lua" />
     <None Include="Resources\Scripts\Events\SalaryIncreased.lua" />
     <None Include="Resources\Scripts\Settings\GameSettings.lua" />
-    <None Include="Resources\Scripts\UI\Events\EventNotification.lua" />
-    <None Include="Resources\Scripts\UI\Events\EventDialog.lua" />
     <None Include="Resources\Scripts\Events\WelcomeToZegoua.lua" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua\Day0.asset" />
     <None Include="Resources\Data\Events\WelcomeToZegoua\Month0.asset" />
     <None Include="Resources\Data\Events\WelcomeToZegoua\Year0.asset" />
     <None Include="Resources\Data\Events\WelcomeToZegoua\WelcomeToZegoua.asset" />
+    <None Include="Resources\Scripts\UI\Events\GameEventDialog.lua" />
+    <None Include="Resources\Scripts\UI\Events\GameEventNotification.lua" />
+    <None Include="Resources\Prefabs\UI\Events\GameEventNotification.prefab" />
+    <None Include="Resources\Scripts\UI\Events\GameEventsBar.lua" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua\Day1.asset" />
+    <None Include="Resources\Data\Events\GameEventManager.asset" />
+    <None Include="Resources\Data\Family\FamilyManager.asset" />
+    <None Include="Resources\Data\Money\MoneyManager.asset" />
+    <None Include="Resources\Data\Time\TimeManager.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -482,6 +486,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Resources\Prefabs\UI\Events\EventDialog.prefab" />
+    <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
   </ItemGroup>
 </Project>

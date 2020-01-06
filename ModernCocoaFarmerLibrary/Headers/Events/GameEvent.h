@@ -34,7 +34,6 @@ namespace MCF::Events
 
     protected:
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
-      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
       using Conditions = std::vector<std::unique_ptr<Conditions::Condition>>;

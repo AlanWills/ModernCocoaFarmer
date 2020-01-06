@@ -32,7 +32,7 @@ namespace MCF::Events
     public:
       using EventTriggeredEvent = CelesteEngine::Event<const GameEvent&>;
 
-      void registerEvent(std::unique_ptr<GameEvent>& gameEvent);
+      void registerGameEvent(std::unique_ptr<const GameEvent>&& gameEvent);
 
       observer_ptr<Family::FamilyManager> getFamilyManager() const { return m_familyManager; }
       void setFamilyManager(observer_ptr<Family::FamilyManager> familyManager) { m_familyManager = familyManager; }
@@ -43,7 +43,13 @@ namespace MCF::Events
       observer_ptr<Money::MoneyManager> getMoneyManager() const { return m_moneyManager; }
       void setMoneyManager(observer_ptr<Money::MoneyManager> moneyManager) { m_moneyManager = moneyManager; }
 
-      const EventTriggeredEvent& getEventTriggeredEvent() const { return m_onEventTriggered; }
+      const EventTriggeredEvent& getGameEventTriggeredEvent() const { return m_onGameEventTriggered; }
+
+      static const char* const GAME_EVENTS_ELEMENT_NAME;
+      static const char* const GAME_EVENT_ELEMENT_NAME;
+
+    protected:
+      bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
       void checkEventsForTriggering();
@@ -52,8 +58,8 @@ namespace MCF::Events
       observer_ptr<Time::TimeManager> m_timeManager;
       observer_ptr<Money::MoneyManager> m_moneyManager;
 
-      std::vector<std::unique_ptr<const GameEvent>> m_events;
-      EventTriggeredEvent m_onEventTriggered;
+      std::vector<std::unique_ptr<const GameEvent>> m_gameEvents;
+      EventTriggeredEvent m_onGameEventTriggered;
 
       CelesteEngine::StringId m_onDayPassedHandle;
       CelesteEngine::StringId m_onMonthPassedHandle;

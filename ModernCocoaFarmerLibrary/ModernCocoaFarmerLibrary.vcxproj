@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
     <ClInclude Include="Headers\Buildings\BuildingInformation.h" />
-    <ClInclude Include="Headers\DataConverters\Events\Conditions\ConditionDataConverter.h" />
     <ClInclude Include="Headers\Deserialization\Logic\LogicDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Time\TimeDeserializers.h" />
@@ -71,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Buildings\BuildingInformation.cpp" />
-    <ClCompile Include="Source\DataConverters\Events\Conditions\ConditionDataConverter.cpp" />
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
     <ClCompile Include="Source\Deserialization\Logic\LogicDeserializers.cpp" />

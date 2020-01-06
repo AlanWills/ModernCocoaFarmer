@@ -1,11 +1,13 @@
 #include "Events/GameEvent.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Events/Conditions/Condition.h"
-#include "XML/Elements/DataConverterListElement.h"
+#include "DataConverters/Objects/ScriptableObjectDataConverter.h"
 
 
 namespace MCF::Events
 {
+  using namespace Conditions;
+
   REGISTER_SCRIPTABLE_OBJECT(GameEvent);
 
   //------------------------------------------------------------------------------------------------
@@ -23,15 +25,33 @@ namespace MCF::Events
   //------------------------------------------------------------------------------------------------
   bool GameEvent::doDeserialize(const tinyxml2::XMLElement* element)
   {
-    CelesteEngine::XML::DataConverterListElement<
+    bool result = true;
 
-    return true;
-  }
+    const tinyxml2::XMLElement* conditionsElement = element->FirstChildElement(CONDITIONS_ELEMENT_NAME);
+    if (conditionsElement != nullptr)
+    {
+      for (const tinyxml2::XMLElement* condition : children(conditionsElement, CONDITION_ELEMENT_NAME))
+      {
+        CelesteEngine::ScriptableObjectDataConverter conditionDataConverter(condition->Name());
+        if (conditionDataConverter.convertFromXML(condition))
+        {
+          auto condition = conditionDataConverter.instantiate<Condition>();
+          ASSERT(condition.get() != nullptr);
 
-  //------------------------------------------------------------------------------------------------
-  void GameEvent::doSerialize(tinyxml2::XMLElement* element) const
-  {
+          if (condition != nullptr)
+          {
+            m_conditions.emplace_back(condition.release());
+          }
+        }
+        else
+        {
+          ASSERT_FAIL();
+          result = false;
+        }
+      }
+    }
 
+    return result;
   }
 
   //------------------------------------------------------------------------------------------------

@@ -9,10 +9,12 @@ namespace MCF::Money
 
   //------------------------------------------------------------------------------------------------
   const char* const MoneyManager::MONEY_ATTRIBUTE_NAME = "money";
+  const char* const MoneyManager::SALARY_LEVEL_ATTRIBUTE_NAME = "salary_level";
 
   //------------------------------------------------------------------------------------------------
   MoneyManager::MoneyManager() :
     m_money(createValueField<int>(MONEY_ATTRIBUTE_NAME, 100)),
+    m_salaryLevel(createValueField<unsigned int>(SALARY_LEVEL_ATTRIBUTE_NAME, 1)),
     m_onMoneyChanged()
   {
   }

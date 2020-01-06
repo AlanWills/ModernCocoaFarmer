@@ -11,7 +11,7 @@ namespace MCF::Time
   
   //------------------------------------------------------------------------------------------------
   TimeManager::TimeManager() :
-    m_secondsPerDay(createValueField<float>(SECONDS_PER_DAY_ATTRIBUTE_NAME, 0.05f)),
+    m_secondsPerDay(createValueField<float>(SECONDS_PER_DAY_ATTRIBUTE_NAME, 1.0f)),
     m_onDayPassed(),
     m_onMonthPassed(),
     m_onYearPassed()

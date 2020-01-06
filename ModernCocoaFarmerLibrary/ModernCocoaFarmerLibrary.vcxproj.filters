@@ -156,9 +156,6 @@
     <ClInclude Include="Headers\Deserialization\Time\TimeDeserializers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\DataConverters\Events\Conditions\ConditionDataConverter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Events\Conditions\Condition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -291,9 +288,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Time\TimePeriod.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DataConverters\Events\Conditions\ConditionDataConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
