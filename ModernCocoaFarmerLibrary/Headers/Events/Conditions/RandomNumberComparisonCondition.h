@@ -2,20 +2,16 @@
 
 #include "MCFLibraryDllExport.h"
 #include "Events/Conditions/Condition.h"
-#include "Time/TimePeriod.h"
 #include "Logic/ComparisonOperator.h"
 
 
 namespace MCF::Events::Conditions
 {
-  class TimeComparisonCondition : public Condition
+  class RandomNumberComparisonCondition : public Condition
   {
-    DECLARE_SCRIPTABLE_OBJECT(TimeComparisonCondition, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(RandomNumberComparisonCondition, MCFLibraryDllExport);
 
     public:
-      Time::TimePeriod getTimeToCheck() const { return m_timeToCheck.getValue(); }
-      void setTimeToCheck(Time::TimePeriod timePeriod) { m_timeToCheck.setValue(timePeriod); }
-
       Logic::ComparisonOperator getComparisonOperator() const { return m_comparisonOperator.getValue(); }
       void setComparisonOperator(Logic::ComparisonOperator comparisonOperator) { m_comparisonOperator.setValue(comparisonOperator); }
 
@@ -27,14 +23,10 @@ namespace MCF::Events::Conditions
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager) const override;
 
-      static const char* const TIME_PERIOD_ATTRIBUTE_NAME;
       static const char* const COMPARISON_OPERATOR_ATTRIBUTE_NAME;
       static const char* const VALUE_ATTRIBUTE_NAME;
 
     private:
-      bool check(size_t currentTimePeriod) const;
-
-      CelesteEngine::ValueField<Time::TimePeriod>& m_timeToCheck;
       CelesteEngine::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
       CelesteEngine::ValueField<int>& m_value;
   };

@@ -8,11 +8,24 @@ namespace MCF::Time
   class TimeManager;
 }
 
+namespace MCF::Money
+{
+  class MoneyManager;
+}
+
+namespace MCF::Family
+{
+  class FamilyManager;
+}
+
 namespace MCF::Events::Conditions
 {
   class Condition : public CelesteEngine::ScriptableObject
   {
     public:
-      virtual bool isConditionMet(Time::TimeManager& timeManager) const = 0;
+      virtual bool isConditionMet(
+        Time::TimeManager& timeManager, 
+        Money::MoneyManager& moneyManager,
+        Family::FamilyManager& familyManager) const = 0;
   };
 }

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TimeComparisonCondition time_period="Day" comparison_operator="Equals" value="1" name="Day 1"
+                         guid="f6b3b7f3-8624-4dee-9e45-aae88847b8c7"/>

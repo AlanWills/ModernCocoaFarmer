@@ -17,6 +17,8 @@ namespace MCF
 
       public:
         int getAmount() const { return m_amount.getValue(); }
+        void setAmount(int amount) { m_amount.setValue(amount); }
+
         ChangeType getChangeType() const { return m_changeType.getValue(); }
         Occurrence getOccurrence() const { return m_occurrence.getValue(); }
         int getPeriodInMonths() const { return m_periodInMonths.getValue(); }

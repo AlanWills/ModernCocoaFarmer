@@ -1,2 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GameEvent description="Your partner has got a pay rise!" name="Salary Increased" />
+<GameEvent description="Your partner has got a pay rise!" name="Salary Increased" guid="9c52e2a0-4a8e-4f90-9d34-72fbf1650b4a">
+  <Conditions>
+    <Condition path="Data\Events\Conditions\Time\Month4.asset"/>
+    <Condition path="Data\Events\Conditions\Random\SalaryIncreasedCheck.asset"/>
+  </Conditions>
+  <Effects>
+    <Effect path="Data\Events\Effects\Salary\IncrementSalary.asset"/>
+  </Effects>
+</GameEvent>

@@ -194,15 +194,20 @@
     <None Include="Resources\Data\Buildings\Mosque.asset" />
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Data\Buildings\Well.asset" />
+    <None Include="Resources\Data\Events\Conditions\Random\SalaryDecreasedCheck.asset" />
+    <None Include="Resources\Data\Events\Conditions\Random\SalaryIncreasedCheck.asset" />
+    <None Include="Resources\Data\Events\Conditions\Time\Day1.asset" />
+    <None Include="Resources\Data\Events\Conditions\Time\Month0.asset" />
+    <None Include="Resources\Data\Events\Conditions\Time\Month10.asset" />
+    <None Include="Resources\Data\Events\Conditions\Time\Month4.asset" />
+    <None Include="Resources\Data\Events\Effects\Salary\DecrementSalaryLevel.asset" />
     <None Include="Resources\Data\Events\GameEventManager.asset" />
     <None Include="Resources\Data\Events\PayBills.asset" />
     <None Include="Resources\Data\Events\SalaryDecreased.asset" />
     <None Include="Resources\Data\Events\SalaryIncreased.asset" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua\WelcomeToZegoua.asset" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua\Day1.asset" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua\Month0.asset" />
-    <None Include="Resources\Data\Events\WelcomeToZegoua\Year0.asset" />
+    <None Include="Resources\Data\Events\WelcomeToZegoua.asset" />
     <None Include="Resources\Data\Family\FamilyManager.asset" />
+    <None Include="Resources\Data\Modifiers\Events\Money\BaseBillsModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmEducationModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmHappinessModifier.asset" />
     <None Include="Resources\Data\Modifiers\Farm\FarmHealthModifier.asset" />
@@ -266,10 +271,6 @@
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
     <None Include="Resources\Scripts\Events\Event.lua" />
-    <None Include="Resources\Scripts\Events\PayBills.lua" />
-    <None Include="Resources\Scripts\Events\SalaryDecreased.lua" />
-    <None Include="Resources\Scripts\Events\SalaryIncreased.lua" />
-    <None Include="Resources\Scripts\Events\WelcomeToZegoua.lua" />
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Scripts\Commands\StartGameplayCommand.lua" />
     <None Include="Resources\Scripts\OOP\Class.lua" />
@@ -297,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Icons\DesktopIcon.png" />
+    <Image Include="Resources\Textures\Icons\Events\WelcomeToZegoua.png" />
     <Image Include="Resources\Textures\Screens\SplashScreenSmall.png" />
     <Image Include="Resources\Textures\UI\ButtonClicked.png" />
     <Image Include="Resources\Textures\UI\ButtonDefault.png" />
@@ -433,6 +435,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Resources\Data\Events\Conditions\Time\Day0.asset" />
+    <Xml Include="Resources\Data\Events\Conditions\Time\Year0.asset" />
+    <Xml Include="Resources\Data\Events\Effects\Money\BaseBillsAmount.asset" />
+    <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.xml" />
+    <Xml Include="Resources\Data\Events\Effects\Salary\IncrementSalaryLevel.asset" />
     <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
