@@ -12,7 +12,7 @@ namespace MCF::Events::Effects
     public:
       const std::string& getModifierPath() const { return m_modifierPath.getValue(); }
 
-      bool trigger(
+      void trigger(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager) const override;
 

@@ -17,7 +17,7 @@ namespace MCF::Events::Effects
   }
 
   //------------------------------------------------------------------------------------------------
-  bool ModifySalaryLevelEffect::trigger(
+  void ModifySalaryLevelEffect::trigger(
     Money::MoneyManager& moneyManager,
     Family::FamilyManager&) const
   {

@@ -16,14 +16,14 @@ namespace MCF::Events::Effects
   }
 
   //------------------------------------------------------------------------------------------------
-  bool ChildDependentModifyMoneyEffect::trigger(Money::MoneyManager& moneyManager, Family::FamilyManager& familyManager) const
+  void ChildDependentModifyMoneyEffect::trigger(Money::MoneyManager& moneyManager, Family::FamilyManager& familyManager) const
   {
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
     ASSERT(modifier != nullptr);
 
     if (modifier != nullptr)
     {
-      modifier->setAmount(modifier->getAmount() * familyManager.getChildCount());
+      modifier->setAmount(modifier->getAmount() * static_cast<int>(familyManager.getChildCount()));
       moneyManager.applyMoneyModifier(*modifier);
     }
   }

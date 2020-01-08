@@ -91,9 +91,9 @@ namespace MCF::Events
   {
     for (const auto& event : m_gameEvents)
     {
-      if (event->canTrigger(*m_timeManager))
+      if (event->canTrigger(*m_timeManager, *m_moneyManager, *m_familyManager))
       {
-        event->trigger(*m_timeManager);
+        event->trigger(*m_moneyManager, *m_familyManager);
         m_onGameEventTriggered.invoke(*event);
       }
     }

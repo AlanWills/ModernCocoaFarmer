@@ -19,7 +19,7 @@ namespace MCF::Events::Effects
   class Effect : public CelesteEngine::ScriptableObject
   {
     public:
-      virtual bool trigger(
+      virtual void trigger(
         Money::MoneyManager& moneyManager, 
         Family::FamilyManager& familyManager) const = 0;
   };

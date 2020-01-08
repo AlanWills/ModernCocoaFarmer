@@ -1,6 +1,7 @@
 #include "Events/Effects/ModifyMoneyEffect.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Money/MoneyManager.h"
+#include "Stats/Modifier.h"
 
 
 namespace MCF::Events::Effects
@@ -17,7 +18,7 @@ namespace MCF::Events::Effects
   }
 
   //------------------------------------------------------------------------------------------------
-  bool ModifyMoneyEffect::trigger(
+  void ModifyMoneyEffect::trigger(
     Money::MoneyManager& moneyManager,
     Family::FamilyManager&) const
   {

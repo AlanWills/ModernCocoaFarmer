@@ -298,6 +298,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Icons\DesktopIcon.png" />
+    <Image Include="Resources\Textures\Icons\Events\PayBillsIcon.png" />
+    <Image Include="Resources\Textures\Icons\Events\SalaryDecreaseIcon.png" />
+    <Image Include="Resources\Textures\Icons\Events\SalaryIncreaseIcon.png" />
     <Image Include="Resources\Textures\Icons\Events\WelcomeToZegoua.png" />
     <Image Include="Resources\Textures\Screens\SplashScreenSmall.png" />
     <Image Include="Resources\Textures\UI\ButtonClicked.png" />
@@ -438,8 +441,9 @@
     <Xml Include="Resources\Data\Events\Conditions\Time\Day0.asset" />
     <Xml Include="Resources\Data\Events\Conditions\Time\Year0.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\BaseBillsAmount.asset" />
-    <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.xml" />
+    <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\Effects\Salary\IncrementSalaryLevel.asset" />
+    <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
     <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

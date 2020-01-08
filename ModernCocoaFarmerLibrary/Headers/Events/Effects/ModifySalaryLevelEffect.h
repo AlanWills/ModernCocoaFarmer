@@ -12,7 +12,7 @@ namespace MCF::Events::Effects
     public:
       int getModifier() const { return m_modifier.getValue(); }
 
-      bool trigger(
+      void trigger(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager) const override;
 

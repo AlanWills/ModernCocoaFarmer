@@ -16,7 +16,7 @@ namespace MCF::Events::Conditions
   //------------------------------------------------------------------------------------------------
   RandomNumberComparisonCondition::RandomNumberComparisonCondition() :
     m_comparisonOperator(createValueField<Logic::ComparisonOperator>(COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
-    m_value(createValueField<int>(VALUE_ATTRIBUTE_NAME))
+    m_value(createValueField<float>(VALUE_ATTRIBUTE_NAME))
   {
   }
 

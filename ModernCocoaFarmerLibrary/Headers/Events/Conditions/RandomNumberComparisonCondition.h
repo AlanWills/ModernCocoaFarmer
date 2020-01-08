@@ -15,8 +15,8 @@ namespace MCF::Events::Conditions
       Logic::ComparisonOperator getComparisonOperator() const { return m_comparisonOperator.getValue(); }
       void setComparisonOperator(Logic::ComparisonOperator comparisonOperator) { m_comparisonOperator.setValue(comparisonOperator); }
 
-      int getValue() const { return m_value.getValue(); }
-      void setValue(int value) { m_value.setValue(value); }
+      float getValue() const { return m_value.getValue(); }
+      void setValue(float value) { m_value.setValue(value); }
 
       bool isConditionMet(
         Time::TimeManager& timeManager,
@@ -28,6 +28,6 @@ namespace MCF::Events::Conditions
 
     private:
       CelesteEngine::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
-      CelesteEngine::ValueField<int>& m_value;
+      CelesteEngine::ValueField<float>& m_value;
   };
 }

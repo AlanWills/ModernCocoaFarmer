@@ -15,7 +15,7 @@ namespace MCF::Events::Effects
     DECLARE_SCRIPTABLE_OBJECT(ChildDependentModifyMoneyEffect, MCFLibraryDllExport);
 
     public:
-      bool trigger(
+      void trigger(
         Money::MoneyManager& moneyManager, 
         Family::FamilyManager& familyManager) const override;
 
