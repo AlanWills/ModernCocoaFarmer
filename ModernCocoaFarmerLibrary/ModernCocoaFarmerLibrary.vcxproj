@@ -24,11 +24,13 @@
     <ClInclude Include="Headers\Deserialization\Logic\LogicDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Time\TimeDeserializers.h" />
+    <ClInclude Include="Headers\Events\Conditions\ChildrenAtBuildingCondition.h" />
     <ClInclude Include="Headers\Events\Conditions\Condition.h" />
     <ClInclude Include="Headers\Events\Conditions\RandomNumberComparisonCondition.h" />
     <ClInclude Include="Headers\Events\Conditions\TimeComparisonCondition.h" />
     <ClInclude Include="Headers\Events\Effects\ChildDependentModifyMoneyEffect.h" />
     <ClInclude Include="Headers\Events\Effects\Effect.h" />
+    <ClInclude Include="Headers\Events\Effects\ModifyChildrenStatEffect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifyMoneyEffect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifySalaryLevelEffect.h" />
     <ClInclude Include="Headers\Events\GameEventManager.h" />
@@ -80,9 +82,11 @@
     <ClCompile Include="Source\Deserialization\Logic\LogicDeserializers.cpp" />
     <ClCompile Include="Source\Deserialization\Stats\ModifierEnumsDeserializers.cpp" />
     <ClCompile Include="Source\Deserialization\Time\TimeDeserializers.cpp" />
+    <ClCompile Include="Source\Events\Conditions\ChildrenAtBuildingCondition.cpp" />
     <ClCompile Include="Source\Events\Conditions\RandomNumberComparisonCondition.cpp" />
     <ClCompile Include="Source\Events\Conditions\TimeComparisonCondition.cpp" />
     <ClCompile Include="Source\Events\Effects\ChildDependentModifyMoneyEffect.cpp" />
+    <ClCompile Include="Source\Events\Effects\ModifyChildrenStatEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifyMoneyEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifySalaryLevelEffect.cpp" />
     <ClCompile Include="Source\Events\GameEventManager.cpp" />

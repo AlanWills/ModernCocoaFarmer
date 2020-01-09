@@ -443,6 +443,7 @@
     <Xml Include="Resources\Data\Events\Effects\Money\BaseBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\Effects\Salary\IncrementSalaryLevel.asset" />
+    <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.xml" />
     <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
     <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
   </ItemGroup>

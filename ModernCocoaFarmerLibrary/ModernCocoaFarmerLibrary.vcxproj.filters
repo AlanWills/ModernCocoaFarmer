@@ -174,6 +174,12 @@
     <ClInclude Include="Headers\Events\Effects\ChildDependentModifyMoneyEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Events\Effects\ModifyChildrenStatEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Conditions\ChildrenAtBuildingCondition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
@@ -315,6 +321,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Events\Effects\ChildDependentModifyMoneyEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Effects\ModifyChildrenStatEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Conditions\ChildrenAtBuildingCondition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

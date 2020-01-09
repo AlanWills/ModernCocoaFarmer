@@ -5,5 +5,6 @@
     <GameEvent path="Data\Events\PayBills.asset"/>
     <GameEvent path="Data\Events\SalaryDecreased.asset"/>
     <GameEvent path="Data\Events\SalaryIncreased.asset"/>
+    <GameEvent path="Data\Events\UNPeaceKeepersArrive.asset"/>
   </GameEvents>
 </GameEventManager>

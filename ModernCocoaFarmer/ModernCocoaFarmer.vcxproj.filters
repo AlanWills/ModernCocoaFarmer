@@ -506,5 +506,6 @@
     <Xml Include="Resources\Data\Events\Conditions\Time\Year0.asset" />
     <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
+    <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.xml" />
   </ItemGroup>
 </Project>
