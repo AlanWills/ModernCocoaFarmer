@@ -108,6 +108,6 @@ namespace MCF::Family
 
 FamilyManagerScriptCommands - addChild, applyDailyModifiers
 GameplayScreen - add initial two children, hook up daily modifiers
-Add daily modifier script commands
+Add daily modifier assets - figure out how scriptable object loading works...
 Hook up addChildEvent to UI
 Child expelled from school - they lose all education (have to be at school)
