@@ -1,55 +1,36 @@
 #include "Events/Conditions/ChildrenAtBuildingCondition.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
-#include "Time/TimeManager.h"
 #include "Deserialization/Logic/LogicDeserializers.h"
-#include "Maths/RandomGenerator.h"
+#include "Family/FamilyManager.h"
 
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_SCRIPTABLE_OBJECT(RandomNumberComparisonCondition);
+  REGISTER_SCRIPTABLE_OBJECT(ChildrenAtBuildingCondition);
 
   //------------------------------------------------------------------------------------------------
-  const char* const RandomNumberComparisonCondition::COMPARISON_OPERATOR_ATTRIBUTE_NAME = "comparison_operator";
-  const char* const RandomNumberComparisonCondition::VALUE_ATTRIBUTE_NAME = "value";
+  const char* const ChildrenAtBuildingCondition::NUMBER_OF_CHILDREN_ATTRIBUTE_NAME = "number_of_children";
+  const char* const ChildrenAtBuildingCondition::CHILDREN_COMPARISON_OPERATOR_ATTRIBUTE_NAME = "children_comparison_operator";
+  const char* const ChildrenAtBuildingCondition::BUILDING_ATTRIBUTE_NAME = "building";
 
   //------------------------------------------------------------------------------------------------
-  RandomNumberComparisonCondition::RandomNumberComparisonCondition() :
-    m_comparisonOperator(createValueField<Logic::ComparisonOperator>(COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
-    m_value(createValueField<float>(VALUE_ATTRIBUTE_NAME))
+  ChildrenAtBuildingCondition::ChildrenAtBuildingCondition() :
+    m_numberOfChildren(createValueField<size_t>(NUMBER_OF_CHILDREN_ATTRIBUTE_NAME)),
+    m_childrenComparisonOperator(createValueField<Logic::ComparisonOperator>(CHILDREN_COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
+    m_building(createReferenceField<std::string>(BUILDING_ATTRIBUTE_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  bool RandomNumberComparisonCondition::isConditionMet(
+  bool ChildrenAtBuildingCondition::isConditionMet(
     Time::TimeManager&,
     Money::MoneyManager&,
-    Family::FamilyManager&) const
+    Family::FamilyManager& familyManager) const
   {
-    float value = CelesteEngine::Random::generate();
-
-    switch (getComparisonOperator())
-    {
-      Encapsulate this into general namespace utility function in ComparisonOperator header.
-      WE DO IT EVERYWHERE!!!
-    case Logic::ComparisonOperator::kLessThan:
-      return getValue() < value;
-
-    case Logic::ComparisonOperator::kLessThanOrEqualTo:
-      return getValue() <= value;
-
-    case Logic::ComparisonOperator::kEqual:
-      return getValue() == value;
-
-    case Logic::ComparisonOperator::kGreaterThanOrEqualTo:
-      return getValue() >= value;
-
-    case Logic::ComparisonOperator::kGreaterThan:
-      return getValue() > value;
-
-    default:
-      ASSERT_FAIL();
-      return false;
-    }
+    ASSERT_FAIL_MSG("TODO");
+    return Logic::isComparisonTrue(
+      familyManager.getChildCount(), 
+      getNumberOfChildren(), 
+      getChildrenComparisonOperator());
   }
 }

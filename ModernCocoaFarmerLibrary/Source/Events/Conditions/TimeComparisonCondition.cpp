@@ -18,7 +18,7 @@ namespace MCF::Events::Conditions
   TimeComparisonCondition::TimeComparisonCondition() :
     m_timeToCheck(createValueField<Time::TimePeriod>(TIME_PERIOD_ATTRIBUTE_NAME, Time::TimePeriod::kMonth)),
     m_comparisonOperator(createValueField<Logic::ComparisonOperator>(COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
-    m_value(createValueField<int>(VALUE_ATTRIBUTE_NAME))
+    m_value(createValueField<size_t>(VALUE_ATTRIBUTE_NAME))
   {
   }
 
@@ -48,26 +48,9 @@ namespace MCF::Events::Conditions
   //------------------------------------------------------------------------------------------------
   bool TimeComparisonCondition::check(size_t currentTimePeriod) const
   {
-    switch (getComparisonOperator())
-    {
-    case Logic::ComparisonOperator::kLessThan:
-      return getValue() < currentTimePeriod;
-
-    case Logic::ComparisonOperator::kLessThanOrEqualTo:
-      return getValue() <= currentTimePeriod;
-
-    case Logic::ComparisonOperator::kEqual:
-      return getValue() == currentTimePeriod;
-
-    case Logic::ComparisonOperator::kGreaterThanOrEqualTo:
-      return getValue() >= currentTimePeriod;
-
-    case Logic::ComparisonOperator::kGreaterThan:
-      return getValue() > currentTimePeriod;
-
-    default:
-      ASSERT_FAIL();
-      return false;
-    }
+    return Logic::isComparisonTrue(
+      currentTimePeriod,
+      getValue(),
+      getComparisonOperator());
   }
 }

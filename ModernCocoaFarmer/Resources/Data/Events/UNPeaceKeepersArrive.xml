@@ -1,1 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<GameEvent description="TODO." name="UN Peacekeepers Arrive"
+           guid="d5d7f6b0-31e1-4b1f-ae4c-b8a3fdd40b81" icon="Textures\UI\Utility\WhitePixel.png">
+  <Conditions>
+    <Condition path="Data\Events\Conditions\Time\Day1.asset"/>
+    <Condition path="Data\Events\Conditions\Time\Month0.asset"/>
+    <Condition path="Data\Events\Conditions\Time\Year0.asset"/>
+  </Conditions>
+</GameEvent>

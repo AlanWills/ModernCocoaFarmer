@@ -20,6 +20,9 @@ namespace MCF::Family
   {
     DECLARE_SCRIPTABLE_OBJECT(FamilyManager, MCFLibraryDllExport);
 
+    private:
+      using Children = std::vector<std::unique_ptr<Child>>;
+
     public:
       size_t getChildCount() const { return m_children.size(); }
       observer_ptr<Child> getChild(size_t childIndex) const;
@@ -31,7 +34,10 @@ namespace MCF::Family
       void applyEducationModifier(Stats::Modifier& modifier) const;
       void applyHappinessModifier(Stats::Modifier& modifier) const;
 
+      Children::const_iterator begin() const { return m_children.begin(); }
+      Children::const_iterator end() const { return m_children.end(); }
+
     private:
-      std::vector<std::unique_ptr<Child>> m_children;
+      Children m_children;
   };
 }
