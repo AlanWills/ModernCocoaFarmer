@@ -1,6 +1,7 @@
 #include "Events/Effects/ModifyChildrenStatEffect.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Family/FamilyManager.h"
+#include "Family/Child.h"
 #include "Stats/Modifier.h"
 
 
@@ -31,19 +32,19 @@ namespace MCF::Events::Effects
       {
         const std::string& stat = getStat();
         
-        if (stat == "Health")
+        if (stat == Family::Child::HEALTH_FIELD_NAME)
         {
           familyManager.applyHealthModifier(*modifier);
         }
-        else if (stat == "Education")
+        else if (stat == Family::Child::EDUCATION_FIELD_NAME)
         {
           familyManager.applyEducationModifier(*modifier);
         }
-        else if (stat == "Safety")
+        else if (stat == Family::Child::SAFETY_FIELD_NAME)
         {
           familyManager.applySafetyModifier(*modifier);
         }
-        else if (stat == "Happiness")
+        else if (stat == Family::Child::HAPPINESS_FIELD_NAME)
         {
           familyManager.applyHappinessModifier(*modifier);
         }

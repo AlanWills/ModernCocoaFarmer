@@ -126,6 +126,17 @@
     <None Include="Resources\Data\Events\Effects\Salary\DecrementSalaryLevel.asset" />
     <None Include="Resources\Data\Events\Conditions\Time\Day1.asset" />
     <None Include="Resources\Data\Events\Conditions\Time\Month0.asset" />
+    <None Include="Resources\Data\Events\Conditions\Family\OneChildSafetyAtZero.asset" />
+    <None Include="Resources\Data\Events\Effects\Family\UNPeaceKeepersEffect.asset" />
+    <None Include="Resources\Data\Modifiers\Events\Family\UNPeaceKeepersModifier.asset" />
+    <None Include="Resources\Data\Family\Children\Adama.asset" />
+    <None Include="Resources\Data\Family\Children\Oumar.asset" />
+    <None Include="Resources\Data\Family\Children\Salif.asset" />
+    <None Include="Resources\Data\Family\Children\Maria.asset" />
+    <None Include="Resources\Data\Family\Children\Kilia.asset" />
+    <None Include="Resources\Data\Family\Children\Sekou.asset" />
+    <None Include="Resources\Data\Family\Children\Siaka.asset" />
+    <None Include="Resources\Data\Family\Children\Jacob.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -506,6 +517,6 @@
     <Xml Include="Resources\Data\Events\Conditions\Time\Year0.asset" />
     <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
-    <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.xml" />
+    <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.asset" />
   </ItemGroup>
 </Project>

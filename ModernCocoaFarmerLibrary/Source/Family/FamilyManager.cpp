@@ -8,21 +8,33 @@ namespace MCF::Family
   REGISTER_SCRIPTABLE_OBJECT(FamilyManager);
 
   //------------------------------------------------------------------------------------------------
-  FamilyManager::FamilyManager() :
-    m_children()
-  {
-    m_children.reserve(7);
+  const char* const FamilyManager::DAILY_HEALTH_MODIFIER_ATTRIBUTE_NAME = "daily_health_modifier";
+  const char* const FamilyManager::DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME = "daily_safety_modifier";
+  const char* const FamilyManager::DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME = "daily_education_modifier";
+  const char* const FamilyManager::DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME = "daily_happiness_modifier";
 
-    for (size_t i = 0; i < 7; ++i)
-    {
-      m_children.emplace_back(ScriptableObject::create<Child>("Child " + std::to_string(i)));
-    }
+  //------------------------------------------------------------------------------------------------
+  FamilyManager::FamilyManager() :
+    m_dailyHealthModifier(createScriptableObject<Stats::Modifier>("DailyHealthModifier")),
+    m_dailySafetyModifier(createScriptableObject<Stats::Modifier>("DailySafetyModifier")),
+    m_dailyEducationModifier(createScriptableObject<Stats::Modifier>("DailyEducationModifier")),
+    m_dailyHappinessModifier(createScriptableObject<Stats::Modifier>("DailyHappinessModifier")),
+    m_children(),
+    m_childAddedEvent()
+  {
   }
 
   //------------------------------------------------------------------------------------------------
   observer_ptr<Child> FamilyManager::getChild(size_t index) const
   {
     return index < getChildCount() ? m_children[index].get() : nullptr;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void FamilyManager::addChild(std::unique_ptr<Child>&& child)
+  {
+    m_children.push_back(child);
+    m_childAddedEvent.invoke(*m_children.back());
   }
 
   //------------------------------------------------------------------------------------------------
@@ -82,4 +94,20 @@ namespace MCF::Family
       child->applyHappinessModifier(modifier);
     }
   }
+
+  //------------------------------------------------------------------------------------------------
+  void FamilyManager::applyDailyModifiers() const
+  {
+    applyHealthModifier(m_dailyHealthModifier);
+    applyEducationModifier(m_dailyEducationModifier);
+    applySafetyModifier(m_dailySafetyModifier);
+    applyHappinessModifier(m_dailyHappinessModifier);
+  }
 }
+
+
+FamilyManagerScriptCommands - addChild, applyDailyModifiers
+GameplayScreen - add initial two children, hook up daily modifiers
+Add daily modifier script commands
+Hook up addChildEvent to UI
+Child expelled from school - they lose all education (have to be at school)
