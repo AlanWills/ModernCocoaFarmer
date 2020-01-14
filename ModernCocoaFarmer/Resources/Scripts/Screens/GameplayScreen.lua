@@ -19,6 +19,11 @@ local function onTimeChanged(eventArgs, deltaTime, timeManager)
 end
 
 ---------------------------------------------------------------------------------
+local function applyFamilyManagerDailyModifiers(eventArgs, familyManager)
+    familyManager:applyDailyModifiers()
+end
+
+---------------------------------------------------------------------------------
 function GameplayScreen.show()
     -- Either caches instances or resources in memory to allow quicker prefab instancing
     ibd.load()
@@ -34,7 +39,14 @@ function GameplayScreen.show()
     gameEventManager:setTimeManager(timeManager)
     gameEventManager:setMoneyManager(moneyManager)
     gameEventManager:setFamilyManager(familyManager)
-      
+       
+    familyManager:addChild()
+    familyManager:addChild()
+    timeManager:subscribeOnDayPassedCallback(applyFamilyManagerDailyModifiers, familyManager)
+
+    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
+    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, timeManager)
+
     local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
     GameplayScreen._topBar = Class.new(
         TopBar, 
@@ -42,10 +54,7 @@ function GameplayScreen.show()
         familyManager, 
         moneyManager,
         timeManager)
-        
-    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
-    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, timeManager)
-
+      
     local gameEventsBar = gameplayScreen:findGameObject(GameplayScreen.GAME_EVENTS_BAR_NAME)
     GameplayScreen._gameEventsBar = Class.new(GameEventsBar, gameEventsBar, gameEventManager)
       

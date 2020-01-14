@@ -127,16 +127,14 @@
     <None Include="Resources\Data\Events\Conditions\Time\Day1.asset" />
     <None Include="Resources\Data\Events\Conditions\Time\Month0.asset" />
     <None Include="Resources\Data\Events\Conditions\Family\OneChildSafetyAtZero.asset" />
-    <None Include="Resources\Data\Events\Effects\Family\UNPeaceKeepersEffect.asset" />
-    <None Include="Resources\Data\Modifiers\Events\Family\UNPeaceKeepersModifier.asset" />
-    <None Include="Resources\Data\Family\Children\Adama.asset" />
-    <None Include="Resources\Data\Family\Children\Oumar.asset" />
-    <None Include="Resources\Data\Family\Children\Salif.asset" />
-    <None Include="Resources\Data\Family\Children\Maria.asset" />
-    <None Include="Resources\Data\Family\Children\Kilia.asset" />
-    <None Include="Resources\Data\Family\Children\Sekou.asset" />
-    <None Include="Resources\Data\Family\Children\Siaka.asset" />
-    <None Include="Resources\Data\Family\Children\Jacob.asset" />
+    <None Include="Resources\Data\Events\Effects\Family\UNPeaceKeepersArrivedEffect.asset" />
+    <None Include="Resources\Data\Events\Effects\Persistence\SetUNPeaceKeepersArrivedOccurred.asset" />
+    <None Include="Resources\Data\Modifiers\Events\Family\UNPeaceKeepersArrivedModifier.asset" />
+    <None Include="Resources\Data\Events\Conditions\Persistence\CheckUNPeaceKeepersArrivedNotOccurred.asset" />
+    <None Include="Resources\Data\Modifiers\Family\DailyEducationModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Family\DailyHealthModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Family\DailySafetyModifier.asset" />
+    <None Include="Resources\Data\Modifiers\Family\DailyHappinessModifier.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

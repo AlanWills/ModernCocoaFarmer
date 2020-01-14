@@ -6,6 +6,7 @@
 #include "Events/Event.h"
 
 #include <vector>
+#include <queue>
 
 
 namespace MCF::Stats
@@ -22,6 +23,7 @@ namespace MCF::Family
     DECLARE_SCRIPTABLE_OBJECT(FamilyManager, MCFLibraryDllExport);
 
     private:
+      using ChildrenNames = std::queue<std::string>;
       using Children = std::vector<std::unique_ptr<Child>>;
       using ChildAddedEvent = CelesteEngine::Event<Child&>;
 
@@ -29,7 +31,7 @@ namespace MCF::Family
       size_t getChildCount() const { return m_children.size(); }
       observer_ptr<Child> getChild(size_t childIndex) const;
 
-      void addChild(std::unique_ptr<Child>&& child);
+      void addChild();
       void selectOnlyThisChild(Child& childToSelect) const;
 
       void applyHealthModifier(Stats::Modifier& modifier) const;
@@ -45,6 +47,8 @@ namespace MCF::Family
       static const char* const DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME;
       static const char* const DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME;
       static const char* const DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME;
+      static const char* const CHILDREN_NAMES_ELEMENT_NAME;
+      static const char* const NAME_ELEMENT_NAME;
 
     private:
       Stats::Modifier& m_dailyHealthModifier;
@@ -52,6 +56,7 @@ namespace MCF::Family
       Stats::Modifier& m_dailyEducationModifier;
       Stats::Modifier& m_dailyHappinessModifier;
 
+      ChildrenNames m_childrenNames;
       Children m_children;
       ChildAddedEvent m_childAddedEvent;
   };

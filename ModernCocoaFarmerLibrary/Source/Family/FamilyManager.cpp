@@ -12,6 +12,8 @@ namespace MCF::Family
   const char* const FamilyManager::DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME = "daily_safety_modifier";
   const char* const FamilyManager::DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME = "daily_education_modifier";
   const char* const FamilyManager::DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME = "daily_happiness_modifier";
+  const char* const FamilyManager::CHILDREN_NAMES_ELEMENT_NAME = "ChildrenNames";
+  const char* const FamilyManager::NAME_ELEMENT_NAME = "Name";
 
   //------------------------------------------------------------------------------------------------
   FamilyManager::FamilyManager() :
@@ -19,6 +21,7 @@ namespace MCF::Family
     m_dailySafetyModifier(createScriptableObject<Stats::Modifier>("DailySafetyModifier")),
     m_dailyEducationModifier(createScriptableObject<Stats::Modifier>("DailyEducationModifier")),
     m_dailyHappinessModifier(createScriptableObject<Stats::Modifier>("DailyHappinessModifier")),
+    m_childrenNames(),
     m_children(),
     m_childAddedEvent()
   {
@@ -31,9 +34,18 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::addChild(std::unique_ptr<Child>&& child)
+  void FamilyManager::addChild()
   {
-    m_children.push_back(child);
+    if (m_childrenNames.empty())
+    {
+      ASSERT_FAIL();
+      return;
+    }
+
+    const std::string name = m_childrenNames.front();
+    m_childrenNames.pop();
+
+    m_children.push_back(ScriptableObject::create<Child>(name));
     m_childAddedEvent.invoke(*m_children.back());
   }
 
@@ -105,9 +117,6 @@ namespace MCF::Family
   }
 }
 
-
-FamilyManagerScriptCommands - addChild, applyDailyModifiers
-GameplayScreen - add initial two children, hook up daily modifiers
-Add daily modifier assets - figure out how scriptable object loading works...
+Bake daily modifiers into FamilyManager
 Hook up addChildEvent to UI
 Child expelled from school - they lose all education (have to be at school)

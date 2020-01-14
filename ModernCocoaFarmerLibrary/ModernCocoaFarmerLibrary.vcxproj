@@ -35,6 +35,7 @@
     <ClInclude Include="Headers\Events\Effects\ModifyChildrenStatEffect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifyMoneyEffect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifySalaryLevelEffect.h" />
+    <ClInclude Include="Headers\Events\Effects\SetDataStoreBoolValueEffect.h" />
     <ClInclude Include="Headers\Events\GameEventManager.h" />
     <ClInclude Include="Headers\Events\GameEvent.h" />
     <ClInclude Include="Headers\Family\Child.h" />
@@ -93,6 +94,7 @@
     <ClCompile Include="Source\Events\Effects\ModifyChildrenStatEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifyMoneyEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifySalaryLevelEffect.cpp" />
+    <ClCompile Include="Source\Events\Effects\SetDataStoreBoolValueEffect.cpp" />
     <ClCompile Include="Source\Events\GameEventManager.cpp" />
     <ClCompile Include="Source\Events\GameEvent.cpp" />
     <ClCompile Include="Source\Family\Child.cpp" />

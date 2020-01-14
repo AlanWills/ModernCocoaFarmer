@@ -16,12 +16,14 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
     CelesteEngine::Lua::registerScriptableObjectUserType<FamilyManager>(
       FamilyManager::type_name(),
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      "addChild", &FamilyManager::addChild,
       "getChildCount", &FamilyManager::getChildCount,
       "getChild", &FamilyManager::getChild,
       "selectOnlyThisChild", &FamilyManager::selectOnlyThisChild,
       "applyHealthModifier", &FamilyManager::applyHealthModifier,
       "applySafetyModifier", &FamilyManager::applySafetyModifier,
       "applyEducationModifier", &FamilyManager::applyEducationModifier,
-      "applyHappinessModifier", &FamilyManager::applyHappinessModifier);
+      "applyHappinessModifier", &FamilyManager::applyHappinessModifier,
+      "applyDailyModifiers", &FamilyManager::applyDailyModifiers);
   }
 }

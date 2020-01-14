@@ -3,8 +3,10 @@
            guid="d5d7f6b0-31e1-4b1f-ae4c-b8a3fdd40b81" icon="Textures\UI\Utility\WhitePixel.png">
   <Conditions>
     <Condition path="Data\Events\Conditions\Family\OneChildSafetyAtZero.asset"/>
+    <Condition path="Data\Events\Conditions\Persistence\CheckUNPeaceKeepersArrivedNotOccurred.asset"/>
   </Conditions>
   <Effects>
-    <Effect path="Data\Events\Effects\Family\UNPeaceKeepersEffect.asset"/>
+    <Effect path="Data\Events\Effects\Family\UNPeaceKeepersArrivedEffect.asset"/>
+    <Effect path="Data\Events\Effects\Persistence\SetUNPeaceKeepersArrivedOccurred.asset"/>
   </Effects>
 </GameEvent>

@@ -1,2 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FamilyManager name="FamilyManager" guid="8cf35304-ecbe-42d3-b965-56ca9b91b150"/>
+<FamilyManager name="FamilyManager" guid="8cf35304-ecbe-42d3-b965-56ca9b91b150"
+               child_health_daily_modifier="e7f8c5b3-8e6f-425a-ae2b-861891d585c9">
+  <ChildModifier applies_to_all_children="true" amount="0"
+                 guid="e7f8c5b3-8e6f-425a-ae2b-861891d585c9"
+                 change_type="Delta" occurrence="Instant"
+                 period_in_months="0.033333333" name="DailyEducationModifier" />
+  <ChildrenNames>
+    <Name>Adama</Name>
+    <Name>Jacob</Name>
+    <Name>Kilia</Name>
+    <Name>Maria</Name>
+    <Name>Oumar</Name>
+    <Name>Salif</Name>
+    <Name>Sekou</Name>
+    <Name>Siaka</Name>
+  </ChildrenNames>
+</FamilyManager>
