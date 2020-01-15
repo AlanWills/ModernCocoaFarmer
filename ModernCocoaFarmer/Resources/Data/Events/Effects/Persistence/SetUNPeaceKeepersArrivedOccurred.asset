@@ -2,6 +2,6 @@
 <CheckDataStoreBoolValueCondition name="UNPeaceKeepersOccurred" guid="8f516f41-f9b6-43ba-a0db-380a6fb57bcb"
                                   data_store_path="Data\Gameplay\GameplayDataStore.xml"
                                   value_name="UNPeaceKeepersOccurred"
-                                  comparison_operator="equals"
+                                  comparison_operator="Equals"
                                   expected_value="true"
                                   default_value="false"/>

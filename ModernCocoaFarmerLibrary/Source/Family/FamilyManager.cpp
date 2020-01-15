@@ -1,6 +1,8 @@
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
+#include "Stats/Modifier.h"
+#include "XML/tinyxml2_ext.h"
 
 
 namespace MCF::Family
@@ -17,14 +19,40 @@ namespace MCF::Family
 
   //------------------------------------------------------------------------------------------------
   FamilyManager::FamilyManager() :
-    m_dailyHealthModifier(createScriptableObject<Stats::Modifier>("DailyHealthModifier")),
-    m_dailySafetyModifier(createScriptableObject<Stats::Modifier>("DailySafetyModifier")),
-    m_dailyEducationModifier(createScriptableObject<Stats::Modifier>("DailyEducationModifier")),
-    m_dailyHappinessModifier(createScriptableObject<Stats::Modifier>("DailyHappinessModifier")),
+    m_dailyHealthModifier(createScriptableObject<Stats::Modifier>(DAILY_HEALTH_MODIFIER_ATTRIBUTE_NAME)),
+    m_dailySafetyModifier(createScriptableObject<Stats::Modifier>(DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME)),
+    m_dailyEducationModifier(createScriptableObject<Stats::Modifier>(DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME)),
+    m_dailyHappinessModifier(createScriptableObject<Stats::Modifier>(DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME)),
     m_childrenNames(),
     m_children(),
     m_childAddedEvent()
   {
+  }
+
+  //------------------------------------------------------------------------------------------------
+  bool FamilyManager::doDeserialize(const tinyxml2::XMLElement* element)
+  {
+    Inherited::doDeserialize(element);
+
+    std::vector<std::string> names;
+    XMLValueError error = CelesteEngine::XML::getChildElementDataAsVector(
+      element,
+      CHILDREN_NAMES_ELEMENT_NAME,
+      NAME_ELEMENT_NAME,
+      names);
+
+    if (error == XMLValueError::kError)
+    {
+      ASSERT_FAIL();
+      return false;
+    }
+
+    for (const std::string& name : names)
+    {
+      m_childrenNames.push(name);
+    }
+
+    return true;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -116,7 +144,3 @@ namespace MCF::Family
     applyHappinessModifier(m_dailyHappinessModifier);
   }
 }
-
-Bake daily modifiers into FamilyManager
-Hook up addChildEvent to UI
-Child expelled from school - they lose all education (have to be at school)

@@ -23,11 +23,13 @@ namespace MCF::Family
     DECLARE_SCRIPTABLE_OBJECT(FamilyManager, MCFLibraryDllExport);
 
     private:
+      using Inherited = CelesteEngine::ScriptableObject;
       using ChildrenNames = std::queue<std::string>;
       using Children = std::vector<std::unique_ptr<Child>>;
-      using ChildAddedEvent = CelesteEngine::Event<Child&>;
 
     public:
+      using ChildAddedEvent = CelesteEngine::Event<Child&>;
+
       size_t getChildCount() const { return m_children.size(); }
       observer_ptr<Child> getChild(size_t childIndex) const;
 
@@ -42,6 +44,8 @@ namespace MCF::Family
 
       Children::const_iterator begin() const { return m_children.begin(); }
       Children::const_iterator end() const { return m_children.end(); }
+      
+      const ChildAddedEvent& getChildAddedEvent() const { return m_childAddedEvent; }
 
       static const char* const DAILY_HEALTH_MODIFIER_ATTRIBUTE_NAME;
       static const char* const DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME;
@@ -49,6 +53,9 @@ namespace MCF::Family
       static const char* const DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME;
       static const char* const CHILDREN_NAMES_ELEMENT_NAME;
       static const char* const NAME_ELEMENT_NAME;
+
+    protected:
+      bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
       Stats::Modifier& m_dailyHealthModifier;

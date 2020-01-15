@@ -33,11 +33,11 @@ namespace MCF::Money
     {
       if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
       {
-        m_money.setValue(modifier.getAmount());
+        m_money.setValue(static_cast<int>(modifier.getAmount()));
       }
       else if (modifier.getChangeType() == Stats::ChangeType::kDelta)
       {
-        m_money.setValue(m_money.getValue() + modifier.getAmount());
+        m_money.setValue(m_money.getValue() + static_cast<int>(modifier.getAmount()));
       }
       else
       {

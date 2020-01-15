@@ -14,9 +14,9 @@ namespace MCF
 
   namespace Buildings
   {
-    class BuildingInformation : public CelesteEngine::ScriptableObject
+    class Building : public CelesteEngine::ScriptableObject
     {
-      DECLARE_SCRIPTABLE_OBJECT(BuildingInformation, MCFLibraryDllExport)
+      DECLARE_SCRIPTABLE_OBJECT(Building, MCFLibraryDllExport)
 
       public:
         const std::string& getDescription() const { return m_description.getValue(); }

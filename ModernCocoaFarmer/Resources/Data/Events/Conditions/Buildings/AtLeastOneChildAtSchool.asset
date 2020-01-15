@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ChildrenStatComparisonCondition number_of_children="1" children_comparison_operator="GreaterThanOrEqualTo"
+                                 building="School"
+                                 guid="9394d6a9-e06d-4bf4-9342-49b6fd6356df"/>

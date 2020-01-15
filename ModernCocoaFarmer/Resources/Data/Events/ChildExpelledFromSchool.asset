@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEvent description="Child Expelled from school" name="Child Expelled" guid="df5e3300-c024-48d9-aa0e-d678ec5df255"
+           icon="Textures\UI\Utility\WhitePixel.png">
+  <Conditions>
+    <Condition path="Data\Events\Conditions\Time\Day15.asset"/>
+    <Condition path="Data\Events\Conditions\Random\ChildExpelledFromSchoolCheck.asset"/>
+    <Condition path="Data\Events\Conditions\Buildings\AtLeastOneChildAtSchool.asset"/>
+  </Conditions>
+  <Effects>
+    <Effect path="Data\Events\Effects\Family\SetChildEducationToZero.asset"/>
+  </Effects>
+</GameEvent>

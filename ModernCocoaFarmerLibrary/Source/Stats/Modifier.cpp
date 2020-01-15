@@ -16,10 +16,10 @@ namespace MCF
 
     //------------------------------------------------------------------------------------------------
     Modifier::Modifier() :
-      m_amount(createValueField<int>(AMOUNT_FIELD_NAME)),
+      m_amount(createValueField<float>(AMOUNT_FIELD_NAME)),
       m_changeType(createValueField<ChangeType>(CHANGE_TYPE_FIELD_NAME)),
       m_occurrence(createValueField<Occurrence>(OCCURRENCE_FIELD_NAME)),
-      m_periodInMonths(createValueField<int>(PERIOD_IN_MONTHS_FIELD_NAME))
+      m_periodInMonths(createValueField<float>(PERIOD_IN_MONTHS_FIELD_NAME))
     {
     }
   }

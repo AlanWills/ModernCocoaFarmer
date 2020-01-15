@@ -16,12 +16,12 @@ namespace MCF
       DECLARE_SCRIPTABLE_OBJECT(Modifier, MCFLibraryDllExport);
 
       public:
-        int getAmount() const { return m_amount.getValue(); }
-        void setAmount(int amount) { m_amount.setValue(amount); }
+        float getAmount() const { return m_amount.getValue(); }
+        void setAmount(float amount) { m_amount.setValue(amount); }
 
         ChangeType getChangeType() const { return m_changeType.getValue(); }
         Occurrence getOccurrence() const { return m_occurrence.getValue(); }
-        int getPeriodInMonths() const { return m_periodInMonths.getValue(); }
+        float getPeriodInMonths() const { return m_periodInMonths.getValue(); }
 
         static const char* const AMOUNT_FIELD_NAME;
         static const char* const CHANGE_TYPE_FIELD_NAME;
@@ -29,10 +29,10 @@ namespace MCF
         static const char* const PERIOD_IN_MONTHS_FIELD_NAME;
 
       private:
-        CelesteEngine::ValueField<int>& m_amount;
+        CelesteEngine::ValueField<float>& m_amount;
         CelesteEngine::ValueField<ChangeType>& m_changeType;
         CelesteEngine::ValueField<Occurrence>& m_occurrence;
-        CelesteEngine::ValueField<int>& m_periodInMonths;
+        CelesteEngine::ValueField<float>& m_periodInMonths;
     };
   }
 }

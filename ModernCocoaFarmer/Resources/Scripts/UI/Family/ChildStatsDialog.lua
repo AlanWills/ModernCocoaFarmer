@@ -31,21 +31,21 @@ local function setUpProgressBar(dialogGameObject, categoryName, progressBarName,
 end
 
 ----------------------------------------------------------------------------------------
-function csd.show(screen, childInformation)
+function csd.show(screen, child)
     assert(csd.DIALOG_PREFAB ~= nil)
     local dialogGameObject = csd.DIALOG_PREFAB:instantiate(screen)
 
     -- Health
-    setUpProgressBar(dialogGameObject, "Health", csd.HEALTH_PROGRESS_BAR_NAME, childInformation:getHealth())
+    setUpProgressBar(dialogGameObject, "Health", csd.HEALTH_PROGRESS_BAR_NAME, child:getHealth())
     
     -- Safety
-    setUpProgressBar(dialogGameObject, "Safety", csd.SAFETY_PROGRESS_BAR_NAME, childInformation:getSafety())
+    setUpProgressBar(dialogGameObject, "Safety", csd.SAFETY_PROGRESS_BAR_NAME, child:getSafety())
 
     -- Education
-    setUpProgressBar(dialogGameObject, "Education", csd.EDUCATION_PROGRESS_BAR_NAME, childInformation:getEducation())
+    setUpProgressBar(dialogGameObject, "Education", csd.EDUCATION_PROGRESS_BAR_NAME, child:getEducation())
 
     -- Happiness
-    setUpProgressBar(dialogGameObject, "Happiness", csd.HAPPINESS_PROGRESS_BAR_NAME, childInformation:getHappiness())
+    setUpProgressBar(dialogGameObject, "Happiness", csd.HAPPINESS_PROGRESS_BAR_NAME, child:getHappiness())
 
     return dialogGameObject;
 end
