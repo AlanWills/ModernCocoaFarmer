@@ -19,7 +19,8 @@ namespace MCF::Events::Effects
   //------------------------------------------------------------------------------------------------
   void ModifySalaryLevelEffect::trigger(
     Money::MoneyManager& moneyManager,
-    Family::FamilyManager&) const
+    Family::FamilyManager&,
+    Locations::LocationsManager&) const
   {
     if (getModifier() < 0)
     {

@@ -21,33 +21,6 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
     {
       timeManager.setPaused(false);
     }
-
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnDayPassedCallback(
-      TimeManager& timeManager,
-      sol::protected_function callback,
-      sol::object extraArgs)
-    {
-      CelesteEngine::Lua::subscribeToEvent<TimeManager::TimeEvent>(timeManager.getOnDayPassedEvent(), callback, extraArgs);
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnMonthPassedCallback(
-      TimeManager& timeManager,
-      sol::protected_function callback,
-      sol::object extraArgs)
-    {
-      CelesteEngine::Lua::subscribeToEvent<TimeManager::TimeEvent>(timeManager.getOnMonthPassedEvent(), callback, extraArgs);
-    }
-
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnYearPassedCallback(
-      TimeManager& timeManager,
-      sol::protected_function callback,
-      sol::object extraArgs)
-    {
-      CelesteEngine::Lua::subscribeToEvent<TimeManager::TimeEvent>(timeManager.getOnYearPassedEvent(), callback, extraArgs);
-    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -62,9 +35,6 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
       "pause", &Internals::pause,
       "play", &Internals::play,
       "isPaused", &TimeManager::isPaused,
-      "update", &TimeManager::update,
-      "subscribeOnDayPassedCallback", &Internals::subscribeOnDayPassedCallback,
-      "subscribeOnMonthPassedCallback", &Internals::subscribeOnMonthPassedCallback,
-      "subscribeOnYearPassedCallback", &Internals::subscribeOnYearPassedCallback);
+      "update", &TimeManager::update);
   }
 }

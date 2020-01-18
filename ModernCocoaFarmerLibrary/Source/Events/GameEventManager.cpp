@@ -65,6 +65,12 @@ namespace MCF::Events
   }
 
   //------------------------------------------------------------------------------------------------
+  void GameEventManager::setFamilyManager(observer_ptr<Family::FamilyManager> familyManager)
+  {
+    m_familyManager = familyManager;
+  }
+
+  //------------------------------------------------------------------------------------------------
   void GameEventManager::setTimeManager(observer_ptr<Time::TimeManager> timeManager)
   {
     ASSERT(timeManager != nullptr);
@@ -87,13 +93,25 @@ namespace MCF::Events
   }
 
   //------------------------------------------------------------------------------------------------
+  void GameEventManager::setMoneyManager(observer_ptr<Money::MoneyManager> moneyManager)
+  {
+    m_moneyManager = moneyManager;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void GameEventManager::setLocationsManager(observer_ptr<Locations::LocationsManager> locationsManager)
+  {
+    m_locationsManager = locationsManager;
+  }
+
+  //------------------------------------------------------------------------------------------------
   void GameEventManager::checkEventsForTriggering()
   {
     for (const auto& event : m_gameEvents)
     {
       if (event->canTrigger(*m_timeManager, *m_moneyManager, *m_familyManager))
       {
-        event->trigger(*m_moneyManager, *m_familyManager);
+        event->trigger(*m_moneyManager, *m_familyManager, *m_locationsManager);
         m_onGameEventTriggered.invoke(*event);
       }
     }

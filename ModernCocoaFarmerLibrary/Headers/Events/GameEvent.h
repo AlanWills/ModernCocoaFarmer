@@ -26,6 +26,11 @@ namespace MCF::Family
   class FamilyManager;
 }
 
+namespace MCF::Locations
+{
+  class LocationsManager;
+}
+
 namespace MCF::Events
 {
   namespace Conditions
@@ -50,7 +55,8 @@ namespace MCF::Events
 
       void trigger(
         Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager) const;
+        Family::FamilyManager& familyManager,
+        Locations::LocationsManager& locationsManager) const;
       
       const std::string& getDescription() const { return m_description.getValue(); }
       const CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>& getIcon() const { return m_icon.getValue(); }

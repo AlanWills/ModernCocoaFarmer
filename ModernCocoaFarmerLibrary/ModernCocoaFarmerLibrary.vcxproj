@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
+    <ClInclude Include="Headers\Events\Effects\TriggerDailyFamilyModifications.h" />
+    <ClInclude Include="Headers\Events\Effects\TriggerDailyLocationModifications.h" />
     <ClInclude Include="Headers\Locations\Location.h" />
     <ClInclude Include="Headers\Locations\LocationsManager.h" />
     <ClInclude Include="Headers\Deserialization\Logic\LogicDeserializers.h" />
@@ -82,6 +84,8 @@
     <ClInclude Include="Headers\Time\TimePeriod.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Events\Effects\TriggerDailyFamilyModifications.cpp" />
+    <ClCompile Include="Source\Events\Effects\TriggerDailyLocationModifications.cpp" />
     <ClCompile Include="Source\Locations\Location.cpp" />
     <ClCompile Include="Source\Locations\LocationsManager.cpp" />
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />

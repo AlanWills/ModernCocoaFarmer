@@ -5,7 +5,7 @@ local GameEventsBar = {}
 
 ---------------------------------------------------------------------------------
 local function createNotificationCallback(eventArgs, gameEvent, self)
-    self:createNotification(gameEvent)
+    self:createNotification(gameEvent) 
 end
 
 ---------------------------------------------------------------------------------
@@ -22,12 +22,14 @@ end
 
 ---------------------------------------------------------------------------------
 function GameEventsBar:createNotification(gameEvent)
-    local notification = Class.new(GameEventNotification, gameEvent, self._gameObject)
-    local notificationInteractionHandler = notification.gameObject:findComponent("MouseInteractionHandler")
-    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(removeNotificationCallback, { self = self, notification = notification })
-    notificationInteractionHandler:subscribeOnRightButtonUpCallback(removeNotificationCallback, { self = self, notification = notification })
+    if not gameEvent:getIcon():equals(nil) then
+        local notification = Class.new(GameEventNotification, gameEvent, self._gameObject)
+        local notificationInteractionHandler = notification.gameObject:findComponent("MouseInteractionHandler")
+        notificationInteractionHandler:subscribeOnLeftButtonUpCallback(removeNotificationCallback, { self = self, notification = notification })
+        notificationInteractionHandler:subscribeOnRightButtonUpCallback(removeNotificationCallback, { self = self, notification = notification })
 
-    self._gameObject:findComponent("StackPanel"):addChild(notification.gameObject)
+        self._gameObject:findComponent("StackPanel"):addChild(notification.gameObject)
+    end
 end
 
 ---------------------------------------------------------------------------------

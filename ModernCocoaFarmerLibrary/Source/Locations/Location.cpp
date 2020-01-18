@@ -39,7 +39,7 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
-  void Location::updateCurrentChildren()
+  void Location::applyDailyModifiers()
   {
     for (const std::reference_wrapper<Family::Child>& child : m_children)
     {

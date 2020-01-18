@@ -141,6 +141,10 @@
     <None Include="Resources\Data\Events\Conditions\Locations\AtLeastOneChildAtSchool.asset" />
     <None Include="Resources\Prefabs\UI\InteractableLocationDialog.prefab" />
     <None Include="Resources\Scripts\UI\InteractableLocationDialog.lua" />
+    <None Include="Resources\Data\Events\DailyFamilyModifications.asset" />
+    <None Include="Resources\Data\Events\DailyLocationModifications.asset" />
+    <None Include="Resources\Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset" />
+    <None Include="Resources\Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -522,5 +526,6 @@
     <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.asset" />
+    <Xml Include="Resources\Data\Gameplay\GameplayDataStore.xml" />
   </ItemGroup>
 </Project>

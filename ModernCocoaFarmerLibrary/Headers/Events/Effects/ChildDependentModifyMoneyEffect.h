@@ -17,7 +17,8 @@ namespace MCF::Events::Effects
     public:
       void trigger(
         Money::MoneyManager& moneyManager, 
-        Family::FamilyManager& familyManager) const override;
+        Family::FamilyManager& familyManager,
+        Locations::LocationsManager&) const override;
 
     private:
       using Inherited = ModifyMoneyEffect;

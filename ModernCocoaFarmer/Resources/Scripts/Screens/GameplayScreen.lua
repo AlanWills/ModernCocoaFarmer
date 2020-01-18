@@ -18,27 +18,20 @@ local function onTimeChanged(eventArgs, deltaTime, timeManager)
 end
 
 ---------------------------------------------------------------------------------
-local function applyFamilyManagerDailyModifiers(eventArgs, familyManager)
-    familyManager:applyDailyModifiers()
-end
-
----------------------------------------------------------------------------------
 function GameplayScreen.show()
     local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
-
     local locationsManager = LocationsManager.load(path.combine("Data", "Locations", "LocationsManager.asset"))
-    locationsManager:setTimeManager(timeManager)
 
     local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
     gameEventManager:setTimeManager(timeManager)
     gameEventManager:setMoneyManager(moneyManager)
     gameEventManager:setFamilyManager(familyManager)
+    gameEventManager:setLocationsManager(locationsManager)
        
     familyManager:addChild()
     familyManager:addChild()
-    timeManager:subscribeOnDayPassedCallback(applyFamilyManagerDailyModifiers, familyManager)
     
     local gameplayScreen = Screen.load(GameplayScreen.GAMEPLAY_SCREEN_PATH)
     

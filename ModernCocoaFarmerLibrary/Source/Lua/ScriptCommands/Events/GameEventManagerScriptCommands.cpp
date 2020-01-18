@@ -6,6 +6,7 @@
 #include "Time/TimeManager.h"
 #include "Money/MoneyManager.h"
 #include "Family/FamilyManager.h"
+#include "Locations/LocationsManager.h"
 
 using namespace MCF::Events;
 
@@ -48,6 +49,7 @@ namespace MCF::Lua::Events::GameEventManagerScriptCommands
       "setFamilyManager", &GameEventManager::setFamilyManager,
       "setMoneyManager", &GameEventManager::setMoneyManager,
       "setTimeManager", &GameEventManager::setTimeManager,
+      "setLocationsManager", &GameEventManager::setLocationsManager,
       "registerGameEvent", &Internals::registerGameEvent,
       "subscribeOnGameEventTriggeredCallback", &Internals::subscribeOnGameEventTriggeredCallback);
   }

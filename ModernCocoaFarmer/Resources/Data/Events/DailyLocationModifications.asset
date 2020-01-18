@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEvent description="" name="Daily Building Modifications" guid="e9263278-736f-4b80-b5de-415ab8a0f650"
+           icon="">
+  <Effects>
+    <Effect path="Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset"/>
+  </Effects>
+</GameEvent>

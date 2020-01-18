@@ -187,6 +187,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Resources\Data\Events\DailyFamilyModifications.asset" />
+    <None Include="Resources\Data\Events\DailyLocationModifications.asset" />
+    <None Include="Resources\Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset" />
+    <None Include="Resources\Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset" />
     <None Include="Resources\Data\Locations\LocationsManager.asset" />
     <None Include="Resources\Data\Locations\Farm.asset" />
     <None Include="Resources\Data\Locations\Home.asset" />
@@ -459,6 +463,7 @@
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\Effects\Salary\IncrementSalaryLevel.asset" />
     <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.asset" />
+    <Xml Include="Resources\Data\Gameplay\GameplayDataStore.xml" />
     <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
     <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
   </ItemGroup>

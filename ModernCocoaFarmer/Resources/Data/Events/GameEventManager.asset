@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GameEventManager name="GameEventManager" guid="03cc4bba-5b9d-414c-b353-49e509fc70c7">
   <GameEvents>
+    <GameEvent path="Data\Events\DailyFamilyModifications.asset"/>
+    <GameEvent path="Data\Events\DailyLocationModifications.asset"/>
     <GameEvent path="Data\Events\WelcomeToZegoua.asset"/>
     <GameEvent path="Data\Events\PayBills.asset"/>
     <GameEvent path="Data\Events\SalaryDecreased.asset"/>

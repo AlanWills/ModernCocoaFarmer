@@ -14,7 +14,8 @@ namespace MCF::Events::Effects
 
       void trigger(
         Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager) const override;
+        Family::FamilyManager& familyManager,
+        Locations::LocationsManager&) const override;
 
       static const char* const MODIFIER_PATH_ATTRIBUTE_NAME;
 

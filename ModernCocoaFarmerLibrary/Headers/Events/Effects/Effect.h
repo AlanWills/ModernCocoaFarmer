@@ -14,6 +14,11 @@ namespace MCF::Family
   class FamilyManager;
 }
 
+namespace MCF::Locations
+{
+  class LocationsManager;
+}
+
 namespace MCF::Events::Effects
 {
   class Effect : public CelesteEngine::ScriptableObject
@@ -21,6 +26,7 @@ namespace MCF::Events::Effects
     public:
       virtual void trigger(
         Money::MoneyManager& moneyManager, 
-        Family::FamilyManager& familyManager) const = 0;
+        Family::FamilyManager& familyManager,
+        Locations::LocationsManager& locationManager) const = 0;
   };
 }

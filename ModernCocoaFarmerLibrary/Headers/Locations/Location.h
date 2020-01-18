@@ -34,7 +34,7 @@ namespace MCF
         float getMonthsToComplete() const { return m_monthsToComplete.getValue(); }
 
         void sendChild(Family::Child& child);
-        void updateCurrentChildren();
+        void applyDailyModifiers();
 
         static const std::string PREFAB_FIELD_NAME;
         static const std::string DESCRIPTION_FIELD_NAME;

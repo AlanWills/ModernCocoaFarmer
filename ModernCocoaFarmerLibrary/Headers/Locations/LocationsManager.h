@@ -6,11 +6,6 @@
 #include "UID/StringId.h"
 
 
-namespace CelesteEngine
-{
-  struct EventArgs;
-}
-
 namespace MCF::Time
 {
   class TimeManager;
@@ -36,8 +31,8 @@ namespace MCF::Locations
       size_t getNumLocations() const { return m_locations.size(); }
       observer_ptr<Location> getLocation(const std::string& locationName);
 
-      void setTimeManager(observer_ptr<Time::TimeManager> timeManager);
       void sendChildToLocation(Location& locationInformation, Family::Child& child);
+      void applyDailyModifiers();
 
       static const char* const LOCATIONS_ELEMENT_NAME;
       static const char* const LOCATION_ELEMENT_NAME;
@@ -46,11 +41,6 @@ namespace MCF::Locations
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
-      void onDayPassed();
-
-      observer_ptr<Time::TimeManager> m_timeManager;
       LocationsInformation m_locations;
-
-      CelesteEngine::StringId m_onDayPassedHandle;
   };
 }

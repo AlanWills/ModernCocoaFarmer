@@ -40,7 +40,7 @@ namespace MCF::Events::Conditions
     if (data.is_null())
     {
       ASSERT_FAIL();
-      return false;
+      return getExpectedValue() == getDefaultValue();
     }
 
     Persistence::DataStore dataStore = Persistence::DataStore::deserialize(*data->getDocumentRoot());

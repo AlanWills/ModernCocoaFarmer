@@ -198,6 +198,12 @@
     <ClInclude Include="Headers\Events\Effects\ModifyChildAtLocationStatEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Events\Effects\TriggerDailyFamilyModifications.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Effects\TriggerDailyLocationModifications.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
@@ -363,6 +369,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Events\Effects\ModifyChildAtLocationStatEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Effects\TriggerDailyFamilyModifications.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Effects\TriggerDailyLocationModifications.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

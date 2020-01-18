@@ -111,11 +111,12 @@ namespace MCF::Events
   //------------------------------------------------------------------------------------------------
   void GameEvent::trigger(
     Money::MoneyManager& moneyManager,
-    Family::FamilyManager& familyManager) const
+    Family::FamilyManager& familyManager,
+    Locations::LocationsManager& locationsManager) const
   {
     for (const auto& effect : m_effects)
     {
-      effect->trigger(moneyManager, familyManager);
+      effect->trigger(moneyManager, familyManager, locationsManager);
     }
   }
 }

@@ -3,7 +3,6 @@
 #include "Locations/Location.h"
 #include "Time/TimeManager.h"
 #include "Money/MoneyManager.h"
-#include "Events/EventArgs.h"
 
 
 namespace MCF::Locations
@@ -16,9 +15,7 @@ namespace MCF::Locations
 
   //------------------------------------------------------------------------------------------------
   LocationsManager::LocationsManager() :
-    m_timeManager(nullptr),
-    m_locations(),
-    m_onDayPassedHandle(0)
+    m_locations()
   {
   }
 
@@ -61,33 +58,17 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
-  void LocationsManager::setTimeManager(observer_ptr<Time::TimeManager> timeManager)
-  {
-    if (m_timeManager != nullptr)
-    {
-      m_timeManager->getOnDayPassedEvent().unsubscribe(m_onDayPassedHandle);
-    }
-
-    m_timeManager = timeManager;
-
-    if (m_timeManager != nullptr)
-    {
-      m_onDayPassedHandle = m_timeManager->getOnDayPassedEvent().subscribe([this](CelesteEngine::EventArgs&) { onDayPassed(); });
-    }
-  }
-
-  //------------------------------------------------------------------------------------------------
   void LocationsManager::sendChildToLocation(Location& location, Family::Child& child)
   {
     location.sendChild(child);
   }
 
   //------------------------------------------------------------------------------------------------
-  void LocationsManager::onDayPassed()
+  void LocationsManager::applyDailyModifiers()
   {
-    for (const auto& stringLocationPair : m_locations)
+    for (const auto& locationPair : m_locations)
     {
-      stringLocationPair.second->updateCurrentChildren();
+      locationPair.second->applyDailyModifiers();
     }
   }
 }

@@ -17,7 +17,6 @@ namespace MCF::Lua::Locations::LocationManagerScriptCommands
       LocationsManager::type_name(),
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
       "getNumLocations", &LocationsManager::getNumLocations,
-      "getLocation", &LocationsManager::getLocation,
-      "setTimeManager", &LocationsManager::setTimeManager);
+      "getLocation", &LocationsManager::getLocation);
   }
 }

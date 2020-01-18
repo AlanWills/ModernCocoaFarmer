@@ -20,10 +20,11 @@ namespace MCF::Events::Effects
   //------------------------------------------------------------------------------------------------
   void ModifyMoneyEffect::trigger(
     Money::MoneyManager& moneyManager,
-    Family::FamilyManager&) const
+    Family::FamilyManager&,
+    Locations::LocationsManager&) const
   {
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
-    ASSERT(modifier != nullptr)
+    ASSERT(modifier != nullptr);
     
     if (modifier != nullptr)
     {
