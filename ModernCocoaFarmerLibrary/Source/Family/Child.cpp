@@ -34,7 +34,7 @@ namespace MCF::Family
     }
 
     m_isSelected = isSelected;
-    m_onSelectedChanged.invoke(*this, m_isSelected);
+    m_onSelectedChanged.invoke(*this);
   }
 
   //------------------------------------------------------------------------------------------------

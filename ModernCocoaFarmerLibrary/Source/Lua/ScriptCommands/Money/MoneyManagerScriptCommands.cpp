@@ -9,18 +9,6 @@ using namespace MCF::Money;
 
 namespace MCF::Lua::Money::MoneyManagerScriptCommands
 {
-  namespace Internals
-  {
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnMoneyChangedCallback(
-      MoneyManager& moneyManager,
-      sol::protected_function callback,
-      sol::object extraArgs)
-    {
-      CelesteEngine::Lua::subscribeToEvent<MoneyManager::MoneyChangedEvent, int>(moneyManager.getOnMoneyChangedEvent(), callback, extraArgs);
-    }
-  }
-
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
@@ -29,7 +17,6 @@ namespace MCF::Lua::Money::MoneyManagerScriptCommands
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
       "getMoney", &MoneyManager::getMoney,
       "setMoney", &MoneyManager::setMoney,
-      "applyMoneyModifier", &MoneyManager::applyMoneyModifier,
-      "subscribeOnMoneyChangedCallback", &Internals::subscribeOnMoneyChangedCallback);
+      "applyMoneyModifier", &MoneyManager::applyMoneyModifier);
   }
 }

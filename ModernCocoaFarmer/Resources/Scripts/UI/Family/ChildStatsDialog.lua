@@ -1,53 +1,72 @@
-local csd = {}
+local ChildStatsDialog = 
+{
+    DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Family", "ChildStatsDialog.prefab"),
+    HEALTH_PROGRESS_BAR_NAME = "HealthProgressBar",
+    SAFETY_PROGRESS_BAR_NAME = "SafetyProgressBar",
+    EDUCATION_PROGRESS_BAR_NAME = "EducationProgressBar",
+    HAPPINESS_PROGRESS_BAR_NAME = "HappinessProgressBar",
+    CURRENT_BUILDING_NAME = "CurrentBuilding",
+    CURRENT_BUILDING_TEXT_NAME = "CurrentBuildingText",
+}
 
 ----------------------------------------------------------------------------------------
-csd.DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Family", "ChildStatsDialog.prefab")
-csd.DIALOG_PREFAB = nil
-csd.HEALTH_PROGRESS_BAR_NAME = "HealthProgressBar"
-csd.SAFETY_PROGRESS_BAR_NAME = "SafetyProgressBar"
-csd.EDUCATION_PROGRESS_BAR_NAME = "EducationProgressBar"
-csd.HAPPINESS_PROGRESS_BAR_NAME = "HappinessProgressBar"
-
-----------------------------------------------------------------------------------------
-function csd.load()
-    csd.DIALOG_PREFAB = Resources.loadPrefab(csd.DIALOG_PREFAB_PATH)
-    return csd.DIALOG_PREFAB
-end
-
-----------------------------------------------------------------------------------------
-function csd.unload()
-    Resources.unloadPrefab(csd.DIALOG_PREFAB)
-    csd.DIALOG_PREFAB = nil
-end
-
-----------------------------------------------------------------------------------------
-local function setUpProgressBar(dialogGameObject, categoryName, progressBarName, value)
+local function getProgressBar(dialogGameObject, categoryName, progressBarName)
     local category = dialogGameObject:findChildGameObject(categoryName)
     local categoryBackground = category:findChildGameObject(categoryName .. "ProgressBarBackground")
     local categoryProgressBarGameObject = categoryBackground:findChildGameObject(progressBarName)
-    local categoryProgressBar = categoryProgressBarGameObject:findComponent("ProgressBar")
     
-    categoryProgressBar:setProgress(value)
+    return categoryProgressBarGameObject:findComponent("ProgressBar")
 end
 
 ----------------------------------------------------------------------------------------
-function csd.show(screen, child)
-    assert(csd.DIALOG_PREFAB ~= nil)
-    local dialogGameObject = csd.DIALOG_PREFAB:instantiate(screen)
+function ChildStatsDialog:new(parent, child)
+    self._child = child
 
-    -- Health
-    setUpProgressBar(dialogGameObject, "Health", csd.HEALTH_PROGRESS_BAR_NAME, child:getHealth())
-    
-    -- Safety
-    setUpProgressBar(dialogGameObject, "Safety", csd.SAFETY_PROGRESS_BAR_NAME, child:getSafety())
+    local prefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
+    local gameObject = prefab:instantiate(parent:getScreen())
+    gameObject:setParent(parent);
+    gameObject:getTransform():translate(0, -240)
+    self._gameObject = gameObject
 
-    -- Education
-    setUpProgressBar(dialogGameObject, "Education", csd.EDUCATION_PROGRESS_BAR_NAME, child:getEducation())
+    self._healthProgessBar = getProgressBar(gameObject, "Health", self.HEALTH_PROGRESS_BAR_NAME)
+    self._safetyProgressBar = getProgressBar(gameObject, "Safety", self.SAFETY_PROGRESS_BAR_NAME)
+    self._educationProgressBar = getProgressBar(gameObject, "Education", self.EDUCATION_PROGRESS_BAR_NAME)
+    self._happinessProgressBar = getProgressBar(gameObject, "Happiness", self.HAPPINESS_PROGRESS_BAR_NAME)
 
-    -- Happiness
-    setUpProgressBar(dialogGameObject, "Happiness", csd.HAPPINESS_PROGRESS_BAR_NAME, child:getHappiness())
-
-    return dialogGameObject;
+    local childBuildingGameObject = gameObject:findChildGameObject(self.CURRENT_BUILDING_NAME)
+    self._childBuildingText = childBuildingGameObject:findChildGameObject(self.CURRENT_BUILDING_TEXT_NAME):findComponent("TextRenderer")
 end
 
-return csd
+----------------------------------------------------------------------------------------
+function ChildStatsDialog:show()
+    self._gameObject:setActive(true)
+    self._gameObject:setShouldRender(true)
+end
+
+----------------------------------------------------------------------------------------
+function ChildStatsDialog:hide()
+    self._gameObject:setActive(false)
+    self._gameObject:setShouldRender(false)
+end
+
+----------------------------------------------------------------------------------------
+function ChildStatsDialog:isShowing()
+    return self._gameObject:isActive() and self._gameObject:shouldRender()
+end
+
+----------------------------------------------------------------------------------------
+function ChildStatsDialog:updateUI()
+    self._healthProgessBar:setProgress(self._child:getHealth())
+    self._safetyProgressBar:setProgress(self._child:getSafety())
+    self._educationProgressBar:setProgress(self._child:getEducation())
+    self._happinessProgressBar:setProgress(self._child:getHappiness())
+
+    local locationText = "Not at location"
+    if self._child:isAtBuilding() then
+        locationText = "Currently at " .. self._child:getCurrentBuilding()
+    end
+
+    self._childBuildingText:setText(locationText)
+end
+
+return ChildStatsDialog

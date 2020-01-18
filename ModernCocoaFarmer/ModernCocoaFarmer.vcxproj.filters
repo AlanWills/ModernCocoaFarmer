@@ -91,10 +91,6 @@
     <None Include="Resources\Scripts\OOP\Class.lua" />
     <None Include="Resources\Prefabs\UI\Family\ChildIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Family\FamilyPanel.prefab" />
-    <None Include="Resources\Prefabs\UI\Information\MoneyPanel.prefab" />
-    <None Include="Resources\Prefabs\UI\Information\TimePanel.prefab" />
-    <None Include="Resources\Scripts\UI\Information\MoneyPanel.lua" />
-    <None Include="Resources\Scripts\UI\Information\TimePanel.lua" />
     <None Include="Resources\Scripts\Events\Event.lua" />
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
@@ -140,6 +136,11 @@
     <None Include="Resources\Prefabs\Gameplay\Buildings\School.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Well.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Farm.prefab" />
+    <None Include="Resources\Scripts\UI\Family\FamilyPanel.lua" />
+    <None Include="Resources\Scripts\UI\Money\MoneyPanel.lua" />
+    <None Include="Resources\Scripts\UI\Time\TimePanel.lua" />
+    <None Include="Resources\Prefabs\UI\Time\TimePanel.prefab" />
+    <None Include="Resources\Prefabs\UI\Money\MoneyPanel.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

@@ -1,5 +1,4 @@
 local Class = require 'OOP.Class'
-local csd = require "UI.Family.ChildStatsDialog"
 local BuildingsUI = require 'UI.Buildings.BuildingsUI'
 local TopBar = require "UI.TopBar"
 local GameEventsBar = require 'UI.Events.GameEventsBar'
@@ -25,9 +24,6 @@ end
 
 ---------------------------------------------------------------------------------
 function GameplayScreen.show()
-    -- Either caches instances or resources in memory to allow quicker prefab instancing
-    csd.load()
-    
     local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
@@ -58,7 +54,9 @@ function GameplayScreen.show()
         topBarGameObject, 
         familyManager, 
         moneyManager,
-        timeManager)
+        timeManager,
+        gameEventManager)
+    GameplayScreen._topBar:updateUI()
       
     local gameEventsBar = gameplayScreen:findGameObject(GameplayScreen.GAME_EVENTS_BAR_NAME)
     GameplayScreen._gameEventsBar = Class.new(GameEventsBar, gameEventsBar, gameEventManager)

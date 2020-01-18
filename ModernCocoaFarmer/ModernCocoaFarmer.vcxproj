@@ -259,9 +259,9 @@
     <None Include="Resources\Data\Time\TimeManager.asset" />
     <None Include="Resources\Prefabs\Gameplay\Buildings\Farm.prefab" />
     <None Include="Resources\Prefabs\UI\Events\GameEventNotification.prefab" />
-    <None Include="Resources\Prefabs\UI\Information\MoneyPanel.prefab" />
+    <None Include="Resources\Prefabs\UI\Money\MoneyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
-    <None Include="Resources\Prefabs\UI\Information\TimePanel.prefab" />
+    <None Include="Resources\Prefabs\UI\Time\TimePanel.prefab" />
     <None Include="Resources\Prefabs\UI\InGameMenu.prefab" />
     <None Include="Resources\Screens\DebugTools.screen" />
     <None Include="Resources\Screens\Loading.screen" />
@@ -302,8 +302,9 @@
     <None Include="Resources\Scripts\UI\Events\GameEventNotification.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
-    <None Include="Resources\Scripts\UI\Information\MoneyPanel.lua" />
-    <None Include="Resources\Scripts\UI\Information\TimePanel.lua" />
+    <None Include="Resources\Scripts\UI\Family\FamilyPanel.lua" />
+    <None Include="Resources\Scripts\UI\Money\MoneyPanel.lua" />
+    <None Include="Resources\Scripts\UI\Time\TimePanel.lua" />
     <None Include="Resources\Scripts\UI\InGameMenu.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
     <None Include="Resources\Scripts\UI\TopBar.lua" />

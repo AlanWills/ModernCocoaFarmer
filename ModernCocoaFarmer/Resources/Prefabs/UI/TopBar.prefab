@@ -6,9 +6,9 @@
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,0.1%" colour="0.5,0.5,0.5" opacity="0.5"/>
       </Components>
       <GameObjects>
-        <Prefab name="MoneyPanel" path="Prefabs\UI\Information\MoneyPanel.prefab"/>
+        <Prefab name="MoneyPanel" path="Prefabs\UI\Money\MoneyPanel.prefab"/>
         <Prefab name="FamilyPanel" path="Prefabs\UI\Family\FamilyPanel.prefab"/>
-        <Prefab name="TimePanel" path="Prefabs\UI\Information\TimePanel.prefab"/>
+        <Prefab name="TimePanel" path="Prefabs\UI\Time\TimePanel.prefab"/>
         <GameObject name="UtilityButtonsStackPanel" position="0.47%,0,0">
           <Components>
             <StackPanel orientation="horizontal" horizontal_alignment="right" padding="20"/>

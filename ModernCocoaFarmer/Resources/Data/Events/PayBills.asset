@@ -2,7 +2,7 @@
 <GameEvent description="Pay Bills Placeholder" name="Pay Bills" guid="f4f2c87d-a113-461d-b947-4157ed757126"
            icon="Textures\Icons\Events\PayBillsIcon.png">
   <Conditions>
-    <Condition path="Data\Events\Conditions\Time\Day1.asset"/>
+    <Condition path="Data\Events\Conditions\Time\Day0.asset"/>
   </Conditions>
   <Effects>
     <Effect path="Data\Events\Effects\Money\BaseBillsAmount.asset"/>

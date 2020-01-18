@@ -14,8 +14,7 @@ namespace MCF::Money
   //------------------------------------------------------------------------------------------------
   MoneyManager::MoneyManager() :
     m_money(createValueField<int>(MONEY_ATTRIBUTE_NAME, 100)),
-    m_salaryLevel(createValueField<unsigned int>(SALARY_LEVEL_ATTRIBUTE_NAME, 1)),
-    m_onMoneyChanged()
+    m_salaryLevel(createValueField<unsigned int>(SALARY_LEVEL_ATTRIBUTE_NAME, 1))
   {
   }
 
@@ -23,7 +22,6 @@ namespace MCF::Money
   void MoneyManager::setMoney(int money)
   {
     m_money.setValue(money);
-    m_onMoneyChanged.invoke(money);
   }
 
   //------------------------------------------------------------------------------------------------

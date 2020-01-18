@@ -17,7 +17,7 @@ namespace MCF::Family
     DECLARE_SCRIPTABLE_OBJECT(Child, MCFLibraryDllExport)
 
     public:
-      using OnSelectedChangedEvent = CelesteEngine::Event<Child&, bool>;
+      using OnSelectedChangedEvent = CelesteEngine::Event<Child&>;
 
       float getHealth() const { return m_health.getValue(); }
       void setHealth(float health) const { return m_health.setValue(health); }
@@ -63,6 +63,6 @@ namespace MCF::Family
       std::string m_currentBuilding;
 
       bool m_isSelected;
-      CelesteEngine::Event<Child&, bool> m_onSelectedChanged;
+      OnSelectedChangedEvent m_onSelectedChanged;
   };
 }

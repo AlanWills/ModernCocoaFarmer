@@ -20,7 +20,7 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
     {
       CelesteEngine::Lua::subscribeToEvent<FamilyManager::ChildAddedEvent, Child&>(
         familyManager.getChildAddedEvent(), 
-        callback, 
+        callback,
         extraArgs);
     }
   }

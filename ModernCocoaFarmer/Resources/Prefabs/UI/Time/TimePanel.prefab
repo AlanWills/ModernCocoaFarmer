@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="TimePanel" position="0.36%,0,1">
       <Components>
-        <StackPanel orientation="horizontal" horizontal_alignment="right"/>
+        <StackPanel orientation="horizontal" horizontal_alignment="right" padding="10"/>
       </Components>
       <GameObjects>
         <GameObject name="MonthText">
@@ -13,12 +13,12 @@
         </GameObject>
         <GameObject name="PlayButton">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
+            <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="0.04%,0.04%" colour="0,1,0" preserve_aspect_ratio="true"/>
             <RectangleCollider dimensions="0.04%, 0.04%"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-        <GameObject name="PauseButton" active="false" should_render="false">
+        <GameObject name="PauseButton">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
             <RectangleCollider dimensions="0.04%, 0.04%"/>

@@ -17,7 +17,7 @@ namespace MCF::Lua::Family::ChildScriptCommands
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<Child::OnSelectedChangedEvent, Child&, bool>(child.getOnSelectedChangedEvent(), callback, extraArgs);
+      CelesteEngine::Lua::subscribeToEvent<Child::OnSelectedChangedEvent, Child&>(child.getOnSelectedChangedEvent(), callback, extraArgs);
     }
   }
 

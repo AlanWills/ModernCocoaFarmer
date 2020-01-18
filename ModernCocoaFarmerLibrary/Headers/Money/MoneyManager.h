@@ -29,15 +29,11 @@ namespace MCF::Money
 
       void applyMoneyModifier(Stats::Modifier& modifier);
 
-      const MoneyChangedEvent& getOnMoneyChangedEvent() const { return m_onMoneyChanged; }
-
       static const char* const MONEY_ATTRIBUTE_NAME;
       static const char* const SALARY_LEVEL_ATTRIBUTE_NAME;
 
     private:
       CelesteEngine::ValueField<int>& m_money;
       CelesteEngine::ValueField<unsigned int>& m_salaryLevel;
-
-      MoneyChangedEvent m_onMoneyChanged;
   };
 }

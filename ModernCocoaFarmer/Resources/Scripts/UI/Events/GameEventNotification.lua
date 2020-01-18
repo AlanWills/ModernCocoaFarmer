@@ -8,30 +8,27 @@ local GameEventNotification =
 }
 
 ---------------------------------------------------------------------------------
-local function squelchNotification(eventArgs, caller)
-    caller:die()
+local function showGameEventDialogCallback(eventArgs, caller, self)
+    self:showGameEventDialog(caller:getScreen())
 end
 
 ---------------------------------------------------------------------------------
-local function showGameEventDialog(eventArgs, caller, self)
-    squelchNotification(eventArgs, caller)
-
-    Class.new(GameEventDialog, caller:getScreen(), self._gameEvent)
-end
-
----------------------------------------------------------------------------------
-function GameEventNotification:new(screen, gameEvent)
-    self._gameEvent = gameEvent
+function GameEventNotification:new(gameEvent, parent)
+    self.gameEvent = gameEvent
 
     local notificationPrefab = Resources.loadPrefab(self.GAME_EVENT_NOTIFICATION_PREFAB_PATH)
-    self.gameObject = notificationPrefab:instantiate(screen)
+    self.gameObject = notificationPrefab:instantiate(parent:getScreen())
 
     local notificationInteractionHandler = self.gameObject:findComponent("MouseInteractionHandler")
-    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showGameEventDialog, self)
-    notificationInteractionHandler:subscribeOnRightButtonUpCallback(squelchNotification)
+    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showGameEventDialogCallback, self)
 
     local notificationIcon = self.gameObject:findChildGameObject(self.GAME_EVENT_NOTIFICATION_ICON_NAME)
     notificationIcon:findComponent("SpriteRenderer"):setTexture(gameEvent:getIcon())
+end
+
+---------------------------------------------------------------------------------
+function GameEventNotification:showGameEventDialog(screen)
+    Class.new(GameEventDialog, screen, self.gameEvent)
 end
 
 return GameEventNotification
