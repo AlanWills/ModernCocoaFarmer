@@ -14,6 +14,7 @@ namespace MCF::Lua::Buildings::BuildingScriptCommands
     CelesteEngine::Lua::registerScriptableObjectUserType<Building>(
       "BuildingInformation",
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      "getPrefab", &Building::getPrefab,
       "getDescription", &Building::getDescription,
       "getHealthModifier", &Building::getHealthModifier,
       "getSafetyModifier", &Building::getSafetyModifier,

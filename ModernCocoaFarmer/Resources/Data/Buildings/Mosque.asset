@@ -1,2 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Building description="The village mosque" months_to_complete="3" HealthModifier="\Data\Modifiers\Mosque\MosqueHealthModifier.asset" SafetyModifier="\Data\Modifiers\Mosque\MosqueSafetyModifier.asset" EducationModifier="\Data\Modifiers\Mosque\MosqueEducationModifier.asset" HappinessModifier="\Data\Modifiers\Mosque\MosqueHappinessModifier.asset" MoneyModifier="\Data\Modifiers\Mosque\MosqueMoneyModifier.asset" name="Mosque" />
+<Building prefab="Prefabs\Gameplay\Buildings\Mosque.prefab"
+          description="The village mosque" months_to_complete="3" 
+          HealthModifier="\Data\Modifiers\Mosque\MosqueHealthModifier.asset" 
+          SafetyModifier="\Data\Modifiers\Mosque\MosqueSafetyModifier.asset" 
+          EducationModifier="\Data\Modifiers\Mosque\MosqueEducationModifier.asset" 
+          HappinessModifier="\Data\Modifiers\Mosque\MosqueHappinessModifier.asset" 
+          MoneyModifier="\Data\Modifiers\Mosque\MosqueMoneyModifier.asset" name="Mosque" />

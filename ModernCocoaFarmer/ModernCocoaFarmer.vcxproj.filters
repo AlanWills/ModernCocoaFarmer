@@ -23,17 +23,10 @@
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Market.prefab" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Data\Buildings\School.asset" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
-    <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
     <None Include="Resources\Data\Buildings\Home.asset" />
     <None Include="Resources\Data\Buildings\Hospital.asset" />
     <None Include="Resources\Data\Buildings\Market.asset" />
@@ -137,6 +130,16 @@
     <None Include="Resources\Data\Events\Conditions\Family\AtLeastOneChildSafetyAtZero.asset" />
     <None Include="Resources\Data\Events\Effects\Family\SetChildEducationToZero.asset" />
     <None Include="Resources\Data\Modifiers\Events\Family\SetChildEducationToZero.asset" />
+    <None Include="Resources\Data\Buildings\BuildingsManager.asset" />
+    <None Include="Resources\Scripts\UI\Buildings\BuildingIcon.lua" />
+    <None Include="Resources\Scripts\UI\Buildings\BuildingsUI.lua" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Home.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Hospital.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Market.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Mosque.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\School.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Well.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Farm.prefab" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

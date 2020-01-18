@@ -187,6 +187,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Resources\Data\Buildings\BuildingsManager.asset" />
     <None Include="Resources\Data\Buildings\Farm.asset" />
     <None Include="Resources\Data\Buildings\Home.asset" />
     <None Include="Resources\Data\Buildings\Hospital.asset" />
@@ -256,6 +257,7 @@
     <None Include="Resources\Data\Modifiers\Well\WellSafetyModifier.asset" />
     <None Include="Resources\Data\Money\MoneyManager.asset" />
     <None Include="Resources\Data\Time\TimeManager.asset" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Farm.prefab" />
     <None Include="Resources\Prefabs\UI\Events\GameEventNotification.prefab" />
     <None Include="Resources\Prefabs\UI\Information\MoneyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
@@ -270,16 +272,18 @@
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Market.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\School.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Home.prefab" />
-    <None Include="Resources\Prefabs\Gameplay\Buildings\Interactable\Well.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Hospital.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Market.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Mosque.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\School.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Home.prefab" />
+    <None Include="Resources\Prefabs\Gameplay\Buildings\Well.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Family\FamilyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\InteractableBuildingDialog.prefab" />
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
+    <None Include="Resources\Scripts\UI\Buildings\BuildingIcon.lua" />
+    <None Include="Resources\Scripts\UI\Buildings\BuildingsUI.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
     <None Include="Resources\Scripts\Events\Event.lua" />
     <None Include="Resources\Scripts\Game.lua" />
@@ -302,7 +306,6 @@
     <None Include="Resources\Scripts\UI\Information\TimePanel.lua" />
     <None Include="Resources\Scripts\UI\InGameMenu.lua" />
     <None Include="Resources\Scripts\UI\InteractableBuildingDialog.lua" />
-    <None Include="Resources\Scripts\UI\InteractableBuildingsManager.lua" />
     <None Include="Resources\Scripts\UI\TopBar.lua" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />

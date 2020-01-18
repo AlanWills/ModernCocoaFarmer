@@ -1,2 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Building description="" months_to_complete="12" HealthModifier="\Data\Modifiers\Farm\FarmHealthModifier.asset" SafetyModifier="\Data\Modifiers\Farm\FarmSafetyModifier.asset" EducationModifier="\Data\Modifiers\Farm\FarmEducationModifier.asset" HappinessModifier="\Data\Modifiers\Farm\FarmHappinessModifier.asset" MoneyModifier="\Data\Modifiers\Farm\FarmMoneyModifier.asset" name="Cocoa Farm" />
+<Building prefab="Prefabs\Gameplay\Buildings\Farm.prefab"
+          description="" months_to_complete="12" 
+          HealthModifier="\Data\Modifiers\Farm\FarmHealthModifier.asset" 
+          SafetyModifier="\Data\Modifiers\Farm\FarmSafetyModifier.asset" 
+          EducationModifier="\Data\Modifiers\Farm\FarmEducationModifier.asset" 
+          HappinessModifier="\Data\Modifiers\Farm\FarmHappinessModifier.asset" 
+          MoneyModifier="\Data\Modifiers\Farm\FarmMoneyModifier.asset" name="Cocoa Farm" />

@@ -43,6 +43,7 @@
     <ClInclude Include="Headers\Family\Child.h" />
     <ClInclude Include="Headers\Family\FamilyManager.h" />
     <ClInclude Include="Headers\Logic\ComparisonOperator.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\EventScriptCommands.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="Source\Family\FamilyManager.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Logic\ComparisonOperator.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.cpp" />

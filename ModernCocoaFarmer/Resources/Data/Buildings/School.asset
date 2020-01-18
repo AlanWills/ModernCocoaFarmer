@@ -1,2 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Building description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." months_to_complete="12" HealthModifier="\Data\Modifiers\School\SchoolHealthModifier.asset" SafetyModifier="\Data\Modifiers\School\SchoolSafetyModifier.asset" EducationModifier="\Data\Modifiers\School\SchoolEducationModifier.asset" HappinessModifier="\Data\Modifiers\School\SchoolHappinessModifier.asset" MoneyModifier="\Data\Modifiers\School\SchoolMoneyModifier.asset" name="School" />
+<Building prefab="Prefabs\Gameplay\Buildings\School.prefab"
+          description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." months_to_complete="12" 
+          HealthModifier="\Data\Modifiers\School\SchoolHealthModifier.asset" 
+          SafetyModifier="\Data\Modifiers\School\SchoolSafetyModifier.asset" 
+          EducationModifier="\Data\Modifiers\School\SchoolEducationModifier.asset" 
+          HappinessModifier="\Data\Modifiers\School\SchoolHappinessModifier.asset" 
+          MoneyModifier="\Data\Modifiers\School\SchoolMoneyModifier.asset" name="School" />

@@ -37,17 +37,8 @@
                             preserve_aspect_ratio="true"/>
           </Components>
         </GameObject>
-        <!--Interactable Buildings-->
-        <GameObject name="InteractableBuildings" position="0,0,0">
-          <GameObjects>
-            <Prefab name="School" path="Prefabs\Gameplay\Buildings\Interactable\School.prefab"/>
-            <Prefab name="Home" path="Prefabs\Gameplay\Buildings\Interactable\Home.prefab"/>
-            <Prefab name="Mosque" path="Prefabs\Gameplay\Buildings\Interactable\Mosque.prefab"/>
-            <Prefab name="Hospital" path="Prefabs\Gameplay\Buildings\Interactable\Hospital.prefab"/>
-            <Prefab name="Well" path="Prefabs\Gameplay\Buildings\Interactable\Well.prefab"/>
-            <Prefab name="Market" path="Prefabs\Gameplay\Buildings\Interactable\Market.prefab"/>
-          </GameObjects>
-        </GameObject>
+        <!--Buildings UI-->
+        <GameObject name="BuildingsUI" position="0,0,0"/>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
         <GameObject name="GameEventsBar" position="0.02%,0.01%">
