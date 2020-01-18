@@ -31,13 +31,17 @@ namespace MCF::Family
       float getHappiness() const { return m_happiness.getValue(); }
       void setHappiness(float happiness) { m_happiness.setValue(happiness); }
 
-      bool isSelected() const { return m_isSelected; }
-      void setSelected(bool isSelected);
-
       void applyHealthModifier(Stats::Modifier& modifier);
       void applyEducationModifier(Stats::Modifier& modifier);
       void applySafetyModifier(Stats::Modifier& modifier);
       void applyHappinessModifier(Stats::Modifier& modifier);
+
+      bool isAtBuilding() const { return !m_currentBuilding.empty(); }
+      const std::string& getCurrentBuilding() const { return m_currentBuilding; }
+      void setCurrentBuilding(const std::string& currentBuilding) { m_currentBuilding = currentBuilding; }
+
+      bool isSelected() const { return m_isSelected; }
+      void setSelected(bool isSelected);
 
       const OnSelectedChangedEvent& getOnSelectedChangedEvent() const { return m_onSelectedChanged; }
 
@@ -56,6 +60,8 @@ namespace MCF::Family
       CelesteEngine::ValueField<float>& m_education;
       CelesteEngine::ValueField<float>& m_happiness;
       
+      std::string m_currentBuilding;
+
       bool m_isSelected;
       CelesteEngine::Event<Child&, bool> m_onSelectedChanged;
   };

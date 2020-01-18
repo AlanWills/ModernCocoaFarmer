@@ -34,6 +34,8 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
       "addChild", &FamilyManager::addChild,
       "getChildCount", &FamilyManager::getChildCount,
       "getChild", &FamilyManager::getChild,
+      "hasSelectedChild", &FamilyManager::hasSelectedChild,
+      "getSelectedChild", &FamilyManager::getSelectedChild,
       "selectOnlyThisChild", &FamilyManager::selectOnlyThisChild,
       "applyHealthModifier", &FamilyManager::applyHealthModifier,
       "applySafetyModifier", &FamilyManager::applySafetyModifier,

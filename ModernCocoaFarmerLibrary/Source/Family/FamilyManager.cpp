@@ -62,6 +62,27 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
+  bool FamilyManager::hasSelectedChild() const
+  {
+    return std::find_if(m_children.begin(), m_children.end(), 
+      [](const std::unique_ptr<Child>& child)
+      {
+        return child->isSelected();
+      }) != m_children.end();
+  }
+
+  //------------------------------------------------------------------------------------------------
+  observer_ptr<Child> FamilyManager::getSelectedChild()
+  {
+    ASSERT(hasSelectedChild());
+    return std::find_if(m_children.begin(), m_children.end(),
+      [](const std::unique_ptr<Child>& child)
+      {
+        return child->isSelected();
+      })->get();
+  }
+
+  //------------------------------------------------------------------------------------------------
   void FamilyManager::addChild()
   {
     if (m_childrenNames.empty())

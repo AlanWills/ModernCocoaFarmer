@@ -15,8 +15,20 @@ BuildingsUI.BuildingNames =
 }
 
 ---------------------------------------------------------------------------------
-function BuildingsUI:new(buildingsManager, gameObject)
+local function onBuildingIconClicked(buildingIcon, self)
+    local selectedChild = nil
+    
+    if self._familyManager:hasSelectedChild() then
+        selectedChild = self._familyManager:getSelectedChild()
+    end
+
+    buildingIcon:showDetails(selectedChild)
+end
+
+---------------------------------------------------------------------------------
+function BuildingsUI:new(buildingsManager, familyManager, gameObject)
     self._buildingIcons = {}
+    self._familyManager = familyManager
 
     for k, v in pairs(self.BuildingNames) do
         local building = buildingsManager:getBuilding(v)
@@ -24,7 +36,10 @@ function BuildingsUI:new(buildingsManager, gameObject)
         if building == nil then
             log("Error getting building " .. v)
         else
-            self._buildingIcons[v] = Class.new(BuildingIcon, building, gameObject)
+            local buildingIcon = Class.new(BuildingIcon, building, gameObject)
+            buildingIcon:subscribeIconClickedCallback(onBuildingIconClicked, self)
+
+            self._buildingIcons[v] = buildingIcon
         end
     end
 end

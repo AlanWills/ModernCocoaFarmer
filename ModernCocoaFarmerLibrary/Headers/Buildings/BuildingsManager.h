@@ -29,6 +29,9 @@ namespace MCF::Buildings
   {
     DECLARE_SCRIPTABLE_OBJECT(BuildingsManager, MCFLibraryDllExport);
 
+    private:
+      using BuildingsInformation = std::unordered_map<std::string, std::unique_ptr<Building>>;
+
     public:
       size_t getNumBuildings() const { return m_buildings.size(); }
       observer_ptr<Building> getBuilding(const std::string& buildingName);
@@ -43,8 +46,6 @@ namespace MCF::Buildings
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
-      using BuildingsInformation = std::unordered_map<std::string, std::unique_ptr<Building>>;
-
       void onDayPassed();
 
       observer_ptr<Time::TimeManager> m_timeManager;

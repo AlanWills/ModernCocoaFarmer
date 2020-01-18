@@ -35,6 +35,7 @@ namespace MCF::Buildings
   void Building::sendChild(Family::Child& child)
   {
     m_children.push_back(child);
+    child.setCurrentBuilding(getName());
   }
 
   //------------------------------------------------------------------------------------------------

@@ -19,6 +19,7 @@ namespace MCF::Family
     m_safety(createValueField<float>(SAFETY_FIELD_NAME, 100)),
     m_education(createValueField<float>(EDUCATION_FIELD_NAME, 0)),
     m_happiness(createValueField<float>(HAPPINESS_FIELD_NAME, 100)),
+    m_currentBuilding(),
     m_isSelected(false),
     m_onSelectedChanged()
   {

@@ -18,7 +18,6 @@ namespace MCF::Lua::Buildings::BuildingManagerScriptCommands
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
       "getNumBuildings", &BuildingsManager::getNumBuildings,
       "getBuilding", &BuildingsManager::getBuilding,
-      "setTimeManager", &BuildingsManager::setTimeManager,
-      "sendChildToBuilding", &BuildingsManager::sendChildToBuilding);
+      "setTimeManager", &BuildingsManager::setTimeManager);
   }
 }

@@ -2,6 +2,7 @@
 #include "Lua/ScriptCommands/ScriptCommandUtils.h"
 
 #include "Buildings/Building.h"
+#include "Family/Child.h"
 
 
 namespace MCF::Lua::Buildings::BuildingScriptCommands
@@ -21,6 +22,7 @@ namespace MCF::Lua::Buildings::BuildingScriptCommands
       "getEducationModifier", &Building::getEducationModifier,
       "getHappinessModifier", &Building::getHappinessModifier,
       "getMoneyModifier", &Building::getMoneyModifier,
-      "getMonthsToComplete", &Building::getMonthsToComplete);
+      "getMonthsToComplete", &Building::getMonthsToComplete,
+      "sendChild", &Building::sendChild);
   }
 }
