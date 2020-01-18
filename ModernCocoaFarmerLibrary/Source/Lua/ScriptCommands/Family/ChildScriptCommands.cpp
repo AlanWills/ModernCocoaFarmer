@@ -39,8 +39,8 @@ namespace MCF::Lua::Family::ChildScriptCommands
       "applySafetyModifier", &Child::applySafetyModifier,
       "applyEducationModifier", &Child::applyEducationModifier,
       "applyHappinessModifier", &Child::applyHappinessModifier,
-      "isAtBuilding", &Child::isAtBuilding,
-      "getCurrentBuilding", &Child::getCurrentBuilding,
+      "isAtLocation", &Child::isAtLocation,
+      "getCurrentLocation", &Child::getCurrentLocation,
       "isSelected", &Child::isSelected,
       "subscribeOnSelectedChangedCallback", &Internals::subscribeOnSelectedChangedCallback);
   }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GameEvent description="Click on the icons to find out about the buildings." name="Welcome To Zegoua!"
+<GameEvent description="Click on the icons to find out about the locations." name="Welcome To Zegoua!"
            guid="d5d7f6b0-31e1-4b1f-ae4c-b8a3fdd40b81" icon="Textures\Icons\Events\WelcomeToZegoua.png">
   <Conditions>
     <Condition path="Data\Events\Conditions\Time\Day1.asset"/>

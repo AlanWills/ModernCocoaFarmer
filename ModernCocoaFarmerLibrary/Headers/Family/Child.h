@@ -36,9 +36,9 @@ namespace MCF::Family
       void applySafetyModifier(Stats::Modifier& modifier);
       void applyHappinessModifier(Stats::Modifier& modifier);
 
-      bool isAtBuilding() const { return !m_currentBuilding.empty(); }
-      const std::string& getCurrentBuilding() const { return m_currentBuilding; }
-      void setCurrentBuilding(const std::string& currentBuilding) { m_currentBuilding = currentBuilding; }
+      bool isAtLocation() const { return !m_currentLocation.empty(); }
+      const std::string& getCurrentLocation() const { return m_currentLocation; }
+      void setCurrentLocation(const std::string& currentLocation) { m_currentLocation = currentLocation; }
 
       bool isSelected() const { return m_isSelected; }
       void setSelected(bool isSelected);
@@ -60,7 +60,7 @@ namespace MCF::Family
       CelesteEngine::ValueField<float>& m_education;
       CelesteEngine::ValueField<float>& m_happiness;
       
-      std::string m_currentBuilding;
+      std::string m_currentLocation;
 
       bool m_isSelected;
       OnSelectedChangedEvent m_onSelectedChanged;

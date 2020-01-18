@@ -72,9 +72,6 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\StatsScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -171,9 +168,6 @@
     <ClInclude Include="Headers\Events\Effects\ModifyChildrenStatEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Events\Conditions\ChildrenAtBuildingCondition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Events\Conditions\ChildrenStatComparisonCondition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -183,19 +177,25 @@
     <ClInclude Include="Headers\Events\Effects\SetDataStoreBoolValueEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Events\Effects\ModifyChildAtBuildingStatEffect.h">
+    <ClInclude Include="Headers\Locations\Location.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Buildings\BuildingsManager.h">
+    <ClInclude Include="Headers\Locations\LocationsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Buildings\Building.h">
+    <ClInclude Include="Headers\Lua\ScriptCommands\Locations\LocationManagerScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingScriptCommands.h">
+    <ClInclude Include="Headers\Lua\ScriptCommands\Locations\LocationScriptCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingManagerScriptCommands.h">
+    <ClInclude Include="Headers\Lua\ScriptCommands\Locations\LocationsScriptCommands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Conditions\ChildrenAtLocationCondition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Effects\ModifyChildAtLocationStatEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -240,9 +240,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Persistence\DataStore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Lua\ScriptCommands\Persistence\PersistenceScriptCommands.cpp">
@@ -338,9 +335,6 @@
     <ClCompile Include="Source\Events\Effects\ModifyChildrenStatEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Events\Conditions\ChildrenAtBuildingCondition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Events\Conditions\ChildrenStatComparisonCondition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -350,19 +344,25 @@
     <ClCompile Include="Source\Events\Effects\SetDataStoreBoolValueEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Events\Effects\ModifyChildAtBuildingStatEffect.cpp">
+    <ClCompile Include="Source\Locations\Location.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Buildings\BuildingsManager.cpp">
+    <ClCompile Include="Source\Locations\LocationsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Buildings\Building.cpp">
+    <ClCompile Include="Source\Lua\ScriptCommands\Locations\LocationManagerScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingScriptCommands.cpp">
+    <ClCompile Include="Source\Lua\ScriptCommands\Locations\LocationScriptCommands.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingManagerScriptCommands.cpp">
+    <ClCompile Include="Source\Lua\ScriptCommands\Locations\LocationsScriptCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Conditions\ChildrenAtLocationCondition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Effects\ModifyChildAtLocationStatEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

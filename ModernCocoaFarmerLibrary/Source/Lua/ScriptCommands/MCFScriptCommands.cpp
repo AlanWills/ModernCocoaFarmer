@@ -1,5 +1,5 @@
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
-#include "Lua/ScriptCommands/Buildings/BuildingsScriptCommands.h"
+#include "Lua/ScriptCommands/Locations/LocationsScriptCommands.h"
 #include "Lua/ScriptCommands/Events/EventScriptCommands.h"
 #include "Lua/ScriptCommands/Family/FamilyScriptCommands.h"
 #include "Lua/ScriptCommands/Money/MoneyScriptCommands.h"
@@ -17,7 +17,7 @@ namespace MCF
       //------------------------------------------------------------------------------------------------
       void initialize()
       {
-        Buildings::ScriptCommands::initialize();
+        Locations::ScriptCommands::initialize();
         Events::ScriptCommands::initialize();
         Family::ScriptCommands::initialize();
         Money::ScriptCommands::initialize();

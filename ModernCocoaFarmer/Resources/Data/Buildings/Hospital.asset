@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Building prefab="Prefabs\Gameplay\Buildings\Hospital.prefab"
-          description="A place of healing if you can pay." months_to_complete="4" 
-          HealthModifier="\Data\Modifiers\Hospital\HospitalHealthModifier.asset" 
-          SafetyModifier="\Data\Modifiers\Hospital\HospitalSafetyModifier.asset" 
-          EducationModifier="\Data\Modifiers\Hospital\HospitalEducationModifier.asset" 
-          HappinessModifier="\Data\Modifiers\Hospital\HospitalHappinessModifier.asset" 
-          MoneyModifier="\Data\Modifiers\Hospital\HospitalMoneyModifier.asset" name="Hospital" />

@@ -19,7 +19,7 @@ namespace MCF::Events::Conditions
     void setChildrenComparisonOperator(Logic::ComparisonOperator comparisonOperator) { m_childrenComparisonOperator.setValue(comparisonOperator); }
 
     const std::string& getStat() const { return m_stat.getValue(); }
-    void setStat(const std::string& building) { m_stat.setValue(building); }
+    void setStat(const std::string& location) { m_stat.setValue(location); }
 
     float getValue() const { return m_value.getValue(); }
     void setValue(float value) { m_value.setValue(value); }

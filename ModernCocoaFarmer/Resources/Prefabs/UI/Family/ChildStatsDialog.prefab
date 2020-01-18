@@ -9,12 +9,12 @@
         <StackPanel orientation="Vertical" vertical_alignment="Centre" padding="10"/>
       </Components>
       <GameObjects>
-        <GameObject name="CurrentBuilding" position="-70, 0">
+        <GameObject name="CurrentLocation" position="-70, 0">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\BuildingIcons\Blank.png" size="40, 40" preserve_aspect_ratio="true"/>
+            <SpriteRenderer sprite="Textures\UI\LocationIcons\Blank.png" size="40, 40" preserve_aspect_ratio="true"/>
           </Components>
           <GameObjects>
-            <GameObject name="CurrentBuildingText" position="40,0">
+            <GameObject name="CurrentLocationText" position="40,0">
               <Components>
                 <TextRenderer text="Currently at ..." font_height="18" horizontal_alignment="Left"/>
               </Components>

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using BindingsKernel;
 
-namespace MCF.Buildings
+namespace MCF.Locations
 {
-	public class BuildingInformation : ScriptableObject
+	public class LocationInformation : ScriptableObject
 	{
 		[Serialize, DisplayPriority(1)]
 		[XmlAttribute("description"), DisplayName("Description")]

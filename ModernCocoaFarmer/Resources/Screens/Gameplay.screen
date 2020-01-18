@@ -37,8 +37,8 @@
                             preserve_aspect_ratio="true"/>
           </Components>
         </GameObject>
-        <!--Buildings UI-->
-        <GameObject name="BuildingsUI" position="0,0,0"/>
+        <!--Locations UI-->
+        <GameObject name="LocationsUI" position="0,0,0"/>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
         <GameObject name="GameEventsBar" position="0.02%,0.01%">

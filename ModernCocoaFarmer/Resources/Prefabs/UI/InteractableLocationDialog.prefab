@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="InteractableLocationPopup" position="0.5%,0.5%,1">
+      <Components>
+        <!--Input Blocker-->
+        <RectangleCollider dimensions="1%,1%"/>
+        <MouseInteractionHandler/>
+      </Components>
+      <GameObjects>
+        <GameObject name="InteractableLocationBackground" active="true" should_render="true" position="0,1">
+          <Components>
+            <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.3%,0.3%,0" colour="0.5,0.5,0.5" opacity="1"/>
+          </Components>
+          <GameObjects>
+            <GameObject name="TitleText" position="0,0.12%,0">
+              <Components>
+                <TextRenderer font_height="30"/>
+              </Components>
+            </GameObject>
+            <GameObject name="DescriptionText" position="0,0,0">
+              <Components>
+                <TextRenderer font_height="20" horizontal_alignment="Centre" vertical_alignment="Centre"/>
+              </Components>
+            </GameObject>
+            <GameObject name="CostIcon" position="-0.13%, 0.12%">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="0.03%,0.03%" preserve_aspect_ratio="true"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="CostText" position="0.02%,0">
+                  <Components>
+                    <TextRenderer text="100" font_height="24" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+            <GameObject name="CloseButton" position="0.15%, 0.15%">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>
+                <RectangleCollider dimensions="50,50"/>
+                <MouseInteractionHandler/>
+              </Components>
+            </GameObject>
+            <GameObject name="StatsBackground" position="-0.075%,-0.23%,0">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.15%, 0.16%" colour="0.5,0.5,0.5" opacity="1"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="HealthModifierIcon" position="-0.05%, 0.06%">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Health.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="HealthModifierText" position="-0.025%, 0.06%">
+                  <Components>
+                    <TextRenderer text="Health Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="SafetyModifierIcon" position="-0.05%, 0.02%">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Safety.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="SafetyModifierText" position="-0.025%, 0.02%">
+                  <Components>
+                    <TextRenderer text="Safety Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="EducationModifierIcon" position="-0.05%, -0.02%">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Education.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="EducationModifierText" position="-0.025%, -0.02%">
+                  <Components>
+                    <TextRenderer text="Education Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="HappinessModifierIcon" position="-0.05%, -0.06%">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Happiness.png" size="0.02%,0.02%" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="HappinessModifierText" position="-0.025%, -0.06%">
+                  <Components>
+                    <TextRenderer text="Happiness Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+            <GameObject name="SendChildBackground" position="0.075%, -0.23%">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.15%, 0.16%" colour="0.5,0.5,0.5" opacity="1"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="SendChildHelpText" position="0,0" should_render="false">
+                  <Components>
+                    <TextRenderer font_height="18" text="Select a Child to send\nthem to this location." horizontal_alignment="centre" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="SendChildButton">
+                  <Components>
+                    <SpriteRenderer/>
+                    <RectangleCollider/>
+                    <MouseInteractionHandler/>
+                    <Button/>
+                  </Components>
+                  <GameObjects>
+                    <GameObject name="SendChildButtonText">
+                      <Components>
+                        <TextRenderer font_height="24" colour="1" text="Send ..."/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Prefab>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocationsManager name="LocationsManager" guid="d5114f3d-82e6-42c3-afb3-9a0337a8ad5e">
+  <Locations>
+    <Location>Data\Locations\Farm.asset</Location>
+    <Location>Data\Locations\Home.asset</Location>
+    <Location>Data\Locations\Hospital.asset</Location>
+    <Location>Data\Locations\Market.asset</Location>
+    <Location>Data\Locations\Mosque.asset</Location>
+    <Location>Data\Locations\School.asset</Location>
+    <Location>Data\Locations\Well.asset</Location>
+  </Locations>
+</LocationsManager>

@@ -1,5 +1,5 @@
 local Class = require 'OOP.Class'
-local BuildingsUI = require 'UI.Buildings.BuildingsUI'
+local LocationsUI = require 'UI.Locations.LocationsUI'
 local TopBar = require "UI.TopBar"
 local GameEventsBar = require 'UI.Events.GameEventsBar'
 
@@ -9,7 +9,7 @@ local GameplayScreen =
     TOP_BAR_NAME = "TopBarBackground",
     TIME_NOTIFIER_NAME = "TimeNotifier",
     GAME_EVENTS_BAR_NAME = "GameEventsBar",
-    BUILDINGS_UI_NAME = "BuildingsUI",
+    LOCATIONS_UI_NAME = "LocationsUI",
 }
 
 ---------------------------------------------------------------------------------
@@ -28,8 +28,8 @@ function GameplayScreen.show()
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
 
-    local buildingsManager = BuildingsManager.load(path.combine("Data", "Buildings", "BuildingsManager.asset"))
-    buildingsManager:setTimeManager(timeManager)
+    local locationsManager = LocationsManager.load(path.combine("Data", "Locations", "LocationsManager.asset"))
+    locationsManager:setTimeManager(timeManager)
 
     local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
     gameEventManager:setTimeManager(timeManager)
@@ -45,8 +45,8 @@ function GameplayScreen.show()
     local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, timeManager)
 
-    local buildingsUI = gameplayScreen:findGameObject(GameplayScreen.BUILDINGS_UI_NAME)
-    GameplayScreen._buildingsUI = Class.new(BuildingsUI, buildingsManager, familyManager, buildingsUI)
+    local locationsUI = gameplayScreen:findGameObject(GameplayScreen.LOCATIONS_UI_NAME)
+    GameplayScreen._locationsUI = Class.new(LocationsUI, locationsManager, familyManager, locationsUI)
 
     local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
     GameplayScreen._topBar = Class.new(
@@ -64,7 +64,7 @@ function GameplayScreen.show()
     GameplayScreen._timeManager = timeManager
     GameplayScreen._moneyManager = moneyManager
     GameplayScreen._familyManager = familyManager
-    GameplayScreen._buildingsManager = buildingsManager
+    GameplayScreen._locationsManager = locationsManager
     GameplayScreen._gameEventManager = gameEventManager
 end
 

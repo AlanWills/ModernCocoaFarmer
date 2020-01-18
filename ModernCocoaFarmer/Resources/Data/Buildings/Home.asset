@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Building prefab="Prefabs\Gameplay\Buildings\Home.prefab"
-          description="No place like it." months_to_complete="4" 
-          HealthModifier="\Data\Modifiers\Home\HomeHealthModifier.asset" 
-          SafetyModifier="\Data\Modifiers\Home\HomeSafetyModifier.asset" 
-          EducationModifier="\Data\Modifiers\Home\HomeEducationModifier.asset" 
-          HappinessModifier="\Data\Modifiers\Home\HomeHappinessModifier.asset" 
-          MoneyModifier="\Data\Modifiers\Home\HomeMoneyModifier.asset" name="Home" />

@@ -20,13 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
-    <ClInclude Include="Headers\Buildings\Building.h" />
-    <ClInclude Include="Headers\Buildings\BuildingsManager.h" />
+    <ClInclude Include="Headers\Locations\Location.h" />
+    <ClInclude Include="Headers\Locations\LocationsManager.h" />
     <ClInclude Include="Headers\Deserialization\Logic\LogicDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Stats\ModifierEnumsDeserializers.h" />
     <ClInclude Include="Headers\Deserialization\Time\TimeDeserializers.h" />
     <ClInclude Include="Headers\Events\Conditions\CheckDataStoreBoolValueCondition.h" />
-    <ClInclude Include="Headers\Events\Conditions\ChildrenAtBuildingCondition.h" />
+    <ClInclude Include="Headers\Events\Conditions\ChildrenAtLocationCondition.h" />
     <ClInclude Include="Headers\Events\Conditions\ChildrenStatComparisonCondition.h" />
     <ClInclude Include="Headers\Events\Conditions\Condition.h" />
     <ClInclude Include="Headers\Events\Conditions\RandomNumberComparisonCondition.h" />
@@ -34,7 +34,7 @@
     <ClInclude Include="Headers\Events\Effects\ChildDependentModifyMoneyEffect.h" />
     <ClInclude Include="Headers\Events\Effects\Effect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifyChildrenStatEffect.h" />
-    <ClInclude Include="Headers\Events\Effects\ModifyChildAtBuildingStatEffect.h" />
+    <ClInclude Include="Headers\Events\Effects\ModifyChildAtLocationStatEffect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifyMoneyEffect.h" />
     <ClInclude Include="Headers\Events\Effects\ModifySalaryLevelEffect.h" />
     <ClInclude Include="Headers\Events\Effects\SetDataStoreBoolValueEffect.h" />
@@ -43,8 +43,8 @@
     <ClInclude Include="Headers\Family\Child.h" />
     <ClInclude Include="Headers\Family\FamilyManager.h" />
     <ClInclude Include="Headers\Logic\ComparisonOperator.h" />
-    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingManagerScriptCommands.h" />
-    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Locations\LocationManagerScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Locations\LocationsScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\EventScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Events\GameEventScriptCommands.h" />
@@ -67,7 +67,7 @@
     <ClInclude Include="Headers\Stats\ChildModifier.h" />
     <ClInclude Include="Headers\Stats\ModifierEnums.h" />
     <ClInclude Include="Headers\Stats\Modifier.h" />
-    <ClInclude Include="Headers\Lua\ScriptCommands\Buildings\BuildingScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Locations\LocationScriptCommands.h" />
     <ClInclude Include="Headers\Debugging\LuaScriptReceiver.h" />
     <ClInclude Include="Headers\Debugging\SceneBroadcaster.h" />
     <ClInclude Include="Headers\Game\MCFGame.h" />
@@ -82,21 +82,21 @@
     <ClInclude Include="Headers\Time\TimePeriod.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Buildings\Building.cpp" />
-    <ClCompile Include="Source\Buildings\BuildingsManager.cpp" />
+    <ClCompile Include="Source\Locations\Location.cpp" />
+    <ClCompile Include="Source\Locations\LocationsManager.cpp" />
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp" />
     <ClCompile Include="Source\Debugging\SceneBroadcaster.cpp" />
     <ClCompile Include="Source\Deserialization\Logic\LogicDeserializers.cpp" />
     <ClCompile Include="Source\Deserialization\Stats\ModifierEnumsDeserializers.cpp" />
     <ClCompile Include="Source\Deserialization\Time\TimeDeserializers.cpp" />
     <ClCompile Include="Source\Events\Conditions\CheckDataStoreBoolValueCondition.cpp" />
-    <ClCompile Include="Source\Events\Conditions\ChildrenAtBuildingCondition.cpp" />
+    <ClCompile Include="Source\Events\Conditions\ChildrenAtLocationCondition.cpp" />
     <ClCompile Include="Source\Events\Conditions\ChildrenStatComparisonCondition.cpp" />
     <ClCompile Include="Source\Events\Conditions\RandomNumberComparisonCondition.cpp" />
     <ClCompile Include="Source\Events\Conditions\TimeComparisonCondition.cpp" />
     <ClCompile Include="Source\Events\Effects\ChildDependentModifyMoneyEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifyChildrenStatEffect.cpp" />
-    <ClCompile Include="Source\Events\Effects\ModifyChildAtBuildingStatEffect.cpp" />
+    <ClCompile Include="Source\Events\Effects\ModifyChildAtLocationStatEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifyMoneyEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\ModifySalaryLevelEffect.cpp" />
     <ClCompile Include="Source\Events\Effects\SetDataStoreBoolValueEffect.cpp" />
@@ -106,9 +106,9 @@
     <ClCompile Include="Source\Family\FamilyManager.cpp" />
     <ClCompile Include="Source\Game\MCFGame.cpp" />
     <ClCompile Include="Source\Logic\ComparisonOperator.cpp" />
-    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingManagerScriptCommands.cpp" />
-    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingScriptCommands.cpp" />
-    <ClCompile Include="Source\Lua\ScriptCommands\Buildings\BuildingsScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Locations\LocationManagerScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Locations\LocationScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Locations\LocationsScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\EventScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Events\GameEventScriptCommands.cpp" />

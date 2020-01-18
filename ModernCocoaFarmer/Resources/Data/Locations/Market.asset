@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Location prefab="Prefabs\Gameplay\Locations\Market.prefab"
+          description="The village market" months_to_complete="3" 
+          HealthModifier="\Data\Modifiers\Market\MarketHealthModifier.asset" 
+          SafetyModifier="\Data\Modifiers\Market\MarketSafetyModifier.asset" 
+          EducationModifier="\Data\Modifiers\Market\MarketEducationModifier.asset" 
+          HappinessModifier="\Data\Modifiers\Market\MarketHappinessModifier.asset" 
+          MoneyModifier="\Data\Modifiers\Market\MarketMoneyModifier.asset" name="Market" />

@@ -5,8 +5,8 @@ local ChildStatsDialog =
     SAFETY_PROGRESS_BAR_NAME = "SafetyProgressBar",
     EDUCATION_PROGRESS_BAR_NAME = "EducationProgressBar",
     HAPPINESS_PROGRESS_BAR_NAME = "HappinessProgressBar",
-    CURRENT_BUILDING_NAME = "CurrentBuilding",
-    CURRENT_BUILDING_TEXT_NAME = "CurrentBuildingText",
+    CURRENT_LOCATION_NAME = "CurrentLocation",
+    CURRENT_LOCATION_TEXT_NAME = "CurrentLocationText",
 }
 
 ----------------------------------------------------------------------------------------
@@ -33,8 +33,8 @@ function ChildStatsDialog:new(parent, child)
     self._educationProgressBar = getProgressBar(gameObject, "Education", self.EDUCATION_PROGRESS_BAR_NAME)
     self._happinessProgressBar = getProgressBar(gameObject, "Happiness", self.HAPPINESS_PROGRESS_BAR_NAME)
 
-    local childBuildingGameObject = gameObject:findChildGameObject(self.CURRENT_BUILDING_NAME)
-    self._childBuildingText = childBuildingGameObject:findChildGameObject(self.CURRENT_BUILDING_TEXT_NAME):findComponent("TextRenderer")
+    local childLocationGameObject = gameObject:findChildGameObject(self.CURRENT_LOCATION_NAME)
+    self._childLocationText = childLocationGameObject:findChildGameObject(self.CURRENT_LOCATION_TEXT_NAME):findComponent("TextRenderer")
 end
 
 ----------------------------------------------------------------------------------------
@@ -62,11 +62,11 @@ function ChildStatsDialog:updateUI()
     self._happinessProgressBar:setProgress(self._child:getHappiness())
 
     local locationText = "Not at location"
-    if self._child:isAtBuilding() then
-        locationText = "Currently at " .. self._child:getCurrentBuilding()
+    if self._child:isAtLocation() then
+        locationText = "Currently at " .. self._child:getCurrentLocation()
     end
 
-    self._childBuildingText:setText(locationText)
+    self._childLocationText:setText(locationText)
 end
 
 return ChildStatsDialog
