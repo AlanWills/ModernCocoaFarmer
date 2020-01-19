@@ -61,7 +61,16 @@ end
 
 ---------------------------------------------------------------------------------
 function ChildIcon:updateSelectionUI()
-    self.selectedIcon:setShouldRender(self.child:isSelected())
+    local childSelected = self.child:isSelected()
+    local animator = self.gameObject:findComponent("Animator")
+
+    if childSelected then
+        animator:play()
+    else
+        animator:stop()
+    end
+
+    self.selectedIcon:setShouldRender(childSelected)
 end
 
 return ChildIcon
