@@ -145,6 +145,12 @@
     <None Include="Resources\Data\Events\DailyLocationModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset" />
+    <None Include="Build Events\CheckLuaFiles.bat">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Build Events\ValidateLuaScripts.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
