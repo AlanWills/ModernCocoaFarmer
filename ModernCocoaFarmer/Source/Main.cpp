@@ -11,8 +11,8 @@
 // The MAIN function, from here we start the application and run the game loop
 int main()
 {
-  MCF::MCFGame* game = new MCF::MCFGame();
-  game->run();
+  MCF::MCFGame game;
+  game.run();
 
   return 0;
 }

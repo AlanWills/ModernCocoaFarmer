@@ -151,6 +151,15 @@
     <None Include="Build Events\ValidateLuaScripts.bat">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Build Events\ValidatePrefabs.bat">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Build Events\ValidateScenes.bat">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Build Events\ValidateScriptableObjects.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

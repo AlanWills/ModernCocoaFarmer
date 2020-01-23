@@ -101,10 +101,19 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaScriptValidator", "Celes
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SceneValidator", "CelesteEngine\SceneValidator\SceneValidator.vcxproj", "{F6895549-729F-497A-9A5A-0F373A3FECD2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptableObjectValidator", "CelesteEngine\ScriptableObjectValidator\ScriptableObjectValidator.vcxproj", "{E026C9CB-3F2A-40B6-B77E-85BAFCE54782}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrefabValidator", "CelesteEngine\PrefabValidator\PrefabValidator.vcxproj", "{BB1A9780-96BF-49AD-A320-0DB6E2C37BF4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

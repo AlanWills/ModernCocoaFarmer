@@ -122,7 +122,9 @@
       <AdditionalOptions>/WHOLEARCHIVE:CelesteEngine.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>call "$(ProjectDir)Build Events\ValidateLuaScripts.bat" "$(ProjectDIr)" "$(TargetDir)Resources"</Command>
+      <Command>call "$(ProjectDir)Build Events\ValidateLuaScripts.bat" "$(ProjectDir)" "$(TargetDir)Resources"
+call "$(ProjectDir)Build Events\ValidatePrefabs.bat" "$(ProjectDir)" "$(TargetDir)Resources"
+call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir)Resources"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -188,6 +190,9 @@
     <None Include="Build Events\CheckLuaFiles.bat" />
     <None Include="Build Events\CopyDependencyFiles.bat" />
     <None Include="Build Events\ValidateLuaScripts.bat" />
+    <None Include="Build Events\ValidatePrefabs.bat" />
+    <None Include="Build Events\ValidateScenes.bat" />
+    <None Include="Build Events\ValidateScriptableObjects.bat" />
     <None Include="Resources\Data\Events\DailyFamilyModifications.asset" />
     <None Include="Resources\Data\Events\DailyLocationModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset" />
