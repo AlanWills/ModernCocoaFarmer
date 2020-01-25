@@ -3,6 +3,8 @@
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
 #include "Stats/Modifier.h"
+#include "Locations/LocationsManager.h"
+#include "Locations/Location.h"
 
 
 namespace MCF::Events::Effects
@@ -26,10 +28,30 @@ namespace MCF::Events::Effects
   void ModifyChildAtLocationStatEffect::trigger(
     Money::MoneyManager&,
     Family::FamilyManager& familyManager,
-    Locations::LocationsManager&,
+    Locations::LocationsManager& locationsManager,
     Notifications::NotificationManager&) const
   {
-    ASSERT_FAIL_MSG("TODO - Add ability to know which location the children are at.");
+    observer_ptr<Locations::Location> location = locationsManager.getLocation(getLocation());
+    if (location == nullptr)
+    {
+      ASSERT_FAIL();
+      return;
+    }
+
+    auto foundChildIt = std::find_if(familyManager.begin(), familyManager.end(), 
+      [location](const std::unique_ptr<Family::Child>& child)
+      {
+        return child->getCurrentLocation() == location->getName();
+      });
+
+    if (foundChildIt == familyManager.end())
+    {
+      ASSERT_FAIL();
+      return;
+    }
+    
+    Family::Child& child = **foundChildIt;
+
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
     ASSERT(modifier != nullptr)
 
@@ -39,15 +61,19 @@ namespace MCF::Events::Effects
 
       if (stat == Family::Child::HEALTH_FIELD_NAME)
       {
+        child.applyHealthModifier(*modifier);
       }
       else if (stat == Family::Child::EDUCATION_FIELD_NAME)
       {
+        child.applyEducationModifier(*modifier);
       }
       else if (stat == Family::Child::SAFETY_FIELD_NAME)
       {
+        child.applySafetyModifier(*modifier);
       }
       else if (stat == Family::Child::HAPPINESS_FIELD_NAME)
       {
+        child.applyHappinessModifier(*modifier);
       }
       else
       {

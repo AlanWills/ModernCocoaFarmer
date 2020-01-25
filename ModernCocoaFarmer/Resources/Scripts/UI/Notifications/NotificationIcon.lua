@@ -14,7 +14,8 @@ end
 
 ---------------------------------------------------------------------------------
 function NotificationIcon:new(notification, parent)
-    self.notification = notification
+    self._title = notification:getName()
+    self._description = notification:getDescription()
 
     local notificationPrefab = Resources.loadPrefab(self.NOTIFICATION_ICON_PREFAB_PATH)
     self.gameObject = notificationPrefab:instantiate(parent:getScreen())
@@ -28,7 +29,7 @@ end
 
 ---------------------------------------------------------------------------------
 function NotificationIcon:showNotificationDialog(screen)
-    Class.new(NotificationDialog, screen, self.notification)
+    Class.new(NotificationDialog, screen, self._title, self._description)
 end
 
 return NotificationIcon

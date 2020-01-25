@@ -64,11 +64,23 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
-  void LocationsManager::applyDailyModifiers()
+  void LocationsManager::onDayPassed()
   {
     for (const auto& locationPair : m_locations)
     {
-      locationPair.second->applyDailyModifiers();
+      locationPair.second->onDayPassed();
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void LocationsManager::checkLocationsForChildrenLeaving(
+    Money::MoneyManager& moneyManager,
+    Family::FamilyManager& familyManager,
+    Notifications::NotificationManager& notificationManager)
+  {
+    for (const auto& locationPair : m_locations)
+    {
+      locationPair.second->checkForChildrenLeaving(moneyManager, familyManager, *this, notificationManager);
     }
   }
 }

@@ -11,9 +11,20 @@ namespace MCF::Time
   class TimeManager;
 }
 
+namespace MCF::Money
+{
+  class MoneyManager;
+}
+
 namespace MCF::Family
 {
   class Child;
+  class FamilyManager;
+}
+
+namespace MCF::Notifications
+{
+  class NotificationManager;
 }
 
 namespace MCF::Locations
@@ -32,7 +43,11 @@ namespace MCF::Locations
       observer_ptr<Location> getLocation(const std::string& locationName);
 
       void sendChildToLocation(Location& locationInformation, Family::Child& child);
-      void applyDailyModifiers();
+      void onDayPassed();
+      void checkLocationsForChildrenLeaving(
+        Money::MoneyManager& moneyManager,
+        Family::FamilyManager& familyManager,
+        Notifications::NotificationManager& notificationManager);
 
       static const char* const LOCATIONS_ELEMENT_NAME;
       static const char* const LOCATION_ELEMENT_NAME;

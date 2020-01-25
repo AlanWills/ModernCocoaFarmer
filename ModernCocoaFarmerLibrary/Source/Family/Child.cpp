@@ -8,6 +8,7 @@ namespace MCF::Family
   REGISTER_SCRIPTABLE_OBJECT(Child);
 
   //------------------------------------------------------------------------------------------------
+  const float STAT_MAX_VALUE = 100.0f;
   const char* const Child::HEALTH_FIELD_NAME = "health";
   const char* const Child::SAFETY_FIELD_NAME = "safety";
   const char* const Child::EDUCATION_FIELD_NAME = "education";
@@ -15,10 +16,10 @@ namespace MCF::Family
 
   //------------------------------------------------------------------------------------------------
   Child::Child() :
-    m_health(createValueField<float>(HEALTH_FIELD_NAME, 100)),
-    m_safety(createValueField<float>(SAFETY_FIELD_NAME, 100)),
+    m_health(createValueField<float>(HEALTH_FIELD_NAME, STAT_MAX_VALUE)),
+    m_safety(createValueField<float>(SAFETY_FIELD_NAME, STAT_MAX_VALUE)),
     m_education(createValueField<float>(EDUCATION_FIELD_NAME, 0)),
-    m_happiness(createValueField<float>(HAPPINESS_FIELD_NAME, 100)),
+    m_happiness(createValueField<float>(HAPPINESS_FIELD_NAME, STAT_MAX_VALUE)),
     m_currentLocation(),
     m_isSelected(false),
     m_onSelectedChanged()
@@ -93,6 +94,8 @@ namespace MCF::Family
     {
       ASSERT_FAIL();
     }
+
+    attributeToModify.setValue(std::min(attributeToModify.getValue(), STAT_MAX_VALUE));
   }
 
   //------------------------------------------------------------------------------------------------

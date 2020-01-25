@@ -22,7 +22,7 @@ namespace MCF::Lua::Locations::LocationScriptCommands
       "getEducationModifier", &Location::getEducationModifier,
       "getHappinessModifier", &Location::getHappinessModifier,
       "getMoneyModifier", &Location::getMoneyModifier,
-      "getMonthsToComplete", &Location::getMonthsToComplete,
+      "getDaysToComplete", &Location::getDaysToComplete,
       "sendChild", &Location::sendChild);
   }
 }

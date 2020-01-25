@@ -4,8 +4,8 @@ local NotificationIcon = require 'UI.Notifications.NotificationIcon'
 local NotificationsBar = {}
 
 ---------------------------------------------------------------------------------
-local function createNotificationIconCallback(eventArgs, gameEvent, self)
-    self:createNotificationIcon(gameEvent) 
+local function createNotificationIconCallback(eventArgs, notification, self)
+    self:createNotificationIcon(notification) 
 end
 
 ---------------------------------------------------------------------------------

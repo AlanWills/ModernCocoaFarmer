@@ -165,6 +165,8 @@
     <None Include="Resources\Data\Events\Effects\Notifications\SendWelcomeToZegouaNotification.asset" />
     <None Include="Resources\Data\Events\Effects\Notifications\SendUNPeaceKeepersArriveNotification.asset" />
     <None Include="Resources\Data\Events\Effects\Notifications\SendSalaryIncreasedNotification.asset" />
+    <None Include="Resources\Data\Events\CheckLocationsForChildrenLeaving.asset" />
+    <None Include="Resources\Data\Events\Effects\Family\CheckLocationsForChildrenLeaving.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

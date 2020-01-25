@@ -12,13 +12,13 @@ local function closeDialog(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-function NotificationDialog:new(screen, notification)
+function NotificationDialog:new(screen, notificationTitle, notificationDescription)
     local dialogPrefab = Resources.loadPrefab(self.NOTIFICATION_DIALOG_PREFAB_PATH)
     local dialogInstance = dialogPrefab:instantiate(screen)
-    local notificationTitle = dialogInstance:findChildGameObject(self.NOTIFICATION_TITLE_NAME)
+    local notificationTitleGameObject = dialogInstance:findChildGameObject(self.NOTIFICATION_TITLE_NAME)
     
-    eventTitle:findComponent("TextRenderer"):setText(notification:getName())
-    dialogInstance:findChildGameObject(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notification:getDescription())
+    notificationTitleGameObject:findComponent("TextRenderer"):setText(notificationTitle)
+    dialogInstance:findChildGameObject(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notificationDescription)
     dialogInstance:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, closeDialog)
 end
 

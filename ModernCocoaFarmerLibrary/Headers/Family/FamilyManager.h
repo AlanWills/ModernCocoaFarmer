@@ -45,9 +45,12 @@ namespace MCF::Family
       void applyHappinessModifier(Stats::Modifier& modifier) const;
       void applyDailyModifiers() const;
 
+      Children::iterator begin() { return m_children.begin(); }
+      Children::iterator end() { return m_children.end(); }
+
       Children::const_iterator begin() const { return m_children.begin(); }
       Children::const_iterator end() const { return m_children.end(); }
-      
+
       const ChildAddedEvent& getChildAddedEvent() const { return m_childAddedEvent; }
 
       static const char* const DAILY_HEALTH_MODIFIER_ATTRIBUTE_NAME;

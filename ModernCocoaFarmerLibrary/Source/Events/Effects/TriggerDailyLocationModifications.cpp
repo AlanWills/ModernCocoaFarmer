@@ -19,6 +19,6 @@ namespace MCF::Events::Effects
     Locations::LocationsManager& locationsManager,
     Notifications::NotificationManager&) const
   {
-    locationsManager.applyDailyModifiers();
+    locationsManager.onDayPassed();
   }
 }

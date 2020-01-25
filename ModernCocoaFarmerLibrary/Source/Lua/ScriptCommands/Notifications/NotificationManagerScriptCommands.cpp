@@ -12,7 +12,7 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
   namespace Internals
   {
     //------------------------------------------------------------------------------------------------
-    void subscribeOnGameEventTriggeredCallback(
+    void subscribeOnNotificationSentCallback(
       NotificationManager& notificationManager,
       sol::protected_function callback,
       sol::object extraArgs)
@@ -30,6 +30,6 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
     CelesteEngine::Lua::registerScriptableObjectUserType<NotificationManager>(
       NotificationManager::type_name(),
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
-      "subscribeOnNotificationSentCallback", &Internals::subscribeOnGameEventTriggeredCallback);
+      "subscribeOnNotificationSentCallback", &Internals::subscribeOnNotificationSentCallback);
   }
 }

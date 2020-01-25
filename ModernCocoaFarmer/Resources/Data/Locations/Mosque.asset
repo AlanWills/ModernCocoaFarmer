@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Location prefab="Prefabs\Gameplay\Locations\Mosque.prefab"
-          description="The village mosque" months_to_complete="3" 
+          description="The village mosque" days_to_complete="90" 
+          child_leaves_notification_description="TODO"
+          child_leaves_notification_icon="Textures\UI\LocationIcons\Mosque.png"
           HealthModifier="\Data\Modifiers\Mosque\MosqueHealthModifier.asset" 
           SafetyModifier="\Data\Modifiers\Mosque\MosqueSafetyModifier.asset" 
           EducationModifier="\Data\Modifiers\Mosque\MosqueEducationModifier.asset" 

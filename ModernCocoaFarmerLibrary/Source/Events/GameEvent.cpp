@@ -45,7 +45,7 @@ namespace MCF::Events
 
             if (condition != nullptr)
             {
-              m_conditions.emplace_back(condition.release());
+              m_conditions.emplace_back(std::move(condition));
             }
           }
           else

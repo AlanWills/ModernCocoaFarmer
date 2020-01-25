@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
+    <ClInclude Include="Headers\Events\Effects\CheckLocationsForChildrenLeaving.h" />
     <ClInclude Include="Headers\Events\Effects\SendNotification.h" />
     <ClInclude Include="Headers\Events\Effects\TriggerDailyFamilyModifications.h" />
     <ClInclude Include="Headers\Events\Effects\TriggerDailyLocationModifications.h" />
@@ -88,8 +89,10 @@
     <ClInclude Include="Headers\Time\TimeManager.h" />
     <ClInclude Include="Headers\Time\TimeNotifier.h" />
     <ClInclude Include="Headers\Time\TimePeriod.h" />
+    <ClInclude Include="Headers\Utils\LocaTokens.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Events\Effects\CheckLocationsForChildrenLeaving.cpp" />
     <ClCompile Include="Source\Events\Effects\SendNotification.cpp" />
     <ClCompile Include="Source\Events\Effects\TriggerDailyFamilyModifications.cpp" />
     <ClCompile Include="Source\Events\Effects\TriggerDailyLocationModifications.cpp" />
@@ -153,6 +156,7 @@
     <ClCompile Include="Source\Time\TimeManager.cpp" />
     <ClCompile Include="Source\Time\TimeNotifier.cpp" />
     <ClCompile Include="Source\Time\TimePeriod.cpp" />
+    <ClCompile Include="Source\Utils\LocaTokens.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Build Events\CopyDependencyFiles.bat" />

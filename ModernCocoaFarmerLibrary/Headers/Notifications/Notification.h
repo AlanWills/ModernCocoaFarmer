@@ -17,13 +17,16 @@ namespace MCF::Notifications
 
     public:
       const std::string& getDescription() const { return m_description.getValue(); }
-      const CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>& getIcon() const { return m_icon.getValue(); }
+      void setDescription(const std::string& description) { m_description.setValue(description); }
+
+      CelesteEngine::Handle<CelesteEngine::Resources::Texture2D> getIcon() const { return m_icon.getValue(); }
+      void setIcon(CelesteEngine::Handle<CelesteEngine::Resources::Texture2D> icon) { m_icon.setValue(icon); }
 
       static const char* const DESCRIPTION_ATTRIBUTE_NAME;
       static const char* const ICON_ATTRIBUTE_NAME;
 
     private:
       CelesteEngine::ReferenceField<std::string>& m_description;
-      CelesteEngine::ReferenceField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>& m_icon;
+      CelesteEngine::ValueField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>& m_icon;
   };
 }
