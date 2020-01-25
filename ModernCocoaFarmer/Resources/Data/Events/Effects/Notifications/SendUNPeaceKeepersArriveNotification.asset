@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SendNotification name="SendUNPeaceKeepersArriveNotification" guid="3d0a5772-c5cd-41fb-bc7e-cff5a41a8ce2"
+                  notification="34c65974-5956-44a8-b435-2b211f8ed589">
+  <Notification description="TODO." name="UN Peacekeepers Arrive" guid="34c65974-5956-44a8-b435-2b211f8ed589"
+                icon="Textures\UI\Utility\WhitePixel.png"/>
+</SendNotification>

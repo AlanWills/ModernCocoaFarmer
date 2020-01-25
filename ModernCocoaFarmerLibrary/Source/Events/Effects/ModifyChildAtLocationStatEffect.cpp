@@ -26,7 +26,8 @@ namespace MCF::Events::Effects
   void ModifyChildAtLocationStatEffect::trigger(
     Money::MoneyManager&,
     Family::FamilyManager& familyManager,
-    Locations::LocationsManager&) const
+    Locations::LocationsManager&,
+    Notifications::NotificationManager&) const
   {
     ASSERT_FAIL_MSG("TODO - Add ability to know which location the children are at.");
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());

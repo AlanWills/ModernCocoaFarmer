@@ -3,11 +3,6 @@
 #include "Events\Effects\ModifyMoneyEffect.h"
 
 
-namespace MCF::Family
-{
-  class FamilyManager;
-}
-
 namespace MCF::Events::Effects
 {
   class ChildDependentModifyMoneyEffect : public ModifyMoneyEffect
@@ -18,7 +13,8 @@ namespace MCF::Events::Effects
       void trigger(
         Money::MoneyManager& moneyManager, 
         Family::FamilyManager& familyManager,
-        Locations::LocationsManager&) const override;
+        Locations::LocationsManager&,
+        Notifications::NotificationManager&) const override;
 
     private:
       using Inherited = ModifyMoneyEffect;

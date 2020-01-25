@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Bindings\Stats\ModifierEnumsDataBindingGenerators.h" />
+    <ClInclude Include="Headers\Events\Effects\SendNotification.h" />
     <ClInclude Include="Headers\Events\Effects\TriggerDailyFamilyModifications.h" />
     <ClInclude Include="Headers\Events\Effects\TriggerDailyLocationModifications.h" />
     <ClInclude Include="Headers\Locations\Location.h" />
@@ -55,6 +56,9 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Family\ChildScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Money\MoneyManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Money\MoneyScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Notifications\NotificationManagerScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Notifications\NotificationScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Notifications\NotificationsScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Persistence\PersistenceScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.h" />
@@ -65,6 +69,8 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Time\TimeScriptCommands.h" />
     <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Money\MoneyManager.h" />
+    <ClInclude Include="Headers\Notifications\Notification.h" />
+    <ClInclude Include="Headers\Notifications\NotificationManager.h" />
     <ClInclude Include="Headers\Persistence\DataStore.h" />
     <ClInclude Include="Headers\Stats\ChildModifier.h" />
     <ClInclude Include="Headers\Stats\ModifierEnums.h" />
@@ -84,6 +90,7 @@
     <ClInclude Include="Headers\Time\TimePeriod.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Events\Effects\SendNotification.cpp" />
     <ClCompile Include="Source\Events\Effects\TriggerDailyFamilyModifications.cpp" />
     <ClCompile Include="Source\Events\Effects\TriggerDailyLocationModifications.cpp" />
     <ClCompile Include="Source\Locations\Location.cpp" />
@@ -122,6 +129,9 @@
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Money\MoneyManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Money\MoneyScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Notifications\NotificationManagerScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Notifications\NotificationScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Notifications\NotificationsScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Persistence\DataStoreScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Persistence\PersistenceScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Stats\ChildModifierScriptCommands.cpp" />
@@ -134,6 +144,8 @@
     <ClCompile Include="Source\Networking\NetworkUtils.cpp" />
     <ClCompile Include="Source\Networking\SocketClient.cpp" />
     <ClCompile Include="Source\Networking\SocketServer.cpp" />
+    <ClCompile Include="Source\Notifications\Notification.cpp" />
+    <ClCompile Include="Source\Notifications\NotificationManager.cpp" />
     <ClCompile Include="Source\Persistence\DataStore.cpp" />
     <ClCompile Include="Source\Stats\ChildModifier.cpp" />
     <ClCompile Include="Source\Stats\Modifier.cpp" />

@@ -13,6 +13,7 @@ namespace MCF::Events::Effects
       void trigger(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
-        Locations::LocationsManager& locationManager) const override;
+        Locations::LocationsManager& locationManager,
+        Notifications::NotificationManager& notificationManager) const override;
   };
 }

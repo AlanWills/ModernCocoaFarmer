@@ -86,10 +86,6 @@
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
     <None Include="Resources\Scripts\Settings\GameSettings.lua" />
-    <None Include="Resources\Scripts\UI\Events\GameEventDialog.lua" />
-    <None Include="Resources\Scripts\UI\Events\GameEventNotification.lua" />
-    <None Include="Resources\Prefabs\UI\Events\GameEventNotification.prefab" />
-    <None Include="Resources\Scripts\UI\Events\GameEventsBar.lua" />
     <None Include="Resources\Data\Events\GameEventManager.asset" />
     <None Include="Resources\Data\Family\FamilyManager.asset" />
     <None Include="Resources\Data\Money\MoneyManager.asset" />
@@ -160,6 +156,15 @@
     <None Include="Build Events\ValidateScriptableObjects.bat">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Resources\Scripts\UI\Notifications\NotificationsBar.lua" />
+    <None Include="Resources\Scripts\UI\Notifications\NotificationIcon.lua" />
+    <None Include="Resources\Scripts\UI\Notifications\NotificationDialog.lua" />
+    <None Include="Resources\Prefabs\UI\Notifications\NotificationIcon.prefab" />
+    <None Include="Resources\Data\Notifications\NotificationManager.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendChildExpelledFromSchoolNotification.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendWelcomeToZegouaNotification.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendUNPeaceKeepersArriveNotification.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendSalaryIncreasedNotification.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">
@@ -533,7 +538,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
     <Xml Include="Resources\Data\Events\Effects\Money\BaseBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\Effects\Salary\IncrementSalaryLevel.asset" />
     <Xml Include="Resources\Data\Events\Conditions\Time\Day0.asset" />
@@ -542,5 +546,8 @@
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.asset" />
     <Xml Include="Resources\Data\Gameplay\GameplayDataStore.xml" />
+    <Xml Include="Resources\Prefabs\UI\Notifications\NotificationDialog.prefab" />
+    <Xml Include="Resources\Data\Events\Effects\Notifications\SendPayBillsNotification.asset" />
+    <Xml Include="Resources\Data\Events\Effects\Notifications\SendSalaryDecreasedNotification.asset" />
   </ItemGroup>
 </Project>

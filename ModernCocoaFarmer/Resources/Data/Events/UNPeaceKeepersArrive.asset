@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GameEvent description="TODO." name="UN Peacekeepers Arrive"
-           guid="d5d7f6b0-31e1-4b1f-ae4c-b8a3fdd40b81" icon="Textures\UI\Utility\WhitePixel.png">
+<GameEvent name="UN Peacekeepers Arrive" guid="d5d7f6b0-31e1-4b1f-ae4c-b8a3fdd40b81">
   <Conditions>
     <Condition path="Data\Events\Conditions\Family\AtLeastOneChildSafetyAtZero.asset"/>
     <Condition path="Data\Events\Conditions\Persistence\CheckUNPeaceKeepersArrivedNotOccurred.asset"/>
@@ -8,5 +7,6 @@
   <Effects>
     <Effect path="Data\Events\Effects\Family\UNPeaceKeepersArrivedEffect.asset"/>
     <Effect path="Data\Events\Effects\Persistence\SetUNPeaceKeepersArrivedOccurred.asset"/>
+    <Effect path="Data\Events\Effects\Notifications\SendUNPeaceKeepersArriveNotification.asset"/>
   </Effects>
 </GameEvent>

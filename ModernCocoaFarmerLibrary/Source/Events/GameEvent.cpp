@@ -1,7 +1,6 @@
 #include "Events/GameEvent.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "DataConverters/Objects/ScriptableObjectDataConverter.h"
-#include "Resources/2D/Texture2D.h"
 #include "Events/Conditions/Condition.h"
 #include "Events/Effects/Effect.h"
 
@@ -14,8 +13,6 @@ namespace MCF::Events
   REGISTER_SCRIPTABLE_OBJECT(GameEvent);
 
   //------------------------------------------------------------------------------------------------
-  const char* const GameEvent::DESCRIPTION_ATTRIBUTE_NAME = "description";
-  const char* const GameEvent::ICON_ATTRIBUTE_NAME = "icon";
   const char* const GameEvent::CONDITIONS_ELEMENT_NAME = "Conditions";
   const char* const GameEvent::CONDITION_ELEMENT_NAME = "Condition";
   const char* const GameEvent::EFFECTS_ELEMENT_NAME = "Effects";
@@ -23,9 +20,8 @@ namespace MCF::Events
 
   //------------------------------------------------------------------------------------------------
   GameEvent::GameEvent() :
-    m_description(createReferenceField<std::string>(DESCRIPTION_ATTRIBUTE_NAME)),
-    m_icon(createReferenceField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>(ICON_ATTRIBUTE_NAME)),
-    m_conditions()
+    m_conditions(),
+    m_effects()
   {
   }
 
@@ -66,10 +62,10 @@ namespace MCF::Events
       const tinyxml2::XMLElement* effectsElement = element->FirstChildElement(EFFECTS_ELEMENT_NAME);
       if (effectsElement != nullptr)
       {
-        for (const tinyxml2::XMLElement* effect : children(effectsElement, EFFECT_ELEMENT_NAME))
+        for (const tinyxml2::XMLElement* effectElement : children(effectsElement, EFFECT_ELEMENT_NAME))
         {
-          CelesteEngine::ScriptableObjectDataConverter effectDataConverter(effect->Name());
-          if (effectDataConverter.convertFromXML(effect))
+          CelesteEngine::ScriptableObjectDataConverter effectDataConverter(effectElement->Name());
+          if (effectDataConverter.convertFromXML(effectElement))
           {
             auto effect = effectDataConverter.instantiate<Effect>();
             ASSERT(effect.get() != nullptr);
@@ -112,11 +108,12 @@ namespace MCF::Events
   void GameEvent::trigger(
     Money::MoneyManager& moneyManager,
     Family::FamilyManager& familyManager,
-    Locations::LocationsManager& locationsManager) const
+    Locations::LocationsManager& locationsManager,
+    Notifications::NotificationManager& notificationManager) const
   {
     for (const auto& effect : m_effects)
     {
-      effect->trigger(moneyManager, familyManager, locationsManager);
+      effect->trigger(moneyManager, familyManager, locationsManager, notificationManager);
     }
   }
 }

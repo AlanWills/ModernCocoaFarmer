@@ -26,6 +26,11 @@ namespace MCF::Locations
   class LocationsManager;
 }
 
+namespace MCF::Notifications
+{
+  class NotificationManager;
+}
+
 namespace MCF::Events
 {
   class GameEvent;
@@ -35,7 +40,7 @@ namespace MCF::Events
     DECLARE_SCRIPTABLE_OBJECT(GameEventManager, MCFLibraryDllExport);
 
     public:
-      using EventTriggeredEvent = CelesteEngine::Event<const GameEvent&>;
+      using GameEventTriggeredEvent = CelesteEngine::Event<const GameEvent&>;
 
       void registerGameEvent(std::unique_ptr<const GameEvent>&& gameEvent);
 
@@ -51,7 +56,10 @@ namespace MCF::Events
       observer_ptr<Locations::LocationsManager> getLocationsManager() const { return m_locationsManager; }
       void setLocationsManager(observer_ptr<Locations::LocationsManager> locationsManager);
 
-      const EventTriggeredEvent& getGameEventTriggeredEvent() const { return m_onGameEventTriggered; }
+      observer_ptr<Notifications::NotificationManager> getNotificationManager() const { return m_notificationManager; }
+      void setNotificationManager(observer_ptr<Notifications::NotificationManager> notificationManager);
+
+      const GameEventTriggeredEvent& getGameEventTriggeredEvent() const { return m_onGameEventTriggeredEvent; }
 
       static const char* const GAME_EVENTS_ELEMENT_NAME;
       static const char* const GAME_EVENT_ELEMENT_NAME;
@@ -66,9 +74,10 @@ namespace MCF::Events
       observer_ptr<Time::TimeManager> m_timeManager;
       observer_ptr<Money::MoneyManager> m_moneyManager;
       observer_ptr<Locations::LocationsManager> m_locationsManager;
+      observer_ptr<Notifications::NotificationManager> m_notificationManager;
 
       std::vector<std::unique_ptr<const GameEvent>> m_gameEvents;
-      EventTriggeredEvent m_onGameEventTriggered;
+      GameEventTriggeredEvent m_onGameEventTriggeredEvent;
 
       CelesteEngine::StringId m_onDayPassedHandle;
       CelesteEngine::StringId m_onMonthPassedHandle;

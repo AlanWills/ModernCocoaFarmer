@@ -13,8 +13,6 @@ namespace MCF::Lua::Events::GameEventScriptCommands
 
     CelesteEngine::Lua::registerScriptableObjectUserType<GameEvent>(
       GameEvent::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
-      "getDescription", &GameEvent::getDescription,
-      "getIcon", &GameEvent::getIcon);
+      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>());
   }
 }

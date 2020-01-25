@@ -197,6 +197,10 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Data\Events\DailyLocationModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendChildExpelledFromSchoolNotification.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendSalaryIncreasedNotification.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendUNPeaceKeepersArriveNotification.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendWelcomeToZegouaNotification.asset" />
     <None Include="Resources\Data\Locations\LocationsManager.asset" />
     <None Include="Resources\Data\Locations\Farm.asset" />
     <None Include="Resources\Data\Locations\Home.asset" />
@@ -266,9 +270,10 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Data\Modifiers\Well\WellMoneyModifier.asset" />
     <None Include="Resources\Data\Modifiers\Well\WellSafetyModifier.asset" />
     <None Include="Resources\Data\Money\MoneyManager.asset" />
+    <None Include="Resources\Data\Notifications\NotificationManager.asset" />
     <None Include="Resources\Data\Time\TimeManager.asset" />
     <None Include="Resources\Prefabs\Gameplay\Locations\Farm.prefab" />
-    <None Include="Resources\Prefabs\UI\Events\GameEventNotification.prefab" />
+    <None Include="Resources\Prefabs\UI\Notifications\NotificationIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Money\MoneyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
     <None Include="Resources\Prefabs\UI\Time\TimePanel.prefab" />
@@ -307,9 +312,9 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Scripts\Time\TimeComponent.lua" />
     <None Include="Resources\Scripts\Tutorials\IntroVideo.lua" />
     <None Include="Resources\Scripts\Tutorials\Tutorials.lua" />
-    <None Include="Resources\Scripts\UI\Events\GameEventsBar.lua" />
-    <None Include="Resources\Scripts\UI\Events\GameEventDialog.lua" />
-    <None Include="Resources\Scripts\UI\Events\GameEventNotification.lua" />
+    <None Include="Resources\Scripts\UI\Notifications\NotificationsBar.lua" />
+    <None Include="Resources\Scripts\UI\Notifications\NotificationDialog.lua" />
+    <None Include="Resources\Scripts\UI\Notifications\NotificationIcon.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildIcon.lua" />
     <None Include="Resources\Scripts\UI\Family\ChildStatsDialog.lua" />
     <None Include="Resources\Scripts\UI\Family\FamilyPanel.lua" />
@@ -467,11 +472,13 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <Xml Include="Resources\Data\Events\Conditions\Time\Year0.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\BaseBillsAmount.asset" />
     <Xml Include="Resources\Data\Events\Effects\Money\ChildDependentBillsAmount.asset" />
+    <Xml Include="Resources\Data\Events\Effects\Notifications\SendPayBillsNotification.asset" />
+    <Xml Include="Resources\Data\Events\Effects\Notifications\SendSalaryDecreasedNotification.asset" />
     <Xml Include="Resources\Data\Events\Effects\Salary\IncrementSalaryLevel.asset" />
     <Xml Include="Resources\Data\Events\UNPeaceKeepersArrive.asset" />
     <Xml Include="Resources\Data\Gameplay\GameplayDataStore.xml" />
     <Xml Include="Resources\Data\Modifiers\Events\Money\ChildDependentBillsModifier.asset" />
-    <Xml Include="Resources\Prefabs\UI\Events\GameEventDialog.prefab" />
+    <Xml Include="Resources\Prefabs\UI\Notifications\NotificationDialog.prefab" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

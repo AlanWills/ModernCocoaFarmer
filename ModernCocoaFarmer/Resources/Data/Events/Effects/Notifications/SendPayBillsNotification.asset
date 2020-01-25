@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SendNotification name="SendPayBillsNotification" guid="88b386d3-a7dc-45b7-a153-a02fd423ffd0" notification="b635cd8d-eac5-4e3b-88c4-d48d64562d5c">
+  <Notification description="Pay Bills Placeholder" name="Pay Bills" guid="b635cd8d-eac5-4e3b-88c4-d48d64562d5c"
+                icon="Textures\Icons\Events\PayBillsIcon.png"/>
+</SendNotification>

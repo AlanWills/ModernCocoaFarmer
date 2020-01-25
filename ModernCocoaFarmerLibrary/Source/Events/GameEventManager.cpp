@@ -18,8 +18,10 @@ namespace MCF::Events
     m_familyManager(nullptr),
     m_timeManager(nullptr),
     m_moneyManager(nullptr),
-    m_onGameEventTriggered(),
+    m_locationsManager(nullptr),
+    m_notificationManager(nullptr),
     m_gameEvents(),
+    m_onGameEventTriggeredEvent(),
     m_onDayPassedHandle(),
     m_onMonthPassedHandle(),
     m_onYearPassedHandle()
@@ -105,14 +107,20 @@ namespace MCF::Events
   }
 
   //------------------------------------------------------------------------------------------------
+  void GameEventManager::setNotificationManager(observer_ptr<Notifications::NotificationManager> notificationManager)
+  {
+    m_notificationManager = notificationManager;
+  }
+
+  //------------------------------------------------------------------------------------------------
   void GameEventManager::checkEventsForTriggering()
   {
     for (const auto& event : m_gameEvents)
     {
       if (event->canTrigger(*m_timeManager, *m_moneyManager, *m_familyManager))
       {
-        event->trigger(*m_moneyManager, *m_familyManager, *m_locationsManager);
-        m_onGameEventTriggered.invoke(*event);
+        event->trigger(*m_moneyManager, *m_familyManager, *m_locationsManager, *m_notificationManager);
+        m_onGameEventTriggeredEvent.invoke(*event);
       }
     }
   }

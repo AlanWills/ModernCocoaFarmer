@@ -6,11 +6,6 @@
 #include <string>
 
 
-namespace CelesteEngine::Resources
-{
-  class Texture2D;
-}
-
 namespace MCF::Time
 {
   class TimeManager;
@@ -29,6 +24,11 @@ namespace MCF::Family
 namespace MCF::Locations
 {
   class LocationsManager;
+}
+
+namespace MCF::Notifications
+{
+  class NotificationManager;
 }
 
 namespace MCF::Events
@@ -56,13 +56,9 @@ namespace MCF::Events
       void trigger(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
-        Locations::LocationsManager& locationsManager) const;
+        Locations::LocationsManager& locationsManager,
+        Notifications::NotificationManager& notificationManager) const;
       
-      const std::string& getDescription() const { return m_description.getValue(); }
-      const CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>& getIcon() const { return m_icon.getValue(); }
-
-      static const char* const DESCRIPTION_ATTRIBUTE_NAME;
-      static const char* const ICON_ATTRIBUTE_NAME;
       static const char* const CONDITIONS_ELEMENT_NAME;
       static const char* const CONDITION_ELEMENT_NAME;
       static const char* const EFFECTS_ELEMENT_NAME;
@@ -75,8 +71,6 @@ namespace MCF::Events
       using Conditions = std::vector<std::unique_ptr<Conditions::Condition>>;
       using Effects = std::vector<std::unique_ptr<Effects::Effect>>;
 
-      CelesteEngine::ReferenceField<std::string>& m_description;
-      CelesteEngine::ReferenceField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>& m_icon;
       Conditions m_conditions;
       Effects m_effects;
   };

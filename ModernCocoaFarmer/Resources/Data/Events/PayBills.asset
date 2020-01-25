@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GameEvent description="Pay Bills Placeholder" name="Pay Bills" guid="f4f2c87d-a113-461d-b947-4157ed757126"
-           icon="Textures\Icons\Events\PayBillsIcon.png">
+<GameEvent name="Pay Bills" guid="f4f2c87d-a113-461d-b947-4157ed757126">
   <Conditions>
     <Condition path="Data\Events\Conditions\Time\Day0.asset"/>
   </Conditions>
   <Effects>
     <Effect path="Data\Events\Effects\Money\BaseBillsAmount.asset"/>
     <Effect path="Data\Events\Effects\Money\ChildDependentBillsAmount.asset"/>
+    <Effect path="Data\Events\Effects\Notifications\SendPayBillsNotification.asset"/>
   </Effects>
 </GameEvent>

@@ -16,7 +16,8 @@ namespace MCF::Events::Effects
       void trigger(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
-        Locations::LocationsManager&) const override;
+        Locations::LocationsManager&,
+        Notifications::NotificationManager& notificationManager) const override;
 
       static const char* const MODIFIER_PATH_ATTRIBUTE_NAME;
       static const char* const STAT_ATTRIBUTE_NAME;

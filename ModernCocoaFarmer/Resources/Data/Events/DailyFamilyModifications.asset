@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GameEvent description="" name="Daily Family Modifications" guid="584c3799-c477-475a-8409-192e4c19ba9a"
-           icon="">
+<GameEvent name="Daily Family Modifications" guid="584c3799-c477-475a-8409-192e4c19ba9a">
   <Effects>
     <Effect path="Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset"/>
   </Effects>

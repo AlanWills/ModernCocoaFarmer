@@ -16,7 +16,8 @@ namespace MCF::Events::Effects
   void TriggerDailyLocationModifications::trigger(
     Money::MoneyManager&,
     Family::FamilyManager&,
-    Locations::LocationsManager& locationsManager) const
+    Locations::LocationsManager& locationsManager,
+    Notifications::NotificationManager&) const
   {
     locationsManager.applyDailyModifiers();
   }

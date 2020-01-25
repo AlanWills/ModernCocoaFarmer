@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SendNotification name="SendChildExpelledFromSchoolNotification" guid="4acb7d9b-f046-447c-b18d-e642abb832dd">
+  <Notification description="Child Expelled from school" name="Child Expelled" guid="4acb7d9b-f046-447c-b18d-e642abb832dd"
+                icon="Textures\UI\Utility\WhitePixel.png"/>
+</SendNotification>

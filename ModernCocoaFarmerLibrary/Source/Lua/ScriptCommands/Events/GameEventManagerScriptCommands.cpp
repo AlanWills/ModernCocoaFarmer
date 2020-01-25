@@ -29,11 +29,11 @@ namespace MCF::Lua::Events::GameEventManagerScriptCommands
 
     //------------------------------------------------------------------------------------------------
     void subscribeOnGameEventTriggeredCallback(
-      GameEventManager& gameEventManager, 
+      GameEventManager& gameEventManager,
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<GameEventManager::EventTriggeredEvent, const GameEvent&>(
+      CelesteEngine::Lua::subscribeToEvent<GameEventManager::GameEventTriggeredEvent, const GameEvent&>(
         gameEventManager.getGameEventTriggeredEvent(),
         callback,
         extraArgs);
@@ -50,6 +50,7 @@ namespace MCF::Lua::Events::GameEventManagerScriptCommands
       "setMoneyManager", &GameEventManager::setMoneyManager,
       "setTimeManager", &GameEventManager::setTimeManager,
       "setLocationsManager", &GameEventManager::setLocationsManager,
+      "setNotificationManager", &GameEventManager::setNotificationManager,
       "registerGameEvent", &Internals::registerGameEvent,
       "subscribeOnGameEventTriggeredCallback", &Internals::subscribeOnGameEventTriggeredCallback);
   }

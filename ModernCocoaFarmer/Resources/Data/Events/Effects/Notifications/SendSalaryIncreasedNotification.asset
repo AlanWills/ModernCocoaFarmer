@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SendNotification name="SendSalaryIncreasedNotification" guid="a9c63eea-4e74-4e07-9d0c-a91e257190e8" Notification="61050516-1eaf-4f41-bf2a-6df73c3ff034">
+  <Notification description="Your partner has got a pay rise!" name="Salary Increased" guid="61050516-1eaf-4f41-bf2a-6df73c3ff034"
+                icon="Textures\Icons\Events\SalaryIncreaseIcon.png"/>
+</SendNotification>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SendNotification name="SendWelcomeToZegouaNotification" guid="5849e0f4-20e1-4a7c-8e38-ffd29fc2f7d4"
+                  notification="0f3a3c5e-1dec-40c1-95e3-f4bf703c508b">
+  <Notification name="Welcome To Zegoua!" description="Click on the icons to find out about the locations" guid="0f3a3c5e-1dec-40c1-95e3-f4bf703c508b"
+                icon="Textures\Icons\Events\WelcomeToZegoua.png"/>
+</SendNotification>

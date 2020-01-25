@@ -24,7 +24,8 @@ namespace MCF::Events::Effects
       void trigger(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
-        Locations::LocationsManager&) const override;
+        Locations::LocationsManager&,
+        Notifications::NotificationManager& notificationManager) const override;
 
       static const char* const DATA_STORE_PATH_ATTRIBUTE_NAME;
       static const char* const VALUE_NAME_ATTRIBUTE_NAME;

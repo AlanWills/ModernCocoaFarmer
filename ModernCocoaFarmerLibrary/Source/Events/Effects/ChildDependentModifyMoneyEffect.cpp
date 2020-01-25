@@ -19,7 +19,8 @@ namespace MCF::Events::Effects
   void ChildDependentModifyMoneyEffect::trigger(
     Money::MoneyManager& moneyManager, 
     Family::FamilyManager& familyManager,
-    Locations::LocationsManager&) const
+    Locations::LocationsManager&,
+    Notifications::NotificationManager&) const
   {
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
     ASSERT(modifier != nullptr);

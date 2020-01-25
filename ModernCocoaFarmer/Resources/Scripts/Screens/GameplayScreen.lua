@@ -1,14 +1,14 @@
 local Class = require 'OOP.Class'
 local LocationsUI = require 'UI.Locations.LocationsUI'
 local TopBar = require "UI.TopBar"
-local GameEventsBar = require 'UI.Events.GameEventsBar'
+local NotificationsBar = require 'UI.Notifications.NotificationsBar'
 
 local GameplayScreen = 
 {
     GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen"),
     TOP_BAR_NAME = "TopBarBackground",
     TIME_NOTIFIER_NAME = "TimeNotifier",
-    GAME_EVENTS_BAR_NAME = "GameEventsBar",
+    NOTIFICATIONS_BAR_NAME = "NotificationsBar",
     LOCATIONS_UI_NAME = "LocationsUI",
 }
 
@@ -23,12 +23,14 @@ function GameplayScreen.show()
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
     local locationsManager = LocationsManager.load(path.combine("Data", "Locations", "LocationsManager.asset"))
+    local notificationManager = NotificationManager.load(path.combine("Data", "Notifications", "NotificationManager.asset"))
 
     local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
     gameEventManager:setTimeManager(timeManager)
     gameEventManager:setMoneyManager(moneyManager)
     gameEventManager:setFamilyManager(familyManager)
     gameEventManager:setLocationsManager(locationsManager)
+    gameEventManager:setNotificationManager(notificationManager)
        
     familyManager:addChild()
     familyManager:addChild()
@@ -51,13 +53,14 @@ function GameplayScreen.show()
         gameEventManager)
     GameplayScreen._topBar:updateUI()
       
-    local gameEventsBar = gameplayScreen:findGameObject(GameplayScreen.GAME_EVENTS_BAR_NAME)
-    GameplayScreen._gameEventsBar = Class.new(GameEventsBar, gameEventsBar, gameEventManager)
+    local notificationsBar = gameplayScreen:findGameObject(GameplayScreen.NOTIFICATIONS_BAR_NAME)
+    GameplayScreen._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
 
     GameplayScreen._timeManager = timeManager
     GameplayScreen._moneyManager = moneyManager
     GameplayScreen._familyManager = familyManager
     GameplayScreen._locationsManager = locationsManager
+    GameplayScreen._notificationManager = notificationManager
     GameplayScreen._gameEventManager = gameEventManager
 end
 

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GameEvent description="Your partner's pay has been cut..." name="Salary Decreased" guid="d62953bd-0c60-4219-b4c7-145486ca4ea0"
-           icon="Textures\Icons\Events\SalaryDecreaseIcon.png">
+<GameEvent name="Salary Decreased" guid="d62953bd-0c60-4219-b4c7-145486ca4ea0">
   <Conditions>
     <Condition path="Data\Events\Conditions\Time\Month10.asset"/>
     <Condition path="Data\Events\Conditions\Random\SalaryDecreasedCheck.asset"/>
   </Conditions>
   <Effects>
     <Effect path="Data\Events\Effects\Salary\DecrementSalaryLevel.asset"/>
+    <Effect path="Data\Events\Effects\Notifications\SendSalaryDecreasedNotification.asset"/>
   </Effects>
 </GameEvent>

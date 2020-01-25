@@ -19,14 +19,22 @@ namespace MCF::Locations
   class LocationsManager;
 }
 
+namespace MCF::Notifications
+{
+  class NotificationManager;
+}
+
 namespace MCF::Events::Effects
 {
   class Effect : public CelesteEngine::ScriptableObject
   {
     public:
+      virtual ~Effect() = default;
+
       virtual void trigger(
         Money::MoneyManager& moneyManager, 
         Family::FamilyManager& familyManager,
-        Locations::LocationsManager& locationManager) const = 0;
+        Locations::LocationsManager& locationManager,
+        Notifications::NotificationManager& notificationManager) const = 0;
   };
 }

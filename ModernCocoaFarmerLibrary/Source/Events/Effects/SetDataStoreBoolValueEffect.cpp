@@ -29,7 +29,8 @@ namespace MCF::Events::Effects
   void SetDataStoreBoolValueEffect::trigger(
     Money::MoneyManager&,
     Family::FamilyManager&,
-    Locations::LocationsManager&) const
+    Locations::LocationsManager&,
+    Notifications::NotificationManager&) const
   {
     Handle<Data> data = getResourceManager()->load<Data>(getDataStorePath());
     if (data.is_null())
