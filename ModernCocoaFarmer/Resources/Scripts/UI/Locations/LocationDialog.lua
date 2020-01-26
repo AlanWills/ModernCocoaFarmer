@@ -1,6 +1,6 @@
-local InteractableLocationDialog = 
+local LocationDialog = 
 {
-    DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "InteractableLocationDialog.prefab"),
+    DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Locations", "LocationDialog.prefab"),
     TITLE_TEXT_NAME = "TitleText",
     DESCRIPTION_TEXT_NAME = "DescriptionText",
     COST_ICON_NAME = "CostIcon",
@@ -60,7 +60,7 @@ local function sendChildToLocation(eventArgs, caller, self)
 end
 
 ----------------------------------------------------------------------------------------
-function InteractableLocationDialog:new(screen, location, selectedChild)
+function LocationDialog:new(screen, location, selectedChild)
     self._location = location
     self._selectedChild = selectedChild
 
@@ -92,7 +92,7 @@ function InteractableLocationDialog:new(screen, location, selectedChild)
 end
 
 ----------------------------------------------------------------------------------------
-function InteractableLocationDialog:setUpChildSelectionUI(parentGameObject, selectedChild)
+function LocationDialog:setUpChildSelectionUI(parentGameObject, selectedChild)
     local sendChildBackground = parentGameObject:findChildGameObject(self.SEND_CHILD_BACKGROUND_NAME)
     local sendChildHelpText = sendChildBackground:findChildGameObject(self.SEND_CHILD_HELP_TEXT_NAME)
     local sendChildButton = sendChildBackground:findChildGameObject(self.SEND_CHILD_BUTTON_NAME)
@@ -118,4 +118,4 @@ function InteractableLocationDialog:setUpChildSelectionUI(parentGameObject, sele
     end
 end
 
-return InteractableLocationDialog
+return LocationDialog

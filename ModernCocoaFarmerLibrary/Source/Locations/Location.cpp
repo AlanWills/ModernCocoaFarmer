@@ -39,7 +39,9 @@ namespace MCF::Locations
     m_moneyModifier(createScriptableObject<Stats::Modifier>(MONEY_MODIFIER_FIELD_NAME)),
     m_daysToComplete(createValueField<size_t>(DAYS_TO_COMPLETE_FIELD_NAME)),
     m_children(),
-    m_childLeavesEffects()
+    m_childLeavesEffects(),
+    m_onChildSentEvent(),
+    m_onChildLeftEvent()
   {
   }
 
@@ -83,6 +85,7 @@ namespace MCF::Locations
   {
     m_children.emplace_back(std::make_tuple(std::reference_wrapper(child), static_cast<size_t>(0)));
     child.setCurrentLocation(getName());
+    m_onChildSentEvent.invoke(child);
   }
 
   //------------------------------------------------------------------------------------------------
@@ -128,6 +131,7 @@ namespace MCF::Locations
         notification->setIcon(getChildLeavesNotificationIcon());
 
         notificationManager.sendNotification(*notification);
+        m_onChildLeftEvent.invoke(std::get<0>(childDaysSpent));
       }
     }
 

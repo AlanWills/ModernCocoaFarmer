@@ -56,6 +56,9 @@ namespace MCF::Locations
     DECLARE_SCRIPTABLE_OBJECT(Location, MCFLibraryDllExport)
 
     public:
+      using ChildSentEvent = CelesteEngine::Event<const Family::Child&>;
+      using ChildLeftEvent = CelesteEngine::Event<const Family::Child&>;
+
       const std::string& getPrefab() const { return m_prefab.getValue(); }
       const std::string& getDescription() const { return m_description.getValue(); }
       const std::string& getChildLeavesNotificationDescription() const { return m_childLeavesNotificationDescription.getValue(); }
@@ -76,6 +79,9 @@ namespace MCF::Locations
         Family::FamilyManager& familyManager,
         Locations::LocationsManager& locationsManager,
         Notifications::NotificationManager& notificationManager);
+
+      const ChildSentEvent& getOnChildSentEvent() const { return m_onChildSentEvent; }
+      const ChildLeftEvent& getOnChildLeftEvent() const { return m_onChildLeftEvent; }
 
       static const std::string PREFAB_FIELD_NAME;
       static const std::string DESCRIPTION_FIELD_NAME;
@@ -116,5 +122,8 @@ namespace MCF::Locations
 
       std::vector<ChildDaysSpent> m_children;
       Effects m_childLeavesEffects;
+
+      ChildSentEvent m_onChildSentEvent;
+      ChildLeftEvent m_onChildLeftEvent;
   };
 }

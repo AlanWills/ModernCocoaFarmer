@@ -135,8 +135,6 @@
     <None Include="Resources\Prefabs\Gameplay\Locations\School.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Locations\Well.prefab" />
     <None Include="Resources\Data\Events\Conditions\Locations\AtLeastOneChildAtSchool.asset" />
-    <None Include="Resources\Prefabs\UI\InteractableLocationDialog.prefab" />
-    <None Include="Resources\Scripts\UI\InteractableLocationDialog.lua" />
     <None Include="Resources\Data\Events\DailyFamilyModifications.asset" />
     <None Include="Resources\Data\Events\DailyLocationModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset" />
@@ -167,6 +165,10 @@
     <None Include="Resources\Data\Events\Effects\Notifications\SendSalaryIncreasedNotification.asset" />
     <None Include="Resources\Data\Events\CheckLocationsForChildrenLeaving.asset" />
     <None Include="Resources\Data\Events\Effects\Family\CheckLocationsForChildrenLeaving.asset" />
+    <None Include="Resources\Prefabs\UI\Locations\LocationProgress.prefab" />
+    <None Include="Resources\Scripts\UI\Locations\LocationDialog.lua" />
+    <None Include="Resources\Prefabs\UI\Locations\LocationDialog.prefab" />
+    <None Include="Resources\Scripts\UI\Locations\LocationProgress.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="LocationProgress">
+      <Components>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="100,15" scissor_rectangle_dimensions="15,15" colour="1,0,0"/>
+        <ProgressBar min="0" max="1" value="1"/>
+      </Components>
+      <GameObjects>
+        <GameObject name="LocationProgressBackground" position="0,0,-0.1">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30"/>
+          </Components>
+        </GameObject>
+        <GameObject name="ChildNameText" position="-60,0,0">
+          <Components>
+            <TextRenderer font_height="16" horizontal_alignment="right"/>
+          </Components>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Prefab>

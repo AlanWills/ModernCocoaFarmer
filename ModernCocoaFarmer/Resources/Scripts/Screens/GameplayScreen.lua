@@ -18,6 +18,11 @@ local function onTimeChanged(eventArgs, deltaTime, timeManager)
 end
 
 ---------------------------------------------------------------------------------
+local function onGameEventTriggeredCallback(eventArgs, gameEvent)
+    GameplayScreen.updateUI()
+end
+
+---------------------------------------------------------------------------------
 function GameplayScreen.show()
     local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
@@ -49,9 +54,7 @@ function GameplayScreen.show()
         topBarGameObject, 
         familyManager, 
         moneyManager,
-        timeManager,
-        gameEventManager)
-    GameplayScreen._topBar:updateUI()
+        timeManager)
       
     local notificationsBar = gameplayScreen:findGameObject(GameplayScreen.NOTIFICATIONS_BAR_NAME)
     GameplayScreen._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
@@ -62,6 +65,14 @@ function GameplayScreen.show()
     GameplayScreen._locationsManager = locationsManager
     GameplayScreen._notificationManager = notificationManager
     GameplayScreen._gameEventManager = gameEventManager
+    
+    GameplayScreen.updateUI()
+end
+
+---------------------------------------------------------------------------------
+function GameplayScreen.updateUI()
+    GameplayScreen._locationsUI:updateUI()
+    GameplayScreen._topBar:updateUI()
 end
 
 return GameplayScreen

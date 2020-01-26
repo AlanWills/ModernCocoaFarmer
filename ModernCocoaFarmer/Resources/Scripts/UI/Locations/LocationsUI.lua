@@ -44,4 +44,11 @@ function LocationsUI:new(locationsManager, familyManager, gameObject)
     end
 end
 
+---------------------------------------------------------------------------------
+function LocationsUI:updateUI()
+    for k, locationIcon in pairs(self._locationIcons) do
+        locationIcon:updateUI()
+    end
+end
+
 return LocationsUI

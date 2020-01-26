@@ -5,13 +5,36 @@
 #include "Family/Child.h"
 
 
+using Location = MCF::Locations::Location;
+
 namespace MCF::Lua::Locations::LocationScriptCommands
 {
+  namespace Internals
+  {
+    //------------------------------------------------------------------------------------------------
+    void subscribeOnChildSentCallback(
+      Location& location,
+      sol::protected_function callback,
+      sol::object extraArgs)
+    {
+      CelesteEngine::Lua::subscribeToEvent<Location::ChildSentEvent, const Family::Child&>(
+        location.getOnChildSentEvent(), callback, extraArgs);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void subscribeOnChildLeftCallback(
+      Location& location,
+      sol::protected_function callback,
+      sol::object extraArgs)
+    {
+      CelesteEngine::Lua::subscribeToEvent<Location::ChildLeftEvent, const Family::Child&>(
+        location.getOnChildLeftEvent(), callback, extraArgs);
+    }
+  }
+
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    using Location = MCF::Locations::Location;
-
     CelesteEngine::Lua::registerScriptableObjectUserType<Location>(
       "LocationInformation",
       sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
@@ -23,6 +46,8 @@ namespace MCF::Lua::Locations::LocationScriptCommands
       "getHappinessModifier", &Location::getHappinessModifier,
       "getMoneyModifier", &Location::getMoneyModifier,
       "getDaysToComplete", &Location::getDaysToComplete,
-      "sendChild", &Location::sendChild);
+      "sendChild", &Location::sendChild,
+      "subscribeOnChildSentCallback", &Internals::subscribeOnChildSentCallback,
+      "subscribeOnChildLeftCallback", &Internals::subscribeOnChildLeftCallback);
   }
 }

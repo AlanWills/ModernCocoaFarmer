@@ -275,6 +275,7 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Data\Notifications\NotificationManager.asset" />
     <None Include="Resources\Data\Time\TimeManager.asset" />
     <None Include="Resources\Prefabs\Gameplay\Locations\Farm.prefab" />
+    <None Include="Resources\Prefabs\UI\Locations\LocationProgress.prefab" />
     <None Include="Resources\Prefabs\UI\Notifications\NotificationIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Money\MoneyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />
@@ -297,9 +298,10 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Prefabs\Gameplay\Locations\Well.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Family\FamilyPanel.prefab" />
-    <None Include="Resources\Prefabs\UI\InteractableLocationDialog.prefab" />
+    <None Include="Resources\Prefabs\UI\Locations\LocationDialog.prefab" />
     <None Include="Resources\Prefabs\UI\TopBar.prefab" />
     <None Include="Resources\Scripts\UI\Locations\LocationIcon.lua" />
+    <None Include="Resources\Scripts\UI\Locations\LocationProgress.lua" />
     <None Include="Resources\Scripts\UI\Locations\LocationsUI.lua" />
     <None Include="Resources\Scripts\Components\MCFComponents.lua" />
     <None Include="Resources\Scripts\Events\Event.lua" />
@@ -323,7 +325,7 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Scripts\UI\Money\MoneyPanel.lua" />
     <None Include="Resources\Scripts\UI\Time\TimePanel.lua" />
     <None Include="Resources\Scripts\UI\InGameMenu.lua" />
-    <None Include="Resources\Scripts\UI\InteractableLocationDialog.lua" />
+    <None Include="Resources\Scripts\UI\Locations\LocationDialog.lua" />
     <None Include="Resources\Scripts\UI\TopBar.lua" />
     <None Include="Resources\Scripts\Utility\RefreshResources.lua" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
