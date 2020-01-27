@@ -159,7 +159,7 @@
     <ClCompile Include="Source\Utils\LocaTokens.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Build Events\CustomBuildStep.bat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CelesteEngine\CelesteEngine\CelesteEngine.vcxproj">
@@ -256,7 +256,7 @@
       <AdditionalLibraryDirectories>$(ProjectDir)..\CelesteEngine\CelesteEngine\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Command>call "$(ProjectDir)Build Events\CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform) </Command>
+      <Command>call "$(ProjectDir)Build Events\CustomBuildStep.bat" "$(ProjectDir)" $(Configuration) $(Platform) </Command>
       <Outputs>Force.txt</Outputs>
     </CustomBuildStep>
     <Lib>

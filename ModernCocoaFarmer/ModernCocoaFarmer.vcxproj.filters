@@ -17,9 +17,6 @@
   <ItemGroup>
     <None Include="Resources\Scripts\Game.lua" />
     <None Include="Resources\Data\Settings\WindowSettings.asset" />
-    <None Include="Build Events\CopyDependencyFiles.bat">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="Resources\Prefabs\Debugging\FPSCounter.prefab" />
     <None Include="Resources\Videos\IntroMovie.mpeg" />
     <None Include="Resources\Prefabs\Debugging\GameplayDebugging.prefab" />
@@ -140,18 +137,6 @@
     <None Include="Resources\Data\Events\Effects\Locations\TriggerDailyLocationModifications.asset" />
     <None Include="Resources\Data\Events\Effects\Family\TriggerDailyFamilyModifications.asset" />
     <None Include="Build Events\CheckLuaFiles.bat">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Build Events\ValidateLuaScripts.bat">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Build Events\ValidatePrefabs.bat">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Build Events\ValidateScenes.bat">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="Build Events\ValidateScriptableObjects.bat">
       <Filter>Source Files</Filter>
     </None>
     <None Include="Resources\Scripts\UI\Notifications\NotificationsBar.lua" />

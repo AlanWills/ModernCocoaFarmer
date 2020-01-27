@@ -130,7 +130,7 @@
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>call "$(ProjectDir)Build Events\CustomBuildStep.bat" "$(TargetDir)" $(Configuration) $(Platform) "$(TargetDir)Resources" "$(ProjectDir)"</Command>
+      <Command>call "$(ProjectDir)Build Events\CustomBuildStep.bat" "$(ProjectDir)" $(Configuration) $(Platform) </Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>Force.txt</Outputs>
@@ -187,12 +187,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Build Events\CheckLuaFiles.bat" />
-    <None Include="Build Events\CopyDependencyFiles.bat" />
     <None Include="Build Events\CustomBuildStep.bat" />
-    <None Include="Build Events\ValidateLuaScripts.bat" />
-    <None Include="Build Events\ValidatePrefabs.bat" />
-    <None Include="Build Events\ValidateScenes.bat" />
-    <None Include="Build Events\ValidateScriptableObjects.bat" />
     <None Include="Resources\Data\Events\CheckLocationsForChildrenLeaving.asset" />
     <None Include="Resources\Data\Events\DailyFamilyModifications.asset" />
     <None Include="Resources\Data\Events\DailyLocationModifications.asset" />

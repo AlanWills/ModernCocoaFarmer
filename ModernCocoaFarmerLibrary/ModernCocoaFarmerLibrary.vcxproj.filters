@@ -427,7 +427,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Build Events\CopyDependencyFiles.bat">
+    <None Include="Build Events\CustomBuildStep.bat">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
