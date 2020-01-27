@@ -11,3 +11,5 @@ if not quickStart then
 else
     StartGameplayCommand.execute()
 end
+
+asdmasdakdla

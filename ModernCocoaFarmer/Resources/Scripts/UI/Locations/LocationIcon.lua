@@ -5,9 +5,7 @@ local LocationProgress = require 'UI.Locations.LocationProgress'
 local LocationIcon = 
 {
     ICON_NAME = "Icon",
-    LOCATION_PROGRESS_STACK_PANEL = "LocationProgessStackPanel"
-    LOCATION_PROGRESS_PREFAB_PATH = path.combine("Prefabs", "UI", "Locations", "LocationProgress.prefab"),
-    CHILD_NAME_TEXT = "ChildNameText",
+    PROGRESS_STACK_PANEL_NAME = "ProgressStackPanel"
 }
 
 ----------------------------------------------------------------------------------------
@@ -24,12 +22,13 @@ end
 function LocationIcon:new(location, parent)
     self._location = location
     self._locationProgressBars = {}
-    self._locationProgressPrefab = Resources.loadPrefab(self.LOCATION_PROGRESS_PREFAB_PATH)
 
     local locationPrefab = Resources.loadPrefab(location:getPrefab())
     self._gameObject = locationPrefab:instantiate(parent:getScreen())
     self._gameObject:setParent(parent)
-    self._locationProgressStackPanel = self._gameObject:findChildGameObject(self.LOCATION_PROGRESS_STACK_PANEL):findComponent("StackPanel")
+
+    local icon = self._gameObject:findChildGameObject(self.ICON_NAME)
+    self._locationProgressStackPanel = icon:findChildGameObject(self.PROGRESS_STACK_PANEL_NAME):findComponent("StackPanel")
 
     location:subscribeOnChildSentCallback(onChildSentCallback, self)
     location:subscribeOnChildLeftCallback(onChildLeftCallback, self)
@@ -53,9 +52,7 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:addChildLocationProgress(child)
-    local locationProgress = Class.new(LocationProgress, child, self._gameObject:getScreen())--self._locationProgressPrefab:instantiate(self._gameObject:getScreen())
-    locationProgress:findChildGameObject(SELF.CHILD_NAME_TEXT):findComponent("TextRenderer"):setText(child:getName())
-
+    local locationProgress = Class.new(LocationProgress, child:getName(), self._gameObject:getScreen())
     self._locationProgressBars[child:getName()] = locationProgress
     self._locationProgressStackPanel:addChild(locationProgress.gameObject)
 end
@@ -71,8 +68,10 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:updateUI()
-    for k, locationProgress in pairs(self._locationProgressBars)
-        locationProgress:updateUI()
+    local locationDaysToComplete = self._location:getDaysToComplete()
+    for childName, locationProgress in pairs(self._locationProgressBars) do
+        local childDaysSpent = self._location:getChildTime(childName)
+        locationProgress:updateUI((100 * childDaysSpent) / locationDaysToComplete)
     end
 end
 

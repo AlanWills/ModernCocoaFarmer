@@ -36,6 +36,7 @@ function GameplayScreen.show()
     gameEventManager:setFamilyManager(familyManager)
     gameEventManager:setLocationsManager(locationsManager)
     gameEventManager:setNotificationManager(notificationManager)
+    gameEventManager:subscribeOnGameEventTriggeredCallback(onGameEventTriggeredCallback)
        
     familyManager:addChild()
     familyManager:addChild()

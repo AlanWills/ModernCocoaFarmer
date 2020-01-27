@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GameEvent name="Pay Bills" guid="f4f2c87d-a113-461d-b947-4157ed757126">
+<GameEvent name="PayBills" guid="f4f2c87d-a113-461d-b947-4157ed757126">
   <Conditions>
     <Condition path="Data\Events\Conditions\Time\Day0.asset"/>
   </Conditions>

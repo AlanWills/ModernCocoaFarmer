@@ -122,16 +122,15 @@
       <AdditionalOptions>/WHOLEARCHIVE:CelesteEngine.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>call "$(ProjectDir)Build Events\ValidateLuaScripts.bat" "$(ProjectDir)" "$(TargetDir)Resources"
-call "$(ProjectDir)Build Events\ValidatePrefabs.bat" "$(ProjectDir)" "$(TargetDir)Resources"
-call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir)Resources"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>call "$(ProjectDir)Build Events\CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform) </Command>
+      <Command>call "$(ProjectDir)Build Events\CustomBuildStep.bat" "$(TargetDir)" $(Configuration) $(Platform) "$(TargetDir)Resources" "$(ProjectDir)"</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Outputs>Force.txt</Outputs>
@@ -189,6 +188,7 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
   <ItemGroup>
     <None Include="Build Events\CheckLuaFiles.bat" />
     <None Include="Build Events\CopyDependencyFiles.bat" />
+    <None Include="Build Events\CustomBuildStep.bat" />
     <None Include="Build Events\ValidateLuaScripts.bat" />
     <None Include="Build Events\ValidatePrefabs.bat" />
     <None Include="Build Events\ValidateScenes.bat" />
@@ -276,6 +276,7 @@ call "$(ProjectDir)Build Events\ValidateScenes.bat" "$(ProjectDir)" "$(TargetDir
     <None Include="Resources\Data\Time\TimeManager.asset" />
     <None Include="Resources\Prefabs\Gameplay\Locations\Farm.prefab" />
     <None Include="Resources\Prefabs\UI\Locations\LocationProgress.prefab" />
+    <None Include="Resources\Prefabs\UI\Locations\LocationProgressStackPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Notifications\NotificationIcon.prefab" />
     <None Include="Resources\Prefabs\UI\Money\MoneyPanel.prefab" />
     <None Include="Resources\Prefabs\UI\Family\ChildStatsDialog.prefab" />

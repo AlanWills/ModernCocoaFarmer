@@ -22,9 +22,7 @@ namespace MCF::Events
     m_notificationManager(nullptr),
     m_gameEvents(),
     m_onGameEventTriggeredEvent(),
-    m_onDayPassedHandle(),
-    m_onMonthPassedHandle(),
-    m_onYearPassedHandle()
+    m_onDayPassedHandle()
   {
   }
 
@@ -80,8 +78,6 @@ namespace MCF::Events
     if (m_timeManager != nullptr)
     {
       m_timeManager->getOnDayPassedEvent().unsubscribe(m_onDayPassedHandle);
-      m_timeManager->getOnMonthPassedEvent().unsubscribe(m_onMonthPassedHandle);
-      m_timeManager->getOnYearPassedEvent().unsubscribe(m_onYearPassedHandle);
     }
 
     m_timeManager = timeManager;
@@ -89,8 +85,6 @@ namespace MCF::Events
     if (m_timeManager != nullptr)
     {
       m_onDayPassedHandle = m_timeManager->getOnDayPassedEvent().subscribe([this](CelesteEngine::EventArgs&) { checkEventsForTriggering(); });
-      m_onMonthPassedHandle = m_timeManager->getOnMonthPassedEvent().subscribe([this](const CelesteEngine::EventArgs&) { checkEventsForTriggering(); });
-      m_onYearPassedHandle = m_timeManager->getOnYearPassedEvent().subscribe([this](const CelesteEngine::EventArgs&) { checkEventsForTriggering(); });
     }
   }
 

@@ -169,6 +169,10 @@
     <None Include="Resources\Scripts\UI\Locations\LocationDialog.lua" />
     <None Include="Resources\Prefabs\UI\Locations\LocationDialog.prefab" />
     <None Include="Resources\Scripts\UI\Locations\LocationProgress.lua" />
+    <None Include="Resources\Prefabs\UI\Locations\LocationProgressStackPanel.prefab" />
+    <None Include="Build Events\CustomBuildStep.bat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

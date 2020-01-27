@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="ProgressStackPanel" position="0,30">
+      <Components>
+        <StackPanel orientation="Vertical" vertical_alignment="Bottom" padding="5"/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Prefab>

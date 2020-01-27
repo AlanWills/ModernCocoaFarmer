@@ -154,4 +154,16 @@ namespace MCF::Locations
       effect->trigger(moneyManager, familyManager, locationsManager, notificationManager);
     }
   }
+
+  //------------------------------------------------------------------------------------------------
+  size_t Location::getChildTime(const std::string& childName) const
+  {
+    auto foundChild = std::find_if(m_children.begin(), m_children.end(), 
+      [&childName](const ChildDaysSpent& childDaysSpent)
+      {
+        return std::get<0>(childDaysSpent).get().getName() == childName;
+      });
+
+    return foundChild != m_children.end() ? std::get<1>(*foundChild) : 0;
+  }
 }

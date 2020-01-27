@@ -18,6 +18,9 @@
             <RectangleCollider dimensions="50,50"/>
             <MouseInteractionHandler/>
           </Components>
+          <GameObjects>
+            <Prefab name="ProgressStackPanel" path="Prefabs\UI\Locations\LocationProgressStackPanel.prefab"/>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>

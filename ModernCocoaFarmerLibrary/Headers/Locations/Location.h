@@ -3,6 +3,7 @@
 #include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
 #include "Stats/ChildModifier.h"
+#include "Events/Event.h"
 
 
 namespace CelesteEngine::Resources
@@ -71,6 +72,7 @@ namespace MCF::Locations
       const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
 
       size_t getDaysToComplete() const { return m_daysToComplete.getValue(); }
+      size_t getChildTime(const std::string& childName) const;
 
       void sendChild(Family::Child& child);
       void onDayPassed();

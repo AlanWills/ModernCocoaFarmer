@@ -80,7 +80,5 @@ namespace MCF::Events
       GameEventTriggeredEvent m_onGameEventTriggeredEvent;
 
       CelesteEngine::StringId m_onDayPassedHandle;
-      CelesteEngine::StringId m_onMonthPassedHandle;
-      CelesteEngine::StringId m_onYearPassedHandle;
   };
 }

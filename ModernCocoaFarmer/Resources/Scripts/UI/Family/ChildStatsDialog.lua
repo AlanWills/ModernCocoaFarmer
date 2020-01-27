@@ -63,7 +63,7 @@ function ChildStatsDialog:updateUI()
 
     local locationText = "Not at location"
     if self._child:isAtLocation() then
-        locationText = "Currently at " .. self._child:getCurrentLocation()
+        locationText = self._child:getCurrentLocation()
     end
 
     self._childLocationText:setText(locationText)

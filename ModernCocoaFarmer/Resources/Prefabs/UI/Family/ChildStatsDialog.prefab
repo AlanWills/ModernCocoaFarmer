@@ -16,7 +16,7 @@
           <GameObjects>
             <GameObject name="CurrentLocationText" position="40,0">
               <Components>
-                <TextRenderer text="Currently at ..." font_height="18" horizontal_alignment="Left"/>
+                <TextRenderer text="Currently at ..." font_height="18" horizontal_alignment="Left" colour="0,0,0"/>
               </Components>
             </GameObject>
           </GameObjects>
