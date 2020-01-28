@@ -9,12 +9,12 @@ local LocationIcon =
 }
 
 ----------------------------------------------------------------------------------------
-local function onChildSentCallback(eventArgs, child, self)
+local function onChildSentCallback(child, self)
     self:addChildLocationProgress(child)
 end
 
 ----------------------------------------------------------------------------------------
-local function onChildLeftCallback(eventArgs, child, self)
+local function onChildLeftCallback(child, self)
     self:removeChildLocationProgress(child)
 end
 
@@ -35,7 +35,7 @@ function LocationIcon:new(location, parent)
 end
 
 ----------------------------------------------------------------------------------------
-local function onLeftButtonUp(eventArgs, caller, extraArgs)
+local function onLeftButtonUp(caller, extraArgs)
     extraArgs.callback(extraArgs.locationIcon, extraArgs.extraArgs)
 end
 

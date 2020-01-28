@@ -5,7 +5,7 @@ SplashScreen.SPLASH_SCREEN_SCREEN_PATH = path.combine("Screens", "Splash.screen"
 SplashScreen.SCREEN_TRANSITIONER_NAME = "ScreenTransitioner"
 
 ---------------------------------------------------------------------------------
-local function transitionToMainMenu(eventArgs, caller)
+local function transitionToMainMenu(caller)
     caller:getScreen():die()
 
     local MainMenuScreen = require 'Screens.MainMenuScreen'

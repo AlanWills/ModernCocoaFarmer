@@ -10,18 +10,18 @@ local ChildIcon =
 }
 
 ---------------------------------------------------------------------------------
-local function showChildStats(eventArgs, caller, self)
+local function showChildStats(caller, self)
     self._statsDialog:updateUI()
     self._statsDialog:show()
 end
 
 ---------------------------------------------------------------------------------
-local function hideChildStats(eventArgs, caller, self)
+local function hideChildStats(caller, self)
     self._statsDialog:hide()
 end
 
 ---------------------------------------------------------------------------------
-local function onChildSelectedChanged(eventArgs, child, self)
+local function onChildSelectedChanged(child, self)
     self:updateSelectionUI()
 end
 

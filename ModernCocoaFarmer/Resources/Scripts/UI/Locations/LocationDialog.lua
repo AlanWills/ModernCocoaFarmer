@@ -20,7 +20,7 @@ local LocationDialog =
 }
 
 ----------------------------------------------------------------------------------------
-local function closeCallback(eventArgs, caller)
+local function closeCallback(caller)
     caller:getParent():die()
 end
 
@@ -88,7 +88,7 @@ local function setModifierText(statsBackground, textName, modifier)
 end
 
 ----------------------------------------------------------------------------------------
-local function sendChildToLocation(eventArgs, caller, self)
+local function sendChildToLocation(caller, self)
     self._location:sendChild(self._selectedChild)
     self._gameObject:die()
 end

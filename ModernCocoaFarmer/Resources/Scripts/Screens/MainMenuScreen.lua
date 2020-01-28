@@ -9,13 +9,13 @@ MainMenuScreen.OPTIONS_BUTTON_NAME = "OptionsButton"
 MainMenuScreen.EXIT_BUTTON_NAME = "ExitButton"
 
 ---------------------------------------------------------------------------------
-local function play(eventArgs, caller)
+local function play(caller)
     caller:getScreen():die()
     StartGameplayCommand.execute()
 end
 
 ---------------------------------------------------------------------------------
-local function toOptions(eventArgs, caller)
+local function toOptions(caller)
     caller:getScreen():die()
 
     local OptionsScreen = require 'Screens.OptionsScreen'
@@ -23,7 +23,7 @@ local function toOptions(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-local function exitGame(eventArgs, caller)
+local function exitGame(caller)
     exit()
 end
 

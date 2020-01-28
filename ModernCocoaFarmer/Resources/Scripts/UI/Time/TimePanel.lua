@@ -30,13 +30,13 @@ local function setUIEnabledAndOtherDisabled(caller, otherButtonName)
 end
 
 ---------------------------------------------------------------------------------
-local function play(eventArgs, caller, self)
+local function play(caller, self)
     setUIEnabledAndOtherDisabled(caller, TimePanel.PAUSE_BUTTON_NAME)
     self._timeManager:play()
 end
 
 ---------------------------------------------------------------------------------
-local function pause(eventArgs, caller, self)
+local function pause(caller, self)
     setUIEnabledAndOtherDisabled(caller, TimePanel.PLAY_BUTTON_NAME)
     self._timeManager:pause()
 end

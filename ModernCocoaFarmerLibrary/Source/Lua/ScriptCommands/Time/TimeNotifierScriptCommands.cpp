@@ -3,6 +3,8 @@
 
 #include "Time/TimeNotifier.h"
 
+using namespace MCF::Time;
+
 
 namespace MCF::Lua::Time::TimeNotifierScriptCommands
 {
@@ -14,18 +16,14 @@ namespace MCF::Lua::Time::TimeNotifierScriptCommands
       sol::function callback,
       sol::object extraArgs)
     {
-      timeNotifier.getOnTimeChangedEvent().subscribe([callback, extraArgs](CelesteEngine::EventArgs& e, float deltaTime)
-      {
-          callback.call(e, deltaTime, extraArgs);
-      });
+      CelesteEngine::Lua::subscribeToEvent<TimeNotifier::TimeChangedEvent, float>(
+        timeNotifier.getOnTimeChangedEvent(), callback, extraArgs);
     }
   }
 
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    using TimeNotifier = MCF::Time::TimeNotifier;
-
     CelesteEngine::Lua::registerHandleUserType<TimeNotifier>(
       "TimeNotifier",
       sol::base_classes, sol::bases<CelesteEngine::Script, CelesteEngine::Component, CelesteEngine::Entity, CelesteEngine::Object>(),

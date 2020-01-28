@@ -4,12 +4,12 @@ local NotificationIcon = require 'UI.Notifications.NotificationIcon'
 local NotificationsBar = {}
 
 ---------------------------------------------------------------------------------
-local function createNotificationIconCallback(eventArgs, notification, self)
+local function createNotificationIconCallback(notification, self)
     self:createNotificationIcon(notification) 
 end
 
 ---------------------------------------------------------------------------------
-local function removeNotificationIconCallback(eventArgs, caller, extraArgs)
+local function removeNotificationIconCallback(caller, extraArgs)
     extraArgs.self:removeNotificationIcon(extraArgs.notificationIcon)
 end
 

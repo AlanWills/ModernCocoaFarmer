@@ -16,12 +16,12 @@ local TopBar =
 }
 
 ---------------------------------------------------------------------------------
-local function showInGameMenu(eventArgs, caller)
+local function showInGameMenu(caller)
     InGameMenu.show(caller:getScreen())
 end
 
 ---------------------------------------------------------------------------------
-local function showDonateMenu(eventArgs, caller)
+local function showDonateMenu(caller)
 end
 
 ---------------------------------------------------------------------------------

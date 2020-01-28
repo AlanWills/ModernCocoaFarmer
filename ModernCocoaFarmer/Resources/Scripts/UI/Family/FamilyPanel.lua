@@ -4,12 +4,12 @@ local ChildIcon = require 'UI.Family.ChildIcon'
 local FamilyPanel = {}
 
 ---------------------------------------------------------------------------------
-local function childIconLeftClickedCallback(eventArgs, caller, extraArgs)
+local function childIconLeftClickedCallback(caller, extraArgs)
     extraArgs.self:selectChildIcon(extraArgs.childToSelect)
 end
 
 ---------------------------------------------------------------------------------
-local function onChildAddedCallback(eventArgs, child, self)
+local function onChildAddedCallback(child, self)
     self:addChildIcon(child)
 end
 

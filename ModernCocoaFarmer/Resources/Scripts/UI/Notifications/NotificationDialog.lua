@@ -7,7 +7,7 @@ local NotificationDialog =
 }
 
 ---------------------------------------------------------------------------------
-local function closeDialog(eventArgs, caller)
+local function closeDialog(caller)
     caller:getParent():die()
 end
 

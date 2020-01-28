@@ -13,12 +13,12 @@ local GameplayScreen =
 }
 
 ---------------------------------------------------------------------------------
-local function onTimeChanged(eventArgs, deltaTime, timeManager)
+local function onTimeChanged(deltaTime, timeManager)
     timeManager:update(deltaTime)
 end
 
 ---------------------------------------------------------------------------------
-local function onGameEventTriggeredCallback(eventArgs, gameEvent)
+local function onGameEventTriggeredCallback(gameEvent)
     GameplayScreen.updateUI()
 end
 

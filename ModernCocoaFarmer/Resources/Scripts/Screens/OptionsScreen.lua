@@ -18,7 +18,7 @@ local function setValueText(gameObject, value)
 end
 
 ---------------------------------------------------------------------------------
-local function masterVolumeSliderValueChanged(eventArgs, caller, newValue)
+local function masterVolumeSliderValueChanged(caller, newValue)
     Audio.setMasterVolume(newValue)
 
     local masterVolumeValueText = caller:findChildGameObject(OptionsScreen.MASTER_VOLUME_VALUE_NAME)
@@ -26,7 +26,7 @@ local function masterVolumeSliderValueChanged(eventArgs, caller, newValue)
 end
 
 ---------------------------------------------------------------------------------
-local function musicVolumeSliderValueChanged(eventArgs, caller, newValue)
+local function musicVolumeSliderValueChanged(caller, newValue)
     Audio.setMusicVolume(newValue)
 
     local musicVolumeValueText = caller:findChildGameObject(OptionsScreen.MUSIC_VOLUME_VALUE_NAME)
@@ -34,7 +34,7 @@ local function musicVolumeSliderValueChanged(eventArgs, caller, newValue)
 end
 
 ---------------------------------------------------------------------------------
-local function sfxVolumeSliderValueChanged(eventArgs, caller, newValue)
+local function sfxVolumeSliderValueChanged(caller, newValue)
     Audio.setSFXVolume(newValue)
 
     local sfxVolumeValueText = caller:findChildGameObject(OptionsScreen.SFX_VOLUME_VALUE_NAME)
@@ -42,7 +42,7 @@ local function sfxVolumeSliderValueChanged(eventArgs, caller, newValue)
 end
 
 ---------------------------------------------------------------------------------
-local function saveAndTransitionToMainMenu(eventArgs, caller)
+local function saveAndTransitionToMainMenu(caller)
     local gameSettings = GameSettings.loadFromDefaultOrCreate()
     gameSettings:synchronizeAudioSettings()
     gameSettings:saveToDefault()

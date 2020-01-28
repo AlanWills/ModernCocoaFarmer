@@ -84,7 +84,7 @@ namespace MCF::Events
 
     if (m_timeManager != nullptr)
     {
-      m_onDayPassedHandle = m_timeManager->getOnDayPassedEvent().subscribe([this](CelesteEngine::EventArgs&) { checkEventsForTriggering(); });
+      m_onDayPassedHandle = m_timeManager->getOnDayPassedEvent().subscribe([this]() { checkEventsForTriggering(); });
     }
   }
 

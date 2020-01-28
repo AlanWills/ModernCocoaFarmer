@@ -12,7 +12,9 @@ namespace MCF::Time
     DECLARE_SCRIPT(TimeNotifier, MCFLibraryDllExport);
 
     public:
-      const CelesteEngine::Event<float>& getOnTimeChangedEvent() const { return m_onTimeChangedEvent; }
+      using TimeChangedEvent = CelesteEngine::Event<float>;
+
+      const TimeChangedEvent& getOnTimeChangedEvent() const { return m_onTimeChangedEvent; }
 
     protected:
       void onUpdate(float elapsedGameTime) override;
@@ -20,6 +22,6 @@ namespace MCF::Time
     private:
       using Inherited = CelesteEngine::Script;
 
-      CelesteEngine::Event<float> m_onTimeChangedEvent;
+      TimeChangedEvent m_onTimeChangedEvent;
   };
 }

@@ -14,7 +14,7 @@ InGameMenu.AUDIO_PLAYING_TEXTURE_PATH = path.combine("Textures", "UI", "Settings
 InGameMenu.oldMasterVolume = 1
 
 ----------------------------------------------------------------------------------------
-local function close(eventArgs, caller)
+local function close(caller)
     caller:getParent():die()
 end
 
@@ -28,7 +28,7 @@ local function setToggleAudioButtonTexture(audioButton, volume)
 end
 
 ----------------------------------------------------------------------------------------
-local function toggleAudio(eventArgs, caller)
+local function toggleAudio(caller)
     local masterVolume = Audio.getMasterVolume()
 
     if masterVolume > 0 then
@@ -47,12 +47,12 @@ local function toggleAudio(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-local function resumeGame(eventArgs, caller)
-    close(eventArgs, caller)
+local function resumeGame(caller)
+    close(caller)
 end
 
 ---------------------------------------------------------------------------------
-local function restartGame(eventArgs, caller)
+local function restartGame(caller)
     caller:getScreen():die()
     
     local GameplayScreen = require 'Screens.GameplayScreen'
@@ -60,7 +60,7 @@ local function restartGame(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-local function toMainMenu(eventArgs, caller)
+local function toMainMenu(caller)
     caller:getScreen():die()
 
     local MainMenuScreen = require 'Screens.MainMenuScreen'
@@ -68,7 +68,7 @@ local function toMainMenu(eventArgs, caller)
 end
 
 ---------------------------------------------------------------------------------
-local function quitGame(eventArgs, caller)
+local function quitGame(caller)
     exit()
 end
 

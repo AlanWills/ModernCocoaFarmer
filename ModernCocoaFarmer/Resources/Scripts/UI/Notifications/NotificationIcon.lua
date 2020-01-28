@@ -8,7 +8,7 @@ local NotificationIcon =
 }
 
 ---------------------------------------------------------------------------------
-local function showNotificationDialogCallback(eventArgs, caller, self)
+local function showNotificationDialogCallback(caller, self)
     self:showNotificationDialog(caller:getScreen())
 end
 
