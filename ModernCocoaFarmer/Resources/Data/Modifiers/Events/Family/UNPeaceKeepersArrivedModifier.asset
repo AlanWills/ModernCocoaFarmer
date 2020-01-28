@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Modifier amount="80" change_type="Delta" occurrence="Instant" period_in_months="0" name="UNPeaceKeepersModifier" />
+<Modifier amount="80" change_type="Delta" occurrence="Instant" name="UNPeaceKeepersModifier" />

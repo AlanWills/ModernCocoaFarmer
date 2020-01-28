@@ -37,8 +37,7 @@ namespace MCF
             sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
             "getAmount", &Modifier::getAmount,
             "isDeltaChange", &Internals::isDeltaChange,
-            "isPeriodicChange", &Internals::isPeriodicChange,
-            "getPeriodInMonths", &Modifier::getPeriodInMonths);
+            "isPeriodicChange", &Internals::isPeriodicChange);
         }
       }
     }

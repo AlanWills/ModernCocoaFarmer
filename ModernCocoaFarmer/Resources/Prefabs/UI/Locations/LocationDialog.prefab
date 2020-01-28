@@ -36,6 +36,18 @@
                 </GameObject>
               </GameObjects>
             </GameObject>
+            <GameObject name="TimeIcon" position="-0.13%, 0.08%">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\Time.png" size="0.03%,0.03%" preserve_aspect_ratio="true"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="TimeText" position="0.02%,0">
+                  <Components>
+                    <TextRenderer text="Error Text" font_height="24" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
             <GameObject name="CloseButton" position="0.15%, 0.15%">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>

@@ -9,6 +9,8 @@
 
 namespace TestCelesteEngine
 {
+  std::unique_ptr<Game> game(nullptr);
+
   //------------------------------------------------------------------------------------------------
   TEST_MODULE_INITIALIZE(TestCelesteEnginePlus_Initialize)
   {
@@ -18,7 +20,7 @@ namespace TestCelesteEngine
     CelesteEngineTestUtils::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
     CelesteEngineTestUtils::TestResources::initialize();
 
-    Game* game = new Game();
+    game = std::make_unique<Game>();
     game->getResourceManager()->setResourcesDirectory(TestResources::getResourcesDirectory());
     game->getAudioManager()->initialize();
     game->getScreenManager()->initialize();

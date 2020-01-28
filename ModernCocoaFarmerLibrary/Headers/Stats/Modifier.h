@@ -21,18 +21,15 @@ namespace MCF
 
         ChangeType getChangeType() const { return m_changeType.getValue(); }
         Occurrence getOccurrence() const { return m_occurrence.getValue(); }
-        float getPeriodInMonths() const { return m_periodInMonths.getValue(); }
 
         static const char* const AMOUNT_FIELD_NAME;
         static const char* const CHANGE_TYPE_FIELD_NAME;
         static const char* const OCCURRENCE_FIELD_NAME;
-        static const char* const PERIOD_IN_MONTHS_FIELD_NAME;
 
       private:
         CelesteEngine::ValueField<float>& m_amount;
         CelesteEngine::ValueField<ChangeType>& m_changeType;
         CelesteEngine::ValueField<Occurrence>& m_occurrence;
-        CelesteEngine::ValueField<float>& m_periodInMonths;
     };
   }
 }

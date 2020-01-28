@@ -5,6 +5,8 @@ local LocationDialog =
     DESCRIPTION_TEXT_NAME = "DescriptionText",
     COST_ICON_NAME = "CostIcon",
     COST_TEXT_NAME = "CostText",
+    TIME_ICON_NAME = "TimeIcon",
+    TIME_TEXT_NAME = "TimeText",
     CLOSE_BUTTON_NAME = "CloseButton",
     STATS_BACKGROUND_NAME = "StatsBackground",
     HEALTH_MODIFIER_TEXT_NAME = "HealthModifierText",
@@ -23,7 +25,39 @@ local function closeCallback(eventArgs, caller)
 end
 
 ----------------------------------------------------------------------------------------
-local function createModifierText(modifier)
+local function formatCostString(cost)
+    if cost > 0 then
+        return tostring(cost)
+    else
+        return "Free"
+    end
+end
+
+----------------------------------------------------------------------------------------
+local function formatTimeString(daysToComplete)
+    local years = math.floor(daysToComplete / 360)
+    local months = math.floor((daysToComplete - 360 * years) / 30)
+    local days = math.floor((daysToComplete - 360 * years - 30 * months))
+
+    local timeString = ""
+
+    if years > 0 then
+        timeString = timeString .. tostring(years) .. "y "
+    end
+
+    if months > 0 then
+        timeString = timeString .. tostring(months) .. "mo "
+    end
+
+    if days > 0 then
+        timeString = timeString .. tostring(days) .. "d"
+    end
+
+    return timeString
+end
+
+----------------------------------------------------------------------------------------
+local function formatModifierString(modifier)
     local modifierText = "";
 
     if modifier:isDeltaChange() then
@@ -50,7 +84,7 @@ end
 ----------------------------------------------------------------------------------------
 local function setModifierText(statsBackground, textName, modifier)
     local text = statsBackground:findChildGameObject(textName):findComponent("TextRenderer")
-    text:setText(createModifierText(modifier))
+    text:setText(formatModifierString(modifier))
 end
 
 ----------------------------------------------------------------------------------------
@@ -76,7 +110,11 @@ function LocationDialog:new(screen, location, selectedChild)
     
     local costIcon = interactableLocationBackground:findChildGameObject(self.COST_ICON_NAME)
     local costText = costIcon:findChildGameObject(self.COST_TEXT_NAME):findComponent("TextRenderer")
-    costText:setText(tostring(location:getMoneyModifier():getAmount()))
+    costText:setText(tostring(formatCostString(location:getMoneyModifier():getAmount())))
+
+    local timeIcon = interactableLocationBackground:findChildGameObject(self.TIME_ICON_NAME)
+    local timeText = timeIcon:findChildGameObject(self.TIME_TEXT_NAME):findComponent("TextRenderer")
+    timeText:setText(formatTimeString(location:getDaysToComplete()))
 
     local closeButton = interactableLocationBackground:findChildGameObject(self.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
