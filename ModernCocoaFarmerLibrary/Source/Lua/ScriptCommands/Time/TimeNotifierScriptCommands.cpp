@@ -8,17 +8,14 @@ using namespace MCF::Time;
 
 namespace MCF::Lua::Time::TimeNotifierScriptCommands
 {
-  namespace Internals
+  //------------------------------------------------------------------------------------------------
+  void subscribeOnTimeChangedCallback(
+    MCF::Time::TimeNotifier& timeNotifier,
+    sol::function callback,
+    sol::object extraArgs)
   {
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnTimeChangedCallback(
-      MCF::Time::TimeNotifier& timeNotifier,
-      sol::function callback,
-      sol::object extraArgs)
-    {
-      CelesteEngine::Lua::subscribeToEvent<TimeNotifier::TimeChangedEvent, float>(
-        timeNotifier.getOnTimeChangedEvent(), callback, extraArgs);
-    }
+    CelesteEngine::Lua::subscribeToEvent<TimeNotifier::TimeChangedEvent, float>(
+      timeNotifier.getOnTimeChangedEvent(), callback, extraArgs);
   }
 
   //------------------------------------------------------------------------------------------------
@@ -27,6 +24,6 @@ namespace MCF::Lua::Time::TimeNotifierScriptCommands
     CelesteEngine::Lua::registerHandleUserType<TimeNotifier>(
       "TimeNotifier",
       sol::base_classes, sol::bases<CelesteEngine::Script, CelesteEngine::Component, CelesteEngine::Entity, CelesteEngine::Object>(),
-      "subscribeOnTimeChangedCallback", &Internals::subscribeOnTimeChangedCallback);
+      "subscribeOnTimeChangedCallback", &subscribeOnTimeChangedCallback);
   }
 }
