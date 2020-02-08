@@ -27,7 +27,7 @@ namespace MCF
 
         SceneBroadcaster& operator=(const SceneBroadcaster&) = delete;
 
-        void start(const CelesteEngine::ScreenManager& screenManager);
+        void start();
         void update(const CelesteEngine::ScreenManager& screenManager);
         void stop();
 

@@ -31,7 +31,7 @@ namespace MCF
     CelesteEngine::Networking::initialize();
 
     m_sceneBroadcaster.reset(new Debugging::SceneBroadcaster());
-    m_sceneBroadcaster->start(*getScreenManager());
+    m_sceneBroadcaster->start();
 
     m_luaScriptReceiver.reset(new Debugging::LuaScriptReceiver());
     m_luaScriptReceiver->start();

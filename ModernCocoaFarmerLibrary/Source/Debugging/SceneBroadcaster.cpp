@@ -32,7 +32,7 @@ namespace MCF
     }
 
     //------------------------------------------------------------------------------------------------
-    void SceneBroadcaster::start(const ScreenManager& screenManager)
+    void SceneBroadcaster::start()
     {
       m_server.connectAsync(13000);
     }
