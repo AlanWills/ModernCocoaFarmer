@@ -36,7 +36,7 @@ namespace MCF::Events::Conditions
     Money::MoneyManager&,
     Family::FamilyManager&) const
   {
-    observer_ptr<Data> data = getResourceManager()->load<Data>(getDataStorePath());
+    observer_ptr<Data> data = getResourceManager().load<Data>(getDataStorePath());
     if (data == nullptr)
     {
       ASSERT_FAIL();

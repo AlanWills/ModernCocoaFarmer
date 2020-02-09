@@ -32,7 +32,7 @@ namespace MCF::Events::Effects
     Locations::LocationsManager&,
     Notifications::NotificationManager&) const
   {
-    observer_ptr<Data> data = getResourceManager()->load<Data>(getDataStorePath());
+    observer_ptr<Data> data = getResourceManager().load<Data>(getDataStorePath());
     if (data == nullptr)
     {
       ASSERT_FAIL();
