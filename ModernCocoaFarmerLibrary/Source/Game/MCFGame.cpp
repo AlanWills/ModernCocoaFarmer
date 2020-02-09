@@ -38,7 +38,7 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   void MCFGame::onUpdate(float elapsedGameTime)
   {
-    m_sceneBroadcaster->update(*getScreenManager());
+    m_sceneBroadcaster->update(getScreenManager());
     m_luaScriptReceiver->update();
   }
 
