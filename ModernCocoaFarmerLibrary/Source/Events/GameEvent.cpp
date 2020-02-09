@@ -35,7 +35,7 @@ namespace MCF::Events
       const tinyxml2::XMLElement* conditionsElement = element->FirstChildElement(CONDITIONS_ELEMENT_NAME);
       if (conditionsElement != nullptr)
       {
-        for (const tinyxml2::XMLElement* condition : children(conditionsElement, CONDITION_ELEMENT_NAME))
+        for (const tinyxml2::XMLElement* condition : CelesteEngine::XML::children(conditionsElement, CONDITION_ELEMENT_NAME))
         {
           CelesteEngine::ScriptableObjectDataConverter conditionDataConverter(condition->Name());
           if (conditionDataConverter.convertFromXML(condition))
@@ -62,7 +62,7 @@ namespace MCF::Events
       const tinyxml2::XMLElement* effectsElement = element->FirstChildElement(EFFECTS_ELEMENT_NAME);
       if (effectsElement != nullptr)
       {
-        for (const tinyxml2::XMLElement* effectElement : children(effectsElement, EFFECT_ELEMENT_NAME))
+        for (const tinyxml2::XMLElement* effectElement : CelesteEngine::XML::children(effectsElement, EFFECT_ELEMENT_NAME))
         {
           CelesteEngine::ScriptableObjectDataConverter effectDataConverter(effectElement->Name());
           if (effectDataConverter.convertFromXML(effectElement))

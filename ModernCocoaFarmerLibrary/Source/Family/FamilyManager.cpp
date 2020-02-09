@@ -35,13 +35,13 @@ namespace MCF::Family
     Inherited::doDeserialize(element);
 
     std::vector<std::string> names;
-    XMLValueError error = CelesteEngine::XML::getChildElementDataAsVector(
+    CelesteEngine::XML::XMLValueError error = CelesteEngine::XML::getChildElementDataAsVector(
       element,
       CHILDREN_NAMES_ELEMENT_NAME,
       NAME_ELEMENT_NAME,
       names);
 
-    if (error == XMLValueError::kError)
+    if (error == CelesteEngine::XML::XMLValueError::kError)
     {
       ASSERT_FAIL();
       return false;

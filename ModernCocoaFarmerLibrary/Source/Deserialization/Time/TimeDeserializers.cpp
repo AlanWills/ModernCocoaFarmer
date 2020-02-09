@@ -1,4 +1,5 @@
 #include "Deserialization/Time/TimeDeserializers.h"
+#include "Debug/Assert.h"
 
 
 namespace CelesteEngine

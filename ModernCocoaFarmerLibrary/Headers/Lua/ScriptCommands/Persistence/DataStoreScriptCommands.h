@@ -1,16 +1,7 @@
 #pragma once
 
 
-namespace MCF
+namespace MCF::Lua::Persistence::DataStoreScriptCommands
 {
-  namespace Lua
-  {
-    namespace Persistence
-    {
-      namespace DataStoreScriptCommands
-      {
-        void initialize();
-      }
-    }
-  }
+  void initialize();
 }

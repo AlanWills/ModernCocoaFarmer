@@ -31,7 +31,7 @@ namespace MCF::Locations
     m_prefab(createReferenceField<std::string>(PREFAB_FIELD_NAME)),
     m_description(createReferenceField<std::string>(DESCRIPTION_FIELD_NAME)),
     m_childLeavesNotificationDescription(createReferenceField<std::string>(CHILD_LEAVES_NOTIFICATION_DESCRIPTION_FIELD_NAME)),
-    m_childLeavesNotificationIcon(createValueField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>(CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME)),
+    m_childLeavesNotificationIcon(createValueField<observer_ptr<CelesteEngine::Resources::Texture2D>>(CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME)),
     m_healthModifier(createScriptableObject<Stats::ChildModifier>(HEALTH_MODIFIER_FIELD_NAME)),
     m_safetyModifier(createScriptableObject<Stats::ChildModifier>(SAFETY_MODIFIER_FIELD_NAME)),
     m_educationModifier(createScriptableObject<Stats::ChildModifier>(EDUCATION_MODIFIER_FIELD_NAME)),
@@ -55,7 +55,7 @@ namespace MCF::Locations
       const tinyxml2::XMLElement* effectsElement = element->FirstChildElement(CHILD_LEAVES_EFFECTS_ELEMENT_NAME.c_str());
       if (effectsElement != nullptr)
       {
-        for (const tinyxml2::XMLElement* effectElement : children(effectsElement, CHILD_LEAVES_EFFECT_ELEMENT_NAME))
+        for (const tinyxml2::XMLElement* effectElement : CelesteEngine::XML::children(effectsElement, CHILD_LEAVES_EFFECT_ELEMENT_NAME))
         {
           CelesteEngine::ScriptableObjectDataConverter effectDataConverter(effectElement->Name());
           if (effectDataConverter.convertFromXML(effectElement))

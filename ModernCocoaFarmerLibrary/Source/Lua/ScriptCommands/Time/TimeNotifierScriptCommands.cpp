@@ -21,7 +21,7 @@ namespace MCF::Lua::Time::TimeNotifierScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerHandleUserType<TimeNotifier>(
+    CelesteEngine::Lua::registerUserType<TimeNotifier>(
       "TimeNotifier",
       sol::base_classes, sol::bases<CelesteEngine::Script, CelesteEngine::Component, CelesteEngine::Entity, CelesteEngine::Object>(),
       "subscribeOnTimeChangedCallback", &subscribeOnTimeChangedCallback);

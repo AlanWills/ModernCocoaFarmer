@@ -59,7 +59,7 @@ namespace MCF
       // Reset the string
       m_message.clear();
 
-      for (const Screen* screen : screenManager)
+      for (const Screen& screen : screenManager)
       {
         // Should be empty from previous screen because of complete traversal
         ASSERT(gameObjects.empty());
@@ -68,20 +68,20 @@ namespace MCF
         m_message.append("[[");
 
         // Add screen name
-        m_message.append(deinternString(screen->getName()));
+        m_message.append(deinternString(screen.getName()));
         m_message.push_back(m_fieldDelimiter);
 
         // And number of root children
-        m_message.append(std::to_string(screen->getScreenRoot()->getChildCount()));
+        m_message.append(std::to_string(screen.getScreenRoot().getChildCount()));
         m_message.push_back(m_fieldDelimiter);
 
-        Transform* root = const_cast<Transform*>(screen->getScreenRoot());
+        Transform& root = const_cast<Transform&>(screen.getScreenRoot());
 
         // Then serialize each child using left side tree traversal
-        for (size_t childIndex = 0, n = root->getChildCount(); childIndex < n; ++childIndex)
+        for (size_t childIndex = 0, n = root.getChildCount(); childIndex < n; ++childIndex)
         {
-          // Yeah this isn't great - we need api for getting const children
-          serializeGameObject(const_cast<GameObject&>(*root->getChildTransform(childIndex)->getGameObject()), m_message);
+          // Yeah this isn't great - we need api for getting non-const children
+          serializeGameObject(const_cast<GameObject&>(*root.getChildTransform(childIndex)->getGameObject()), m_message);
         }
 
         // End delimiter for content
@@ -98,7 +98,7 @@ namespace MCF
       output.append(deinternString(gameObject.getName()));
       output.push_back(m_fieldDelimiter);
 
-      Handle<Transform> transform = gameObject.getTransform();
+      observer_ptr<Transform> transform = gameObject.getTransform();
 
       // Local Translation
       {

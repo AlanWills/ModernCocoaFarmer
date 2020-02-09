@@ -13,14 +13,14 @@ namespace MCF::Events::Conditions
     DECLARE_SCRIPTABLE_OBJECT(TimeComparisonCondition, MCFLibraryDllExport);
 
     public:
-      Time::TimePeriod getTimeToCheck() const { return m_timeToCheck.getValue(); }
-      void setTimeToCheck(Time::TimePeriod timePeriod) { m_timeToCheck.setValue(timePeriod); }
+      inline Time::TimePeriod getTimeToCheck() const { return m_timeToCheck.getValue(); }
+      inline void setTimeToCheck(Time::TimePeriod timePeriod) { m_timeToCheck.setValue(timePeriod); }
 
-      Logic::ComparisonOperator getComparisonOperator() const { return m_comparisonOperator.getValue(); }
-      void setComparisonOperator(Logic::ComparisonOperator comparisonOperator) { m_comparisonOperator.setValue(comparisonOperator); }
+      inline Logic::ComparisonOperator getComparisonOperator() const { return m_comparisonOperator.getValue(); }
+      inline void setComparisonOperator(Logic::ComparisonOperator comparisonOperator) { m_comparisonOperator.setValue(comparisonOperator); }
 
-      size_t getValue() const { return m_value.getValue(); }
-      void setValue(size_t value) { m_value.setValue(value); }
+      inline size_t getValue() const { return m_value.getValue(); }
+      inline void setValue(size_t value) { m_value.setValue(value); }
 
       bool isConditionMet(
         Time::TimeManager& timeManager,

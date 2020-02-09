@@ -60,18 +60,18 @@ namespace MCF::Locations
       using ChildSentEvent = CelesteEngine::Event<const Family::Child&>;
       using ChildLeftEvent = CelesteEngine::Event<const Family::Child&>;
 
-      const std::string& getPrefab() const { return m_prefab.getValue(); }
-      const std::string& getDescription() const { return m_description.getValue(); }
-      const std::string& getChildLeavesNotificationDescription() const { return m_childLeavesNotificationDescription.getValue(); }
-      CelesteEngine::Handle<CelesteEngine::Resources::Texture2D> getChildLeavesNotificationIcon() const { return m_childLeavesNotificationIcon.getValue(); }
+      inline const std::string& getPrefab() const { return m_prefab.getValue(); }
+      inline const std::string& getDescription() const { return m_description.getValue(); }
+      inline const std::string& getChildLeavesNotificationDescription() const { return m_childLeavesNotificationDescription.getValue(); }
+      inline observer_ptr<CelesteEngine::Resources::Texture2D> getChildLeavesNotificationIcon() const { return m_childLeavesNotificationIcon.getValue(); }
 
-      const Stats::ChildModifier& getHealthModifier() const { return m_healthModifier; }
-      const Stats::ChildModifier& getSafetyModifier() const { return m_safetyModifier; }
-      const Stats::ChildModifier& getEducationModifier() const { return m_educationModifier; }
-      const Stats::ChildModifier& getHappinessModifier() const { return m_happinessModifier; }
-      const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
+      inline const Stats::ChildModifier& getHealthModifier() const { return m_healthModifier; }
+      inline const Stats::ChildModifier& getSafetyModifier() const { return m_safetyModifier; }
+      inline const Stats::ChildModifier& getEducationModifier() const { return m_educationModifier; }
+      inline const Stats::ChildModifier& getHappinessModifier() const { return m_happinessModifier; }
+      inline const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
 
-      size_t getDaysToComplete() const { return m_daysToComplete.getValue(); }
+      inline size_t getDaysToComplete() const { return m_daysToComplete.getValue(); }
       size_t getChildTime(const std::string& childName) const;
 
       void sendChild(Family::Child& child);
@@ -82,8 +82,8 @@ namespace MCF::Locations
         Locations::LocationsManager& locationsManager,
         Notifications::NotificationManager& notificationManager);
 
-      const ChildSentEvent& getOnChildSentEvent() const { return m_onChildSentEvent; }
-      const ChildLeftEvent& getOnChildLeftEvent() const { return m_onChildLeftEvent; }
+      inline const ChildSentEvent& getOnChildSentEvent() const { return m_onChildSentEvent; }
+      inline const ChildLeftEvent& getOnChildLeftEvent() const { return m_onChildLeftEvent; }
 
       static const std::string PREFAB_FIELD_NAME;
       static const std::string DESCRIPTION_FIELD_NAME;
@@ -114,7 +114,7 @@ namespace MCF::Locations
       CelesteEngine::ReferenceField<std::string>& m_prefab;
       CelesteEngine::ReferenceField<std::string>& m_description;
       CelesteEngine::ReferenceField<std::string>& m_childLeavesNotificationDescription;
-      CelesteEngine::ValueField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>& m_childLeavesNotificationIcon;
+      CelesteEngine::ValueField<observer_ptr<CelesteEngine::Resources::Texture2D>>& m_childLeavesNotificationIcon;
       Stats::ChildModifier& m_healthModifier;
       Stats::ChildModifier& m_safetyModifier;
       Stats::ChildModifier& m_educationModifier;

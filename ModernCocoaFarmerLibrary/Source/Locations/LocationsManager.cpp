@@ -22,15 +22,15 @@ namespace MCF::Locations
   //------------------------------------------------------------------------------------------------
   bool LocationsManager::doDeserialize(const tinyxml2::XMLElement* element)
   {
-    if (!hasChildElement(element, LOCATIONS_ELEMENT_NAME))
+    if (!CelesteEngine::XML::hasChildElement(element, LOCATIONS_ELEMENT_NAME))
     {
       return true;
     }
 
     std::vector<std::string> locationPrefabs;
-    XMLValueError result = getChildElementDataAsVector(element, LOCATIONS_ELEMENT_NAME, LOCATION_ELEMENT_NAME, locationPrefabs);
+    CelesteEngine::XML::XMLValueError result = CelesteEngine::XML::getChildElementDataAsVector(element, LOCATIONS_ELEMENT_NAME, LOCATION_ELEMENT_NAME, locationPrefabs);
     
-    if (result == XMLValueError::kError)
+    if (result == CelesteEngine::XML::XMLValueError::kError)
     {
       ASSERT_FAIL();
       return false;

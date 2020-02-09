@@ -13,7 +13,7 @@ namespace MCF::Notifications
   //------------------------------------------------------------------------------------------------
   Notification::Notification() :
     m_description(createReferenceField<std::string>(DESCRIPTION_ATTRIBUTE_NAME)),
-    m_icon(createValueField<CelesteEngine::Handle<CelesteEngine::Resources::Texture2D>>(ICON_ATTRIBUTE_NAME))
+    m_icon(createValueField<observer_ptr<CelesteEngine::Resources::Texture2D>>(ICON_ATTRIBUTE_NAME))
   {
   }
 }
