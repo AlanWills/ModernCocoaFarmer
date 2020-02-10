@@ -22,7 +22,7 @@ namespace TestCelesteEngine
 
     game = std::make_unique<Game>();
     game->getResourceManager().setResourcesDirectory(TestResources::getResourcesDirectory());
-    game->getAudioManager()->initialize();
+    game->getAudioManager().initialize();
     game->getScreenManager().initialize();
     game->getPhysicsManager()->initialize();
     game->getInputManager().initialize();
@@ -40,7 +40,7 @@ namespace TestCelesteEngine
     Game::current()->getScreenManager().die();
     Game::current()->getInputManager().die();
     Game::current()->getPhysicsManager()->die();
-    Game::current()->getAudioManager()->die();
+    Game::current()->getAudioManager().die();
     Game::current()->getResourceManager().die();
     Game::current()->exit();
 
