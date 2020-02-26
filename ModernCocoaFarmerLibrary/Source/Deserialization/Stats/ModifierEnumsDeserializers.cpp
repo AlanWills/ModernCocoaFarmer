@@ -1,7 +1,7 @@
 #include "Deserialization/Stats/ModifierEnumsDeserializers.h"
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template<>

@@ -39,10 +39,10 @@ namespace MCF::Events::Conditions
       static const char* const DEFAULT_VALUE_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ReferenceField<std::string>& m_dataStorePath;
-      CelesteEngine::ReferenceField<std::string>& m_valueName;
-      CelesteEngine::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
-      CelesteEngine::ValueField<bool>& m_expectedValue;
-      CelesteEngine::ValueField<bool>& m_defaultValue;
+      Celeste::ReferenceField<std::string>& m_dataStorePath;
+      Celeste::ReferenceField<std::string>& m_valueName;
+      Celeste::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
+      Celeste::ValueField<bool>& m_expectedValue;
+      Celeste::ValueField<bool>& m_defaultValue;
   };
 }

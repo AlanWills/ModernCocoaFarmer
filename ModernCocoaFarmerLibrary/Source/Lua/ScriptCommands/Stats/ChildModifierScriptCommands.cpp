@@ -11,9 +11,9 @@ namespace MCF::Lua::Stats::ChildModifierScriptCommands
   {
     using ChildModifier = MCF::Stats::ChildModifier;
 
-    CelesteEngine::Lua::registerScriptableObjectUserType<ChildModifier>(
+    Celeste::Lua::registerScriptableObjectUserType<ChildModifier>(
       "ChildModifier",
-      sol::base_classes, sol::bases<MCF::Stats::Modifier, CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<MCF::Stats::Modifier, Celeste::ScriptableObject>(),
       "getAppliesToAllChildren", &ChildModifier::getAppliesToAllChildren);
   }
 }

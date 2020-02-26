@@ -7,18 +7,18 @@
 #include "UtilityHeaders/UnitTestHeaders.h"
 
 
-namespace TestCelesteEngine
+namespace TestCeleste
 {
   std::unique_ptr<Game> game(nullptr);
 
   //------------------------------------------------------------------------------------------------
-  TEST_MODULE_INITIALIZE(TestCelesteEnginePlus_Initialize)
+  TEST_MODULE_INITIALIZE(TestCelestePlus_Initialize)
   {
     // Issues with unique_ptrs over dll boundaries so have to do this in the test project
     Assertion::setAsserter(new NullAsserter());
 
-    CelesteEngineTestUtils::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
-    CelesteEngineTestUtils::TestResources::initialize();
+    CelesteTestUtils::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
+    CelesteTestUtils::TestResources::initialize();
 
     game = std::make_unique<Game>();
     game->getResourceManager().setResourcesDirectory(TestResources::getResourcesDirectory());
@@ -34,7 +34,7 @@ namespace TestCelesteEngine
   }
 
   //------------------------------------------------------------------------------------------------
-  TEST_MODULE_CLEANUP(TestCelesteEnginePlus_Cleanup)
+  TEST_MODULE_CLEANUP(TestCelestePlus_Cleanup)
   {
     // Issues with unique_ptrs over dll boundaries so have to do this in the test project
     Game::current()->getScreenManager().die();

@@ -4,7 +4,7 @@
 #include "Stats/ModifierEnums.h"
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template<>

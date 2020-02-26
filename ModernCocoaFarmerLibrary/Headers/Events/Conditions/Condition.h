@@ -20,7 +20,7 @@ namespace MCF::Family
 
 namespace MCF::Events::Conditions
 {
-  class Condition : public CelesteEngine::ScriptableObject
+  class Condition : public Celeste::ScriptableObject
   {
     public:
       virtual bool isConditionMet(

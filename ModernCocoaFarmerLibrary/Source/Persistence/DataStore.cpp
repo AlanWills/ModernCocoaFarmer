@@ -95,7 +95,7 @@ namespace MCF
     {
       std::unordered_map<std::string, Data> dataLookup;
 
-      for (const auto& element : CelesteEngine::XML::children(&dataElementRoot))
+      for (const auto& element : Celeste::XML::children(&dataElementRoot))
       {
         size_t dataType = static_cast<size_t>(element->UnsignedAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(m_deserializeFunctions.size())));
         bool deserializeFuncExists = dataType < m_deserializeFunctions.size();

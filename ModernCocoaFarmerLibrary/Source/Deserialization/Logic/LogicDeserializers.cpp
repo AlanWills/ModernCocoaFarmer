@@ -1,7 +1,7 @@
 #include "Deserialization/Logic/LogicDeserializers.h"
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template<>

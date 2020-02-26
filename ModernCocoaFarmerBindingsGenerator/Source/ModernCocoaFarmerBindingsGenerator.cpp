@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 
-using namespace CelesteEngine;
+using namespace Celeste;
 using namespace BindingsGenerator;
 
 

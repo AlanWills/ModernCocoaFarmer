@@ -11,7 +11,7 @@ namespace MCF::Utils
   {
     for (const auto& locaToken : locaTokens)
     {
-      CelesteEngine::replaceAll(originalString, locaToken.first, locaToken.second);
+      Celeste::replaceAll(originalString, locaToken.first, locaToken.second);
     }
 
     return originalString;

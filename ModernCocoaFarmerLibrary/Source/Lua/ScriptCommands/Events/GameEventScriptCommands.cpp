@@ -11,8 +11,8 @@ namespace MCF::Lua::Events::GameEventScriptCommands
   {
     using GameEvent = MCF::Events::GameEvent;
 
-    CelesteEngine::Lua::registerScriptableObjectUserType<GameEvent>(
+    Celeste::Lua::registerScriptableObjectUserType<GameEvent>(
       GameEvent::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>());
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>());
   }
 }

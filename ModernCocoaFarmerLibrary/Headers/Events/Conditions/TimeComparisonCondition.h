@@ -34,8 +34,8 @@ namespace MCF::Events::Conditions
     private:
       bool check(size_t currentTimePeriod) const;
 
-      CelesteEngine::ValueField<Time::TimePeriod>& m_timeToCheck;
-      CelesteEngine::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
-      CelesteEngine::ValueField<size_t>& m_value;
+      Celeste::ValueField<Time::TimePeriod>& m_timeToCheck;
+      Celeste::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
+      Celeste::ValueField<size_t>& m_value;
   };
 }

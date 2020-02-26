@@ -12,12 +12,12 @@ namespace MCF::Stats
 
 namespace MCF::Family
 {
-  class Child : public CelesteEngine::ScriptableObject
+  class Child : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(Child, MCFLibraryDllExport)
 
     public:
-      using OnSelectedChangedEvent = CelesteEngine::Event<Child&>;
+      using OnSelectedChangedEvent = Celeste::Event<Child&>;
 
       float getHealth() const { return m_health.getValue(); }
       void setHealth(float health) const { return m_health.setValue(health); }
@@ -51,14 +51,14 @@ namespace MCF::Family
       static const char* const HAPPINESS_FIELD_NAME;
 
     private:
-      void applyModifier(Stats::Modifier& modifier, CelesteEngine::ValueField<float>& attributeToModify);
-      void applyInstantModifier(Stats::Modifier& modifier, CelesteEngine::ValueField<float>& attributeToModify);
-      void applyPeriodicModifier(Stats::Modifier& modifier, CelesteEngine::ValueField<float>& attributeToModify);
+      void applyModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
+      void applyInstantModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
+      void applyPeriodicModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
 
-      CelesteEngine::ValueField<float>& m_health;
-      CelesteEngine::ValueField<float>& m_safety;
-      CelesteEngine::ValueField<float>& m_education;
-      CelesteEngine::ValueField<float>& m_happiness;
+      Celeste::ValueField<float>& m_health;
+      Celeste::ValueField<float>& m_safety;
+      Celeste::ValueField<float>& m_education;
+      Celeste::ValueField<float>& m_happiness;
       
       std::string m_currentLocation;
 

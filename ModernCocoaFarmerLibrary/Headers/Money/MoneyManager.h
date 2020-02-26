@@ -12,12 +12,12 @@ namespace MCF::Stats
 
 namespace MCF::Money
 {
-  class MoneyManager : public CelesteEngine::ScriptableObject
+  class MoneyManager : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(MoneyManager, MCFLibraryDllExport);
 
     public:
-      using MoneyChangedEvent = CelesteEngine::Event<int>;
+      using MoneyChangedEvent = Celeste::Event<int>;
 
       int getMoney() const { return m_money.getValue(); }
       void setMoney(int money);
@@ -33,7 +33,7 @@ namespace MCF::Money
       static const char* const SALARY_LEVEL_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ValueField<int>& m_money;
-      CelesteEngine::ValueField<unsigned int>& m_salaryLevel;
+      Celeste::ValueField<int>& m_money;
+      Celeste::ValueField<unsigned int>& m_salaryLevel;
   };
 }

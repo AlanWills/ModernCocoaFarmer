@@ -10,7 +10,7 @@ cd %ProjectDir%
 (robocopy Resources %ResourcesDir% /E /IS /IT /XO)
 
 echo "Executing Lua Script Validation"
-call ..\CelesteEngine\DevTools\LuaScriptValidator\LuaScriptValidator.exe %ResourcesDir%
+call ..\Celeste\DevTools\LuaScriptValidator\LuaScriptValidator.exe %ResourcesDir%
 
 IF %ERRORLEVEL% NEQ 0 (
   echo "Lua Script Validation Failed"
@@ -19,7 +19,7 @@ IF %ERRORLEVEL% NEQ 0 (
 
 echo "Lua Script Validation Passed"
 echo "Executing Prefab Validation"
-call ..\CelesteEngine\DevTools\PrefabValidator\PrefabValidator.exe %ResourcesDir%
+call ..\Celeste\DevTools\PrefabValidator\PrefabValidator.exe %ResourcesDir%
 
 IF %ERRORLEVEL% NEQ 0 (
   echo "Prefab Validation Failed"
@@ -28,7 +28,7 @@ IF %ERRORLEVEL% NEQ 0 (
 
 echo "Prefab Validation Passed"
 echo "Executing Scene Validation"
-call ..\CelesteEngine\DevTools\SceneValidator\SceneValidator.exe %ResourcesDir%
+call ..\Celeste\DevTools\SceneValidator\SceneValidator.exe %ResourcesDir%
 
 IF %ERRORLEVEL% NEQ 0 (
   echo "Scene Validation Failed"
@@ -37,4 +37,4 @@ IF %ERRORLEVEL% NEQ 0 (
 
 echo "Scene Validation Passed"
 
-rem call ..\CelesteEngine\DevTools\ScriptableObjectValidator\ScriptableObjectValidator.exe %ResourcesDir%
+rem call ..\Celeste\DevTools\ScriptableObjectValidator\ScriptableObjectValidator.exe %ResourcesDir%

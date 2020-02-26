@@ -27,7 +27,7 @@ namespace MCF::Events::Conditions
       static const char* const VALUE_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
-      CelesteEngine::ValueField<float>& m_value;
+      Celeste::ValueField<Logic::ComparisonOperator>& m_comparisonOperator;
+      Celeste::ValueField<float>& m_value;
   };
 }

@@ -7,7 +7,7 @@
 #include <string>
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   class ScreenManager;
   class GameObject;
@@ -28,11 +28,11 @@ namespace MCF
         SceneBroadcaster& operator=(const SceneBroadcaster&) = delete;
 
         void start();
-        void update(const CelesteEngine::ScreenManager& screenManager);
+        void update(const Celeste::ScreenManager& screenManager);
         void stop();
 
       private:
-        void serializeGameObject(CelesteEngine::GameObject& gameObject, std::string& output) const;
+        void serializeGameObject(Celeste::GameObject& gameObject, std::string& output) const;
 
         Networking::SocketServer m_server;
         std::string m_message;

@@ -26,7 +26,7 @@ namespace MCF::Notifications
 
 namespace MCF::Events::Effects
 {
-  class Effect : public CelesteEngine::ScriptableObject
+  class Effect : public Celeste::ScriptableObject
   {
     public:
       virtual ~Effect() = default;

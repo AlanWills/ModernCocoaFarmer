@@ -11,7 +11,7 @@ namespace MCF
 {
   namespace Stats
   {
-    class Modifier : public CelesteEngine::ScriptableObject
+    class Modifier : public Celeste::ScriptableObject
     {
       DECLARE_SCRIPTABLE_OBJECT(Modifier, MCFLibraryDllExport);
 
@@ -27,9 +27,9 @@ namespace MCF
         static const char* const OCCURRENCE_FIELD_NAME;
 
       private:
-        CelesteEngine::ValueField<float>& m_amount;
-        CelesteEngine::ValueField<ChangeType>& m_changeType;
-        CelesteEngine::ValueField<Occurrence>& m_occurrence;
+        Celeste::ValueField<float>& m_amount;
+        Celeste::ValueField<ChangeType>& m_changeType;
+        Celeste::ValueField<Occurrence>& m_occurrence;
     };
   }
 }

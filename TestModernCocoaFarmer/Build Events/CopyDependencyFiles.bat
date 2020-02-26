@@ -8,6 +8,6 @@ rem echo %OutputDir%..\..\..\..\3rdParty\DLL >> log.txt
 
 cd %OutputDir%
 
-(robocopy ..\..\..\..\CelesteEngine\TestUtils\bin\%Platform%\%Configuration%\ .\ /E /IS /IT /XO) &
-(robocopy ..\..\..\..\CelesteEngine\CelesteEngineTestUtils\bin\%Platform%\%Configuration%\ .\ /E /IS /IT /XO) &
+(robocopy ..\..\..\..\Celeste\TestUtils\bin\%Platform%\%Configuration%\ .\ /E /IS /IT /XO) &
+(robocopy ..\..\..\..\Celeste\CelesteTestUtils\bin\%Platform%\%Configuration%\ .\ /E /IS /IT /XO) &
 (robocopy ..\..\..\..\ModernCocoaFarmerLibrary\bin\%Platform%\%Configuration%\ .\ /E /IS /IT /XO) & exit 0

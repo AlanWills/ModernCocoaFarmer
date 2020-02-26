@@ -162,7 +162,7 @@
     <None Include="Build Events\CustomBuildStep.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CelesteEngine\CelesteEngine\CelesteEngine.vcxproj">
+    <ProjectReference Include="..\Celeste\Celeste\Celeste.vcxproj">
       <Project>{e9980a8d-828e-44f0-978e-a57abc348f47}</Project>
     </ProjectReference>
   </ItemGroup>
@@ -222,7 +222,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <LibraryPath>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform)\$(Configuration);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LibraryPath>$(ProjectDir)..\Celeste\3rdParty\Lib\$(Platform)\$(Configuration);$(LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <CustomBuildBeforeTargets>PreBuildEvent</CustomBuildBeforeTargets>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -244,7 +244,7 @@
       <PreprocessorDefinitions>BUILDING_MCF_LIBRARY_DLL;CURL_STATICLIB;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp;$(ProjectDir)..\CelesteEngine\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2;$(ProjectDir)..\CelesteEngine\3rdParty\Include\ffmpeg</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Celeste\3rdParty\Include\Assimp;$(ProjectDir)..\Celeste\Lua\Headers;$(ProjectDir)Headers;$(ProjectDir)..\Celeste\Celeste\Headers;$(ProjectDir)..\Celeste\3rdParty\Include;$(ProjectDir)..\Celeste\3rdParty\Include\freetype2;$(ProjectDir)..\Celeste\3rdParty\Include\ffmpeg</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -252,16 +252,16 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>CelesteEngine.lib;libcurl.lib;curlcpp.lib;Crypt32.lib;ws2_32.lib;winmm.lib;wldap32.lib;swscale.lib;avutil.lib;avcodec.lib;avformat.lib;CelesteEngine.lib;assimp-vc140-mt.lib;liblua53.lib;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\CelesteEngine\CelesteEngine\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Celeste.lib;libcurl.lib;curlcpp.lib;Crypt32.lib;ws2_32.lib;winmm.lib;wldap32.lib;swscale.lib;avutil.lib;avcodec.lib;avformat.lib;Celeste.lib;assimp-vc140-mt.lib;liblua53.lib;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Celeste\Celeste\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
       <Command>call "$(ProjectDir)Build Events\CustomBuildStep.bat" "$(ProjectDir)" $(Configuration) $(Platform) </Command>
       <Outputs>Force.txt</Outputs>
     </CustomBuildStep>
     <Lib>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\CelesteEngine\CelesteEngine\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libcurl.lib;curlcpp.lib;Crypt32.lib;ws2_32.lib;winmm.lib;wldap32.lib;swscale.lib;avutil.lib;avcodec.lib;avformat.lib;CelesteEngine.lib;assimp-vc140-mt.lib;liblua53.lib;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Celeste\Celeste\bin\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcurl.lib;curlcpp.lib;Crypt32.lib;ws2_32.lib;winmm.lib;wldap32.lib;swscale.lib;avutil.lib;avcodec.lib;avformat.lib;Celeste.lib;assimp-vc140-mt.lib;liblua53.lib;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;glew32.lib;opengl32.lib;glfw3dll.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

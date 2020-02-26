@@ -26,9 +26,9 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<TimeManager>(
+    Celeste::Lua::registerScriptableObjectUserType<TimeManager>(
       TimeManager::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getCurrentDay", &TimeManager::getCurrentDay,
       "getCurrentMonth", &TimeManager::getCurrentMonth,
       "getCurrentYear", &TimeManager::getCurrentYear,

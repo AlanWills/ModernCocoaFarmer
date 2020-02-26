@@ -23,7 +23,7 @@ namespace MCF
   }
 }
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template <>

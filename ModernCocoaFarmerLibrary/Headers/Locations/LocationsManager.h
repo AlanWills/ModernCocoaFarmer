@@ -31,7 +31,7 @@ namespace MCF::Locations
 {
   class Location;
 
-  class LocationsManager : public CelesteEngine::ScriptableObject
+  class LocationsManager : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
 

@@ -18,17 +18,17 @@ namespace MCF::Family
 {
   class Child;
 
-  class FamilyManager : public CelesteEngine::ScriptableObject
+  class FamilyManager : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(FamilyManager, MCFLibraryDllExport);
 
     private:
-      using Inherited = CelesteEngine::ScriptableObject;
+      using Inherited = Celeste::ScriptableObject;
       using ChildrenNames = std::queue<std::string>;
       using Children = std::vector<std::unique_ptr<Child>>;
 
     public:
-      using ChildAddedEvent = CelesteEngine::Event<Child&>;
+      using ChildAddedEvent = Celeste::Event<Child&>;
 
       size_t getChildCount() const { return m_children.size(); }
       observer_ptr<Child> getChild(size_t childIndex) const;

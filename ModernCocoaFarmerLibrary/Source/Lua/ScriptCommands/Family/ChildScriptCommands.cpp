@@ -17,16 +17,16 @@ namespace MCF::Lua::Family::ChildScriptCommands
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<Child::OnSelectedChangedEvent, Child&>(child.getOnSelectedChangedEvent(), callback, extraArgs);
+      Celeste::Lua::subscribeToEvent<Child::OnSelectedChangedEvent, Child&>(child.getOnSelectedChangedEvent(), callback, extraArgs);
     }
   }
 
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<Child>(
+    Celeste::Lua::registerScriptableObjectUserType<Child>(
       Child::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getHealth", &Child::getHealth,
       "setHealth", &Child::setHealth,
       "getSafety", &Child::getSafety,

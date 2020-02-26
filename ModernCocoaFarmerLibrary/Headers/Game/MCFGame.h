@@ -15,7 +15,7 @@ namespace MCF
     class LuaScriptReceiver;
   }
 
-  class MCFGame : public CelesteEngine::Game 
+  class MCFGame : public Celeste::Game 
   {
     public:
       MCFLibraryDllExport MCFGame();
@@ -30,7 +30,7 @@ namespace MCF
       void onExit() override;
 
     private:
-      using Inherited = CelesteEngine::Game;
+      using Inherited = Celeste::Game;
 
       std::unique_ptr<Debugging::SceneBroadcaster> m_sceneBroadcaster;
       std::unique_ptr<Debugging::LuaScriptReceiver> m_luaScriptReceiver;

@@ -26,7 +26,7 @@ namespace MCF
     // Set up game specific script commands
     MCF::Lua::MCFScriptCommands::initialize();
 
-    CelesteEngine::Networking::initialize();
+    Celeste::Networking::initialize();
 
     m_sceneBroadcaster.reset(new Debugging::SceneBroadcaster());
     m_sceneBroadcaster->start();
@@ -48,6 +48,6 @@ namespace MCF
     m_sceneBroadcaster->stop();
     m_luaScriptReceiver->stop();
 
-    CelesteEngine::Networking::exit();
+    Celeste::Networking::exit();
   }
 }

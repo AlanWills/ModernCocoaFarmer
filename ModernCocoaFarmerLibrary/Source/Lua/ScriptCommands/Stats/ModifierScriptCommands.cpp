@@ -32,9 +32,9 @@ namespace MCF
         {
           using Modifier = MCF::Stats::Modifier;
 
-          CelesteEngine::Lua::registerScriptableObjectUserType<Modifier>(
+          Celeste::Lua::registerScriptableObjectUserType<Modifier>(
             "Modifier",
-            sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+            sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
             "getAmount", &Modifier::getAmount,
             "isDeltaChange", &Internals::isDeltaChange,
             "isPeriodicChange", &Internals::isPeriodicChange);

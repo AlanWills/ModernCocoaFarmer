@@ -21,6 +21,6 @@ namespace MCF::Events::Effects
       static const char* const MODIFIER_PATH_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ReferenceField<std::string>& m_modifierPath;
+      Celeste::ReferenceField<std::string>& m_modifierPath;
   };
 }

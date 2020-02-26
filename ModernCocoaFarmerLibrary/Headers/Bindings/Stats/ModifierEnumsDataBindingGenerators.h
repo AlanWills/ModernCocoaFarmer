@@ -11,7 +11,7 @@ namespace MCF
     {
       //------------------------------------------------------------------------------------------------
       template <bool is_reference>
-      struct CelesteEngine::Bindings::DataBindingGenerator<MCF::Stats::ChangeType, is_reference>
+      struct Celeste::Bindings::DataBindingGenerator<MCF::Stats::ChangeType, is_reference>
       {
         DECLARE_DATA_BINDING_GENERATOR(MCF::Stats::ChangeType)
 
@@ -24,14 +24,14 @@ namespace MCF
             output.append("public ChangeType ");
             output.append(variableName);
             output.append(" { get; set; } = ChangeType.");
-            output.append(CelesteEngine::to_string(value));
+            output.append(Celeste::to_string(value));
             output.push_back(';');
           }
       };
 
       //------------------------------------------------------------------------------------------------
       template <bool is_reference>
-      struct CelesteEngine::Bindings::DataBindingGenerator<MCF::Stats::Occurrence, is_reference>
+      struct Celeste::Bindings::DataBindingGenerator<MCF::Stats::Occurrence, is_reference>
       {
         DECLARE_DATA_BINDING_GENERATOR(MCF::Stats::Occurrence)
 
@@ -44,7 +44,7 @@ namespace MCF
             output.append("public Occurrence ");
             output.append(variableName);
             output.append(" { get; set; } = Occurrence.");
-            output.append(CelesteEngine::to_string(value));
+            output.append(Celeste::to_string(value));
             output.push_back(';');
           }
       };

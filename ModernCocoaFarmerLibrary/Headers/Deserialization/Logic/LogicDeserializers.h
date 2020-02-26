@@ -4,7 +4,7 @@
 #include "Logic/ComparisonOperator.h"
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template<>

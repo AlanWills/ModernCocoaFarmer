@@ -9,12 +9,12 @@
 
 namespace MCF::Time
 {
-  class TimeManager : public CelesteEngine::ScriptableObject
+  class TimeManager : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(TimeManager, MCFLibraryDllExport);
 
     public:
-      using TimeEvent = CelesteEngine::Event<>;
+      using TimeEvent = Celeste::Event<>;
 
       void update(float elapsedGameTime);
 
@@ -32,7 +32,7 @@ namespace MCF::Time
       static const char* const SECONDS_PER_DAY_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ValueField<float>& m_secondsPerDay;
+      Celeste::ValueField<float>& m_secondsPerDay;
 
       TimeEvent m_onDayPassed;
       TimeEvent m_onMonthPassed;

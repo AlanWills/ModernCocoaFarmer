@@ -6,7 +6,7 @@
 #include "Events/Event.h"
 
 
-namespace CelesteEngine::Resources
+namespace Celeste::Resources
 {
   class Texture2D;
 }
@@ -52,18 +52,18 @@ namespace MCF::Events
 
 namespace MCF::Locations
 {
-  class Location : public CelesteEngine::ScriptableObject
+  class Location : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(Location, MCFLibraryDllExport)
 
     public:
-      using ChildSentEvent = CelesteEngine::Event<const Family::Child&>;
-      using ChildLeftEvent = CelesteEngine::Event<const Family::Child&>;
+      using ChildSentEvent = Celeste::Event<const Family::Child&>;
+      using ChildLeftEvent = Celeste::Event<const Family::Child&>;
 
       inline const std::string& getPrefab() const { return m_prefab.getValue(); }
       inline const std::string& getDescription() const { return m_description.getValue(); }
       inline const std::string& getChildLeavesNotificationDescription() const { return m_childLeavesNotificationDescription.getValue(); }
-      inline observer_ptr<CelesteEngine::Resources::Texture2D> getChildLeavesNotificationIcon() const { return m_childLeavesNotificationIcon.getValue(); }
+      inline observer_ptr<Celeste::Resources::Texture2D> getChildLeavesNotificationIcon() const { return m_childLeavesNotificationIcon.getValue(); }
 
       inline const Stats::ChildModifier& getHealthModifier() const { return m_healthModifier; }
       inline const Stats::ChildModifier& getSafetyModifier() const { return m_safetyModifier; }
@@ -111,16 +111,16 @@ namespace MCF::Locations
         Locations::LocationsManager& locationsManager,
         Notifications::NotificationManager& notificationManager) const;
 
-      CelesteEngine::ReferenceField<std::string>& m_prefab;
-      CelesteEngine::ReferenceField<std::string>& m_description;
-      CelesteEngine::ReferenceField<std::string>& m_childLeavesNotificationDescription;
-      CelesteEngine::ValueField<observer_ptr<CelesteEngine::Resources::Texture2D>>& m_childLeavesNotificationIcon;
+      Celeste::ReferenceField<std::string>& m_prefab;
+      Celeste::ReferenceField<std::string>& m_description;
+      Celeste::ReferenceField<std::string>& m_childLeavesNotificationDescription;
+      Celeste::ValueField<observer_ptr<Celeste::Resources::Texture2D>>& m_childLeavesNotificationIcon;
       Stats::ChildModifier& m_healthModifier;
       Stats::ChildModifier& m_safetyModifier;
       Stats::ChildModifier& m_educationModifier;
       Stats::ChildModifier& m_happinessModifier;
       Stats::Modifier& m_moneyModifier;
-      CelesteEngine::ValueField<size_t>& m_daysToComplete;
+      Celeste::ValueField<size_t>& m_daysToComplete;
 
       std::vector<ChildDaysSpent> m_children;
       Effects m_childLeavesEffects;

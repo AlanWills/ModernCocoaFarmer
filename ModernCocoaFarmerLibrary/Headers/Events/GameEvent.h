@@ -43,7 +43,7 @@ namespace MCF::Events
     class Effect;
   }
 
-  class GameEvent : public CelesteEngine::ScriptableObject
+  class GameEvent : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(GameEvent, MCFLibraryDllExport);
 
