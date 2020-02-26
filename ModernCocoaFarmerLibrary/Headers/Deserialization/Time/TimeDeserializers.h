@@ -4,7 +4,7 @@
 #include "Time/TimePeriod.h"
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template<>

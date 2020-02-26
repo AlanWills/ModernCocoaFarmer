@@ -12,7 +12,7 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
     //------------------------------------------------------------------------------------------------
     MCF::Persistence::DataStore loadOrCreate(const std::string& filePath)
     {
-      using namespace CelesteEngine::Resources;
+      using namespace Celeste::Resources;
       using namespace MCF::Persistence;
 
       observer_ptr<Data> data = getResourceManager().load<Data>(filePath);
@@ -27,8 +27,8 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
     //------------------------------------------------------------------------------------------------
     bool save(MCF::Persistence::DataStore& dataStore, const std::string& filePath)
     {
-      using namespace CelesteEngine;
-      using namespace CelesteEngine::Resources;
+      using namespace Celeste;
+      using namespace Celeste::Resources;
       using namespace MCF::Persistence;
 
       tinyxml2::XMLDocument document;
@@ -49,7 +49,7 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
   {
     using DataStore = MCF::Persistence::DataStore;
 
-    CelesteEngine::Lua::registerUserType<DataStore>(
+    Celeste::Lua::registerUserType<DataStore>(
       "DataStore",
       "loadOrCreate", sol::factories(&Internals::loadOrCreate),
       "save", &Internals::save,

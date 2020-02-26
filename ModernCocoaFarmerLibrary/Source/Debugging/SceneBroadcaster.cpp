@@ -6,7 +6,7 @@
 
 #include "Objects/GameObject.h"
 
-using namespace CelesteEngine;
+using namespace Celeste;
 
 
 namespace MCF

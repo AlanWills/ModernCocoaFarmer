@@ -21,6 +21,6 @@ namespace MCF::Events::Effects
       static const char* const MODIFIER_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ValueField<int>& m_modifier;
+      Celeste::ValueField<int>& m_modifier;
   };
 }

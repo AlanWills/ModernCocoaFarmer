@@ -17,7 +17,7 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<NotificationManager::NotificationSentEvent, const Notification&>(
+      Celeste::Lua::subscribeToEvent<NotificationManager::NotificationSentEvent, const Notification&>(
         notificationManager.getNotificationSentEvent(),
         callback,
         extraArgs);
@@ -27,9 +27,9 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<NotificationManager>(
+    Celeste::Lua::registerScriptableObjectUserType<NotificationManager>(
       NotificationManager::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "subscribeOnNotificationSentCallback", &Internals::subscribeOnNotificationSentCallback);
   }
 }

@@ -11,9 +11,9 @@ namespace MCF::Lua::Notifications::NotificationScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<Notification>(
+    Celeste::Lua::registerScriptableObjectUserType<Notification>(
       Notification::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getDescription", &Notification::getDescription,
       "getIcon", &Notification::getIcon);
   }

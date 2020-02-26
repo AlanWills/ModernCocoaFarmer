@@ -93,14 +93,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\ModernCocoaFarmerLibrary\Headers;$(ProjectDir)..\CelesteEngine\BindingsGenerator\Headers;$(ProjectDir)..\CelesteEngine\CelesteEngine\Headers;$(ProjectDir)Headers;$(ProjectDir)..\CelesteEngine\3rdParty\Include;$(ProjectDir)..\CelesteEngine\3rdParty\Include\freetype2;$(ProjectDir)..\CelesteEngine\3rdParty\Include\Assimp</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\ModernCocoaFarmerLibrary\Headers;$(ProjectDir)..\Celeste\BindingsGenerator\Headers;$(ProjectDir)..\Celeste\Celeste\Headers;$(ProjectDir)Headers;$(ProjectDir)..\Celeste\3rdParty\Include;$(ProjectDir)..\Celeste\3rdParty\Include\freetype2;$(ProjectDir)..\Celeste\3rdParty\Include\Assimp</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\CelesteEngine\3rdParty\Lib\$(Platform)\$(Configuration);$(OutDir);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ModernCocoaFarmerLibrary.lib;CelesteEngine.lib;BindingsGenerator.lib;opengl32.lib;freetype.lib;glew32.lib;glfw3dll.lib;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Celeste\3rdParty\Lib\$(Platform)\$(Configuration);$(OutDir);</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ModernCocoaFarmerLibrary.lib;Celeste.lib;BindingsGenerator.lib;opengl32.lib;freetype.lib;glew32.lib;glfw3dll.lib;tinyxml2.lib;alut.lib;OpenAL32.lib;SOIL.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceSymbolReferences>%(ForceSymbolReferences)</ForceSymbolReferences>
     </Link>
     <CustomBuildStep>
@@ -173,10 +173,10 @@
     <None Include="Build Events\CopyDependencyFiles.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CelesteEngine\BindingsGenerator\BindingsGenerator.vcxproj">
+    <ProjectReference Include="..\Celeste\BindingsGenerator\BindingsGenerator.vcxproj">
       <Project>{f357c745-6faa-49a8-a895-0d4d35374929}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\CelesteEngine\CelesteEngine\CelesteEngine.vcxproj">
+    <ProjectReference Include="..\Celeste\Celeste\Celeste.vcxproj">
       <Project>{e9980a8d-828e-44f0-978e-a57abc348f47}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ModernCocoaFarmerLibrary\ModernCocoaFarmerLibrary.vcxproj">

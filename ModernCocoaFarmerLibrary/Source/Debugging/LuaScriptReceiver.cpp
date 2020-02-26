@@ -113,7 +113,7 @@ namespace MCF
 
       if (gotRequest)
       {
-        auto functionResult = CelesteEngine::Lua::LuaState::script(request);
+        auto functionResult = Celeste::Lua::LuaState::script(request);
         std::lock_guard<std::mutex> responseLockGuard(m_outgoingResponseQueueLock);
 
         if (!functionResult.valid())

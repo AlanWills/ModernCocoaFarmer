@@ -13,9 +13,9 @@ namespace MCF::Lua::Locations::LocationManagerScriptCommands
   {
     using LocationsManager = MCF::Locations::LocationsManager;
 
-    CelesteEngine::Lua::registerScriptableObjectUserType<LocationsManager>(
+    Celeste::Lua::registerScriptableObjectUserType<LocationsManager>(
       LocationsManager::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getNumLocations", &LocationsManager::getNumLocations,
       "getLocation", &LocationsManager::getLocation);
   }

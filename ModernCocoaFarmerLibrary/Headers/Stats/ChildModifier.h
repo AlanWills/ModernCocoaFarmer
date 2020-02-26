@@ -18,7 +18,7 @@ namespace MCF
         static const std::string APPLIES_TO_ALL_CHILDREN_FIELD_NAME;
 
       private:
-        CelesteEngine::ValueField<bool>& m_appliesToAllChildren;
+        Celeste::ValueField<bool>& m_appliesToAllChildren;
     };
   }
 }

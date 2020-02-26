@@ -14,16 +14,16 @@ namespace MCF::Lua::Time::TimeNotifierScriptCommands
     sol::function callback,
     sol::object extraArgs)
   {
-    CelesteEngine::Lua::subscribeToEvent<TimeNotifier::TimeChangedEvent, float>(
+    Celeste::Lua::subscribeToEvent<TimeNotifier::TimeChangedEvent, float>(
       timeNotifier.getOnTimeChangedEvent(), callback, extraArgs);
   }
 
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerUserType<TimeNotifier>(
+    Celeste::Lua::registerUserType<TimeNotifier>(
       "TimeNotifier",
-      sol::base_classes, sol::bases<CelesteEngine::Script, CelesteEngine::Component, CelesteEngine::Entity, CelesteEngine::Object>(),
+      sol::base_classes, sol::bases<Celeste::Script, Celeste::Component, Celeste::Entity, Celeste::Object>(),
       "subscribeOnTimeChangedCallback", &subscribeOnTimeChangedCallback);
   }
 }

@@ -63,7 +63,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyModifier(Stats::Modifier& modifier, CelesteEngine::ValueField<float>& attributeToModify)
+  void Child::applyModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify)
   {
     if (modifier.getOccurrence() == Stats::Occurrence::kInstant)
     {
@@ -80,7 +80,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyInstantModifier(Stats::Modifier& modifier, CelesteEngine::ValueField<float>& attributeToModify)
+  void Child::applyInstantModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify)
   {
     if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
     {
@@ -99,7 +99,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyPeriodicModifier(Stats::Modifier& modifier, CelesteEngine::ValueField<float>& attributeToModify)
+  void Child::applyPeriodicModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify)
   {
     ASSERT_FAIL_MSG("TODO");
   }

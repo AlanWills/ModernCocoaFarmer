@@ -32,8 +32,8 @@ namespace MCF::Events::Effects
       static const char* const VALUE_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ReferenceField<std::string>& m_dataStorePath;
-      CelesteEngine::ReferenceField<std::string>& m_valueName;
-      CelesteEngine::ValueField<bool>& m_value;
+      Celeste::ReferenceField<std::string>& m_dataStorePath;
+      Celeste::ReferenceField<std::string>& m_valueName;
+      Celeste::ValueField<bool>& m_value;
   };
 }

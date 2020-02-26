@@ -35,19 +35,19 @@ namespace MCF::Family
     Inherited::doDeserialize(element);
 
     std::vector<std::string> names;
-    CelesteEngine::XML::XMLValueError error = CelesteEngine::XML::getChildElementDataAsVector(
+    Celeste::XML::XMLValueError error = Celeste::XML::getChildElementDataAsVector(
       element,
       CHILDREN_NAMES_ELEMENT_NAME,
       NAME_ELEMENT_NAME,
       names);
 
-    if (error == CelesteEngine::XML::XMLValueError::kError)
+    CelesteCeleste::XML::XMLValueECeleste
     {
       ASSERT_FAIL();
       return false;
     }
 
-    for (const std::string& name : names)
+    for (const stCelesteme : names)
     {
       m_childrenNames.push(name);
     }

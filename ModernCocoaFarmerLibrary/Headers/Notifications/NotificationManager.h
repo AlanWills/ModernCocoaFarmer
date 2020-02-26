@@ -9,12 +9,12 @@ namespace MCF::Notifications
 {
   class Notification;
 
-  class NotificationManager : public CelesteEngine::ScriptableObject
+  class NotificationManager : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(NotificationManager, MCFLibraryDllExport);
 
     public:
-      using NotificationSentEvent = CelesteEngine::Event<const Notification&>;
+      using NotificationSentEvent = Celeste::Event<const Notification&>;
 
       void sendNotification(const Notification& notification) const;
 

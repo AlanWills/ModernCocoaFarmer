@@ -18,7 +18,7 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
       sol::function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<FamilyManager::ChildAddedEvent, Child&>(
+      Celeste::Lua::subscribeToEvent<FamilyManager::ChildAddedEvent, Child&>(
         familyManager.getChildAddedEvent(), 
         callback,
         extraArgs);
@@ -28,9 +28,9 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<FamilyManager>(
+    Celeste::Lua::registerScriptableObjectUserType<FamilyManager>(
       FamilyManager::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "addChild", &FamilyManager::addChild,
       "getChildCount", &FamilyManager::getChildCount,
       "getChild", &FamilyManager::getChild,

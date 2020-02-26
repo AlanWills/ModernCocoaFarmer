@@ -13,7 +13,7 @@
 #include <array>
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   class Path;
 }
@@ -171,7 +171,7 @@ namespace MCF
     bool DataStore::deserialize(const tinyxml2::XMLAttribute& attribute, Data& data)
     {
       T t;
-      if (CelesteEngine::XML::getAttributeData(&attribute, t) == CelesteEngine::XML::XMLValueError::kSuccess)
+      if (Celeste::XML::getAttributeData(&attribute, t) == Celeste::XML::XMLValueError::kSuccess)
       {
         data.emplace<T>(t);
         return true;

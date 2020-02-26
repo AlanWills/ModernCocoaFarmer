@@ -12,9 +12,9 @@ namespace MCF::Lua::Money::MoneyManagerScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<MoneyManager>(
+    Celeste::Lua::registerScriptableObjectUserType<MoneyManager>(
       MoneyManager::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getMoney", &MoneyManager::getMoney,
       "setMoney", &MoneyManager::setMoney,
       "applyMoneyModifier", &MoneyManager::applyMoneyModifier);

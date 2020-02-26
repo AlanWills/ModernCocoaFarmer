@@ -13,7 +13,7 @@ namespace MCF::Time
   };
 }
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template <>

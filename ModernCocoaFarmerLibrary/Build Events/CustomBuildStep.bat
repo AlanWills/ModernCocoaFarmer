@@ -5,4 +5,4 @@ set "OutputDir=bin\%Platform%\%Configuration%"
 
 cd %ProjectDir%
 
-(robocopy ..\CelesteEngine\CelesteEngine\bin\%Platform%\%Configuration%\ %OutputDir% /E /IS /IT /XO) & exit 0
+(robocopy ..\Celeste\Celeste\bin\%Platform%\%Configuration%\ %OutputDir% /E /IS /IT /XO) & exit 0

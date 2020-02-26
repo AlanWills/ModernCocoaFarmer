@@ -4,8 +4,8 @@
 #include "Resources/ResourceUtils.h"
 #include "Resources/ResourceManager.h"
 
-using namespace CelesteEngine;
-using namespace CelesteEngine::Resources;
+using namespace Celeste;
+using namespace Celeste::Resources;
 
 
 namespace MCF::Events::Effects

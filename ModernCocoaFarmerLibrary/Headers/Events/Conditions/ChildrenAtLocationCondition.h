@@ -31,8 +31,8 @@ namespace MCF::Events::Conditions
       static const char* const LOCATION_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ValueField<size_t>& m_numberOfChildren;
-      CelesteEngine::ValueField<Logic::ComparisonOperator>& m_childrenComparisonOperator;
-      CelesteEngine::ReferenceField<std::string>& m_location;
+      Celeste::ValueField<size_t>& m_numberOfChildren;
+      Celeste::ValueField<Logic::ComparisonOperator>& m_childrenComparisonOperator;
+      Celeste::ReferenceField<std::string>& m_location;
   };
 }

@@ -49,7 +49,7 @@ namespace MCF::Logic
   }
 }
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template <>

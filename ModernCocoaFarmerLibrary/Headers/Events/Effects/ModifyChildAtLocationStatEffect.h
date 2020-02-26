@@ -25,8 +25,8 @@ namespace MCF::Events::Effects
       static const char* const LOCATION_ATTRIBUTE_NAME;
 
     private:
-      CelesteEngine::ReferenceField<std::string>& m_modifierPath;
-      CelesteEngine::ReferenceField<std::string>& m_stat;
-      CelesteEngine::ReferenceField<std::string>& m_location;
+      Celeste::ReferenceField<std::string>& m_modifierPath;
+      Celeste::ReferenceField<std::string>& m_stat;
+      Celeste::ReferenceField<std::string>& m_location;
   };
 }

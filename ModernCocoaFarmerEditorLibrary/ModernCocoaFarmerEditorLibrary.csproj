@@ -112,13 +112,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CelesteEngine\BindingsKernel\BindingsKernel.csproj">
+    <ProjectReference Include="..\Celeste\BindingsKernel\BindingsKernel.csproj">
       <Project>{cbd493a8-dfc5-444a-9bc6-ca02ccd76410}</Project>
       <Name>BindingsKernel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CelesteEngine\CelesteEngineEditorLibrary\CelesteEngineEditorLibrary.csproj">
+    <ProjectReference Include="..\Celeste\CelesteEditorLibrary\CelesteEditorLibrary.csproj">
       <Project>{b2b41924-ff3d-451f-8a37-7b078053e910}</Project>
-      <Name>CelesteEngineEditorLibrary</Name>
+      <Name>CelesteEditorLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModernCocoaFarmerBindingsLibrary\ModernCocoaFarmerBindingsLibrary.csproj">
       <Project>{6d50e615-5a2e-44dc-8960-ebcb09baf4b2}</Project>

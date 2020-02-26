@@ -39,10 +39,10 @@ namespace MCF::Events::Conditions
     static const char* const STAT_COMPARISON_OPERATOR_ATTRIBUTE_NAME;
 
   private:
-    CelesteEngine::ValueField<size_t>& m_numberOfChildren;
-    CelesteEngine::ValueField<Logic::ComparisonOperator>& m_childrenComparisonOperator;
-    CelesteEngine::ReferenceField<std::string>& m_stat;
-    CelesteEngine::ValueField<float>& m_value;
-    CelesteEngine::ValueField<Logic::ComparisonOperator>& m_statComparisonOperator;
+    Celeste::ValueField<size_t>& m_numberOfChildren;
+    Celeste::ValueField<Logic::ComparisonOperator>& m_childrenComparisonOperator;
+    Celeste::ReferenceField<std::string>& m_stat;
+    Celeste::ValueField<float>& m_value;
+    Celeste::ValueField<Logic::ComparisonOperator>& m_statComparisonOperator;
   };
 }

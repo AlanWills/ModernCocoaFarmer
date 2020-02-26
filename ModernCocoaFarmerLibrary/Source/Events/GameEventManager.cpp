@@ -34,9 +34,9 @@ namespace MCF::Events
     const tinyxml2::XMLElement* gameEventsElement = element->FirstChildElement(GAME_EVENTS_ELEMENT_NAME);
     if (gameEventsElement != nullptr)
     {
-      for (const tinyxml2::XMLElement* gameEvent : CelesteEngine::XML::children(gameEventsElement, GAME_EVENT_ELEMENT_NAME))
+      for (const tinyxml2::XMLElement* gameEvent : Celeste::XML::children(gameEventsElement, GAME_EVENT_ELEMENT_NAME))
       {
-        CelesteEngine::ScriptableObjectDataConverter gameEventDataConverter(gameEvent->Name());
+        Celeste::ScriptableObjectDataConverter gameEventDataConverter(gameEvent->Name());
         if (gameEventDataConverter.convertFromXML(gameEvent))
         {
           registerGameEvent(gameEventDataConverter.instantiate<GameEvent>());

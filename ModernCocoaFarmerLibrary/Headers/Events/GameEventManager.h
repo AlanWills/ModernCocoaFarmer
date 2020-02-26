@@ -35,12 +35,12 @@ namespace MCF::Events
 {
   class GameEvent;
 
-  class GameEventManager : public CelesteEngine::ScriptableObject
+  class GameEventManager : public Celeste::ScriptableObject
   {
     DECLARE_SCRIPTABLE_OBJECT(GameEventManager, MCFLibraryDllExport);
 
     public:
-      using GameEventTriggeredEvent = CelesteEngine::Event<const GameEvent&>;
+      using GameEventTriggeredEvent = Celeste::Event<const GameEvent&>;
 
       void registerGameEvent(std::unique_ptr<const GameEvent>&& gameEvent);
 
@@ -79,6 +79,6 @@ namespace MCF::Events
       std::vector<std::unique_ptr<const GameEvent>> m_gameEvents;
       GameEventTriggeredEvent m_onGameEventTriggeredEvent;
 
-      CelesteEngine::StringId m_onDayPassedHandle;
+      Celeste::StringId m_onDayPassedHandle;
   };
 }

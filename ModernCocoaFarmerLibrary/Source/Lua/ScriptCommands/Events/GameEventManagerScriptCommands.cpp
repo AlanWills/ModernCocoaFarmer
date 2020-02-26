@@ -18,7 +18,7 @@ namespace MCF::Lua::Events::GameEventManagerScriptCommands
     //------------------------------------------------------------------------------------------------
     void registerGameEvent(GameEventManager& gameEventManager, const std::string& prefabPath)
     {
-      auto gameEvent = CelesteEngine::ScriptableObject::load<GameEvent>(prefabPath);
+      auto gameEvent = Celeste::ScriptableObject::load<GameEvent>(prefabPath);
       ASSERT(gameEvent != nullptr);
 
       if (gameEvent != nullptr)
@@ -33,7 +33,7 @@ namespace MCF::Lua::Events::GameEventManagerScriptCommands
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<GameEventManager::GameEventTriggeredEvent, const GameEvent&>(
+      Celeste::Lua::subscribeToEvent<GameEventManager::GameEventTriggeredEvent, const GameEvent&>(
         gameEventManager.getGameEventTriggeredEvent(),
         callback,
         extraArgs);
@@ -43,9 +43,9 @@ namespace MCF::Lua::Events::GameEventManagerScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<GameEventManager>(
+    Celeste::Lua::registerScriptableObjectUserType<GameEventManager>(
       GameEventManager::type_name(),
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "setFamilyManager", &GameEventManager::setFamilyManager,
       "setMoneyManager", &GameEventManager::setMoneyManager,
       "setTimeManager", &GameEventManager::setTimeManager,

@@ -17,7 +17,7 @@ namespace MCF::Lua::Locations::LocationScriptCommands
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<Location::ChildSentEvent, const Family::Child&>(
+      Celeste::Lua::subscribeToEvent<Location::ChildSentEvent, const Family::Child&>(
         location.getOnChildSentEvent(), callback, extraArgs);
     }
 
@@ -27,7 +27,7 @@ namespace MCF::Lua::Locations::LocationScriptCommands
       sol::protected_function callback,
       sol::object extraArgs)
     {
-      CelesteEngine::Lua::subscribeToEvent<Location::ChildLeftEvent, const Family::Child&>(
+      Celeste::Lua::subscribeToEvent<Location::ChildLeftEvent, const Family::Child&>(
         location.getOnChildLeftEvent(), callback, extraArgs);
     }
   }
@@ -35,9 +35,9 @@ namespace MCF::Lua::Locations::LocationScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
-    CelesteEngine::Lua::registerScriptableObjectUserType<Location>(
+    Celeste::Lua::registerScriptableObjectUserType<Location>(
       "LocationInformation",
-      sol::base_classes, sol::bases<CelesteEngine::ScriptableObject>(),
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getPrefab", &Location::getPrefab,
       "getDescription", &Location::getDescription,
       "getHealthModifier", &Location::getHealthModifier,

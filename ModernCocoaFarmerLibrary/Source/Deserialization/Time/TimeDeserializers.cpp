@@ -2,7 +2,7 @@
 #include "Debug/Assert.h"
 
 
-namespace CelesteEngine
+namespace Celeste
 {
   //------------------------------------------------------------------------------------------------
   template<>

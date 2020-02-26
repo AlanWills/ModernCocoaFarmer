@@ -4,4 +4,4 @@ set "Platform=%3"
 
 cd %OutputDir%
 
-(robocopy .\ ..\..\..\CelesteEngine\CelesteEngineEditor\bin\%Configuration%\ /IS /IT /xo) ^& exit 0
+(robocopy .\ ..\..\..\Celeste\CelesteEditor\bin\%Configuration%\ /IS /IT /xo) ^& exit 0

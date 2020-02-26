@@ -9,40 +9,40 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModernCocoaFarmer", "Modern
 		{D3BB94CF-318B-4B33-8618-F5D3824015B8} = {D3BB94CF-318B-4B33-8618-F5D3824015B8}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CelesteEngine", "CelesteEngine", "{B53E4C92-7F4E-4D50-91FC-20630BA518FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Celeste", "Celeste", "{B53E4C92-7F4E-4D50-91FC-20630BA518FB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CelesteEngine", "CelesteEngine\CelesteEngine\CelesteEngine.vcxproj", "{E9980A8D-828E-44F0-978E-A57ABC348F47}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Celeste", "Celeste\Celeste\Celeste.vcxproj", "{E9980A8D-828E-44F0-978E-A57ABC348F47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteEngineBindings", "CelesteEngine\CelesteEngineBindings\CelesteEngineBindings.csproj", "{666C6C00-C233-40C4-957F-3338666B228A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteBindings", "Celeste\CelesteBindings\CelesteBindings.csproj", "{666C6C00-C233-40C4-957F-3338666B228A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CelesteEngineBindingsGenerator", "CelesteEngine\CelesteEngineBindingsGenerator\CelesteEngineBindingsGenerator.vcxproj", "{D4115E49-BB86-4AEA-B112-E83EB954B224}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CelesteBindingsGenerator", "Celeste\CelesteBindingsGenerator\CelesteBindingsGenerator.vcxproj", "{D4115E49-BB86-4AEA-B112-E83EB954B224}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BindingsGenerator", "CelesteEngine\BindingsGenerator\BindingsGenerator.vcxproj", "{F357C745-6FAA-49A8-A895-0D4D35374929}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BindingsGenerator", "Celeste\BindingsGenerator\BindingsGenerator.vcxproj", "{F357C745-6FAA-49A8-A895-0D4D35374929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindingsKernel", "CelesteEngine\BindingsKernel\BindingsKernel.csproj", "{CBD493A8-DFC5-444A-9BC6-CA02CCD76410}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindingsKernel", "Celeste\BindingsKernel\BindingsKernel.csproj", "{CBD493A8-DFC5-444A-9BC6-CA02CCD76410}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteEngineEditor", "CelesteEngine\CelesteEngineEditor\CelesteEngineEditor.csproj", "{525AC921-E6CB-473F-AC93-45E5E732C97E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteEditor", "Celeste\CelesteEditor\CelesteEditor.csproj", "{525AC921-E6CB-473F-AC93-45E5E732C97E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55EA1166-8697-4C2F-94F3-5591AE46B29E} = {55EA1166-8697-4C2F-94F3-5591AE46B29E}
 		{0E624E9F-1C9D-4E48-835F-D47203EDFCA5} = {0E624E9F-1C9D-4E48-835F-D47203EDFCA5}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteEngineEditorLibrary", "CelesteEngine\CelesteEngineEditorLibrary\CelesteEngineEditorLibrary.csproj", "{B2B41924-FF3D-451F-8A37-7B078053E910}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteEditorLibrary", "Celeste\CelesteEditorLibrary\CelesteEditorLibrary.csproj", "{B2B41924-FF3D-451F-8A37-7B078053E910}"
 	ProjectSection(ProjectDependencies) = postProject
 		{55EA1166-8697-4C2F-94F3-5591AE46B29E} = {55EA1166-8697-4C2F-94F3-5591AE46B29E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CelesteEngineTestUtils", "CelesteEngine\CelesteEngineTestUtils\CelesteEngineTestUtils.vcxproj", "{BB04BA24-E88D-4697-B55C-7C518AFD6BF8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CelesteTestUtils", "Celeste\CelesteTestUtils\CelesteTestUtils.vcxproj", "{BB04BA24-E88D-4697-B55C-7C518AFD6BF8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCelesteEngine", "CelesteEngine\TestCelesteEngine\TestCelesteEngine.vcxproj", "{E07541B6-55FF-4134-B937-1C62821EE5FB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCeleste", "Celeste\TestCeleste\TestCeleste.vcxproj", "{E07541B6-55FF-4134-B937-1C62821EE5FB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCelesteEngineRuntime", "CelesteEngine\TestCelesteEngineRuntime\TestCelesteEngineRuntime.vcxproj", "{A51B7AB5-82CB-41E4-970A-2034F81EE3FA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCelesteRuntime", "Celeste\TestCelesteRuntime\TestCelesteRuntime.vcxproj", "{A51B7AB5-82CB-41E4-970A-2034F81EE3FA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BB04BA24-E88D-4697-B55C-7C518AFD6BF8} = {BB04BA24-E88D-4697-B55C-7C518AFD6BF8}
 		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestUtils", "CelesteEngine\TestUtils\TestUtils.vcxproj", "{7F06E53E-178C-4E7E-8F24-061F18AA402A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestUtils", "Celeste\TestUtils\TestUtils.vcxproj", "{7F06E53E-178C-4E7E-8F24-061F18AA402A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bindings", "Bindings", "{1304B468-1E47-401A-96AD-88823E86C8D8}"
 EndProject
@@ -50,11 +50,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{84D01F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{19F7C08F-06EF-4D36-80AA-936FA8BDB698}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CelTestSharp", "CelesteEngine\CelTestSharp\CelTestSharp.csproj", "{26637E16-6CA7-4AC4-8E0B-E966E5A4D3AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CelTestSharp", "Celeste\CelTestSharp\CelTestSharp.csproj", "{26637E16-6CA7-4AC4-8E0B-E966E5A4D3AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevTools", "DevTools", "{AC38E511-8DD4-4E90-9816-BB7BB5270E21}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GuidGenerator", "CelesteEngine\GuidGenerator\GuidGenerator.vcxproj", "{436C70CD-BE9B-4511-83A6-CA2197493182}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GuidGenerator", "Celeste\GuidGenerator\GuidGenerator.vcxproj", "{436C70CD-BE9B-4511-83A6-CA2197493182}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MCF", "MCF", "{9A7FE23F-0A14-4A87-8FC8-7D72839FA3BA}"
 EndProject
@@ -81,7 +81,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModernCocoaFarmerBindingsLi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{372ADFE5-1039-44CD-A1AF-BEFEF386E61A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteEngineBindingsLibrary", "CelesteEngine\CelesteEngineBindingsLibrary\CelesteEngineBindingsLibrary.csproj", "{5D848227-6467-45C7-B9F7-E34C1A2F7A78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CelesteBindingsLibrary", "Celeste\CelesteBindingsLibrary\CelesteBindingsLibrary.csproj", "{5D848227-6467-45C7-B9F7-E34C1A2F7A78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernCocoaFarmerEditorLibrary", "ModernCocoaFarmerEditorLibrary\ModernCocoaFarmerEditorLibrary.csproj", "{0E624E9F-1C9D-4E48-835F-D47203EDFCA5}"
 EndProject
@@ -95,22 +95,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestModernCocoaFarmer", "Te
 		{D3BB94CF-318B-4B33-8618-F5D3824015B8} = {D3BB94CF-318B-4B33-8618-F5D3824015B8}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaScriptValidator", "CelesteEngine\LuaScriptValidator\LuaScriptValidator.vcxproj", "{B30450B7-7CB9-4DAA-9298-06E1F5344E8B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaScriptValidator", "Celeste\LuaScriptValidator\LuaScriptValidator.vcxproj", "{B30450B7-7CB9-4DAA-9298-06E1F5344E8B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SceneValidator", "CelesteEngine\SceneValidator\SceneValidator.vcxproj", "{F6895549-729F-497A-9A5A-0F373A3FECD2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SceneValidator", "Celeste\SceneValidator\SceneValidator.vcxproj", "{F6895549-729F-497A-9A5A-0F373A3FECD2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptableObjectValidator", "CelesteEngine\ScriptableObjectValidator\ScriptableObjectValidator.vcxproj", "{E026C9CB-3F2A-40B6-B77E-85BAFCE54782}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptableObjectValidator", "Celeste\ScriptableObjectValidator\ScriptableObjectValidator.vcxproj", "{E026C9CB-3F2A-40B6-B77E-85BAFCE54782}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrefabValidator", "CelesteEngine\PrefabValidator\PrefabValidator.vcxproj", "{BB1A9780-96BF-49AD-A320-0DB6E2C37BF4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrefabValidator", "Celeste\PrefabValidator\PrefabValidator.vcxproj", "{BB1A9780-96BF-49AD-A320-0DB6E2C37BF4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E9980A8D-828E-44F0-978E-A57ABC348F47} = {E9980A8D-828E-44F0-978E-A57ABC348F47}
 	EndProjectSection

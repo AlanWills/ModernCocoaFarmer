@@ -27,7 +27,7 @@ namespace MCF::Events::Conditions
     Family::FamilyManager&) const
   {
     return Logic::isComparisonTrue(
-      CelesteEngine::Random::generate(),
+      Celeste::Random::generate(),
       getValue(),
       getComparisonOperator());
   }
