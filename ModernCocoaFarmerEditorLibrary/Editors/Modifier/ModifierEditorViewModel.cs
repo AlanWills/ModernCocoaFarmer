@@ -1,4 +1,4 @@
-﻿using CelesteEngineEditor.Editors;
+﻿using CelesteEditor.Editors;
 using MCF.Stats;
 using System;
 using System.Collections.Generic;

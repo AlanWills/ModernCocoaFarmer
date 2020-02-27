@@ -22,11 +22,6 @@ namespace TestCeleste
 
     game = std::make_unique<Game>();
     game->getResourceManager().setResourcesDirectory(TestResources::getResourcesDirectory());
-    game->getAudioManager().initialize();
-    game->getScreenManager().initialize();
-    game->getPhysicsManager()->initialize();
-    game->getInputManager().initialize();
-    game->getResourceManager().initialize();
 
     Lua::LuaState::appendToLuaPackagePath(Path(Resources::getResourcesDirectory(), "Scripts", "?.lua;"));
 
@@ -36,14 +31,7 @@ namespace TestCeleste
   //------------------------------------------------------------------------------------------------
   TEST_MODULE_CLEANUP(TestCelestePlus_Cleanup)
   {
-    // Issues with unique_ptrs over dll boundaries so have to do this in the test project
-    Game::current()->getScreenManager().die();
-    Game::current()->getInputManager().die();
-    Game::current()->getPhysicsManager()->die();
-    Game::current()->getAudioManager().die();
-    Game::current()->getResourceManager().die();
-    Game::current()->exit();
-
+    Game::exit();
     GL::terminate();
   }
 }

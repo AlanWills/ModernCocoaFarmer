@@ -13,9 +13,9 @@ namespace MCF::Time
   }
 
   //------------------------------------------------------------------------------------------------
-  void TimeNotifier::onUpdate(float elapsedGameTime)
+  void TimeNotifier::update(float elapsedGameTime)
   {
-    Inherited::onUpdate(elapsedGameTime);
+    Inherited::update(elapsedGameTime);
 
     m_onTimeChangedEvent.invoke(elapsedGameTime);
   }

@@ -41,13 +41,13 @@ namespace MCF::Family
       NAME_ELEMENT_NAME,
       names);
 
-    CelesteCeleste::XML::XMLValueECeleste
+    if (error == Celeste::XML::XMLValueError::kError)
     {
       ASSERT_FAIL();
       return false;
     }
 
-    for (const stCelesteme : names)
+    for (const std::string& name : names)
     {
       m_childrenNames.push(name);
     }
