@@ -6,7 +6,7 @@ SplashScreen.SCREEN_TRANSITIONER_NAME = "ScreenTransitioner"
 
 ---------------------------------------------------------------------------------
 local function transitionToMainMenu(caller)
-    caller:getScreen():die()
+    --caller:getScreen():die()
 
     local MainMenuScreen = require 'Screens.MainMenuScreen'
     MainMenuScreen.show()
