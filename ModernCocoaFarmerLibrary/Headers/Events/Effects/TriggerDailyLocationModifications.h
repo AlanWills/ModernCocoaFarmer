@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class TriggerDailyLocationModifications : public Effect
   {
-    DECLARE_SCRIPTABLE_OBJECT(TriggerDailyLocationModifications, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(TriggerDailyLocationModifications, MCFLibraryDllExport);
 
     public:
       void trigger(

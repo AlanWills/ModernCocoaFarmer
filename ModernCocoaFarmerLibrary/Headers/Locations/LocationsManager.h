@@ -33,7 +33,7 @@ namespace MCF::Locations
 
   class LocationsManager : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
 
     private:
       using LocationsInformation = std::unordered_map<std::string, std::unique_ptr<Location>>;

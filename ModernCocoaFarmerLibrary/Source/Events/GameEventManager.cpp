@@ -11,7 +11,7 @@ namespace MCF::Events
   const char* const GameEventManager::GAME_EVENT_ELEMENT_NAME = "GameEvent";
 
   //------------------------------------------------------------------------------------------------
-  REGISTER_SCRIPTABLE_OBJECT(GameEventManager);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(GameEventManager);
 
   //------------------------------------------------------------------------------------------------
   GameEventManager::GameEventManager() :

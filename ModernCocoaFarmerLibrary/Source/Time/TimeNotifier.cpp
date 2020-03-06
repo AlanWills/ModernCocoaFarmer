@@ -4,10 +4,11 @@
 
 namespace MCF::Time
 {
-  REGISTER_SCRIPT(TimeNotifier, 1);
+  REGISTER_UNMANAGED_COMPONENT(TimeNotifier, 1);
 
   //------------------------------------------------------------------------------------------------
-  TimeNotifier::TimeNotifier() :
+  TimeNotifier::TimeNotifier(GameObject& gameObject) :
+    Inherited(gameObject),
     m_onTimeChangedEvent()
   {
   }

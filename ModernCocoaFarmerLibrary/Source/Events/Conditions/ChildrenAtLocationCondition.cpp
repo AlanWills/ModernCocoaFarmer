@@ -6,7 +6,7 @@
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_SCRIPTABLE_OBJECT(ChildrenAtLocationCondition);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ChildrenAtLocationCondition);
 
   //------------------------------------------------------------------------------------------------
   const char* const ChildrenAtLocationCondition::NUMBER_OF_CHILDREN_ATTRIBUTE_NAME = "number_of_children";

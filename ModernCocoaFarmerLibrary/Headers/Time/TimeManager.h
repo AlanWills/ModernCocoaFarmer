@@ -11,7 +11,7 @@ namespace MCF::Time
 {
   class TimeManager : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(TimeManager, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(TimeManager, MCFLibraryDllExport);
 
     public:
       using TimeEvent = Celeste::Event<>;

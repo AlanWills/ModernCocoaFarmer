@@ -7,7 +7,7 @@
 
 namespace MCF::Family
 {
-  REGISTER_SCRIPTABLE_OBJECT(FamilyManager);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(FamilyManager);
 
   //------------------------------------------------------------------------------------------------
   const char* const FamilyManager::DAILY_HEALTH_MODIFIER_ATTRIBUTE_NAME = "daily_health_modifier";

@@ -5,7 +5,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ModifySalaryLevelEffect);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ModifySalaryLevelEffect);
 
   //------------------------------------------------------------------------------------------------
   const char* const ModifySalaryLevelEffect::MODIFIER_ATTRIBUTE_NAME = "modifier";

@@ -10,7 +10,7 @@ namespace MCF::Events
   using namespace Conditions;
   using namespace Effects;
 
-  REGISTER_SCRIPTABLE_OBJECT(GameEvent);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(GameEvent);
 
   //------------------------------------------------------------------------------------------------
   const char* const GameEvent::CONDITIONS_ELEMENT_NAME = "Conditions";

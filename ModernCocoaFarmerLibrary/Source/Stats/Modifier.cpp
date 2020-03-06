@@ -6,7 +6,7 @@ namespace MCF
 {
   namespace Stats
   {
-    REGISTER_SCRIPTABLE_OBJECT(Modifier);
+    REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(Modifier);
 
     //------------------------------------------------------------------------------------------------
     const char* const Modifier::AMOUNT_FIELD_NAME = "amount";

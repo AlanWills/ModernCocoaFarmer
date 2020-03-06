@@ -10,7 +10,7 @@ namespace MCF::Events::Conditions
 {
   class TimeComparisonCondition : public Condition
   {
-    DECLARE_SCRIPTABLE_OBJECT(TimeComparisonCondition, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(TimeComparisonCondition, MCFLibraryDllExport);
 
     public:
       inline Time::TimePeriod getTimeToCheck() const { return m_timeToCheck.getValue(); }

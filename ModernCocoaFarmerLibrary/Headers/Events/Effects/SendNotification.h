@@ -12,7 +12,7 @@ namespace MCF::Events::Effects
 {
   class SendNotification : public Effect
   {
-    DECLARE_SCRIPTABLE_OBJECT(SendNotification, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(SendNotification, MCFLibraryDllExport);
 
     public:
       const Notifications::Notification& getNotification() const { return m_notification; }

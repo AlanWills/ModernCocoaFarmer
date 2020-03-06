@@ -54,7 +54,7 @@ namespace MCF::Locations
 {
   class Location : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(Location, MCFLibraryDllExport)
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(Location, MCFLibraryDllExport)
 
     public:
       using ChildSentEvent = Celeste::Event<const Family::Child&>;

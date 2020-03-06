@@ -37,7 +37,7 @@ namespace MCF::Events
 
   class GameEventManager : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(GameEventManager, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(GameEventManager, MCFLibraryDllExport);
 
     public:
       using GameEventTriggeredEvent = Celeste::Event<const GameEvent&>;

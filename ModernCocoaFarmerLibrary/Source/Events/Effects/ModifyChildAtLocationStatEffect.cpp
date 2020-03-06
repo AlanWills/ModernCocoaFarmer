@@ -9,7 +9,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ModifyChildAtLocationStatEffect);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ModifyChildAtLocationStatEffect);
 
   //------------------------------------------------------------------------------------------------
   const char* const ModifyChildAtLocationStatEffect::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";

@@ -45,7 +45,7 @@ namespace MCF::Events
 
   class GameEvent : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(GameEvent, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(GameEvent, MCFLibraryDllExport);
 
     public:
       bool canTrigger(

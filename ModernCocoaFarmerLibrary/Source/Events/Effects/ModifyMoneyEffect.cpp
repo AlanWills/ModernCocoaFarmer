@@ -6,7 +6,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ModifyMoneyEffect);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ModifyMoneyEffect);
 
   //------------------------------------------------------------------------------------------------
   const char* const ModifyMoneyEffect::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";

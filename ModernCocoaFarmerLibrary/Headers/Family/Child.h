@@ -14,7 +14,7 @@ namespace MCF::Family
 {
   class Child : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(Child, MCFLibraryDllExport)
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(Child, MCFLibraryDllExport)
 
     public:
       using OnSelectedChangedEvent = Celeste::Event<Child&>;

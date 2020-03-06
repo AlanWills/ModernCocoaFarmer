@@ -5,7 +5,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(TriggerDailyFamilyModifications);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(TriggerDailyFamilyModifications);
 
   //------------------------------------------------------------------------------------------------
   TriggerDailyFamilyModifications::TriggerDailyFamilyModifications()

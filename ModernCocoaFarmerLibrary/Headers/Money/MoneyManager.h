@@ -14,7 +14,7 @@ namespace MCF::Money
 {
   class MoneyManager : public Celeste::ScriptableObject
   {
-    DECLARE_SCRIPTABLE_OBJECT(MoneyManager, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(MoneyManager, MCFLibraryDllExport);
 
     public:
       using MoneyChangedEvent = Celeste::Event<int>;

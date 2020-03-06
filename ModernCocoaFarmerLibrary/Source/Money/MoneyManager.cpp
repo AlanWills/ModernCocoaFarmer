@@ -5,7 +5,7 @@
 
 namespace MCF::Money
 {
-  REGISTER_SCRIPTABLE_OBJECT(MoneyManager);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(MoneyManager);
 
   //------------------------------------------------------------------------------------------------
   const char* const MoneyManager::MONEY_ATTRIBUTE_NAME = "money";

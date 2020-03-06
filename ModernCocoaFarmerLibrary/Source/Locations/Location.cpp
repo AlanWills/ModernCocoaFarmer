@@ -10,7 +10,7 @@
 
 namespace MCF::Locations
 {
-  REGISTER_SCRIPTABLE_OBJECT(Location);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(Location);
 
   //------------------------------------------------------------------------------------------------
   const std::string Location::PREFAB_FIELD_NAME = "prefab";

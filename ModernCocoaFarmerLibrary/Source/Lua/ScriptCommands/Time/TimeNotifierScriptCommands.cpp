@@ -23,7 +23,7 @@ namespace MCF::Lua::Time::TimeNotifierScriptCommands
   {
     Celeste::Lua::registerUserType<TimeNotifier>(
       "TimeNotifier",
-      sol::base_classes, sol::bases<Celeste::Script, Celeste::Component, Celeste::Entity, Celeste::Object>(),
+      sol::base_classes, sol::bases<Celeste::Component, Celeste::Entity, Celeste::Object>(),
       "subscribeOnTimeChangedCallback", &subscribeOnTimeChangedCallback);
   }
 }

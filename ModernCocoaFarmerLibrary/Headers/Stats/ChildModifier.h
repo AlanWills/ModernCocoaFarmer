@@ -10,7 +10,7 @@ namespace MCF
   {
     class ChildModifier : public Modifier
     {
-      DECLARE_SCRIPTABLE_OBJECT(ChildModifier, MCFLibraryDllExport);
+      DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(ChildModifier, MCFLibraryDllExport);
 
       public:
         bool getAppliesToAllChildren() const { return m_appliesToAllChildren.getValue(); }

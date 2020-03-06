@@ -4,7 +4,7 @@
 
 namespace MCF::Notifications
 {
-  REGISTER_SCRIPTABLE_OBJECT(Notification);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(Notification);
 
   //------------------------------------------------------------------------------------------------
   const char* const Notification::DESCRIPTION_ATTRIBUTE_NAME = "description";

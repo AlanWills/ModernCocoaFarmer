@@ -7,7 +7,7 @@
 
 namespace MCF::Locations
 {
-  REGISTER_SCRIPTABLE_OBJECT(LocationsManager);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(LocationsManager);
 
   //------------------------------------------------------------------------------------------------
   const char* const LocationsManager::LOCATIONS_ELEMENT_NAME = "Locations";

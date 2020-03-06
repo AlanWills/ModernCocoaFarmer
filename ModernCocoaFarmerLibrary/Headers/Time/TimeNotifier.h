@@ -1,15 +1,15 @@
 #pragma once
 
 #include "MCFLibraryDllExport.h"
-#include "Objects/Script.h"
+#include "Objects/Component.h"
 #include "Events/Event.h"
 
 
 namespace MCF::Time
 {
-  class TimeNotifier : public Celeste::Script
+  class TimeNotifier : public Celeste::Component
   {
-    DECLARE_SCRIPT(TimeNotifier, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENT(TimeNotifier, MCFLibraryDllExport);
 
     public:
       using TimeChangedEvent = Celeste::Event<float>;
@@ -19,7 +19,7 @@ namespace MCF::Time
       MCFLibraryDllExport void update(float elapsedGameTime) override;
 
     private:
-      using Inherited = Celeste::Script;
+      using Inherited = Celeste::Component;
 
       TimeChangedEvent m_onTimeChangedEvent;
   };

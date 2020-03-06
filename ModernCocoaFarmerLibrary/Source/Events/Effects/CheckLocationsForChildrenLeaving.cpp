@@ -5,7 +5,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(CheckLocationsForChildrenLeaving);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(CheckLocationsForChildrenLeaving);
 
   //------------------------------------------------------------------------------------------------
   CheckLocationsForChildrenLeaving::CheckLocationsForChildrenLeaving()

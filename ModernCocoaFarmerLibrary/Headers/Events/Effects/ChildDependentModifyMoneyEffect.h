@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class ChildDependentModifyMoneyEffect : public ModifyMoneyEffect
   {
-    DECLARE_SCRIPTABLE_OBJECT(ChildDependentModifyMoneyEffect, MCFLibraryDllExport);
+    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(ChildDependentModifyMoneyEffect, MCFLibraryDllExport);
 
     public:
       void trigger(

@@ -5,7 +5,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(TriggerDailyLocationModifications);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(TriggerDailyLocationModifications);
 
   //------------------------------------------------------------------------------------------------
   TriggerDailyLocationModifications::TriggerDailyLocationModifications()

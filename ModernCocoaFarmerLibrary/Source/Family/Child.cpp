@@ -5,7 +5,7 @@
 
 namespace MCF::Family
 {
-  REGISTER_SCRIPTABLE_OBJECT(Child);
+  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(Child);
 
   //------------------------------------------------------------------------------------------------
   const float STAT_MAX_VALUE = 100.0f;
