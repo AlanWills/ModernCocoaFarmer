@@ -1,25 +1,30 @@
 local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 
-local MainMenuScene = {}
-
 ---------------------------------------------------------------------------------
-MainMenuScene.MAIN_MENU_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Scenes", "MainMenu.scene")
-MainMenuScene.PLAY_BUTTON_NAME = "PlayButton"
-MainMenuScene.OPTIONS_BUTTON_NAME = "OptionsButton"
-MainMenuScene.EXIT_BUTTON_NAME = "ExitButton"
+local MainMenu = 
+{
+    MAIN_MENU_SCENE_PATH = path.combine(Resources.getResourcesDirectory(), "Scenes", "MainMenu.scene"),
+    MAIN_MENU_ROOT_NAME = "MainMenuScene",
+    PLAY_BUTTON_NAME = "PlayButton",
+    OPTIONS_BUTTON_NAME = "OptionsButton",
+    EXIT_BUTTON_NAME = "ExitButton",
+}
 
 ---------------------------------------------------------------------------------
 local function play(caller)
-    caller:getScene():die()
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.hide()
+
     StartGameplayCommand.execute()
 end
 
 ---------------------------------------------------------------------------------
 local function toOptions(caller)
-    caller:getScene():die()
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.hide()
 
-    local OptionsScene = require 'Scenes.Options'
-    OptionsScene.show()
+    local Options = require 'Scenes.Options'
+    Options.show()
 end
 
 ---------------------------------------------------------------------------------
@@ -28,13 +33,18 @@ local function exitGame(caller)
 end
 
 ---------------------------------------------------------------------------------
-function MainMenuScene.show()
-    Scene.load(MainMenuScene.MAIN_MENU_SCREEN_PATH)
+function MainMenu.show()
+    Scene.load(MainMenu.MAIN_MENU_SCENE_PATH)
     local layoutStackPanel = GameObject.find("Canvas2"):findChild("LayoutStackPanel")
     
-    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenuScene.PLAY_BUTTON_NAME, play)
-    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenuScene.OPTIONS_BUTTON_NAME, toOptions)
-    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenuScene.EXIT_BUTTON_NAME, exitGame)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.PLAY_BUTTON_NAME, play)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.OPTIONS_BUTTON_NAME, toOptions)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.EXIT_BUTTON_NAME, exitGame)
 end
 
-return MainMenuScene
+---------------------------------------------------------------------------------
+function MainMenu.hide()
+    GameObject.find(MainMenu.MAIN_MENU_ROOT_NAME):destroy()
+end
+
+return MainMenu

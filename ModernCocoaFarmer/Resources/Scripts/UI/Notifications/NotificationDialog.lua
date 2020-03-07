@@ -8,13 +8,13 @@ local NotificationDialog =
 
 ---------------------------------------------------------------------------------
 local function closeDialog(caller)
-    caller:getParent():die()
+    caller:getParent():destroy()
 end
 
 ---------------------------------------------------------------------------------
-function NotificationDialog:new(screen, notificationTitle, notificationDescription)
+function NotificationDialog:new(notificationTitle, notificationDescription)
     local dialogPrefab = Resources.loadPrefab(self.NOTIFICATION_DIALOG_PREFAB_PATH)
-    local dialogInstance = dialogPrefab:instantiate(screen)
+    local dialogInstance = dialogPrefab:instantiate()
     local notificationTitleGameObject = dialogInstance:findChild(self.NOTIFICATION_TITLE_NAME)
     
     notificationTitleGameObject:findComponent("TextRenderer"):setText(notificationTitle)

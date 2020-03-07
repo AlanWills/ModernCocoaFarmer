@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Scene name="Main Menu" guid="7d5623bd-af84-468a-bf94-44b2400de483">
+<Scene>
   <GameObjects>
-    <GameObject name="Canvas" position="0,0,-1">
-      <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
-      </Components>
+    <GameObject name ="MainMenuScene">
       <GameObjects>
-        <GameObject name="Background" position="0.5%, 0.5%, 0">
+        <GameObject name="Canvas" position="0,0,-1">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%, 1%"/>
-          </Components>
-        </GameObject>
-      </GameObjects>
-    </GameObject>
-    <GameObject name="Canvas2">
-      <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
-      </Components>
-      <GameObjects>
-        <GameObject name="Title" position="0.5%, 0.8%, 0">
-          <Components>
-            <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1" text="Modern Cocoa Farmer"/>
-          </Components>
-        </GameObject>
-        <GameObject name="LayoutStackPanel" position="0.5%, 0.5%, 0">
-          <Components>
-            <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>
+            <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
           </Components>
           <GameObjects>
-            <GameObject name="ExitButton">
+            <GameObject name="Background" position="0.5%, 0.5%, 0">
               <Components>
-                <SpriteRenderer/>
-                <RectangleCollider/>
-                <MouseInteractionHandler/>
-                <Button/>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%, 1%"/>
               </Components>
-              <GameObjects>
-                <GameObject name="ExitText" position="0,1,0">
-                  <Components>
-                    <TextRenderer font_height="24" colour="0,0,0,1" text="Exit"/>
-                  </Components>
-                </GameObject>
-              </GameObjects>
             </GameObject>
-            <GameObject name="OptionsButton">
+          </GameObjects>
+        </GameObject>
+        <GameObject name="Canvas2">
+          <Components>
+            <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+          </Components>
+          <GameObjects>
+            <GameObject name="Title" position="0.5%, 0.8%, 0">
               <Components>
-                <SpriteRenderer/>
-                <RectangleCollider/>
-                <MouseInteractionHandler/>
-                <Button/>
+                <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1" text="Modern Cocoa Farmer"/>
               </Components>
-              <GameObjects>
-                <GameObject name="OptionsText" position="0,1,0">
-                  <Components>
-                    <TextRenderer font_height="24" colour="0,0,0,1" text="Options"/>
-                  </Components>
-                </GameObject>
-              </GameObjects>
             </GameObject>
-            <GameObject name="PlayButton">
+            <GameObject name="LayoutStackPanel" position="0.5%, 0.5%, 0">
               <Components>
-                <SpriteRenderer/>
-                <RectangleCollider/>
-                <MouseInteractionHandler/>
-                <Button/>
+                <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>
               </Components>
               <GameObjects>
-                <GameObject name="PlayText" position="0,1,0">
+                <GameObject name="ExitButton">
                   <Components>
-                    <TextRenderer font_height="24" colour="0,0,0,1" text="Play"/>
+                    <SpriteRenderer/>
+                    <RectangleCollider/>
+                    <MouseInteractionHandler/>
+                    <Button/>
                   </Components>
+                  <GameObjects>
+                    <GameObject name="ExitText" position="0,1,0">
+                      <Components>
+                        <TextRenderer font_height="24" colour="0,0,0,1" text="Exit"/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
+                <GameObject name="OptionsButton">
+                  <Components>
+                    <SpriteRenderer/>
+                    <RectangleCollider/>
+                    <MouseInteractionHandler/>
+                    <Button/>
+                  </Components>
+                  <GameObjects>
+                    <GameObject name="OptionsText" position="0,1,0">
+                      <Components>
+                        <TextRenderer font_height="24" colour="0,0,0,1" text="Options"/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
+                <GameObject name="PlayButton">
+                  <Components>
+                    <SpriteRenderer/>
+                    <RectangleCollider/>
+                    <MouseInteractionHandler/>
+                    <Button/>
+                  </Components>
+                  <GameObjects>
+                    <GameObject name="PlayText" position="0,1,0">
+                      <Components>
+                        <TextRenderer font_height="24" colour="0,0,0,1" text="Play"/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
                 </GameObject>
               </GameObjects>
             </GameObject>

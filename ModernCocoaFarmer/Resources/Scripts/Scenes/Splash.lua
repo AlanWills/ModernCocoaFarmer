@@ -1,25 +1,32 @@
-local SplashScene = {}
+---------------------------------------------------------------------------------
+local Splash =
+{
+    SPLASH_SCENE_SCREEN_PATH = path.combine("Scenes", "Splash.scene"),
+    SPLASH_ROOT_NAME = "SplashScene",
+    SCREEN_TRANSITIONER_NAME = "SceneTransitioner",
+}
 
 ---------------------------------------------------------------------------------
-SplashScene.SPLASH_SCREEN_SCREEN_PATH = path.combine("Scenes", "Splash.scene")
-SplashScene.SPLASH_SCREEN_ROOT_NAME = "SplashScene"
-SplashScene.SCREEN_TRANSITIONER_NAME = "SceneTransitioner"
+function transitionToMainMenu(caller)
+    local Splash = require 'Scenes.Splash'
+    Splash.hide()
 
----------------------------------------------------------------------------------
-local function transitionToMainMenu(caller)
-    GameObject.find(SplashScene.SPLASH_SCREEN_ROOT_NAME):destroy()
-
-    local MainMenuScene = require 'Scenes.MainMenu'
-    MainMenuScene.show()
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.show()
 end
 
 ---------------------------------------------------------------------------------
-function SplashScene.show()
-    Scene.load(SplashScene.SPLASH_SCREEN_SCREEN_PATH)
+function Splash.show()
+    Scene.load(Splash.SPLASH_SCENE_SCREEN_PATH)
 
-    local screenTransitioner = GameObject.find(SplashScene.SCREEN_TRANSITIONER_NAME)
+    local screenTransitioner = GameObject.find(Splash.SCREEN_TRANSITIONER_NAME)
     local eventTriggerer = screenTransitioner:findComponent("EventTriggerer")
     eventTriggerer:subscribeOnEventTriggered(transitionToMainMenu)
 end
 
-return SplashScene
+---------------------------------------------------------------------------------
+function Splash.hide()
+    GameObject.find(Splash.SPLASH_ROOT_NAME):destroy()
+end
+
+return Splash

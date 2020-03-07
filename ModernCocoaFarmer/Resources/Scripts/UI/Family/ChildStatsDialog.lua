@@ -23,7 +23,7 @@ function ChildStatsDialog:new(parent, child)
     self._child = child
 
     local prefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
-    local gameObject = prefab:instantiate(parent:getScene())
+    local gameObject = prefab:instantiate()
     gameObject:setParent(parent);
     gameObject:getTransform():translate(0, -240)
     self._gameObject = gameObject

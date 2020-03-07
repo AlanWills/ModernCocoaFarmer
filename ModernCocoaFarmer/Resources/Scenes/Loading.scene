@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Scene name="Loading" guid="07ba819b-317b-4586-9679-dac279938f63">
+<Scene>
   <GameObjects>
     <GameObject name="Canvas">
       <Components>

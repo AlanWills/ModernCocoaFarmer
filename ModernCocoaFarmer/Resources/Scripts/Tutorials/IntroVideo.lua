@@ -1,9 +1,10 @@
 local tuts = require "Tutorials.Tutorials"
 
-local iv = {}
-
 ---------------------------------------------------------------------------------
-iv.INTRO_VIDEO_PATH = path.combine(Resources.getResourcesDirectory(), "Videos", "IntroMovie.mp4")
+local iv = 
+{
+    INTRO_VIDEO_PATH = path.combine(Resources.getResourcesDirectory(), "Videos", "IntroMovie.mp4"),
+}
 
 ---------------------------------------------------------------------------------
 function iv.showIntroVideoIfNecessary(videoCompleteCallback)

@@ -33,7 +33,7 @@ end
 ---------------------------------------------------------------------------------
 function NotificationsBar:removeNotificationIcon(notificationIcon)
     self._gameObject:findComponent("StackPanel"):removeChild(notificationIcon.gameObject)
-    notificationIcon.gameObject:die()
+    notificationIcon.gameObject:destroy()
 end
 
 return NotificationsBar

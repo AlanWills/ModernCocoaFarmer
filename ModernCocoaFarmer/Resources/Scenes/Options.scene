@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Scene name="Options" guid="224eef51-326c-4fc1-829d-2715c0362643">
+<Scene>
   <GameObjects>
     <GameObject name="OptionsScene">
       <Components>

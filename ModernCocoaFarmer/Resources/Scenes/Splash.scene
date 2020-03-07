@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Scene name="Splash" guid="61a34bb6-809c-4b7d-867b-97939a06cb42">
+<Scene>
   <Resources>
     <Texture2Ds>
       <Texture2D>Textures\Scenes\SplashScene.png</Texture2D>

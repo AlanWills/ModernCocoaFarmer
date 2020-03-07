@@ -29,7 +29,7 @@ end
 function ChildIcon:new(familyPanel, child)
     local familyPanelStackPanel = familyPanel:findComponent("StackPanel")
     local childPrefab = Resources.loadPrefab(self.CHILD_ICON_PREFAB)
-    local childInstance = childPrefab:instantiate(familyPanel:getScene())
+    local childInstance = childPrefab:instantiate()
     childInstance:setParent(familyPanel)
     childInstance:setName(child:getName())
     familyPanelStackPanel:addChild(childInstance);

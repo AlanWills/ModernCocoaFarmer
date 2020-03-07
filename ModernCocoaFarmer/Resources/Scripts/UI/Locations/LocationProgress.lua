@@ -5,9 +5,9 @@ local LocationProgress =
 }
 
 ----------------------------------------------------------------------------------------
-function LocationProgress:new(childName, screen)
+function LocationProgress:new(childName)
     local locationProgressPrefab = Resources.loadPrefab(self.LOCATION_PROGRESS_PREFAB_PATH) 
-    self.gameObject = locationProgressPrefab:instantiate(screen)
+    self.gameObject = locationProgressPrefab:instantiate()
     self.gameObject:findChild(self.CHILD_NAME_TEXT):findComponent("TextRenderer"):setText(childName)
 
     self._progressBar = self.gameObject:findComponent("ProgressBar")

@@ -21,7 +21,7 @@ local LocationDialog =
 
 ----------------------------------------------------------------------------------------
 local function closeCallback(caller)
-    caller:getParent():die()
+    caller:getParent():destroy()
 end
 
 ----------------------------------------------------------------------------------------
@@ -90,16 +90,16 @@ end
 ----------------------------------------------------------------------------------------
 local function sendChildToLocation(caller, self)
     self._location:sendChild(self._selectedChild)
-    self._gameObject:die()
+    self._gameObject:destroy()
 end
 
 ----------------------------------------------------------------------------------------
-function LocationDialog:new(screen, location, selectedChild)
+function LocationDialog:new(location, selectedChild)
     self._location = location
     self._selectedChild = selectedChild
 
     local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
-    self._gameObject = dialogPrefab:instantiate(screen)
+    self._gameObject = dialogPrefab:instantiate()
     local interactableLocationBackground = self._gameObject:findChild("InteractableLocationBackground")
 
     local titleText = interactableLocationBackground:findChild(self.TITLE_TEXT_NAME)

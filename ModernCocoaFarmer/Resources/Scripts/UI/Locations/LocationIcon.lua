@@ -24,7 +24,7 @@ function LocationIcon:new(location, parent)
     self._locationProgressBars = {}
 
     local locationPrefab = Resources.loadPrefab(location:getPrefab())
-    self._gameObject = locationPrefab:instantiate(parent:getScene())
+    self._gameObject = locationPrefab:instantiate()
     self._gameObject:setParent(parent)
 
     local icon = self._gameObject:findChild(self.ICON_NAME)
@@ -47,12 +47,12 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:showDetails(selectedChild)
-    Class.new(LocationDialog, self._gameObject:getScene(), self._location, selectedChild)
+    Class.new(LocationDialog, self._location, selectedChild)
 end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:addChildLocationProgress(child)
-    local locationProgress = Class.new(LocationProgress, child:getName(), self._gameObject:getScene())
+    local locationProgress = Class.new(LocationProgress, child:getName())
     self._locationProgressBars[child:getName()] = locationProgress
     self._locationProgressStackPanel:addChild(locationProgress.gameObject)
 end
@@ -62,7 +62,7 @@ function LocationIcon:removeChildLocationProgress(child)
     local locationProgress = self._locationProgressBars[child:getName()]
     self._locationProgressStackPanel:removeChild(locationProgress.gameObject)
 
-    locationProgress.gameObject:die()
+    locationProgress.gameObject:destroy()
     self._locationProgressBars[child:getName()] = nil
 end
 

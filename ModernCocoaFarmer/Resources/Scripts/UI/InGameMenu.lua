@@ -1,21 +1,22 @@
 require 'Settings.GameSettings'
 
-local InGameMenu = {}
-
 ---------------------------------------------------------------------------------
-InGameMenu.IN_GAME_MENU_PREFAB_PATH = path.combine("Prefabs", "UI", "InGameMenu.prefab")
-InGameMenu.TOGGLE_AUDIO_BUTTON_NAME = "ToggleAudioButton"
-InGameMenu.RESUME_GAME_BUTTON_NAME = "ResumeGameButton"
-InGameMenu.RESTART_GAME_BUTTON_NAME = "RestartGameButton"
-InGameMenu.TO_MAIN_MENU_BUTTON_NAME = "ToMainMenuButton"
-InGameMenu.QUIT_GAME_BUTTON_NAME = "QuitGameButton"
-InGameMenu.AUDIO_MUTED_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioMuted.png")
-InGameMenu.AUDIO_PLAYING_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioPlaying.png")
-InGameMenu.oldMasterVolume = 1
+local InGameMenu =
+{
+    IN_GAME_MENU_PREFAB_PATH = path.combine("Prefabs", "UI", "InGameMenu.prefab"),
+    TOGGLE_AUDIO_BUTTON_NAME = "ToggleAudioButton",
+    RESUME_GAME_BUTTON_NAME = "ResumeGameButton",
+    RESTART_GAME_BUTTON_NAME = "RestartGameButton",
+    TO_MAIN_MENU_BUTTON_NAME = "ToMainMenuButton",
+    QUIT_GAME_BUTTON_NAME = "QuitGameButton",
+    AUDIO_MUTED_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioMuted.png"),
+    AUDIO_PLAYING_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioPlaying.png"),
+    oldMasterVolume = 1,
+}
 
 ----------------------------------------------------------------------------------------
 local function close(caller)
-    caller:getParent():die()
+    caller:getParent():destroy()
 end
 
 ---------------------------------------------------------------------------------
@@ -53,18 +54,22 @@ end
 
 ---------------------------------------------------------------------------------
 local function restartGame(caller)
-    caller:getScene():die()
-    
-    local GameplayScene = require 'Scenes.GameplayScene'
-    GameplayScene.show();
+    close(caller)
+
+    local Gameplay = require 'Scenes.Gameplay'
+    Gameplay.hide()
+    Gameplay.show()
 end
 
 ---------------------------------------------------------------------------------
 local function toMainMenu(caller)
-    caller:getScene():die()
+    close(caller)
 
-    local MainMenuScene = require 'Scenes.MainMenuScene'
-    MainMenuScene.show()
+    local Gameplay = require 'Scenes.Gameplay'
+    Gameplay.hide()
+
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.show()
 end
 
 ---------------------------------------------------------------------------------
@@ -78,9 +83,9 @@ function InGameMenu.load()
 end
 
 ---------------------------------------------------------------------------------
-function InGameMenu.show(screen, familyManager)
+function InGameMenu.show(familyManager)
     local menuPrefab = InGameMenu.load()
-    local menuInstance = menuPrefab:instantiate(screen)
+    local menuInstance = menuPrefab:instantiate()
 
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.RESUME_GAME_BUTTON_NAME, resumeGame)

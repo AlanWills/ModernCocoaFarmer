@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Scene name="Gameplay" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
+<Scene>
   <GameObjects>
     <GameObject name="GameplayScene">
       <Components>

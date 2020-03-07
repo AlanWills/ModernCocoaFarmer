@@ -17,7 +17,7 @@ local TopBar =
 
 ---------------------------------------------------------------------------------
 local function showInGameMenu(caller)
-    InGameMenu.show(caller:getScene())
+    InGameMenu.show()
 end
 
 ---------------------------------------------------------------------------------
