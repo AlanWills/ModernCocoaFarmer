@@ -1,6 +1,6 @@
 #include "Game/MCFGame.h"
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
-#include "Screens/ScreenUtils.h"
+#include "Scene/SceneUtils.h"
 #include "Debugging/SceneBroadcaster.h"
 #include "Debugging/LuaScriptReceiver.h"
 #include "Networking/NetworkUtils.h"
@@ -38,7 +38,7 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   void MCFGame::onUpdate(float elapsedGameTime)
   {
-    m_sceneBroadcaster->update(getScreenManager());
+    m_sceneBroadcaster->update(getSceneManager());
     m_luaScriptReceiver->update();
   }
 

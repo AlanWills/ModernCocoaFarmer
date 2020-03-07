@@ -25,7 +25,7 @@ local TimePanel =
 local function setUIEnabledAndOtherDisabled(caller, otherButtonName)
     caller:findComponent("SpriteRenderer"):setColour(0.2, 1, 0.2)
 
-    local otherButton = caller:getParent():findChildGameObject(otherButtonName)
+    local otherButton = caller:getParent():findChild(otherButtonName)
     otherButton:findComponent("SpriteRenderer"):setColour(1, 1, 1)
 end
 
@@ -43,7 +43,7 @@ end
 
 ---------------------------------------------------------------------------------
 function TimePanel:new(timeManager, timePanelGameObject)
-    self._monthText = timePanelGameObject:findChildGameObject(self.MONTH_TEXT_NAME):findComponent("TextRenderer")
+    self._monthText = timePanelGameObject:findChild(self.MONTH_TEXT_NAME):findComponent("TextRenderer")
     self._timeManager = timeManager
 
     timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, play, self)

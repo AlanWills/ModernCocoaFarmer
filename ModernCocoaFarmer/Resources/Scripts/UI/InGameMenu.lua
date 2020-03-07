@@ -53,18 +53,18 @@ end
 
 ---------------------------------------------------------------------------------
 local function restartGame(caller)
-    caller:getScreen():die()
+    caller:getScene():die()
     
-    local GameplayScreen = require 'Screens.GameplayScreen'
-    GameplayScreen.show();
+    local GameplayScene = require 'Scenes.GameplayScene'
+    GameplayScene.show();
 end
 
 ---------------------------------------------------------------------------------
 local function toMainMenu(caller)
-    caller:getScreen():die()
+    caller:getScene():die()
 
-    local MainMenuScreen = require 'Screens.MainMenuScreen'
-    MainMenuScreen.show()
+    local MainMenuScene = require 'Scenes.MainMenuScene'
+    MainMenuScene.show()
 end
 
 ---------------------------------------------------------------------------------
@@ -88,7 +88,7 @@ function InGameMenu.show(screen, familyManager)
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.TO_MAIN_MENU_BUTTON_NAME, toMainMenu)
     menuInstance:setupChildLeftButtonUpCallback(InGameMenu.QUIT_GAME_BUTTON_NAME, quitGame)
 
-    setToggleAudioButtonTexture(menuInstance:findChildGameObject(InGameMenu.TOGGLE_AUDIO_BUTTON_NAME), Audio.getMasterVolume())
+    setToggleAudioButtonTexture(menuInstance:findChild(InGameMenu.TOGGLE_AUDIO_BUTTON_NAME), Audio.getMasterVolume())
 end
 
 return InGameMenu

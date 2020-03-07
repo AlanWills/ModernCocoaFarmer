@@ -3,9 +3,9 @@ local LocationsUI = require 'UI.Locations.LocationsUI'
 local TopBar = require "UI.TopBar"
 local NotificationsBar = require 'UI.Notifications.NotificationsBar'
 
-local GameplayScreen = 
+local GameplayScene = 
 {
-    GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Screens", "Gameplay.screen"),
+    GAMEPLAY_SCREEN_PATH = path.combine(Resources.getResourcesDirectory(), "Scenes", "Gameplay.scene"),
     TOP_BAR_NAME = "TopBarBackground",
     TIME_NOTIFIER_NAME = "TimeNotifier",
     NOTIFICATIONS_BAR_NAME = "NotificationsBar",
@@ -19,11 +19,11 @@ end
 
 ---------------------------------------------------------------------------------
 local function onGameEventTriggeredCallback(gameEvent)
-    GameplayScreen.updateUI()
+    GameplayScene.updateUI()
 end
 
 ---------------------------------------------------------------------------------
-function GameplayScreen.show()
+function GameplayScene.show()
     local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
@@ -41,39 +41,39 @@ function GameplayScreen.show()
     familyManager:addChild()
     familyManager:addChild()
     
-    local gameplayScreen = Screen.load(GameplayScreen.GAMEPLAY_SCREEN_PATH)
+    Scene.load(GameplayScene.GAMEPLAY_SCREEN_PATH)
     
-    local timeComponent = gameplayScreen:findGameObject(GameplayScreen.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
+    local timeComponent = GameObject.find(GameplayScene.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, timeManager)
 
-    local locationsUI = gameplayScreen:findGameObject(GameplayScreen.LOCATIONS_UI_NAME)
-    GameplayScreen._locationsUI = Class.new(LocationsUI, locationsManager, familyManager, locationsUI)
+    local locationsUI = GameObject.find(GameplayScene.LOCATIONS_UI_NAME)
+    GameplayScene._locationsUI = Class.new(LocationsUI, locationsManager, familyManager, locationsUI)
 
-    local topBarGameObject = gameplayScreen:findGameObject(GameplayScreen.TOP_BAR_NAME)
-    GameplayScreen._topBar = Class.new(
+    local topBarGameObject = GameObject.find(GameplayScene.TOP_BAR_NAME)
+    GameplayScene._topBar = Class.new(
         TopBar, 
         topBarGameObject, 
         familyManager, 
         moneyManager,
         timeManager)
       
-    local notificationsBar = gameplayScreen:findGameObject(GameplayScreen.NOTIFICATIONS_BAR_NAME)
-    GameplayScreen._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
+    local notificationsBar = GameObject.find(GameplayScene.NOTIFICATIONS_BAR_NAME)
+    GameplayScene._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
 
-    GameplayScreen._timeManager = timeManager
-    GameplayScreen._moneyManager = moneyManager
-    GameplayScreen._familyManager = familyManager
-    GameplayScreen._locationsManager = locationsManager
-    GameplayScreen._notificationManager = notificationManager
-    GameplayScreen._gameEventManager = gameEventManager
+    GameplayScene._timeManager = timeManager
+    GameplayScene._moneyManager = moneyManager
+    GameplayScene._familyManager = familyManager
+    GameplayScene._locationsManager = locationsManager
+    GameplayScene._notificationManager = notificationManager
+    GameplayScene._gameEventManager = gameEventManager
     
-    GameplayScreen.updateUI()
+    GameplayScene.updateUI()
 end
 
 ---------------------------------------------------------------------------------
-function GameplayScreen.updateUI()
-    GameplayScreen._locationsUI:updateUI()
-    GameplayScreen._topBar:updateUI()
+function GameplayScene.updateUI()
+    GameplayScene._locationsUI:updateUI()
+    GameplayScene._topBar:updateUI()
 end
 
-return GameplayScreen
+return GameplayScene

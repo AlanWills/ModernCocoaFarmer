@@ -9,7 +9,7 @@ local NotificationIcon =
 
 ---------------------------------------------------------------------------------
 local function showNotificationDialogCallback(caller, self)
-    self:showNotificationDialog(caller:getScreen())
+    self:showNotificationDialog(caller:getScene())
 end
 
 ---------------------------------------------------------------------------------
@@ -18,12 +18,12 @@ function NotificationIcon:new(notification, parent)
     self._description = notification:getDescription()
 
     local notificationPrefab = Resources.loadPrefab(self.NOTIFICATION_ICON_PREFAB_PATH)
-    self.gameObject = notificationPrefab:instantiate(parent:getScreen())
+    self.gameObject = notificationPrefab:instantiate(parent:getScene())
 
     local notificationInteractionHandler = self.gameObject:findComponent("MouseInteractionHandler")
     notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showNotificationDialogCallback, self)
 
-    local notificationIcon = self.gameObject:findChildGameObject(self.NOTIFICATION_ICON_NAME)
+    local notificationIcon = self.gameObject:findChild(self.NOTIFICATION_ICON_NAME)
     notificationIcon:findComponent("SpriteRenderer"):setTexture(notification:getIcon())
 end
 

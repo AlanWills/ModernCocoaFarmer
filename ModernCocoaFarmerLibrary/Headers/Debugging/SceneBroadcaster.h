@@ -9,37 +9,34 @@
 
 namespace Celeste
 {
-  class ScreenManager;
+  class SceneManager;
   class GameObject;
 }
 
-namespace MCF
+namespace MCF::Debugging
 {
-  namespace Debugging
+  class SceneBroadcaster
   {
-    class SceneBroadcaster
-    {
-      public:    
-        SceneBroadcaster();
-        SceneBroadcaster(const SceneBroadcaster&) = delete;
-        SceneBroadcaster(SceneBroadcaster&&) = default;
-        ~SceneBroadcaster();
+    public:
+      SceneBroadcaster();
+      SceneBroadcaster(const SceneBroadcaster&) = delete;
+      SceneBroadcaster(SceneBroadcaster&&) = default;
+      ~SceneBroadcaster();
 
-        SceneBroadcaster& operator=(const SceneBroadcaster&) = delete;
+      SceneBroadcaster& operator=(const SceneBroadcaster&) = delete;
 
-        void start();
-        void update(const Celeste::ScreenManager& screenManager);
-        void stop();
+      void start();
+      void update(const Celeste::SceneManager& sceneManager);
+      void stop();
 
-      private:
-        void serializeGameObject(Celeste::GameObject& gameObject, std::string& output) const;
+    private:
+      void serializeGameObject(const Celeste::GameObject& gameObject, std::string& output) const;
 
-        Networking::SocketServer m_server;
-        std::string m_message;
+      Networking::SocketServer m_server;
+      std::string m_message;
 
-        static const char m_fieldDelimiter;
-        static const char m_vectorDelimiter;
-        static const char* m_messageEndDelimiter;
-    };
-  }
+      static const char m_fieldDelimiter;
+      static const char m_vectorDelimiter;
+      static const char* m_messageEndDelimiter;
+  };
 }

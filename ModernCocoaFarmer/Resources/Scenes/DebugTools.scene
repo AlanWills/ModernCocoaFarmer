@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Screen name="DebugTools" guid="5b9db7f6-b9bb-483f-807c-5d9fa981f1dd">
+<Scene name="DebugTools" guid="5b9db7f6-b9bb-483f-807c-5d9fa981f1dd">
   <Resources>
     <Fonts>
 
@@ -21,4 +21,4 @@
     <Prefab name="FSPCounter" path="Prefabs\Debugging\FPSCounter.prefab"/>
     <Prefab name="GameplayDebugging" path="Prefabs\Debugging\GameplayDebugging.prefab"/>
   </GameObjects>
-</Screen>
+</Scene>

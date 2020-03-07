@@ -11,9 +11,9 @@ local ChildStatsDialog =
 
 ----------------------------------------------------------------------------------------
 local function getProgressBar(dialogGameObject, categoryName, progressBarName)
-    local category = dialogGameObject:findChildGameObject(categoryName)
-    local categoryBackground = category:findChildGameObject(categoryName .. "ProgressBarBackground")
-    local categoryProgressBarGameObject = categoryBackground:findChildGameObject(progressBarName)
+    local category = dialogGameObject:findChild(categoryName)
+    local categoryBackground = category:findChild(categoryName .. "ProgressBarBackground")
+    local categoryProgressBarGameObject = categoryBackground:findChild(progressBarName)
     
     return categoryProgressBarGameObject:findComponent("ProgressBar")
 end
@@ -23,7 +23,7 @@ function ChildStatsDialog:new(parent, child)
     self._child = child
 
     local prefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
-    local gameObject = prefab:instantiate(parent:getScreen())
+    local gameObject = prefab:instantiate(parent:getScene())
     gameObject:setParent(parent);
     gameObject:getTransform():translate(0, -240)
     self._gameObject = gameObject
@@ -33,8 +33,8 @@ function ChildStatsDialog:new(parent, child)
     self._educationProgressBar = getProgressBar(gameObject, "Education", self.EDUCATION_PROGRESS_BAR_NAME)
     self._happinessProgressBar = getProgressBar(gameObject, "Happiness", self.HAPPINESS_PROGRESS_BAR_NAME)
 
-    local childLocationGameObject = gameObject:findChildGameObject(self.CURRENT_LOCATION_NAME)
-    self._childLocationText = childLocationGameObject:findChildGameObject(self.CURRENT_LOCATION_TEXT_NAME):findComponent("TextRenderer")
+    local childLocationGameObject = gameObject:findChild(self.CURRENT_LOCATION_NAME)
+    self._childLocationText = childLocationGameObject:findChild(self.CURRENT_LOCATION_TEXT_NAME):findComponent("TextRenderer")
 end
 
 ----------------------------------------------------------------------------------------

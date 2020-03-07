@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Screen name="Gameplay" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
+<Scene name="Gameplay" guid="06ae47c8-c80c-4617-a1ef-8d27197ad760">
   <GameObjects>
-    <GameObject name="Canvas">
+    <GameObject name="GameplayScene">
       <Components>
         <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
       </Components>
@@ -55,4 +55,4 @@
       </GameObjects>
     </GameObject>
   </GameObjects>
-</Screen>
+</Scene>

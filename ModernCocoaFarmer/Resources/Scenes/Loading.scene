@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Screen name="Loading" guid="07ba819b-317b-4586-9679-dac279938f63">
+<Scene name="Loading" guid="07ba819b-317b-4586-9679-dac279938f63">
   <GameObjects>
     <GameObject name="Canvas">
       <Components>
@@ -29,11 +29,11 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="ScreenKiller">
+        <GameObject name="SceneKiller">
           <Components>
             <LimitedLifeTime lifetime="3" trigger_key="esc">
               <OnDeathCallbacks>
-                <Callback name="KillOwnerScreen" arg=""/>
+                <Callback name="KillOwnerScene" arg=""/>
                 <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
               </OnDeathCallbacks>
             </LimitedLifeTime>
@@ -42,4 +42,4 @@
       </GameObjects>
     </GameObject>
   </GameObjects>
-</Screen>
+</Scene>

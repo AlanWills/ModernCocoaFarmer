@@ -1,13 +1,13 @@
 local MCFComponents = require 'Components.MCFComponents'
-local SplashScreen = require 'Screens.SplashScreen'
+local SplashScene = require 'Scenes.Splash'
 local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 
 local quickStart = false
 
-Screen.load(path.combine(Resources.getResourcesDirectory(), "Screens", "DebugTools.screen"))
+Scene.load(path.combine(Resources.getResourcesDirectory(), "Scenes", "DebugTools.scene"))
 
 if not quickStart then
-    SplashScreen.show()
+    SplashScene.show()
 else
     StartGameplayCommand.execute()
 end

@@ -29,7 +29,7 @@ end
 function ChildIcon:new(familyPanel, child)
     local familyPanelStackPanel = familyPanel:findComponent("StackPanel")
     local childPrefab = Resources.loadPrefab(self.CHILD_ICON_PREFAB)
-    local childInstance = childPrefab:instantiate(familyPanel:getScreen())
+    local childInstance = childPrefab:instantiate(familyPanel:getScene())
     childInstance:setParent(familyPanel)
     childInstance:setName(child:getName())
     familyPanelStackPanel:addChild(childInstance);
@@ -38,14 +38,14 @@ function ChildIcon:new(familyPanel, child)
     childInteractionHandler:subscribeOnEnterCallback(showChildStats, self)
     childInteractionHandler:subscribeOnLeaveCallback(hideChildStats, self)
 
-    local childName = childInstance:findChildGameObject(self.CHILD_NAME_NAME)
+    local childName = childInstance:findChild(self.CHILD_NAME_NAME)
     childName:findComponent("TextRenderer"):setText(child:getName())
     
     child:subscribeOnSelectedChangedCallback(onChildSelectedChanged, self)
 
     self.child = child
     self.gameObject = childInstance
-    self.selectedIcon = childInstance:findChildGameObject(self.CHILD_SELECTED_ICON_NAME)
+    self.selectedIcon = childInstance:findChild(self.CHILD_SELECTED_ICON_NAME)
     self._statsDialog = Class.new(ChildStatsDialog, childInstance, child)
     self._statsDialog:hide()
 end

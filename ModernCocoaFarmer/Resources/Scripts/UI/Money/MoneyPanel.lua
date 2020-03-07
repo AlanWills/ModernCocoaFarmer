@@ -7,7 +7,7 @@ local MoneyPanel =
 ---------------------------------------------------------------------------------
 function MoneyPanel:new(moneyManager, moneyPanelGameObject)
     self._moneyManager = moneyManager
-    self._moneyText = moneyPanelGameObject:findChildGameObject(self.MONEY_TEXT_NAME):findComponent("TextRenderer")
+    self._moneyText = moneyPanelGameObject:findChild(self.MONEY_TEXT_NAME):findComponent("TextRenderer")
 end
 
 ---------------------------------------------------------------------------------

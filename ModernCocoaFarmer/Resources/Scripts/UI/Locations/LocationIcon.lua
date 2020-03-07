@@ -24,11 +24,11 @@ function LocationIcon:new(location, parent)
     self._locationProgressBars = {}
 
     local locationPrefab = Resources.loadPrefab(location:getPrefab())
-    self._gameObject = locationPrefab:instantiate(parent:getScreen())
+    self._gameObject = locationPrefab:instantiate(parent:getScene())
     self._gameObject:setParent(parent)
 
-    local icon = self._gameObject:findChildGameObject(self.ICON_NAME)
-    self._locationProgressStackPanel = icon:findChildGameObject(self.PROGRESS_STACK_PANEL_NAME):findComponent("StackPanel")
+    local icon = self._gameObject:findChild(self.ICON_NAME)
+    self._locationProgressStackPanel = icon:findChild(self.PROGRESS_STACK_PANEL_NAME):findComponent("StackPanel")
 
     location:subscribeOnChildSentCallback(onChildSentCallback, self)
     location:subscribeOnChildLeftCallback(onChildLeftCallback, self)
@@ -41,18 +41,18 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:subscribeIconClickedCallback(callback, extraArgs)
-    local icon = self._gameObject:findChildGameObject(self.ICON_NAME)
+    local icon = self._gameObject:findChild(self.ICON_NAME)
     icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(onLeftButtonUp, { callback = callback, locationIcon = self, extraArgs = extraArgs })
 end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:showDetails(selectedChild)
-    Class.new(LocationDialog, self._gameObject:getScreen(), self._location, selectedChild)
+    Class.new(LocationDialog, self._gameObject:getScene(), self._location, selectedChild)
 end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:addChildLocationProgress(child)
-    local locationProgress = Class.new(LocationProgress, child:getName(), self._gameObject:getScreen())
+    local locationProgress = Class.new(LocationProgress, child:getName(), self._gameObject:getScene())
     self._locationProgressBars[child:getName()] = locationProgress
     self._locationProgressStackPanel:addChild(locationProgress.gameObject)
 end

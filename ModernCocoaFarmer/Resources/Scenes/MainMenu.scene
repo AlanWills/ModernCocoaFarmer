@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Screen name="Main Menu" guid="7d5623bd-af84-468a-bf94-44b2400de483">
+<Scene name="Main Menu" guid="7d5623bd-af84-468a-bf94-44b2400de483">
   <GameObjects>
     <GameObject name="Canvas" position="0,0,-1">
       <Components>
@@ -33,9 +33,7 @@
                 <SpriteRenderer/>
                 <RectangleCollider/>
                 <MouseInteractionHandler/>
-                <Button>
-                  <LeftClickCallbacks/>
-                </Button>
+                <Button/>
               </Components>
               <GameObjects>
                 <GameObject name="ExitText" position="0,1,0">
@@ -80,4 +78,4 @@
       </GameObjects>
     </GameObject>
   </GameObjects>
-</Screen>
+</Scene>
