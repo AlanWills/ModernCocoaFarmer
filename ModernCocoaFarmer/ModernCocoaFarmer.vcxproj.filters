@@ -158,6 +158,13 @@
     <None Include="Resources\Scripts\Scenes\MainMenu.lua" />
     <None Include="Resources\Scripts\Scenes\Options.lua" />
     <None Include="Resources\Scripts\Scenes\Splash.lua" />
+    <None Include="Resources\Data\Events\GetPaidSalary.asset" />
+    <None Include="Resources\Data\Events\Conditions\Time\Day25.asset" />
+    <None Include="Resources\Data\Events\Effects\Money\PaySalary.asset" />
+    <None Include="Resources\Data\Events\Effects\Notifications\SendGetPaidSalaryNotification.asset" />
+    <None Include="Resources\Data\Modifiers\Events\Money\BaseSalaryLevel.asset" />
+    <None Include="Resources\Data\Events\CheckLocationsForChildrenArriving.asset" />
+    <None Include="Resources\Data\Events\Effects\Family\CheckLocationsForChildrenArriving.asset" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Cocoa Pod Collection\Childworker.png">

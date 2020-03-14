@@ -9,7 +9,7 @@ namespace MCF::Events::Conditions
 {
   class ChildrenStatComparisonCondition : public Condition
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(ChildrenStatComparisonCondition, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ChildrenStatComparisonCondition, MCFLibraryDllExport);
 
   public:
     size_t getNumberOfChildren() const { return m_numberOfChildren.getValue(); }

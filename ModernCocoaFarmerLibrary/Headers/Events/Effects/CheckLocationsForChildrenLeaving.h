@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class CheckLocationsForChildrenLeaving : public Effect
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(CheckLocationsForChildrenLeaving, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(CheckLocationsForChildrenLeaving, MCFLibraryDllExport);
 
   public:
     void trigger(

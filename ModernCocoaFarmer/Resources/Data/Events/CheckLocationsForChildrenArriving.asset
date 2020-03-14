@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEvent name="Check Locations for Children Arriving" guid="7cea1013-f6ef-4d89-8a44-6ec2e48f3f7b">
+  <Effects>
+    <Effect path="Data\Events\Effects\Family\CheckLocationsForChildrenArriving.asset"/>
+  </Effects>
+</GameEvent>

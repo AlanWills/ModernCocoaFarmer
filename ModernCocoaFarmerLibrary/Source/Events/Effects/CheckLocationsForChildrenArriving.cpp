@@ -1,24 +1,22 @@
-#include "Events/Effects/CheckLocationsForChildrenLeaving.h"
+#include "Events/Effects/CheckLocationsForChildrenArriving.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Locations/LocationsManager.h"
 
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(CheckLocationsForChildrenLeaving);
+  REGISTER_SCRIPTABLE_OBJECT(CheckLocationsForChildrenArriving);
 
   //------------------------------------------------------------------------------------------------
-  CheckLocationsForChildrenLeaving::CheckLocationsForChildrenLeaving()
-  {
-  }
+  CheckLocationsForChildrenArriving::CheckLocationsForChildrenArriving() = default;
 
   //------------------------------------------------------------------------------------------------
-  void CheckLocationsForChildrenLeaving::trigger(
+  void CheckLocationsForChildrenArriving::trigger(
     Money::MoneyManager& moneyManager,
     Family::FamilyManager& familyManager,
     Locations::LocationsManager& locationsManager,
     Notifications::NotificationManager& notificationsManager) const
   {
-    locationsManager.checkLocationsForChildrenLeaving(moneyManager, familyManager, notificationsManager);
+    locationsManager.checkLocationsForChildrenArriving(moneyManager, familyManager, notificationsManager);
   }
 }

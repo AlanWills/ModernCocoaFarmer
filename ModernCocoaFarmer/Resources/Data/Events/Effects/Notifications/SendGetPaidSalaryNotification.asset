@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SendNotification name="SendGetPaidSalaryNotification" guid="9e93503d-214e-4cc9-80b1-33e88daed0cb" notification="040e88b9-ad43-45ae-890e-b2226d6dd01c">
+  <Notification description="Get Paid Salary Placeholder" name="Get Paid Salary" guid="040e88b9-ad43-45ae-890e-b2226d6dd01c"
+                icon="Textures\UI\Utility\Money.png"/>
+</SendNotification>

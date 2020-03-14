@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class ModifySalaryLevelEffect : public Effect
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(ModifySalaryLevelEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ModifySalaryLevelEffect, MCFLibraryDllExport);
 
     public:
       int getModifier() const { return m_modifier.getValue(); }

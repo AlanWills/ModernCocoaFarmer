@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class TriggerDailyFamilyModifications : public Effect
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(TriggerDailyFamilyModifications, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(TriggerDailyFamilyModifications, MCFLibraryDllExport);
 
   public:
     void trigger(

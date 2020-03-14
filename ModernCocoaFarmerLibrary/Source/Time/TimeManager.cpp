@@ -4,7 +4,7 @@
 
 namespace MCF::Time
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(TimeManager);
+  REGISTER_SCRIPTABLE_OBJECT(TimeManager);
 
   //------------------------------------------------------------------------------------------------
   const char* const TimeManager::SECONDS_PER_DAY_ATTRIBUTE_NAME = "seconds_per_day";

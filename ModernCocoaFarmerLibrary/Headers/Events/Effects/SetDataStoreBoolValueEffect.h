@@ -9,7 +9,7 @@ namespace MCF::Events::Effects
 {
   class SetDataStoreBoolValueEffect : public Effect
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(SetDataStoreBoolValueEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(SetDataStoreBoolValueEffect, MCFLibraryDllExport);
 
     public:
       const std::string& getDataStorePath() const { return m_dataStorePath.getValue(); }

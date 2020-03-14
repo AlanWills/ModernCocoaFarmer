@@ -20,7 +20,7 @@ namespace MCF::Family
 
   class FamilyManager : public Celeste::ScriptableObject
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(FamilyManager, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(FamilyManager, MCFLibraryDllExport);
 
     private:
       using Inherited = Celeste::ScriptableObject;

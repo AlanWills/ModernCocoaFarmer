@@ -7,7 +7,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ChildDependentModifyMoneyEffect);
+  REGISTER_SCRIPTABLE_OBJECT(ChildDependentModifyMoneyEffect);
 
   //------------------------------------------------------------------------------------------------
   ChildDependentModifyMoneyEffect::ChildDependentModifyMoneyEffect() :

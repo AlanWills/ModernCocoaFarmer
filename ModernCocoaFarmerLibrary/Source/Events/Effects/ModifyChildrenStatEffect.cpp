@@ -7,7 +7,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ModifyChildrenStatEffect);
+  REGISTER_SCRIPTABLE_OBJECT(ModifyChildrenStatEffect);
 
   //------------------------------------------------------------------------------------------------
   const char* const ModifyChildrenStatEffect::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";

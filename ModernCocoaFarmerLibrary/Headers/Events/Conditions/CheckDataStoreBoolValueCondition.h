@@ -9,7 +9,7 @@ namespace MCF::Events::Conditions
 {
   class CheckDataStoreBoolValueCondition : public Condition
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(CheckDataStoreBoolValueCondition, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(CheckDataStoreBoolValueCondition, MCFLibraryDllExport);
 
     public:
       const std::string& getDataStorePath() const { return m_dataStorePath.getValue(); }

@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class ModifyChildrenStatEffect : public Effect
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(ModifyChildrenStatEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ModifyChildrenStatEffect, MCFLibraryDllExport);
 
     public:
       const std::string& getModifierPath() const { return m_modifierPath.getValue(); }

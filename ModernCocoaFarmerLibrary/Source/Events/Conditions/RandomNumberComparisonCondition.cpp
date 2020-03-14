@@ -7,7 +7,7 @@
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(RandomNumberComparisonCondition);
+  REGISTER_SCRIPTABLE_OBJECT(RandomNumberComparisonCondition);
 
   //------------------------------------------------------------------------------------------------
   const char* const RandomNumberComparisonCondition::COMPARISON_OPERATOR_ATTRIBUTE_NAME = "comparison_operator";

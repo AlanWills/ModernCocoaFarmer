@@ -14,7 +14,7 @@ namespace MCF::Money
 {
   class MoneyManager : public Celeste::ScriptableObject
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(MoneyManager, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(MoneyManager, MCFLibraryDllExport);
 
     public:
       using MoneyChangedEvent = Celeste::Event<int>;
@@ -27,7 +27,7 @@ namespace MCF::Money
       void incrementSalaryLevel() { setSalaryLevel(getSalaryLevel() + 1); }
       void decrementSalaryLevel() { if (getSalaryLevel() > 0) { setSalaryLevel(getSalaryLevel() - 1); } }
 
-      void applyMoneyModifier(Stats::Modifier& modifier);
+      void applyMoneyModifier(const Stats::Modifier& modifier);
 
       static const char* const MONEY_ATTRIBUTE_NAME;
       static const char* const SALARY_LEVEL_ATTRIBUTE_NAME;

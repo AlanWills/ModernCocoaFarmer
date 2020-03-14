@@ -26,8 +26,8 @@ end
 
 ----------------------------------------------------------------------------------------
 local function formatCostString(cost)
-    if cost > 0 then
-        return tostring(cost)
+    if cost ~= 0 then
+        return tostring(math.abs(cost))
     else
         return "Free"
     end

@@ -5,7 +5,7 @@
 
 namespace MCF::Money
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(MoneyManager);
+  REGISTER_SCRIPTABLE_OBJECT(MoneyManager);
 
   //------------------------------------------------------------------------------------------------
   const char* const MoneyManager::MONEY_ATTRIBUTE_NAME = "money";
@@ -25,7 +25,7 @@ namespace MCF::Money
   }
 
   //------------------------------------------------------------------------------------------------
-  void MoneyManager::applyMoneyModifier(Stats::Modifier& modifier)
+  void MoneyManager::applyMoneyModifier(const Stats::Modifier& modifier)
   {
     if (modifier.getOccurrence() == Stats::Occurrence::kInstant)
     {

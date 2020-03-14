@@ -21,7 +21,7 @@ function Splash.show()
 
     local screenTransitioner = GameObject.find(Splash.SCREEN_TRANSITIONER_NAME)
     local eventTriggerer = screenTransitioner:findComponent("EventTriggerer")
-    eventTriggerer:subscribeOnEventTriggered(transitionToMainMenu)
+    eventTriggerer:subscribeOnEventTriggeredCallback(transitionToMainMenu)
 end
 
 ---------------------------------------------------------------------------------

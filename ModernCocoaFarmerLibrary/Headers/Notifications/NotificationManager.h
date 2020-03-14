@@ -11,7 +11,7 @@ namespace MCF::Notifications
 
   class NotificationManager : public Celeste::ScriptableObject
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(NotificationManager, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(NotificationManager, MCFLibraryDllExport);
 
     public:
       using NotificationSentEvent = Celeste::Event<const Notification&>;

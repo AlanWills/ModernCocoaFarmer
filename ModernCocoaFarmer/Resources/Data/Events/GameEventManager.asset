@@ -3,8 +3,10 @@
   <GameEvents>
     <GameEvent path="Data\Events\DailyFamilyModifications.asset"/>
     <GameEvent path="Data\Events\DailyLocationModifications.asset"/>
+    <GameEvent path="Data\Events\CheckLocationsForChildrenArriving.asset"/>
     <GameEvent path="Data\Events\CheckLocationsForChildrenLeaving.asset"/>
     <GameEvent path="Data\Events\WelcomeToZegoua.asset"/>
+    <GameEvent path="Data\Events\GetPaidSalary.asset"/>
     <GameEvent path="Data\Events\PayBills.asset"/>
     <GameEvent path="Data\Events\SalaryDecreased.asset"/>
     <GameEvent path="Data\Events\SalaryIncreased.asset"/>

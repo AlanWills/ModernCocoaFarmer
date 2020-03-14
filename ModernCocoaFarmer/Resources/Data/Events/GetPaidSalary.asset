@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEvent name="PayBills" guid="f4f2c87d-a113-461d-b947-4157ed757126">
+  <Conditions>
+    <Condition path="Data\Events\Conditions\Time\Day25.asset"/>
+  </Conditions>
+  <Effects>
+    <Effect path="Data\Events\Effects\Money\PaySalary.asset"/>
+    <Effect path="Data\Events\Effects\Notifications\SendGetPaidSalaryNotification.asset"/>
+  </Effects>
+</GameEvent>

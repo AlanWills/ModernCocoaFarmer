@@ -7,7 +7,7 @@
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(TimeComparisonCondition);
+  REGISTER_SCRIPTABLE_OBJECT(TimeComparisonCondition);
 
   //------------------------------------------------------------------------------------------------
   const char* const TimeComparisonCondition::TIME_PERIOD_ATTRIBUTE_NAME = "time_period";

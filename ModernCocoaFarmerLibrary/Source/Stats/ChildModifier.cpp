@@ -6,7 +6,7 @@ namespace MCF
 {
   namespace Stats
   {
-    REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ChildModifier);
+    REGISTER_SCRIPTABLE_OBJECT(ChildModifier);
 
     const std::string ChildModifier::APPLIES_TO_ALL_CHILDREN_FIELD_NAME = "applies_to_all_children";
 

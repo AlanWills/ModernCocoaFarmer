@@ -7,7 +7,7 @@
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(ChildrenStatComparisonCondition);
+  REGISTER_SCRIPTABLE_OBJECT(ChildrenStatComparisonCondition);
 
   //------------------------------------------------------------------------------------------------
   const char* const ChildrenStatComparisonCondition::NUMBER_OF_CHILDREN_ATTRIBUTE_NAME = "number_of_children";

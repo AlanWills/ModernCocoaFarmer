@@ -13,7 +13,7 @@ namespace MCF
   {
     class Modifier : public Celeste::ScriptableObject
     {
-      DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(Modifier, MCFLibraryDllExport);
+      DECLARE_SCRIPTABLE_OBJECT(Modifier, MCFLibraryDllExport);
 
       public:
         float getAmount() const { return m_amount.getValue(); }

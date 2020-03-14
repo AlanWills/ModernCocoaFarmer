@@ -10,7 +10,7 @@ using namespace Celeste::Resources;
 
 namespace MCF::Events::Effects
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(SetDataStoreBoolValueEffect);
+  REGISTER_SCRIPTABLE_OBJECT(SetDataStoreBoolValueEffect);
 
   //------------------------------------------------------------------------------------------------
   const char* const SetDataStoreBoolValueEffect::DATA_STORE_PATH_ATTRIBUTE_NAME = "data_store_path";

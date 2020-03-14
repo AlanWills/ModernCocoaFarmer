@@ -33,7 +33,7 @@ namespace MCF::Locations
 
   class LocationsManager : public Celeste::ScriptableObject
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
 
     private:
       using LocationsInformation = std::unordered_map<std::string, std::unique_ptr<Location>>;
@@ -42,8 +42,13 @@ namespace MCF::Locations
       size_t getNumLocations() const { return m_locations.size(); }
       observer_ptr<Location> getLocation(const std::string& locationName);
 
-      void sendChildToLocation(Location& locationInformation, Family::Child& child);
       void onDayPassed();
+
+      void checkLocationsForChildrenArriving(
+        Money::MoneyManager& moneyManager,
+        Family::FamilyManager& familyManager,
+        Notifications::NotificationManager& notificationManager);
+
       void checkLocationsForChildrenLeaving(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,

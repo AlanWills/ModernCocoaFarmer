@@ -11,7 +11,7 @@ using namespace Celeste::Resources;
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(CheckDataStoreBoolValueCondition);
+  REGISTER_SCRIPTABLE_OBJECT(CheckDataStoreBoolValueCondition);
 
   //------------------------------------------------------------------------------------------------
   const char* const CheckDataStoreBoolValueCondition::DATA_STORE_PATH_ATTRIBUTE_NAME = "data_store_path";

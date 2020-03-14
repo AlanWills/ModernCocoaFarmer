@@ -7,7 +7,7 @@ namespace MCF::Events::Effects
 {
   class ModifyMoneyEffect : public Effect
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(ModifyMoneyEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ModifyMoneyEffect, MCFLibraryDllExport);
 
     public:
       const std::string& getModifierPath() const { return m_modifierPath.getValue(); }

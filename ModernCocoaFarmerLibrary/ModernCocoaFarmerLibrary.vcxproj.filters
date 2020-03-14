@@ -228,6 +228,12 @@
     <ClInclude Include="Headers\Events\Effects\CheckLocationsForChildrenLeaving.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\Events\Effects\PaySalaryEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Events\Effects\CheckLocationsForChildrenArriving.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Debugging\LuaScriptReceiver.cpp">
@@ -423,6 +429,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Events\Effects\CheckLocationsForChildrenLeaving.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Effects\PaySalaryEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Events\Effects\CheckLocationsForChildrenArriving.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,7 +2,7 @@ local MCFComponents = require 'Components.MCFComponents'
 local Splash = require 'Scenes.Splash'
 local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 
-local quickStart = false
+local quickStart = true
 
 Scene.load(path.combine(Resources.getResourcesDirectory(), "Scenes", "DebugTools.scene"))
 

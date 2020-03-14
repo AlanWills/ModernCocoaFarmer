@@ -5,7 +5,7 @@
 namespace MCF::Notifications
 {
   //------------------------------------------------------------------------------------------------
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(NotificationManager);
+  REGISTER_SCRIPTABLE_OBJECT(NotificationManager);
 
   //------------------------------------------------------------------------------------------------
   NotificationManager::NotificationManager() :

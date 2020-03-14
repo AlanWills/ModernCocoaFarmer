@@ -7,7 +7,7 @@
 
 namespace MCF::Locations
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(LocationsManager);
+  REGISTER_SCRIPTABLE_OBJECT(LocationsManager);
 
   //------------------------------------------------------------------------------------------------
   const char* const LocationsManager::LOCATIONS_ELEMENT_NAME = "Locations";
@@ -58,17 +58,23 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
-  void LocationsManager::sendChildToLocation(Location& location, Family::Child& child)
-  {
-    location.sendChild(child);
-  }
-
-  //------------------------------------------------------------------------------------------------
   void LocationsManager::onDayPassed()
   {
     for (const auto& locationPair : m_locations)
     {
       locationPair.second->onDayPassed();
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void LocationsManager::checkLocationsForChildrenArriving(
+    Money::MoneyManager& moneyManager,
+    Family::FamilyManager& familyManager,
+    Notifications::NotificationManager& notificationManager)
+  {
+    for (const auto& locationPair : m_locations)
+    {
+      locationPair.second->checkForChildrenArriving(moneyManager, familyManager, *this, notificationManager);
     }
   }
 

@@ -5,12 +5,13 @@
 #include "DataConverters/Objects/ScriptableObjectDataConverter.h"
 #include "Notifications/NotificationManager.h"
 #include "Notifications/Notification.h"
+#include "Money/MoneyManager.h"
 #include "Utils/LocaTokens.h"
 
 
 namespace MCF::Locations
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(Location);
+  REGISTER_SCRIPTABLE_OBJECT(Location);
 
   //------------------------------------------------------------------------------------------------
   const std::string Location::PREFAB_FIELD_NAME = "prefab";
@@ -38,7 +39,8 @@ namespace MCF::Locations
     m_happinessModifier(createScriptableObject<Stats::ChildModifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
     m_moneyModifier(createScriptableObject<Stats::Modifier>(MONEY_MODIFIER_FIELD_NAME)),
     m_daysToComplete(createValueField<size_t>(DAYS_TO_COMPLETE_FIELD_NAME)),
-    m_children(),
+    m_childrenWaitingToArrive(),
+    m_childrenAtLocation(),
     m_childLeavesEffects(),
     m_onChildSentEvent(),
     m_onChildLeftEvent()
@@ -83,15 +85,13 @@ namespace MCF::Locations
   //------------------------------------------------------------------------------------------------
   void Location::sendChild(Family::Child& child)
   {
-    m_children.emplace_back(std::make_tuple(std::reference_wrapper(child), static_cast<size_t>(0)));
-    child.setCurrentLocation(getName());
-    m_onChildSentEvent.invoke(child);
+    m_childrenWaitingToArrive.push_back(std::reference_wrapper<Family::Child>(child));
   }
 
   //------------------------------------------------------------------------------------------------
   void Location::onDayPassed()
   {
-    for (ChildDaysSpent& childDaysSpent : m_children)
+    for (ChildDaysSpent& childDaysSpent : m_childrenAtLocation)
     {
       Family::Child& child = std::get<0>(childDaysSpent).get();
       
@@ -105,6 +105,24 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
+  void Location::checkForChildrenArriving(
+    Money::MoneyManager& moneyManager,
+    Family::FamilyManager&,
+    Locations::LocationsManager&,
+    Notifications::NotificationManager&)
+  {
+    for (Family::Child& child : m_childrenWaitingToArrive)
+    {
+      m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(child), static_cast<size_t>(0)));
+      child.setCurrentLocation(getName());
+      moneyManager.applyMoneyModifier(getMoneyModifier());
+      m_onChildSentEvent.invoke(child);
+    }
+
+    m_childrenWaitingToArrive.clear();
+  }
+
+  //------------------------------------------------------------------------------------------------
   void Location::checkForChildrenLeaving(
     Money::MoneyManager& moneyManager,
     Family::FamilyManager& familyManager,
@@ -113,7 +131,7 @@ namespace MCF::Locations
   {
     size_t daysToComplete = getDaysToComplete();
 
-    for (const ChildDaysSpent& childDaysSpent : m_children)
+    for (const ChildDaysSpent& childDaysSpent : m_childrenAtLocation)
     {
       if (std::get<1>(childDaysSpent) >= daysToComplete)
       {
@@ -135,11 +153,11 @@ namespace MCF::Locations
       }
     }
 
-    m_children.erase(std::remove_if(m_children.begin(), m_children.end(),
+    m_childrenAtLocation.erase(std::remove_if(m_childrenAtLocation.begin(), m_childrenAtLocation.end(),
       [daysToComplete](const ChildDaysSpent& childDaysSpent)
       {
         return std::get<1>(childDaysSpent) >= daysToComplete;
-      }), m_children.end());
+      }), m_childrenAtLocation.end());
   }
 
   //------------------------------------------------------------------------------------------------
@@ -158,12 +176,12 @@ namespace MCF::Locations
   //------------------------------------------------------------------------------------------------
   size_t Location::getChildTime(const std::string& childName) const
   {
-    auto foundChild = std::find_if(m_children.begin(), m_children.end(), 
+    auto foundChild = std::find_if(m_childrenAtLocation.begin(), m_childrenAtLocation.end(),
       [&childName](const ChildDaysSpent& childDaysSpent)
       {
         return std::get<0>(childDaysSpent).get().getName() == childName;
       });
 
-    return foundChild != m_children.end() ? std::get<1>(*foundChild) : 0;
+    return foundChild != m_childrenAtLocation.end() ? std::get<1>(*foundChild) : 0;
   }
 }

@@ -6,7 +6,7 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_UNMANAGED_COMPONENTABLE_OBJECT(SendNotification);
+  REGISTER_SCRIPTABLE_OBJECT(SendNotification);
 
   //------------------------------------------------------------------------------------------------
   SendNotification::SendNotification() :

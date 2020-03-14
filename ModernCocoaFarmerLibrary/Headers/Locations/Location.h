@@ -54,7 +54,7 @@ namespace MCF::Locations
 {
   class Location : public Celeste::ScriptableObject
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(Location, MCFLibraryDllExport)
+    DECLARE_SCRIPTABLE_OBJECT(Location, MCFLibraryDllExport)
 
     public:
       using ChildSentEvent = Celeste::Event<const Family::Child&>;
@@ -76,6 +76,13 @@ namespace MCF::Locations
 
       void sendChild(Family::Child& child);
       void onDayPassed();
+
+      void checkForChildrenArriving(
+        Money::MoneyManager& moneyManager,
+        Family::FamilyManager& familyManager,
+        Locations::LocationsManager& locationsManager,
+        Notifications::NotificationManager& notificationManager);
+
       void checkForChildrenLeaving(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
@@ -122,7 +129,8 @@ namespace MCF::Locations
       Stats::Modifier& m_moneyModifier;
       Celeste::ValueField<size_t>& m_daysToComplete;
 
-      std::vector<ChildDaysSpent> m_children;
+      std::vector<std::reference_wrapper<Family::Child>> m_childrenWaitingToArrive;
+      std::vector<ChildDaysSpent> m_childrenAtLocation;
       Effects m_childLeavesEffects;
 
       ChildSentEvent m_onChildSentEvent;

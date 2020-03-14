@@ -5,9 +5,9 @@
 
 namespace MCF::Events::Effects
 {
-  class TriggerDailyLocationModifications : public Effect
+  class CheckLocationsForChildrenArriving : public Effect
   {
-    DECLARE_SCRIPTABLE_OBJECT(TriggerDailyLocationModifications, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(CheckLocationsForChildrenArriving, MCFLibraryDllExport);
 
     public:
       void trigger(

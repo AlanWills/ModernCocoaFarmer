@@ -13,7 +13,7 @@ namespace MCF::Notifications
 {
   class Notification : public Celeste::ScriptableObject
   {
-    DECLARE_UNMANAGED_COMPONENTABLE_OBJECT(Notification, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(Notification, MCFLibraryDllExport);
 
     public:
       const std::string& getDescription() const { return m_description.getValue(); }
