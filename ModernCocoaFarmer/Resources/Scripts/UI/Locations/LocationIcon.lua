@@ -5,16 +5,19 @@ local LocationProgress = require 'UI.Locations.LocationProgress'
 local LocationIcon = 
 {
     ICON_NAME = "Icon",
-    PROGRESS_STACK_PANEL_NAME = "ProgressStackPanel"
+    PROGRESS_STACK_PANEL_NAME = "ProgressStackPanel",
+    CHILD_WALKING_PREFAB_PATH = path.combine("Prefabs", "Gameplay", "Family", "ChildWalkingToLocation.prefab"),
 }
 
 ----------------------------------------------------------------------------------------
 local function onChildSentCallback(child, self)
+    self:addChildWalking("Home", self._location:getName())
     self:addChildLocationProgress(child)
 end
 
 ----------------------------------------------------------------------------------------
 local function onChildLeftCallback(child, self)
+    self:addChildWalking(self._location:getName(), "Home")
     self:removeChildLocationProgress(child)
 end
 
@@ -48,6 +51,16 @@ end
 ----------------------------------------------------------------------------------------
 function LocationIcon:showDetails(selectedChild)
     Class.new(LocationDialog, self._location, selectedChild)
+end
+
+----------------------------------------------------------------------------------------
+function LocationIcon:addChildWalking(from, to)
+    local childWalkingPrefab = Resources.loadPrefab(LocationIcon.CHILD_WALKING_PREFAB_PATH);
+    local childWalkingInstance = childWalkingPrefab:instantiate();
+    local childWalking = childWalkingInstance:findComponent("ChildWalkingToLocationController")
+    childWalkingInstance:getTransform():setWorldTranslation(GameObject.find(from):getTransform():getWorldTranslation())
+    childWalking:setLocation(GameObject.find(to):getTransform():getWorldTranslation())
+    childWalking:setSpeed(100)
 end
 
 ----------------------------------------------------------------------------------------

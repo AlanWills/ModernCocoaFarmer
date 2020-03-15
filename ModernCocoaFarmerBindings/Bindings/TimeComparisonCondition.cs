@@ -10,7 +10,7 @@ using BindingsKernel;
 
 namespace MCF.Events.Conditions
 {
-	public class TimeComparisonCondition : ScriptableObject
+	public class TimeComparison : ScriptableObject
 	{
 		[Serialize, DisplayPriority(1)]
 		[XmlAttribute("time_period"), DisplayName("Time Period")]

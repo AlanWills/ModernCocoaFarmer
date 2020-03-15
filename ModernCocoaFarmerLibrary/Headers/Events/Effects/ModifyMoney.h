@@ -5,12 +5,12 @@
 
 namespace MCF::Events::Effects
 {
-  class ModifySalaryLevelEffect : public Effect
+  class ModifyMoney : public Effect
   {
-    DECLARE_SCRIPTABLE_OBJECT(ModifySalaryLevelEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ModifyMoney, MCFLibraryDllExport);
 
     public:
-      int getModifier() const { return m_modifier.getValue(); }
+      const std::string& getModifierPath() const { return m_modifierPath.getValue(); }
 
       void trigger(
         Money::MoneyManager& moneyManager,
@@ -18,9 +18,9 @@ namespace MCF::Events::Effects
         Locations::LocationsManager&,
         Notifications::NotificationManager& notificationManager) const override;
 
-      static const char* const MODIFIER_ATTRIBUTE_NAME;
+      static const char* const MODIFIER_PATH_ATTRIBUTE_NAME;
 
     private:
-      Celeste::ValueField<int>& m_modifier;
+      Celeste::ReferenceField<std::string>& m_modifierPath;
   };
 }

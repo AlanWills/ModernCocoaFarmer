@@ -1,4 +1,4 @@
-#include "Events/Effects/ChildDependentModifyMoneyEffect.h"
+#include "Events/Effects/ChildDependentModifyMoney.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Money/MoneyManager.h"
 #include "Family/FamilyManager.h"
@@ -7,16 +7,16 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ChildDependentModifyMoneyEffect);
+  REGISTER_SCRIPTABLE_OBJECT(ChildDependentModifyMoney);
 
   //------------------------------------------------------------------------------------------------
-  ChildDependentModifyMoneyEffect::ChildDependentModifyMoneyEffect() :
+  ChildDependentModifyMoney::ChildDependentModifyMoney() :
     Inherited()
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void ChildDependentModifyMoneyEffect::trigger(
+  void ChildDependentModifyMoney::trigger(
     Money::MoneyManager& moneyManager, 
     Family::FamilyManager& familyManager,
     Locations::LocationsManager&,

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ChildrenStatComparisonCondition number_of_children="1" children_comparison_operator="GreaterThanOrEqualTo"
+<ChildrenStatComparison number_of_children="1" children_comparison_operator="GreaterThanOrEqualTo"
                                  stat="safety" value="0" stat_comparison_operator="LessThanOrEqualTo"
                                  guid="622b0310-d86b-47b1-8411-7a0703fd1c10"/>

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Events/Effects/ModifyMoneyEffect.h"
+#include "Events/Effects/ModifyMoney.h"
 
 
 namespace MCF::Events::Effects
 {
-  class PaySalaryEffect : public ModifyMoneyEffect
+  class PaySalary : public ModifyMoney
   {
-    DECLARE_SCRIPTABLE_OBJECT(PaySalaryEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(PaySalary, MCFLibraryDllExport);
 
     public:
       void trigger(

@@ -38,6 +38,7 @@ namespace MCF::Family
 
       void addChild();
       void selectOnlyThisChild(Child& childToSelect) const;
+      void deselectOnlyThisChild(Child& childToSelect) const;
 
       void applyHealthModifier(Stats::Modifier& modifier) const;
       void applySafetyModifier(Stats::Modifier& modifier) const;

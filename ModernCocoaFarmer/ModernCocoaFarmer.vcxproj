@@ -276,6 +276,7 @@
     <None Include="Resources\Data\Money\MoneyManager.asset" />
     <None Include="Resources\Data\Notifications\NotificationManager.asset" />
     <None Include="Resources\Data\Time\TimeManager.asset" />
+    <None Include="Resources\Prefabs\Gameplay\Family\ChildWalkingToLocation.prefab" />
     <None Include="Resources\Prefabs\Gameplay\Locations\Farm.prefab" />
     <None Include="Resources\Prefabs\UI\Locations\LocationProgress.prefab" />
     <None Include="Resources\Prefabs\UI\Locations\LocationProgressStackPanel.prefab" />

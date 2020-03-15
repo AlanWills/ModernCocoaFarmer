@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="ChildSprite">
+      <Components>
+        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+        <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="200,200" preserve_aspect_ratio="true"/>
+        <Animator sprite_sheet_dimensions="4,1"
+                  looping="true"
+                  seconds_per_frame="0.16"
+                  play_immediately="true"/>
+        <ChildWalkingToLocationController/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Prefab>

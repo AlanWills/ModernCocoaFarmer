@@ -1,4 +1,4 @@
-#include "Events/Effects/ModifyChildAtLocationStatEffect.h"
+#include "Events/Effects/ModifyChildAtLocationStat.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
@@ -9,15 +9,15 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ModifyChildAtLocationStatEffect);
+  REGISTER_SCRIPTABLE_OBJECT(ModifyChildAtLocationStat);
 
   //------------------------------------------------------------------------------------------------
-  const char* const ModifyChildAtLocationStatEffect::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";
-  const char* const ModifyChildAtLocationStatEffect::STAT_ATTRIBUTE_NAME = "stat";
-  const char* const ModifyChildAtLocationStatEffect::LOCATION_ATTRIBUTE_NAME = "location";
+  const char* const ModifyChildAtLocationStat::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";
+  const char* const ModifyChildAtLocationStat::STAT_ATTRIBUTE_NAME = "stat";
+  const char* const ModifyChildAtLocationStat::LOCATION_ATTRIBUTE_NAME = "location";
 
   //------------------------------------------------------------------------------------------------
-  ModifyChildAtLocationStatEffect::ModifyChildAtLocationStatEffect() :
+  ModifyChildAtLocationStat::ModifyChildAtLocationStat() :
     m_modifierPath(createReferenceField<std::string>(MODIFIER_PATH_ATTRIBUTE_NAME)),
     m_stat(createReferenceField<std::string>(STAT_ATTRIBUTE_NAME)),
     m_location(createReferenceField<std::string>(LOCATION_ATTRIBUTE_NAME))
@@ -25,7 +25,7 @@ namespace MCF::Events::Effects
   }
 
   //------------------------------------------------------------------------------------------------
-  void ModifyChildAtLocationStatEffect::trigger(
+  void ModifyChildAtLocationStat::trigger(
     Money::MoneyManager&,
     Family::FamilyManager& familyManager,
     Locations::LocationsManager& locationsManager,

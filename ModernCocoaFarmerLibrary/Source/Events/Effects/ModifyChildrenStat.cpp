@@ -1,4 +1,4 @@
-#include "Events/Effects/ModifyChildrenStatEffect.h"
+#include "Events/Effects/ModifyChildrenStat.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
@@ -7,21 +7,21 @@
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ModifyChildrenStatEffect);
+  REGISTER_SCRIPTABLE_OBJECT(ModifyChildrenStat);
 
   //------------------------------------------------------------------------------------------------
-  const char* const ModifyChildrenStatEffect::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";
-  const char* const ModifyChildrenStatEffect::STAT_ATTRIBUTE_NAME = "stat";
+  const char* const ModifyChildrenStat::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";
+  const char* const ModifyChildrenStat::STAT_ATTRIBUTE_NAME = "stat";
 
   //------------------------------------------------------------------------------------------------
-  ModifyChildrenStatEffect::ModifyChildrenStatEffect() :
+  ModifyChildrenStat::ModifyChildrenStat() :
     m_modifierPath(createReferenceField<std::string>(MODIFIER_PATH_ATTRIBUTE_NAME)),
     m_stat(createReferenceField<std::string>(STAT_ATTRIBUTE_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void ModifyChildrenStatEffect::trigger(
+  void ModifyChildrenStat::trigger(
     Money::MoneyManager&,
     Family::FamilyManager& familyManager,
     Locations::LocationsManager&,

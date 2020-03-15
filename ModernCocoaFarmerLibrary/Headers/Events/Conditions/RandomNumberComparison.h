@@ -7,9 +7,9 @@
 
 namespace MCF::Events::Conditions
 {
-  class RandomNumberComparisonCondition : public Condition
+  class RandomNumberComparison : public Condition
   {
-    DECLARE_SCRIPTABLE_OBJECT(RandomNumberComparisonCondition, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(RandomNumberComparison, MCFLibraryDllExport);
 
     public:
       Logic::ComparisonOperator getComparisonOperator() const { return m_comparisonOperator.getValue(); }

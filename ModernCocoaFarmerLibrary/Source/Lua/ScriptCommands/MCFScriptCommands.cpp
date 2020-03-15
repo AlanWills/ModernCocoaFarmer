@@ -1,4 +1,5 @@
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
+#include "Lua/ScriptCommands/Animation/ScriptCommands.h"
 #include "Lua/ScriptCommands/Locations/LocationsScriptCommands.h"
 #include "Lua/ScriptCommands/Events/EventScriptCommands.h"
 #include "Lua/ScriptCommands/Notifications/NotificationsScriptCommands.h"
@@ -9,24 +10,19 @@
 #include "Lua/ScriptCommands/Time/TimeScriptCommands.h"
 
 
-namespace MCF
+namespace MCF::Lua::MCFScriptCommands
 {
-  namespace Lua
+  //------------------------------------------------------------------------------------------------
+  void initialize()
   {
-    namespace MCFScriptCommands
-    {
-      //------------------------------------------------------------------------------------------------
-      void initialize()
-      {
-        Locations::ScriptCommands::initialize();
-        Events::ScriptCommands::initialize();
-        Notifications::ScriptCommands::initialize();
-        Family::ScriptCommands::initialize();
-        Money::ScriptCommands::initialize();
-        Stats::ScriptCommands::initialize();
-        Persistence::ScriptCommands::initialize();
-        Time::ScriptCommands::initialize();
-      }
-    }
+    Animation::ScriptCommands::initialize();
+    Locations::ScriptCommands::initialize();
+    Events::ScriptCommands::initialize();
+    Notifications::ScriptCommands::initialize();
+    Family::ScriptCommands::initialize();
+    Money::ScriptCommands::initialize();
+    Stats::ScriptCommands::initialize();
+    Persistence::ScriptCommands::initialize();
+    Time::ScriptCommands::initialize();
   }
 }

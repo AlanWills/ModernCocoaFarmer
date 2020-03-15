@@ -27,7 +27,7 @@ end
 ----------------------------------------------------------------------------------------
 local function formatCostString(cost)
     if cost ~= 0 then
-        return tostring(math.abs(cost))
+        return string.format("%d", cost)
     else
         return "Free"
     end
@@ -66,12 +66,12 @@ local function formatModifierString(modifier)
         modifierText = modifierText .. "set to "
     end
 
-    modifierText = modifierText .. modifier:getAmount()
+    modifierText = modifierText .. string.format("%d", modifier:getAmount())
     modifierText = modifierText .. "%"
 
     if modifier:isPeriodicChange() then
         modifierText = modifierText .. " every "
-        modifierText = modifierText .. modifier:getPeriodInMonths()
+        modifierText = modifierText .. string.format("%d", modifier:getPeriodInMonths())
     end
 
     if modifier:getAppliesToAllChildren() then

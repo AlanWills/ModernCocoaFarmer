@@ -1,4 +1,4 @@
-#include "Events/Conditions/ChildrenStatComparisonCondition.h"
+#include "Events/Conditions/ChildrenStatComparison.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Deserialization/Logic/LogicDeserializers.h"
 #include "Family/FamilyManager.h"
@@ -7,17 +7,17 @@
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_SCRIPTABLE_OBJECT(ChildrenStatComparisonCondition);
+  REGISTER_SCRIPTABLE_OBJECT(ChildrenStatComparison);
 
   //------------------------------------------------------------------------------------------------
-  const char* const ChildrenStatComparisonCondition::NUMBER_OF_CHILDREN_ATTRIBUTE_NAME = "number_of_children";
-  const char* const ChildrenStatComparisonCondition::CHILDREN_COMPARISON_OPERATOR_ATTRIBUTE_NAME = "children_comparison_operator";
-  const char* const ChildrenStatComparisonCondition::STAT_ATTRIBUTE_NAME = "stat";
-  const char* const ChildrenStatComparisonCondition::VALUE_ATTRIBUTE_NAME = "value";
-  const char* const ChildrenStatComparisonCondition::STAT_COMPARISON_OPERATOR_ATTRIBUTE_NAME = "stat_comparison_operator";
+  const char* const ChildrenStatComparison::NUMBER_OF_CHILDREN_ATTRIBUTE_NAME = "number_of_children";
+  const char* const ChildrenStatComparison::CHILDREN_COMPARISON_OPERATOR_ATTRIBUTE_NAME = "children_comparison_operator";
+  const char* const ChildrenStatComparison::STAT_ATTRIBUTE_NAME = "stat";
+  const char* const ChildrenStatComparison::VALUE_ATTRIBUTE_NAME = "value";
+  const char* const ChildrenStatComparison::STAT_COMPARISON_OPERATOR_ATTRIBUTE_NAME = "stat_comparison_operator";
 
   //------------------------------------------------------------------------------------------------
-  ChildrenStatComparisonCondition::ChildrenStatComparisonCondition() :
+  ChildrenStatComparison::ChildrenStatComparison() :
     m_numberOfChildren(createValueField<size_t>(NUMBER_OF_CHILDREN_ATTRIBUTE_NAME)),
     m_childrenComparisonOperator(createValueField<Logic::ComparisonOperator>(CHILDREN_COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
     m_stat(createReferenceField<std::string>(STAT_ATTRIBUTE_NAME)),
@@ -27,7 +27,7 @@ namespace MCF::Events::Conditions
   }
 
   //------------------------------------------------------------------------------------------------
-  bool ChildrenStatComparisonCondition::isConditionMet(
+  bool ChildrenStatComparison::isConditionMet(
     Time::TimeManager&,
     Money::MoneyManager&,
     Family::FamilyManager& familyManager) const

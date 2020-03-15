@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Events\Effects\ModifyMoneyEffect.h"
+#include "Events\Effects\ModifyMoney.h"
 
 
 namespace MCF::Events::Effects
 {
-  class ChildDependentModifyMoneyEffect : public ModifyMoneyEffect
+  class ChildDependentModifyMoney : public ModifyMoney
   {
-    DECLARE_SCRIPTABLE_OBJECT(ChildDependentModifyMoneyEffect, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ChildDependentModifyMoney, MCFLibraryDllExport);
 
     public:
       void trigger(
@@ -17,6 +17,6 @@ namespace MCF::Events::Effects
         Notifications::NotificationManager&) const override;
 
     private:
-      using Inherited = ModifyMoneyEffect;
+      using Inherited = ModifyMoney;
   };
 }

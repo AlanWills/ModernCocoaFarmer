@@ -5,7 +5,7 @@ local FamilyPanel = {}
 
 ---------------------------------------------------------------------------------
 local function childIconLeftClickedCallback(caller, extraArgs)
-    extraArgs.self:selectChildIcon(extraArgs.childToSelect)
+    extraArgs.self:toggleChildSelection(extraArgs.childToToggle)
 end
 
 ---------------------------------------------------------------------------------
@@ -41,12 +41,19 @@ function FamilyPanel:addChildIcon(child)
     self._childIcons[child:getName()] = childIcon
 
     local childInteractionHandler = childIcon.gameObject:findComponent("MouseInteractionHandler")
-    childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, { self = self, childToSelect = child })
+    childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, { self = self, childToToggle = child })
 end
 
 ---------------------------------------------------------------------------------
-function FamilyPanel:selectChildIcon(child)
-    self._familyManager:selectOnlyThisChild(child)
+function FamilyPanel:toggleChildSelection(child)
+    local hasSelectedChild = self._familyManager:hasSelectedChild()
+    local isChildSelectedChild = hasSelectedChild and self._familyManager:getSelectedChild() == child
+
+    if isChildSelectedChild then
+        self._familyManager:deselectOnlyThisChild(child)
+    else
+        self._familyManager:selectOnlyThisChild(child)
+    end
 end
 
 return FamilyPanel

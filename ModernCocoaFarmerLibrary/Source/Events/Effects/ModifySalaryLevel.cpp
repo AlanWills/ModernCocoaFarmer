@@ -1,35 +1,38 @@
-#include "Events/Effects/ModifyMoneyEffect.h"
+#include "Events/Effects/ModifySalaryLevel.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Money/MoneyManager.h"
-#include "Stats/Modifier.h"
 
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(ModifyMoneyEffect);
+  REGISTER_SCRIPTABLE_OBJECT(ModifySalaryLevel);
 
   //------------------------------------------------------------------------------------------------
-  const char* const ModifyMoneyEffect::MODIFIER_PATH_ATTRIBUTE_NAME = "modifier_path";
+  const char* const ModifySalaryLevel::MODIFIER_ATTRIBUTE_NAME = "modifier";
 
   //------------------------------------------------------------------------------------------------
-  ModifyMoneyEffect::ModifyMoneyEffect() :
-    m_modifierPath(createReferenceField<std::string>(MODIFIER_PATH_ATTRIBUTE_NAME))
+  ModifySalaryLevel::ModifySalaryLevel() :
+    m_modifier(createValueField<int>(MODIFIER_ATTRIBUTE_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void ModifyMoneyEffect::trigger(
+  void ModifySalaryLevel::trigger(
     Money::MoneyManager& moneyManager,
     Family::FamilyManager&,
     Locations::LocationsManager&,
     Notifications::NotificationManager&) const
   {
-    auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
-    ASSERT(modifier != nullptr);
-    
-    if (modifier != nullptr)
+    if (getModifier() < 0)
     {
-      moneyManager.applyMoneyModifier(*modifier);
+      for (int i = 0, n = -getModifier(); i < n; ++i)
+      {
+        moneyManager.decrementSalaryLevel();
+      }
+    }
+    else
+    {
+      moneyManager.setSalaryLevel(moneyManager.getSalaryLevel() + static_cast<unsigned int>(getModifier()));
     }
   }
 }

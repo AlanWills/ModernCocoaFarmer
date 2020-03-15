@@ -1,4 +1,4 @@
-#include "Events/Effects/SetDataStoreBoolValueEffect.h"
+#include "Events/Effects/SetDataStoreBoolValue.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Persistence/DataStore.h"
 #include "Resources/ResourceUtils.h"
@@ -10,15 +10,15 @@ using namespace Celeste::Resources;
 
 namespace MCF::Events::Effects
 {
-  REGISTER_SCRIPTABLE_OBJECT(SetDataStoreBoolValueEffect);
+  REGISTER_SCRIPTABLE_OBJECT(SetDataStoreBoolValue);
 
   //------------------------------------------------------------------------------------------------
-  const char* const SetDataStoreBoolValueEffect::DATA_STORE_PATH_ATTRIBUTE_NAME = "data_store_path";
-  const char* const SetDataStoreBoolValueEffect::VALUE_NAME_ATTRIBUTE_NAME = "value_name";
-  const char* const SetDataStoreBoolValueEffect::VALUE_ATTRIBUTE_NAME = "value";
+  const char* const SetDataStoreBoolValue::DATA_STORE_PATH_ATTRIBUTE_NAME = "data_store_path";
+  const char* const SetDataStoreBoolValue::VALUE_NAME_ATTRIBUTE_NAME = "value_name";
+  const char* const SetDataStoreBoolValue::VALUE_ATTRIBUTE_NAME = "value";
 
   //------------------------------------------------------------------------------------------------
-  SetDataStoreBoolValueEffect::SetDataStoreBoolValueEffect() :
+  SetDataStoreBoolValue::SetDataStoreBoolValue() :
     m_dataStorePath(createReferenceField<std::string>(DATA_STORE_PATH_ATTRIBUTE_NAME)),
     m_valueName(createReferenceField<std::string>(VALUE_NAME_ATTRIBUTE_NAME)),
     m_value(createValueField<bool>(VALUE_ATTRIBUTE_NAME))
@@ -26,7 +26,7 @@ namespace MCF::Events::Effects
   }
 
   //------------------------------------------------------------------------------------------------
-  void SetDataStoreBoolValueEffect::trigger(
+  void SetDataStoreBoolValue::trigger(
     Money::MoneyManager&,
     Family::FamilyManager&,
     Locations::LocationsManager&,

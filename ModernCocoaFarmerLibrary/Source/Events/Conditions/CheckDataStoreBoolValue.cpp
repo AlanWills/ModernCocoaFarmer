@@ -1,4 +1,4 @@
-#include "Events/Conditions/CheckDataStoreBoolValueCondition.h"
+#include "Events/Conditions/CheckDataStoreBoolValue.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Deserialization/Logic/LogicDeserializers.h"
 #include "Persistence/DataStore.h"
@@ -11,17 +11,17 @@ using namespace Celeste::Resources;
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_SCRIPTABLE_OBJECT(CheckDataStoreBoolValueCondition);
+  REGISTER_SCRIPTABLE_OBJECT(CheckDataStoreBoolValue);
 
   //------------------------------------------------------------------------------------------------
-  const char* const CheckDataStoreBoolValueCondition::DATA_STORE_PATH_ATTRIBUTE_NAME = "data_store_path";
-  const char* const CheckDataStoreBoolValueCondition::VALUE_NAME_ATTRIBUTE_NAME = "value_name";
-  const char* const CheckDataStoreBoolValueCondition::COMPARISON_OPERATOR_ATTRIBUTE_NAME = "comparison_operator";
-  const char* const CheckDataStoreBoolValueCondition::EXPECTED_VALUE_ATTRIBUTE_NAME = "expected_value";
-  const char* const CheckDataStoreBoolValueCondition::DEFAULT_VALUE_ATTRIBUTE_NAME = "default_value";
+  const char* const CheckDataStoreBoolValue::DATA_STORE_PATH_ATTRIBUTE_NAME = "data_store_path";
+  const char* const CheckDataStoreBoolValue::VALUE_NAME_ATTRIBUTE_NAME = "value_name";
+  const char* const CheckDataStoreBoolValue::COMPARISON_OPERATOR_ATTRIBUTE_NAME = "comparison_operator";
+  const char* const CheckDataStoreBoolValue::EXPECTED_VALUE_ATTRIBUTE_NAME = "expected_value";
+  const char* const CheckDataStoreBoolValue::DEFAULT_VALUE_ATTRIBUTE_NAME = "default_value";
 
   //------------------------------------------------------------------------------------------------
-  CheckDataStoreBoolValueCondition::CheckDataStoreBoolValueCondition() :
+  CheckDataStoreBoolValue::CheckDataStoreBoolValue() :
     m_dataStorePath(createReferenceField<std::string>(DATA_STORE_PATH_ATTRIBUTE_NAME)),
     m_valueName(createReferenceField<std::string>(VALUE_NAME_ATTRIBUTE_NAME)),
     m_comparisonOperator(createValueField<Logic::ComparisonOperator>(COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
@@ -31,7 +31,7 @@ namespace MCF::Events::Conditions
   }
 
   //------------------------------------------------------------------------------------------------
-  bool CheckDataStoreBoolValueCondition::isConditionMet(
+  bool CheckDataStoreBoolValue::isConditionMet(
     Time::TimeManager&,
     Money::MoneyManager&,
     Family::FamilyManager&) const

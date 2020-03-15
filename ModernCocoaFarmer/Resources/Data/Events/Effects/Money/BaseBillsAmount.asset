@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ModifyMoneyEffect modifier_path="Data\Modifiers\Events\Money\BaseBillsModifier.asset" name="BaseBillsAmount" guid="6f214e30-7463-4e09-949a-af29e64fc7a7"/>
+<ModifyMoney modifier_path="Data\Modifiers\Events\Money\BaseBillsModifier.asset" name="BaseBillsAmount" guid="6f214e30-7463-4e09-949a-af29e64fc7a7"/>

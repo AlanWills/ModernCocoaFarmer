@@ -121,6 +121,21 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
+  void FamilyManager::deselectOnlyThisChild(Child& childToSelect) const
+  {
+    for (const auto& child : m_children)
+    {
+      if (child.get() == &childToSelect)
+      {
+        if (childToSelect.isSelected())
+        {
+          childToSelect.setSelected(false);
+        }
+      }
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
   void FamilyManager::applyHealthModifier(Stats::Modifier& modifier) const
   {
     for (const auto& child : m_children)

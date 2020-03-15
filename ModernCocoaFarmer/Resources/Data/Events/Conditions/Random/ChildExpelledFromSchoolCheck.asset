@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RandomNumberComparisonCondition comparison_operator="GreaterThan" value="0.95"
+<RandomNumberComparison comparison_operator="GreaterThan" value="0.95"
                                  guid="7dc46204-c524-48a3-aa21-78ec3ab314bf"/>

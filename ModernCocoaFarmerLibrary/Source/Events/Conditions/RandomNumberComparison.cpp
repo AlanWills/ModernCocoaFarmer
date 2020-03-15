@@ -1,4 +1,4 @@
-#include "Events/Conditions/RandomNumberComparisonCondition.h"
+#include "Events/Conditions/RandomNumberComparison.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Time/TimeManager.h"
 #include "Deserialization/Logic/LogicDeserializers.h"
@@ -7,21 +7,21 @@
 
 namespace MCF::Events::Conditions
 {
-  REGISTER_SCRIPTABLE_OBJECT(RandomNumberComparisonCondition);
+  REGISTER_SCRIPTABLE_OBJECT(RandomNumberComparison);
 
   //------------------------------------------------------------------------------------------------
-  const char* const RandomNumberComparisonCondition::COMPARISON_OPERATOR_ATTRIBUTE_NAME = "comparison_operator";
-  const char* const RandomNumberComparisonCondition::VALUE_ATTRIBUTE_NAME = "value";
+  const char* const RandomNumberComparison::COMPARISON_OPERATOR_ATTRIBUTE_NAME = "comparison_operator";
+  const char* const RandomNumberComparison::VALUE_ATTRIBUTE_NAME = "value";
 
   //------------------------------------------------------------------------------------------------
-  RandomNumberComparisonCondition::RandomNumberComparisonCondition() :
+  RandomNumberComparison::RandomNumberComparison() :
     m_comparisonOperator(createValueField<Logic::ComparisonOperator>(COMPARISON_OPERATOR_ATTRIBUTE_NAME, Logic::ComparisonOperator::kEqual)),
     m_value(createValueField<float>(VALUE_ATTRIBUTE_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  bool RandomNumberComparisonCondition::isConditionMet(
+  bool RandomNumberComparison::isConditionMet(
     Time::TimeManager&,
     Money::MoneyManager&,
     Family::FamilyManager&) const

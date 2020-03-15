@@ -7,9 +7,9 @@
 
 namespace MCF::Events::Conditions
 {
-  class ChildrenAtLocationCondition : public Condition
+  class ChildrenAtLocation : public Condition
   {
-    DECLARE_SCRIPTABLE_OBJECT(ChildrenAtLocationCondition, MCFLibraryDllExport);
+    DECLARE_SCRIPTABLE_OBJECT(ChildrenAtLocation, MCFLibraryDllExport);
 
     public:
       size_t getNumberOfChildren() const { return m_numberOfChildren.getValue(); }
