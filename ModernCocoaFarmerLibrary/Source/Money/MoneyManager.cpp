@@ -1,4 +1,6 @@
 #include "Money/MoneyManager.h"
+#include "Money/DataSources.h"
+#include "Persistence/DataStore.h"
 #include "Stats/Modifier.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 
@@ -22,6 +24,14 @@ namespace MCF::Money
   void MoneyManager::setMoney(int money)
   {
     m_money.setValue(money);
+    updateDataStore();
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void MoneyManager::setSalaryLevel(unsigned int salaryLevel)
+  {
+    m_salaryLevel.setValue(salaryLevel);
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -31,11 +41,11 @@ namespace MCF::Money
     {
       if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
       {
-        m_money.setValue(static_cast<int>(modifier.getAmount()));
+        setMoney(static_cast<int>(modifier.getAmount()));
       }
       else if (modifier.getChangeType() == Stats::ChangeType::kDelta)
       {
-        m_money.setValue(m_money.getValue() + static_cast<int>(modifier.getAmount()));
+        setMoney(m_money.getValue() + static_cast<int>(modifier.getAmount()));
       }
       else
       {
@@ -49,6 +59,16 @@ namespace MCF::Money
     else
     {
       ASSERT_FAIL();
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void MoneyManager::updateDataStore() const
+  {
+    if (m_dataStore != nullptr)
+    {
+      m_dataStore->set(DataSources::CURRENT_MONEY, getMoney());
+      m_dataStore->set(DataSources::CURRENT_SALARY_LEVEL, getSalaryLevel());
     }
   }
 }

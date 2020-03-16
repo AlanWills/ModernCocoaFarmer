@@ -5,14 +5,15 @@ local MoneyPanel =
 }
 
 ---------------------------------------------------------------------------------
-function MoneyPanel:new(moneyManager, moneyPanelGameObject)
-    self._moneyManager = moneyManager
+function MoneyPanel:new(dataStore, moneyPanelGameObject)
+    self._dataStore = dataStore
     self._moneyText = moneyPanelGameObject:findChild(self.MONEY_TEXT_NAME):findComponent("TextRenderer")
 end
 
 ---------------------------------------------------------------------------------
 function MoneyPanel:updateUI()
-    self:setMoneyText(self._moneyManager:getMoney())
+    log(MoneyDataSources.CURRENT_MONEY)
+    self:setMoneyText(self._dataStore:getInt(MoneyDataSources.CURRENT_MONEY))
 end
 
 ---------------------------------------------------------------------------------

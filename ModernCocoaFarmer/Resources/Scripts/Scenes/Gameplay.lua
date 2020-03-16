@@ -25,8 +25,11 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.show()
+    local dataStore = DataStore.create()
     local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
+    moneyManager:setDataStore(dataStore)
+
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
     local locationsManager = LocationsManager.load(path.combine("Data", "Locations", "LocationsManager.asset"))
     local notificationManager = NotificationManager.load(path.combine("Data", "Notifications", "NotificationManager.asset"))
@@ -55,12 +58,13 @@ function Gameplay.show()
         TopBar, 
         topBarGameObject, 
         familyManager, 
-        moneyManager,
+        dataStore,
         timeManager)
       
     local notificationsBar = GameObject.find(Gameplay.NOTIFICATIONS_BAR_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
 
+    Gameplay._dataStore = dataStore
     Gameplay._timeManager = timeManager
     Gameplay._moneyManager = moneyManager
     Gameplay._familyManager = familyManager

@@ -15,6 +15,7 @@ namespace MCF::Lua::Money::MoneyManagerScriptCommands
     Celeste::Lua::registerScriptableObjectUserType<MoneyManager>(
       MoneyManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
+      "setDataStore", &MoneyManager::setDataStore,
       "getMoney", &MoneyManager::getMoney,
       "setMoney", &MoneyManager::setMoney,
       "applyMoneyModifier", &MoneyManager::applyMoneyModifier);

@@ -23,10 +23,10 @@ namespace MCF::Persistence
   class DataStore
   {
     private:
-      using Data = std::variant<bool, int, float, std::string>;
+      using Data = std::variant<bool, int, unsigned int, float, std::string>;
       using DataLookup = std::unordered_map<std::string, Data>;
-      using SerializeFunction = void (*)(tinyxml2::XMLElement & value, const Data & data);
-      using DeserializeFunction = bool (*)(const tinyxml2::XMLAttribute & value, Data & data);
+      using SerializeFunction = void (*)(tinyxml2::XMLElement& value, const Data& data);
+      using DeserializeFunction = bool (*)(const tinyxml2::XMLAttribute& value, Data& data);
 
       struct SerializeFunctions
       {

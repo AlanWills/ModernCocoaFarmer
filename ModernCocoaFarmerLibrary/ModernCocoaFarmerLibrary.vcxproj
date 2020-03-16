@@ -60,6 +60,7 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Family\FamilyManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Family\FamilyScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Family\ChildScriptCommands.h" />
+    <ClInclude Include="Headers\Lua\ScriptCommands\Money\DataSourcesScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Money\MoneyManagerScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Money\MoneyScriptCommands.h" />
     <ClInclude Include="Headers\Lua\ScriptCommands\Notifications\NotificationManagerScriptCommands.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="Headers\Lua\ScriptCommands\Time\TimeScriptCommands.h" />
     <ClInclude Include="Headers\MCFLibraryDllExport.h" />
     <ClInclude Include="Headers\Money\MoneyManager.h" />
+    <ClInclude Include="Headers\Money\DataSources.h" />
     <ClInclude Include="Headers\Notifications\Notification.h" />
     <ClInclude Include="Headers\Notifications\NotificationManager.h" />
     <ClInclude Include="Headers\Persistence\DataStore.h" />
@@ -140,6 +142,7 @@
     <ClCompile Include="Source\Lua\ScriptCommands\Family\FamilyManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Family\FamilyScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\MCFScriptCommands.cpp" />
+    <ClCompile Include="Source\Lua\ScriptCommands\Money\DataSourcesScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Money\MoneyManagerScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Money\MoneyScriptCommands.cpp" />
     <ClCompile Include="Source\Lua\ScriptCommands\Notifications\NotificationManagerScriptCommands.cpp" />

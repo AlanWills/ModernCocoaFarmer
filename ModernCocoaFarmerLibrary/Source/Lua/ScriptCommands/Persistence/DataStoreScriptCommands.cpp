@@ -10,6 +10,12 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
   namespace Internals
   {
     //------------------------------------------------------------------------------------------------
+    std::unique_ptr<MCF::Persistence::DataStore> create()
+    {
+      return std::make_unique<MCF::Persistence::DataStore>();
+    }
+
+    //------------------------------------------------------------------------------------------------
     MCF::Persistence::DataStore loadOrCreate(const std::string& filePath)
     {
       using namespace Celeste::Resources;
@@ -42,6 +48,13 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
 
       return document.SaveFile(path.c_str()) == XML_SUCCESS;
     }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    T get(MCF::Persistence::DataStore& dataStore, const char* const key)
+    {
+      return dataStore.get<T>(key, T());
+    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -52,9 +65,25 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
     Celeste::Lua::registerUserType<DataStore>(
       "DataStore",
       "loadOrCreate", sol::factories(&Internals::loadOrCreate),
+      "create", &Internals::create,
       "save", &Internals::save,
+      // Is
       "isBool", &DataStore::is<bool>,
-      "getBool", &DataStore::get<bool>,
-      "setBool", &DataStore::set<bool>);
+      "isInt", &DataStore::is<int>,
+      "isUnsignedInt", &DataStore::is<unsigned int>,
+      "isFloat", &DataStore::is<float>,
+      "isString", &DataStore::is<std::string>,
+      // Get
+      "getBool", sol::overload(&Internals::get<bool>, &DataStore::get<bool>),
+      "getInt", sol::overload(&Internals::get<int>, &DataStore::get<int>),
+      "getUnsignedInt", sol::overload(&Internals::get<unsigned int>, &DataStore::get<unsigned int>),
+      "getFloat", sol::overload(&Internals::get<float>, &DataStore::get<float>),
+      "getString", sol::overload(&Internals::get<std::string>, &DataStore::get<std::string>),
+      // Set
+      "setBool", &DataStore::set<bool>,
+      "setInt", &DataStore::set<int>,
+      "setUnsignedInt", &DataStore::set<unsigned int>,
+      "setFloat", &DataStore::set<float>,
+      "setString", &DataStore::set<std::string>);
   }
 }

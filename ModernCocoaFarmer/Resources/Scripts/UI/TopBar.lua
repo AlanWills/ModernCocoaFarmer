@@ -25,9 +25,9 @@ local function showDonateMenu(caller)
 end
 
 ---------------------------------------------------------------------------------
-function TopBar:new(topBarGameObject, familyManager, moneyManager, timeManager)
+function TopBar:new(topBarGameObject, familyManager, dataStore, timeManager)
     self._familyManager = familyManager
-    self._moneyPanel = Class.new(MoneyPanel, moneyManager, topBarGameObject:findChild(self.MONEY_PANEL_NAME))
+    self._moneyPanel = Class.new(MoneyPanel, dataStore, topBarGameObject:findChild(self.MONEY_PANEL_NAME))
     self._familyPanel = Class.new(FamilyPanel, familyManager, topBarGameObject:findChild(self.FAMILY_PANEL_NAME))
     self._timePanel = Class.new(TimePanel, timeManager, topBarGameObject:findChild(self.TIME_PANEL_NAME))
     
