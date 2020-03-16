@@ -16,6 +16,8 @@
 *Profiler.txt
 
 # Build results
+[Bb]uilds/
+[Pp]rojects/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
