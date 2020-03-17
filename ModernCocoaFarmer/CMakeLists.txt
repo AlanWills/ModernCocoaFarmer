@@ -100,7 +100,8 @@ target_include_directories(${CELESTE_PROJECT_NAME} PUBLIC ${CELESTE_PROJECT_DIR}
 target_link_libraries(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS})
 
 target_compile_options(${CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-add_definitions(-DBUILDING_CELESTE_ENGINE_DLL)
+add_definitions(-DBUILDING_CELESTE_ENGINE_DLL -DGLM_FORCE_SILENT_WARNINGS)
+
 
 ##------------------------------ Dev Tools ------------------------------##
 #INCLUDE_EXTERNAL_MSPROJECT(GuidGenerator ${CELESTE_DIR}/GuidGenerator/GuidGenerator.vcxproj)
