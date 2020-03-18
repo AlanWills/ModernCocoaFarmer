@@ -7,218 +7,247 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS TRUE)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
-IF(NOT CMAKE_BUILD_TYPE)
+IF(NOT DEFINED CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
 ENDIF()
 
+IF(NOT DEFINED USE_PREBUILT_LIBS)
+    SET(USE_PREBUILT_LIBS ON CACHE BOOL "" FORCE)
+ENDIF()
+
+IF(USE_PREBUILT_LIBS)
+    SET(EXCLUDE EXCLUDE_FROM_ALL CACHE STRING "" FORCE)
+ELSE()
+    SET(EXCLUDE "" CACHE STRING "" FORCE)
+ENDIF()
+
 set(CELESTE_DIR ${PROJECT_SOURCE_DIR}/Celeste)
-set(MCF_BUILDS_DIR ${PROJECT_SOURCE_DIR}/Build/${CMAKE_VS_PLATFORM_NAME}/)
+set(MCF_BUILDS_DIR ${PROJECT_SOURCE_DIR}/Build/${CMAKE_VS_PLATFORM_NAME})
 set(THIRD_PARTY_DIR ${CELESTE_DIR}/3rdParty)
 set(THIRD_PARTY_FOLDER_NAME "3rd Party")
 ##---------------------------- end Globals ----------------------------##
 
 
-##---------------------------- glm ----------------------------##
-set(GLM_PROJECT_NAME glm)
-set(GLM_PROJECT_DIR "${THIRD_PARTY_DIR}/glm")
-#
-#file(GLOB_RECURSE SOURCE_FILES ${GLM_PROJECT_DIR}/glm/*.c ${GLM_PROJECT_DIR}/glm/*.cpp)
-#file(GLOB_RECURSE HEADER_FILES ${GLM_PROJECT_DIR}/glm/*.h ${GLM_PROJECT_DIR}/glm/*.hpp)
-#
-#source_group(TREE ${GLM_PROJECT_DIR} PREFIX Source/ FILES ${SOURCE_FILES})						   
-#source_group(TREE ${GLM_PROJECT_DIR} PREFIX Include/ FILES ${HEADER_FILES})
+##---------------------------- assimp ----------------------------##
+set(ASSIMP_PROJECT_NAME assimp)
+set(ASSIMP_PROJECT_DIR "${THIRD_PARTY_DIR}/assimp")
 
-#add_library(${GLM_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-add_subdirectory(${GLM_PROJECT_DIR})
+add_subdirectory(${ASSIMP_PROJECT_DIR} ${ASSIMP_PROJECT_DIR}/build ${EXCLUDE})
 
-#set_target_properties(${GLM_PROJECT_NAME} PROPERTIES 
-#    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-#    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-#    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-#    CXX_STANDARD 17
-#    EXCLUDE_FROM_ALL true
-#    EXCLUDE_FROM_DEFAULT_BUILD true
-#    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-#
-#target_include_directories(${GLM_PROJECT_NAME} PUBLIC ${GLM_PROJECT_DIR})
-##---------------------------- end glm ----------------------------##
+set_target_properties(${ASSIMP_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end freealut ----------------------------##
+
+
+##---------------------------- crossguid ----------------------------##
+set(CROSSGUID_PROJECT_NAME crossguid)
+set(CROSSGUID_PROJECT_DIR "${THIRD_PARTY_DIR}/crossguid")
+
+add_subdirectory(${CROSSGUID_PROJECT_DIR} ${CROSSGUID_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${CROSSGUID_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    OUTPUT_NAME ${CROSSGUID_PROJECT_NAME})
+##---------------------------- end curl ----------------------------##
+
+
+##---------------------------- curl ----------------------------##
+set(LIBCURL_PROJECT_NAME libcurl)
+set(CURL_PROJECT_DIR "${THIRD_PARTY_DIR}/curl")
+
+add_subdirectory(${CURL_PROJECT_DIR} ${CURL_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${LIBCURL_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+##---------------------------- end curl ----------------------------##
+
+
+##---------------------------- curlpp ----------------------------##
+set(CURLPP_PROJECT_NAME curlpp)
+set(CURLPP_PROJECT_DIR "${THIRD_PARTY_DIR}/curlpp")
+set(CURL_INCLUDE_DIR ${CURL_PROJECT_DIR}/include)
+set(CURL_LIBRARY ${MCF_BUILDS_DIR}/${LIBCURL_PROJECT_NAME}.lib)
+
+add_subdirectory(${CURLPP_PROJECT_DIR} ${CURLPP_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${CURLPP_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+##---------------------------- end curlpp ----------------------------##
+
+
+##---------------------------- dirent ----------------------------##
+set(DIRENT_PROJECT_DIR "${THIRD_PARTY_DIR}/dirent")
+
+add_subdirectory(${DIRENT_PROJECT_DIR} ${DIRENT_PROJECT_DIR}/build ${EXCLUDE})
+##---------------------------- end dirent ----------------------------##
 
 
 ##---------------------------- ffmpeg ----------------------------##
 set(FFMPEG_PROJECT_DIR "${THIRD_PARTY_DIR}/ffmpeg")
-
+set(AVCODEC_PROJECT_NAME avcodec)
+set(AVFORMAT_PROJECT_NAME avformat)
+set(AVUTIL_PROJECT_NAME avutil)
+set(SWSCALE_PROJECT_NAME swscale)
 ##---------------------------- end ffmpeg ----------------------------##
 
 
-##---------------------------- avcodec ----------------------------##
-set(AVCODEC_PROJECT_NAME avcodec)
-set(AVCODEC_PROJECT_DIR "${FFMPEG_PROJECT_DIR}/lib${AVCODEC_PROJECT_NAME}")
-
-file(GLOB_RECURSE SOURCE_FILES ${AVCODEC_PROJECT_DIR}/*.c ${AVCODEC_PROJECT_DIR}/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${AVCODEC_PROJECT_DIR}/*.h ${AVCODEC_PROJECT_DIR}/*.hpp)
-
-source_group(TREE ${AVCODEC_PROJECT_DIR} PREFIX Source/ FILES ${SOURCE_FILES})						   
-source_group(TREE ${AVCODEC_PROJECT_DIR} PREFIX Include/ FILES ${HEADER_FILES})
-
-add_library(${AVCODEC_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-
-set_target_properties(${AVCODEC_PROJECT_NAME} PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17
-    EXCLUDE_FROM_ALL true
-    EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-target_include_directories(${AVCODEC_PROJECT_NAME} PUBLIC ${FFMPEG_PROJECT_DIR})
-#---------------------------- end avcodec ----------------------------##
-
-
-#---------------------------- avformat ----------------------------##
-set(AVFORMAT_PROJECT_NAME avformat)
-set(AVFORMAT_PROJECT_DIR "${FFMPEG_PROJECT_DIR}/lib${AVFORMAT_PROJECT_NAME}")
-
-file(GLOB_RECURSE SOURCE_FILES ${AVFORMAT_PROJECT_DIR}/*.c ${AVFORMAT_PROJECT_DIR}/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${AVFORMAT_PROJECT_DIR}/*.h ${AVFORMAT_PROJECT_DIR}/*.hpp)
-
-source_group(TREE ${AVFORMAT_PROJECT_DIR} PREFIX Source/ FILES ${SOURCE_FILES})						   
-source_group(TREE ${AVFORMAT_PROJECT_DIR} PREFIX Include/ FILES ${HEADER_FILES})
-
-add_library(${AVFORMAT_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-
-set_target_properties(${AVFORMAT_PROJECT_NAME} PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17
-    EXCLUDE_FROM_ALL true
-    EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-target_include_directories(${AVFORMAT_PROJECT_NAME} PUBLIC ${FFMPEG_PROJECT_DIR})
-##---------------------------- end avformat ----------------------------##
-
-
-#---------------------------- avutil ----------------------------##
-set(AVUTIL_PROJECT_NAME avutil)
-set(AVUTIL_PROJECT_DIR "${FFMPEG_PROJECT_DIR}/lib${AVUTIL_PROJECT_NAME}")
-
-file(GLOB_RECURSE SOURCE_FILES ${AVUTIL_PROJECT_DIR}/*.c ${AVUTIL_PROJECT_DIR}/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${AVUTIL_PROJECT_DIR}/*.h ${AVUTIL_PROJECT_DIR}/*.hpp)
-
-source_group(TREE ${AVUTIL_PROJECT_DIR} PREFIX Source/ FILES ${SOURCE_FILES})						   
-source_group(TREE ${AVUTIL_PROJECT_DIR} PREFIX Include/ FILES ${HEADER_FILES})
-
-add_library(${AVUTIL_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-
-set_target_properties(${AVUTIL_PROJECT_NAME} PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17
-    EXCLUDE_FROM_ALL true
-    EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-target_include_directories(${AVUTIL_PROJECT_NAME} PUBLIC ${FFMPEG_PROJECT_DIR})
-##---------------------------- end avutil ----------------------------##
-
-
-#---------------------------- swscale ----------------------------##
-set(SWSCALE_PROJECT_NAME swscale)
-set(SWSCALE_PROJECT_DIR "${FFMPEG_PROJECT_DIR}/lib${SWSCALE_PROJECT_NAME}")
-
-file(GLOB_RECURSE SOURCE_FILES ${SWSCALE_PROJECT_DIR}/*.c ${SWSCALE_PROJECT_DIR}/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${SWSCALE_PROJECT_DIR}/*.h ${SWSCALE_PROJECT_DIR}/*.hpp)
-
-source_group(TREE ${SWSCALE_PROJECT_DIR} PREFIX Source/ FILES ${SOURCE_FILES})						   
-source_group(TREE ${SWSCALE_PROJECT_DIR} PREFIX Include/ FILES ${HEADER_FILES})
-
-add_library(${SWSCALE_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-
-set_target_properties(${SWSCALE_PROJECT_NAME} PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17
-    EXCLUDE_FROM_ALL true
-    EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-target_include_directories(${SWSCALE_PROJECT_NAME} PUBLIC ${FFMPEG_PROJECT_DIR})
-##---------------------------- end swscale ----------------------------##
-
-
 ##---------------------------- openal-soft ----------------------------##
+set(OPENAL_SOFT_PROJECT_NAME OpenAL32)
 set(OPENAL_SOFT_PROJECT_DIR "${THIRD_PARTY_DIR}/openal-soft")
-set(ALSOFT_UTILS OFF CACHE BOOL "" FORCE)
-set(ALSOFT_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(ALSOFT_TESTS OFF CACHE BOOL "" FORCE)
+set(OPENAL_INCLUDE_DIR ${OPENAL_SOFT_PROJECT_DIR}/include/AL)
+set(OPENAL_LIBRARY ${MCF_BUILDS_DIR}/${OPENAL_SOFT_PROJECT_NAME}.lib)
 
-add_subdirectory(${OPENAL_SOFT_PROJECT_DIR})
+add_subdirectory(${OPENAL_SOFT_PROJECT_DIR} ${OPENAL_SOFT_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(OpenAL PROPERTIES
+set_target_properties(OpenAL PROPERTIES 
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    EXCLUDE_FROM_ALL true
-    EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-set_target_properties(build_version PROPERTIES
-    #RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #EXCLUDE_FROM_ALL true
-    #EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-set_target_properties(common PROPERTIES
-    #RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #EXCLUDE_FROM_ALL true
-    #EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-set_target_properties(ex-common PROPERTIES
-    #RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #EXCLUDE_FROM_ALL true
-    #EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
-
-set_target_properties(native-tools PROPERTIES
-    #RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    #EXCLUDE_FROM_ALL true
-    #EXCLUDE_FROM_DEFAULT_BUILD true
-    FOLDER ${THIRD_PARTY_FOLDER_NAME})
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 #---------------------------- end openal-soft ----------------------------##
+
+
+##---------------------------- freealut ----------------------------##
+set(FREEALUT_PROJECT_NAME alut)
+set(FREEALUT_PROJECT_DIR "${THIRD_PARTY_DIR}/freealut")
+
+add_subdirectory(${FREEALUT_PROJECT_DIR} ${FREEALUT_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${FREEALUT_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end freealut ----------------------------##
+
+
+##---------------------------- freetype2 ----------------------------##
+set(FREETYPE2_PROJECT_NAME freetype)
+set(FREETYPE2_PROJECT_DIR "${THIRD_PARTY_DIR}/freetype2")
+
+add_subdirectory(${FREETYPE2_PROJECT_DIR} ${FREETYPE2_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${FREETYPE2_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end freetype2 ----------------------------##
+
+
+##---------------------------- glew ----------------------------##
+set(GLEW_PROJECT_NAME glew)
+set(GLEW_PROJECT_DIR "${THIRD_PARTY_DIR}/glew")
+
+add_subdirectory(${GLEW_PROJECT_DIR} ${GLEW_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${GLEW_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+##---------------------------- end glew ----------------------------##
+
+
+##---------------------------- glfw ----------------------------##
+set(GLFW_PROJECT_NAME glfw)
+set(GLFW_PROJECT_DIR "${THIRD_PARTY_DIR}/glfw")
+
+add_subdirectory(${GLFW_PROJECT_DIR} ${GLFW_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(${GLFW_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+##---------------------------- end glfw ----------------------------##
+
+
+##---------------------------- glm ----------------------------##
+set(GLM_PROJECT_NAME glm)
+set(GLM_PROJECT_DIR "${THIRD_PARTY_DIR}/glm")
+
+add_subdirectory(${GLM_PROJECT_DIR} ${GLM_PROJECT_DIR}/build ${EXCLUDE})
+##---------------------------- end glm ----------------------------##
+
+
+##---------------------------- lua ----------------------------##
+set(LUA_PROJECT_NAME lua)
+set(LUA_PROJECT_DIR "${THIRD_PARTY_DIR}/lua")
+
+add_subdirectory(${LUA_PROJECT_DIR} ${LUA_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(liblua PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end lua ----------------------------##
+
+
+##---------------------------- SOIL2 ----------------------------##
+set(SOIL2_PROJECT_NAME SOIL)
+set(SOIL2_PROJECT_DIR "${THIRD_PARTY_DIR}/SOIL2")
+
+add_subdirectory(${SOIL2_PROJECT_DIR} ${SOIL2_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(SOIL2 PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end lua ----------------------------##
+
+
+##---------------------------- sol2 ----------------------------##
+set(SOL2_PROJECT_NAME sol2)
+set(SOL2_PROJECT_DIR "${THIRD_PARTY_DIR}/sol2")
+
+add_subdirectory(${SOL2_PROJECT_DIR} ${SOL2_PROJECT_DIR}/build ${EXCLUDE})
+#---------------------------- end sol2 ----------------------------##
+
+
+##---------------------------- tinyxml2 ----------------------------##
+set(TINYXML2_PROJECT_NAME tinyxml2)
+set(TINYXML2_PROJECT_DIR "${THIRD_PARTY_DIR}/tinyxml2")
+
+add_subdirectory(${TINYXML2_PROJECT_DIR} ${TINYXML2_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(liblua PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end lua ----------------------------##
 
 
 ##---------------------------- 3rd Party ----------------------------##
 set(THIRD_PARTY_INCLUDES
-    ${GLM_PROJECT_DIR}
+    ${ASSIMP_PROJECT_DIR}/include
+    ${ASSIMP_PROJECT_DIR}/build/include     #for config.h
+    ${CROSSGUID_PROJECT_DIR}/include
+    ${CURL_PROJECT_DIR}/include
+    ${CURLPP_PROJECT_DIR}/include
+    ${DIRENT_PROJECT_DIR}/include
     ${FFMPEG_PROJECT_DIR}
-    ${THIRD_PARTY_DIR}/Include
-	${THIRD_PARTY_DIR}/Include/Assimp
-	${THIRD_PARTY_DIR}/Include/freetype2)
+    ${FREEALUT_PROJECT_DIR}/include
+    ${FREETYPE2_PROJECT_DIR}/include
+    ${GLEW_PROJECT_DIR}/include
+    ${GLFW_PROJECT_DIR}/include
+    ${GLM_PROJECT_DIR}
+    ${LUA_PROJECT_DIR}/src
+    ${LUA_PROJECT_DIR}/build    #for luaconf.h
+    ${OPENAL_SOFT_PROJECT_DIR}/include
+    ${OPENAL_SOFT_PROJECT_DIR}/include/AL
+    ${SOL2_PROJECT_DIR}/include
+    ${SOIL2_PROJECT_DIR}/src
+    ${TINYXML2_PROJECT_DIR})
 
 set(THIRD_PARTY_LIBS
 	${AVCODEC_PROJECT_NAME}.lib
     ${AVFORMAT_PROJECT_NAME}.lib
 	${AVUTIL_PROJECT_NAME}.lib
     ${SWSCALE_PROJECT_NAME}.lib
-	assimp-vc140-mt.lib
-	liblua53.lib
-	tinyxml2.lib
-	alut.lib
-	OpenAL32.lib
-	SOIL.lib
-	glew32.lib
-	opengl32.lib
-	glfw3dll.lib
-	freetype.lib)
+	${ASSIMP_PROJECT_NAME}.lib
+    ${CROSSGUID_PROJECT_NAME}.lib
+    ${CURLPP_PROJECT_NAME}.lib
+	${FREEALUT_PROJECT_NAME}.lib
+    ${FREETYPE2_PROJECT_NAME}.lib
+    ${GLEW_PROJECT_NAME}.lib
+    ${GLFW_PROJECT_NAME}.lib
+    ${LIBCURL_PROJECT_NAME}.lib
+	${LUA_PROJECT_NAME}.lib
+	${OPENAL_SOFT_PROJECT_NAME}.lib
+    ${SOIL2_PROJECT_NAME}.lib
+    ${TINYXML2_PROJECT_NAME}.lib)
 ##---------------------------- end 3rd Party ----------------------------##
 
 
