@@ -1,4 +1,5 @@
 #include "Game/MCFGame.h"
+#include "Lua/LuaState.h"
 #include "Lua/ScriptCommands/MCFScriptCommands.h"
 #include "Scene/SceneUtils.h"
 #include "Debugging/SceneBroadcaster.h"
@@ -13,6 +14,10 @@ namespace MCF
     m_sceneBroadcaster(nullptr),
     m_luaScriptReceiver(nullptr)
   {
+#if _DEBUG
+    Celeste::Lua::LuaState::appendToLuaPackagePath(
+      Celeste::Path(Celeste::Resources::getResourcesDirectory(), "..", "..", "Celeste", "Celeste", "Resources", "Scripts", "?.lua;"));
+#endif
   }
 
   //------------------------------------------------------------------------------------------------

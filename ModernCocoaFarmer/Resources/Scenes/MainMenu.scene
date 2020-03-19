@@ -5,27 +5,27 @@
       <GameObjects>
         <GameObject name="Canvas" position="0,0,-1">
           <Components>
-            <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+            <Canvas projection_mode="Orthographic" dimensions="1,1"/>
           </Components>
           <GameObjects>
-            <GameObject name="Background" position="0.5%, 0.5%, 0">
+            <GameObject name="Background" position="0.5, 0.5, 0">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%, 1%"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1, 1"/>
               </Components>
             </GameObject>
           </GameObjects>
         </GameObject>
         <GameObject name="Canvas2">
           <Components>
-            <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+            <Canvas projection_mode="Orthographic" dimensions="1,1"/>
           </Components>
           <GameObjects>
-            <GameObject name="Title" position="0.5%, 0.8%, 0">
+            <GameObject name="Title" position="0.5, 0.8, 0">
               <Components>
                 <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1" text="Modern Cocoa Farmer"/>
               </Components>
             </GameObject>
-            <GameObject name="LayoutStackPanel" position="0.5%, 0.5%, 0">
+            <GameObject name="LayoutStackPanel" position="0.5, 0.5, 0">
               <Components>
                 <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>
               </Components>

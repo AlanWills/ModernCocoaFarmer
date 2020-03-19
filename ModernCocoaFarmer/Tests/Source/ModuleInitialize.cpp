@@ -17,15 +17,13 @@ namespace TestMCF
     // Issues with unique_ptrs over dll boundaries so have to do this in the test project
     Assertion::setAsserter(new NullAsserter());
 
-    CelesteTestUtils::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
-    CelesteTestUtils::TestResources::initialize();
+    CelesteTestResources::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
+    CelesteTestResources::TestResources::initialize();
 
     game = std::make_unique<Game>();
     game->getResourceManager().setResourcesDirectory(TestResources::getResourcesDirectory());
 
     Lua::LuaState::appendToLuaPackagePath(Path(Resources::getResourcesDirectory(), "Scripts", "?.lua;"));
-
-    getWindow().setViewportDimensions(100, 100);
   }
 
   //------------------------------------------------------------------------------------------------

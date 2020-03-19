@@ -5,7 +5,7 @@ using namespace tinyxml2;
 using namespace MCF::Persistence;
 
 
-namespace TestMCF
+namespace TestMCF::Persistence
 {
 	CELESTE_TEST_CLASS(TestDataStore)
 

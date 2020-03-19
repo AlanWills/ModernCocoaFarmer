@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="InGameMenu" position="0.5%,0.5%">
+    <GameObject name="InGameMenu" position="0.5,0.5">
       <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.2%,0.5%" colour="0.5,0.5,0.5" opacity="0.8"/>
+        <Canvas projection_mode="Orthographic" dimensions="1,1"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.2,0.5" colour="0.5,0.5,0.5" opacity="0.8"/>
       </Components>
       <GameObjects>
-        <GameObject name="ToggleAudioButton" position="0,0.20%,0.1">
+        <GameObject name="ToggleAudioButton" position="0,0.20,0.1">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Settings\AudioPlaying.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
-            <RectangleCollider dimensions="0.04%,0.04%"/>
+            <SpriteRenderer sprite="Textures\UI\Settings\AudioPlaying.png" size="0.04,0.04" preserve_aspect_ratio="true"/>
+            <RectangleCollider dimensions="0.04,0.04"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-        <GameObject name="ResumeGameButton" position="0,0.12%,0">
+        <GameObject name="ResumeGameButton" position="0,0.12,0">
           <Components>
             <SpriteRenderer/>
             <RectangleCollider/>
@@ -29,7 +29,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="RestartGameButton" position="0,0.02%,0">
+        <GameObject name="RestartGameButton" position="0,0.02,0">
           <Components>
             <SpriteRenderer/>
             <RectangleCollider/>
@@ -44,7 +44,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="ToMainMenuButton" position="0,-0.08%,0">
+        <GameObject name="ToMainMenuButton" position="0,-0.08,0">
           <Components>
             <SpriteRenderer/>
             <RectangleCollider/>
@@ -59,7 +59,7 @@
             </GameObject>          
           </GameObjects>
         </GameObject>
-        <GameObject name="QuitGameButton" position="0,-0.18%,0">
+        <GameObject name="QuitGameButton" position="0,-0.18,0">
           <Components>
             <SpriteRenderer/>
             <RectangleCollider/>

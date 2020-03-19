@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="Home" position="0.4%,0.45%,0">
+    <GameObject name="Home" position="0.4,0.45,0">
       <Components>
         <SpriteRenderer sprite="Textures\Village\Locations\Interactable\Home.png"
                         size="80,80"

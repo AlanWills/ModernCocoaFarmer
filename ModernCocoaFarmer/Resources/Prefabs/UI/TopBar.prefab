@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="TopBarBackground" position="0.5%,0.95%,0">
+    <GameObject name="TopBarBackground" position="0.5,0.95,0">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1%,0.1%" colour="0.5,0.5,0.5" opacity="0.5"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1,0.1" colour="0.5,0.5,0.5" opacity="0.5"/>
       </Components>
       <GameObjects>
         <Prefab name="MoneyPanel" path="Prefabs\UI\Money\MoneyPanel.prefab"/>
         <Prefab name="FamilyPanel" path="Prefabs\UI\Family\FamilyPanel.prefab"/>
         <Prefab name="TimePanel" path="Prefabs\UI\Time\TimePanel.prefab"/>
-        <GameObject name="UtilityButtonsStackPanel" position="0.47%,0,0">
+        <GameObject name="UtilityButtonsStackPanel" position="0.47,0,0">
           <Components>
             <StackPanel orientation="horizontal" horizontal_alignment="right" padding="20"/>
           </Components>
           <GameObjects>
             <GameObject name="DonateButton">
               <Components>
-                <SpriteRenderer size="0.04%,0.04%" sprite="Textures\UI\Utility\Donate.png" preserve_aspect_ratio="true"/>
+                <SpriteRenderer size="0.04,0.04" sprite="Textures\UI\Utility\Donate.png" preserve_aspect_ratio="true"/>
                 <RectangleCollider/>
                 <MouseInteractionHandler/>
               </Components>
             </GameObject>
             <GameObject name="MenuButton">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="0.04%,0.04%" preserve_aspect_ratio="true"/>
-                <RectangleCollider dimensions="0.04%, 0.04%"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="0.04,0.04" preserve_aspect_ratio="true"/>
+                <RectangleCollider dimensions="0.04, 0.04"/>
                 <MouseInteractionHandler/>
               </Components>
             </GameObject>

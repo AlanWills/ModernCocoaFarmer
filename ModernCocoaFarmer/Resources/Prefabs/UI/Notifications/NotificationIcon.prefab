@@ -3,14 +3,14 @@
   <GameObjects>
     <GameObject name="Notification">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04%,0.04%" colour="1" opacity="0" preserve_aspect_ratio="true"/>
-        <RectangleCollider dimensions="0.04%,0.04%"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04,0.04" colour="1" opacity="0" preserve_aspect_ratio="true"/>
+        <RectangleCollider dimensions="0.04,0.04"/>
         <MouseInteractionHandler/>
       </Components>
       <GameObjects>
         <GameObject name="NotificationIcon">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04%,0.04%" colour="1" opacity="1" preserve_aspect_ratio="true"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04,0.04" colour="1" opacity="1" preserve_aspect_ratio="true"/>
           </Components>
         </GameObject>
       </GameObjects>

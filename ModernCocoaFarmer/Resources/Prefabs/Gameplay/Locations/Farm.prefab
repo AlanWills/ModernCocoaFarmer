@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="Farm" position="0.1%,0.45%,0">
+    <GameObject name="Farm" position="0.1,0.45,0">
       <Components>
         <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png"
                         size="80,80"

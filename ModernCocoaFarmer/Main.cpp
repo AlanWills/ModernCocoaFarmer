@@ -10,7 +10,7 @@
 
 // The MAIN function, from here we start the application and run the game loop
 int main()
-{
+{  
   MCF::MCFGame game;
   game.run();
 

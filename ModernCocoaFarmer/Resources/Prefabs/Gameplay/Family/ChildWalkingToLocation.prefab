@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="ChildSprite">
       <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1%,1%"/>
+        <Canvas projection_mode="Orthographic" dimensions="1,1"/>
         <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="200,200" preserve_aspect_ratio="true"/>
         <Animator sprite_sheet_dimensions="4,1"
                   looping="true"
