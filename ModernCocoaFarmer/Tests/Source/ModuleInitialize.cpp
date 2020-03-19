@@ -3,7 +3,7 @@
 #include "Debug/Asserting/NullAsserter.h"
 #include "OpenGL/GL.h"
 #include "Lua/LuaState.h"
-#include "Resources/TestResources.h"
+#include "TestResources/TestResources.h"
 #include "UtilityHeaders/UnitTestHeaders.h"
 
 
