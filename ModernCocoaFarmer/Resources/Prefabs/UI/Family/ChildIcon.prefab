@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="ChildImage" position="0,0.005,0">
       <Components>
-        <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="0.2,0.08,0" preserve_aspect_ratio="true"/>
+        <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="0.2,0.08" preserve_aspect_ratio="true"/>
         <RectangleCollider dimensions="0.05,0.08"/>
         <MouseInteractionHandler/>
         <Animator sprite_sheet_dimensions="4,1"

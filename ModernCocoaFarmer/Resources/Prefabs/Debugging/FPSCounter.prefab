@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="FPSCounterBackground" Tag="Debug" position="0.1,0.1,1">
+    <GameObject name="FPSCounterBackground" Tag="Debug" position="192,108,1">
       <Components>
         <KeyboardVisibility visibility_key="F" invisibility_key="F" input_mode="Toggle" target="FPSCounterBackground"/>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="20,20" colour="1,1,1"/>
-        <Canvas projection_mode="Orthographic" dimensions="1,1"/>
+        <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
       </Components>
       <GameObjects>
         <GameObject name="FPSCounter" Tag="Debug">
           <Components>
-            <TextRenderer colour="0,0,0">
-              <Lines>
-                <Line>0</Line>
-              </Lines>
-            </TextRenderer>
+            <TextRenderer colour="0,0,0"/>
             <FPSCounter/>
           </Components>
         </GameObject>

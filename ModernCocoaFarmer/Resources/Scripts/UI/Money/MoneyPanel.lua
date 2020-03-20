@@ -12,7 +12,6 @@ end
 
 ---------------------------------------------------------------------------------
 function MoneyPanel:updateUI()
-    log(MoneyDataSources.CURRENT_MONEY)
     self:setMoneyText(self._dataStore:getInt(MoneyDataSources.CURRENT_MONEY))
 end
 

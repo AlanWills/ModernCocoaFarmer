@@ -5,27 +5,27 @@
       <GameObjects>
         <GameObject name="Canvas" position="0,0,-1">
           <Components>
-            <Canvas projection_mode="Orthographic" dimensions="1,1"/>
+            <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
           </Components>
           <GameObjects>
-            <GameObject name="Background" position="0.5, 0.5, 0">
+            <GameObject name="Background" position="960,540,0">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1, 1"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080"/>
               </Components>
             </GameObject>
           </GameObjects>
         </GameObject>
         <GameObject name="Canvas2">
           <Components>
-            <Canvas projection_mode="Orthographic" dimensions="1,1"/>
+            <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
           </Components>
           <GameObjects>
-            <GameObject name="Title" position="0.5, 0.8, 0">
+            <GameObject name="Title" position="960,864,0">
               <Components>
-                <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0,1" text="Modern Cocoa Farmer"/>
+                <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0" text="Modern Cocoa Farmer"/>
               </Components>
             </GameObject>
-            <GameObject name="LayoutStackPanel" position="0.5, 0.5, 0">
+            <GameObject name="LayoutStackPanel" position="960,540,0">
               <Components>
                 <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>
               </Components>
@@ -40,7 +40,7 @@
                   <GameObjects>
                     <GameObject name="ExitText" position="0,1,0">
                       <Components>
-                        <TextRenderer font_height="24" colour="0,0,0,1" text="Exit"/>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Exit"/>
                       </Components>
                     </GameObject>
                   </GameObjects>
@@ -55,7 +55,7 @@
                   <GameObjects>
                     <GameObject name="OptionsText" position="0,1,0">
                       <Components>
-                        <TextRenderer font_height="24" colour="0,0,0,1" text="Options"/>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Options"/>
                       </Components>
                     </GameObject>
                   </GameObjects>
@@ -70,7 +70,7 @@
                   <GameObjects>
                     <GameObject name="PlayText" position="0,1,0">
                       <Components>
-                        <TextRenderer font_height="24" colour="0,0,0,1" text="Play"/>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Play"/>
                       </Components>
                     </GameObject>
                   </GameObjects>

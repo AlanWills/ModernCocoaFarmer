@@ -15,6 +15,9 @@
 *Log.txt
 *Profiler.txt
 
+# MCF files
+AppData/
+
 # Build results
 CMakeFiles/
 [Bb]uild/
