@@ -4,7 +4,7 @@
 
 namespace MCF::Time
 {
-  REGISTER_UNMANAGED_COMPONENT(TimeNotifier, 1);
+  REGISTER_COMPONENT(TimeNotifier, 1);
 
   //------------------------------------------------------------------------------------------------
   TimeNotifier::TimeNotifier(GameObject& gameObject) :

@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="GameplayScene">
       <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1,1"/>
+        <Canvas projection_mode="Orthographic"/>
       </Components>
       <GameObjects>
         <!--Music-->
@@ -13,24 +13,24 @@
           </Components>
         </GameObject>
         <!--Background-->
-        <GameObject name="GameplayBackground" position="0.5,0.5,-1">
+        <GameObject name="GameplayBackground" position="960,540,-1">
           <Components>
-            <SpriteRenderer sprite="Textures\Village\Background\Background.png" size="1,1"/>
+            <SpriteRenderer sprite="Textures\Village\Background\Background.png" size="1920,1080"/>
           </Components>
         </GameObject>
-        <GameObject name="BoundaryLine" position="0.25,0.5,-0.5">
+        <GameObject name="BoundaryLine" position="480,540,-0.5">
           <Components>
             <SpriteRenderer sprite="Textures\Village\Background\BoundaryLine.png"/>
           </Components>
         </GameObject>
-        <GameObject name="MaliText" position="0.75,0.7,-0.5">
+        <GameObject name="MaliText" position="1440,756,-0.5">
           <Components>
             <SpriteRenderer sprite="Textures\Village\Background\MaliText.png"
                             size="200,200"
                             preserve_aspect_ratio="true"/>
           </Components>
         </GameObject>
-        <GameObject name="TheIvoryCoastText" position="0.1,0.65,-0.5">
+        <GameObject name="TheIvoryCoastText" position="192,702,-0.5">
           <Components>
             <SpriteRenderer sprite="Textures\Village\Background\TheIvoryCoastText.png"
                             size="200,200"
@@ -41,9 +41,9 @@
         <GameObject name="LocationsUI" position="0,0,0"/>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
-        <GameObject name="NotificationsBar" position="0.02,0.01">
+        <GameObject name="NotificationsBar" position="38,20,0">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="0.04,1" colour="0.5,0.5,0.5" opacity="0.75"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="76,1080" colour="0.5,0.5,0.5" opacity="0.75"/>
             <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
           </Components>
         </GameObject>

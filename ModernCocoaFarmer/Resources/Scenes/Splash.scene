@@ -8,7 +8,7 @@
   <GameObjects>
     <GameObject name="SplashScene">
       <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
+        <Canvas/>
       </Components>
       <GameObjects>
         <GameObject position="960,540,0" name="Logo1" active="true" should_render="true">

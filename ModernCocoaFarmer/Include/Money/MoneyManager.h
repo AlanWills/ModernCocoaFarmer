@@ -24,7 +24,7 @@ namespace MCF::Money
     public:
       using MoneyChangedEvent = Celeste::Event<int>;
 
-      void setDataStore(observer_ptr<Persistence::DataStore> dataStore) { m_dataStore = dataStore; }
+      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
       int getMoney() const { return m_money.getValue(); }
       void setMoney(int money);

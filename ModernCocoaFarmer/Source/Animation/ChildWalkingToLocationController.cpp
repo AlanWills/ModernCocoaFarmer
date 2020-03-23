@@ -4,7 +4,7 @@
 
 namespace MCF::Animation
 {
-  REGISTER_UNMANAGED_COMPONENT(ChildWalkingToLocationController, 6);
+  REGISTER_COMPONENT(ChildWalkingToLocationController, 6);
 
   //------------------------------------------------------------------------------------------------
   ChildWalkingToLocationController::ChildWalkingToLocationController(Celeste::GameObject& gameObject) :

@@ -3,15 +3,15 @@
   <GameObjects>
     <GameObject name="Canvas">
       <Components>
-        <Canvas projection_mode="Orthographic" dimensions="1,1"/>
+        <Canvas projection_mode="Orthographic"/>
       </Components>
       <GameObjects>
-        <GameObject name="Background" position="0.5,0.5">
+        <GameObject name="Background" position="960,540">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1,1"/>
           </Components>
           <GameObjects>
-            <GameObject name="WalkingChildAnimation" position="0, 0.25,1">
+            <GameObject name="WalkingChildAnimation" position="0, 270,1">
               <Components>
                 <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" preserve_aspect_ratio="true"/>
                 <Animator sprite_sheet_dimensions="4,1" 
@@ -20,7 +20,7 @@
                           play_immediately="true"/>
               </Components>
             </GameObject>
-            <GameObject name="WebsiteText" position="0,-0.15,1">
+            <GameObject name="WebsiteText" position="0,162,1">
               <Components>
                 <TextRenderer text="Loading...\n\nGo to www.moderncocoafarmer.org to find out more"
                               horizontal_alignment="centre"

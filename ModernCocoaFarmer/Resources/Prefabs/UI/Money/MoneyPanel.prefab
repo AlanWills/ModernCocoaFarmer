@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="MoneyPanel" position="-0.45,0,1">
+    <GameObject name="MoneyPanel" position="-864,0,1">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="0.04,0.04" preserve_aspect_ratio="true"/>
-        <RectangleCollider dimensions="0.04, 0.04"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="77,43" preserve_aspect_ratio="true"/>
         <MouseInteractionHandler/>
       </Components>
       <GameObjects>
-        <GameObject name="MoneyText" position="0.03,0,0">
+        <GameObject name="MoneyText" position="58,0,0">
           <Components>
             <TextRenderer text="10000000000" font_height="24" horizontal_alignment="left"/>
           </Components>

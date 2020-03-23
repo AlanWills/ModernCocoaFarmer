@@ -5,7 +5,7 @@
       <GameObjects>
         <GameObject name="Canvas" position="0,0,-1">
           <Components>
-            <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
+            <Canvas/>
           </Components>
           <GameObjects>
             <GameObject name="Background" position="960,540,0">
@@ -17,7 +17,8 @@
         </GameObject>
         <GameObject name="Canvas2">
           <Components>
-            <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
+            <Canvas/>
+            <GraphicsRaycaster/>
           </Components>
           <GameObjects>
             <GameObject name="Title" position="960,864,0">
@@ -33,7 +34,6 @@
                 <GameObject name="ExitButton">
                   <Components>
                     <SpriteRenderer/>
-                    <RectangleCollider/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>
@@ -48,7 +48,6 @@
                 <GameObject name="OptionsButton">
                   <Components>
                     <SpriteRenderer/>
-                    <RectangleCollider/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>
@@ -63,7 +62,6 @@
                 <GameObject name="PlayButton">
                   <Components>
                     <SpriteRenderer/>
-                    <RectangleCollider/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>

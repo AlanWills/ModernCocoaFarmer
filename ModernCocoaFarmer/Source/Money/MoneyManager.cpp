@@ -63,10 +63,18 @@ namespace MCF::Money
   }
 
   //------------------------------------------------------------------------------------------------
+  void MoneyManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  {
+    m_dataStore = dataStore;
+    updateDataStore();
+  }
+
+  //------------------------------------------------------------------------------------------------
   void MoneyManager::updateDataStore() const
   {
     if (m_dataStore != nullptr)
     {
+      LOG(std::to_string(getMoney()));
       m_dataStore->set(DataSources::CURRENT_MONEY, getMoney());
       m_dataStore->set(DataSources::CURRENT_SALARY_LEVEL, getSalaryLevel());
     }

@@ -1,22 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Scene>
-  <Resources>
-    <Fonts>
-
-    </Fonts>
-    <FragmentShaders>
-
-    </FragmentShaders>
-    <Sounds>
-
-    </Sounds>
-    <Textures>
-
-    </Textures>
-    <VertexShaders>
-
-    </VertexShaders>
-  </Resources>
   <GameObjects>
     <Prefab name="FSPCounter" path="Prefabs\Debugging\FPSCounter.prefab"/>
     <Prefab name="GameplayDebugging" path="Prefabs\Debugging\GameplayDebugging.prefab"/>

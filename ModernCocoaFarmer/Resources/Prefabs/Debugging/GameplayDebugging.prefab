@@ -5,7 +5,7 @@
       <Components>
         <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
         <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
-        <Canvas projection_mode="Orthographic" dimensions="1920,1080"/>
+        <Canvas projection_mode="Orthographic"/>
       </Components>
       <GameObjects>
         <GameObject name="GameplayDebuggingBackground" Tag="Debug" active="false" should_render="false">
@@ -16,7 +16,6 @@
             <GameObject name="ReloadScreenButton">
               <Components>
                 <SpriteRenderer/>
-                <RectangleCollider/>
                 <MouseInteractionHandler/>
                 <Button>
                   <LeftClickCallbacks>
