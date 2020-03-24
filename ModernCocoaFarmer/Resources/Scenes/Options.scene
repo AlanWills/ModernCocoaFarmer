@@ -4,6 +4,7 @@
     <GameObject name="OptionsScene">
       <Components>
         <Canvas/>
+        <GraphicsRaycaster/>
       </Components>
       <GameObjects>
         <GameObject position="0.5, 0.8, 0" name="Title">

@@ -1,21 +1,7 @@
 #pragma once
 
 
-namespace MCF
+namespace MCF::Lua::Stats::ModifierScriptCommands
 {
-  namespace Stats
-  {
-    class Modifier;
-  }
-
-  namespace Lua
-  {
-    namespace Stats
-    {
-      namespace ModifierScriptCommands
-      {
-        void initialize();
-      }
-    }
-  }
+  void initialize();
 }

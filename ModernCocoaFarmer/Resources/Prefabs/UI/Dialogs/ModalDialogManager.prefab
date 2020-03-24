@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="ModalDialogManager" position="960,540,1">
+      <GameObjects>
+        <GameObject name="InputBlocker" active="false">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080" colour="1,1,1" opacity="0"/>
+            <MouseInteractionHandler/>
+          </Components>
+        </GameObject>
+        <GameObject name="DialogRoot">
+          <Components>
+            <Canvas/>
+            <GraphicsRaycaster/>
+          </Components>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Prefab>

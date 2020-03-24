@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="Canvas">
       <Components>
-        <Canvas projection_mode="Orthographic"/>
+        <Canvas/>
       </Components>
       <GameObjects>
         <GameObject name="Background" position="960,540">

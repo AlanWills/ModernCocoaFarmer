@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="InGameMenu" position="960,540">
       <Components>
-        <Canvas projection_mode="Orthographic"/>
+        <Canvas/>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="384,540" colour="0.5,0.5,0.5" opacity="0.8"/>
       </Components>
       <GameObjects>

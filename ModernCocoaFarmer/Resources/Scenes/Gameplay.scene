@@ -3,7 +3,8 @@
   <GameObjects>
     <GameObject name="GameplayScene">
       <Components>
-        <Canvas projection_mode="Orthographic"/>
+        <Canvas/>
+        <GraphicsRaycaster/>
       </Components>
       <GameObjects>
         <!--Music-->
@@ -47,6 +48,8 @@
             <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
           </Components>
         </GameObject>
+        <Prefab name="ModalDialogManager" path="Prefabs\UI\Dialogs\ModalDialogManager.prefab"/>
+        <!--Systems-->
         <GameObject name="TimeNotifier">
           <Components>
             <TimeNotifier/>

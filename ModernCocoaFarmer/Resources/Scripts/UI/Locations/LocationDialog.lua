@@ -34,6 +34,13 @@ local function formatCostString(cost)
 end
 
 ----------------------------------------------------------------------------------------
+local function pluralize(quantity, str)
+    if quantity > 1 then
+        str = str .. "s"
+    end
+end
+
+----------------------------------------------------------------------------------------
 local function formatTimeString(daysToComplete)
     local years = math.floor(daysToComplete / 360)
     local months = math.floor((daysToComplete - 360 * years) / 30)
@@ -42,15 +49,18 @@ local function formatTimeString(daysToComplete)
     local timeString = ""
 
     if years > 0 then
-        timeString = timeString .. tostring(years) .. "y "
+        timeString = timeString .. tostring(years) .. " year"
+        pluralize(years, timeString)
     end
 
     if months > 0 then
-        timeString = timeString .. tostring(months) .. "mo "
+        timeString = timeString .. tostring(months) .. " month"
+        pluralize(months, timeString)
     end
 
     if days > 0 then
-        timeString = timeString .. tostring(days) .. "d"
+        timeString = timeString .. tostring(days) .. " day"
+        pluralize(days, timeString)
     end
 
     return timeString
@@ -68,11 +78,6 @@ local function formatModifierString(modifier)
 
     modifierText = modifierText .. string.format("%d", modifier:getAmount())
     modifierText = modifierText .. "%"
-
-    if modifier:isPeriodicChange() then
-        modifierText = modifierText .. " every "
-        modifierText = modifierText .. string.format("%d", modifier:getPeriodInMonths())
-    end
 
     if modifier:getAppliesToAllChildren() then
         modifierText = modifierText .. " for all children"
@@ -100,33 +105,32 @@ function LocationDialog:new(location, selectedChild)
 
     local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
     self._gameObject = dialogPrefab:instantiate()
-    local interactableLocationBackground = self._gameObject:findChild("InteractableLocationBackground")
 
-    local titleText = interactableLocationBackground:findChild(self.TITLE_TEXT_NAME)
+    local titleText = self._gameObject:findChild(self.TITLE_TEXT_NAME)
     titleText:findComponent("TextRenderer"):setText(location:getName())
 
-    local descriptionText = interactableLocationBackground:findChild(self.DESCRIPTION_TEXT_NAME)
+    local descriptionText = self._gameObject:findChild(self.DESCRIPTION_TEXT_NAME)
     descriptionText:findComponent("TextRenderer"):setText(location:getDescription())
     
-    local costIcon = interactableLocationBackground:findChild(self.COST_ICON_NAME)
+    local costIcon = self._gameObject:findChild(self.COST_ICON_NAME)
     local costText = costIcon:findChild(self.COST_TEXT_NAME):findComponent("TextRenderer")
     costText:setText(tostring(formatCostString(location:getMoneyModifier():getAmount())))
 
-    local timeIcon = interactableLocationBackground:findChild(self.TIME_ICON_NAME)
+    local timeIcon = self._gameObject:findChild(self.TIME_ICON_NAME)
     local timeText = timeIcon:findChild(self.TIME_TEXT_NAME):findComponent("TextRenderer")
     timeText:setText(formatTimeString(location:getDaysToComplete()))
 
-    local closeButton = interactableLocationBackground:findChild(self.CLOSE_BUTTON_NAME)
+    local closeButton = self._gameObject:findChild(self.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
     mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback)
 
-    local statsBackground = interactableLocationBackground:findChild(self.STATS_BACKGROUND_NAME)
+    local statsBackground = self._gameObject:findChild(self.STATS_BACKGROUND_NAME)
     setModifierText(statsBackground, self.HEALTH_MODIFIER_TEXT_NAME, location:getHealthModifier())
     setModifierText(statsBackground, self.SAFETY_MODIFIER_TEXT_NAME, location:getSafetyModifier())
     setModifierText(statsBackground, self.EDUCATION_MODIFIER_TEXT_NAME, location:getEducationModifier())
     setModifierText(statsBackground, self.HAPPINESS_MODIFIER_TEXT_NAME, location:getHappinessModifier())
 
-    self:setUpChildSelectionUI(interactableLocationBackground, selectedChild)
+    self:setUpChildSelectionUI(self._gameObject, selectedChild)
 end
 
 ----------------------------------------------------------------------------------------

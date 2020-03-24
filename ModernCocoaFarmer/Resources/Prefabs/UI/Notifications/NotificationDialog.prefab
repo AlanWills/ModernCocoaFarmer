@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="NotificationDialog" position="960,540,0">
       <Components>
-        <Canvas projection_mode="Orthographic"/>
+        <Canvas/>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="576,324,0" colour="0.8,0.8,0.8" opacity="1"/>
       </Components>
       <GameObjects>

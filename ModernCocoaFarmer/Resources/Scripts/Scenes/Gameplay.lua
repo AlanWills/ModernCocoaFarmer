@@ -2,6 +2,7 @@ local Class = require 'OOP.Class'
 local LocationsUI = require 'UI.Locations.LocationsUI'
 local TopBar = require "UI.TopBar"
 local NotificationsBar = require 'UI.Notifications.NotificationsBar'
+local ModalDialogManager = require 'UI.Dialogs.ModalDialogManager'
 
 local Gameplay = 
 {
@@ -25,26 +26,36 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.show()
+    -- Data Model Initialization
     local dataStore = DataStore.create()
     local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
     local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
-    moneyManager:setDataStore(dataStore)
-
     local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
     local locationsManager = LocationsManager.load(path.combine("Data", "Locations", "LocationsManager.asset"))
     local notificationManager = NotificationManager.load(path.combine("Data", "Notifications", "NotificationManager.asset"))
-
     local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
+
+    moneyManager:setDataStore(dataStore)
+    
     gameEventManager:setTimeManager(timeManager)
     gameEventManager:setMoneyManager(moneyManager)
     gameEventManager:setFamilyManager(familyManager)
     gameEventManager:setLocationsManager(locationsManager)
     gameEventManager:setNotificationManager(notificationManager)
     gameEventManager:subscribeOnGameEventTriggeredCallback(onGameEventTriggeredCallback)
-       
+    
     familyManager:addChild()
     familyManager:addChild()
     
+    Gameplay._dataStore = dataStore
+    Gameplay._timeManager = timeManager
+    Gameplay._moneyManager = moneyManager
+    Gameplay._familyManager = familyManager
+    Gameplay._locationsManager = locationsManager
+    Gameplay._notificationManager = notificationManager
+    Gameplay._gameEventManager = gameEventManager
+
+    -- Scene Initialization
     Scene.load(Gameplay.GAMEPLAY_SCENE_PATH)
     
     local timeComponent = GameObject.find(Gameplay.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
@@ -64,14 +75,9 @@ function Gameplay.show()
     local notificationsBar = GameObject.find(Gameplay.NOTIFICATIONS_BAR_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
 
-    Gameplay._dataStore = dataStore
-    Gameplay._timeManager = timeManager
-    Gameplay._moneyManager = moneyManager
-    Gameplay._familyManager = familyManager
-    Gameplay._locationsManager = locationsManager
-    Gameplay._notificationManager = notificationManager
-    Gameplay._gameEventManager = gameEventManager
-    
+    local modalDialogManager = GameObject.find(ModalDialogManager.MODAL_DIALOG_MANAGER_NAME)
+    Gameplay._modalDialogManager = Class.new(ModalDialogManager, modalDialogManager)
+
     Gameplay.updateUI()
 end
 

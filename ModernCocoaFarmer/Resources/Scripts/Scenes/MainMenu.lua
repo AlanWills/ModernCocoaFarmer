@@ -15,7 +15,7 @@ local function play(caller)
     local MainMenu = require 'Scenes.MainMenu'
     MainMenu.hide()
 
-    --StartGameplayCommand.execute()
+    StartGameplayCommand.execute()
 end
 
 ---------------------------------------------------------------------------------

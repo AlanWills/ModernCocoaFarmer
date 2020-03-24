@@ -5,7 +5,7 @@
       <Components>
         <KeyboardVisibility visibility_key="R" invisibility_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
         <KeyboardActivator activation_key="R" deactivation_key="R" input_mode="Toggle" target="GameplayDebuggingBackground"/>
-        <Canvas projection_mode="Orthographic"/>
+        <Canvas/>
       </Components>
       <GameObjects>
         <GameObject name="GameplayDebuggingBackground" Tag="Debug" active="false" should_render="false">

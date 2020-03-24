@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="ChildStatsBackground" position="0,0,0">
       <Components>
-        <Canvas projection_mode="Orthographic"/>
+        <Canvas/>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="200,270" 
                         colour="0.8,0.8,0.8" opacity="0.5"/>
         <StackPanel orientation="Vertical" vertical_alignment="Centre" padding="10"/>

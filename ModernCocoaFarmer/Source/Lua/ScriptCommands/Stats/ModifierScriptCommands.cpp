@@ -4,42 +4,33 @@
 #include "Stats/Modifier.h"
 
 
-namespace MCF
+namespace MCF::Lua::Stats::ModifierScriptCommands
 {
-  namespace Lua
+  namespace Internals
   {
-    namespace Stats
+    //------------------------------------------------------------------------------------------------
+    bool isDeltaChange(MCF::Stats::Modifier& modifier)
     {
-      namespace ModifierScriptCommands
-      {
-        namespace Internals
-        {
-          //------------------------------------------------------------------------------------------------
-          bool isDeltaChange(MCF::Stats::Modifier& modifier)
-          {
-            return modifier.getChangeType() == MCF::Stats::ChangeType::kDelta;
-          }
-
-          //------------------------------------------------------------------------------------------------
-          bool isPeriodicChange(MCF::Stats::Modifier& modifier)
-          {
-            return modifier.getOccurrence() == MCF::Stats::Occurrence::kPeriodic;
-          }
-        }
-
-        //------------------------------------------------------------------------------------------------
-        void initialize()
-        {
-          using Modifier = MCF::Stats::Modifier;
-
-          Celeste::Lua::registerScriptableObjectUserType<Modifier>(
-            "Modifier",
-            sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-            "getAmount", &Modifier::getAmount,
-            "isDeltaChange", &Internals::isDeltaChange,
-            "isPeriodicChange", &Internals::isPeriodicChange);
-        }
-      }
+      return modifier.getChangeType() == MCF::Stats::ChangeType::kDelta;
     }
+
+    //------------------------------------------------------------------------------------------------
+    bool isPeriodicChange(MCF::Stats::Modifier& modifier)
+    {
+      return modifier.getOccurrence() == MCF::Stats::Occurrence::kPeriodic;
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void initialize()
+  {
+    using Modifier = MCF::Stats::Modifier;
+
+    Celeste::Lua::registerScriptableObjectUserType<Modifier>(
+      "Modifier",
+      sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
+      "getAmount", &Modifier::getAmount,
+      "isDeltaChange", &Internals::isDeltaChange,
+      "isPeriodicChange", &Internals::isPeriodicChange);
   }
 }
