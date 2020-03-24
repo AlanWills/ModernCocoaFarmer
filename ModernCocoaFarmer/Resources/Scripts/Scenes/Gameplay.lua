@@ -12,6 +12,7 @@ local Gameplay =
     TIME_NOTIFIER_NAME = "TimeNotifier",
     NOTIFICATIONS_BAR_NAME = "NotificationsBar",
     LOCATIONS_UI_NAME = "LocationsUI",
+    MODAL_DIALOG_MANAGER_NAME = "ModalDialogManager",
 }
 
 ---------------------------------------------------------------------------------
@@ -75,7 +76,7 @@ function Gameplay.show()
     local notificationsBar = GameObject.find(Gameplay.NOTIFICATIONS_BAR_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
 
-    local modalDialogManager = GameObject.find(ModalDialogManager.MODAL_DIALOG_MANAGER_NAME)
+    local modalDialogManager = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
     Gameplay._modalDialogManager = Class.new(ModalDialogManager, modalDialogManager)
 
     Gameplay.updateUI()

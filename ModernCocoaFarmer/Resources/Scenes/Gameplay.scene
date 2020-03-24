@@ -48,7 +48,7 @@
             <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
           </Components>
         </GameObject>
-        <Prefab name="ModalDialogManager" path="Prefabs\UI\Dialogs\ModalDialogManager.prefab"/>
+        <GameObject name="ModalDialogManager" position="0,0,0"/>
         <!--Systems-->
         <GameObject name="TimeNotifier">
           <Components>

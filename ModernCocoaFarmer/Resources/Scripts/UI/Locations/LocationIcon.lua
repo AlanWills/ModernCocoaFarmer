@@ -1,6 +1,7 @@
 local Class = require 'OOP.Class'
 local LocationDialog = require 'UI.Locations.LocationDialog'
 local LocationProgress = require 'UI.Locations.LocationProgress'
+local ModalDialogManager = require 'UI.Dialogs.ModalDialogManager'
 
 local LocationIcon = 
 {
@@ -50,7 +51,8 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:showDetails(selectedChild)
-    Class.new(LocationDialog, self._location, selectedChild)
+    --Class.new(LocationDialog, self._location, selectedChild)
+    ModalDialogManager.instance:showDialog(LocationDialog, self._location, selectedChild)
 end
 
 ----------------------------------------------------------------------------------------

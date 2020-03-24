@@ -1,27 +1,30 @@
-local LocationDialog = 
-{
-    DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Locations", "LocationDialog.prefab"),
-    TITLE_TEXT_NAME = "TitleText",
-    DESCRIPTION_TEXT_NAME = "DescriptionText",
-    COST_ICON_NAME = "CostIcon",
-    COST_TEXT_NAME = "CostText",
-    TIME_ICON_NAME = "TimeIcon",
-    TIME_TEXT_NAME = "TimeText",
-    CLOSE_BUTTON_NAME = "CloseButton",
-    STATS_BACKGROUND_NAME = "StatsBackground",
-    HEALTH_MODIFIER_TEXT_NAME = "HealthModifierText",
-    SAFETY_MODIFIER_TEXT_NAME = "SafetyModifierText",
-    EDUCATION_MODIFIER_TEXT_NAME = "EducationModifierText",
-    HAPPINESS_MODIFIER_TEXT_NAME = "HappinessModifierText",
-    SEND_CHILD_BACKGROUND_NAME = "SendChildBackground",
-    SEND_CHILD_HELP_TEXT_NAME = "SendChildHelpText",
-    SEND_CHILD_BUTTON_NAME = "SendChildButton",
-    SEND_CHILD_BUTTON_TEXT_NAME = "SendChildButtonText",
-}
+local Class = require 'OOP.Class'
+local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
 
 ----------------------------------------------------------------------------------------
-local function closeCallback(caller)
-    caller:getParent():destroy()
+local LocationDialog = Class.inheritsFrom(ModalDialogBase)
+
+LocationDialog.DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Locations", "LocationDialog.prefab")
+LocationDialog.TITLE_TEXT_NAME = "TitleText"
+LocationDialog.DESCRIPTION_TEXT_NAME = "DescriptionText"
+LocationDialog.COST_ICON_NAME = "CostIcon"
+LocationDialog.COST_TEXT_NAME = "CostText"
+LocationDialog.TIME_ICON_NAME = "TimeIcon"
+LocationDialog.TIME_TEXT_NAME = "TimeText"
+LocationDialog.CLOSE_BUTTON_NAME = "CloseButton"
+LocationDialog.STATS_BACKGROUND_NAME = "StatsBackground"
+LocationDialog.HEALTH_MODIFIER_TEXT_NAME = "HealthModifierText"
+LocationDialog.SAFETY_MODIFIER_TEXT_NAME = "SafetyModifierText"
+LocationDialog.EDUCATION_MODIFIER_TEXT_NAME = "EducationModifierText"
+LocationDialog.HAPPINESS_MODIFIER_TEXT_NAME = "HappinessModifierText"
+LocationDialog.SEND_CHILD_BACKGROUND_NAME = "SendChildBackground"
+LocationDialog.SEND_CHILD_HELP_TEXT_NAME = "SendChildHelpText"
+LocationDialog.SEND_CHILD_BUTTON_NAME = "SendChildButton"
+LocationDialog.SEND_CHILD_BUTTON_TEXT_NAME = "SendChildButtonText"
+
+----------------------------------------------------------------------------------------
+local function closeCallback(caller, self)
+    self:hide()
 end
 
 ----------------------------------------------------------------------------------------
@@ -95,16 +98,18 @@ end
 ----------------------------------------------------------------------------------------
 local function sendChildToLocation(caller, self)
     self._location:sendChild(self._selectedChild)
-    self._gameObject:destroy()
+    self:hide()
 end
 
 ----------------------------------------------------------------------------------------
 function LocationDialog:new(location, selectedChild)
-    self._location = location
-    self._selectedChild = selectedChild
-
     local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
     self._gameObject = dialogPrefab:instantiate()
+
+    ModalDialogBase.new(self, self._gameObject)
+
+    self._location = location
+    self._selectedChild = selectedChild
 
     local titleText = self._gameObject:findChild(self.TITLE_TEXT_NAME)
     titleText:findComponent("TextRenderer"):setText(location:getName())
@@ -122,7 +127,7 @@ function LocationDialog:new(location, selectedChild)
 
     local closeButton = self._gameObject:findChild(self.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
-    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback)
+    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback, self)
 
     local statsBackground = self._gameObject:findChild(self.STATS_BACKGROUND_NAME)
     setModifierText(statsBackground, self.HEALTH_MODIFIER_TEXT_NAME, location:getHealthModifier())
