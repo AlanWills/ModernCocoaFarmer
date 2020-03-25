@@ -3,6 +3,9 @@ local LocationsUI = require 'UI.Locations.LocationsUI'
 local TopBar = require "UI.TopBar"
 local NotificationsBar = require 'UI.Notifications.NotificationsBar'
 local ModalDialogManager = require 'UI.Dialogs.ModalDialogManager'
+local CommandManager = require 'Commands.CommandManager'
+local AddChild = require 'Commands.Family.AddChild'
+local ElapseTime = require 'Commands.Time.ElapseTime'
 
 local Gameplay = 
 {
@@ -16,8 +19,9 @@ local Gameplay =
 }
 
 ---------------------------------------------------------------------------------
-local function onTimeChanged(deltaTime, timeManager)
-    timeManager:update(deltaTime)
+local function onTimeChanged(deltaTime, commandManager)
+    commandManager:execute(ElapseTime, deltaTime)
+    commandManager:update()
 end
 
 ---------------------------------------------------------------------------------
@@ -45,22 +49,29 @@ function Gameplay.show()
     gameEventManager:setNotificationManager(notificationManager)
     gameEventManager:subscribeOnGameEventTriggeredCallback(onGameEventTriggeredCallback)
     
-    familyManager:addChild()
-    familyManager:addChild()
-    
-    Gameplay._dataStore = dataStore
-    Gameplay._timeManager = timeManager
-    Gameplay._moneyManager = moneyManager
-    Gameplay._familyManager = familyManager
-    Gameplay._locationsManager = locationsManager
-    Gameplay._notificationManager = notificationManager
-    Gameplay._gameEventManager = gameEventManager
+    local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
+    local modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
+
+    local state =
+    {
+        timeManager = timeManager,
+        moneyManager = moneyManager,
+        familyManager = familyManager,
+        locationsManager = locationsManager,
+        notificationManager = notificationManager,
+        modalDialogManager = modalDialogManager,
+    }
+    Gameplay._commandManager = Class.new(CommandManager, state)
+
+    -- Initial family set up
+    Gameplay._commandManager:execute(AddChild)
+    Gameplay._commandManager:execute(AddChild)
 
     -- Scene Initialization
     Scene.load(Gameplay.GAMEPLAY_SCENE_PATH)
     
     local timeComponent = GameObject.find(Gameplay.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
-    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, timeManager)
+    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, Gameplay._commandManager)
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
     Gameplay._locationsUI = Class.new(LocationsUI, locationsManager, familyManager, locationsUI)
@@ -75,9 +86,6 @@ function Gameplay.show()
       
     local notificationsBar = GameObject.find(Gameplay.NOTIFICATIONS_BAR_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsBar, notificationsBar, notificationManager)
-
-    local modalDialogManager = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
-    Gameplay._modalDialogManager = Class.new(ModalDialogManager, modalDialogManager)
 
     Gameplay.updateUI()
 end

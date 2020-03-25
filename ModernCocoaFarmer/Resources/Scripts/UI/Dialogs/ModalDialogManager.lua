@@ -14,8 +14,6 @@ local ModalDialogManager =
 function ModalDialogManager:new(rootGameObject)
     self._rootGameObject = rootGameObject
     self._dialogQueue = Class.new(Queue)
-
-    ModalDialogManager.instance = self
 end
 
 ---------------------------------------------------------------------------------
