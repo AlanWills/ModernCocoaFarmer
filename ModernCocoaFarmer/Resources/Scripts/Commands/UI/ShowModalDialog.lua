@@ -7,9 +7,8 @@ function ShowModalDialog:new(dialogType, ...)
 end
 
 ---------------------------------------------------------------------------------
-function ShowModalDialog:execute(state)
-    log("Showing Dialog " .. self._dialogType.__name)
-    state.modalDialogManager:showDialog(self._dialogType, table.unpack(self._args))
+function ShowModalDialog:execute(commandManager)
+    commandManager.modalDialogManager:showDialog(self._dialogType, commandManager, table.unpack(self._args))
 end
 
 return ShowModalDialog

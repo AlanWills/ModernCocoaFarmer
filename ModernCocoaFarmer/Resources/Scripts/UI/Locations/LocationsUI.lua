@@ -1,47 +1,20 @@
-local Class = require 'OOP.Class'
 local LocationIcon = require 'UI.Locations.LocationIcon'
+local Class = require 'OOP.Class'
 
 local LocationsUI = {}
 
-LocationsUI.LocationNames = 
-{
-    FARM = "Cocoa Farm",
-    HOME = "Home",
-    HOSPITAL = "Hospital",
-    MARKET = "Market",
-    MOSQUE = "Mosque",
-    SCHOOL = "School",
-    WELL = "Well",
-}
-
 ---------------------------------------------------------------------------------
-local function onLocationIconClicked(locationIcon, self)
-    local selectedChild = nil
-    
-    if self._familyManager:hasSelectedChild() then
-        selectedChild = self._familyManager:getSelectedChild()
-    end
-
-    locationIcon:showDetails(selectedChild)
+local function onLocationActivatedCallback(location, self)
+    self:addLocationIcon(location)
 end
 
 ---------------------------------------------------------------------------------
-function LocationsUI:new(locationsManager, familyManager, gameObject)
+function LocationsUI:new(commandManager, gameObject)
+    self._commandManager = commandManager
+    self._gameObject = gameObject
     self._locationIcons = {}
-    self._familyManager = familyManager
 
-    for k, v in pairs(self.LocationNames) do
-        local location = locationsManager:getLocation(v)
-        
-        if location == nil then
-            log("Error getting location " .. v)
-        else
-            local locationIcon = Class.new(LocationIcon, location, gameObject)
-            locationIcon:subscribeIconClickedCallback(onLocationIconClicked, self)
-
-            self._locationIcons[v] = locationIcon
-        end
-    end
+    commandManager.locationsManager:subscribeOnLocationActivatedCallback(onLocationActivatedCallback, self)
 end
 
 ---------------------------------------------------------------------------------
@@ -49,6 +22,20 @@ function LocationsUI:updateUI()
     for k, locationIcon in pairs(self._locationIcons) do
         locationIcon:updateUI()
     end
+end
+
+---------------------------------------------------------------------------------
+function LocationsUI:addLocationIcon(location)
+    local locationName = location:getName()
+    local locationGameObject = self._gameObject:findChild(locationName)
+
+    if locationGameObject == nil then
+        log("Could not find location " .. locationName .. " game object")
+        return
+    end
+
+    self._locationIcons[locationName] = Class.new(LocationIcon, self._commandManager, location, locationGameObject)
+    log("Added location icon for " .. locationName)
 end
 
 return LocationsUI

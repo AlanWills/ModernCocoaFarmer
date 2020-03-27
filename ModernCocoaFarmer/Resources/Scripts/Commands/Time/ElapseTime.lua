@@ -6,8 +6,8 @@ function ElapseTime:new(elapsedTime)
 end
 
 ---------------------------------------------------------------------------------
-function ElapseTime:execute(state)
-    state.timeManager:update(self.elapsedTime)
+function ElapseTime:execute(commandManager)
+    commandManager.timeManager:update(self.elapsedTime)
 end
 
 return ElapseTime

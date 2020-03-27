@@ -39,7 +39,17 @@
           </Components>
         </GameObject>
         <!--Locations UI-->
-        <GameObject name="LocationsUI" position="0,0,0"/>
+        <GameObject name="LocationsUI" position="0,0,0">
+          <GameObjects>
+            <Prefab name="Farm" path="Prefabs\Gameplay\Locations\Farm.prefab"/>
+            <Prefab name="Home" path="Prefabs\Gameplay\Locations\Home.prefab"/>
+            <Prefab name="Hospital" path="Prefabs\Gameplay\Locations\Hospital.prefab"/>
+            <Prefab name="Market" path="Prefabs\Gameplay\Locations\Market.prefab"/>
+            <Prefab name="Mosque" path="Prefabs\Gameplay\Locations\Mosque.prefab"/>
+            <Prefab name="School" path="Prefabs\Gameplay\Locations\School.prefab"/>
+            <Prefab name="Well" path="Prefabs\Gameplay\Locations\Well.prefab"/>
+          </GameObjects>
+        </GameObject>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
         <GameObject name="NotificationsBar" position="38,20,0">
@@ -48,7 +58,7 @@
             <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
           </Components>
         </GameObject>
-        <GameObject name="ModalDialogManager" position="0,0,0"/>
+        <Prefab name="ModalDialogManager" path="Prefabs\UI\Dialogs\ModalDialogManager.prefab"/>
         <!--Systems-->
         <GameObject name="TimeNotifier">
           <Components>

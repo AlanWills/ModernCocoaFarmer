@@ -21,23 +21,4 @@ namespace Celeste
     ASSERT_FAIL();
     return false;
   }
-
-  //------------------------------------------------------------------------------------------------
-  template<>
-  bool deserialize<MCF::Stats::Occurrence>(const std::string& text, MCF::Stats::Occurrence& output)
-  {
-    if (text == "Instant")
-    {
-      output = MCF::Stats::Occurrence::kInstant;
-      return true;
-    }
-    else if (text == "Periodic")
-    {
-      output = MCF::Stats::Occurrence::kPeriodic;
-      return true;
-    }
-
-    ASSERT_FAIL();
-    return false;
-  }
 }

@@ -82,10 +82,6 @@ local function formatModifierString(modifier)
     modifierText = modifierText .. string.format("%d", modifier:getAmount())
     modifierText = modifierText .. "%"
 
-    if modifier:getAppliesToAllChildren() then
-        modifierText = modifierText .. " for all children"
-    end
-
     return modifierText
 end
 
@@ -102,11 +98,11 @@ local function sendChildToLocation(caller, self)
 end
 
 ----------------------------------------------------------------------------------------
-function LocationDialog:new(location, selectedChild)
+function LocationDialog:new(commandManager, location, selectedChild)
     local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
     self._gameObject = dialogPrefab:instantiate()
 
-    ModalDialogBase.new(self, self._gameObject)
+    ModalDialogBase.new(self, commandManager, self._gameObject)
 
     self._location = location
     self._selectedChild = selectedChild
@@ -143,13 +139,17 @@ function LocationDialog:setUpChildSelectionUI(parentGameObject, selectedChild)
     local sendChildBackground = parentGameObject:findChild(self.SEND_CHILD_BACKGROUND_NAME)
     local sendChildHelpText = sendChildBackground:findChild(self.SEND_CHILD_HELP_TEXT_NAME)
     local sendChildButton = sendChildBackground:findChild(self.SEND_CHILD_BUTTON_NAME)
-    local isChildSelected = selectedChild ~= nil
-    local isChildAlreadyAtLocation = isChildSelected and selectedChild:isAtLocation()
-    local isChildAbleToBeSent = isChildSelected and not isChildAlreadyAtLocation
 
-    sendChildHelpText:setShouldRender(not isChildAbleToBeSent)
+    local isChildSelected = selectedChild ~= nil
+    log("LocationDialog.isChildSelected " .. tostring(isChildSelected))
+
+    local isChildAlreadyAtLocation = isChildSelected and selectedChild:isAtLocation()
+    log("LocationDialog.isChildAlreadyAtLocation " .. tostring(isChildAlreadyAtLocation))
+
+    local isChildAbleToBeSent = isChildSelected and not isChildAlreadyAtLocation
+    log("LocationDialog.isChildAbleToBeSent " .. tostring(isChildAbleToBeSent))
+
     sendChildHelpText:setActive(not isChildAbleToBeSent)
-    sendChildButton:setShouldRender(isChildAbleToBeSent)
     sendChildButton:setActive(isChildAbleToBeSent)
     
     if isChildAbleToBeSent then

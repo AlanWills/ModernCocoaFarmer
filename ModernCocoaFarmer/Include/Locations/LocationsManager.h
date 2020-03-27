@@ -3,6 +3,7 @@
 #include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
 #include "Memory/ObserverPtr.h"
+#include "Events/Event.h"
 #include "UID/StringId.h"
 
 
@@ -39,9 +40,14 @@ namespace MCF::Locations
       using LocationsInformation = std::unordered_map<std::string, std::unique_ptr<Location>>;
 
     public:
+      using LocationActivatedEvent = Celeste::Event<Location&>;
+
       size_t getNumLocations() const { return m_locations.size(); }
       observer_ptr<Location> getLocation(const std::string& locationName);
 
+      const LocationActivatedEvent& getOnLocationActivatedEvent() const { return m_onLocationActivatedEvent; }
+
+      void activateLocation(Location& location) const;
       void onDayPassed();
 
       void checkLocationsForChildrenArriving(
@@ -62,5 +68,6 @@ namespace MCF::Locations
 
     private:
       LocationsInformation m_locations;
+      LocationActivatedEvent m_onLocationActivatedEvent;
   };
 }

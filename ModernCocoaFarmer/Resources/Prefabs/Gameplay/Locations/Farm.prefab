@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="Farm" position="192,486,0">
+    <GameObject name="Cocoa Farm" position="192,486,0">
       <Components>
         <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png"
                         size="80,80"
                         preserve_aspect_ratio="true"/>
       </Components>
       <GameObjects>
-        <GameObject name="Icon" tag="LocationIcon" position="0,35,0">
+        <GameObject name="Icon" tag="LocationIcon" position="0,35,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\LocationIcons\Farm.png"
                             size="50,50"

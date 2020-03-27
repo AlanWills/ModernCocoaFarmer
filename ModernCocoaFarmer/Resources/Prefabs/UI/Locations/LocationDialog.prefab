@@ -40,7 +40,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="CloseButton" position="288,162">
+        <GameObject name="CloseButton" position="288,162,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>
             <MouseInteractionHandler/>
@@ -98,7 +98,7 @@
             <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="288,173" colour="0.5,0.5,0.5" opacity="1"/>
           </Components>
           <GameObjects>
-            <GameObject name="SendChildHelpText" position="0,0" should_render="false">
+            <GameObject name="SendChildHelpText" position="0,0" active="false">
               <Components>
                 <TextRenderer font_height="18" text="Select a Child to send\nthem to this location." horizontal_alignment="centre" vertical_alignment="centre"/>
               </Components>

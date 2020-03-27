@@ -5,22 +5,13 @@
 #include <string>
 
 
-namespace MCF
+namespace MCF::Stats
 {
-  namespace Stats
+  enum class ChangeType
   {
-    enum class ChangeType
-    {
-      kDelta,
-      kAbsolute
-    };
-
-    enum class Occurrence
-    {
-      kInstant,
-      kPeriodic
-    };
-  }
+    kDelta,
+    kAbsolute
+  };
 }
 
 namespace Celeste
@@ -28,8 +19,4 @@ namespace Celeste
   //------------------------------------------------------------------------------------------------
   template <>
   std::string to_string(MCF::Stats::ChangeType changeType);
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  std::string to_string(MCF::Stats::Occurrence occurrence);
 }

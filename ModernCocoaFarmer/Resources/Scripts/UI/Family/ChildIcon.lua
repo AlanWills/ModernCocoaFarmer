@@ -4,7 +4,6 @@ local ChildStatsDialog = require 'UI.Family.ChildStatsDialog'
 ---------------------------------------------------------------------------------
 local ChildIcon =
 {
-    CHILD_ICON_PREFAB = path.combine("Prefabs", "UI", "Family", "ChildIcon.prefab"),
     CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon",
     CHILD_NAME_NAME = "ChildName",
 }
@@ -26,28 +25,24 @@ local function onChildSelectedChanged(child, self)
 end
 
 ---------------------------------------------------------------------------------
-function ChildIcon:new(familyPanel, child)
-    local familyPanelStackPanel = familyPanel:findComponent("StackPanel")
-    local childPrefab = Resources.loadPrefab(self.CHILD_ICON_PREFAB)
-    local childInstance = childPrefab:instantiate()
-    childInstance:setParent(familyPanel)
-    childInstance:setName(child:getName())
-    familyPanelStackPanel:addChild(childInstance);
+function ChildIcon:new(gameObject, child)
+    self._child = child
+    self._gameObject = gameObject
+    self._selectedIcon = gameObject:findChild(self.CHILD_SELECTED_ICON_NAME)
+    self._statsDialog = Class.new(ChildStatsDialog, gameObject, child)
+    self._statsDialog:hide()
 
-    local childInteractionHandler = childInstance:findComponent("MouseInteractionHandler")
+    gameObject:setName(child:getName())
+    gameObject:setActive(true)
+
+    local childInteractionHandler = gameObject:findComponent("MouseInteractionHandler")
     childInteractionHandler:subscribeOnEnterCallback(showChildStats, self)
     childInteractionHandler:subscribeOnLeaveCallback(hideChildStats, self)
 
-    local childName = childInstance:findChild(self.CHILD_NAME_NAME)
+    local childName = gameObject:findChild(self.CHILD_NAME_NAME)
     childName:findComponent("TextRenderer"):setText(child:getName())
     
     child:subscribeOnSelectedChangedCallback(onChildSelectedChanged, self)
-
-    self.child = child
-    self.gameObject = childInstance
-    self.selectedIcon = childInstance:findChild(self.CHILD_SELECTED_ICON_NAME)
-    self._statsDialog = Class.new(ChildStatsDialog, childInstance, child)
-    self._statsDialog:hide()
 end
 
 ---------------------------------------------------------------------------------
@@ -61,8 +56,8 @@ end
 
 ---------------------------------------------------------------------------------
 function ChildIcon:updateSelectionUI()
-    local childSelected = self.child:isSelected()
-    local animator = self.gameObject:findComponent("Animator")
+    local childSelected = self._child:isSelected()
+    local animator = self._gameObject:findComponent("Animator")
 
     if childSelected then
         animator:play()
@@ -70,7 +65,7 @@ function ChildIcon:updateSelectionUI()
         animator:stop()
     end
 
-    self.selectedIcon:setShouldRender(childSelected)
+    self._selectedIcon:setActive(childSelected)
 end
 
 return ChildIcon

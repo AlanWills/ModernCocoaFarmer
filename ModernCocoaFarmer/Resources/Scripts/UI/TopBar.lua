@@ -25,11 +25,10 @@ local function showDonateMenu(caller)
 end
 
 ---------------------------------------------------------------------------------
-function TopBar:new(topBarGameObject, familyManager, dataStore, timeManager)
-    self._familyManager = familyManager
+function TopBar:new(commandManager, dataStore, topBarGameObject)
     self._moneyPanel = Class.new(MoneyPanel, dataStore, topBarGameObject:findChild(self.MONEY_PANEL_NAME))
-    self._familyPanel = Class.new(FamilyPanel, familyManager, topBarGameObject:findChild(self.FAMILY_PANEL_NAME))
-    self._timePanel = Class.new(TimePanel, timeManager, topBarGameObject:findChild(self.TIME_PANEL_NAME))
+    self._familyPanel = Class.new(FamilyPanel, commandManager, topBarGameObject:findChild(self.FAMILY_PANEL_NAME))
+    self._timePanel = Class.new(TimePanel, commandManager, topBarGameObject:findChild(self.TIME_PANEL_NAME))
     
     local buttonsStackPanel = topBarGameObject:findChild(self.UTILITY_BUTTONS_STACK_PANEL_NAME)
     buttonsStackPanel:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, showInGameMenu)

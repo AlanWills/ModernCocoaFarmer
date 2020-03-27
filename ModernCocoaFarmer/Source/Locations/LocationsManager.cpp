@@ -15,7 +15,8 @@ namespace MCF::Locations
 
   //------------------------------------------------------------------------------------------------
   LocationsManager::LocationsManager() :
-    m_locations()
+    m_locations(),
+    m_onLocationActivatedEvent()
   {
   }
 
@@ -55,6 +56,12 @@ namespace MCF::Locations
   {
     auto locationIt = m_locations.find(locationName);
     return locationIt != m_locations.end() ? locationIt->second.get() : nullptr;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void LocationsManager::activateLocation(Location& location) const
+  {
+    m_onLocationActivatedEvent.invoke(location);
   }
 
   //------------------------------------------------------------------------------------------------

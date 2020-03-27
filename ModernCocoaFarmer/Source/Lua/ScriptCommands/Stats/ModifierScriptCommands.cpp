@@ -13,12 +13,6 @@ namespace MCF::Lua::Stats::ModifierScriptCommands
     {
       return modifier.getChangeType() == MCF::Stats::ChangeType::kDelta;
     }
-
-    //------------------------------------------------------------------------------------------------
-    bool isPeriodicChange(MCF::Stats::Modifier& modifier)
-    {
-      return modifier.getOccurrence() == MCF::Stats::Occurrence::kPeriodic;
-    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -30,7 +24,6 @@ namespace MCF::Lua::Stats::ModifierScriptCommands
       "Modifier",
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getAmount", &Modifier::getAmount,
-      "isDeltaChange", &Internals::isDeltaChange,
-      "isPeriodicChange", &Internals::isPeriodicChange);
+      "isDeltaChange", &Internals::isDeltaChange);
   }
 }

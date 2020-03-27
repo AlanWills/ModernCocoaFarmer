@@ -1,5 +1,7 @@
 local Class = require 'OOP.Class'
 local ChildIcon = require 'UI.Family.ChildIcon'
+local ToggleChildSelection = require 'Commands.Family.ToggleChildSelection'
+local Algorithm = require 'Containers.Algorithm'
 
 local FamilyPanel = {}
 
@@ -14,18 +16,12 @@ local function onChildAddedCallback(child, self)
 end
 
 ---------------------------------------------------------------------------------
-function FamilyPanel:new(familyManager, familyPanelGameObject)
-    self._familyManager = familyManager
+function FamilyPanel:new(commandManager, familyPanelGameObject)
+    self._commandManager = commandManager
     self._gameObject = familyPanelGameObject
     self._childIcons = {}
 
-    local childCount = 0
-    while childCount < familyManager:getChildCount() do
-        self:addChildIcon(familyManager:getChild(childCount))
-        childCount = childCount + 1
-    end
-    
-    familyManager:subscribeOnChildAddedCallback(onChildAddedCallback, self)
+    commandManager.familyManager:subscribeOnChildAddedCallback(onChildAddedCallback, self)
 end
 
 ---------------------------------------------------------------------------------
@@ -37,23 +33,22 @@ end
 
 ---------------------------------------------------------------------------------
 function FamilyPanel:addChildIcon(child)
-    local childIcon = Class.new(ChildIcon, self._gameObject, child)
-    self._childIcons[child:getName()] = childIcon
+    local numChildren = Algorithm.tablelength(self._childIcons)
+    log("Activating ChildIcon " .. tostring(numChildren))
 
-    local childInteractionHandler = childIcon.gameObject:findComponent("MouseInteractionHandler")
+    local childIconGameObject = self._gameObject:getChild(numChildren)
+    self._childIcons[child:getName()] = Class.new(ChildIcon, childIconGameObject, child)
+    log("ChildIcon " .. tostring(numChildren) .. " activated")
+
+    local childInteractionHandler = childIconGameObject:findComponent("MouseInteractionHandler")
     childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, { self = self, childToToggle = child })
+
+    local familyPanelStackPanel = self._gameObject:findComponent("StackPanel"):layout()
 end
 
 ---------------------------------------------------------------------------------
 function FamilyPanel:toggleChildSelection(child)
-    local hasSelectedChild = self._familyManager:hasSelectedChild()
-    local isChildSelectedChild = hasSelectedChild and self._familyManager:getSelectedChild() == child
-
-    if isChildSelectedChild then
-        self._familyManager:deselectOnlyThisChild(child)
-    else
-        self._familyManager:selectOnlyThisChild(child)
-    end
+    self._commandManager:execute(ToggleChildSelection, child)
 end
 
 return FamilyPanel

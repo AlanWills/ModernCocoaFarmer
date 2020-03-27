@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="ChildImage" position="0,5,0">
+    <GameObject name="ChildImage" position="0,5,0" active="false">
       <Components>
         <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="384,86" preserve_aspect_ratio="true"/>
         <MouseInteractionHandler/>
@@ -16,7 +16,7 @@
             <TextRenderer text="Name"/>
           </Components>
         </GameObject>
-        <GameObject name="ChildSelectedIcon" position="0,-5, 0" should_render="false">
+        <GameObject name="ChildSelectedIcon" position="0,-5, 0" active="false">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\Outline.png" size="96, 108"/>
           </Components>

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location prefab="Prefabs\Gameplay\Locations\Farm.prefab"
-          description="" days_to_complete="360"
+<Location description="" days_to_complete="360"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Farm.png"
           HealthModifier="\Data\Modifiers\Farm\FarmHealthModifier.asset" 

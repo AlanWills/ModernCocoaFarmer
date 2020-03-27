@@ -8,7 +8,7 @@
                         preserve_aspect_ratio="true"/>
       </Components>
       <GameObjects>
-        <GameObject name="Icon" tag="LocationIcon" position="6,45,0">
+        <GameObject name="Icon" tag="LocationIcon" position="6,45,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\LocationIcons\Well.png"
                             size="50,50"

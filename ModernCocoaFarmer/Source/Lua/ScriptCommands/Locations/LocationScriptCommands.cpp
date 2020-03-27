@@ -38,7 +38,6 @@ namespace MCF::Lua::Locations::LocationScriptCommands
     Celeste::Lua::registerScriptableObjectUserType<Location>(
       "LocationInformation",
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-      "getPrefab", &Location::getPrefab,
       "getDescription", &Location::getDescription,
       "getHealthModifier", &Location::getHealthModifier,
       "getSafetyModifier", &Location::getSafetyModifier,

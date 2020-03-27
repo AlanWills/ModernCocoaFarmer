@@ -1,7 +1,6 @@
 local Class = require 'OOP.Class'
-local LocationDialog = require 'UI.Locations.LocationDialog'
 local LocationProgress = require 'UI.Locations.LocationProgress'
-local ModalDialogManager = require 'UI.Dialogs.ModalDialogManager'
+local ShowLocationDialog = require 'Commands.UI.ShowLocationDialog'
 
 local LocationIcon = 
 {
@@ -9,6 +8,11 @@ local LocationIcon =
     PROGRESS_STACK_PANEL_NAME = "ProgressStackPanel",
     CHILD_WALKING_PREFAB_PATH = path.combine("Prefabs", "Gameplay", "Family", "ChildWalkingToLocation.prefab"),
 }
+
+---------------------------------------------------------------------------------
+local function onIconClicked(caller, self)
+    self._commandManager:execute(ShowLocationDialog, self._location)
+end
 
 ----------------------------------------------------------------------------------------
 local function onChildSentCallback(child, self)
@@ -23,15 +27,15 @@ local function onChildLeftCallback(child, self)
 end
 
 ---------------------------------------------------------------------------------
-function LocationIcon:new(location, parent)
+function LocationIcon:new(commandManager, location, gameObject)
+    self._commandManager = commandManager
     self._location = location
+    self._gameObject = gameObject
     self._locationProgressBars = {}
 
-    local locationPrefab = Resources.loadPrefab(location:getPrefab())
-    self._gameObject = locationPrefab:instantiate()
-    self._gameObject:setParent(parent)
-
     local icon = self._gameObject:findChild(self.ICON_NAME)
+    icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(onIconClicked, self)
+
     self._locationProgressStackPanel = icon:findChild(self.PROGRESS_STACK_PANEL_NAME):findComponent("StackPanel")
 
     location:subscribeOnChildSentCallback(onChildSentCallback, self)
@@ -41,17 +45,6 @@ end
 ----------------------------------------------------------------------------------------
 local function onLeftButtonUp(caller, extraArgs)
     extraArgs.callback(extraArgs.locationIcon, extraArgs.extraArgs)
-end
-
-----------------------------------------------------------------------------------------
-function LocationIcon:subscribeIconClickedCallback(callback, extraArgs)
-    local icon = self._gameObject:findChild(self.ICON_NAME)
-    icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(onLeftButtonUp, { callback = callback, locationIcon = self, extraArgs = extraArgs })
-end
-
-----------------------------------------------------------------------------------------
-function LocationIcon:showDetails(selectedChild)
-    Class.new(LocationDialog, self._location, selectedChild)
 end
 
 ----------------------------------------------------------------------------------------

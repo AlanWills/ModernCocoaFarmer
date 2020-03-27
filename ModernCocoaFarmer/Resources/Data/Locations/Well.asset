@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location prefab="Prefabs\Gameplay\Locations\Well.prefab"
-          description="The village well" days_to_complete="30" 
+<Location description="The village well" days_to_complete="30" 
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Well.png"
           HealthModifier="\Data\Modifiers\Well\WellHealthModifier.asset" 

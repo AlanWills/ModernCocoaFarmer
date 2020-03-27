@@ -1,3 +1,6 @@
+local Play = require 'Commands.Time.Play'
+local Pause = require 'Commands.Time.Pause'
+
 ---------------------------------------------------------------------------------
 local TimePanel = 
 {
@@ -32,19 +35,19 @@ end
 ---------------------------------------------------------------------------------
 local function play(caller, self)
     setUIEnabledAndOtherDisabled(caller, TimePanel.PAUSE_BUTTON_NAME)
-    self._timeManager:play()
+    self._commandManager:execute(Play)
 end
 
 ---------------------------------------------------------------------------------
 local function pause(caller, self)
     setUIEnabledAndOtherDisabled(caller, TimePanel.PLAY_BUTTON_NAME)
-    self._timeManager:pause()
+    self._commandManager:execute(Pause)
 end
 
 ---------------------------------------------------------------------------------
-function TimePanel:new(timeManager, timePanelGameObject)
+function TimePanel:new(commandManager, timePanelGameObject)
     self._monthText = timePanelGameObject:findChild(self.MONTH_TEXT_NAME):findComponent("TextRenderer")
-    self._timeManager = timeManager
+    self._commandManager = commandManager
 
     timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, play, self)
     timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, pause, self)
@@ -52,7 +55,7 @@ end
 
 ---------------------------------------------------------------------------------
 function TimePanel:updateUI()
-    self:setMonthText(self.MONTHS[self._timeManager:getCurrentMonth()])
+    self:setMonthText(self.MONTHS[self._commandManager.timeManager:getCurrentMonth()])
 end
 
 ---------------------------------------------------------------------------------

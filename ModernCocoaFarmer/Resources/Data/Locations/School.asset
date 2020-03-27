@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location prefab="Prefabs\Gameplay\Locations\School.prefab"
-          description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." days_to_complete="360" 
+<Location description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." days_to_complete="360" 
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\School.png"
           HealthModifier="\Data\Modifiers\School\SchoolHealthModifier.asset" 

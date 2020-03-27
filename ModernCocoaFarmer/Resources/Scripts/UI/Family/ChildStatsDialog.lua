@@ -40,18 +40,16 @@ end
 ----------------------------------------------------------------------------------------
 function ChildStatsDialog:show()
     self._gameObject:setActive(true)
-    self._gameObject:setShouldRender(true)
 end
 
 ----------------------------------------------------------------------------------------
 function ChildStatsDialog:hide()
     self._gameObject:setActive(false)
-    self._gameObject:setShouldRender(false)
 end
 
 ----------------------------------------------------------------------------------------
 function ChildStatsDialog:isShowing()
-    return self._gameObject:isActive() and self._gameObject:shouldRender()
+    return self._gameObject:isActive()
 end
 
 ----------------------------------------------------------------------------------------

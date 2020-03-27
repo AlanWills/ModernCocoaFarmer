@@ -14,7 +14,6 @@ namespace MCF::Locations
   REGISTER_SCRIPTABLE_OBJECT(Location);
 
   //------------------------------------------------------------------------------------------------
-  const std::string Location::PREFAB_FIELD_NAME = "prefab";
   const std::string Location::DESCRIPTION_FIELD_NAME = "description";
   const std::string Location::CHILD_LEAVES_NOTIFICATION_DESCRIPTION_FIELD_NAME = "child_leaves_notification_description";
   const std::string Location::CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME = "child_leaves_notification_icon";
@@ -29,14 +28,13 @@ namespace MCF::Locations
 
   //------------------------------------------------------------------------------------------------
   Location::Location() :
-    m_prefab(createReferenceField<std::string>(PREFAB_FIELD_NAME)),
     m_description(createReferenceField<std::string>(DESCRIPTION_FIELD_NAME)),
     m_childLeavesNotificationDescription(createReferenceField<std::string>(CHILD_LEAVES_NOTIFICATION_DESCRIPTION_FIELD_NAME)),
     m_childLeavesNotificationIcon(createValueField<observer_ptr<Celeste::Resources::Texture2D>>(CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME)),
-    m_healthModifier(createScriptableObject<Stats::ChildModifier>(HEALTH_MODIFIER_FIELD_NAME)),
-    m_safetyModifier(createScriptableObject<Stats::ChildModifier>(SAFETY_MODIFIER_FIELD_NAME)),
-    m_educationModifier(createScriptableObject<Stats::ChildModifier>(EDUCATION_MODIFIER_FIELD_NAME)),
-    m_happinessModifier(createScriptableObject<Stats::ChildModifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
+    m_healthModifier(createScriptableObject<Stats::Modifier>(HEALTH_MODIFIER_FIELD_NAME)),
+    m_safetyModifier(createScriptableObject<Stats::Modifier>(SAFETY_MODIFIER_FIELD_NAME)),
+    m_educationModifier(createScriptableObject<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),
+    m_happinessModifier(createScriptableObject<Stats::Modifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
     m_moneyModifier(createScriptableObject<Stats::Modifier>(MONEY_MODIFIER_FIELD_NAME)),
     m_daysToComplete(createValueField<size_t>(DAYS_TO_COMPLETE_FIELD_NAME)),
     m_childrenWaitingToArrive(),

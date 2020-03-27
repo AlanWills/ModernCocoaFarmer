@@ -4,9 +4,7 @@ local Queue = require 'Containers.Queue'
 local CommandManager = {}
 
 ---------------------------------------------------------------------------------
-function CommandManager:new(state)
-    self._state = state
-    self._state.commandManager = self
+function CommandManager:new(commandManager)
     self._commandQueue = Class.new(Queue)
 end
 
@@ -25,7 +23,7 @@ function CommandManager:update()
     end
 
     while queueToExecute:size() > 0 do
-        queueToExecute:pop():execute(self._state)
+        queueToExecute:pop():execute(self)
     end
 end
 

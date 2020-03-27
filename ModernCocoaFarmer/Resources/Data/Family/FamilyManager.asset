@@ -4,19 +4,19 @@
                daily_safety_modifier="df15a1ac-0629-40de-a08b-2ad30e3fc689"
                daily_happiness_modifier="ae4d3f2f-d292-4db1-85c9-08f0f6fbc018"
                daily_education_modifier="18cf8cd2-d6df-430b-85dd-19d59087ab6e">
-  <ChildModifier applies_to_all_children="true" amount="0"
+  <Modifier  amount="0"
                  guid="18cf8cd2-d6df-430b-85dd-19d59087ab6e"
                  change_type="Delta" occurrence="Instant"
                  period_in_months="0.033333333" name="DailyHealthModifier" />
-  <ChildModifier applies_to_all_children="true" amount="-0.5"
+  <Modifier  amount="-0.5"
                  guid="df15a1ac-0629-40de-a08b-2ad30e3fc689"
                  change_type="Delta" occurrence="Instant"
                  period_in_months="0.0333333" name="dailySafetyModifier" />
-  <ChildModifier applies_to_all_children="true" amount="-0.5"
+  <Modifier  amount="-0.5"
                  guid="ae4d3f2f-d292-4db1-85c9-08f0f6fbc018"
                  change_type="Delta" occurrence="Instant"
                  period_in_months="0.033333333" name="DailyHappinessModifier" />
-  <ChildModifier applies_to_all_children="true" amount="0"
+  <Modifier  amount="0"
                  guid="e7f8c5b3-8e6f-425a-ae2b-861891d585c9"
                  change_type="Delta" occurrence="Instant"
                  period_in_months="0.033333333" name="DailyEducationModifier" />

@@ -22,23 +22,4 @@ namespace Celeste
       return "";
     }
   }
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  std::string to_string(MCF::Stats::Occurrence occurrence)
-  {
-    if (occurrence == MCF::Stats::Occurrence::kInstant)
-    {
-      return "Instant";
-    }
-    else if (occurrence == MCF::Stats::Occurrence::kPeriodic)
-    {
-      return "Periodic";
-    }
-    else
-    {
-      ASSERT_FAIL();
-      return "";
-    }
-  }
 }

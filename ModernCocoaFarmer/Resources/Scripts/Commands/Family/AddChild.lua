@@ -1,9 +1,9 @@
 local AddChild = {}
 
 ---------------------------------------------------------------------------------
-function AddChild:execute(state)
+function AddChild:execute(commandManager)
     log("Adding child to family manager")
-    state.familyManager:addChild()
+    commandManager.familyManager:addChild()
 end
 
 return AddChild

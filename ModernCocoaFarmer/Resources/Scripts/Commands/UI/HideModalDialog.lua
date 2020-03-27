@@ -6,9 +6,8 @@ function HideModalDialog:new(dialog)
 end
 
 ---------------------------------------------------------------------------------
-function HideModalDialog:execute(state)
-    log("Hiding Dialog " .. self._dialog.__name)
-    state.modalDialogManager:hideDialog(self._dialog)
+function HideModalDialog:execute(commandManager)
+    commandManager.modalDialogManager:hideDialog(self._dialog)
 end
 
 return HideModalDialog

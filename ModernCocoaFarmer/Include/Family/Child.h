@@ -52,8 +52,6 @@ namespace MCF::Family
 
     private:
       void applyModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
-      void applyInstantModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
-      void applyPeriodicModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
 
       Celeste::ValueField<float>& m_health;
       Celeste::ValueField<float>& m_safety;

@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location prefab="Prefabs\Gameplay\Locations\Hospital.prefab"
-          description="A place of healing if you can pay." days_to_complete="1"
+<Location description="A place of healing if you can pay." days_to_complete="1"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Hospital.png"
           HealthModifier="\Data\Modifiers\Hospital\HospitalHealthModifier.asset" 

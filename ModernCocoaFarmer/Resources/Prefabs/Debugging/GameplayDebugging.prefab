@@ -8,7 +8,7 @@
         <Canvas/>
       </Components>
       <GameObjects>
-        <GameObject name="GameplayDebuggingBackground" Tag="Debug" active="false" should_render="false">
+        <GameObject name="GameplayDebuggingBackground" Tag="Debug" active="false">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080" colour="0.2,0.2,0.2" opacity="0.4"/>
           </Components>

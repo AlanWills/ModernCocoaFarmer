@@ -37,24 +37,13 @@ namespace MCF::Money
   //------------------------------------------------------------------------------------------------
   void MoneyManager::applyMoneyModifier(const Stats::Modifier& modifier)
   {
-    if (modifier.getOccurrence() == Stats::Occurrence::kInstant)
+    if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
     {
-      if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
-      {
-        setMoney(static_cast<int>(modifier.getAmount()));
-      }
-      else if (modifier.getChangeType() == Stats::ChangeType::kDelta)
-      {
-        setMoney(m_money.getValue() + static_cast<int>(modifier.getAmount()));
-      }
-      else
-      {
-        ASSERT_FAIL();
-      }
+      setMoney(static_cast<int>(modifier.getAmount()));
     }
-    else if (modifier.getOccurrence() == Stats::Occurrence::kPeriodic)
+    else if (modifier.getChangeType() == Stats::ChangeType::kDelta)
     {
-      ASSERT_FAIL_MSG("TODO");
+      setMoney(m_money.getValue() + static_cast<int>(modifier.getAmount()));
     }
     else
     {

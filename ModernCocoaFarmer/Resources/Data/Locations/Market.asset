@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location prefab="Prefabs\Gameplay\Locations\Market.prefab"
-          description="The village market" days_to_complete="30" 
+<Location description="The village market" days_to_complete="30" 
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Market.png"
           HealthModifier="\Data\Modifiers\Market\MarketHealthModifier.asset" 
