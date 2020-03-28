@@ -55,6 +55,18 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
     {
       return dataStore.get<T>(key, T());
     }
+
+    //------------------------------------------------------------------------------------------------
+    template <typename T>
+    T getElement(MCF::Persistence::DataStore& dataStore, const char* const key, const char* mapKey)
+    {
+      std::string elementKey = key;
+      elementKey.push_back('[');
+      elementKey.append(mapKey);
+      elementKey.push_back(']');
+
+      return dataStore.get<T>(elementKey, T());
+    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -79,6 +91,7 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       "getUnsignedInt", sol::overload(&Internals::get<unsigned int>, &DataStore::get<unsigned int>),
       "getFloat", sol::overload(&Internals::get<float>, &DataStore::get<float>),
       "getString", sol::overload(&Internals::get<std::string>, &DataStore::get<std::string>),
+      "getBoolElement", &Internals::getElement<bool>,
       // Set
       "setBool", &DataStore::set<bool>,
       "setInt", &DataStore::set<int>,

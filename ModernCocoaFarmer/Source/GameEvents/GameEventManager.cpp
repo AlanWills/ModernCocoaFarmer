@@ -21,7 +21,6 @@ namespace MCF::GameEvents
     m_locationsManager(nullptr),
     m_notificationManager(nullptr),
     m_gameEvents(),
-    m_onGameEventTriggeredEvent(),
     m_onDayPassedHandle()
   {
   }
@@ -114,7 +113,6 @@ namespace MCF::GameEvents
       if (event->canTrigger(*m_timeManager, *m_moneyManager, *m_familyManager))
       {
         event->trigger(*m_moneyManager, *m_familyManager, *m_locationsManager, *m_notificationManager);
-        m_onGameEventTriggeredEvent.invoke(*event);
       }
     }
   }

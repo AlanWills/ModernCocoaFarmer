@@ -40,8 +40,6 @@ namespace MCF::GameEvents
     DECLARE_SCRIPTABLE_OBJECT(GameEventManager, MCFLibraryDllExport);
 
     public:
-      using GameEventTriggeredEvent = Celeste::Event<const GameEvent&>;
-
       void registerGameEvent(std::unique_ptr<const GameEvent>&& gameEvent);
 
       observer_ptr<Family::FamilyManager> getFamilyManager() const { return m_familyManager; }
@@ -59,8 +57,6 @@ namespace MCF::GameEvents
       observer_ptr<Notifications::NotificationManager> getNotificationManager() const { return m_notificationManager; }
       void setNotificationManager(observer_ptr<Notifications::NotificationManager> notificationManager);
 
-      const GameEventTriggeredEvent& getGameEventTriggeredEvent() const { return m_onGameEventTriggeredEvent; }
-
       static const char* const GAME_EVENTS_ELEMENT_NAME;
       static const char* const GAME_EVENT_ELEMENT_NAME;
 
@@ -77,7 +73,6 @@ namespace MCF::GameEvents
       observer_ptr<Notifications::NotificationManager> m_notificationManager;
 
       std::vector<std::unique_ptr<const GameEvent>> m_gameEvents;
-      GameEventTriggeredEvent m_onGameEventTriggeredEvent;
 
       Celeste::StringId m_onDayPassedHandle;
   };

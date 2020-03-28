@@ -36,10 +36,7 @@ local LocationNames =
 local function onTimeChanged(deltaTime, commandManager)
     commandManager:execute(ElapseTime, deltaTime)
     commandManager:update()
-end
 
----------------------------------------------------------------------------------
-local function onGameEventTriggeredCallback(gameEvent)
     Gameplay.updateUI()
 end
 
@@ -57,14 +54,15 @@ function Gameplay.show()
     local notificationManager = NotificationManager.load(path.combine("Data", "Notifications", "NotificationManager.asset"))
     local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
 
+    timeManager:setDataStore(dataStore)
     moneyManager:setDataStore(dataStore)
+    familyManager:setDataStore(dataStore)
     
     gameEventManager:setTimeManager(timeManager)
     gameEventManager:setMoneyManager(moneyManager)
     gameEventManager:setFamilyManager(familyManager)
     gameEventManager:setLocationsManager(locationsManager)
     gameEventManager:setNotificationManager(notificationManager)
-    gameEventManager:subscribeOnGameEventTriggeredCallback(onGameEventTriggeredCallback)
     
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
     local modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)

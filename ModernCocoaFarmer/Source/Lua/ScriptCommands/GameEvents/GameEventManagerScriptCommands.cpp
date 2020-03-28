@@ -26,18 +26,6 @@ namespace MCF::Lua::GameEvents::GameEventManagerScriptCommands
         gameEventManager.registerGameEvent(std::unique_ptr<const GameEvent>(gameEvent.release()));
       }
     }
-
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnGameEventTriggeredCallback(
-      GameEventManager& gameEventManager,
-      sol::protected_function callback,
-      sol::object extraArgs)
-    {
-      Celeste::Lua::subscribeToEvent<GameEventManager::GameEventTriggeredEvent, const GameEvent&>(
-        gameEventManager.getGameEventTriggeredEvent(),
-        callback,
-        extraArgs);
-    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -51,7 +39,6 @@ namespace MCF::Lua::GameEvents::GameEventManagerScriptCommands
       "setTimeManager", &GameEventManager::setTimeManager,
       "setLocationsManager", &GameEventManager::setLocationsManager,
       "setNotificationManager", &GameEventManager::setNotificationManager,
-      "registerGameEvent", &Internals::registerGameEvent,
-      "subscribeOnGameEventTriggeredCallback", &Internals::subscribeOnGameEventTriggeredCallback);
+      "registerGameEvent", &Internals::registerGameEvent);
   }
 }

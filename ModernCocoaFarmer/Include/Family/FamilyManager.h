@@ -14,6 +14,11 @@ namespace MCF::Stats
   class Modifier;
 }
 
+namespace MCF::Persistence
+{
+  class DataStore;
+}
+
 namespace MCF::Family
 {
   class Child;
@@ -30,6 +35,8 @@ namespace MCF::Family
     public:
       using ChildAddedEvent = Celeste::Event<Child&>;
 
+      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+
       size_t getChildCount() const { return m_children.size(); }
       observer_ptr<Child> getChild(size_t childIndex) const;
 
@@ -37,14 +44,14 @@ namespace MCF::Family
       observer_ptr<Child> getSelectedChild();
 
       void addChild();
-      void selectOnlyThisChild(Child& childToSelect) const;
-      void deselectOnlyThisChild(Child& childToSelect) const;
+      void selectOnlyThisChild(Child& childToSelect);
+      void deselectOnlyThisChild(Child& childToSelect);
 
-      void applyHealthModifier(Stats::Modifier& modifier) const;
-      void applySafetyModifier(Stats::Modifier& modifier) const;
-      void applyEducationModifier(Stats::Modifier& modifier) const;
-      void applyHappinessModifier(Stats::Modifier& modifier) const;
-      void applyDailyModifiers() const;
+      void applyHealthModifier(Stats::Modifier& modifier);
+      void applySafetyModifier(Stats::Modifier& modifier);
+      void applyEducationModifier(Stats::Modifier& modifier);
+      void applyHappinessModifier(Stats::Modifier& modifier);
+      void applyDailyModifiers();
 
       Children::iterator begin() { return m_children.begin(); }
       Children::iterator end() { return m_children.end(); }
@@ -65,10 +72,15 @@ namespace MCF::Family
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
+      void updateDataStore();
+
       Stats::Modifier& m_dailyHealthModifier;
       Stats::Modifier& m_dailySafetyModifier;
       Stats::Modifier& m_dailyEducationModifier;
       Stats::Modifier& m_dailyHappinessModifier;
+
+      bool m_suspendDataStoreUpdates = false;
+      observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
 
       ChildrenNames m_childrenNames;
       Children m_children;

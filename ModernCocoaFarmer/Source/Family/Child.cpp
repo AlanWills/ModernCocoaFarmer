@@ -21,21 +21,8 @@ namespace MCF::Family
     m_education(createValueField<float>(EDUCATION_FIELD_NAME, 0)),
     m_happiness(createValueField<float>(HAPPINESS_FIELD_NAME, STAT_MAX_VALUE)),
     m_currentLocation(),
-    m_isSelected(false),
-    m_onSelectedChanged()
+    m_isSelected(false)
   {
-  }
-
-  //------------------------------------------------------------------------------------------------
-  void Child::setSelected(bool isSelected)
-  {
-    if (m_isSelected == isSelected)
-    {
-      return;
-    }
-
-    m_isSelected = isSelected;
-    m_onSelectedChanged.invoke(*this);
   }
 
   //------------------------------------------------------------------------------------------------

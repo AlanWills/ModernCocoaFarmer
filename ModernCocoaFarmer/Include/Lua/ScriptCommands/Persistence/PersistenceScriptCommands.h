@@ -1,16 +1,7 @@
 #pragma once
 
 
-namespace MCF
+namespace MCF::Lua::Persistence::ScriptCommands
 {
-  namespace Lua
-  {
-    namespace Persistence
-    {
-      namespace ScriptCommands
-      {
-        void initialize();
-      }
-    }
-  }
+  void initialize();
 }

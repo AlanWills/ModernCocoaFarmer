@@ -27,8 +27,8 @@ end
 ---------------------------------------------------------------------------------
 function TopBar:new(commandManager, dataStore, topBarGameObject)
     self._moneyPanel = Class.new(MoneyPanel, dataStore, topBarGameObject:findChild(self.MONEY_PANEL_NAME))
-    self._familyPanel = Class.new(FamilyPanel, commandManager, topBarGameObject:findChild(self.FAMILY_PANEL_NAME))
-    self._timePanel = Class.new(TimePanel, commandManager, topBarGameObject:findChild(self.TIME_PANEL_NAME))
+    self._familyPanel = Class.new(FamilyPanel, commandManager, dataStore, topBarGameObject:findChild(self.FAMILY_PANEL_NAME))
+    self._timePanel = Class.new(TimePanel, commandManager, dataStore, topBarGameObject:findChild(self.TIME_PANEL_NAME))
     
     local buttonsStackPanel = topBarGameObject:findChild(self.UTILITY_BUTTONS_STACK_PANEL_NAME)
     buttonsStackPanel:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, showInGameMenu)

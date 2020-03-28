@@ -20,12 +20,8 @@ local function hideChildStats(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-local function onChildSelectedChanged(child, self)
-    self:updateSelectionUI()
-end
-
----------------------------------------------------------------------------------
-function ChildIcon:new(gameObject, child)
+function ChildIcon:new(dataStore, gameObject, child)
+    self._dataStore = dataStore
     self._child = child
     self._gameObject = gameObject
     self._selectedIcon = gameObject:findChild(self.CHILD_SELECTED_ICON_NAME)
@@ -41,8 +37,6 @@ function ChildIcon:new(gameObject, child)
 
     local childName = gameObject:findChild(self.CHILD_NAME_NAME)
     childName:findComponent("TextRenderer"):setText(child:getName())
-    
-    child:subscribeOnSelectedChangedCallback(onChildSelectedChanged, self)
 end
 
 ---------------------------------------------------------------------------------
@@ -56,7 +50,7 @@ end
 
 ---------------------------------------------------------------------------------
 function ChildIcon:updateSelectionUI()
-    local childSelected = self._child:isSelected()
+    local childSelected = self._dataStore:getBoolElement(FamilyDataSources.CHILD_SELECTION_STATUS, self._child:getName())
     local animator = self._gameObject:findComponent("Animator")
 
     if childSelected then

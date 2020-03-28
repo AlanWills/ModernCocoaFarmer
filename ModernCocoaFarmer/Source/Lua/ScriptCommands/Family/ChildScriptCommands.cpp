@@ -9,18 +9,6 @@ using namespace MCF::Family;
 
 namespace MCF::Lua::Family::ChildScriptCommands
 {
-  namespace Internals
-  {
-    //------------------------------------------------------------------------------------------------
-    void subscribeOnSelectedChangedCallback(
-      MCF::Family::Child& child,
-      sol::protected_function callback,
-      sol::object extraArgs)
-    {
-      Celeste::Lua::subscribeToEvent<Child::OnSelectedChangedEvent, Child&>(child.getOnSelectedChangedEvent(), callback, extraArgs);
-    }
-  }
-
   //------------------------------------------------------------------------------------------------
   void initialize()
   {
@@ -41,7 +29,6 @@ namespace MCF::Lua::Family::ChildScriptCommands
       "applyHappinessModifier", &Child::applyHappinessModifier,
       "isAtLocation", &Child::isAtLocation,
       "getCurrentLocation", &Child::getCurrentLocation,
-      "isSelected", &Child::isSelected,
-      "subscribeOnSelectedChangedCallback", &Internals::subscribeOnSelectedChangedCallback);
+      "isSelected", &Child::isSelected);
   }
 }

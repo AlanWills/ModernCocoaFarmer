@@ -29,6 +29,7 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
     Celeste::Lua::registerScriptableObjectUserType<TimeManager>(
       TimeManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
+      "setDataStore", &TimeManager::setDataStore,
       "getCurrentDay", &TimeManager::getCurrentDay,
       "getCurrentMonth", &TimeManager::getCurrentMonth,
       "getCurrentYear", &TimeManager::getCurrentYear,

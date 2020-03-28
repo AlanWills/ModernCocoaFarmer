@@ -1,5 +1,7 @@
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
+#include "Family/DataSources.h"
+#include "Persistence/DataStore.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Stats/Modifier.h"
 #include "XML/tinyxml2_ext.h"
@@ -95,11 +97,13 @@ namespace MCF::Family
     m_childrenNames.pop();
 
     m_children.push_back(ScriptableObject::create<Child>(name));
+    updateDataStore();
+
     m_childAddedEvent.invoke(*m_children.back());
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::selectOnlyThisChild(Child& childToSelect) const
+  void FamilyManager::selectOnlyThisChild(Child& childToSelect)
   {
     for (const auto& child : m_children)
     {
@@ -118,10 +122,12 @@ namespace MCF::Family
         }
       }
     }
+
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::deselectOnlyThisChild(Child& childToSelect) const
+  void FamilyManager::deselectOnlyThisChild(Child& childToSelect)
   {
     for (const auto& child : m_children)
     {
@@ -133,50 +139,90 @@ namespace MCF::Family
         }
       }
     }
+
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyHealthModifier(Stats::Modifier& modifier) const
+  void FamilyManager::applyHealthModifier(Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
       child->applyHealthModifier(modifier);
     }
+
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applySafetyModifier(Stats::Modifier& modifier) const
+  void FamilyManager::applySafetyModifier(Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
       child->applySafetyModifier(modifier);
     }
+  
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyEducationModifier(Stats::Modifier& modifier) const
+  void FamilyManager::applyEducationModifier(Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
       child->applyEducationModifier(modifier);
     }
+
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyHappinessModifier(Stats::Modifier& modifier) const
+  void FamilyManager::applyHappinessModifier(Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
       child->applyHappinessModifier(modifier);
     }
+
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyDailyModifiers() const
+  void FamilyManager::applyDailyModifiers()
   {
+    // Prevent multiple data store updates in one go
+    m_suspendDataStoreUpdates = true;
+
     applyHealthModifier(m_dailyHealthModifier);
     applyEducationModifier(m_dailyEducationModifier);
     applySafetyModifier(m_dailySafetyModifier);
     applyHappinessModifier(m_dailyHappinessModifier);
+
+    m_suspendDataStoreUpdates = false;
+    updateDataStore();
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void FamilyManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  {
+    m_dataStore = dataStore;
+    updateDataStore();
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void FamilyManager::updateDataStore()
+  {
+    if (m_dataStore != nullptr && !m_suspendDataStoreUpdates)
+    {
+      for (const auto& child : m_children)
+      {
+        std::string key = DataSources::CHILD_SELECTION_STATUS;
+        key.push_back('[');
+        key.append(child->getName());
+        key.push_back(']');
+
+        m_dataStore->set(key, child->isSelected());
+      }
+    }
   }
 }

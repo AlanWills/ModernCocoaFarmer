@@ -2,20 +2,11 @@
 #include "Lua/ScriptCommands/Persistence/DataStoreScriptCommands.h"
 
 
-namespace MCF
+namespace MCF::Lua::Persistence::ScriptCommands
 {
-  namespace Lua
+  //------------------------------------------------------------------------------------------------
+  void initialize()
   {
-    namespace Persistence
-    {
-      namespace ScriptCommands
-      {
-        //------------------------------------------------------------------------------------------------
-        void initialize()
-        {
-          DataStoreScriptCommands::initialize();
-        }
-      }
-    }
+    DataStoreScriptCommands::initialize();
   }
 }

@@ -17,8 +17,6 @@ namespace MCF::Family
     DECLARE_SCRIPTABLE_OBJECT(Child, MCFLibraryDllExport)
 
     public:
-      using OnSelectedChangedEvent = Celeste::Event<Child&>;
-
       float getHealth() const { return m_health.getValue(); }
       void setHealth(float health) const { return m_health.setValue(health); }
 
@@ -41,9 +39,7 @@ namespace MCF::Family
       void setCurrentLocation(const std::string& currentLocation) { m_currentLocation = currentLocation; }
 
       bool isSelected() const { return m_isSelected; }
-      void setSelected(bool isSelected);
-
-      const OnSelectedChangedEvent& getOnSelectedChangedEvent() const { return m_onSelectedChanged; }
+      void setSelected(bool isSelected) { m_isSelected = isSelected; }
 
       static const char* const HEALTH_FIELD_NAME;
       static const char* const SAFETY_FIELD_NAME;
@@ -59,8 +55,6 @@ namespace MCF::Family
       Celeste::ValueField<float>& m_happiness;
       
       std::string m_currentLocation;
-
       bool m_isSelected;
-      OnSelectedChangedEvent m_onSelectedChanged;
   };
 }

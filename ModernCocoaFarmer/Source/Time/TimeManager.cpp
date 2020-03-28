@@ -1,4 +1,6 @@
 #include "Time/TimeManager.h"
+#include "Time/DataSources.h"
+#include "Persistence/DataStore.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 
 
@@ -56,7 +58,27 @@ namespace MCF::Time
         {
           m_onYearPassed.invoke();
         }
+
+        updateDataStore();
       }
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void TimeManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  {
+    m_dataStore = dataStore;
+    updateDataStore();
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void TimeManager::updateDataStore() const
+  {
+    LOG("D/M/Y " + std::to_string(getCurrentDay()) + "/" + std::to_string(getCurrentMonth()) + "/" + std::to_string(getCurrentYear()));
+
+    if (m_dataStore != nullptr)
+    {
+      m_dataStore->set(DataSources::CURRENT_MONTH, static_cast<unsigned int>(getCurrentMonth()));
     }
   }
 }

@@ -31,6 +31,7 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
     Celeste::Lua::registerScriptableObjectUserType<FamilyManager>(
       FamilyManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
+      "setDataStore", &FamilyManager::setDataStore,
       "addChild", &FamilyManager::addChild,
       "getChildCount", &FamilyManager::getChildCount,
       "getChild", &FamilyManager::getChild,
