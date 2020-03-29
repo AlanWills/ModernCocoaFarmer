@@ -47,10 +47,10 @@ namespace MCF::Family
       void selectOnlyThisChild(Child& childToSelect);
       void deselectOnlyThisChild(Child& childToSelect);
 
-      void applyHealthModifier(Stats::Modifier& modifier);
-      void applySafetyModifier(Stats::Modifier& modifier);
-      void applyEducationModifier(Stats::Modifier& modifier);
-      void applyHappinessModifier(Stats::Modifier& modifier);
+      void applyHealthModifier(const Stats::Modifier& modifier);
+      void applySafetyModifier(const Stats::Modifier& modifier);
+      void applyEducationModifier(const Stats::Modifier& modifier);
+      void applyHappinessModifier(const Stats::Modifier& modifier);
       void applyDailyModifiers();
 
       Children::iterator begin() { return m_children.begin(); }

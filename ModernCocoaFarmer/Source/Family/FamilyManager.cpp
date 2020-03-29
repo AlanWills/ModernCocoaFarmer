@@ -1,7 +1,7 @@
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
 #include "Family/DataSources.h"
-#include "Persistence/DataStore.h"
+#include "Persistence/DataObjectHandle.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Stats/Modifier.h"
 #include "XML/tinyxml2_ext.h"
@@ -144,7 +144,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyHealthModifier(Stats::Modifier& modifier)
+  void FamilyManager::applyHealthModifier(const Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
@@ -155,7 +155,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applySafetyModifier(Stats::Modifier& modifier)
+  void FamilyManager::applySafetyModifier(const Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
@@ -166,7 +166,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyEducationModifier(Stats::Modifier& modifier)
+  void FamilyManager::applyEducationModifier(const Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
@@ -177,7 +177,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::applyHappinessModifier(Stats::Modifier& modifier)
+  void FamilyManager::applyHappinessModifier(const Stats::Modifier& modifier)
   {
     for (const auto& child : m_children)
     {
@@ -216,12 +216,18 @@ namespace MCF::Family
     {
       for (const auto& child : m_children)
       {
-        std::string key = DataSources::CHILD_SELECTION_STATUS;
-        key.push_back('[');
-        key.append(child->getName());
-        key.push_back(']');
+        std::string childKey(DataSources::CHILDREN);
+        childKey.push_back('.');
+        childKey.append(child->getName());
 
-        m_dataStore->set(key, child->isSelected());
+        Persistence::DataObjectHandle childObject(*m_dataStore, childKey);
+        childObject.set(DataSources::HEALTH, child->getHealth());
+        childObject.set(DataSources::SAFETY, child->getSafety());
+        childObject.set(DataSources::EDUCATION, child->getEducation());
+        childObject.set(DataSources::HAPPINESS, child->getHappiness());
+        childObject.set(DataSources::IS_SELECTED, child->isSelected());
+        childObject.set(DataSources::IS_AT_LOCATION, child->isAtLocation());
+        childObject.set(DataSources::CURRENT_LOCATION, child->getCurrentLocation());
       }
     }
   }

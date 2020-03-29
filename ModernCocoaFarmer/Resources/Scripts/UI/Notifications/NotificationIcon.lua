@@ -1,5 +1,6 @@
 local Class = require 'OOP.Class'
-local NotificationDialog = require 'UI.Notifications.NotificationDialog'
+local ShowModalDialog = require 'Commands.UI.ShowModalDialog'
+local ShowNotificationDialog = require 'Commands.UI.ShowNotificationDialog'
 
 local NotificationIcon = 
 {
@@ -8,25 +9,21 @@ local NotificationIcon =
 
 ---------------------------------------------------------------------------------
 local function showNotificationDialogCallback(caller, self)
-    self:showNotificationDialog()
+    self._commandManager:execute(ShowNotificationDialog, self._title, self._description)
 end
 
 ---------------------------------------------------------------------------------
-function NotificationIcon:new(notification, gameObject)
+function NotificationIcon:new(commandManager, notification, gameObject)
+    self._commandManager = commandManager
     self._title = notification:getName()
     self._description = notification:getDescription()
-    self._gameObject = gameObject
+    self._gameObject = gameObject   -- Needed by NotificationsBar, do not delete
 
     local notificationInteractionHandler = gameObject:findComponent("MouseInteractionHandler")
     notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showNotificationDialogCallback, self)
 
     local notificationIcon = gameObject:findChild(self.NOTIFICATION_ICON_NAME)
     notificationIcon:findComponent("SpriteRenderer"):setTexture(notification:getIcon())
-end
-
----------------------------------------------------------------------------------
-function NotificationIcon:showNotificationDialog()
-    Class.new(NotificationDialog, self._title, self._description)
 end
 
 return NotificationIcon

@@ -18,6 +18,7 @@ end
 
 ---------------------------------------------------------------------------------
 function NotificationsBar:new(commandManager, notificationsBarGameObject)
+    self._commandManager = commandManager
     self._gameObject = notificationsBarGameObject
 
     commandManager.notificationManager:subscribeOnNotificationSentCallback(createNotificationIconCallback, self)
@@ -27,7 +28,7 @@ end
 function NotificationsBar:createNotificationIcon(notification)
     local notificationPrefab = Resources.loadPrefab(self.NOTIFICATION_ICON_PREFAB_PATH)
     local notificationGameObject = notificationPrefab:instantiate()
-    local notificationIcon = Class.new(NotificationIcon, notification, notificationGameObject)
+    local notificationIcon = Class.new(NotificationIcon, self._commandManager, notification, notificationGameObject)
 
     local notificationInteractionHandler = notificationGameObject:findComponent("MouseInteractionHandler")
     notificationInteractionHandler:subscribeOnLeftButtonUpCallback(removeNotificationIconCallback, { self = self, notificationIcon = notificationIcon })

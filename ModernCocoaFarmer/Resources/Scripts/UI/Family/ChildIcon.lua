@@ -1,5 +1,5 @@
 local Class = require 'OOP.Class'
-local ChildStatsDialog = require 'UI.Family.ChildStatsDialog'
+local ChildStatsPanel = require 'UI.Family.ChildStatsPanel'
 
 ---------------------------------------------------------------------------------
 local ChildIcon =
@@ -25,7 +25,7 @@ function ChildIcon:new(dataStore, gameObject, child)
     self._child = child
     self._gameObject = gameObject
     self._selectedIcon = gameObject:findChild(self.CHILD_SELECTED_ICON_NAME)
-    self._statsDialog = Class.new(ChildStatsDialog, gameObject, child)
+    self._statsDialog = Class.new(ChildStatsPanel, dataStore, child:getName(), gameObject)
     self._statsDialog:hide()
 
     gameObject:setName(child:getName())
@@ -50,7 +50,8 @@ end
 
 ---------------------------------------------------------------------------------
 function ChildIcon:updateSelectionUI()
-    local childSelected = self._dataStore:getBoolElement(FamilyDataSources.CHILD_SELECTION_STATUS, self._child:getName())
+    local childObject = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. self._child:getName())
+    local childSelected = childObject:getBool(FamilyDataSources.IS_SELECTED)
     local animator = self._gameObject:findComponent("Animator")
 
     if childSelected then

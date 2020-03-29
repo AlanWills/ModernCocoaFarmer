@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="NotificationDialog" position="960,540,0">
+    <GameObject name="NotificationDialogBackground">
       <Components>
-        <Canvas/>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="576,324,0" colour="0.8,0.8,0.8" opacity="1"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="580,324" colour="0.8,0.8,0.8" opacity="1"/>
       </Components>
       <GameObjects>
         <GameObject name="NotificationDialogTitle" position="0,130,0">
@@ -17,7 +16,7 @@
             <TextRenderer font_height="24" colour="0,0,0" text="Event Text" horizontal_alignment="Centre" vertical_alignment="Centre"/>
           </Components>
         </GameObject>
-        <GameObject name="CloseNotificationDialogButton" position="288,162,0">
+        <GameObject name="CloseNotificationDialogButton" position="288,162,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="77,43" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>

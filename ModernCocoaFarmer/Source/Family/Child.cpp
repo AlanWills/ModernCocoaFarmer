@@ -26,31 +26,31 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyHealthModifier(Stats::Modifier& modifier)
+  void Child::applyHealthModifier(const Stats::Modifier& modifier)
   {
     applyModifier(modifier, m_health);
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applySafetyModifier(Stats::Modifier& modifier)
+  void Child::applySafetyModifier(const Stats::Modifier& modifier)
   {
     applyModifier(modifier, m_safety);
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyEducationModifier(Stats::Modifier& modifier)
+  void Child::applyEducationModifier(const Stats::Modifier& modifier)
   {
     applyModifier(modifier, m_education);
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyHappinessModifier(Stats::Modifier& modifier)
+  void Child::applyHappinessModifier(const Stats::Modifier& modifier)
   {
     applyModifier(modifier, m_happiness);
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::applyModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify)
+  void Child::applyModifier(const Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify)
   {
     if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
     {

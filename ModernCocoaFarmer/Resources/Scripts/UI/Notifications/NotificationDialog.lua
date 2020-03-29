@@ -1,25 +1,31 @@
-local NotificationDialog =
-{
-    NOTIFICATION_DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Notifications", "NotificationDialog.prefab"),
-    NOTIFICATION_TITLE_NAME = "NotificationDialogTitle",
-    NOTIFICATION_DESCRIPTION_NAME = "NotificationDialogDescription",
-    CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME = "CloseNotificationDialogButton"
-}
+local Class = require 'OOP.Class'
+local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
+
+----------------------------------------------------------------------------------------
+local NotificationDialog = Class.inheritsFrom(ModalDialogBase)
+
+NotificationDialog.NOTIFICATION_DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Notifications", "NotificationDialog.prefab")
+NotificationDialog.NOTIFICATION_TITLE_NAME = "NotificationDialogTitle"
+NotificationDialog.NOTIFICATION_DESCRIPTION_NAME = "NotificationDialogDescription"
+NotificationDialog.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME = "CloseNotificationDialogButton"
 
 ---------------------------------------------------------------------------------
-local function closeDialog(caller)
-    caller:getParent():destroy()
+local function closeDialog(caller, self)
+    self:hide()
 end
 
 ---------------------------------------------------------------------------------
-function NotificationDialog:new(notificationTitle, notificationDescription)
+function NotificationDialog:new(commandManager, notificationTitle, notificationDescription)
     local dialogPrefab = Resources.loadPrefab(self.NOTIFICATION_DIALOG_PREFAB_PATH)
-    local dialogInstance = dialogPrefab:instantiate()
-    local notificationTitleGameObject = dialogInstance:findChild(self.NOTIFICATION_TITLE_NAME)
+    self._gameObject = dialogPrefab:instantiate()
+
+    ModalDialogBase.new(self, commandManager, self._gameObject)
+
+    local notificationTitleGameObject = self._gameObject:findChild(self.NOTIFICATION_TITLE_NAME)
     
     notificationTitleGameObject:findComponent("TextRenderer"):setText(notificationTitle)
-    dialogInstance:findChild(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notificationDescription)
-    dialogInstance:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, closeDialog)
+    self._gameObject:findChild(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notificationDescription)
+    self._gameObject:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, closeDialog, self)
 end
 
 return NotificationDialog

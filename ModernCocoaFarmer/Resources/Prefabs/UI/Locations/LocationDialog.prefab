@@ -103,7 +103,7 @@
                 <TextRenderer font_height="18" text="Select a Child to send\nthem to this location." horizontal_alignment="centre" vertical_alignment="centre"/>
               </Components>
             </GameObject>
-            <GameObject name="SendChildButton">
+            <GameObject name="SendChildButton" position="0,0,0.01">
               <Components>
                 <SpriteRenderer/>
                 <MouseInteractionHandler/>

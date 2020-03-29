@@ -29,10 +29,10 @@ namespace MCF::Family
       float getHappiness() const { return m_happiness.getValue(); }
       void setHappiness(float happiness) { m_happiness.setValue(happiness); }
 
-      void applyHealthModifier(Stats::Modifier& modifier);
-      void applyEducationModifier(Stats::Modifier& modifier);
-      void applySafetyModifier(Stats::Modifier& modifier);
-      void applyHappinessModifier(Stats::Modifier& modifier);
+      void applyHealthModifier(const Stats::Modifier& modifier);
+      void applyEducationModifier(const Stats::Modifier& modifier);
+      void applySafetyModifier(const Stats::Modifier& modifier);
+      void applyHappinessModifier(const Stats::Modifier& modifier);
 
       bool isAtLocation() const { return !m_currentLocation.empty(); }
       const std::string& getCurrentLocation() const { return m_currentLocation; }
@@ -47,7 +47,7 @@ namespace MCF::Family
       static const char* const HAPPINESS_FIELD_NAME;
 
     private:
-      void applyModifier(Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
+      void applyModifier(const Stats::Modifier& modifier, Celeste::ValueField<float>& attributeToModify);
 
       Celeste::ValueField<float>& m_health;
       Celeste::ValueField<float>& m_safety;

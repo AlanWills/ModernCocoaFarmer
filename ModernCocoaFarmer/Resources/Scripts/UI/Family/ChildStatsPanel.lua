@@ -1,6 +1,6 @@
-local ChildStatsDialog = 
+local ChildStatsPanel = 
 {
-    DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI", "Family", "ChildStatsDialog.prefab"),
+    PANEL_PREFAB_PATH = path.combine("Prefabs", "UI", "Family", "ChildStatsPanel.prefab"),
     HEALTH_PROGRESS_BAR_NAME = "HealthProgressBar",
     SAFETY_PROGRESS_BAR_NAME = "SafetyProgressBar",
     EDUCATION_PROGRESS_BAR_NAME = "EducationProgressBar",
@@ -19,10 +19,11 @@ local function getProgressBar(dialogGameObject, categoryName, progressBarName)
 end
 
 ----------------------------------------------------------------------------------------
-function ChildStatsDialog:new(parent, child)
-    self._child = child
+function ChildStatsPanel:new(dataStore, childName, parent)
+    self._dataStore = dataStore
+    self._childName = childName
 
-    local prefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
+    local prefab = Resources.loadPrefab(self.PANEL_PREFAB_PATH)
     local gameObject = prefab:instantiate()
     gameObject:setParent(parent);
     gameObject:getTransform():translate(0, -240)
@@ -38,33 +39,35 @@ function ChildStatsDialog:new(parent, child)
 end
 
 ----------------------------------------------------------------------------------------
-function ChildStatsDialog:show()
+function ChildStatsPanel:show()
     self._gameObject:setActive(true)
 end
 
 ----------------------------------------------------------------------------------------
-function ChildStatsDialog:hide()
+function ChildStatsPanel:hide()
     self._gameObject:setActive(false)
 end
 
 ----------------------------------------------------------------------------------------
-function ChildStatsDialog:isShowing()
+function ChildStatsPanel:isShowing()
     return self._gameObject:isActive()
 end
 
 ----------------------------------------------------------------------------------------
-function ChildStatsDialog:updateUI()
-    self._healthProgessBar:setProgress(self._child:getHealth())
-    self._safetyProgressBar:setProgress(self._child:getSafety())
-    self._educationProgressBar:setProgress(self._child:getEducation())
-    self._happinessProgressBar:setProgress(self._child:getHappiness())
+function ChildStatsPanel:updateUI()
+    local childData = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. self._childName)
+
+    self._healthProgessBar:setProgress(childData:getFloat(FamilyDataSources.HEALTH))
+    self._safetyProgressBar:setProgress(childData:getFloat(FamilyDataSources.SAFETY))
+    self._educationProgressBar:setProgress(childData:getFloat(FamilyDataSources.EDUCATION))
+    self._happinessProgressBar:setProgress(childData:getFloat(FamilyDataSources.HAPPINESS))
 
     local locationText = "Not at location"
-    if self._child:isAtLocation() then
-        locationText = self._child:getCurrentLocation()
+    if childData:getBool(FamilyDataSources.IS_AT_LOCATION) then
+        locationText = childData:getString(FamilyDataSources.CURRENT_LOCATION)
     end
 
     self._childLocationText:setText(locationText)
 end
 
-return ChildStatsDialog
+return ChildStatsPanel

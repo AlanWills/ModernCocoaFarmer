@@ -1,6 +1,8 @@
 #include "Lua/ScriptCommands/Persistence/DataStoreScriptCommands.h"
 #include "UtilityHeaders/ScriptCommandHeaders.h"
 #include "Persistence/DataStore.h"
+#include "Persistence/DataObjectHandle.h"
+#include "Persistence/DataArrayHandle.h"
 #include "Resources/ResourceUtils.h"
 #include "Debug/Assert.h"
 
@@ -57,15 +59,15 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
     }
 
     //------------------------------------------------------------------------------------------------
-    template <typename T>
-    T getElement(MCF::Persistence::DataStore& dataStore, const char* const key, const char* mapKey)
+    MCF::Persistence::DataObjectHandle getObject(MCF::Persistence::DataStore& dataStore, const char* const key)
     {
-      std::string elementKey = key;
-      elementKey.push_back('[');
-      elementKey.append(mapKey);
-      elementKey.push_back(']');
+      return MCF::Persistence::DataObjectHandle(dataStore, key);
+    }
 
-      return dataStore.get<T>(elementKey, T());
+    //------------------------------------------------------------------------------------------------
+    MCF::Persistence::DataArrayHandle getArray(MCF::Persistence::DataStore& dataStore, const char* const key)
+    {
+      return MCF::Persistence::DataArrayHandle(dataStore, key);
     }
   }
 
@@ -91,7 +93,8 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       "getUnsignedInt", sol::overload(&Internals::get<unsigned int>, &DataStore::get<unsigned int>),
       "getFloat", sol::overload(&Internals::get<float>, &DataStore::get<float>),
       "getString", sol::overload(&Internals::get<std::string>, &DataStore::get<std::string>),
-      "getBoolElement", &Internals::getElement<bool>,
+      "getObject", &Internals::getObject,
+      "getArray", &Internals::getArray,
       // Set
       "setBool", &DataStore::set<bool>,
       "setInt", &DataStore::set<int>,
