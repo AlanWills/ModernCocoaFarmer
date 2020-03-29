@@ -6,6 +6,12 @@
 using namespace MCF::Time;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::Time::TimeNotifier> : std::false_type {};
+}
+
 namespace MCF::Lua::Time::TimeNotifierScriptCommands
 {
   //------------------------------------------------------------------------------------------------

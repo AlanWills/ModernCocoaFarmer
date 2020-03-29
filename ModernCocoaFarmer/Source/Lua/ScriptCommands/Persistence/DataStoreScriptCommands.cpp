@@ -7,6 +7,12 @@
 #include "Debug/Assert.h"
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::Persistence::DataStore> : std::false_type {};
+}
+
 namespace MCF::Lua::Persistence::DataStoreScriptCommands
 {
   namespace Internals

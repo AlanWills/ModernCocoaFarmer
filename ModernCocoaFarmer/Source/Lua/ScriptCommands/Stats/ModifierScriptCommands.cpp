@@ -4,6 +4,12 @@
 #include "Stats/Modifier.h"
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::Stats::Modifier> : std::false_type {};
+}
+
 namespace MCF::Lua::Stats::ModifierScriptCommands
 {
   namespace Internals

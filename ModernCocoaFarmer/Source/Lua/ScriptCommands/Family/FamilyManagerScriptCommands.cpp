@@ -8,6 +8,12 @@
 using namespace MCF::Family;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::Family::FamilyManager> : std::false_type {};
+}
+
 namespace MCF::Lua::Family::FamilyManagerScriptCommands
 {
   namespace Internals

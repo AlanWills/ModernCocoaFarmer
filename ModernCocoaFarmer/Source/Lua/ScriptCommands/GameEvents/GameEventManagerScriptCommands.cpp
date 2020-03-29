@@ -11,6 +11,12 @@
 using namespace MCF::GameEvents;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<GameEventManager> : std::false_type {};
+}
+
 namespace MCF::Lua::GameEvents::GameEventManagerScriptCommands
 {
   namespace Internals

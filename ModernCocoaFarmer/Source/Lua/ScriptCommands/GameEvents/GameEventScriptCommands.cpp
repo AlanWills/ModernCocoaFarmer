@@ -4,6 +4,12 @@
 #include "GameEvents/GameEvent.h"
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::GameEvents::GameEvent> : std::false_type {};
+}
+
 namespace MCF::Lua::GameEvents::GameEventScriptCommands
 {
   //------------------------------------------------------------------------------------------------

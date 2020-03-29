@@ -6,6 +6,12 @@
 using namespace MCF::Time;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<TimeManager> : std::false_type {};
+}
+
 namespace MCF::Lua::Time::TimeManagerScriptCommands
 {
   namespace Internals

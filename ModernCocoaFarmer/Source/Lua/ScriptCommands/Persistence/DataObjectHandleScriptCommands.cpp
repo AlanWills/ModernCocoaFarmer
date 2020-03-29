@@ -3,6 +3,12 @@
 #include "Persistence/DataObjectHandle.h"
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::Persistence::DataObjectHandle> : std::false_type {};
+}
+
 namespace MCF::Lua::Persistence::DataObjectHandleScriptCommands
 {
   namespace Internals

@@ -4,6 +4,12 @@
 #include "Animation/ChildWalkingToLocationController.h"
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MCF::Animation::ChildWalkingToLocationController> : std::false_type {};
+}
+
 namespace MCF::Lua::Animation::ChildWalkingToLocationControllerScriptCommands
 {
   //------------------------------------------------------------------------------------------------

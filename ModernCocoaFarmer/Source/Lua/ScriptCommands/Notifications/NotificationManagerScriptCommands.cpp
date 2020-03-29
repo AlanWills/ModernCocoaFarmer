@@ -7,6 +7,12 @@
 using namespace MCF::Notifications;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<NotificationManager> : std::false_type {};
+}
+
 namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
 {
   namespace Internals

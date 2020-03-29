@@ -1,5 +1,6 @@
 #include "Notifications/Notification.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
+#include "Serialization/Serializers.h"
 
 
 namespace MCF::Notifications

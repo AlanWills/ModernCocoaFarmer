@@ -6,6 +6,15 @@
 using namespace MCF::Notifications;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<Notification> : std::false_type {};
+
+  template <>
+  struct is_to_stringable<Celeste::Resources::Texture2D> : std::false_type {};
+}
+
 namespace MCF::Lua::Notifications::NotificationScriptCommands
 {
   //------------------------------------------------------------------------------------------------

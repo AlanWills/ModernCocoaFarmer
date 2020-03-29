@@ -4,8 +4,14 @@
 #include "Locations/Location.h"
 #include "Family/Child.h"
 
-
 using Location = MCF::Locations::Location;
+
+
+namespace sol
+{
+  template <>
+  struct is_to_stringable<Location> : std::false_type {};
+}
 
 namespace MCF::Lua::Locations::LocationScriptCommands
 {

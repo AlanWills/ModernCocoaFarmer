@@ -8,6 +8,12 @@
 using namespace MCF::Locations;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<LocationsManager> : std::false_type {};
+}
+
 namespace MCF::Lua::Locations::LocationManagerScriptCommands
 {
   namespace Internals

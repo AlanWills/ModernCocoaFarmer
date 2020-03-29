@@ -11,7 +11,8 @@ namespace MCF::Time
     Inherited(gameObject),
     m_onTimeChangedEvent()
   {
-    for (size_t i = 0; i < 100; ++i)
+    glfwSwapInterval(0);
+    for (size_t i = 0; i < 1000; ++i)
     {
       GameObject* child = new GameObject();
       child->setParent(&gameObject);

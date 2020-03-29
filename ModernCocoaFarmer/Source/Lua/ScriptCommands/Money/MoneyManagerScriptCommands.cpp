@@ -7,6 +7,12 @@
 using namespace MCF::Money;
 
 
+namespace sol
+{
+  template <>
+  struct is_to_stringable<MoneyManager> : std::false_type {};
+}
+
 namespace MCF::Lua::Money::MoneyManagerScriptCommands
 {
   //------------------------------------------------------------------------------------------------
