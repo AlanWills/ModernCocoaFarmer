@@ -11,6 +11,17 @@ namespace MCF::Time
     Inherited(gameObject),
     m_onTimeChangedEvent()
   {
+    for (size_t i = 0; i < 100; ++i)
+    {
+      GameObject* child = new GameObject();
+      child->setParent(&gameObject);
+
+      for (size_t j = 0; j < 200; ++j)
+      {
+        GameObject* grandChild = new GameObject();
+        grandChild->setParent(child);
+      }
+    }
   }
 
   //------------------------------------------------------------------------------------------------
