@@ -41,6 +41,7 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
       "addChild", &FamilyManager::addChild,
       "getChildCount", &FamilyManager::getChildCount,
       "getChild", &FamilyManager::getChild,
+      "findChild", &FamilyManager::findChild,
       "hasSelectedChild", &FamilyManager::hasSelectedChild,
       "getSelectedChild", &FamilyManager::getSelectedChild,
       "selectOnlyThisChild", &FamilyManager::selectOnlyThisChild,

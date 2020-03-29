@@ -1,6 +1,7 @@
 #include "Family/FamilyManager.h"
 #include "Family/Child.h"
 #include "Family/DataSources.h"
+#include "Stats/DataSources.h"
 #include "Persistence/DataObjectHandle.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Stats/Modifier.h"
@@ -61,6 +62,18 @@ namespace MCF::Family
   observer_ptr<Child> FamilyManager::getChild(size_t index) const
   {
     return index < getChildCount() ? m_children[index].get() : nullptr;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  observer_ptr<Child> FamilyManager::findChild(const std::string& name) const
+  {
+    auto foundChild = std::find_if(m_children.begin(), m_children.end(),
+      [&name](const std::unique_ptr<Child>& child)
+      {
+        return child->getName() == name;
+      });
+
+    return foundChild != m_children.end() ? foundChild->get() : nullptr;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -214,6 +227,10 @@ namespace MCF::Family
   {
     if (m_dataStore != nullptr && !m_suspendDataStoreUpdates)
     {
+      bool hasSC = hasSelectedChild();
+      m_dataStore->set(DataSources::HAS_SELECTED_CHILD, hasSC);
+      m_dataStore->set(DataSources::SELECTED_CHILD_NAME, hasSC ? getSelectedChild()->getName() : std::string());
+
       for (const auto& child : m_children)
       {
         std::string childKey(DataSources::CHILDREN);
@@ -221,10 +238,10 @@ namespace MCF::Family
         childKey.append(child->getName());
 
         Persistence::DataObjectHandle childObject(*m_dataStore, childKey);
-        childObject.set(DataSources::HEALTH, child->getHealth());
-        childObject.set(DataSources::SAFETY, child->getSafety());
-        childObject.set(DataSources::EDUCATION, child->getEducation());
-        childObject.set(DataSources::HAPPINESS, child->getHappiness());
+        childObject.set(Stats::DataSources::HEALTH, child->getHealth());
+        childObject.set(Stats::DataSources::SAFETY, child->getSafety());
+        childObject.set(Stats::DataSources::EDUCATION, child->getEducation());
+        childObject.set(Stats::DataSources::HAPPINESS, child->getHappiness());
         childObject.set(DataSources::IS_SELECTED, child->isSelected());
         childObject.set(DataSources::IS_AT_LOCATION, child->isAtLocation());
         childObject.set(DataSources::CURRENT_LOCATION, child->getCurrentLocation());

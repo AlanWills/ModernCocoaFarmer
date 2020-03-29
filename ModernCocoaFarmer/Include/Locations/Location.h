@@ -70,8 +70,8 @@ namespace MCF::Locations
       inline const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier; }
       inline const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
 
-      inline size_t getDaysToComplete() const { return m_daysToComplete.getValue(); }
-      size_t getChildTime(const std::string& childName) const;
+      inline unsigned int getDaysToComplete() const { return m_daysToComplete.getValue(); }
+      unsigned int getChildTime(const std::string& childName) const;
 
       void sendChild(Family::Child& child);
       void onDayPassed();
@@ -108,7 +108,7 @@ namespace MCF::Locations
 
     private:
       using Effects = std::vector<std::unique_ptr<GameEvents::Effects::Effect>>;
-      using ChildDaysSpent = std::tuple<std::reference_wrapper<Family::Child>, size_t>;
+      using ChildDaysSpent = std::tuple<std::reference_wrapper<Family::Child>, unsigned int>;
 
       void triggerChildLeavesEffects(
         Money::MoneyManager& moneyManager,
@@ -124,7 +124,7 @@ namespace MCF::Locations
       Stats::Modifier& m_educationModifier;
       Stats::Modifier& m_happinessModifier;
       Stats::Modifier& m_moneyModifier;
-      Celeste::ValueField<size_t>& m_daysToComplete;
+      Celeste::ValueField<unsigned int>& m_daysToComplete;
 
       std::vector<std::reference_wrapper<Family::Child>> m_childrenWaitingToArrive;
       std::vector<ChildDaysSpent> m_childrenAtLocation;

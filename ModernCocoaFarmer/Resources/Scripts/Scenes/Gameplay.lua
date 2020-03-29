@@ -57,7 +57,8 @@ function Gameplay.show()
     timeManager:setDataStore(dataStore)
     moneyManager:setDataStore(dataStore)
     familyManager:setDataStore(dataStore)
-    
+    locationsManager:setDataStore(dataStore)
+
     gameEventManager:setTimeManager(timeManager)
     gameEventManager:setMoneyManager(moneyManager)
     gameEventManager:setFamilyManager(familyManager)
@@ -99,7 +100,7 @@ function Gameplay.show()
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, commandManager)
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
-    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, locationsUI)
+    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, dataStore, locationsUI)
 
     local topBarGameObject = GameObject.find(Gameplay.TOP_BAR_NAME)
     Gameplay._topBar = Class.new(

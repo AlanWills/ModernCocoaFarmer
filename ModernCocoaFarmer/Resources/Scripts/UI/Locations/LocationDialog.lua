@@ -1,5 +1,6 @@
 local Class = require 'OOP.Class'
 local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
+local SendChildToLocation = require 'Commands.Locations.SendChildToLocation'
 
 ----------------------------------------------------------------------------------------
 local LocationDialog = Class.inheritsFrom(ModalDialogBase)
@@ -21,6 +22,22 @@ LocationDialog.SEND_CHILD_BACKGROUND_NAME = "SendChildBackground"
 LocationDialog.SEND_CHILD_HELP_TEXT_NAME = "SendChildHelpText"
 LocationDialog.SEND_CHILD_BUTTON_NAME = "SendChildButton"
 LocationDialog.SEND_CHILD_BUTTON_TEXT_NAME = "SendChildButtonText"
+
+----------------------------------------------------------------------------------------
+function LocationDialog:new(commandManager, dataStore, locationName)
+    local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
+    self._gameObject = dialogPrefab:instantiate()
+
+    ModalDialogBase.new(self, commandManager, self._gameObject)
+
+    self._dataStore = dataStore
+    self._locationName = locationName
+
+    self:setUpLocationInfoUI()
+    self:setUpCloseButton()
+    self:setUpModifierUI()
+    self:setUpChildSelectionUI()
+end
 
 ----------------------------------------------------------------------------------------
 local function closeCallback(caller, self)
@@ -70,80 +87,91 @@ local function formatTimeString(daysToComplete)
 end
 
 ----------------------------------------------------------------------------------------
-local function formatModifierString(modifier)
+local function formatModifierString(isDeltaChange, amount)
     local modifierText = "";
 
-    if modifier:isDeltaChange() then
+    if isDeltaChange then
         modifierText = modifierText .. "+"
     else
         modifierText = modifierText .. "set to "
     end
 
-    modifierText = modifierText .. string.format("%d", modifier:getAmount())
+    modifierText = modifierText .. string.format("%d", amount)
     modifierText = modifierText .. "%"
 
     return modifierText
 end
 
 ----------------------------------------------------------------------------------------
-local function setModifierText(statsBackground, textName, modifier)
-    local text = statsBackground:findChild(textName):findComponent("TextRenderer")
-    text:setText(formatModifierString(modifier))
-end
-
-----------------------------------------------------------------------------------------
 local function sendChildToLocation(caller, self)
-    self._location:sendChild(self._selectedChild)
+    local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
+    self._commandManager:execute(SendChildToLocation, self._locationName, selectedChildName)
     self:hide()
 end
 
 ----------------------------------------------------------------------------------------
-function LocationDialog:new(commandManager, location, selectedChild)
-    local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
-    self._gameObject = dialogPrefab:instantiate()
-
-    ModalDialogBase.new(self, commandManager, self._gameObject)
-
-    self._location = location
-    self._selectedChild = selectedChild
+function LocationDialog:setUpLocationInfoUI()
+    local locationKey = LocationsDataSources.LOCATIONS .. "." .. self._locationName
+    local locationDataObject = self._dataStore:getObject(locationKey)
 
     local titleText = self._gameObject:findChild(self.TITLE_TEXT_NAME)
-    titleText:findComponent("TextRenderer"):setText(location:getName())
+    titleText:findComponent("TextRenderer"):setText(locationDataObject:getString(LocationsDataSources.NAME))
 
     local descriptionText = self._gameObject:findChild(self.DESCRIPTION_TEXT_NAME)
-    descriptionText:findComponent("TextRenderer"):setText(location:getDescription())
-    
-    local costIcon = self._gameObject:findChild(self.COST_ICON_NAME)
-    local costText = costIcon:findChild(self.COST_TEXT_NAME):findComponent("TextRenderer")
-    costText:setText(tostring(formatCostString(location:getMoneyModifier():getAmount())))
+    descriptionText:findComponent("TextRenderer"):setText(locationDataObject:getString(LocationsDataSources.DESCRIPTION))
 
     local timeIcon = self._gameObject:findChild(self.TIME_ICON_NAME)
     local timeText = timeIcon:findChild(self.TIME_TEXT_NAME):findComponent("TextRenderer")
-    timeText:setText(formatTimeString(location:getDaysToComplete()))
+    timeText:setText(formatTimeString(locationDataObject:getUnsignedInt(LocationsDataSources.DAYS_TO_COMPLETE)))
 
-    local closeButton = self._gameObject:findChild(self.CLOSE_BUTTON_NAME)
-    local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
-    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback, self)
-
-    local statsBackground = self._gameObject:findChild(self.STATS_BACKGROUND_NAME)
-    setModifierText(statsBackground, self.HEALTH_MODIFIER_TEXT_NAME, location:getHealthModifier())
-    setModifierText(statsBackground, self.SAFETY_MODIFIER_TEXT_NAME, location:getSafetyModifier())
-    setModifierText(statsBackground, self.EDUCATION_MODIFIER_TEXT_NAME, location:getEducationModifier())
-    setModifierText(statsBackground, self.HAPPINESS_MODIFIER_TEXT_NAME, location:getHappinessModifier())
-
-    self:setUpChildSelectionUI(self._gameObject, selectedChild)
+    local moneyDataObject = self._dataStore:getObject(locationKey .. "." .. StatsDataSources.MONEY)
+    
+    local costIcon = self._gameObject:findChild(self.COST_ICON_NAME)
+    local costText = costIcon:findChild(self.COST_TEXT_NAME):findComponent("TextRenderer")
+    costText:setText(formatCostString(moneyDataObject:getFloat(StatsDataSources.AMOUNT)))
 end
 
 ----------------------------------------------------------------------------------------
-function LocationDialog:setUpChildSelectionUI(parentGameObject, selectedChild)
-    local sendChildBackground = parentGameObject:findChild(self.SEND_CHILD_BACKGROUND_NAME)
+function LocationDialog:setUpCloseButton()
+    local closeButton = self._gameObject:findChild(self.CLOSE_BUTTON_NAME)
+    local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
+    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback, self)
+end
+
+----------------------------------------------------------------------------------------
+function LocationDialog:setUpModifierUI()
+    local locationKey = LocationsDataSources.LOCATIONS .. "." .. self._locationName
+    local statsBackground = self._gameObject:findChild(self.STATS_BACKGROUND_NAME)
+
+    self:setModifierText(statsBackground, self.HEALTH_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HEALTH)
+    self:setModifierText(statsBackground, self.SAFETY_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.SAFETY)
+    self:setModifierText(statsBackground, self.EDUCATION_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.EDUCATION)
+    self:setModifierText(statsBackground, self.HAPPINESS_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HAPPINESS)
+end
+
+----------------------------------------------------------------------------------------
+function LocationDialog:setModifierText(statsBackground, textName, modifierKey)
+    local text = statsBackground:findChild(textName):findComponent("TextRenderer")
+    local modifierObject = self._dataStore:getObject(modifierKey)
+    local isDeltaChange = modifierObject:getBool(StatsDataSources.IS_DELTA)
+    local amount = modifierObject:getFloat(StatsDataSources.AMOUNT)
+
+    text:setText(formatModifierString(isDeltaChange, amount))
+end
+
+----------------------------------------------------------------------------------------
+function LocationDialog:setUpChildSelectionUI()
+    local sendChildBackground = self._gameObject:findChild(self.SEND_CHILD_BACKGROUND_NAME)
     local sendChildHelpText = sendChildBackground:findChild(self.SEND_CHILD_HELP_TEXT_NAME)
     local sendChildButton = sendChildBackground:findChild(self.SEND_CHILD_BUTTON_NAME)
 
-    local isChildSelected = selectedChild ~= nil
+    local isChildSelected = self._dataStore:getBool(FamilyDataSources.HAS_SELECTED_CHILD)
     log("LocationDialog.isChildSelected " .. tostring(isChildSelected))
 
-    local isChildAlreadyAtLocation = isChildSelected and selectedChild:isAtLocation()
+    local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
+    local selectedChildObject = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. selectedChildName)
+
+    local isChildAlreadyAtLocation = isChildSelected and selectedChildObject:getBool(FamilyDataSources.IS_AT_LOCATION)
     log("LocationDialog.isChildAlreadyAtLocation " .. tostring(isChildAlreadyAtLocation))
 
     local isChildAbleToBeSent = isChildSelected and not isChildAlreadyAtLocation
@@ -157,9 +185,10 @@ function LocationDialog:setUpChildSelectionUI(parentGameObject, selectedChild)
         sendChildButtonInteractionHandler:subscribeOnLeftButtonUpCallback(sendChildToLocation, self)
 
         local sendChildButtonText = sendChildButton:findChild(self.SEND_CHILD_BUTTON_TEXT_NAME)
-        sendChildButtonText:findComponent("TextRenderer"):setText("Send " .. selectedChild:getName())
+        sendChildButtonText:findComponent("TextRenderer"):setText("Send " .. selectedChildName)
     elseif isChildAlreadyAtLocation then
-        sendChildHelpText:findComponent("TextRenderer"):setText(selectedChild:getName() .. " is already at\nthe " .. selectedChild:getCurrentLocation())
+        local selectedChildLocation = selectedChildObject:getString(FamilyDataSources.CURRENT_LOCATION)
+        sendChildHelpText:findComponent("TextRenderer"):setText(selectedChildName .. " is already at\nthe " .. selectedChildLocation)
     else
         sendChildHelpText:findComponent("TextRenderer"):setText("Select a Child to send\nthem to this location")
     end

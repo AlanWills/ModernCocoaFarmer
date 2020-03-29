@@ -36,7 +36,7 @@ namespace MCF::Locations
     m_educationModifier(createScriptableObject<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),
     m_happinessModifier(createScriptableObject<Stats::Modifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
     m_moneyModifier(createScriptableObject<Stats::Modifier>(MONEY_MODIFIER_FIELD_NAME)),
-    m_daysToComplete(createValueField<size_t>(DAYS_TO_COMPLETE_FIELD_NAME)),
+    m_daysToComplete(createValueField<unsigned int>(DAYS_TO_COMPLETE_FIELD_NAME)),
     m_childrenWaitingToArrive(),
     m_childrenAtLocation(),
     m_childLeavesEffects(),
@@ -111,7 +111,7 @@ namespace MCF::Locations
   {
     for (Family::Child& child : m_childrenWaitingToArrive)
     {
-      m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(child), static_cast<size_t>(0)));
+      m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(child), 0U));
       child.setCurrentLocation(getName());
       moneyManager.applyMoneyModifier(getMoneyModifier());
       m_onChildSentEvent.invoke(child);
@@ -172,7 +172,7 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
-  size_t Location::getChildTime(const std::string& childName) const
+  unsigned int Location::getChildTime(const std::string& childName) const
   {
     auto foundChild = std::find_if(m_childrenAtLocation.begin(), m_childrenAtLocation.end(),
       [&childName](const ChildDaysSpent& childDaysSpent)
@@ -180,6 +180,6 @@ namespace MCF::Locations
         return std::get<0>(childDaysSpent).get().getName() == childName;
       });
 
-    return foundChild != m_childrenAtLocation.end() ? std::get<1>(*foundChild) : 0;
+    return foundChild != m_childrenAtLocation.end() ? std::get<1>(*foundChild) : 0U;
   }
 }

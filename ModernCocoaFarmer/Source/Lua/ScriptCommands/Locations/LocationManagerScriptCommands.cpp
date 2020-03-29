@@ -21,7 +21,7 @@ namespace MCF::Lua::Locations::LocationManagerScriptCommands
     //------------------------------------------------------------------------------------------------
     void activateLocation(LocationsManager& locationsManager, const std::string& locationName)
     {
-      observer_ptr<Location> location = locationsManager.getLocation(locationName);
+      observer_ptr<Location> location = locationsManager.findLocation(locationName);
       ASSERT(location)
 
       if (location != nullptr)
@@ -51,8 +51,9 @@ namespace MCF::Lua::Locations::LocationManagerScriptCommands
     Celeste::Lua::registerScriptableObjectUserType<LocationsManager>(
       LocationsManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
+      "setDataStore", &LocationsManager::setDataStore,
       "getNumLocations", &LocationsManager::getNumLocations,
-      "getLocation", &LocationsManager::getLocation,
+      "findLocation", &LocationsManager::findLocation,
       "activateLocation", &Internals::activateLocation,
       "subscribeOnLocationActivatedCallback", &Internals::subscribeOnLocationActivatedCallback);
   }

@@ -28,6 +28,16 @@ namespace MCF::Notifications
   class NotificationManager;
 }
 
+namespace MCF::Persistence
+{
+  class DataStore;
+}
+
+namespace MCF::Stats
+{
+  class Modifier;
+}
+
 namespace MCF::Locations
 {
   class Location;
@@ -42,12 +52,14 @@ namespace MCF::Locations
     public:
       using LocationActivatedEvent = Celeste::Event<Location&>;
 
+      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+
       size_t getNumLocations() const { return m_locations.size(); }
-      observer_ptr<Location> getLocation(const std::string& locationName);
+      observer_ptr<Location> findLocation(const std::string& locationName) const;
 
       const LocationActivatedEvent& getOnLocationActivatedEvent() const { return m_onLocationActivatedEvent; }
 
-      void activateLocation(Location& location) const;
+      void activateLocation(Location& location);
       void onDayPassed();
 
       void checkLocationsForChildrenArriving(
@@ -67,6 +79,12 @@ namespace MCF::Locations
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
+      void updateDataStore();
+      void writeModifier(const std::string& locationKey, const char* const modifierKey, const Stats::Modifier& modifier);
+      
+      bool m_suspendDataStoreUpdates = false;
+      observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
+
       LocationsInformation m_locations;
       LocationActivatedEvent m_onLocationActivatedEvent;
   };

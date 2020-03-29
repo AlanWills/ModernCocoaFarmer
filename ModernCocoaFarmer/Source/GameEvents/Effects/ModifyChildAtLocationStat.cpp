@@ -31,7 +31,7 @@ namespace MCF::GameEvents::Effects
     Locations::LocationsManager& locationsManager,
     Notifications::NotificationManager&) const
   {
-    observer_ptr<Locations::Location> location = locationsManager.getLocation(getLocation());
+    observer_ptr<Locations::Location> location = locationsManager.findLocation(getLocation());
     if (location == nullptr)
     {
       ASSERT_FAIL();

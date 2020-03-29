@@ -57,10 +57,10 @@ end
 function ChildStatsPanel:updateUI()
     local childData = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. self._childName)
 
-    self._healthProgessBar:setProgress(childData:getFloat(FamilyDataSources.HEALTH))
-    self._safetyProgressBar:setProgress(childData:getFloat(FamilyDataSources.SAFETY))
-    self._educationProgressBar:setProgress(childData:getFloat(FamilyDataSources.EDUCATION))
-    self._happinessProgressBar:setProgress(childData:getFloat(FamilyDataSources.HAPPINESS))
+    self._healthProgessBar:setProgress(childData:getFloat(StatsDataSources.HEALTH))
+    self._safetyProgressBar:setProgress(childData:getFloat(StatsDataSources.SAFETY))
+    self._educationProgressBar:setProgress(childData:getFloat(StatsDataSources.EDUCATION))
+    self._happinessProgressBar:setProgress(childData:getFloat(StatsDataSources.HAPPINESS))
 
     local locationText = "Not at location"
     if childData:getBool(FamilyDataSources.IS_AT_LOCATION) then

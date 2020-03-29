@@ -11,7 +11,7 @@ local LocationIcon =
 
 ---------------------------------------------------------------------------------
 local function onIconClicked(caller, self)
-    self._commandManager:execute(ShowLocationDialog, self._location)
+    self._commandManager:execute(ShowLocationDialog, self._dataStore, self._location:getName())
 end
 
 ----------------------------------------------------------------------------------------
@@ -27,8 +27,9 @@ local function onChildLeftCallback(child, self)
 end
 
 ---------------------------------------------------------------------------------
-function LocationIcon:new(commandManager, location, gameObject)
+function LocationIcon:new(commandManager, dataStore, location, gameObject)
     self._commandManager = commandManager
+    self._dataStore = dataStore
     self._location = location
     self._gameObject = gameObject
     self._locationProgressBars = {}

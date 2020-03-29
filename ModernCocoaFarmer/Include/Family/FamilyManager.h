@@ -39,6 +39,7 @@ namespace MCF::Family
 
       size_t getChildCount() const { return m_children.size(); }
       observer_ptr<Child> getChild(size_t childIndex) const;
+      observer_ptr<Child> findChild(const std::string& name) const;
 
       bool hasSelectedChild() const;
       observer_ptr<Child> getSelectedChild();
