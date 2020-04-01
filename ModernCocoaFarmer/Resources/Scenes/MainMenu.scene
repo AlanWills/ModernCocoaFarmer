@@ -33,7 +33,7 @@
               <GameObjects>
                 <GameObject name="ExitButton">
                   <Components>
-                    <SpriteRenderer/>
+                    <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>
@@ -47,7 +47,7 @@
                 </GameObject>
                 <GameObject name="OptionsButton">
                   <Components>
-                    <SpriteRenderer/>
+                    <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>
@@ -61,7 +61,7 @@
                 </GameObject>
                 <GameObject name="PlayButton">
                   <Components>
-                    <SpriteRenderer/>
+                    <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>

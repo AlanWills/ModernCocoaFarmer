@@ -1,9 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location description="The village mosque" days_to_complete="90" 
+<Location name="Mosque"
+          description="For many, this is more than just a place of worship"
+          days_to_complete="90"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Mosque.png"
-          HealthModifier="\Data\Modifiers\Mosque\MosqueHealthModifier.asset" 
-          SafetyModifier="\Data\Modifiers\Mosque\MosqueSafetyModifier.asset" 
-          EducationModifier="\Data\Modifiers\Mosque\MosqueEducationModifier.asset" 
-          HappinessModifier="\Data\Modifiers\Mosque\MosqueHappinessModifier.asset" 
-          MoneyModifier="\Data\Modifiers\Mosque\MosqueMoneyModifier.asset" name="Mosque" />
+          HealthModifier="68e8f36d-6028-4642-8304-9db63a429569"
+          SafetyModifier="d78bb240-83b1-41fa-a3f8-34eb21e85396"
+          EducationModifier="ff23b057-77e8-4c87-ac89-1c2ec8fa124b"
+          HappinessModifier="c3bada8d-178e-4c23-abb5-df5c609e4c46"
+          MoneyModifier="fbd06504-8637-4a5f-a7e4-0d84a2b25c6b">
+  <Modifier name="HealthModifier" 
+            guid="68e8f36d-6028-4642-8304-9db63a429569" 
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="MoneyModifier" 
+            guid="fbd06504-8637-4a5f-a7e4-0d84a2b25c6b"
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="SafetyModifier" 
+            guid="d78bb240-83b1-41fa-a3f8-34eb21e85396"
+            amount="2" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="HappinessModifier"
+            guid="c3bada8d-178e-4c23-abb5-df5c609e4c46"
+            amount="3" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="EducationModifier" 
+            guid="ff23b057-77e8-4c87-ac89-1c2ec8fa124b" 
+            amount="1" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+</Location>

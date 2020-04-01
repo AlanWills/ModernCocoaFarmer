@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="MoneyPanel" position="-864,0,1">
+    <GameObject name="MoneyPanel" position="-860,0,0">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="77,43" preserve_aspect_ratio="true"/>
-        <MouseInteractionHandler/>
+        <SpriteRenderer sprite="Textures\UI\MoneyBackground.png" size="180,45" colour="0,0,0" opacity="0.75"/>
       </Components>
       <GameObjects>
-        <GameObject name="MoneyText" position="58,0,0">
+        <GameObject name="MoneyIcon" position="-58,2,0.01">
           <Components>
-            <TextRenderer text="10000000000" font_height="24" horizontal_alignment="left"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="25,25" preserve_aspect_ratio="true"/>
+            <MouseInteractionHandler/>
+          </Components>
+        </GameObject>
+        <GameObject name="MoneyText" position="-30,-2,0.01">
+          <Components>
+            <TextRenderer text="10000000000" font_height="24" horizontal_alignment="left" colour="0.91,0.87,0.10"/>
           </Components>
         </GameObject>
       </GameObjects>

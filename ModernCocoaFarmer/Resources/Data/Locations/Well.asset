@@ -1,9 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location description="The village well" days_to_complete="30" 
+<Location name="Well"
+          description="A humble hole in the dirt, with the promise of water"
+          days_to_complete="3"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Well.png"
-          HealthModifier="\Data\Modifiers\Well\WellHealthModifier.asset" 
-          SafetyModifier="\Data\Modifiers\Well\WellSafetyModifier.asset" 
-          EducationModifier="\Data\Modifiers\Well\WellEducationModifier.asset" 
-          HappinessModifier="\Data\Modifiers\Well\WellHappinessModifier.asset" 
-          MoneyModifier="\Data\Modifiers\Well\WellMoneyModifier.asset" name="Well" />
+          HealthModifier="0ad0a21a-9889-4d05-8fca-dd0e0ed79b46"
+          SafetyModifier="8127b173-a5b6-41f3-87d8-6c659211df68"
+          EducationModifier="5332bcdb-432e-4924-8e02-b49bbf508b84"
+          HappinessModifier="cb797b21-1340-4e46-9a0c-7087cb2db5fc"
+          MoneyModifier="0d109b06-9ddf-4b50-8522-ee5ee26eeafb">
+  <Modifier name="HealthModifier" 
+            guid="0ad0a21a-9889-4d05-8fca-dd0e0ed79b46"
+            amount="1" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="MoneyModifier" 
+            guid="0d109b06-9ddf-4b50-8522-ee5ee26eeafb" 
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="SafetyModifier" 
+            guid="8127b173-a5b6-41f3-87d8-6c659211df68" 
+            amount="-1" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="HappinessModifier"
+            guid="cb797b21-1340-4e46-9a0c-7087cb2db5fc"
+            amount="2"
+            change_type="Delta"
+            occurrence="Instant"/>
+  <Modifier name="EducationModifier"
+              guid="5332bcdb-432e-4924-8e02-b49bbf508b84"
+              amount="0"
+              change_type="Delta"
+              occurrence="Instant"/>
+</Location>

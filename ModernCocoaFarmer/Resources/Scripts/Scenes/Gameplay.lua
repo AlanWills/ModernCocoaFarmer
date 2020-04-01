@@ -13,7 +13,7 @@ local Gameplay =
 {
     GAMEPLAY_SCENE_PATH = path.combine(Resources.getResourcesDirectory(), "Scenes", "Gameplay.scene"),
     GAMEPLAY_ROOT_NAME = "GameplayScene",
-    TOP_BAR_NAME = "TopBarBackground",
+    TOP_BAR_NAME = "TopBar",
     TIME_NOTIFIER_NAME = "TimeNotifier",
     NOTIFICATIONS_BAR_NAME = "NotificationsBar",
     LOCATIONS_UI_NAME = "LocationsUI",

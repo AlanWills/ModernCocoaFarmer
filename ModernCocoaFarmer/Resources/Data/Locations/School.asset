@@ -1,9 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location description="1 x 5 is 5.  2 x 5 is 10.  3 x 5 is..." days_to_complete="360" 
+<Location name="School"
+          description="On a good day the teacher will have some chalk"
+          days_to_complete="360"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\School.png"
-          HealthModifier="\Data\Modifiers\School\SchoolHealthModifier.asset" 
-          SafetyModifier="\Data\Modifiers\School\SchoolSafetyModifier.asset" 
-          EducationModifier="\Data\Modifiers\School\SchoolEducationModifier.asset" 
-          HappinessModifier="\Data\Modifiers\School\SchoolHappinessModifier.asset" 
-          MoneyModifier="\Data\Modifiers\School\SchoolMoneyModifier.asset" name="School" />
+          HealthModifier="89cf77fe-67c4-4763-ac68-877d2a034223"
+          SafetyModifier="b628f6bb-7f1f-4414-a017-4e4e5052df87"
+          EducationModifier="ec274cb6-f933-49ae-80c7-7a0a2a61ff8d"
+          HappinessModifier="2b80d9d7-8da4-4f60-a7fb-87994da08472"
+          MoneyModifier="f4d5b0c2-8dde-45fd-b161-241c3ee9abd8">
+  <Modifier name="HealthModifier" 
+            guid="89cf77fe-67c4-4763-ac68-877d2a034223" 
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="MoneyModifier" 
+            guid="f4d5b0c2-8dde-45fd-b161-241c3ee9abd8" 
+            amount="-10000" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="SafetyModifier" 
+            guid="b628f6bb-7f1f-4414-a017-4e4e5052df87" 
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="HappinessModifier" 
+            guid="2b80d9d7-8da4-4f60-a7fb-87994da08472" 
+            amount="3" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="EducationModifier" 
+            guid="ec274cb6-f933-49ae-80c7-7a0a2a61ff8d" 
+            amount="5" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+</Location>

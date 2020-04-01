@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="TopBarBackground" position="960,1026,0">
-      <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,108" colour="0.5,0.5,0.5" opacity="0.5"/>
-      </Components>
+    <GameObject name="TopBar" position="960,1026,0">
       <GameObjects>
         <Prefab name="MoneyPanel" path="Prefabs\UI\Money\MoneyPanel.prefab"/>
         <Prefab name="FamilyPanel" path="Prefabs\UI\Family\FamilyPanel.prefab"/>
@@ -14,13 +11,13 @@
             <StackPanel orientation="horizontal" horizontal_alignment="right" padding="20"/>
           </Components>
           <GameObjects>
-            <GameObject name="DonateButton">
+            <GameObject name="DonateButton" position="0,0,0.01">
               <Components>
                 <SpriteRenderer size="77,43" sprite="Textures\UI\Utility\Donate.png" preserve_aspect_ratio="true"/>
                 <MouseInteractionHandler/>
               </Components>
             </GameObject>
-            <GameObject name="MenuButton">
+            <GameObject name="MenuButton" position="0,0,0.01">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="77,43" preserve_aspect_ratio="true"/>
                 <MouseInteractionHandler/>

@@ -1,9 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Location description="A place of healing if you can pay." days_to_complete="1"
+<Location name="Hospital"
+          description="A house of healing for the rich and the desperate" 
+          days_to_complete="1"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Hospital.png"
-          HealthModifier="\Data\Modifiers\Hospital\HospitalHealthModifier.asset" 
-          SafetyModifier="\Data\Modifiers\Hospital\HospitalSafetyModifier.asset" 
-          EducationModifier="\Data\Modifiers\Hospital\HospitalEducationModifier.asset" 
-          HappinessModifier="\Data\Modifiers\Hospital\HospitalHappinessModifier.asset" 
-          MoneyModifier="\Data\Modifiers\Hospital\HospitalMoneyModifier.asset" name="Hospital" />
+          HealthModifier="5e7f2d08-38c4-4709-94fa-ddbf663bd90f"
+          SafetyModifier="77e6e6e7-dccb-4bd0-b3b2-d0530fa58ea8"
+          EducationModifier="9a68f01a-f766-46b3-88ad-d20653a35cb0"
+          HappinessModifier="13587f43-dfd2-4b86-8f7e-80e5d2593d40"
+          MoneyModifier="42a58cb3-1138-4d94-826d-a29c768a133f">
+  <Modifier name="HealthModifier" 
+            guid="5e7f2d08-38c4-4709-94fa-ddbf663bd90f" 
+            amount="100" 
+            change_type="Absolute" 
+            occurrence="Instant"/>
+  <Modifier name="EducationModifier" 
+            guid="9a68f01a-f766-46b3-88ad-d20653a35cb0" 
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="SafetyModifier" 
+            guid="77e6e6e7-dccb-4bd0-b3b2-d0530fa58ea8"
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="HappinessModifier" 
+            guid="13587f43-dfd2-4b86-8f7e-80e5d2593d40" 
+            amount="0" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+  <Modifier name="MoneyModifier" 
+            guid="42a58cb3-1138-4d94-826d-a29c768a133f" 
+            amount="135300" 
+            change_type="Delta" 
+            occurrence="Instant"/>
+</Location>

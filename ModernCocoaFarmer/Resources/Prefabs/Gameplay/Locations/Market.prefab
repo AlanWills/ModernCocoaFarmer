@@ -16,6 +16,7 @@
                             size="50,50"
                             preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
+            <AudioSource sound="Audio\SFX\Market.wav" is_playing="false" is_looping="false" audio_type="SFX"/>
           </Components>
           <GameObjects>
             <Prefab name="ProgressStackPanel" path="Prefabs\UI\Locations\LocationProgressStackPanel.prefab"/>

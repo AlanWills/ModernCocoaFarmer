@@ -12,6 +12,7 @@
 int main()
 { 
   MCF::MCFGame game;
+  game.getInputManager().getMouse().setCursor(Celeste::Path("Textures", "UI", "Utility", "Cursor.png"));
   game.run();
 
   return 0;

@@ -4,6 +4,7 @@
     <GameObject name="NotificationDialogBackground">
       <Components>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="580,324" colour="0.8,0.8,0.8" opacity="1"/>
+        <AudioSource sound="Audio\SFX\Notification.wav" is_playing="true" is_looping="false" audio_type="SFX"/>
       </Components>
       <GameObjects>
         <GameObject name="NotificationDialogTitle" position="0,130,0">

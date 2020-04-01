@@ -12,6 +12,9 @@ local LocationIcon =
 ---------------------------------------------------------------------------------
 local function onIconClicked(caller, self)
     self._commandManager:execute(ShowLocationDialog, self._dataStore, self._location:getName())
+    
+    local icon = self._gameObject:findChild(self.ICON_NAME)
+    icon:findComponent("AudioSource"):play()
 end
 
 ----------------------------------------------------------------------------------------

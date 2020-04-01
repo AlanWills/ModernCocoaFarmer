@@ -56,7 +56,9 @@ end
 ----------------------------------------------------------------------------------------
 local function pluralize(quantity, str)
     if quantity > 1 then
-        str = str .. "s"
+        return str .. "s"
+    else
+        return str
     end
 end
 
@@ -70,17 +72,17 @@ local function formatTimeString(daysToComplete)
 
     if years > 0 then
         timeString = timeString .. tostring(years) .. " year"
-        pluralize(years, timeString)
+        timeString = pluralize(years, timeString)
     end
 
     if months > 0 then
         timeString = timeString .. tostring(months) .. " month"
-        pluralize(months, timeString)
+        timeString = pluralize(months, timeString)
     end
 
     if days > 0 then
         timeString = timeString .. tostring(days) .. " day"
-        pluralize(days, timeString)
+        timeString = pluralize(days, timeString)
     end
 
     return timeString
