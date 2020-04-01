@@ -1,7 +1,7 @@
 local Class = require 'OOP.Class'
 local LocationsUI = require 'UI.Locations.LocationsUI'
 local TopBar = require "UI.TopBar"
-local NotificationsBar = require 'UI.Notifications.NotificationsBar'
+local NotificationsPanel = require 'UI.Notifications.NotificationsPanel'
 local ModalDialogManager = require 'UI.Dialogs.ModalDialogManager'
 local CommandManager = require 'Commands.CommandManager'
 local AddChild = require 'Commands.Family.AddChild'
@@ -15,7 +15,7 @@ local Gameplay =
     GAMEPLAY_ROOT_NAME = "GameplayScene",
     TOP_BAR_NAME = "TopBar",
     TIME_NOTIFIER_NAME = "TimeNotifier",
-    NOTIFICATIONS_BAR_NAME = "NotificationsBar",
+    NOTIFICATIONS_PANEL_NAME = "NotificationsPanel",
     LOCATIONS_UI_NAME = "LocationsUI",
     MODAL_DIALOG_MANAGER_NAME = "ModalDialogManager",
 }
@@ -109,8 +109,8 @@ function Gameplay.show()
         dataStore,
         topBarGameObject)
       
-    local notificationsBar = GameObject.find(Gameplay.NOTIFICATIONS_BAR_NAME)
-    Gameplay._notificationsBar = Class.new(NotificationsBar, commandManager, notificationsBar)
+    local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)
+    Gameplay._notificationsBar = Class.new(NotificationsPanel, commandManager, notificationsPanel)
 
     Gameplay.updateUI()
 end

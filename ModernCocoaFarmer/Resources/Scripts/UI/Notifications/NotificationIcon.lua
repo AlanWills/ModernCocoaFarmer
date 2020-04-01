@@ -17,7 +17,7 @@ function NotificationIcon:new(commandManager, notification, gameObject)
     self._commandManager = commandManager
     self._title = notification:getName()
     self._description = notification:getDescription()
-    self._gameObject = gameObject   -- Needed by NotificationsBar, do not delete
+    self._gameObject = gameObject   -- Needed by NotificationsPanel, do not delete
 
     local notificationInteractionHandler = gameObject:findComponent("MouseInteractionHandler")
     notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showNotificationDialogCallback, self)

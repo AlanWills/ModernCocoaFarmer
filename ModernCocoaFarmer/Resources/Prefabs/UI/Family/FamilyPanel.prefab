@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="FamilyPanel">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\FamilyPanelBackground.png" size="960,108" colour="0.2,0.2,0.2" opacity="0.75"/>
+        <SpriteRenderer sprite="Textures\UI\FamilyPanelBackground.png" size="960,108" colour="0.85,0.85,0.85" opacity="0.7"/>
       </Components>
       <GameObjects>
         <GameObject name="ChildStackPanel" position="-460,0,0.01">

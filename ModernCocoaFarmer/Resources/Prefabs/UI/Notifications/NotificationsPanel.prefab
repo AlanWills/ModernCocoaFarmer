@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="NotificationsPanel" position="0,0,0">
+      <Components>
+        <SpriteRenderer sprite="Textures\UI\NotificationsBarBackground.png" size="158,1080" colour="0.85,0.85,0.85" opacity="0.7"/>
+      </Components>
+      <GameObjects>
+        <GameObject name="NotificationsAnchor" position="38,20,0">
+          <Components>
+            <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
+          </Components>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Prefab>

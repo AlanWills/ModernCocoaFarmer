@@ -52,12 +52,7 @@
         </GameObject>
         <!--UI-->
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
-        <GameObject name="NotificationsBar" position="38,20,0">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="76,1080" colour="0.5,0.5,0.5" opacity="0.75"/>
-            <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
-          </Components>
-        </GameObject>
+        <Prefab name="NotificationsPanel" path="Prefabs\UI\Notifications\NotificationsPanel.prefab"/>
         <Prefab name="ModalDialogManager" path="Prefabs\UI\Dialogs\ModalDialogManager.prefab"/>
         <!--Systems-->
         <GameObject name="TimeNotifier">

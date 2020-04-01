@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="MoneyPanel" position="-860,0,0">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\MoneyPanelBackground.png" size="180,45" colour="0.2,0.2,0.2" opacity="0.7"/>
+        <SpriteRenderer sprite="Textures\UI\MoneyPanelBackground.png" size="180,45" colour="0.85,0.85,0.85" opacity="0.7"/>
       </Components>
       <GameObjects>
         <GameObject name="MoneyIcon" position="-58,2,0.01">
@@ -14,7 +14,7 @@
         </GameObject>
         <GameObject name="MoneyText" position="-30,-2,0.01">
           <Components>
-            <TextRenderer text="10000000000" font_height="24" horizontal_alignment="left" colour="0.91,0.87,0.10"/>
+            <TextRenderer text="10000000000" font_height="24" horizontal_alignment="left" colour="1,1,0"/>
           </Components>
         </GameObject>
       </GameObjects>
