@@ -4,6 +4,7 @@ local ToggleChildSelection = require 'Commands.Family.ToggleChildSelection'
 local Algorithm = require 'Containers.Algorithm'
 
 local FamilyPanel = {}
+FamilyPanel.CHILD_STACK_PANEL = "ChildStackPanel"
 
 ---------------------------------------------------------------------------------
 local function childIconLeftClickedCallback(caller, extraArgs)
@@ -19,7 +20,7 @@ end
 function FamilyPanel:new(commandManager, dataStore, familyPanelGameObject)
     self._commandManager = commandManager
     self._dataStore = dataStore
-    self._gameObject = familyPanelGameObject
+    self._childStackPanel = familyPanelGameObject:findChild(self.CHILD_STACK_PANEL)
     self._childIcons = {}
 
     commandManager.familyManager:subscribeOnChildAddedCallback(onChildAddedCallback, self)
@@ -37,14 +38,14 @@ function FamilyPanel:addChildIcon(child)
     local numChildren = Algorithm.tablelength(self._childIcons)
     log("Activating ChildIcon " .. tostring(numChildren))
 
-    local childIconGameObject = self._gameObject:getChild(numChildren)
+    local childIconGameObject = self._childStackPanel:getChild(numChildren)
     self._childIcons[child:getName()] = Class.new(ChildIcon, self._dataStore, childIconGameObject, child)
     log("ChildIcon " .. tostring(numChildren) .. " activated")
 
     local childInteractionHandler = childIconGameObject:findComponent("MouseInteractionHandler")
     childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, { self = self, childToToggle = child })
 
-    local familyPanelStackPanel = self._gameObject:findComponent("StackPanel"):layout()
+    local familyPanelStackPanel = self._childStackPanel:findComponent("StackPanel"):layout()
 end
 
 ---------------------------------------------------------------------------------

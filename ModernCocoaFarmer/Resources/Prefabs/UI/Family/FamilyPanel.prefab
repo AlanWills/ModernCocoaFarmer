@@ -1,19 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="FamilyPanel" position="-480,0,1">
+    <GameObject name="FamilyPanel">
       <Components>
-        <StackPanel orientation="horizontal" horizontal_alignment="left"/>
+        <SpriteRenderer sprite="Textures\UI\FamilyPanelBackground.png" size="960,108" colour="0.2,0.2,0.2" opacity="0.75"/>
       </Components>
       <GameObjects>
-        <Prefab name="Child1" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child2" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child3" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child4" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child5" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child6" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child7" path="Prefabs\UI\Family\ChildIcon.prefab"/>
-        <Prefab name="Child8" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+        <GameObject name="ChildStackPanel" position="-460,0,0.01">
+          <Components>
+            <StackPanel orientation="horizontal" horizontal_alignment="left"/>
+          </Components>
+          <GameObjects>
+            <Prefab name="Child1" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child2" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child3" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child4" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child5" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child6" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child7" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+            <Prefab name="Child8" path="Prefabs\UI\Family\ChildIcon.prefab"/>
+          </GameObjects>
+        </GameObject>
       </GameObjects>
     </GameObject>
   </GameObjects>

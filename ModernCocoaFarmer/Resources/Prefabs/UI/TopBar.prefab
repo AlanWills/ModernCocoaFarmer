@@ -6,25 +6,7 @@
         <Prefab name="MoneyPanel" path="Prefabs\UI\Money\MoneyPanel.prefab"/>
         <Prefab name="FamilyPanel" path="Prefabs\UI\Family\FamilyPanel.prefab"/>
         <Prefab name="TimePanel" path="Prefabs\UI\Time\TimePanel.prefab"/>
-        <GameObject name="UtilityButtonsStackPanel" position="902,0,0">
-          <Components>
-            <StackPanel orientation="horizontal" horizontal_alignment="right" padding="20"/>
-          </Components>
-          <GameObjects>
-            <GameObject name="DonateButton" position="0,0,0.01">
-              <Components>
-                <SpriteRenderer size="77,43" sprite="Textures\UI\Utility\Donate.png" preserve_aspect_ratio="true"/>
-                <MouseInteractionHandler/>
-              </Components>
-            </GameObject>
-            <GameObject name="MenuButton" position="0,0,0.01">
-              <Components>
-                <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="77,43" preserve_aspect_ratio="true"/>
-                <MouseInteractionHandler/>
-              </Components>
-            </GameObject>
-          </GameObjects>
-        </GameObject>
+        <Prefab name="MenuPanel" path="Prefabs\UI\Menu\MenuPanel.prefab"/>
       </GameObjects>
     </GameObject>
   </GameObjects>
