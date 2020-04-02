@@ -26,10 +26,10 @@ local TimePanel =
 
 ---------------------------------------------------------------------------------
 local function setUIEnabledAndOtherDisabled(caller, otherButtonName)
-    caller:findComponent("SpriteRenderer"):setColour(0.25,0.7,0)
+    caller:findComponent("SpriteRenderer"):setColour(0.35,0.7,0)
 
     local otherButton = caller:getParent():findChild(otherButtonName)
-    otherButton:findComponent("SpriteRenderer"):setColour(0.2,0.2,0.2)
+    otherButton:findComponent("SpriteRenderer"):setColour(0.4,0.4,0.4)
 end
 
 ---------------------------------------------------------------------------------

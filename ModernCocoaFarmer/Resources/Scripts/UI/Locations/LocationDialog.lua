@@ -13,12 +13,13 @@ LocationDialog.COST_TEXT_NAME = "CostText"
 LocationDialog.TIME_ICON_NAME = "TimeIcon"
 LocationDialog.TIME_TEXT_NAME = "TimeText"
 LocationDialog.CLOSE_BUTTON_NAME = "CloseButton"
-LocationDialog.STATS_BACKGROUND_NAME = "StatsBackground"
+LocationDialog.LOCATION_STATS_NAME = "LocationStats"
+LocationDialog.CHILD_STATS_NAME = "ChildStats"
 LocationDialog.HEALTH_MODIFIER_TEXT_NAME = "HealthModifierText"
 LocationDialog.SAFETY_MODIFIER_TEXT_NAME = "SafetyModifierText"
 LocationDialog.EDUCATION_MODIFIER_TEXT_NAME = "EducationModifierText"
 LocationDialog.HAPPINESS_MODIFIER_TEXT_NAME = "HappinessModifierText"
-LocationDialog.SEND_CHILD_BACKGROUND_NAME = "SendChildBackground"
+LocationDialog.SEND_CHILD_BACKGROUND_NAME = "SendChild"
 LocationDialog.SEND_CHILD_HELP_TEXT_NAME = "SendChildHelpText"
 LocationDialog.SEND_CHILD_BUTTON_NAME = "SendChildButton"
 LocationDialog.SEND_CHILD_BUTTON_TEXT_NAME = "SendChildButtonText"
@@ -122,13 +123,14 @@ function LocationDialog:setUpLocationInfoUI()
     local descriptionText = self._gameObject:findChild(self.DESCRIPTION_TEXT_NAME)
     descriptionText:findComponent("TextRenderer"):setText(locationDataObject:getString(LocationsDataSources.DESCRIPTION))
 
-    local timeIcon = self._gameObject:findChild(self.TIME_ICON_NAME)
+    local locationStats = self._gameObject:findChild(self.LOCATION_STATS_NAME)
+    local timeIcon = locationStats:findChild(self.TIME_ICON_NAME)
     local timeText = timeIcon:findChild(self.TIME_TEXT_NAME):findComponent("TextRenderer")
     timeText:setText(formatTimeString(locationDataObject:getUnsignedInt(LocationsDataSources.DAYS_TO_COMPLETE)))
 
     local moneyDataObject = self._dataStore:getObject(locationKey .. "." .. StatsDataSources.MONEY)
     
-    local costIcon = self._gameObject:findChild(self.COST_ICON_NAME)
+    local costIcon = locationStats:findChild(self.COST_ICON_NAME)
     local costText = costIcon:findChild(self.COST_TEXT_NAME):findComponent("TextRenderer")
     costText:setText(formatCostString(moneyDataObject:getFloat(StatsDataSources.AMOUNT)))
 end
@@ -143,17 +145,18 @@ end
 ----------------------------------------------------------------------------------------
 function LocationDialog:setUpModifierUI()
     local locationKey = LocationsDataSources.LOCATIONS .. "." .. self._locationName
-    local statsBackground = self._gameObject:findChild(self.STATS_BACKGROUND_NAME)
+    local locationStats = self._gameObject:findChild(self.LOCATION_STATS_NAME)
+    local childStats = locationStats:findChild(self.CHILD_STATS_NAME)
 
-    self:setModifierText(statsBackground, self.HEALTH_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HEALTH)
-    self:setModifierText(statsBackground, self.SAFETY_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.SAFETY)
-    self:setModifierText(statsBackground, self.EDUCATION_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.EDUCATION)
-    self:setModifierText(statsBackground, self.HAPPINESS_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HAPPINESS)
+    self:setModifierText(childStats, self.HEALTH_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HEALTH)
+    self:setModifierText(childStats, self.SAFETY_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.SAFETY)
+    self:setModifierText(childStats, self.EDUCATION_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.EDUCATION)
+    self:setModifierText(childStats, self.HAPPINESS_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HAPPINESS)
 end
 
 ----------------------------------------------------------------------------------------
-function LocationDialog:setModifierText(statsBackground, textName, modifierKey)
-    local text = statsBackground:findChild(textName):findComponent("TextRenderer")
+function LocationDialog:setModifierText(stats, textName, modifierKey)
+    local text = stats:findChild(textName):findComponent("TextRenderer")
     local modifierObject = self._dataStore:getObject(modifierKey)
     local isDeltaChange = modifierObject:getBool(StatsDataSources.IS_DELTA)
     local amount = modifierObject:getFloat(StatsDataSources.AMOUNT)

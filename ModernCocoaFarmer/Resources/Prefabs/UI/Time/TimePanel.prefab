@@ -8,13 +8,13 @@
       <GameObjects>
         <GameObject name="PlayButton" position="-85,2,0.01">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="25,25" colour="0.25,0.7,0" preserve_aspect_ratio="true"/>
+            <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="25,25" colour="0.35,0.7,0" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
         <GameObject name="PauseButton" position="-50,2,0.01">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="25,25" colour="0.2,0.2,0.2" preserve_aspect_ratio="true"/>
+            <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="25,25" colour="0.4,0.4,0.4" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>

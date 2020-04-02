@@ -3,104 +3,102 @@
   <GameObjects>
     <GameObject name="InteractableLocationBackground">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="580,324" colour="0.5,0.5,0.5" opacity="1"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\DialogBackground.png" size="400,600"/>
       </Components>
       <GameObjects>
-        <GameObject name="TitleText" position="0,130,0">
+        <GameObject name="TitleText" position="0,250,0">
           <Components>
-            <TextRenderer font_height="30"/>
+            <TextRenderer font_height="30" colour="0.2,0.2,0.2"/>
           </Components>
         </GameObject>
-        <GameObject name="DescriptionText" position="0,0,0">
+        <GameObject name="CloseButton" position="196,296,0.01">
           <Components>
-            <TextRenderer font_height="20" horizontal_alignment="Centre" vertical_alignment="Centre"/>
-          </Components>
-        </GameObject>
-        <GameObject name="CostIcon" position="-250, 130">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="58,32" preserve_aspect_ratio="true"/>
-          </Components>
-          <GameObjects>
-            <GameObject name="CostText" position="38,0">
-              <Components>
-                <TextRenderer text="100" font_height="24" horizontal_alignment="left" vertical_alignment="centre"/>
-              </Components>
-            </GameObject>
-          </GameObjects>
-        </GameObject>
-        <GameObject name="TimeIcon" position="-250,86">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\Time.png" size="58,32" preserve_aspect_ratio="true"/>
-          </Components>
-          <GameObjects>
-            <GameObject name="TimeText" position="38,0">
-              <Components>
-                <TextRenderer text="Error Text" font_height="24" horizontal_alignment="left" vertical_alignment="centre"/>
-              </Components>
-            </GameObject>
-          </GameObjects>
-        </GameObject>
-        <GameObject name="CloseButton" position="288,162,0.01">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="50,50"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="32,32"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-        <GameObject name="StatsBackground" position="-144,-248,0">
+        <GameObject name="DescriptionText" position="0,-50,0">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="288,173" colour="0.5,0.5,0.5" opacity="1"/>
+            <TextRenderer font_height="20" colour="0.2,0.2,0.2" horizontal_alignment="Centre" vertical_alignment="Top"/>
           </Components>
+        </GameObject>
+        <GameObject name="LocationStats">
           <GameObjects>
-            <GameObject name="HealthModifierIcon" position="-96,65">
+            <GameObject name="CostIcon" position="-150, 135">
               <Components>
-                <SpriteRenderer sprite="Textures\UI\StatIcons\Health.png" size="38,22" preserve_aspect_ratio="true"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Money.png" size="58,32" preserve_aspect_ratio="true"/>
               </Components>
+              <GameObjects>
+                <GameObject name="CostText" position="38,0">
+                  <Components>
+                    <TextRenderer text="100" colour="0.2,0.2,0.2" font_height="24" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
             </GameObject>
-            <GameObject name="HealthModifierText" position="-48,65">
+            <GameObject name="TimeIcon" position="-150,65">
               <Components>
-                <TextRenderer text="Health Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
+                <SpriteRenderer sprite="Textures\UI\Utility\Time.png" colour="0.2,0.2,0.2" size="58,32" preserve_aspect_ratio="true"/>
               </Components>
+              <GameObjects>
+                <GameObject name="TimeText" position="38,0">
+                  <Components>
+                    <TextRenderer text="Error Text" colour="0.2,0.2,0.2" font_height="24" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
             </GameObject>
-            <GameObject name="SafetyModifierIcon" position="-96,22">
-              <Components>
-                <SpriteRenderer sprite="Textures\UI\StatIcons\Safety.png" size="38,22" preserve_aspect_ratio="true"/>
-              </Components>
-            </GameObject>
-            <GameObject name="SafetyModifierText" position="-48,22">
-              <Components>
-                <TextRenderer text="Safety Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
-              </Components>
-            </GameObject>
-            <GameObject name="EducationModifierIcon" position="-96,-22">
-              <Components>
-                <SpriteRenderer sprite="Textures\UI\StatIcons\Education.png" size="38,22" preserve_aspect_ratio="true"/>
-              </Components>
-            </GameObject>
-            <GameObject name="EducationModifierText" position="-48,-22">
-              <Components>
-                <TextRenderer text="Education Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
-              </Components>
-            </GameObject>
-            <GameObject name="HappinessModifierIcon" position="-96,-65">
-              <Components>
-                <SpriteRenderer sprite="Textures\UI\StatIcons\Happiness.png" size="38,22" preserve_aspect_ratio="true"/>
-              </Components>
-            </GameObject>
-            <GameObject name="HappinessModifierText" position="-48,-65">
-              <Components>
-                <TextRenderer text="Happiness Modifier" horizontal_alignment="left" vertical_alignment="centre"/>
-              </Components>
+            <GameObject name="ChildStats" position="150,100,0">
+              <GameObjects>
+                <GameObject name="HealthModifierIcon" position="-96,65">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Health.png" size="38,22" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="HealthModifierText" position="-48,65">
+                  <Components>
+                    <TextRenderer text="Health Modifier" colour="0.2,0.2,0.2" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="SafetyModifierIcon" position="-96,22">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Safety.png" size="38,22" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="SafetyModifierText" position="-48,22">
+                  <Components>
+                    <TextRenderer text="Safety Modifier" colour="0.2,0.2,0.2" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="EducationModifierIcon" position="-96,-22">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Education.png" size="38,22" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="EducationModifierText" position="-48,-22">
+                  <Components>
+                    <TextRenderer text="Education Modifier" colour="0.2,0.2,0.2" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="HappinessModifierIcon" position="-96,-65">
+                  <Components>
+                    <SpriteRenderer sprite="Textures\UI\StatIcons\Happiness.png" size="38,22" preserve_aspect_ratio="true"/>
+                  </Components>
+                </GameObject>
+                <GameObject name="HappinessModifierText" position="-48,-65">
+                  <Components>
+                    <TextRenderer text="Happiness Modifier" colour="0.2,0.2,0.2" horizontal_alignment="left" vertical_alignment="centre"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="SendChildBackground" position="144,-248">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="288,173" colour="0.5,0.5,0.5" opacity="1"/>
-          </Components>
+        <GameObject name="SendChild" position="0,-220">
           <GameObjects>
-            <GameObject name="SendChildHelpText" position="0,0" active="false">
+            <GameObject name="SendChildHelpText" active="false">
               <Components>
-                <TextRenderer font_height="18" text="Select a Child to send\nthem to this location." horizontal_alignment="centre" vertical_alignment="centre"/>
+                <TextRenderer font_height="18" colour="0.2,0.2,0.2" text="Select a Child to send\nthem to this location." horizontal_alignment="centre" vertical_alignment="Top"/>
               </Components>
             </GameObject>
             <GameObject name="SendChildButton" position="0,0,0.01">
@@ -112,7 +110,7 @@
               <GameObjects>
                 <GameObject name="SendChildButtonText">
                   <Components>
-                    <TextRenderer font_height="24" colour="1" text="Send ..."/>
+                    <TextRenderer font_height="24" colour="0.2,0.2,0.2" text="Send ..."/>
                   </Components>
                 </GameObject>
               </GameObjects>
