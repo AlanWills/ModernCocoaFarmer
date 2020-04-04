@@ -224,7 +224,7 @@ set_target_properties(tinyxml2 PROPERTIES
     OUTPUT_NAME ${TINYXML2_PROJECT_NAME}
     ARCHIVE_OUTPUT_NAME ${TINYXML2_PROJECT_NAME}
     DEBUG_POSTFIX "")
-#---------------------------- end lua ----------------------------##
+#---------------------------- end tinyxml2 ----------------------------##
 
 
 ##---------------------------- 3rd Party ----------------------------##
@@ -330,6 +330,30 @@ target_link_libraries(${TEST_UTILS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS})
 target_compile_options(${TEST_UTILS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 
 
+##------------------------------ Dolce ------------------------------##
+set(DOLCE_PROJECT_NAME Dolce)
+set(DOLCE_PROJECT_DIR "${CELESTE_DIR}/${DOLCE_PROJECT_NAME}")
+set(DOLCE_HEADER_DIRS 
+    ${GLEW_PROJET_DIR}/include 
+    ${GLFW_PROJECT_DIR}/include 
+    ${LUA_PROJECT_DIR}/src
+    ${LUA_PROJECT_DIR}/build    #for luaconf.h
+    ${SOL2_PROJECT_DIR}/include)
+set(DOLCE_LIB_DIRS ${THIRD_PARTY_LIB_DIR})
+set(DOLCE_LIBS 
+    opengl32.lib 
+    ${GLEW_PROJECT_NAME}.lib 
+    ${GLFW_PROJECT_NAME}.lib 
+    ${LUA_PROJECT_NAME}.lib)
+
+add_subdirectory(${DOLCE_PROJECT_DIR} ${DOLCE_PROJECT_DIR}/Build ${EXCLUDE})
+
+set_target_properties(${DOLCE_PROJECT_NAME} PROPERTIES 
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
+
+
 ##------------------------------ Celeste ------------------------------##
 set(CELESTE_PROJECT_NAME Celeste)
 set(CELESTE_PROJECT_DIR ${CELESTE_DIR}/${CELESTE_PROJECT_NAME})
@@ -352,12 +376,14 @@ set_target_properties(${CELESTE_PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
     CXX_STANDARD 17)
 
-target_include_directories(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_INCLUDES} ${CELESTE_PROJECT_DIR}/Include)
-target_link_directories(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR})
-target_link_libraries(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS})
+target_include_directories(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_INCLUDES} ${DOLCE_PROJECT_DIR}/Include ${CELESTE_PROJECT_DIR}/Include)
+target_link_directories(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
+target_link_libraries(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS} ${DOLCE_PROJECT_NAME}.lib)
 
 target_compile_options(${CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 target_compile_definitions(${CELESTE_PROJECT_NAME} PRIVATE -DBUILDING_CELESTE_ENGINE_DLL -DGLM_FORCE_SILENT_WARNINGS)
+
+add_dependencies(${CELESTE_PROJECT_NAME} ${DOLCE_PROJECT_NAME})
 
 
 ##------------------------------ Celeste Test Globals ------------------------------##
@@ -594,14 +620,23 @@ set_target_properties(${MCF_LIBRARY_PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
     CXX_STANDARD 17)
 
-target_include_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC ${THIRD_PARTY_INCLUDES} ${CELESTE_PROJECT_DIR}/Include ${MCF_DIR}/Include)
-target_link_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${MCF_LIBRARY_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS} ${CELESTE_PROJECT_NAME}.lib)
+target_include_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
+    ${THIRD_PARTY_INCLUDES} 
+    ${DOLCE_PROJECT_DIR}/Include
+    ${CELESTE_PROJECT_DIR}/Include 
+    ${MCF_DIR}/Include)
+target_link_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
+    ${THIRD_PARTY_LIB_DIR} 
+    ${PROJECT_BINARY_DIR})
+target_link_libraries(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
+    ${THIRD_PARTY_LIBS} 
+    ${DOLCE_PROJECT_NAME}.lib
+    ${CELESTE_PROJECT_NAME}.lib)
 
 target_compile_options(${MCF_LIBRARY_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 target_compile_definitions(${MCF_LIBRARY_PROJECT_NAME} PRIVATE -DBUILDING_MCF_LIBRARY_DLL -DGLM_FORCE_SILENT_WARNINGS)
 
-add_dependencies(${MCF_LIBRARY_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
+add_dependencies(${MCF_LIBRARY_PROJECT_NAME} ${DOLCE_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
 
 
 ##------------------------------ Test Modern Cocoa Farmer Library Project ------------------------------##
@@ -677,13 +712,23 @@ set_target_properties(${MCF_PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17
     VS_DEBUGGER_WORKING_DIRECTORY ${MCF_DIR})
 
-target_include_directories(${MCF_PROJECT_NAME} PUBLIC ${THIRD_PARTY_INCLUDES} ${CELESTE_PROJECT_DIR}/Include ${MCF_DIR}/Include)
-target_link_directories(${MCF_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${MCF_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS} ${CELESTE_PROJECT_NAME}.lib ${MCF_LIBRARY_PROJECT_NAME}.lib)
+target_include_directories(${MCF_PROJECT_NAME} PUBLIC 
+    ${THIRD_PARTY_INCLUDES} 
+    ${DOLCE_PROJECT_DIR}/Include
+    ${CELESTE_PROJECT_DIR}/Include 
+    ${MCF_DIR}/Include)
+target_link_directories(${MCF_PROJECT_NAME} PUBLIC 
+    ${THIRD_PARTY_LIB_DIR} 
+    ${PROJECT_BINARY_DIR})
+target_link_libraries(${MCF_PROJECT_NAME} PUBLIC 
+    ${THIRD_PARTY_LIBS} 
+    ${DOLCE_PROJECT_NAME}.lib
+    ${CELESTE_PROJECT_NAME}.lib 
+    ${MCF_LIBRARY_PROJECT_NAME}.lib)
 
 target_compile_options(${CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 
-add_dependencies(${MCF_PROJECT_NAME} ${MCF_LIBRARY_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
+add_dependencies(${MCF_PROJECT_NAME} ${DOLCE_PROJECT_NAME} ${CELESTE_PROJECT_NAME} ${MCF_LIBRARY_PROJECT_NAME})
 
 
 set(MCF_FOLDER_NAME "Modern Cocoa Farmer")

@@ -15,6 +15,9 @@
 *Log.txt
 *Profiler.txt
 
+# Dolce Files
+*imgui.ini
+
 # MCF files
 AppData/
 
