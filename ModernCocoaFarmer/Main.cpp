@@ -1,4 +1,4 @@
-#include "Game/MCFGame.h"
+#include "MCFGame.h"
 #include "UtilityHeaders/PlatformHeaders.h"
 
 // Disables console window

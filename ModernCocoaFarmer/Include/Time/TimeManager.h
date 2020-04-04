@@ -21,9 +21,9 @@ namespace MCF::Time
     public:
       using TimeEvent = Celeste::Event<>;
 
-      void update(float elapsedGameTime);
+      MCFLibraryDllExport void update(float elapsedGameTime);
 
-      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
       bool isPaused() const { return m_paused; }
       void setPaused(bool isPaused) { m_paused = isPaused; }

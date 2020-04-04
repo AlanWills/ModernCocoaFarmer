@@ -24,6 +24,7 @@ ENDIF()
 set(MCF_BUILDS_DIR ${PROJECT_SOURCE_DIR}/Build/${CMAKE_VS_PLATFORM_NAME})
 set(MCF_DIR ${PROJECT_SOURCE_DIR}/${CMAKE_PROJECT_NAME})
 set(CELESTE_DIR ${PROJECT_SOURCE_DIR}/Celeste)
+set(THIRD_PARTY_FOLDER "3rd Party")
 set(THIRD_PARTY_DIR ${CELESTE_DIR}/3rdParty)
 set(THIRD_PARTY_LIB_DIR ${THIRD_PARTY_DIR}/lib/${CMAKE_VS_PLATFORM_NAME})
 set(THIRD_PARTY_DLL_DIR ${THIRD_PARTY_DIR}/dll/${CMAKE_VS_PLATFORM_NAME})
@@ -153,6 +154,7 @@ set(GLEW_PROJECT_DIR "${THIRD_PARTY_DIR}/glew")
 add_subdirectory(${GLEW_PROJECT_DIR} ${GLEW_PROJECT_DIR}/build ${EXCLUDE})
 
 set_target_properties(${GLEW_PROJECT_NAME} PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 ##---------------------------- end glew ----------------------------##
@@ -164,11 +166,12 @@ set(GLFW_PROJECT_DIR "${THIRD_PARTY_DIR}/glfw")
 
 add_subdirectory(${GLFW_PROJECT_DIR} ${GLFW_PROJECT_DIR}/build ${EXCLUDE})
 
-#set_target_properties(${GLFW_PROJECT_NAME} PROPERTIES 
-#    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-#    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-#    OUTPUT_NAME ${GLFW_PROJECT_NAME}
-#    ARCHIVE_OUTPUT_NAME ${GLFW_PROJECT_NAME})
+set_target_properties(glfw PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
+    OUTPUT_NAME ${GLFW_PROJECT_NAME}
+    ARCHIVE_OUTPUT_NAME ${GLFW_PROJECT_NAME})
 ##---------------------------- end glfw ----------------------------##
 
 
@@ -186,7 +189,8 @@ set(LUA_PROJECT_DIR "${THIRD_PARTY_DIR}/lua")
 
 add_subdirectory(${LUA_PROJECT_DIR} ${LUA_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(liblua PROPERTIES 
+set_target_properties(liblua PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 #---------------------------- end lua ----------------------------##
@@ -259,12 +263,12 @@ set(THIRD_PARTY_LIBS
     ${CURLPP_PROJECT_NAME}.lib
 	${FREEALUT_PROJECT_NAME}.lib
     ${FREETYPE2_PROJECT_NAME}.lib
-    ${GLEW_PROJECT_NAME}.lib
-    ${GLFW_PROJECT_NAME}dll.lib
+    glew
+    glfw
     ${LIBCURL_PROJECT_NAME}.lib
 	${LUA_PROJECT_NAME}.lib
 	${OPENAL_SOFT_PROJECT_NAME}.lib
-    opengl32.lib
+    opengl32
     ${SOIL2_PROJECT_NAME}.lib
     ${TINYXML2_PROJECT_NAME}.lib)
 ##---------------------------- end 3rd Party ----------------------------##
@@ -331,32 +335,18 @@ target_compile_options(${TEST_UTILS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 
 
 ##------------------------------ Dolce ------------------------------##
-set(DOLCE_PROJECT_NAME Dolce)
-set(DOLCE_PROJECT_DIR "${CELESTE_DIR}/${DOLCE_PROJECT_NAME}")
-set(DOLCE_HEADER_DIRS 
-    ${GLEW_PROJET_DIR}/include 
-    ${GLFW_PROJECT_DIR}/include 
-    ${LUA_PROJECT_DIR}/src
-    ${LUA_PROJECT_DIR}/build    #for luaconf.h
-    ${SOL2_PROJECT_DIR}/include)
-set(DOLCE_LIB_DIRS ${THIRD_PARTY_LIB_DIR})
-set(DOLCE_LIBS 
-    opengl32.lib 
-    ${GLEW_PROJECT_NAME}.lib 
-    ${GLFW_PROJECT_NAME}.lib 
-    ${LUA_PROJECT_NAME}.lib)
-
+set(DOLCE_PROJECT_DIR "${CELESTE_DIR}/Dolce")
 add_subdirectory(${DOLCE_PROJECT_DIR} ${DOLCE_PROJECT_DIR}/Build ${EXCLUDE})
 
-set_target_properties(${DOLCE_PROJECT_NAME} PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
+
+##------------------------------ DolceLua ------------------------------##
+set(DOLCE_LUA_PROJECT_DIR "${CELESTE_DIR}/DolceLua")
+add_subdirectory(${DOLCE_LUA_PROJECT_DIR} ${DOLCE_LUA_PROJECT_DIR}/Build ${EXCLUDE})
 
 
 ##------------------------------ Celeste ------------------------------##
 set(CELESTE_PROJECT_NAME Celeste)
-set(CELESTE_PROJECT_DIR ${CELESTE_DIR}/${CELESTE_PROJECT_NAME})
+set(CELESTE_PROJECT_DIR ${CELESTE_DIR}/Celeste)
 
 file(GLOB_RECURSE SOURCE_FILES ${CELESTE_PROJECT_DIR}/Source/*.c ${CELESTE_PROJECT_DIR}/Source/*.cpp)
 file(GLOB_RECURSE HEADER_FILES ${CELESTE_PROJECT_DIR}/Include/*.h ${CELESTE_PROJECT_DIR}/Include/*.hpp)
@@ -366,24 +356,33 @@ source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${SOURCE_FILES})
 source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${HEADER_FILES})
 source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${RES_FILES})
 
-add_library(${CELESTE_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
+add_library(Celeste SHARED ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
 
 set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
 
-set_target_properties(${CELESTE_PROJECT_NAME} PROPERTIES 
-    FOLDER ${CELESTE_PROJECT_NAME}
+set_target_properties(Celeste PROPERTIES 
+    FOLDER Celeste
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
     LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
     CXX_STANDARD 17)
 
-target_include_directories(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_INCLUDES} ${DOLCE_PROJECT_DIR}/Include ${CELESTE_PROJECT_DIR}/Include)
-target_link_directories(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS} ${DOLCE_PROJECT_NAME}.lib)
+target_include_directories(Celeste PUBLIC 
+	${THIRD_PARTY_INCLUDES}
+	${CELESTE_PROJECT_DIR}/Include)
 
-target_compile_options(${CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${CELESTE_PROJECT_NAME} PRIVATE -DBUILDING_CELESTE_ENGINE_DLL -DGLM_FORCE_SILENT_WARNINGS)
+target_link_directories(Celeste PUBLIC ${THIRD_PARTY_LIB_DIR})
 
-add_dependencies(${CELESTE_PROJECT_NAME} ${DOLCE_PROJECT_NAME})
+target_link_libraries(Celeste PUBLIC 
+	${THIRD_PARTY_LIBS}
+    Dolce)
+
+target_compile_options(Celeste PRIVATE /MP4 /W4 /WX)
+target_compile_definitions(Celeste PUBLIC -DGLM_FORCE_SILENT_WARNINGS PRIVATE -DBUILDING_CELESTE_ENGINE_DLL)
+
+
+##------------------------------ CelesteLua ------------------------------##
+set(CELESTE_LUA_PROJECT_DIR "${CELESTE_DIR}/CelesteLua")
+add_subdirectory(${CELESTE_LUA_PROJECT_DIR} ${CELESTE_LUA_PROJECT_DIR}/Build ${EXCLUDE})
 
 
 ##------------------------------ Celeste Test Globals ------------------------------##
@@ -622,7 +621,6 @@ set_target_properties(${MCF_LIBRARY_PROJECT_NAME} PROPERTIES
 
 target_include_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
     ${THIRD_PARTY_INCLUDES} 
-    ${DOLCE_PROJECT_DIR}/Include
     ${CELESTE_PROJECT_DIR}/Include 
     ${MCF_DIR}/Include)
 target_link_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
@@ -630,13 +628,12 @@ target_link_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC
     ${PROJECT_BINARY_DIR})
 target_link_libraries(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
     ${THIRD_PARTY_LIBS} 
-    ${DOLCE_PROJECT_NAME}.lib
-    ${CELESTE_PROJECT_NAME}.lib)
+    Celeste)
 
 target_compile_options(${MCF_LIBRARY_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${MCF_LIBRARY_PROJECT_NAME} PRIVATE -DBUILDING_MCF_LIBRARY_DLL -DGLM_FORCE_SILENT_WARNINGS)
+target_compile_definitions(${MCF_LIBRARY_PROJECT_NAME} PRIVATE -DBUILDING_MCF_LIBRARY_DLL)
 
-add_dependencies(${MCF_LIBRARY_PROJECT_NAME} ${DOLCE_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
+add_dependencies(${MCF_LIBRARY_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
 
 
 ##------------------------------ Test Modern Cocoa Farmer Library Project ------------------------------##
@@ -678,7 +675,8 @@ target_link_libraries(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC
     ${CELESTE_TEST_UTILS_PROJECT_NAME}.lib
     ${CELESTE_MOCKS_PROJECT_NAME}.lib
     ${CELESTE_TEST_RESOURCES_PROJECT_NAME}.lib
-    ${MCF_LIBRARY_PROJECT_NAME}.lib)
+    ${MCF_LIBRARY_PROJECT_NAME}.lib
+    CelesteLua)
 
 target_compile_options(${TEST_MCF_LIBRARY_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 target_compile_definitions(${TEST_MCF_LIBRARY_PROJECT_NAME} PRIVATE -DGLM_FORCE_SILENT_WARNINGS)
@@ -693,6 +691,11 @@ add_dependencies(
     ${MCF_LIBRARY_PROJECT_NAME})
 
 
+##------------------------------ ModernCocoaFarmerLua ------------------------------##
+set(MCF_LUA_PROJECT_DIR "${PROJECT_SOURCE_DIR}/ModernCocoaFarmerLua")
+add_subdirectory(${MCF_LUA_PROJECT_DIR} ${MCF_LUA_PROJECT_DIR}/Build ${EXCLUDE})
+
+
 ##------------------------------ Modern Cocoa Farmer Project ------------------------------##
 set(MCF_PROJECT_NAME ModernCocoaFarmer)
 
@@ -702,7 +705,7 @@ file(GLOB_RECURSE CELESTE_RES_FILES ${CELESTE_PROJECT_DIR}/Resources/*.*)
 source_group(TREE ${MCF_DIR} FILES ${RES_FILES})
 source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${CELESTE_RES_FILES})
 
-add_executable(${MCF_PROJECT_NAME} ${MCF_DIR}/Main.cpp ${RES_FILES} ${CELESTE_RES_FILES})
+add_executable(${MCF_PROJECT_NAME} ${MCF_DIR}/Main.cpp ${MCF_DIR}/MCFGame.cpp ${MCF_DIR}/MCFGame.h ${RES_FILES} ${CELESTE_RES_FILES})
 
 set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
 
@@ -714,7 +717,6 @@ set_target_properties(${MCF_PROJECT_NAME} PROPERTIES
 
 target_include_directories(${MCF_PROJECT_NAME} PUBLIC 
     ${THIRD_PARTY_INCLUDES} 
-    ${DOLCE_PROJECT_DIR}/Include
     ${CELESTE_PROJECT_DIR}/Include 
     ${MCF_DIR}/Include)
 target_link_directories(${MCF_PROJECT_NAME} PUBLIC 
@@ -722,22 +724,20 @@ target_link_directories(${MCF_PROJECT_NAME} PUBLIC
     ${PROJECT_BINARY_DIR})
 target_link_libraries(${MCF_PROJECT_NAME} PUBLIC 
     ${THIRD_PARTY_LIBS} 
-    ${DOLCE_PROJECT_NAME}.lib
-    ${CELESTE_PROJECT_NAME}.lib 
-    ${MCF_LIBRARY_PROJECT_NAME}.lib)
+    ${CELESTE_PROJECT_NAME}.lib
+    Dolce
+    DolceLua
+    Celeste
+    CelesteLua
+    ModernCocoaFarmerLibrary
+    ModernCocoaFarmerLua)
 
 target_compile_options(${CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 
-add_dependencies(${MCF_PROJECT_NAME} ${DOLCE_PROJECT_NAME} ${CELESTE_PROJECT_NAME} ${MCF_LIBRARY_PROJECT_NAME})
+add_dependencies(${MCF_PROJECT_NAME} ${CELESTE_PROJECT_NAME} ${MCF_LIBRARY_PROJECT_NAME})
 
 
 set(MCF_FOLDER_NAME "Modern Cocoa Farmer")
 set_target_properties(${MCF_PROJECT_NAME} PROPERTIES FOLDER ${MCF_FOLDER_NAME})
 set_target_properties(${MCF_LIBRARY_PROJECT_NAME} PROPERTIES FOLDER ${MCF_FOLDER_NAME})
 set_target_properties(${TEST_MCF_LIBRARY_PROJECT_NAME} PROPERTIES FOLDER ${MCF_FOLDER_NAME}/Tests)
-
-#add_custom_command(
-#	TARGET ${PROJECT_NAME}
-#	PRE_BUILD
-#	COMMAND call "$(ProjectDir)Build Events/CopyDependencyFiles.bat" "$(TargetDir)" $(Configuration) $(Platform)
-#	VERBATIM)

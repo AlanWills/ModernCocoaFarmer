@@ -52,22 +52,22 @@ namespace MCF::Locations
     public:
       using LocationActivatedEvent = Celeste::Event<Location&>;
 
-      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
       size_t getNumLocations() const { return m_locations.size(); }
-      observer_ptr<Location> findLocation(const std::string& locationName) const;
+      MCFLibraryDllExport observer_ptr<Location> findLocation(const std::string& locationName) const;
 
       const LocationActivatedEvent& getOnLocationActivatedEvent() const { return m_onLocationActivatedEvent; }
 
-      void activateLocation(Location& location);
-      void onDayPassed();
+      MCFLibraryDllExport void activateLocation(Location& location);
+      MCFLibraryDllExport void onDayPassed();
 
-      void checkLocationsForChildrenArriving(
+      MCFLibraryDllExport void checkLocationsForChildrenArriving(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
         Notifications::NotificationManager& notificationManager);
 
-      void checkLocationsForChildrenLeaving(
+      MCFLibraryDllExport void checkLocationsForChildrenLeaving(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
         Notifications::NotificationManager& notificationManager);

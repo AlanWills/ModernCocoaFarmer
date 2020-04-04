@@ -40,22 +40,22 @@ namespace MCF::GameEvents
     DECLARE_SCRIPTABLE_OBJECT(GameEventManager, MCFLibraryDllExport);
 
     public:
-      void registerGameEvent(std::unique_ptr<const GameEvent>&& gameEvent);
+      MCFLibraryDllExport void registerGameEvent(std::unique_ptr<const GameEvent>&& gameEvent);
 
       observer_ptr<Family::FamilyManager> getFamilyManager() const { return m_familyManager; }
-      void setFamilyManager(observer_ptr<Family::FamilyManager> familyManager);
+      MCFLibraryDllExport void setFamilyManager(observer_ptr<Family::FamilyManager> familyManager);
 
       observer_ptr<Time::TimeManager> getTimeManager() const { return m_timeManager; }
-      void setTimeManager(observer_ptr<Time::TimeManager> timeManager);
+      MCFLibraryDllExport void setTimeManager(observer_ptr<Time::TimeManager> timeManager);
 
       observer_ptr<Money::MoneyManager> getMoneyManager() const { return m_moneyManager; }
-      void setMoneyManager(observer_ptr<Money::MoneyManager> moneyManager);
+      MCFLibraryDllExport void setMoneyManager(observer_ptr<Money::MoneyManager> moneyManager);
 
       observer_ptr<Locations::LocationsManager> getLocationsManager() const { return m_locationsManager; }
-      void setLocationsManager(observer_ptr<Locations::LocationsManager> locationsManager);
+      MCFLibraryDllExport void setLocationsManager(observer_ptr<Locations::LocationsManager> locationsManager);
 
       observer_ptr<Notifications::NotificationManager> getNotificationManager() const { return m_notificationManager; }
-      void setNotificationManager(observer_ptr<Notifications::NotificationManager> notificationManager);
+      MCFLibraryDllExport void setNotificationManager(observer_ptr<Notifications::NotificationManager> notificationManager);
 
       static const char* const GAME_EVENTS_ELEMENT_NAME;
       static const char* const GAME_EVENT_ELEMENT_NAME;

@@ -35,24 +35,24 @@ namespace MCF::Family
     public:
       using ChildAddedEvent = Celeste::Event<Child&>;
 
-      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
       size_t getChildCount() const { return m_children.size(); }
-      observer_ptr<Child> getChild(size_t childIndex) const;
-      observer_ptr<Child> findChild(const std::string& name) const;
+      MCFLibraryDllExport observer_ptr<Child> getChild(size_t childIndex) const;
+      MCFLibraryDllExport observer_ptr<Child> findChild(const std::string& name) const;
 
-      bool hasSelectedChild() const;
-      observer_ptr<Child> getSelectedChild();
+      MCFLibraryDllExport bool hasSelectedChild() const;
+      MCFLibraryDllExport observer_ptr<Child> getSelectedChild();
 
-      void addChild();
-      void selectOnlyThisChild(Child& childToSelect);
-      void deselectOnlyThisChild(Child& childToSelect);
+      MCFLibraryDllExport void addChild();
+      MCFLibraryDllExport void selectOnlyThisChild(Child& childToSelect);
+      MCFLibraryDllExport void deselectOnlyThisChild(Child& childToSelect);
 
-      void applyHealthModifier(const Stats::Modifier& modifier);
-      void applySafetyModifier(const Stats::Modifier& modifier);
-      void applyEducationModifier(const Stats::Modifier& modifier);
-      void applyHappinessModifier(const Stats::Modifier& modifier);
-      void applyDailyModifiers();
+      MCFLibraryDllExport void applyHealthModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applySafetyModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyEducationModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyHappinessModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyDailyModifiers();
 
       Children::iterator begin() { return m_children.begin(); }
       Children::iterator end() { return m_children.end(); }

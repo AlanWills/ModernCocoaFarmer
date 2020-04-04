@@ -71,18 +71,18 @@ namespace MCF::Locations
       inline const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
 
       inline unsigned int getDaysToComplete() const { return m_daysToComplete.getValue(); }
-      unsigned int getChildTime(const std::string& childName) const;
+      MCFLibraryDllExport unsigned int getChildTime(const std::string& childName) const;
 
-      void sendChild(Family::Child& child);
-      void onDayPassed();
+      MCFLibraryDllExport void sendChild(Family::Child& child);
+      MCFLibraryDllExport void onDayPassed();
 
-      void checkForChildrenArriving(
+      MCFLibraryDllExport void checkForChildrenArriving(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
         Locations::LocationsManager& locationsManager,
         Notifications::NotificationManager& notificationManager);
 
-      void checkForChildrenLeaving(
+      MCFLibraryDllExport void checkForChildrenLeaving(
         Money::MoneyManager& moneyManager,
         Family::FamilyManager& familyManager,
         Locations::LocationsManager& locationsManager,

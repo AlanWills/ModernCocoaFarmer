@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "Persistence/DataStore.h"
 
 
@@ -8,9 +9,9 @@ namespace MCF::Persistence
   class DataObjectHandle
   {
     public:
-      DataObjectHandle(DataStore& dataStore, const std::string& key);
+      MCFLibraryDllExport DataObjectHandle(DataStore& dataStore, const std::string& key);
 
-      bool has(const std::string& elementKey) const;
+      MCFLibraryDllExport bool has(const std::string& elementKey) const;
 
       template <typename T>
       bool is(const std::string& elementKey) const;
@@ -22,7 +23,7 @@ namespace MCF::Persistence
       bool set(const std::string& elementKey, T value);
 
     private:
-      std::string createFormattedElementKey(const std::string & elementKey) const;
+      MCFLibraryDllExport std::string createFormattedElementKey(const std::string & elementKey) const;
 
       DataStore& m_dataStore;
       std::string m_key;

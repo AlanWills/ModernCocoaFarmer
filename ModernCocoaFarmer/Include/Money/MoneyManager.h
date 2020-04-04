@@ -24,17 +24,17 @@ namespace MCF::Money
     public:
       using MoneyChangedEvent = Celeste::Event<int>;
 
-      void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
       int getMoney() const { return m_money.getValue(); }
-      void setMoney(int money);
+      MCFLibraryDllExport void setMoney(int money);
 
       unsigned int getSalaryLevel() const { return m_salaryLevel.getValue(); }
-      void setSalaryLevel(unsigned int salaryLevel);
+      MCFLibraryDllExport void setSalaryLevel(unsigned int salaryLevel);
       void incrementSalaryLevel() { setSalaryLevel(getSalaryLevel() + 1); }
       void decrementSalaryLevel() { if (getSalaryLevel() > 0) { setSalaryLevel(getSalaryLevel() - 1); } }
 
-      void applyMoneyModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyMoneyModifier(const Stats::Modifier& modifier);
 
       static const char* const MONEY_ATTRIBUTE_NAME;
       static const char* const SALARY_LEVEL_ATTRIBUTE_NAME;

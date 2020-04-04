@@ -1,5 +1,6 @@
 #pragma once
 
+#include "MCFLibraryDllExport.h"
 #include "Persistence/DataStore.h"
 
 
@@ -8,10 +9,10 @@ namespace MCF::Persistence
   class DataArrayHandle
   {
   public:
-    DataArrayHandle(DataStore& dataStore, const std::string& key);
+    MCFLibraryDllExport DataArrayHandle(DataStore& dataStore, const std::string& key);
 
     unsigned int getSize() const { return m_size; }
-    void setSize(unsigned int size);
+    MCFLibraryDllExport void setSize(unsigned int size);
 
     template <typename T>
     bool is(unsigned int index) const;

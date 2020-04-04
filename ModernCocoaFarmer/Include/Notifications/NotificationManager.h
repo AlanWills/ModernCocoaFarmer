@@ -16,7 +16,7 @@ namespace MCF::Notifications
     public:
       using NotificationSentEvent = Celeste::Event<const Notification&>;
 
-      void sendNotification(const Notification& notification) const;
+      MCFLibraryDllExport void sendNotification(const Notification& notification) const;
 
       const NotificationSentEvent& getNotificationSentEvent() const { return m_onNotificationSentEvent; }
 

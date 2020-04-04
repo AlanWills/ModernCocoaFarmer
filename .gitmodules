@@ -1,3 +1,6 @@
 [submodule "Celeste"]
 	path = Celeste
 	url = https://github.com/AlanWills/Celeste.git
+[submodule "ModernCocoaFarmerLua"]
+	path = ModernCocoaFarmerLua
+	url = https://github.com/AlanWills/ModernCocoaFarmerLua.git

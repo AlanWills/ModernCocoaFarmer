@@ -1,6 +1,7 @@
-#include "Game/MCFGame.h"
+#include "MCFGame.h"
 #include "Lua/LuaState.h"
-#include "Lua/ScriptCommands/MCFScriptCommands.h"
+#include "ScriptCommands/CelesteScriptCommands.h"
+#include "ScriptCommands/MCFScriptCommands.h"
 
 
 namespace MCF
@@ -20,7 +21,9 @@ namespace MCF
   {
     Inherited::onInitialize();
 
-    // Set up game specific script commands
-    MCF::Lua::MCFScriptCommands::initialize();
+    sol::state& state = Celeste::Lua::LuaState::instance();
+
+    Celeste::Lua::CelesteScriptCommands::initialize(state);
+    MCF::Lua::MCFScriptCommands::initialize(state);
   }
 }

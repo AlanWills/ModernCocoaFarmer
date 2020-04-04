@@ -29,10 +29,10 @@ namespace MCF::Family
       float getHappiness() const { return m_happiness.getValue(); }
       void setHappiness(float happiness) { m_happiness.setValue(happiness); }
 
-      void applyHealthModifier(const Stats::Modifier& modifier);
-      void applyEducationModifier(const Stats::Modifier& modifier);
-      void applySafetyModifier(const Stats::Modifier& modifier);
-      void applyHappinessModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyHealthModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyEducationModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applySafetyModifier(const Stats::Modifier& modifier);
+      MCFLibraryDllExport void applyHappinessModifier(const Stats::Modifier& modifier);
 
       bool isAtLocation() const { return !m_currentLocation.empty(); }
       const std::string& getCurrentLocation() const { return m_currentLocation; }
