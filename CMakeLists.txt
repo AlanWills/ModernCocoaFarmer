@@ -32,61 +32,53 @@ set(THIRD_PARTY_DLL_DIR ${THIRD_PARTY_DIR}/dll/${CMAKE_VS_PLATFORM_NAME})
 
 
 ##---------------------------- assimp ----------------------------##
-set(ASSIMP_PROJECT_NAME assimp)
 set(ASSIMP_PROJECT_DIR "${THIRD_PARTY_DIR}/assimp")
-
 add_subdirectory(${ASSIMP_PROJECT_DIR} ${ASSIMP_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${ASSIMP_PROJECT_NAME} PROPERTIES 
+set_target_properties(assimp PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-    OUTPUT_NAME ${ASSIMP_PROJECT_NAME}
-    ARCHIVE_OUTPUT_NAME ${ASSIMP_PROJECT_NAME})
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
+
+set_target_properties(IrrXML PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
+
+set_target_properties(zlibstatic PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
 #---------------------------- end freealut ----------------------------##
 
 
 ##---------------------------- crossguid ----------------------------##
-set(CROSSGUID_PROJECT_NAME crossguid)
 set(CROSSGUID_PROJECT_DIR "${THIRD_PARTY_DIR}/crossguid")
+add_subdirectory(${CROSSGUID_PROJECT_DIR} ${CROSSGUID_PROJECT_DIR}/build ${EXCLUDE})
 
-# This doesn't seem to work for crossguid
-# Follow instructions in the readme
-
-#add_subdirectory(${CROSSGUID_PROJECT_DIR} ${CROSSGUID_PROJECT_DIR}/build ${EXCLUDE})
-
-#set_target_properties(${CROSSGUID_PROJECT_NAME} PROPERTIES 
-#    RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
-#    LIBRARY_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-#    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-#    OUTPUT_NAME ${CROSSGUID_PROJECT_NAME}
-#    ARCHIVE_OUTPUT_NAME ${CROSSGUID_PROJECT_NAME}
-#    DEBUG_POSTFIX "")
+set_target_properties(crossguid PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
+    RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 ##---------------------------- end curl ----------------------------##
 
 
 ##---------------------------- curl ----------------------------##
-set(LIBCURL_PROJECT_NAME libcurl)
 set(CURL_PROJECT_DIR "${THIRD_PARTY_DIR}/curl")
-
 add_subdirectory(${CURL_PROJECT_DIR} ${CURL_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${LIBCURL_PROJECT_NAME} PROPERTIES 
+set_target_properties(libcurl PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-    OUTPUT_NAME ${LIBCURL_PROJECT_NAME}
-    ARCHIVE_OUTPUT_NAME ${LIBCURL_PROJECT_NAME})
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 ##---------------------------- end curl ----------------------------##
 
 
 ##---------------------------- curlpp ----------------------------##
-set(CURLPP_PROJECT_NAME curlpp)
 set(CURLPP_PROJECT_DIR "${THIRD_PARTY_DIR}/curlpp")
 set(CURL_INCLUDE_DIR ${CURL_PROJECT_DIR}/include)
-set(CURL_LIBRARY ${THIRD_PARTY_LIB_DIR}/${CMAKE_BUILD_TYPE}/${LIBCURL_PROJECT_NAME}.lib)
+set(CURL_LIBRARY ${THIRD_PARTY_LIB_DIR}/${CMAKE_BUILD_TYPE}/libcurl.lib)
 
 add_subdirectory(${CURLPP_PROJECT_DIR} ${CURLPP_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${CURLPP_PROJECT_NAME} PROPERTIES 
+set_target_properties(curlpp PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 ##---------------------------- end curlpp ----------------------------##
@@ -94,7 +86,6 @@ set_target_properties(${CURLPP_PROJECT_NAME} PROPERTIES
 
 ##---------------------------- dirent ----------------------------##
 set(DIRENT_PROJECT_DIR "${THIRD_PARTY_DIR}/dirent")
-
 add_subdirectory(${DIRENT_PROJECT_DIR} ${DIRENT_PROJECT_DIR}/build ${EXCLUDE})
 ##---------------------------- end dirent ----------------------------##
 
@@ -109,51 +100,55 @@ set(SWSCALE_PROJECT_NAME swscale)
 
 
 ##---------------------------- openal-soft ----------------------------##
-set(OPENAL_SOFT_PROJECT_NAME OpenAL32)
 set(OPENAL_SOFT_PROJECT_DIR "${THIRD_PARTY_DIR}/openal-soft")
 set(OPENAL_INCLUDE_DIR ${OPENAL_SOFT_PROJECT_DIR}/include/AL)
-set(OPENAL_LIBRARY ${THIRD_PARTY_LIB_DIR}/${CMAKE_BUILD_TYPE}/${OPENAL_SOFT_PROJECT_NAME}.lib)
+set(OPENAL_LIBRARY ${THIRD_PARTY_LIB_DIR}/${CMAKE_BUILD_TYPE}/OpenAL32.lib)
 
 add_subdirectory(${OPENAL_SOFT_PROJECT_DIR} ${OPENAL_SOFT_PROJECT_DIR}/build ${EXCLUDE})
 
 set_target_properties(OpenAL PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
+
+set_target_properties(build_version PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
+
+set_target_properties(common PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
+
+set_target_properties(native-tools PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
 #---------------------------- end openal-soft ----------------------------##
 
 
 ##---------------------------- freealut ----------------------------##
-set(FREEALUT_PROJECT_NAME alut)
 set(FREEALUT_PROJECT_DIR "${THIRD_PARTY_DIR}/freealut")
-
 add_subdirectory(${FREEALUT_PROJECT_DIR} ${FREEALUT_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${FREEALUT_PROJECT_NAME} PROPERTIES 
+set_target_properties(alut PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 #---------------------------- end freealut ----------------------------##
 
 
 ##---------------------------- freetype2 ----------------------------##
-set(FREETYPE2_PROJECT_NAME freetype)
 set(FREETYPE2_PROJECT_DIR "${THIRD_PARTY_DIR}/freetype2")
-
 add_subdirectory(${FREETYPE2_PROJECT_DIR} ${FREETYPE2_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${FREETYPE2_PROJECT_NAME} PROPERTIES 
+set_target_properties(freetype PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-    DEBUG_POSTFIX "")
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 #---------------------------- end freetype2 ----------------------------##
 
 
 ##---------------------------- glew ----------------------------##
-set(GLEW_PROJECT_NAME glew)
 set(GLEW_PROJECT_DIR "${THIRD_PARTY_DIR}/glew")
-
 add_subdirectory(${GLEW_PROJECT_DIR} ${GLEW_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${GLEW_PROJECT_NAME} PROPERTIES 
+set_target_properties(glew PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
@@ -161,32 +156,24 @@ set_target_properties(${GLEW_PROJECT_NAME} PROPERTIES
 
 
 ##---------------------------- glfw ----------------------------##
-set(GLFW_PROJECT_NAME glfw3)
 set(GLFW_PROJECT_DIR "${THIRD_PARTY_DIR}/glfw")
-
 add_subdirectory(${GLFW_PROJECT_DIR} ${GLFW_PROJECT_DIR}/build ${EXCLUDE})
 
 set_target_properties(glfw PROPERTIES
     FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-    OUTPUT_NAME ${GLFW_PROJECT_NAME}
-    ARCHIVE_OUTPUT_NAME ${GLFW_PROJECT_NAME})
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 ##---------------------------- end glfw ----------------------------##
 
 
 ##---------------------------- glm ----------------------------##
-set(GLM_PROJECT_NAME glm)
 set(GLM_PROJECT_DIR "${THIRD_PARTY_DIR}/glm")
-
 add_subdirectory(${GLM_PROJECT_DIR} ${GLM_PROJECT_DIR}/build ${EXCLUDE})
 ##---------------------------- end glm ----------------------------##
 
 
 ##---------------------------- lua ----------------------------##
-set(LUA_PROJECT_NAME lua)
 set(LUA_PROJECT_DIR "${THIRD_PARTY_DIR}/lua")
-
 add_subdirectory(${LUA_PROJECT_DIR} ${LUA_PROJECT_DIR}/build ${EXCLUDE})
 
 set_target_properties(liblua PROPERTIES
@@ -197,80 +184,47 @@ set_target_properties(liblua PROPERTIES
 
 
 ##---------------------------- SOIL2 ----------------------------##
-set(SOIL2_PROJECT_NAME SOIL2)
 set(SOIL2_PROJECT_DIR "${THIRD_PARTY_DIR}/SOIL2")
-
 add_subdirectory(${SOIL2_PROJECT_DIR} ${SOIL2_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(${SOIL2_PROJECT_NAME} PROPERTIES 
+set_target_properties(SOIL2 PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 #---------------------------- end lua ----------------------------##
 
 
 ##---------------------------- sol2 ----------------------------##
-set(SOL2_PROJECT_NAME sol2)
 set(SOL2_PROJECT_DIR "${THIRD_PARTY_DIR}/sol2")
-
 add_subdirectory(${SOL2_PROJECT_DIR} ${SOL2_PROJECT_DIR}/build ${EXCLUDE})
 #---------------------------- end sol2 ----------------------------##
 
 
 ##---------------------------- tinyxml2 ----------------------------##
-set(TINYXML2_PROJECT_NAME tinyxml2)
 set(TINYXML2_PROJECT_DIR "${THIRD_PARTY_DIR}/tinyxml2")
-
 add_subdirectory(${TINYXML2_PROJECT_DIR} ${TINYXML2_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(tinyxml2 PROPERTIES 
+set_target_properties(tinyxml2 PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
-    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR}
-    OUTPUT_NAME ${TINYXML2_PROJECT_NAME}
-    ARCHIVE_OUTPUT_NAME ${TINYXML2_PROJECT_NAME}
-    DEBUG_POSTFIX "")
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 #---------------------------- end tinyxml2 ----------------------------##
 
 
 ##---------------------------- 3rd Party ----------------------------##
-set(THIRD_PARTY_INCLUDES
-    ${ASSIMP_PROJECT_DIR}/include
-    ${ASSIMP_PROJECT_DIR}/build/include     #for config.h
-    ${CROSSGUID_PROJECT_DIR}/include
-    ${CURL_PROJECT_DIR}/include
-    ${CURLPP_PROJECT_DIR}/include
-    ${DIRENT_PROJECT_DIR}/include
-    ${FFMPEG_PROJECT_DIR}
-    ${FREEALUT_PROJECT_DIR}/include
-    ${FREETYPE2_PROJECT_DIR}/include
-    ${GLEW_PROJECT_DIR}/include
-    ${GLFW_PROJECT_DIR}/include
-    ${GLM_PROJECT_DIR}
-    ${LUA_PROJECT_DIR}/src
-    ${LUA_PROJECT_DIR}/build    #for luaconf.h
-    ${OPENAL_SOFT_PROJECT_DIR}/include
-    ${OPENAL_SOFT_PROJECT_DIR}/include/AL
-    ${SOL2_PROJECT_DIR}/include
-    ${SOIL2_PROJECT_DIR}/src
-    ${TINYXML2_PROJECT_DIR})
+#set(THIRD_PARTY_INCLUDES
+#     ${ASSIMP_PROJECT_DIR}/include
+#     ${ASSIMP_PROJECT_DIR}/build/include     #for config.h
+#     ${FFMPEG_PROJECT_DIR}
+#     ${OPENAL_SOFT_PROJECT_DIR}/include
+#     ${OPENAL_SOFT_PROJECT_DIR}/include/AL
+#     )
 
-set(THIRD_PARTY_LIBS
-	${AVCODEC_PROJECT_NAME}.lib
-    ${AVFORMAT_PROJECT_NAME}.lib
-	${AVUTIL_PROJECT_NAME}.lib
-    ${SWSCALE_PROJECT_NAME}.lib
-	${ASSIMP_PROJECT_NAME}.lib
-    ${CROSSGUID_PROJECT_NAME}.lib
-    ${CURLPP_PROJECT_NAME}.lib
-	${FREEALUT_PROJECT_NAME}.lib
-    ${FREETYPE2_PROJECT_NAME}.lib
-    glew
-    glfw
-    ${LIBCURL_PROJECT_NAME}.lib
-	${LUA_PROJECT_NAME}.lib
-	${OPENAL_SOFT_PROJECT_NAME}.lib
-    opengl32
-    ${SOIL2_PROJECT_NAME}.lib
-    ${TINYXML2_PROJECT_NAME}.lib)
+#set(THIRD_PARTY_LIBS
+#	${AVCODEC_PROJECT_NAME}.lib
+#    ${AVFORMAT_PROJECT_NAME}.lib
+#	${AVUTIL_PROJECT_NAME}.lib
+#    ${SWSCALE_PROJECT_NAME}.lib)
 ##---------------------------- end 3rd Party ----------------------------##
 
 
@@ -325,11 +279,9 @@ set_target_properties(${TEST_UTILS_PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
     CXX_STANDARD 17)
 
-target_include_directories(${TEST_UTILS_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES} 
-    ${TEST_UTILS_PROJECT_DIR}/Include)
+target_include_directories(${TEST_UTILS_PROJECT_NAME} PUBLIC ${TEST_UTILS_PROJECT_DIR}/Include)
 target_link_directories(${TEST_UTILS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${TEST_UTILS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS})
+#target_link_libraries(${TEST_UTILS_PROJECT_NAME} PUBLIC)
 
 target_compile_options(${TEST_UTILS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 
@@ -338,10 +290,20 @@ target_compile_options(${TEST_UTILS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 set(DOLCE_PROJECT_DIR "${CELESTE_DIR}/Dolce")
 add_subdirectory(${DOLCE_PROJECT_DIR} ${DOLCE_PROJECT_DIR}/Build ${EXCLUDE})
 
+set_target_properties(Dolce PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    CXX_STANDARD 17)
+
 
 ##------------------------------ DolceLua ------------------------------##
 set(DOLCE_LUA_PROJECT_DIR "${CELESTE_DIR}/DolceLua")
 add_subdirectory(${DOLCE_LUA_PROJECT_DIR} ${DOLCE_LUA_PROJECT_DIR}/Build ${EXCLUDE})
+
+set_target_properties(DolceLua PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    CXX_STANDARD 17)
 
 
 ##------------------------------ Celeste ------------------------------##
@@ -367,13 +329,29 @@ set_target_properties(Celeste PROPERTIES
     CXX_STANDARD 17)
 
 target_include_directories(Celeste PUBLIC 
-	${THIRD_PARTY_INCLUDES}
-	${CELESTE_PROJECT_DIR}/Include)
-
-target_link_directories(Celeste PUBLIC ${THIRD_PARTY_LIB_DIR})
+    ${DIRENT_PROJECT_DIR}/include
+    ${FREEALUT_PROJECT_DIR}/include
+    ${OPENAL_INCLUDE_DIR}
+    ${LUA_PROJECT_DIR}/src
+    ${LUA_PROJECT_DIR}/build    #for luaconf.h
+    ${CELESTE_PROJECT_DIR}/Include)
 
 target_link_libraries(Celeste PUBLIC 
-	${THIRD_PARTY_LIBS}
+    opengl32
+    OpenAL
+    alut
+    assimp
+    curlpp
+    crossguid
+    freetype
+    glew
+    glfw
+    glm
+    libcurl
+    liblua
+    tinyxml2
+    SOIL2
+    sol2
     Dolce)
 
 target_compile_options(Celeste PRIVATE /MP4 /W4 /WX)
@@ -383,6 +361,11 @@ target_compile_definitions(Celeste PUBLIC -DGLM_FORCE_SILENT_WARNINGS PRIVATE -D
 ##------------------------------ CelesteLua ------------------------------##
 set(CELESTE_LUA_PROJECT_DIR "${CELESTE_DIR}/CelesteLua")
 add_subdirectory(${CELESTE_LUA_PROJECT_DIR} ${CELESTE_LUA_PROJECT_DIR}/Build ${EXCLUDE})
+
+set_target_properties(CelesteLua PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    CXX_STANDARD 17)
 
 
 ##------------------------------ Celeste Test Globals ------------------------------##
@@ -408,11 +391,10 @@ set_target_properties(${CELESTE_MOCKS_PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17)
 
 target_include_directories(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES} 
     ${CELESTE_PROJECT_DIR}/Include 
     ${CELESTE_MOCKS_PROJECT_DIR}/Include)
 target_link_directories(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIBS} ${CELESTE_PROJECT_NAME}.lib)
+target_link_libraries(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC Celeste)
 
 target_compile_options(${CELESTE_MOCKS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 target_compile_definitions(${CELESTE_MOCKS_PROJECT_NAME} PRIVATE -DCELESTE_MOCKS_STATIC_LIB -DGLM_FORCE_SILENT_WARNINGS)
@@ -443,13 +425,10 @@ set_target_properties(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17)
 
 target_include_directories(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES}
     ${CELESTE_PROJECT_DIR}/Include 
     ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include)
 target_link_directories(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIBS} 
-    ${CELESTE_PROJECT_NAME}.lib)
+target_link_libraries(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC Celeste)
 
 target_compile_options(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 target_compile_definitions(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PRIVATE -DCELESTE_TEST_RESOURCES_STATIC_LIB -DGLM_FORCE_SILENT_WARNINGS)
@@ -482,7 +461,6 @@ set_target_properties(${CELESTE_TEST_UTILS_PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17)
 
 target_include_directories(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES} 
     ${CELESTE_PROJECT_DIR}/Include 
     ${TEST_UTILS_PROJECT_DIR}/Include
     ${CELESTE_MOCKS_PROJECT_DIR}/Include
@@ -490,7 +468,6 @@ target_include_directories(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC
     ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include)
 target_link_directories(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
 target_link_libraries(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIBS} 
     ${CELESTE_PROJECT_NAME}.lib
     ${TEST_UTILS_PROJECT_NAME}.lib
     ${CELESTE_MOCKS_PROJECT_NAME}.lib
@@ -530,7 +507,6 @@ set_target_properties(${TEST_CELESTE_PROJECT_NAME} PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY ${TEST_CELESTE_PROJECT_DIR})
 
 target_include_directories(${TEST_CELESTE_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES}
     ${CELESTE_PROJECT_DIR}/Include 
     ${TEST_UTILS_PROJECT_DIR}/Include 
     ${CELESTE_MOCKS_PROJECT_DIR}/Include 
@@ -539,7 +515,6 @@ target_include_directories(${TEST_CELESTE_PROJECT_NAME} PUBLIC
     ${TEST_CELESTE_PROJECT_DIR}/Include)
 target_link_directories(${TEST_CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
 target_link_libraries(${TEST_CELESTE_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIBS} 
     ${CELESTE_PROJECT_NAME}.lib
     ${TEST_UTILS_PROJECT_NAME}.lib
     ${CELESTE_MOCKS_PROJECT_NAME}.lib
@@ -620,15 +595,13 @@ set_target_properties(${MCF_LIBRARY_PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17)
 
 target_include_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES} 
+    ${CURLPP_PROJECT_DIR}/include
     ${CELESTE_PROJECT_DIR}/Include 
     ${MCF_DIR}/Include)
 target_link_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
     ${THIRD_PARTY_LIB_DIR} 
     ${PROJECT_BINARY_DIR})
-target_link_libraries(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIBS} 
-    Celeste)
+target_link_libraries(${MCF_LIBRARY_PROJECT_NAME} PUBLIC Celeste)
 
 target_compile_options(${MCF_LIBRARY_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
 target_compile_definitions(${MCF_LIBRARY_PROJECT_NAME} PRIVATE -DBUILDING_MCF_LIBRARY_DLL)
@@ -659,7 +632,6 @@ set_target_properties(${TEST_MCF_LIBRARY_PROJECT_NAME} PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY ${MCF_DIR})
 
 target_include_directories(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES} 
     ${CELESTE_PROJECT_DIR}/Include
     ${TEST_UTILS_PROJECT_DIR}/Include 
     ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include
@@ -669,7 +641,6 @@ target_include_directories(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC
     ${TEST_MCF_DIR}/Include)
 target_link_directories(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
 target_link_libraries(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIBS} 
     ${CELESTE_PROJECT_NAME}.lib
     ${TEST_UTILS_PROJECT_NAME}.lib
     ${CELESTE_TEST_UTILS_PROJECT_NAME}.lib
@@ -695,6 +666,11 @@ add_dependencies(
 set(MCF_LUA_PROJECT_DIR "${PROJECT_SOURCE_DIR}/ModernCocoaFarmerLua")
 add_subdirectory(${MCF_LUA_PROJECT_DIR} ${MCF_LUA_PROJECT_DIR}/Build ${EXCLUDE})
 
+set_target_properties(ModernCocoaFarmerLua PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    CXX_STANDARD 17)
+
 
 ##------------------------------ Modern Cocoa Farmer Project ------------------------------##
 set(MCF_PROJECT_NAME ModernCocoaFarmer)
@@ -716,14 +692,12 @@ set_target_properties(${MCF_PROJECT_NAME} PROPERTIES
     VS_DEBUGGER_WORKING_DIRECTORY ${MCF_DIR})
 
 target_include_directories(${MCF_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_INCLUDES} 
     ${CELESTE_PROJECT_DIR}/Include 
     ${MCF_DIR}/Include)
 target_link_directories(${MCF_PROJECT_NAME} PUBLIC 
     ${THIRD_PARTY_LIB_DIR} 
     ${PROJECT_BINARY_DIR})
 target_link_libraries(${MCF_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIBS} 
     ${CELESTE_PROJECT_NAME}.lib
     Dolce
     DolceLua
