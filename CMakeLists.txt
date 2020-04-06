@@ -12,7 +12,7 @@ IF(NOT DEFINED CMAKE_BUILD_TYPE)
 ENDIF()
 
 IF(NOT DEFINED USE_PREBUILT_LIBS)
-    SET(USE_PREBUILT_LIBS ON CACHE BOOL "" FORCE)
+    SET(USE_PREBUILT_LIBS OFF CACHE BOOL "" FORCE)
 ENDIF()
 
 IF(USE_PREBUILT_LIBS)
@@ -33,7 +33,9 @@ set(THIRD_PARTY_DLL_DIR ${THIRD_PARTY_DIR}/dll/${CMAKE_VS_PLATFORM_NAME})
 
 ##---------------------------- assimp ----------------------------##
 set(ASSIMP_PROJECT_DIR "${THIRD_PARTY_DIR}/assimp")
-add_subdirectory(${ASSIMP_PROJECT_DIR} ${ASSIMP_PROJECT_DIR}/build ${EXCLUDE})
+SET(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
+SET(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+add_subdirectory(${ASSIMP_PROJECT_DIR} ${ASSIMP_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(assimp PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -45,12 +47,16 @@ set_target_properties(IrrXML PROPERTIES
 
 set_target_properties(zlibstatic PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER})
+
+set_target_properties(UpdateAssimpLibsDebugSymbolsAndDLLs PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
 #---------------------------- end freealut ----------------------------##
 
 
 ##---------------------------- crossguid ----------------------------##
 set(CROSSGUID_PROJECT_DIR "${THIRD_PARTY_DIR}/crossguid")
-add_subdirectory(${CROSSGUID_PROJECT_DIR} ${CROSSGUID_PROJECT_DIR}/build ${EXCLUDE})
+SET(CROSSGUID_TESTS OFF CACHE BOOL "" FORCE)
+add_subdirectory(${CROSSGUID_PROJECT_DIR} ${CROSSGUID_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(crossguid PROPERTIES
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -61,7 +67,7 @@ set_target_properties(crossguid PROPERTIES
 
 ##---------------------------- curl ----------------------------##
 set(CURL_PROJECT_DIR "${THIRD_PARTY_DIR}/curl")
-add_subdirectory(${CURL_PROJECT_DIR} ${CURL_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${CURL_PROJECT_DIR} ${CURL_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(libcurl PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -75,7 +81,7 @@ set(CURLPP_PROJECT_DIR "${THIRD_PARTY_DIR}/curlpp")
 set(CURL_INCLUDE_DIR ${CURL_PROJECT_DIR}/include)
 set(CURL_LIBRARY ${THIRD_PARTY_LIB_DIR}/${CMAKE_BUILD_TYPE}/libcurl.lib)
 
-add_subdirectory(${CURLPP_PROJECT_DIR} ${CURLPP_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${CURLPP_PROJECT_DIR} ${CURLPP_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(curlpp PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -86,7 +92,7 @@ set_target_properties(curlpp PROPERTIES
 
 ##---------------------------- dirent ----------------------------##
 set(DIRENT_PROJECT_DIR "${THIRD_PARTY_DIR}/dirent")
-add_subdirectory(${DIRENT_PROJECT_DIR} ${DIRENT_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${DIRENT_PROJECT_DIR} ${DIRENT_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 ##---------------------------- end dirent ----------------------------##
 
 
@@ -103,8 +109,11 @@ set(SWSCALE_PROJECT_NAME swscale)
 set(OPENAL_SOFT_PROJECT_DIR "${THIRD_PARTY_DIR}/openal-soft")
 set(OPENAL_INCLUDE_DIR ${OPENAL_SOFT_PROJECT_DIR}/include/AL)
 set(OPENAL_LIBRARY ${THIRD_PARTY_LIB_DIR}/${CMAKE_BUILD_TYPE}/OpenAL32.lib)
+set(ALSOFT_TESTS OFF CACHE BOOL "" FORCE)
+set(ALSOFT_UTILS OFF CACHE BOOL "" FORCE)
+set(ALSOFT_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-add_subdirectory(${OPENAL_SOFT_PROJECT_DIR} ${OPENAL_SOFT_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${OPENAL_SOFT_PROJECT_DIR} ${OPENAL_SOFT_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(OpenAL PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -124,7 +133,9 @@ set_target_properties(native-tools PROPERTIES
 
 ##---------------------------- freealut ----------------------------##
 set(FREEALUT_PROJECT_DIR "${THIRD_PARTY_DIR}/freealut")
-add_subdirectory(${FREEALUT_PROJECT_DIR} ${FREEALUT_PROJECT_DIR}/build ${EXCLUDE})
+SET(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+SET(BUILD_TESTS OFF CACHE BOOL "" FORCE)
+add_subdirectory(${FREEALUT_PROJECT_DIR} ${FREEALUT_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(alut PROPERTIES
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -135,7 +146,7 @@ set_target_properties(alut PROPERTIES
 
 ##---------------------------- freetype2 ----------------------------##
 set(FREETYPE2_PROJECT_DIR "${THIRD_PARTY_DIR}/freetype2")
-add_subdirectory(${FREETYPE2_PROJECT_DIR} ${FREETYPE2_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${FREETYPE2_PROJECT_DIR} ${FREETYPE2_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(freetype PROPERTIES
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -146,12 +157,15 @@ set_target_properties(freetype PROPERTIES
 
 ##---------------------------- glew ----------------------------##
 set(GLEW_PROJECT_DIR "${THIRD_PARTY_DIR}/glew")
-add_subdirectory(${GLEW_PROJECT_DIR} ${GLEW_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${GLEW_PROJECT_DIR} ${GLEW_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(glew PROPERTIES 
     FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
+
+set_target_properties(glewinfo PROPERTIES 
+    FOLDER ${THIRD_PARTY_FOLDER})
 ##---------------------------- end glew ----------------------------##
 
 
@@ -169,12 +183,17 @@ set_target_properties(glfw PROPERTIES
 ##---------------------------- glm ----------------------------##
 set(GLM_PROJECT_DIR "${THIRD_PARTY_DIR}/glm")
 add_subdirectory(${GLM_PROJECT_DIR} ${GLM_PROJECT_DIR}/build ${EXCLUDE})
+
+set_target_properties(glm_shared PROPERTIES
+    FOLDER ${THIRD_PARTY_FOLDER}
+    RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
+    ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
 ##---------------------------- end glm ----------------------------##
 
 
 ##---------------------------- lua ----------------------------##
 set(LUA_PROJECT_DIR "${THIRD_PARTY_DIR}/lua")
-add_subdirectory(${LUA_PROJECT_DIR} ${LUA_PROJECT_DIR}/build ${EXCLUDE})
+add_subdirectory(${LUA_PROJECT_DIR} ${LUA_PROJECT_DIR}/build EXCLUDE_FROM_ALL)
 
 set_target_properties(liblua PROPERTIES
     FOLDER ${THIRD_PARTY_FOLDER}
@@ -257,33 +276,19 @@ set_target_properties(tinyxml2 PROPERTIES
 #	TestUtils)
 
 
-##------------------------------ Test Utils Project ------------------------------##
-set(TEST_UTILS_PROJECT_NAME TestUtils)
-set(TEST_UTILS_PROJECT_DIR ${CELESTE_DIR}/${TEST_UTILS_PROJECT_NAME})
+##---------------------------- FileSystem ----------------------------##
+set(FILE_SYSTEM_PROJECT_DIR "${CELESTE_DIR}/FileSystem")
+add_subdirectory(${FILE_SYSTEM_PROJECT_DIR} ${FILE_SYSTEM_PROJECT_DIR}/Build ${EXCLUDE})
+#---------------------------- end tinyxml2 ----------------------------##
 
-file(GLOB_RECURSE SOURCE_FILES ${TEST_UTILS_PROJECT_DIR}/Source/*.c ${TEST_UTILS_PROJECT_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${TEST_UTILS_PROJECT_DIR}/Include/*.h ${TEST_UTILS_PROJECT_DIR}/Include/*.hpp)
-file(GLOB_RECURSE RES_FILES ${TEST_UTILS_PROJECT_DIR}/Resources/*.*)
 
-source_group(TREE ${TEST_UTILS_PROJECT_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${TEST_UTILS_PROJECT_DIR} FILES ${HEADER_FILES})
-source_group(TREE ${TEST_UTILS_PROJECT_DIR} FILES ${RES_FILES})
+##---------------------------- Lua ----------------------------##
+add_subdirectory("${CELESTE_DIR}/Lua" "${CELESTE_DIR}/Lua/Build" ${EXCLUDE})
 
-add_library(${TEST_UTILS_PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(${TEST_UTILS_PROJECT_NAME} PROPERTIES 
-    FOLDER Testing
+set_target_properties(Lua PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
-
-target_include_directories(${TEST_UTILS_PROJECT_NAME} PUBLIC ${TEST_UTILS_PROJECT_DIR}/Include)
-target_link_directories(${TEST_UTILS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-#target_link_libraries(${TEST_UTILS_PROJECT_NAME} PUBLIC)
-
-target_compile_options(${TEST_UTILS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+#---------------------------- end Lua ----------------------------##
 
 
 ##------------------------------ Dolce ------------------------------##
@@ -292,8 +297,7 @@ add_subdirectory(${DOLCE_PROJECT_DIR} ${DOLCE_PROJECT_DIR}/Build ${EXCLUDE})
 
 set_target_properties(Dolce PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ DolceLua ------------------------------##
@@ -302,60 +306,16 @@ add_subdirectory(${DOLCE_LUA_PROJECT_DIR} ${DOLCE_LUA_PROJECT_DIR}/Build ${EXCLU
 
 set_target_properties(DolceLua PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Celeste ------------------------------##
-set(CELESTE_PROJECT_NAME Celeste)
 set(CELESTE_PROJECT_DIR ${CELESTE_DIR}/Celeste)
+add_subdirectory(${CELESTE_PROJECT_DIR} ${CELESTE_PROJECT_DIR}/Build ${EXCLUDE})
 
-file(GLOB_RECURSE SOURCE_FILES ${CELESTE_PROJECT_DIR}/Source/*.c ${CELESTE_PROJECT_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${CELESTE_PROJECT_DIR}/Include/*.h ${CELESTE_PROJECT_DIR}/Include/*.hpp)
-file(GLOB_RECURSE RES_FILES ${CELESTE_PROJECT_DIR}/Resources/*.*)
-
-source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${HEADER_FILES})
-source_group(TREE ${CELESTE_PROJECT_DIR} FILES ${RES_FILES})
-
-add_library(Celeste SHARED ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(Celeste PROPERTIES 
-    FOLDER Celeste
+set_target_properties(Celeste PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
-
-target_include_directories(Celeste PUBLIC 
-    ${DIRENT_PROJECT_DIR}/include
-    ${FREEALUT_PROJECT_DIR}/include
-    ${OPENAL_INCLUDE_DIR}
-    ${LUA_PROJECT_DIR}/src
-    ${LUA_PROJECT_DIR}/build    #for luaconf.h
-    ${CELESTE_PROJECT_DIR}/Include)
-
-target_link_libraries(Celeste PUBLIC 
-    opengl32
-    OpenAL
-    alut
-    assimp
-    curlpp
-    crossguid
-    freetype
-    glew
-    glfw
-    glm
-    libcurl
-    liblua
-    tinyxml2
-    SOIL2
-    sol2
-    Dolce)
-
-target_compile_options(Celeste PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(Celeste PUBLIC -DGLM_FORCE_SILENT_WARNINGS PRIVATE -DBUILDING_CELESTE_ENGINE_DLL)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ CelesteLua ------------------------------##
@@ -364,174 +324,56 @@ add_subdirectory(${CELESTE_LUA_PROJECT_DIR} ${CELESTE_LUA_PROJECT_DIR}/Build ${E
 
 set_target_properties(CelesteLua PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Celeste Test Globals ------------------------------##
-set(CELESTE_TESTS_SOLUTION_FOLDER ${CELESTE_PROJECT_NAME}/Tests)
+set(CELESTE_TESTS_SOLUTION_FOLDER Celeste/Tests)
 
 
 ##------------------------------ Celeste Mocks Project ------------------------------##
-set(CELESTE_MOCKS_PROJECT_NAME CelesteMocks)
-set(CELESTE_MOCKS_PROJECT_DIR ${CELESTE_DIR}/${CELESTE_MOCKS_PROJECT_NAME})
+set(CELESTE_LUA_PROJECT_DIR "${CELESTE_DIR}/CelesteMocks")
+add_subdirectory(${CELESTE_LUA_PROJECT_DIR} ${CELESTE_LUA_PROJECT_DIR}/Build)
 
-file(GLOB_RECURSE SOURCE_FILES ${CELESTE_MOCKS_PROJECT_DIR}/Source/*.c ${CELESTE_MOCKS_PROJECT_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${CELESTE_MOCKS_PROJECT_DIR}/Include/*.h ${CELESTE_MOCKS_PROJECT_DIR}/Include/*.hpp)
-
-source_group(TREE ${CELESTE_MOCKS_PROJECT_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${CELESTE_MOCKS_PROJECT_DIR} FILES ${HEADER_FILES})
-
-add_library(${CELESTE_MOCKS_PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES})
-
-set_target_properties(${CELESTE_MOCKS_PROJECT_NAME} PROPERTIES
-    FOLDER ${CELESTE_TESTS_SOLUTION_FOLDER}
+set_target_properties(CelesteMocks PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
-
-target_include_directories(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_DIR}/Include 
-    ${CELESTE_MOCKS_PROJECT_DIR}/Include)
-target_link_directories(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${CELESTE_MOCKS_PROJECT_NAME} PUBLIC Celeste)
-
-target_compile_options(${CELESTE_MOCKS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${CELESTE_MOCKS_PROJECT_NAME} PRIVATE -DCELESTE_MOCKS_STATIC_LIB -DGLM_FORCE_SILENT_WARNINGS)
-
-add_dependencies(${CELESTE_MOCKS_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Celeste Test Resources Project ------------------------------##
-set(CELESTE_TEST_RESOURCES_PROJECT_NAME CelesteTestResources)
-set(CELESTE_TEST_RESOURCES_PROJECT_DIR ${CELESTE_DIR}/${CELESTE_TEST_RESOURCES_PROJECT_NAME})
+set(CELESTE_TEST_RESOURCES_PROJECT_DIR "${CELESTE_DIR}/CelesteTestResources")
+add_subdirectory(${CELESTE_TEST_RESOURCES_PROJECT_DIR} ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Build)
 
-file(GLOB_RECURSE SOURCE_FILES ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Source/*.c ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include/*.h ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include/*.hpp)
-file(GLOB_RECURSE RES_FILES ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Resources/*.*)
-
-source_group(TREE ${CELESTE_TEST_RESOURCES_PROJECT_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${CELESTE_TEST_RESOURCES_PROJECT_DIR} FILES ${HEADER_FILES})
-source_group(TREE ${CELESTE_TEST_RESOURCES_PROJECT_DIR} FILES ${RES_FILES})
-
-add_library(${CELESTE_TEST_RESOURCES_PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PROPERTIES
-    FOLDER ${CELESTE_TESTS_SOLUTION_FOLDER}
+set_target_properties(CelesteTestResources PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
-target_include_directories(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_DIR}/Include 
-    ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include)
-target_link_directories(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PUBLIC Celeste)
 
-target_compile_options(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${CELESTE_TEST_RESOURCES_PROJECT_NAME} PRIVATE -DCELESTE_TEST_RESOURCES_STATIC_LIB -DGLM_FORCE_SILENT_WARNINGS)
+##------------------------------ Test Utils Project ------------------------------##
+set(TEST_UTILS_PROJECT_DIR "${CELESTE_DIR}/TestUtils")
+add_subdirectory(${TEST_UTILS_PROJECT_DIR} ${TEST_UTILS_PROJECT_DIR}/Build)
 
-add_dependencies(
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME} 
-    ${CELESTE_PROJECT_NAME})
+set_target_properties(TestUtils PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Celeste Test Utils Project ------------------------------##
-set(CELESTE_TEST_UTILS_PROJECT_NAME CelesteTestUtils)
-set(CELESTE_TEST_UTILS_PROJECT_DIR ${CELESTE_DIR}/${CELESTE_TEST_UTILS_PROJECT_NAME})
+set(CELESTE_TEST_UTILS_PROJECT_DIR "${CELESTE_DIR}/CelesteTestUtils")
+add_subdirectory(${CELESTE_TEST_UTILS_PROJECT_DIR} ${CELESTE_TEST_UTILS_PROJECT_DIR}/Build)
 
-file(GLOB_RECURSE SOURCE_FILES ${CELESTE_TEST_UTILS_PROJECT_DIR}/Source/*.c ${CELESTE_TEST_UTILS_PROJECT_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include/*.h ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include/*.hpp)
-file(GLOB_RECURSE RES_FILES ${CELESTE_TEST_UTILS_PROJECT_DIR}/Resources/*.*)
-
-source_group(TREE ${CELESTE_TEST_UTILS_PROJECT_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${CELESTE_TEST_UTILS_PROJECT_DIR} FILES ${HEADER_FILES})
-source_group(TREE ${CELESTE_TEST_UTILS_PROJECT_DIR} FILES ${RES_FILES})
-
-add_library(${CELESTE_TEST_UTILS_PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(${CELESTE_TEST_UTILS_PROJECT_NAME} PROPERTIES 
-    FOLDER ${CELESTE_TESTS_SOLUTION_FOLDER}
+set_target_properties(CelesteTestUtils PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
-
-target_include_directories(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_DIR}/Include 
-    ${TEST_UTILS_PROJECT_DIR}/Include
-    ${CELESTE_MOCKS_PROJECT_DIR}/Include
-    ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include
-    ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include)
-target_link_directories(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${CELESTE_TEST_UTILS_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_NAME}.lib
-    ${TEST_UTILS_PROJECT_NAME}.lib
-    ${CELESTE_MOCKS_PROJECT_NAME}.lib
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME}.lib)
-
-target_compile_options(${CELESTE_TEST_UTILS_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${CELESTE_TEST_UTILS_PROJECT_NAME} PRIVATE -DCELESTE_TEST_UTILS_STATIC_LIB -DGLM_FORCE_SILENT_WARNINGS)
-
-add_dependencies(${CELESTE_TEST_UTILS_PROJECT_NAME} 
-    ${CELESTE_PROJECT_NAME} 
-    ${TEST_UTILS_PROJECT_NAME}
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME}
-    ${CELESTE_MOCKS_PROJECT_NAME})
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Test Celeste Project ------------------------------##
-set(TEST_CELESTE_PROJECT_NAME TestCeleste)
 set(TEST_CELESTE_PROJECT_DIR ${CELESTE_PROJECT_DIR}/Tests)
+add_subdirectory(${TEST_CELESTE_PROJECT_DIR} ${TEST_CELESTE_PROJECT_DIR}/Build)
 
-file(GLOB_RECURSE SOURCE_FILES ${TEST_CELESTE_PROJECT_DIR}/Source/*.c ${TEST_CELESTE_PROJECT_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${TEST_CELESTE_PROJECT_DIR}/Include/*.h ${TEST_CELESTE_PROJECT_DIR}/Include/*.hpp)
-file(GLOB_RECURSE RES_FILES ${TEST_CELESTE_PROJECT_DIR}/Resources/*.*)
-
-source_group(TREE ${TEST_CELESTE_PROJECT_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${TEST_CELESTE_PROJECT_DIR} FILES ${HEADER_FILES})
-source_group(TREE ${TEST_CELESTE_PROJECT_DIR} FILES ${RES_FILES})
-
-add_library(${TEST_CELESTE_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(${TEST_CELESTE_PROJECT_NAME} PROPERTIES
-    FOLDER ${CELESTE_TESTS_SOLUTION_FOLDER}
+set_target_properties(TestCeleste PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17
-    VS_DEBUGGER_WORKING_DIRECTORY ${TEST_CELESTE_PROJECT_DIR})
-
-target_include_directories(${TEST_CELESTE_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_DIR}/Include 
-    ${TEST_UTILS_PROJECT_DIR}/Include 
-    ${CELESTE_MOCKS_PROJECT_DIR}/Include 
-    ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include 
-    ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include 
-    ${TEST_CELESTE_PROJECT_DIR}/Include)
-target_link_directories(${TEST_CELESTE_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${TEST_CELESTE_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_NAME}.lib
-    ${TEST_UTILS_PROJECT_NAME}.lib
-    ${CELESTE_MOCKS_PROJECT_NAME}.lib
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME}.lib
-    ${CELESTE_TEST_UTILS_PROJECT_NAME}.lib)
-
-target_compile_options(${TEST_CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${TEST_CELESTE_PROJECT_NAME} PRIVATE 
-    -DGLM_FORCE_SILENT_WARNINGS)
-
-add_dependencies(
-    ${TEST_CELESTE_PROJECT_NAME} 
-    ${CELESTE_PROJECT_NAME} 
-    ${TEST_UTILS_PROJECT_NAME} 
-    ${CELESTE_MOCKS_PROJECT_NAME}
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME}
-    ${CELESTE_TEST_UTILS_PROJECT_NAME})
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Dev Tools ------------------------------##
@@ -579,87 +421,11 @@ add_dependencies(
 
 
 ##------------------------------ Modern Cocoa Farmer Library Project ------------------------------##
-set(MCF_LIBRARY_PROJECT_NAME ModernCocoaFarmerLibrary)
+add_subdirectory(${MCF_DIR} ${MCF_DIR}/Build)
 
-file(GLOB_RECURSE SOURCE_FILES ${MCF_DIR}/Source/*.c ${MCF_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${MCF_DIR}/Include/*.h ${MCF_DIR}/Include/*.hpp)
-
-source_group(TREE ${MCF_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${MCF_DIR} FILES ${HEADER_FILES})
-
-add_library(${MCF_LIBRARY_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-
-set_target_properties(${MCF_LIBRARY_PROJECT_NAME} PROPERTIES 
+set_target_properties(ModernCocoaFarmerLibrary PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
-
-target_include_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${CURLPP_PROJECT_DIR}/include
-    ${CELESTE_PROJECT_DIR}/Include 
-    ${MCF_DIR}/Include)
-target_link_directories(${MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIB_DIR} 
-    ${PROJECT_BINARY_DIR})
-target_link_libraries(${MCF_LIBRARY_PROJECT_NAME} PUBLIC Celeste)
-
-target_compile_options(${MCF_LIBRARY_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${MCF_LIBRARY_PROJECT_NAME} PRIVATE -DBUILDING_MCF_LIBRARY_DLL)
-
-add_dependencies(${MCF_LIBRARY_PROJECT_NAME} ${CELESTE_PROJECT_NAME})
-
-
-##------------------------------ Test Modern Cocoa Farmer Library Project ------------------------------##
-set(TEST_MCF_LIBRARY_PROJECT_NAME TestModernCocoaFarmerLibrary)
-set(TEST_MCF_DIR ${MCF_DIR}/Tests)
-
-file(GLOB_RECURSE SOURCE_FILES ${TEST_MCF_DIR}/Source/*.c ${TEST_MCF_DIR}/Source/*.cpp)
-file(GLOB_RECURSE HEADER_FILES ${TEST_MCF_DIR}/Include/*.h ${TEST_MCF_DIR}/Include/*.hpp)
-file(GLOB_RECURSE RES_FILES ${TEST_MCF_DIR}/Resources/*.*)
-
-source_group(TREE ${TEST_MCF_DIR} FILES ${SOURCE_FILES})						   
-source_group(TREE ${TEST_MCF_DIR} FILES ${HEADER_FILES})
-source_group(TREE ${TEST_MCF_DIR} FILES ${RES_FILES})
-
-add_library(${TEST_MCF_LIBRARY_PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(${TEST_MCF_LIBRARY_PROJECT_NAME} PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17
-    VS_DEBUGGER_WORKING_DIRECTORY ${MCF_DIR})
-
-target_include_directories(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_DIR}/Include
-    ${TEST_UTILS_PROJECT_DIR}/Include 
-    ${CELESTE_TEST_UTILS_PROJECT_DIR}/Include
-    ${CELESTE_TEST_RESOURCES_PROJECT_DIR}/Include
-    ${CELESTE_MOCKS_PROJECT_DIR}/Include
-    ${MCF_DIR}/Include
-    ${TEST_MCF_DIR}/Include)
-target_link_directories(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC ${THIRD_PARTY_LIB_DIR} ${PROJECT_BINARY_DIR})
-target_link_libraries(${TEST_MCF_LIBRARY_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_NAME}.lib
-    ${TEST_UTILS_PROJECT_NAME}.lib
-    ${CELESTE_TEST_UTILS_PROJECT_NAME}.lib
-    ${CELESTE_MOCKS_PROJECT_NAME}.lib
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME}.lib
-    ${MCF_LIBRARY_PROJECT_NAME}.lib
-    CelesteLua)
-
-target_compile_options(${TEST_MCF_LIBRARY_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-target_compile_definitions(${TEST_MCF_LIBRARY_PROJECT_NAME} PRIVATE -DGLM_FORCE_SILENT_WARNINGS)
-
-add_dependencies(
-    ${TEST_MCF_LIBRARY_PROJECT_NAME} 
-    ${CELESTE_PROJECT_NAME}
-    ${TEST_UTILS_PROJECT_NAME} 
-    ${CELESTE_TEST_UTILS_PROJECT_NAME} 
-    ${CELESTE_MOCKS_PROJECT_NAME}
-    ${CELESTE_TEST_RESOURCES_PROJECT_NAME}
-    ${MCF_LIBRARY_PROJECT_NAME})
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ ModernCocoaFarmerLua ------------------------------##
@@ -668,8 +434,7 @@ add_subdirectory(${MCF_LUA_PROJECT_DIR} ${MCF_LUA_PROJECT_DIR}/Build ${EXCLUDE})
 
 set_target_properties(ModernCocoaFarmerLua PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
-    CXX_STANDARD 17)
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
 
 
 ##------------------------------ Modern Cocoa Farmer Project ------------------------------##
@@ -685,20 +450,16 @@ add_executable(${MCF_PROJECT_NAME} ${MCF_DIR}/Main.cpp ${MCF_DIR}/MCFGame.cpp ${
 
 set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
 
-set_target_properties(${MCF_PROJECT_NAME} PROPERTIES 
+set_target_properties(${MCF_PROJECT_NAME} PROPERTIES
+    FOLDER "Modern Cocoa Farmer"
     RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR} 
     LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
     CXX_STANDARD 17
     VS_DEBUGGER_WORKING_DIRECTORY ${MCF_DIR})
 
 target_include_directories(${MCF_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_DIR}/Include 
     ${MCF_DIR}/Include)
-target_link_directories(${MCF_PROJECT_NAME} PUBLIC 
-    ${THIRD_PARTY_LIB_DIR} 
-    ${PROJECT_BINARY_DIR})
 target_link_libraries(${MCF_PROJECT_NAME} PUBLIC 
-    ${CELESTE_PROJECT_NAME}.lib
     Dolce
     DolceLua
     Celeste
@@ -706,12 +467,4 @@ target_link_libraries(${MCF_PROJECT_NAME} PUBLIC
     ModernCocoaFarmerLibrary
     ModernCocoaFarmerLua)
 
-target_compile_options(${CELESTE_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
-
-add_dependencies(${MCF_PROJECT_NAME} ${CELESTE_PROJECT_NAME} ${MCF_LIBRARY_PROJECT_NAME})
-
-
-set(MCF_FOLDER_NAME "Modern Cocoa Farmer")
-set_target_properties(${MCF_PROJECT_NAME} PROPERTIES FOLDER ${MCF_FOLDER_NAME})
-set_target_properties(${MCF_LIBRARY_PROJECT_NAME} PROPERTIES FOLDER ${MCF_FOLDER_NAME})
-set_target_properties(${TEST_MCF_LIBRARY_PROJECT_NAME} PROPERTIES FOLDER ${MCF_FOLDER_NAME}/Tests)
+target_compile_options(${MCF_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
