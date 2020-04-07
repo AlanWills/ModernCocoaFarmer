@@ -53,7 +53,7 @@ namespace MCF::GameEvents::Effects
     Family::Child& child = **foundChildIt;
 
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
-    ASSERT(modifier != nullptr)
+    ASSERT(modifier != nullptr);
 
     if (modifier != nullptr)
     {

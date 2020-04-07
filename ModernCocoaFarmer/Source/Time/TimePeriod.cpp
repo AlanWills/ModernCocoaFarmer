@@ -1,5 +1,5 @@
 #include "Time/TimePeriod.h"
-#include "Debug/Assert.h"
+#include "Assert/Assert.h"
 
 
 namespace Celeste

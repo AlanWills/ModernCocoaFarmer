@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Utils/ToString.h"
-#include "Debug/Assert.h"
+#include "Assert/Assert.h"
 
 
 namespace MCF::Logic

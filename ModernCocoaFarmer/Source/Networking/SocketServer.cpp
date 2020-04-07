@@ -2,7 +2,7 @@
 
 #include "Networking/RAII/AutoFreeAddressInfo.h"
 #include "Networking/RAII/AutoCloseSocket.h"
-#include "Debug/Assert.h"
+#include "Assert/Assert.h"
 
 #include <stdlib.h>
 #include <stdio.h>

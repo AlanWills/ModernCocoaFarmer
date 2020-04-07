@@ -1,5 +1,5 @@
 #include "MCFGame.h"
-#include "UtilityHeaders/PlatformHeaders.h"
+#include "Platform/Platform.h"
 
 // Disables console window
 #if WINDOWS && !defined(__CYGWIN__)

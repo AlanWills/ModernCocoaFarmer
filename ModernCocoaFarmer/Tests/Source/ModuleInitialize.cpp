@@ -1,5 +1,5 @@
 #include "Game/Game.h"
-#include "Debug/Assert.h"
+#include "Assert/Assert.h"
 #include "Debug/Asserting/NullAsserter.h"
 #include "OpenGL/GL.h"
 #include "Lua/LuaState.h"

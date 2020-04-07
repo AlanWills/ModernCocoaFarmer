@@ -1,5 +1,5 @@
 #include "Networking/NetworkUtils.h"
-#include "Debug/Log.h"
+#include "Log.h"
 
 #include <curlpp/cURLpp.hpp>
 #include <curlpp/Easy.hpp>

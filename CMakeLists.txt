@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/Celeste/BuildTools/CMakeLists.txt)
+
 ##---------------------------- Globals ----------------------------##
 project(ModernCocoaFarmer)
 
@@ -182,12 +184,15 @@ set_target_properties(glfw PROPERTIES
 
 ##---------------------------- glm ----------------------------##
 set(GLM_PROJECT_DIR "${THIRD_PARTY_DIR}/glm")
+set(BUILD_STATIC_LIBS true)
+set(BUILD_SHARED_LIBS false)
 add_subdirectory(${GLM_PROJECT_DIR} ${GLM_PROJECT_DIR}/build ${EXCLUDE})
 
-set_target_properties(glm_shared PROPERTIES
+set_target_properties(glm_static PROPERTIES
     FOLDER ${THIRD_PARTY_FOLDER}
     RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_DLL_DIR}
     ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_LIB_DIR})
+
 ##---------------------------- end glm ----------------------------##
 
 
@@ -276,10 +281,42 @@ set_target_properties(tinyxml2 PROPERTIES
 #	TestUtils)
 
 
+##------------------------------ Platform ------------------------------##
+set(PLATFORM_DIR ${CELESTE_DIR}/Platform)
+add_subdirectory(${PLATFORM_DIR} ${PLATFORM_DIR}/Build)
+##------------------------------ end Platform ------------------------------##
+
+
+##------------------------------ CelesteStl ------------------------------##
+set(CELESTE_STL_DIR ${CELESTE_DIR}/CelesteStl)
+add_subdirectory(${CELESTE_STL_DIR} ${CELESTE_STL_DIR}/Build)
+##------------------------------ end Assert ------------------------------##
+
+
+##------------------------------ Assert ------------------------------##
+set(ASSERT_DIR ${CELESTE_DIR}/Assert)
+add_subdirectory(${ASSERT_DIR} ${ASSERT_DIR}/Build)
+
+set_target_properties(Assert PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+##------------------------------ end Assert ------------------------------##
+
+
+##------------------------------ Log ------------------------------##
+set(LOG_DIR ${CELESTE_DIR}/Log)
+add_subdirectory(${LOG_DIR} ${LOG_DIR}/Build)
+
+set_target_properties(Log PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR}
+    LIBRARY_OUTPUT_DIRECTORY ${MCF_BUILDS_DIR})
+##------------------------------ end Assert ------------------------------##
+
+
 ##---------------------------- FileSystem ----------------------------##
 set(FILE_SYSTEM_PROJECT_DIR "${CELESTE_DIR}/FileSystem")
 add_subdirectory(${FILE_SYSTEM_PROJECT_DIR} ${FILE_SYSTEM_PROJECT_DIR}/Build ${EXCLUDE})
-#---------------------------- end tinyxml2 ----------------------------##
+#---------------------------- end FileSystem ----------------------------##
 
 
 ##---------------------------- Lua ----------------------------##

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UtilityHeaders/PlatformHeaders.h"
+#include "Platform/Platform.h"
 
 #ifdef BUILDING_MCF_LIBRARY_DLL
 #define MCFLibraryDllExport __declspec(dllexport)

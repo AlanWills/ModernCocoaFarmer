@@ -28,32 +28,32 @@ namespace MCF::GameEvents::Effects
     Notifications::NotificationManager&) const
   {
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
-    ASSERT(modifier != nullptr)
+    ASSERT(modifier != nullptr);
 
-      if (modifier != nullptr)
-      {
-        const std::string& stat = getStat();
+    if (modifier != nullptr)
+    {
+      const std::string& stat = getStat();
         
-        if (stat == Family::Child::HEALTH_FIELD_NAME)
-        {
-          familyManager.applyHealthModifier(*modifier);
-        }
-        else if (stat == Family::Child::EDUCATION_FIELD_NAME)
-        {
-          familyManager.applyEducationModifier(*modifier);
-        }
-        else if (stat == Family::Child::SAFETY_FIELD_NAME)
-        {
-          familyManager.applySafetyModifier(*modifier);
-        }
-        else if (stat == Family::Child::HAPPINESS_FIELD_NAME)
-        {
-          familyManager.applyHappinessModifier(*modifier);
-        }
-        else
-        {
-          ASSERT_FAIL();
-        }
+      if (stat == Family::Child::HEALTH_FIELD_NAME)
+      {
+        familyManager.applyHealthModifier(*modifier);
       }
+      else if (stat == Family::Child::EDUCATION_FIELD_NAME)
+      {
+        familyManager.applyEducationModifier(*modifier);
+      }
+      else if (stat == Family::Child::SAFETY_FIELD_NAME)
+      {
+        familyManager.applySafetyModifier(*modifier);
+      }
+      else if (stat == Family::Child::HAPPINESS_FIELD_NAME)
+      {
+        familyManager.applyHappinessModifier(*modifier);
+      }
+      else
+      {
+        ASSERT_FAIL();
+      }
+    }
   }
 }

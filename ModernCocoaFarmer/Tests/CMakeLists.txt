@@ -26,7 +26,7 @@ add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES} ${RES_FILES})
 set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES 
-    FOLDER "Modern Cocoa Farmer/Test"
+    FOLDER "Modern Cocoa Farmer/Tests"
     CXX_STANDARD 17)
 
 target_include_directories(${PROJECT_NAME} PUBLIC

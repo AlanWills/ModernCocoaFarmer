@@ -2,7 +2,7 @@
 
 #include "MCFLibraryDllExport.h"
 #include "tinyxml2.h"
-#include "Debug/Assert.h"
+#include "Assert/Assert.h"
 #include "XML/tinyxml2_ext.h"
 
 #include <unordered_map>
