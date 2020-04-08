@@ -80,3 +80,5 @@ target_link_libraries(${MCF_PROJECT_NAME} PUBLIC
     ModernCocoaFarmerLua)
 
 target_compile_options(${MCF_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
+
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ModernCocoaFarmer)
