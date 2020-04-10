@@ -2,9 +2,9 @@ local MCFComponents = require 'Components.MCFComponents'
 local Splash = require 'Scenes.Splash'
 local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 
-local quickStart = true
+Mouse.setCursor(path.combine("Textures", "UI", "Utility", "Cursor.png"))
 
-Scene.load(path.combine(Resources.getResourcesDirectory(), "Scenes", "DebugTools.scene"))
+local quickStart = true
 
 if not quickStart then
     Splash.show()

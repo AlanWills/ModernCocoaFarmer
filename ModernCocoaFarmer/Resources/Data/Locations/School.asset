@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Location name="School"
-          description="On a good day the teacher will have some chalk"
+          description="Chalkboards are the seventh wonder of the world.  Or should that be eighth?"
           days_to_complete="360"
           child_leaves_notification_description="TODO"
           child_leaves_notification_icon="Textures\UI\LocationIcons\School.png"

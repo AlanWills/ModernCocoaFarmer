@@ -1,0 +1,7 @@
+<DolceSettings guid="d6173625-aeb7-4ed2-99b5-34e64614d3f2" name="DolceSettings" enabled="true">
+    <OpenWindows>
+        <OpenWindow>Lua</OpenWindow>
+        <OpenWindow>Hierarchy</OpenWindow>
+        <OpenWindow>Performance</OpenWindow>
+    </OpenWindows>
+</DolceSettings>

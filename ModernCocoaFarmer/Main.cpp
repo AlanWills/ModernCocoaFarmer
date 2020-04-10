@@ -1,5 +1,7 @@
 #include "MCFGame.h"
 #include "Platform/Platform.h"
+#include "Debug/Logging/FileLogger.h"
+#include "Log.h"
 
 // Disables console window
 #if WINDOWS && !defined(__CYGWIN__)
@@ -11,8 +13,10 @@
 // The MAIN function, from here we start the application and run the game loop
 int main()
 { 
+  Celeste::Path logPath(Celeste::Directory::getExecutingAppDirectory(), "Log.txt");
+  Celeste::Log::setLogger(std::make_unique<Celeste::FileLogger>(logPath));
+
   MCF::MCFGame game;
-  game.getInputManager().getMouse().setCursor(Celeste::Path("Textures", "UI", "Utility", "Cursor.png"));
   game.run();
 
   return 0;

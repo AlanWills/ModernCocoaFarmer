@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Scene>
-  <GameObjects>
-    <Prefab name="FSPCounter" path="Prefabs\Debugging\FPSCounter.prefab"/>
-    <Prefab name="GameplayDebugging" path="Prefabs\Debugging\GameplayDebugging.prefab"/>
-  </GameObjects>
-</Scene>
