@@ -53,12 +53,11 @@ set_target_properties(ModernCocoaFarmerLua PROPERTIES
 set(MCF_PROJECT_NAME ModernCocoaFarmer)
 
 file(GLOB_RECURSE RES_FILES ${MCF_DIR}/Resources/*.*)
-file(GLOB_RECURSE CELESTE_RES_FILES ${CELESTE_PROJECT_DIR}/Resources/*.*)
+file(GLOB_RECURSE CELESTE_RES_FILES ${CELESTE_DIR}/Celeste/Resources/*.*)
 
 source_group(TREE ${MCF_DIR} FILES ${RES_FILES})
-source_group(TREE ${CELESTE_DIR}/Celeste FILES ${CELESTE_RES_FILES})
 
-add_executable(${MCF_PROJECT_NAME} ${MCF_DIR}/Main.cpp ${MCF_DIR}/MCFGame.cpp ${MCF_DIR}/MCFGame.h ${RES_FILES} ${CELESTE_RES_FILES})
+add_executable(${MCF_PROJECT_NAME} ${MCF_DIR}/Main.cpp ${MCF_DIR}/MCFGame.cpp ${MCF_DIR}/MCFGame.h ${RES_FILES})
 
 set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
 

@@ -1,4 +1,4 @@
-#include "Debugging/SceneBroadcaster.h"
+#include "Debug/SceneBroadcaster.h"
 #include "Networking/NetworkUtils.h"
 #include "Objects/GameObject.h"
 #include "Scene/SceneManager.h"

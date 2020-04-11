@@ -1,4 +1,4 @@
-#include "Debugging/LuaScriptReceiver.h"
+#include "Debug/LuaScriptReceiver.h"
 #include "Lua/LuaState.h"
 #include "Assert/Assert.h"
 

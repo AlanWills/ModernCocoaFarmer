@@ -1,7 +1,7 @@
 #include "MCFGame.h"
 #include "Platform/Platform.h"
 #include "Debug/Logging/FileLogger.h"
-#include "Log.h"
+#include "Log/Log.h"
 
 // Disables console window
 #if WINDOWS && !defined(__CYGWIN__)
@@ -14,7 +14,7 @@
 int main()
 { 
   Celeste::Path logPath(Celeste::Directory::getExecutingAppDirectory(), "Log.txt");
-  Celeste::Log::setLogger(std::make_unique<Celeste::FileLogger>(logPath));
+  Celeste::Log::Logging::setLogger(std::make_unique<Celeste::Log::FileLogger>(logPath));
 
   MCF::MCFGame game;
   game.run();
