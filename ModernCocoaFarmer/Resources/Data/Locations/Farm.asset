@@ -2,7 +2,7 @@
 <Location name="Cocoa Farm"
           description="Work won't set you free, but money might" 
           days_to_complete="360"
-          child_leaves_notification_description="TODO"
+          child_leaves_notification_description="You have received 116850 for {CHILD_NAME}'s work at the Cocoa Farm"
           child_leaves_notification_icon="Textures\UI\LocationIcons\Farm.png"
           HealthModifier="593cafa8-b6fc-44fc-ac67-6511b8f75a87"
           SafetyModifier="96b1b1bb-5af3-4325-955a-1aa3e8495518"
@@ -34,4 +34,7 @@
             amount="0" 
             change_type="Delta" 
             occurrence="Instant"/>
+  <ChildLeavesEffects>
+    <Effect path="Data\Events\Effects\Locations\Farm\WageFromFarm.asset"/>
+  </ChildLeavesEffects>
 </Location>

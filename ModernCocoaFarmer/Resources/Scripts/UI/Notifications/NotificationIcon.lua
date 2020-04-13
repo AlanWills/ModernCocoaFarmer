@@ -2,10 +2,7 @@ local Class = require 'OOP.Class'
 local ShowModalDialog = require 'Commands.UI.ShowModalDialog'
 local ShowNotificationDialog = require 'Commands.UI.ShowNotificationDialog'
 
-local NotificationIcon = 
-{
-    NOTIFICATION_ICON_NAME = "NotificationIcon"
-}
+local NotificationIcon = {}
 
 ---------------------------------------------------------------------------------
 local function showNotificationDialogCallback(caller, self)
@@ -21,9 +18,9 @@ function NotificationIcon:new(commandManager, notification, gameObject)
 
     local notificationInteractionHandler = gameObject:findComponent("MouseInteractionHandler")
     notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showNotificationDialogCallback, self)
-
-    local notificationIcon = gameObject:findChild(self.NOTIFICATION_ICON_NAME)
-    notificationIcon:findComponent("SpriteRenderer"):setTexture(notification:getIcon())
+    
+    local spriteRenderer = gameObject:findComponent("SpriteRenderer")
+    spriteRenderer:setTexture(notification:getIcon())
 end
 
 return NotificationIcon

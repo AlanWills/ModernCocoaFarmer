@@ -3,16 +3,9 @@
   <GameObjects>
     <GameObject name="Notification" position="0,0,0.01">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="77,43" opacity="0" preserve_aspect_ratio="true"/>
+        <SpriteRenderer size="77,43" opacity="1" preserve_aspect_ratio="true"/>
         <MouseInteractionHandler/>
       </Components>
-      <GameObjects>
-        <GameObject name="NotificationIcon">
-          <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="77,43" preserve_aspect_ratio="true"/>
-          </Components>
-        </GameObject>
-      </GameObjects>
     </GameObject>
   </GameObjects>
 </Prefab>

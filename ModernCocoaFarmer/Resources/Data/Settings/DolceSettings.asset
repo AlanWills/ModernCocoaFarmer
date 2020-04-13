@@ -1,6 +1,5 @@
-<DolceSettings guid="d6173625-aeb7-4ed2-99b5-34e64614d3f2" name="DolceSettings" enabled="true">
+<DolceSettings guid="d6173625-aeb7-4ed2-99b5-34e64614d3f2" name="DolceSettings" enabled="false">
     <OpenWindows>
-        <OpenWindow>Log</OpenWindow>
         <OpenWindow>Lua</OpenWindow>
         <OpenWindow>Hierarchy</OpenWindow>
         <OpenWindow>Performance</OpenWindow>
