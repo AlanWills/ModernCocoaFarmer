@@ -10,7 +10,7 @@ namespace MCF
   MCFGame::MCFGame()
   {
     Celeste::Lua::LuaState::appendToLuaPackagePath(
-      Celeste::Path(Celeste::Resources::getResourcesDirectory(), "..", "..", "Celeste", "Celeste", "Resources", "Scripts", "?.lua;"));
+      Celeste::Path(Celeste::Resources::getResourcesDirectory(), "..", "..", "Celeste", "CelesteLua", "Resources", "Scripts", "?.lua;"));
   }
 
   //------------------------------------------------------------------------------------------------
