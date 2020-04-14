@@ -1,35 +1,40 @@
+#include "UtilityHeaders/UnitTestHeaders.h"
+
 #include "Game/Game.h"
 #include "Assert/Assert.h"
-#include "Debug/Asserting/NullAsserter.h"
+#include "Assert/NullAsserter.h"
 #include "OpenGL/GL.h"
 #include "Lua/LuaState.h"
 #include "TestResources/TestResources.h"
-#include "UtilityHeaders/UnitTestHeaders.h"
 
 
-namespace TestMCF
+namespace TestModernCocoaFarmerLibrary
 {
   std::unique_ptr<Game> game(nullptr);
 
   //------------------------------------------------------------------------------------------------
-  TEST_MODULE_INITIALIZE(TestMCF_Initialize)
+  TEST_MODULE_INITIALIZE(TestModernCocoaFarmerLibrary_Initialize)
   {
     // Issues with unique_ptrs over dll boundaries so have to do this in the test project
-    Assertion::setAsserter(new NullAsserter());
+    Assertion::setAsserter(std::make_unique<NullAsserter>());
 
-    CelesteTestResources::TestResources::setResourcesDirectory(Path(Directory::getExecutingAppDirectory(), "Resources"));
     CelesteTestResources::TestResources::initialize();
+    TempDirectory::setParentDirectory(TestResources::getResourcesDirectory().as_string());
 
     game = std::make_unique<Game>();
     game->getResourceManager().setResourcesDirectory(TestResources::getResourcesDirectory());
 
-    Lua::LuaState::appendToLuaPackagePath(Path(Resources::getResourcesDirectory(), "Scripts", "?.lua;"));
+    Celeste::Path celesteLuaScripts(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING,
+      "Celeste", "CelesteLua", "Resources", "Scripts", "?.lua;");
+    Lua::LuaState::appendToLuaPackagePath(celesteLuaScripts);
   }
 
   //------------------------------------------------------------------------------------------------
-  TEST_MODULE_CLEANUP(TestMCF_Cleanup)
+  TEST_MODULE_CLEANUP(TestModernCocoaFarmerLibrary_Cleanup)
   {
     Game::exit();
     GL::terminate();
+
+    game.reset();
   }
 }
