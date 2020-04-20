@@ -1,40 +1,40 @@
 #include "UtilityHeaders/UnitTestHeaders.h"
 
-#include "Game/Game.h"
+//#include "Game/Game.h"
 #include "Assert/Assert.h"
 #include "Assert/NullAsserter.h"
-#include "OpenGL/GL.h"
-#include "Lua/LuaState.h"
-#include "TestResources/TestResources.h"
+//#include "OpenGL/GL.h"
+//#include "Lua/LuaState.h"
+//#include "TestResources/TestResources.h"
 
 
 namespace TestModernCocoaFarmerLibrary
 {
-  std::unique_ptr<Game> game(nullptr);
+  //std::unique_ptr<Game> game(nullptr);
 
   //------------------------------------------------------------------------------------------------
   TEST_MODULE_INITIALIZE(TestModernCocoaFarmerLibrary_Initialize)
   {
     // Issues with unique_ptrs over dll boundaries so have to do this in the test project
-    Assertion::setAsserter(std::make_unique<NullAsserter>());
+    Celeste::Assertion::setAsserter(std::make_unique<Celeste::NullAsserter>());
 
-    CelesteTestResources::TestResources::initialize();
+    /*CelesteTestResources::TestResources::initialize();
     TempDirectory::setParentDirectory(TestResources::getResourcesDirectory().as_string());
 
-    game = std::make_unique<Game>(50, 50, OpenGLWindow::WindowMode::kWindowed, "Test Modern Cocoa Farmer Library");
+    game = std::make_unique<Game>(1920, 1080, OpenGLWindow::WindowMode::kWindowed, "Test Modern Cocoa Farmer Library");
     game->getResourceManager().setResourcesDirectory(TestResources::getResourcesDirectory());
 
     Celeste::Path celesteLuaScripts(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING,
       "Celeste", "CelesteLua", "Resources", "Scripts", "?.lua;");
-    Lua::LuaState::appendToLuaPackagePath(celesteLuaScripts);
+    Lua::LuaState::appendToLuaPackagePath(celesteLuaScripts);*/
   }
 
   //------------------------------------------------------------------------------------------------
-  TEST_MODULE_CLEANUP(TestModernCocoaFarmerLibrary_Cleanup)
+  /*TEST_MODULE_CLEANUP(TestModernCocoaFarmerLibrary_Cleanup)
   {
     Game::exit();
     GL::terminate();
 
     game.reset();
-  }
+  }*/
 }

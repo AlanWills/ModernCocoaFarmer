@@ -7,7 +7,8 @@ using namespace MCF::Persistence;
 
 namespace TestMCF::Persistence
 {
-	CELESTE_TEST_CLASS(TestDataStore)
+	TEST_CLASS(TestDataStore)
+  {
 
 #pragma region Constructor Tests
 
