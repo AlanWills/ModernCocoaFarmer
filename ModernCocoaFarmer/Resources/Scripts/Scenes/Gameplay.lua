@@ -88,7 +88,6 @@ function Gameplay.show()
 
     -- Family Initialization
     commandManager:execute(AddChild)
-    commandManager:execute(AddChild)
 
     -- Location Initialization
     for k, v in pairs(LocationNames) do

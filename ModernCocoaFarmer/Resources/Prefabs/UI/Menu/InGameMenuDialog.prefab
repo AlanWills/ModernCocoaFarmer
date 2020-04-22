@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="InGameMenu" position="960,540">
+    <GameObject name="InGameMenu">
       <Components>
-        <Canvas/>
-        <GraphicsRaycaster/>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="384,540" colour="0.5,0.5,0.5" opacity="0.8"/>
       </Components>
       <GameObjects>
@@ -23,7 +21,7 @@
           <GameObjects>
             <GameObject name="ResumeGameButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="1,1,1" text="Resume Game"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="Resume Game"/>
               </Components>
             </GameObject>
           </GameObjects>
@@ -37,7 +35,7 @@
           <GameObjects>
             <GameObject name="RestartGameButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="1,1,1" text="Restart Game"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="Restart Game"/>
               </Components>
             </GameObject>
           </GameObjects>
@@ -51,7 +49,7 @@
           <GameObjects>
             <GameObject name="ToMainMenuButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="1,1,1" text="To Main Menu"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="To Main Menu"/>
               </Components>
             </GameObject>          
           </GameObjects>
@@ -66,7 +64,7 @@
           <GameObjects>
             <GameObject name="QuitGameButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="1,1,1" text="Quit Game"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="Quit Game"/>
               </Components>
             </GameObject>
           </GameObjects>

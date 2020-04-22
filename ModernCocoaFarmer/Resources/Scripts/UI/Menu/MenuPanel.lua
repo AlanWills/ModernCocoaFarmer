@@ -1,5 +1,5 @@
 local Class = require 'OOP.Class'
-local InGameMenu = require 'UI.InGameMenu'
+local ShowInGameMenuDialog = require 'Commands.UI.Menu.ShowInGameMenuDialog'
 
 ---------------------------------------------------------------------------------
 local MenuPanel =
@@ -8,13 +8,15 @@ local MenuPanel =
 }
 
 ---------------------------------------------------------------------------------
-local function showInGameMenu(caller)
-    InGameMenu.show()
+local function showInGameMenu(caller, self)
+    self._commandManager:execute(ShowInGameMenuDialog)
 end
 
 ---------------------------------------------------------------------------------
 function MenuPanel:new(commandManager, dataStore, menuPanelGameObject)
-    menuPanelGameObject:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, showInGameMenu)
+    self._commandManager = commandManager
+
+    menuPanelGameObject:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, showInGameMenu, self)
 end
 
 ---------------------------------------------------------------------------------

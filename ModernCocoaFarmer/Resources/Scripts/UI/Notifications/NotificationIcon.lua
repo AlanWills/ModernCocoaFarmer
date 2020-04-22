@@ -1,6 +1,5 @@
 local Class = require 'OOP.Class'
-local ShowModalDialog = require 'Commands.UI.ShowModalDialog'
-local ShowNotificationDialog = require 'Commands.UI.ShowNotificationDialog'
+local ShowNotificationDialog = require 'Commands.UI.Notifications.ShowNotificationDialog'
 
 local NotificationIcon = {}
 

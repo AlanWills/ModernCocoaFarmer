@@ -1,6 +1,6 @@
 local Class = require 'OOP.Class'
 local LocationProgress = require 'UI.Locations.LocationProgress'
-local ShowLocationDialog = require 'Commands.UI.ShowLocationDialog'
+local ShowLocationDialog = require 'Commands.UI.Locations.ShowLocationDialog'
 
 local LocationIcon = 
 {
@@ -11,7 +11,7 @@ local LocationIcon =
 
 ---------------------------------------------------------------------------------
 local function onIconClicked(caller, self)
-    self._commandManager:execute(ShowLocationDialog, self._dataStore, self._location:getName())
+    self._commandManager:execute(ShowLocationDialog, self._dataStore, self._locationName)
     
     local icon = self._gameObject:findChild(self.ICON_NAME)
     icon:findComponent("AudioSource"):play()
@@ -19,13 +19,13 @@ end
 
 ----------------------------------------------------------------------------------------
 local function onChildSentCallback(child, self)
-    self:addChildWalking("Home", self._location:getName())
+    self:addChildWalking("Home", self._locationName)
     self:addChildLocationProgress(child)
 end
 
 ----------------------------------------------------------------------------------------
 local function onChildLeftCallback(child, self)
-    self:addChildWalking(self._location:getName(), "Home")
+    self:addChildWalking(self._locationName, "Home")
     self:removeChildLocationProgress(child)
 end
 
@@ -33,7 +33,7 @@ end
 function LocationIcon:new(commandManager, dataStore, location, gameObject)
     self._commandManager = commandManager
     self._dataStore = dataStore
-    self._location = location
+    self._locationName = location:getName()
     self._gameObject = gameObject
     self._locationProgressBars = {}
 
@@ -79,9 +79,11 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:updateUI()
-    local locationDaysToComplete = self._location:getDaysToComplete()
+    local locationObject = self._dataStore:getObject(LocationsDataSources.LOCATIONS .. "." .. self._locationName)
+    local locationDaysToComplete = locationObject:getUnsignedInt(LocationsDataSources.DAYS_TO_COMPLETE)
+
     for childName, locationProgress in pairs(self._locationProgressBars) do
-        local childDaysSpent = self._location:getChildTime(childName)
+        local childDaysSpent = locationObject:getUnsignedInt(childName .. "." .. LocationsDataSources.DAYS_AT_LOCATION)
         locationProgress:updateUI((100 * childDaysSpent) / locationDaysToComplete)
     end
 end

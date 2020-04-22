@@ -4,7 +4,9 @@
 #include "Locations/DataSources.h"
 #include "Stats/DataSources.h"
 #include "Stats/Modifier.h"
+#include "Family/Child.h"
 #include "Persistence/DataObjectHandle.h"
+#include "Persistence/DataArrayHandle.h"
 #include "Time/TimeManager.h"
 #include "Money/MoneyManager.h"
 
@@ -76,6 +78,8 @@ namespace MCF::Locations
     {
       locationPair.second->onDayPassed();
     }
+
+    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -117,7 +121,7 @@ namespace MCF::Locations
       for (const auto& locationPair : m_locations)
       {
         Location& location = *locationPair.second;
-
+        
         std::string locationKey(DataSources::LOCATIONS);
         locationKey.push_back('.');
         locationKey.append(location.getName());
@@ -132,6 +136,17 @@ namespace MCF::Locations
         writeModifier(locationKey, Stats::DataSources::HEALTH, location.getHealthModifier());
         writeModifier(locationKey, Stats::DataSources::MONEY, location.getMoneyModifier());
         writeModifier(locationKey, Stats::DataSources::SAFETY, location.getSafetyModifier());
+
+        for (size_t childIndex = 0; childIndex < location.getChildrenAtLocationCount(); ++childIndex)
+        {
+          const Family::Child& child = location.getChildAtLocation(childIndex);
+
+          std::string daysAtLocationKey(child.getName());
+          daysAtLocationKey.push_back('.');
+          daysAtLocationKey.append(DataSources::DAYS_AT_LOCATION);
+
+          locationObject.set(daysAtLocationKey, location.getChildTime(child.getName()));
+        }
       }
     }
   }

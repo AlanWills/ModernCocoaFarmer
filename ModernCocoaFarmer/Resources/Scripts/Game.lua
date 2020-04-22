@@ -1,4 +1,3 @@
-local MCFComponents = require 'Components.MCFComponents'
 local Splash = require 'Scenes.Splash'
 local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 

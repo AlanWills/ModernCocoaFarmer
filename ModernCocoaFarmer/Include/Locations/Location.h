@@ -70,11 +70,14 @@ namespace MCF::Locations
       inline const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier; }
       inline const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
 
+      MCFLibraryDllExport void onDayPassed();
+
       inline unsigned int getDaysToComplete() const { return m_daysToComplete.getValue(); }
       MCFLibraryDllExport unsigned int getChildTime(const std::string& childName) const;
 
       MCFLibraryDllExport void sendChild(Family::Child& child);
-      MCFLibraryDllExport void onDayPassed();
+      size_t getChildrenAtLocationCount() const { return m_childrenAtLocation.size(); }
+      MCFLibraryDllExport const Family::Child& getChildAtLocation(size_t index) const;
 
       MCFLibraryDllExport void checkForChildrenArriving(
         Money::MoneyManager& moneyManager,

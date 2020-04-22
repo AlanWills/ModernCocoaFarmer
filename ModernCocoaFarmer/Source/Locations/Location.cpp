@@ -87,6 +87,13 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
+  const Family::Child& Location::getChildAtLocation(size_t childIndex) const
+  {
+    ASSERT(childIndex < m_childrenAtLocation.size());
+    return std::get<0>(m_childrenAtLocation.at(childIndex));
+  }
+
+  //------------------------------------------------------------------------------------------------
   void Location::onDayPassed()
   {
     for (ChildDaysSpent& childDaysSpent : m_childrenAtLocation)
