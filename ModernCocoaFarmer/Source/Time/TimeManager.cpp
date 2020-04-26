@@ -3,6 +3,8 @@
 #include "Persistence/DataStore.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 
+using namespace Celeste::XML;
+
 
 namespace MCF::Time
 {
@@ -10,7 +12,8 @@ namespace MCF::Time
 
   //------------------------------------------------------------------------------------------------
   const char* const TimeManager::SECONDS_PER_DAY_ATTRIBUTE_NAME = "seconds_per_day";
-  
+  const char* const TimeManager::TOTAL_DAYS_PASSED_ATTRIBUTE_NAME = "total_days_passed";
+
   //------------------------------------------------------------------------------------------------
   TimeManager::TimeManager() :
     m_secondsPerDay(createValueField<float>(SECONDS_PER_DAY_ATTRIBUTE_NAME, 1.0f)),
@@ -18,6 +21,31 @@ namespace MCF::Time
     m_onMonthPassed(),
     m_onYearPassed()
   {
+  }
+
+  //------------------------------------------------------------------------------------------------
+  bool TimeManager::doDeserialize(const tinyxml2::XMLElement* element)
+  {
+    unsigned int totalDaysPassed = 0;
+    XMLValueError result = getAttributeData(element, TOTAL_DAYS_PASSED_ATTRIBUTE_NAME, totalDaysPassed);
+
+    if (result == XMLValueError::kSuccess)
+    {
+      m_currentYear = totalDaysPassed / 360;
+      totalDaysPassed -= m_currentYear * 360;
+
+      m_currentMonth = totalDaysPassed / 30;
+      m_currentDay = totalDaysPassed - m_currentMonth * 30;
+    }
+
+    return result != XMLValueError::kError;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void TimeManager::doSerialize(tinyxml2::XMLElement* element) const
+  {
+    unsigned int totalDaysPassed = m_currentDay + m_currentMonth * 30 + m_currentYear * 360;
+    element->SetAttribute(TOTAL_DAYS_PASSED_ATTRIBUTE_NAME, totalDaysPassed);
   }
 
   //------------------------------------------------------------------------------------------------

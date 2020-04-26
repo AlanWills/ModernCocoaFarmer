@@ -1,6 +1,8 @@
 local Class = require 'OOP.Class'
 local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
 local GameSettings = require 'Settings.GameSettings'
+local Save = require 'Commands.State.Save'
+local GameplayStateConstants = require 'State.GameplayStateConstants'
 
 ---------------------------------------------------------------------------------
 local InGameMenuDialog = Class.inheritsFrom(ModalDialogBase)
@@ -8,7 +10,7 @@ local InGameMenuDialog = Class.inheritsFrom(ModalDialogBase)
 InGameMenuDialog.IN_GAME_MENU_PREFAB_PATH = path.combine("Prefabs", "UI", "Menu", "InGameMenuDialog.prefab")
 InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME = "ToggleAudioButton"
 InGameMenuDialog.RESUME_GAME_BUTTON_NAME = "ResumeGameButton"
-InGameMenuDialog.RESTART_GAME_BUTTON_NAME = "RestartGameButton"
+InGameMenuDialog.SAVE_GAME_BUTTON_NAME = "SaveGameButton"
 InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME = "ToMainMenuButton"
 InGameMenuDialog.QUIT_GAME_BUTTON_NAME = "QuitGameButton"
 InGameMenuDialog.AUDIO_MUTED_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioMuted.png")
@@ -55,12 +57,10 @@ local function resumeGame(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-local function restartGame(caller, self)
+local function saveGame(caller, self)
     close(caller, self)
 
-    local Gameplay = require 'Scenes.Gameplay'
-    Gameplay.hide()
-    Gameplay.show()
+    self._commandManager:execute(Save, GameplayStateConstants.SAVE_DIRECTORY)
 end
 
 ---------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ function InGameMenuDialog:new(commandManager)
 
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.RESUME_GAME_BUTTON_NAME, resumeGame, self)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.RESTART_GAME_BUTTON_NAME, restartGame, self)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.SAVE_GAME_BUTTON_NAME, saveGame, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME, toMainMenu, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.QUIT_GAME_BUTTON_NAME, quitGame)
 

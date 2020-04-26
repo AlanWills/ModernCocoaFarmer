@@ -6,7 +6,6 @@
 #include "Events/Event.h"
 
 #include <vector>
-#include <queue>
 
 
 namespace MCF::Stats
@@ -29,8 +28,8 @@ namespace MCF::Family
 
     private:
       using Inherited = Celeste::ScriptableObject;
-      using ChildrenNames = std::queue<std::string>;
-      using Children = std::vector<std::unique_ptr<Child>>;
+      using ChildrenNames = std::vector<std::string>;
+      using Children = std::vector<std::reference_wrapper<Child>>;
 
     public:
       using ChildAddedEvent = Celeste::Event<Child&>;
@@ -71,6 +70,7 @@ namespace MCF::Family
 
     protected:
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
+      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
       void updateDataStore();

@@ -75,7 +75,7 @@ namespace MCF::Locations
       inline unsigned int getDaysToComplete() const { return m_daysToComplete.getValue(); }
       MCFLibraryDllExport unsigned int getChildTime(const std::string& childName) const;
 
-      MCFLibraryDllExport void sendChild(Family::Child& child);
+      MCFLibraryDllExport void sendChild(const std::string& childName);
       size_t getChildrenAtLocationCount() const { return m_childrenAtLocation.size(); }
       MCFLibraryDllExport const Family::Child& getChildAtLocation(size_t index) const;
 
@@ -103,15 +103,20 @@ namespace MCF::Locations
       static const std::string HAPPINESS_MODIFIER_FIELD_NAME;
       static const std::string MONEY_MODIFIER_FIELD_NAME;
       static const std::string DAYS_TO_COMPLETE_FIELD_NAME;
+      static const std::string CHILD_AT_LOCATION_ELEMENT_NAME;
+      static const std::string CHILD_AT_LOCATION_NAME_ELEMENT_NAME;
+      static const std::string CHILD_AT_LOCATION_TIME_ELEMENT_NAME;
       static const std::string CHILD_LEAVES_EFFECTS_ELEMENT_NAME;
       static const std::string CHILD_LEAVES_EFFECT_ELEMENT_NAME;
 
     protected:
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
+      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
-      using Effects = std::vector<std::unique_ptr<GameEvents::Effects::Effect>>;
-      using ChildDaysSpent = std::tuple<std::reference_wrapper<Family::Child>, unsigned int>;
+      using Effects = std::vector<std::reference_wrapper<GameEvents::Effects::Effect>>;
+      using ChildWaitingToArrive = std::tuple<std::string, unsigned int>;
+      using ChildAtLocation = std::tuple<std::reference_wrapper<Family::Child>, unsigned int>;
 
       void triggerChildLeavesEffects(
         Money::MoneyManager& moneyManager,
@@ -129,8 +134,8 @@ namespace MCF::Locations
       Stats::Modifier& m_moneyModifier;
       Celeste::ValueField<unsigned int>& m_daysToComplete;
 
-      std::vector<std::reference_wrapper<Family::Child>> m_childrenWaitingToArrive;
-      std::vector<ChildDaysSpent> m_childrenAtLocation;
+      std::vector<ChildWaitingToArrive> m_childrenWaitingToArrive;
+      std::vector<ChildAtLocation> m_childrenAtLocation;
       Effects m_childLeavesEffects;
 
       ChildSentEvent m_onChildSentEvent;

@@ -1,11 +1,21 @@
+local GameplayState = require 'State.GameplayState'
+local Class = require 'OOP.Class'
+
 local StartGameplayCommand = {}
 
 ---------------------------------------------------------------------------------
-function StartGameplayCommand.execute()
-    local gameplayScene = require "Scenes.Gameplay"
-    local introVideo = require "Tutorials.IntroVideo"
+function StartGameplayCommand.startGameplay()
+    local state = Class.new(GameplayState)
+    state:load()
 
-    introVideo.showIntroVideoIfNecessary(gameplayScene.show)
+    local gameplayScene = require "Scenes.Gameplay"
+    gameplayScene.show(state)
+end
+
+---------------------------------------------------------------------------------
+function StartGameplayCommand.execute()
+    local introVideo = require "Tutorials.IntroVideo"
+    introVideo.showIntroVideoIfNecessary(StartGameplayCommand.startGameplay)
 end
 
 return StartGameplayCommand

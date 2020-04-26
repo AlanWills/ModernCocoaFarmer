@@ -41,11 +41,11 @@ namespace MCF::GameEvents
           if (conditionDataConverter.convertFromXML(conditionElement))
           {
             auto condition = conditionDataConverter.instantiate<Condition>();
-            ASSERT(condition.get() != nullptr);
+            ASSERT(condition != nullptr);
 
             if (condition != nullptr)
             {
-              m_conditions.emplace_back(std::move(condition));
+              addCondition(std::move(condition));
             }
           }
           else
@@ -68,11 +68,11 @@ namespace MCF::GameEvents
           if (effectDataConverter.convertFromXML(effectElement))
           {
             auto effect = effectDataConverter.instantiate<Effect>();
-            ASSERT(effect.get() != nullptr);
+            ASSERT(effect != nullptr);
 
             if (effect != nullptr)
             {
-              m_effects.emplace_back(effect.release());
+              addEffect(std::move(effect));
             }
           }
           else
@@ -85,6 +85,18 @@ namespace MCF::GameEvents
     }
 
     return result;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void GameEvent::addCondition(std::unique_ptr<Condition>&& condition)
+  {
+    m_conditions.emplace_back(std::move(condition));
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void GameEvent::addEffect(std::unique_ptr<Effect>&& effect)
+  {
+    m_effects.emplace_back(std::move(effect));
   }
 
   //------------------------------------------------------------------------------------------------

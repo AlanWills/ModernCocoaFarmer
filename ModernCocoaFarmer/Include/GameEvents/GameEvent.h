@@ -48,6 +48,9 @@ namespace MCF::GameEvents
     DECLARE_SCRIPTABLE_OBJECT(GameEvent, MCFLibraryDllExport);
 
     public:
+      MCFLibraryDllExport void addCondition(std::unique_ptr<Conditions::Condition>&& condition);
+      MCFLibraryDllExport void addEffect(std::unique_ptr<Effects::Effect>&& effect);
+      
       bool canTrigger(
         Time::TimeManager& timeManager, 
         Money::MoneyManager& moneyManager, 
@@ -58,7 +61,7 @@ namespace MCF::GameEvents
         Family::FamilyManager& familyManager,
         Locations::LocationsManager& locationsManager,
         Notifications::NotificationManager& notificationManager) const;
-      
+
       static const char* const CONDITIONS_ELEMENT_NAME;
       static const char* const CONDITION_ELEMENT_NAME;
       static const char* const EFFECTS_ELEMENT_NAME;

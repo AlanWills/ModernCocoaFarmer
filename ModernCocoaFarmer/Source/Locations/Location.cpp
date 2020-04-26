@@ -1,12 +1,15 @@
 #include "Locations/Location.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Family/Child.h"
+#include "Family/FamilyManager.h"
 #include "GameEvents/Effects/Effect.h"
 #include "DataConverters/Objects/ScriptableObjectDataConverter.h"
 #include "Notifications/NotificationManager.h"
 #include "Notifications/Notification.h"
 #include "Money/MoneyManager.h"
 #include "Utils/LocaTokens.h"
+
+using namespace Celeste::XML;
 
 
 namespace MCF::Locations
@@ -23,6 +26,9 @@ namespace MCF::Locations
   const std::string Location::HAPPINESS_MODIFIER_FIELD_NAME = "HappinessModifier";
   const std::string Location::MONEY_MODIFIER_FIELD_NAME = "MoneyModifier";
   const std::string Location::DAYS_TO_COMPLETE_FIELD_NAME = "days_to_complete";
+  const std::string Location::CHILD_AT_LOCATION_ELEMENT_NAME = "ChildAtLocation";
+  const std::string Location::CHILD_AT_LOCATION_NAME_ELEMENT_NAME = "child_name";
+  const std::string Location::CHILD_AT_LOCATION_TIME_ELEMENT_NAME = "child_time";
   const std::string Location::CHILD_LEAVES_EFFECTS_ELEMENT_NAME = "ChildLeavesEffects";
   const std::string Location::CHILD_LEAVES_EFFECT_ELEMENT_NAME = "Effect";
 
@@ -50,29 +56,39 @@ namespace MCF::Locations
   {
     bool result = true;
 
+    for (const tinyxml2::XMLElement* childAtLocation : children(element, CHILD_AT_LOCATION_ELEMENT_NAME))
+    {
+      std::string childName;
+      XMLValueError error = getAttributeData(childAtLocation, CHILD_AT_LOCATION_NAME_ELEMENT_NAME, childName);
+
+      if (error != XMLValueError::kSuccess)
+      {
+        ASSERT_FAIL();
+        result = false;
+        continue;
+      }
+
+      unsigned int time = 0;
+      error = getAttributeData(childAtLocation, CHILD_AT_LOCATION_TIME_ELEMENT_NAME, time);
+
+      if (error != XMLValueError::kSuccess)
+      {
+        ASSERT_FAIL();
+        result = false;
+        continue;
+      }
+
+      m_childrenWaitingToArrive.emplace_back(childName, time);
+    }
+
     // Effects
     {
       const tinyxml2::XMLElement* effectsElement = element->FirstChildElement(CHILD_LEAVES_EFFECTS_ELEMENT_NAME.c_str());
       if (effectsElement != nullptr)
       {
-        for (const tinyxml2::XMLElement* effectElement : Celeste::XML::children(effectsElement, CHILD_LEAVES_EFFECT_ELEMENT_NAME))
+        for (const tinyxml2::XMLElement* effectElement : children(effectsElement, CHILD_LEAVES_EFFECT_ELEMENT_NAME))
         {
-          Celeste::ScriptableObjectDataConverter effectDataConverter(effectElement->Name());
-          if (effectDataConverter.convertFromXML(effectElement))
-          {
-            auto effect = effectDataConverter.instantiate<GameEvents::Effects::Effect>();
-            ASSERT(effect.get() != nullptr);
-
-            if (effect != nullptr)
-            {
-              m_childLeavesEffects.emplace_back(std::move(effect));
-            }
-          }
-          else
-          {
-            ASSERT_FAIL();
-            result = false;
-          }
+          m_childLeavesEffects.push_back(deserializeScriptableObject<GameEvents::Effects::Effect>(effectElement));
         }
       }
     }
@@ -81,9 +97,31 @@ namespace MCF::Locations
   }
 
   //------------------------------------------------------------------------------------------------
-  void Location::sendChild(Family::Child& child)
+  void Location::doSerialize(tinyxml2::XMLElement* element) const
   {
-    m_childrenWaitingToArrive.push_back(std::reference_wrapper<Family::Child>(child));
+    tinyxml2::XMLDocument* document = element->GetDocument();
+
+    for (const ChildWaitingToArrive& childWaitingToArrive : m_childrenWaitingToArrive)
+    {
+      tinyxml2::XMLElement* childWaitingElement = document->NewElement(CHILD_AT_LOCATION_ELEMENT_NAME.c_str());
+      childWaitingElement->SetAttribute(CHILD_AT_LOCATION_NAME_ELEMENT_NAME.c_str(), std::get<0>(childWaitingToArrive).c_str());
+      childWaitingElement->SetAttribute(CHILD_AT_LOCATION_TIME_ELEMENT_NAME.c_str(), std::get<1>(childWaitingToArrive));
+      element->InsertEndChild(childWaitingElement);
+    }
+
+    for (const ChildAtLocation& childDaysSpent : m_childrenAtLocation)
+    {
+      tinyxml2::XMLElement* childWaitingElement = document->NewElement(CHILD_AT_LOCATION_ELEMENT_NAME.c_str());
+      childWaitingElement->SetAttribute(CHILD_AT_LOCATION_NAME_ELEMENT_NAME.c_str(), std::get<0>(childDaysSpent).get().getName().c_str());
+      childWaitingElement->SetAttribute(CHILD_AT_LOCATION_TIME_ELEMENT_NAME.c_str(), std::get<1>(childDaysSpent));
+      element->InsertEndChild(childWaitingElement);
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void Location::sendChild(const std::string& childName)
+  {
+    m_childrenWaitingToArrive.push_back(std::make_tuple(childName, 0U));
   }
 
   //------------------------------------------------------------------------------------------------
@@ -96,7 +134,7 @@ namespace MCF::Locations
   //------------------------------------------------------------------------------------------------
   void Location::onDayPassed()
   {
-    for (ChildDaysSpent& childDaysSpent : m_childrenAtLocation)
+    for (ChildAtLocation& childDaysSpent : m_childrenAtLocation)
     {
       Family::Child& child = std::get<0>(childDaysSpent).get();
       
@@ -111,17 +149,22 @@ namespace MCF::Locations
 
   //------------------------------------------------------------------------------------------------
   void Location::checkForChildrenArriving(
-    Money::MoneyManager& moneyManager,
-    Family::FamilyManager&,
+    Money::MoneyManager&,
+    Family::FamilyManager& familyManager,
     Locations::LocationsManager&,
     Notifications::NotificationManager&)
   {
-    for (Family::Child& child : m_childrenWaitingToArrive)
+    for (const ChildWaitingToArrive& childWaitingToArrive : m_childrenWaitingToArrive)
     {
-      m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(child), 0U));
-      child.setCurrentLocation(getName());
-      moneyManager.applyMoneyModifier(getMoneyModifier());
-      m_onChildSentEvent.invoke(child);
+      observer_ptr<Family::Child> child = familyManager.findChild(std::get<0>(childWaitingToArrive));
+      ASSERT_NOT_NULL(child);
+
+      if (child != nullptr)
+      {
+        m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(*child), 0U));
+        child->setCurrentLocation(getName());
+        m_onChildSentEvent.invoke(*child);
+      }
     }
 
     m_childrenWaitingToArrive.clear();
@@ -136,7 +179,7 @@ namespace MCF::Locations
   {
     size_t daysToComplete = getDaysToComplete();
 
-    for (const ChildDaysSpent& childDaysSpent : m_childrenAtLocation)
+    for (const ChildAtLocation& childDaysSpent : m_childrenAtLocation)
     {
       if (std::get<1>(childDaysSpent) >= daysToComplete)
       {
@@ -159,7 +202,7 @@ namespace MCF::Locations
     }
 
     m_childrenAtLocation.erase(std::remove_if(m_childrenAtLocation.begin(), m_childrenAtLocation.end(),
-      [daysToComplete](const ChildDaysSpent& childDaysSpent)
+      [daysToComplete](const ChildAtLocation& childDaysSpent)
       {
         return std::get<1>(childDaysSpent) >= daysToComplete;
       }), m_childrenAtLocation.end());
@@ -174,7 +217,7 @@ namespace MCF::Locations
   {
     for (const auto& effect : m_childLeavesEffects)
     {
-      effect->trigger(moneyManager, familyManager, locationsManager, notificationManager);
+      effect.get().trigger(moneyManager, familyManager, locationsManager, notificationManager);
     }
   }
 
@@ -182,7 +225,7 @@ namespace MCF::Locations
   unsigned int Location::getChildTime(const std::string& childName) const
   {
     auto foundChild = std::find_if(m_childrenAtLocation.begin(), m_childrenAtLocation.end(),
-      [&childName](const ChildDaysSpent& childDaysSpent)
+      [&childName](const ChildAtLocation& childDaysSpent)
       {
         return std::get<0>(childDaysSpent).get().getName() == childName;
       });

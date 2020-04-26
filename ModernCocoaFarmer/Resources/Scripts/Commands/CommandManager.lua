@@ -4,8 +4,15 @@ local Queue = require 'Containers.Queue'
 local CommandManager = {}
 
 ---------------------------------------------------------------------------------
-function CommandManager:new(commandManager)
+function CommandManager:new(state)
     self._commandQueue = Class.new(Queue)
+    self.timeManager = state.timeManager
+    self.moneyManager = state.moneyManager
+    self.familyManager = state.familyManager
+    self.locationsManager = state.locationsManager
+    self.notificationManager = state.notificationManager
+    self.gameEventManager = state.gameEventManager
+    self.modalDialogManager = state.modalDialogManager
 end
 
 ---------------------------------------------------------------------------------
@@ -16,14 +23,8 @@ end
 
 ---------------------------------------------------------------------------------
 function CommandManager:update()
-    local queueToExecute = Class.new(Queue)
-
     while self._commandQueue:size() > 0 do
-        queueToExecute:push(self._commandQueue:pop())
-    end
-
-    while queueToExecute:size() > 0 do
-        queueToExecute:pop():execute(self)
+        self._commandQueue:pop():execute(self)
     end
 end
 

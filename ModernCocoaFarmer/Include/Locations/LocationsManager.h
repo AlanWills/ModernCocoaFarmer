@@ -47,7 +47,7 @@ namespace MCF::Locations
     DECLARE_SCRIPTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
 
     private:
-      using LocationsInformation = std::unordered_map<std::string, std::unique_ptr<Location>>;
+      using LocationsInformation = std::unordered_map<std::string, std::reference_wrapper<Location>>;
 
     public:
       using LocationActivatedEvent = Celeste::Event<Location&>;
@@ -72,7 +72,6 @@ namespace MCF::Locations
         Family::FamilyManager& familyManager,
         Notifications::NotificationManager& notificationManager);
 
-      static const char* const LOCATIONS_ELEMENT_NAME;
       static const char* const LOCATION_ELEMENT_NAME;
 
     protected:

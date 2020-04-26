@@ -53,7 +53,6 @@ set_target_properties(ModernCocoaFarmerLua PROPERTIES
 set(MCF_PROJECT_NAME ModernCocoaFarmer)
 
 file(GLOB_RECURSE RES_FILES ${MCF_DIR}/Resources/*.*)
-file(GLOB_RECURSE CELESTE_RES_FILES ${CELESTE_DIR}/Celeste/Resources/*.*)
 
 source_group(TREE ${MCF_DIR} FILES ${RES_FILES})
 

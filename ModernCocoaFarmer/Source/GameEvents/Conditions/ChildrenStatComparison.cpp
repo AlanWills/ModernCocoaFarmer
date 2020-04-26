@@ -34,25 +34,25 @@ namespace MCF::GameEvents::Conditions
   {
     size_t numOfMatchingChildren = 0;
 
-    for (const auto& child : familyManager)
+    for (const Family::Child& child : familyManager)
     {
       float currentValue = 0;
 
       if (getStat() == Family::Child::HEALTH_FIELD_NAME)
       {
-        currentValue = child->getHealth();
+        currentValue = child.getHealth();
       }
       else if (getStat() == Family::Child::EDUCATION_FIELD_NAME)
       {
-        currentValue = child->getEducation();
+        currentValue = child.getEducation();
       }
       else if (getStat() == Family::Child::HAPPINESS_FIELD_NAME)
       {
-        currentValue = child->getHappiness();
+        currentValue = child.getHappiness();
       }
       else if (getStat() == Family::Child::SAFETY_FIELD_NAME)
       {
-        currentValue = child->getSafety();
+        currentValue = child.getSafety();
       }
       else
       {

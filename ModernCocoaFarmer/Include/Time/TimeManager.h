@@ -37,12 +37,17 @@ namespace MCF::Time
       const TimeEvent& getOnYearPassedEvent() const { return m_onYearPassed; }
 
       static const char* const SECONDS_PER_DAY_ATTRIBUTE_NAME;
+      static const char* const TOTAL_DAYS_PASSED_ATTRIBUTE_NAME;
+
+    protected:
+      bool doDeserialize(const tinyxml2::XMLElement* element) override;
+      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
       void updateDataStore() const;
 
       Celeste::ValueField<float>& m_secondsPerDay;
-      
+
       observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
 
       TimeEvent m_onDayPassed;

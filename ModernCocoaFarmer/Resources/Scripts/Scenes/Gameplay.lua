@@ -7,6 +7,8 @@ local CommandManager = require 'Commands.CommandManager'
 local AddChild = require 'Commands.Family.AddChild'
 local ActivateLocation = require 'Commands.Locations.ActivateLocation'
 local ElapseTime = require 'Commands.Time.ElapseTime'
+local GetPaidSalary = require 'GameEvents.Money.GetPaidSalary'
+local PayBills = require 'GameEvents.Money.PayBills'
 
 ---------------------------------------------------------------------------------
 local Gameplay = 
@@ -23,7 +25,7 @@ local Gameplay =
 ---------------------------------------------------------------------------------
 local LocationNames = 
 {
-    FARM = "Cocoa Farm",
+    FARM = "Farm",
     HOME = "Home",
     HOSPITAL = "Hospital",
     MARKET = "Market",
@@ -41,49 +43,19 @@ local function onTimeChanged(deltaTime, commandManager)
 end
 
 ---------------------------------------------------------------------------------
-function Gameplay.show()
+function Gameplay.show(state)
     -- Scene Initialization
     Scene.load(Gameplay.GAMEPLAY_SCENE_PATH)
     
-    -- Data Model Initialization
-    local dataStore = DataStore.create()
-    local timeManager = TimeManager.load(path.combine("Data", "Time", "TimeManager.asset"))
-    local moneyManager = MoneyManager.load(path.combine("Data", "Money", "MoneyManager.asset"))
-    local familyManager = FamilyManager.load(path.combine("Data", "Family", "FamilyManager.asset"))
-    local locationsManager = LocationsManager.load(path.combine("Data", "Locations", "LocationsManager.asset"))
-    local notificationManager = NotificationManager.load(path.combine("Data", "Notifications", "NotificationManager.asset"))
-    local gameEventManager = GameEventManager.load(path.combine("Data", "Events", "GameEventManager.asset"))
+    -- Event Initialization
+    GetPaidSalary.register(state.gameEventManager)
+    PayBills.register(state.gameEventManager)
 
-    timeManager:setDataStore(dataStore)
-    moneyManager:setDataStore(dataStore)
-    familyManager:setDataStore(dataStore)
-    locationsManager:setDataStore(dataStore)
-
-    gameEventManager:setTimeManager(timeManager)
-    gameEventManager:setMoneyManager(moneyManager)
-    gameEventManager:setFamilyManager(familyManager)
-    gameEventManager:setLocationsManager(locationsManager)
-    gameEventManager:setNotificationManager(notificationManager)
-    
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
-    local modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
+    state.modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
 
-    local commandManager = Class.new(CommandManager)
-    commandManager.timeManager = timeManager
-    commandManager.moneyManager = moneyManager
-    commandManager.familyManager = familyManager
-    commandManager.locationsManager = locationsManager
-    commandManager.notificationManager = notificationManager
-    commandManager.modalDialogManager = modalDialogManager
-    
-    Gameplay._dataStore = dataStore
-    Gameplay._timeManager = timeManager
-    Gameplay._moneyManager = moneyManager
-    Gameplay._familyManager = familyManager
-    Gameplay._locationsManager = locationsManager
-    Gameplay._notificationManager = notificationManager
-    Gameplay._gameEventManager = gameEventManager
-    Gameplay._modalDialogManager = modalDialogManager
+    local commandManager = Class.new(CommandManager, state)
+    Gameplay._state = state
     Gameplay._commandManager = commandManager
 
     -- Family Initialization
@@ -99,13 +71,13 @@ function Gameplay.show()
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, commandManager)
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
-    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, dataStore, locationsUI)
+    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, state.dataStore, locationsUI)
 
     local topBarGameObject = GameObject.find(Gameplay.TOP_BAR_NAME)
     Gameplay._topBar = Class.new(
         TopBar,
         commandManager,
-        dataStore,
+        state.dataStore,
         topBarGameObject)
       
     local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)
@@ -124,7 +96,7 @@ function Gameplay.updateUI()
     Gameplay._locationsUI:updateUI()
     Gameplay._topBar:updateUI()
 
-    Gameplay._modalDialogManager:destroyDialogs()
+    Gameplay._state.modalDialogManager:destroyDialogs()
 end
 
 return Gameplay

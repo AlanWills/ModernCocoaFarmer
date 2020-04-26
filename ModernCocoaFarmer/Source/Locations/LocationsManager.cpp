@@ -10,13 +10,14 @@
 #include "Time/TimeManager.h"
 #include "Money/MoneyManager.h"
 
+using namespace Celeste::XML;
+
 
 namespace MCF::Locations
 {
   REGISTER_SCRIPTABLE_OBJECT(LocationsManager);
 
   //------------------------------------------------------------------------------------------------
-  const char* const LocationsManager::LOCATIONS_ELEMENT_NAME = "Locations";
   const char* const LocationsManager::LOCATION_ELEMENT_NAME = "Location";
 
   //------------------------------------------------------------------------------------------------
@@ -29,29 +30,10 @@ namespace MCF::Locations
   //------------------------------------------------------------------------------------------------
   bool LocationsManager::doDeserialize(const tinyxml2::XMLElement* element)
   {
-    if (!Celeste::XML::hasChildElement(element, LOCATIONS_ELEMENT_NAME))
+    for (const tinyxml2::XMLElement* locationElement : children(element, Location::type_name()))
     {
-      return true;
-    }
-
-    std::vector<std::string> locationPrefabs;
-    Celeste::XML::XMLValueError result = Celeste::XML::getChildElementDataAsVector(element, LOCATIONS_ELEMENT_NAME, LOCATION_ELEMENT_NAME, locationPrefabs);
-    
-    if (result == Celeste::XML::XMLValueError::kError)
-    {
-      ASSERT_FAIL();
-      return false;
-    }
-
-    for (const std::string& locationPrefab : locationPrefabs)
-    {
-      std::unique_ptr<Location> location = ScriptableObject::load<Location>(locationPrefab);
-      ASSERT(location != nullptr);
-
-      if (location != nullptr)
-      {
-        m_locations.emplace(location->getName(), std::move(location));
-      }
+      Location& location = deserializeScriptableObject<Location>(locationElement);
+      m_locations.emplace(location.getName(), location);
     }
 
     return true;
@@ -61,7 +43,7 @@ namespace MCF::Locations
   observer_ptr<Location> LocationsManager::findLocation(const std::string& locationName) const
   {
     auto locationIt = m_locations.find(locationName);
-    return locationIt != m_locations.end() ? locationIt->second.get() : nullptr;
+    return locationIt != m_locations.end() ? &locationIt->second.get() : nullptr;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -76,7 +58,7 @@ namespace MCF::Locations
   {
     for (const auto& locationPair : m_locations)
     {
-      locationPair.second->onDayPassed();
+      locationPair.second.get().onDayPassed();
     }
 
     updateDataStore();
@@ -90,7 +72,7 @@ namespace MCF::Locations
   {
     for (const auto& locationPair : m_locations)
     {
-      locationPair.second->checkForChildrenArriving(moneyManager, familyManager, *this, notificationManager);
+      locationPair.second.get().checkForChildrenArriving(moneyManager, familyManager, *this, notificationManager);
     }
   }
 
@@ -102,7 +84,7 @@ namespace MCF::Locations
   {
     for (const auto& locationPair : m_locations)
     {
-      locationPair.second->checkForChildrenLeaving(moneyManager, familyManager, *this, notificationManager);
+      locationPair.second.get().checkForChildrenLeaving(moneyManager, familyManager, *this, notificationManager);
     }
   }
 
@@ -120,7 +102,7 @@ namespace MCF::Locations
     {
       for (const auto& locationPair : m_locations)
       {
-        Location& location = *locationPair.second;
+        Location& location = locationPair.second;
         
         std::string locationKey(DataSources::LOCATIONS);
         locationKey.push_back('.');

@@ -39,9 +39,9 @@ namespace MCF::GameEvents::Effects
     }
 
     auto foundChildIt = std::find_if(familyManager.begin(), familyManager.end(), 
-      [location](const std::unique_ptr<Family::Child>& child)
+      [location](Family::Child& child)
       {
-        return child->getCurrentLocation() == location->getName();
+        return child.getCurrentLocation() == location->getName();
       });
 
     if (foundChildIt == familyManager.end())
@@ -50,7 +50,7 @@ namespace MCF::GameEvents::Effects
       return;
     }
     
-    Family::Child& child = **foundChildIt;
+    Family::Child& child = *foundChildIt;
 
     auto modifier = ScriptableObject::load<Stats::Modifier>(getModifierPath());
     ASSERT(modifier != nullptr);

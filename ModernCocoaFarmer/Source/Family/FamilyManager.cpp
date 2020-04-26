@@ -7,6 +7,8 @@
 #include "Stats/Modifier.h"
 #include "XML/tinyxml2_ext.h"
 
+using namespace Celeste::XML;
+
 
 namespace MCF::Family
 {
@@ -37,52 +39,62 @@ namespace MCF::Family
   {
     Inherited::doDeserialize(element);
 
-    std::vector<std::string> names;
-    Celeste::XML::XMLValueError error = Celeste::XML::getChildElementDataAsVector(
+    XMLValueError error = getChildElementDataAsVector(
       element,
       CHILDREN_NAMES_ELEMENT_NAME,
       NAME_ELEMENT_NAME,
-      names);
+      m_childrenNames);
 
-    if (error == Celeste::XML::XMLValueError::kError)
+    for (const tinyxml2::XMLElement* childElement : children(element, Child::type_name()))
     {
-      ASSERT_FAIL();
-      return false;
+      m_children.push_back(deserializeScriptableObject<Child>(childElement));
     }
 
-    for (const std::string& name : names)
-    {
-      m_childrenNames.push(name);
-    }
+    ASSERT(error != XMLValueError::kError);
+    return error != XMLValueError::kError;
+  }
 
-    return true;
+  //------------------------------------------------------------------------------------------------
+  void FamilyManager::doSerialize(tinyxml2::XMLElement* element) const
+  {
+    tinyxml2::XMLDocument* document = element->GetDocument();
+
+    tinyxml2::XMLElement* childrenNamesElement = document->NewElement(CHILDREN_NAMES_ELEMENT_NAME);
+    element->InsertEndChild(childrenNamesElement);
+
+    for (const std::string& name : m_childrenNames)
+    {
+      tinyxml2::XMLElement* childNameElement = document->NewElement(NAME_ELEMENT_NAME);
+      childNameElement->SetText(name.c_str());
+      childrenNamesElement->InsertEndChild(childNameElement);
+    }
   }
 
   //------------------------------------------------------------------------------------------------
   observer_ptr<Child> FamilyManager::getChild(size_t index) const
   {
-    return index < getChildCount() ? m_children[index].get() : nullptr;
+    return index < getChildCount() ? &m_children[index].get() : nullptr;
   }
 
   //------------------------------------------------------------------------------------------------
   observer_ptr<Child> FamilyManager::findChild(const std::string& name) const
   {
     auto foundChild = std::find_if(m_children.begin(), m_children.end(),
-      [&name](const std::unique_ptr<Child>& child)
+      [&name](Child& child)
       {
-        return child->getName() == name;
+        return child.getName() == name;
       });
 
-    return foundChild != m_children.end() ? foundChild->get() : nullptr;
+    return foundChild != m_children.end() ? &foundChild->get() : nullptr;
   }
 
   //------------------------------------------------------------------------------------------------
   bool FamilyManager::hasSelectedChild() const
   {
     return std::find_if(m_children.begin(), m_children.end(), 
-      [](const std::unique_ptr<Child>& child)
+      [](const Child& child)
       {
-        return child->isSelected();
+        return child.isSelected();
       }) != m_children.end();
   }
 
@@ -90,10 +102,10 @@ namespace MCF::Family
   observer_ptr<Child> FamilyManager::getSelectedChild()
   {
     ASSERT(hasSelectedChild());
-    return std::find_if(m_children.begin(), m_children.end(),
-      [](const std::unique_ptr<Child>& child)
+    return &std::find_if(m_children.begin(), m_children.end(),
+      [](Child& child)
       {
-        return child->isSelected();
+        return child.isSelected();
       })->get();
   }
 
@@ -106,21 +118,22 @@ namespace MCF::Family
       return;
     }
 
-    const std::string name = m_childrenNames.front();
-    m_childrenNames.pop();
-
-    m_children.push_back(ScriptableObject::create<Child>(name));
+    const std::string name = m_childrenNames.back();
+    m_childrenNames.pop_back();
+    
+    // add loadScriptableObject function too
+    m_children.push_back(createScriptableObject<Child>(name));
     updateDataStore();
 
-    m_childAddedEvent.invoke(*m_children.back());
+    m_childAddedEvent.invoke(m_children.back());
   }
 
   //------------------------------------------------------------------------------------------------
   void FamilyManager::selectOnlyThisChild(Child& childToSelect)
   {
-    for (const auto& child : m_children)
+    for (Child& child : m_children)
     {
-      if (child.get() == &childToSelect)
+      if (&child == &childToSelect)
       {
         if (!childToSelect.isSelected())
         {
@@ -129,9 +142,9 @@ namespace MCF::Family
       }
       else
       {
-        if (child->isSelected())
+        if (child.isSelected())
         {
-          child->setSelected(false);
+          child.setSelected(false);
         }
       }
     }
@@ -142,9 +155,9 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::deselectOnlyThisChild(Child& childToSelect)
   {
-    for (const auto& child : m_children)
+    for (Child& child : m_children)
     {
-      if (child.get() == &childToSelect)
+      if (&child == &childToSelect)
       {
         if (childToSelect.isSelected())
         {
@@ -159,9 +172,9 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::applyHealthModifier(const Stats::Modifier& modifier)
   {
-    for (const auto& child : m_children)
+    for (Child& child : m_children)
     {
-      child->applyHealthModifier(modifier);
+      child.applyHealthModifier(modifier);
     }
 
     updateDataStore();
@@ -170,9 +183,9 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::applySafetyModifier(const Stats::Modifier& modifier)
   {
-    for (const auto& child : m_children)
+    for (Child& child : m_children)
     {
-      child->applySafetyModifier(modifier);
+      child.applySafetyModifier(modifier);
     }
   
     updateDataStore();
@@ -181,9 +194,9 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::applyEducationModifier(const Stats::Modifier& modifier)
   {
-    for (const auto& child : m_children)
+    for (Child& child : m_children)
     {
-      child->applyEducationModifier(modifier);
+      child.applyEducationModifier(modifier);
     }
 
     updateDataStore();
@@ -192,9 +205,9 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::applyHappinessModifier(const Stats::Modifier& modifier)
   {
-    for (const auto& child : m_children)
+    for (Child& child : m_children)
     {
-      child->applyHappinessModifier(modifier);
+      child.applyHappinessModifier(modifier);
     }
 
     updateDataStore();
@@ -231,20 +244,20 @@ namespace MCF::Family
       m_dataStore->set(DataSources::HAS_SELECTED_CHILD, hasSC);
       m_dataStore->set(DataSources::SELECTED_CHILD_NAME, hasSC ? getSelectedChild()->getName() : std::string());
 
-      for (const auto& child : m_children)
+      for (const Child& child : m_children)
       {
         std::string childKey(DataSources::CHILDREN);
         childKey.push_back('.');
-        childKey.append(child->getName());
+        childKey.append(child.getName());
 
         Persistence::DataObjectHandle childObject(*m_dataStore, childKey);
-        childObject.set(Stats::DataSources::HEALTH, child->getHealth());
-        childObject.set(Stats::DataSources::SAFETY, child->getSafety());
-        childObject.set(Stats::DataSources::EDUCATION, child->getEducation());
-        childObject.set(Stats::DataSources::HAPPINESS, child->getHappiness());
-        childObject.set(DataSources::IS_SELECTED, child->isSelected());
-        childObject.set(DataSources::IS_AT_LOCATION, child->isAtLocation());
-        childObject.set(DataSources::CURRENT_LOCATION, child->getCurrentLocation());
+        childObject.set(Stats::DataSources::HEALTH, child.getHealth());
+        childObject.set(Stats::DataSources::SAFETY, child.getSafety());
+        childObject.set(Stats::DataSources::EDUCATION, child.getEducation());
+        childObject.set(Stats::DataSources::HAPPINESS, child.getHappiness());
+        childObject.set(DataSources::IS_SELECTED, child.isSelected());
+        childObject.set(DataSources::IS_AT_LOCATION, child.isAtLocation());
+        childObject.set(DataSources::CURRENT_LOCATION, child.getCurrentLocation());
       }
     }
   }

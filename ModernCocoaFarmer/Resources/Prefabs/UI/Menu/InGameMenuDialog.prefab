@@ -4,15 +4,16 @@
     <GameObject name="InGameMenu">
       <Components>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="384,540" colour="0.5,0.5,0.5" opacity="0.8"/>
+        <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>
       </Components>
       <GameObjects>
-        <GameObject name="ToggleAudioButton" position="0,216,0.01">
+        <GameObject name="ToggleAudioButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\AudioPlaying.png" size="77,43" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-        <GameObject name="ResumeGameButton" position="0,130,0.01">
+        <GameObject name="ResumeGameButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
@@ -26,21 +27,21 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="RestartGameButton" position="0,22,0.01">
+        <GameObject name="SaveGameButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
             <Button/>
           </Components>
           <GameObjects>
-            <GameObject name="RestartGameButtonText">
+            <GameObject name="SaveGameButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="0,0,0" text="Restart Game"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="Save Game"/>
               </Components>
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="ToMainMenuButton" position="0,-86,0.01">
+        <GameObject name="ToMainMenuButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
@@ -54,7 +55,7 @@
             </GameObject>          
           </GameObjects>
         </GameObject>
-        <GameObject name="QuitGameButton" position="0,-194,0.01">
+        <GameObject name="QuitGameButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>
             <RectangleCollider/>

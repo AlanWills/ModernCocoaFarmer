@@ -31,16 +31,16 @@
                 <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>
               </Components>
               <GameObjects>
-                <GameObject name="ExitButton">
+                <GameObject name="PlayButton">
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>
                   <GameObjects>
-                    <GameObject name="ExitText" position="0,1,0">
+                    <GameObject name="PlayText" position="0,1,0">
                       <Components>
-                        <TextRenderer font_height="24" colour="0,0,0" text="Exit"/>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Play"/>
                       </Components>
                     </GameObject>
                   </GameObjects>
@@ -59,16 +59,16 @@
                     </GameObject>
                   </GameObjects>
                 </GameObject>
-                <GameObject name="PlayButton">
+                <GameObject name="ExitButton">
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
                     <Button/>
                   </Components>
                   <GameObjects>
-                    <GameObject name="PlayText" position="0,1,0">
+                    <GameObject name="ExitText" position="0,1,0">
                       <Components>
-                        <TextRenderer font_height="24" colour="0,0,0" text="Play"/>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Exit"/>
                       </Components>
                     </GameObject>
                   </GameObjects>
