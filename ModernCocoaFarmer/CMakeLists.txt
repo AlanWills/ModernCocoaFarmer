@@ -1,17 +1,18 @@
 set(LIBS 
+    Dolce
+    DolceLua
     Celeste
+    CelesteLua
     curlpp)
     
 set(TEST_LIBS
     CelesteMocks
     CelesteTestResources
     CelesteTestUtils)
-
-build_library(
-    NAME ModernCocoaFarmerLibrary 
+    
+cbt_build_project(
+    NAME ModernCocoaFarmer 
     FOLDER "Modern Cocoa Farmer" 
-    TYPE SHARED 
+    TYPE EXECUTABLE 
     LIBS "${LIBS}"
     TEST_LIBS "${TEST_LIBS}")
-
-target_compile_definitions(ModernCocoaFarmerLibrary PRIVATE -DBUILDING_MCF_LIBRARY_DLL)

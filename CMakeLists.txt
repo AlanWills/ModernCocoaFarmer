@@ -32,51 +32,8 @@ add_subdirectory(${CELESTE_DIR} ${CELESTE_DIR}/Build ${EXCLUDE})
 ##------------------------------ end Celeste ------------------------------##
 
 
-##------------------------------ Modern Cocoa Farmer Library Project ------------------------------##
-add_subdirectory(${MCF_DIR} ${MCF_DIR}/Build)
-
-set_target_properties(ModernCocoaFarmerLibrary PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${BUILDS_DIR})
-
-
-##------------------------------ ModernCocoaFarmerLua ------------------------------##
-set(MCF_LUA_PROJECT_DIR "${PROJECT_SOURCE_DIR}/ModernCocoaFarmerLua")
-add_subdirectory(${MCF_LUA_PROJECT_DIR} ${MCF_LUA_PROJECT_DIR}/Build ${EXCLUDE})
-
-set_target_properties(ModernCocoaFarmerLua PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${BUILDS_DIR}
-    LIBRARY_OUTPUT_DIRECTORY ${BUILDS_DIR})
-
-
-##------------------------------ Modern Cocoa Farmer Project ------------------------------##
-set(MCF_PROJECT_NAME ModernCocoaFarmer)
-
-file(GLOB_RECURSE RES_FILES ${MCF_DIR}/Resources/*.*)
-
-source_group(TREE ${MCF_DIR} FILES ${RES_FILES})
-
-add_executable(${MCF_PROJECT_NAME} ${MCF_DIR}/Main.cpp ${MCF_DIR}/MCFGame.cpp ${MCF_DIR}/MCFGame.h ${RES_FILES})
-
-set_source_files_properties(${RES_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
-
-set_target_properties(${MCF_PROJECT_NAME} PROPERTIES
-    FOLDER "Modern Cocoa Farmer"
-    RUNTIME_OUTPUT_DIRECTORY ${BUILDS_DIR} 
-    LIBRARY_OUTPUT_DIRECTORY ${BUILDS_DIR}
-    CXX_STANDARD 17
-    VS_DEBUGGER_WORKING_DIRECTORY ${MCF_DIR})
-
-target_include_directories(${MCF_PROJECT_NAME} PUBLIC 
-    ${MCF_DIR}/Include)
-target_link_libraries(${MCF_PROJECT_NAME} PUBLIC 
-    Dolce
-    DolceLua
-    Celeste
-    CelesteLua
-    ModernCocoaFarmerLibrary
-    ModernCocoaFarmerLua)
-
-target_compile_options(${MCF_PROJECT_NAME} PRIVATE /MP4 /W4 /WX)
+##------------------------------ Modern Cocoa Farmer ------------------------------##
+add_subdirectory(${MCF_DIR} ${MCF_DIR}/Build ${EXCLUDE})
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ModernCocoaFarmer)
+##------------------------------ end Modern Cocoa Farmer ------------------------------##
