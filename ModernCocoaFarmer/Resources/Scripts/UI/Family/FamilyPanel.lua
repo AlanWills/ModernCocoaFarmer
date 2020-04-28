@@ -23,7 +23,15 @@ function FamilyPanel:new(commandManager, dataStore, familyPanelGameObject)
     self._childStackPanel = familyPanelGameObject:findChild(self.CHILD_STACK_PANEL)
     self._childIcons = {}
 
-    commandManager.familyManager:subscribeOnChildAddedCallback(onChildAddedCallback, self)
+    local familyManager = commandManager.familyManager
+    local childCount = 0
+
+    while childCount < familyManager:getChildCount() do
+        self:addChildIcon(familyManager:getChild(childCount))
+        childCount = childCount + 1
+    end
+
+    familyManager:subscribeOnChildAddedCallback(onChildAddedCallback, self)
 end
 
 ---------------------------------------------------------------------------------

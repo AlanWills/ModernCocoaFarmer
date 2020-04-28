@@ -4,6 +4,7 @@
 #include "tinyxml2.h"
 #include "Assert/Assert.h"
 #include "XML/tinyxml2_ext.h"
+#include "Templates/Variant.h"
 
 #include <unordered_map>
 #include <string>
@@ -139,6 +140,17 @@ namespace MCF::Persistence
   template <typename T>
   T DataStore::get(const std::string& dataKey, T defaultValue) const
   {
+    if (!has(dataKey))
+    {
+      return defaultValue;
+    }
+
+    if (!unsafe_is<T>(dataKey))
+    {
+      ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<DataStore::Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
+      return defaultValue;
+    }
+
     return is<T>(dataKey) ? std::get<T>(m_dataLookup.at(dataKey)) : defaultValue;
   }
 
@@ -157,6 +169,7 @@ namespace MCF::Persistence
       return true;
     }
 
+    ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<DataStore::Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
     return false;
   }
 

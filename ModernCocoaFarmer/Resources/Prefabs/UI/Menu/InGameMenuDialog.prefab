@@ -13,20 +13,6 @@
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
-        <GameObject name="ResumeGameButton" position="0,0,0.01">
-          <Components>
-            <SpriteRenderer/>
-            <MouseInteractionHandler/>
-            <Button/>
-          </Components>
-          <GameObjects>
-            <GameObject name="ResumeGameButtonText">
-              <Components>
-                <TextRenderer font_height="24" colour="0,0,0" text="Resume Game"/>
-              </Components>
-            </GameObject>
-          </GameObjects>
-        </GameObject>
         <GameObject name="SaveGameButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>
@@ -36,7 +22,21 @@
           <GameObjects>
             <GameObject name="SaveGameButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="0,0,0" text="Save Game"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="Save"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="LoadGameButton" position="0,0,0.01">
+          <Components>
+            <SpriteRenderer/>
+            <MouseInteractionHandler/>
+            <Button/>
+          </Components>
+          <GameObjects>
+            <GameObject name="LoadGameButtonText">
+              <Components>
+                <TextRenderer font_height="24" colour="0,0,0" text="Load"/>
               </Components>
             </GameObject>
           </GameObjects>
@@ -65,7 +65,7 @@
           <GameObjects>
             <GameObject name="QuitGameButtonText">
               <Components>
-                <TextRenderer font_height="24" colour="0,0,0" text="Quit Game"/>
+                <TextRenderer font_height="24" colour="0,0,0" text="Exit To Desktop"/>
               </Components>
             </GameObject>
           </GameObjects>

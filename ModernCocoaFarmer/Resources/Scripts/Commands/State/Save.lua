@@ -7,6 +7,11 @@ end
 
 ---------------------------------------------------------------------------------
 function Save:execute(commandManager)
+    local saveDirectory = Directory.new(self._saveDirectory)
+    if not saveDirectory:exists() then
+        saveDirectory:create()
+    end
+
     commandManager.timeManager:save(path.combine(self._saveDirectory, "TimeManager.asset"))
     commandManager.moneyManager:save(path.combine(self._saveDirectory, "MoneyManager.asset"))
     commandManager.familyManager:save(path.combine(self._saveDirectory, "FamilyManager.asset"))

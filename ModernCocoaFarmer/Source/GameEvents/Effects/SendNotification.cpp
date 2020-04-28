@@ -3,6 +3,8 @@
 #include "Notifications/NotificationManager.h"
 #include "Notifications/Notification.h"
 
+using namespace MCF::Notifications;
+
 
 namespace MCF::GameEvents::Effects
 {
@@ -10,7 +12,7 @@ namespace MCF::GameEvents::Effects
 
   //------------------------------------------------------------------------------------------------
   SendNotification::SendNotification() :
-    m_notification(createScriptableObject<Notifications::Notification>("notification"))
+    m_notification(createScriptableObject<Notification>("notification"))
   {
   }
 
@@ -19,8 +21,14 @@ namespace MCF::GameEvents::Effects
     Money::MoneyManager&,
     Family::FamilyManager&,
     Locations::LocationsManager&,
-    Notifications::NotificationManager& notificationManager) const
+    NotificationManager& notificationManager) const
   {
-    notificationManager.sendNotification(getNotification());
+    const Notification& notification = getNotification();
+    
+    std::unique_ptr<Notification> newNotification = ScriptableObject::create<Notification>(notification.getName());
+    newNotification->setDescription(notification.getDescription());
+    newNotification->setIcon(notification.getIcon());
+
+    notificationManager.sendNotification(std::move(newNotification));
   }
 }

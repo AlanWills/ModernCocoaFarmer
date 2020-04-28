@@ -13,8 +13,8 @@ local function createNotificationIconCallback(notification, self)
 end
 
 ---------------------------------------------------------------------------------
-local function removeNotificationIconCallback(caller, extraArgs)
-    extraArgs.self:removeNotificationIcon(extraArgs.notificationIcon._gameObject)
+local function removeNotificationCallback(caller, extraArgs)
+    extraArgs.self:removeNotification(extraArgs.notificationIcon)
 end
 
 ---------------------------------------------------------------------------------
@@ -23,7 +23,15 @@ function NotificationsPanel:new(commandManager, notificationsPanelGameObject)
     self._gameObject = notificationsPanelGameObject
     self._notificationsAnchor = notificationsPanelGameObject:findChild(self.NOTIFICATIONS_ANCHOR_NAME)
 
-    commandManager.notificationManager:subscribeOnNotificationSentCallback(createNotificationIconCallback, self)
+    local notificationManager = commandManager.notificationManager
+    local notificationCount = 0
+
+    while notificationCount < notificationManager:getNotificationCount() do
+        self:createNotificationIcon(notificationManager:getNotification(notificationCount))
+        notificationCount = notificationCount + 1
+    end
+
+    notificationManager:subscribeOnNotificationSentCallback(createNotificationIconCallback, self)
 end
 
 ---------------------------------------------------------------------------------
@@ -33,16 +41,17 @@ function NotificationsPanel:createNotificationIcon(notification)
     local notificationIcon = Class.new(NotificationIcon, self._commandManager, notification, notificationGameObject)
 
     local notificationInteractionHandler = notificationGameObject:findComponent("MouseInteractionHandler")
-    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(removeNotificationIconCallback, { self = self, notificationIcon = notificationIcon })
-    notificationInteractionHandler:subscribeOnRightButtonUpCallback(removeNotificationIconCallback, { self = self, notificationIcon = notificationIcon })
+    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(removeNotificationCallback, { self = self, notificationIcon = notificationIcon })
+    notificationInteractionHandler:subscribeOnRightButtonUpCallback(removeNotificationCallback, { self = self, notificationIcon = notificationIcon })
 
     self._notificationsAnchor:findComponent("StackPanel"):addChild(notificationGameObject)
 end
 
 ---------------------------------------------------------------------------------
-function NotificationsPanel:removeNotificationIcon(notificationGameObject)
-    self._notificationsAnchor:findComponent("StackPanel"):removeChild(notificationGameObject)
-    notificationGameObject:destroy()
+function NotificationsPanel:removeNotification(notification)
+    self._commandManager.notificationManager:removeNotification(notification)
+    self._notificationsAnchor:findComponent("StackPanel"):removeChild(notification._gameObject)
+    notification._gameObject:destroy()
 end
 
 return NotificationsPanel

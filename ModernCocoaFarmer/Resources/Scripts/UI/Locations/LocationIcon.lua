@@ -55,6 +55,8 @@ end
 function LocationIcon:addChildWalking(from, to)
     local childWalkingPrefab = Resources.loadPrefab(LocationIcon.CHILD_WALKING_PREFAB_PATH);
     local childWalkingInstance = childWalkingPrefab:instantiate();
+    childWalkingInstance:setParent(self._gameObject)
+
     local childWalking = childWalkingInstance:findComponent("ChildWalkingToLocationController")
     childWalkingInstance:getTransform():setWorldTranslation(GameObject.find(from):getTransform():getWorldTranslation())
     childWalking:setLocation(GameObject.find(to):getTransform():getWorldTranslation())

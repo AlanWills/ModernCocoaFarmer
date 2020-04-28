@@ -56,6 +56,7 @@ namespace MCF::Lua::GameEvents::GameEventManagerScriptCommands
       "setTimeManager", &GameEventManager::setTimeManager,
       "setLocationsManager", &GameEventManager::setLocationsManager,
       "setNotificationManager", &GameEventManager::setNotificationManager,
-      "registerGameEvent", sol::overload(&Internals::registerGameEvent_Instance, &Internals::registerGameEvent_PrefabPath));
+      "registerGameEvent", sol::overload(&Internals::registerGameEvent_Instance, &Internals::registerGameEvent_PrefabPath),
+      "checkEventsForTriggering", &GameEventManager::checkEventsForTriggering);
   }
 }

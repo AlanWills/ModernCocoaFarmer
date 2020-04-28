@@ -57,6 +57,8 @@ namespace MCF::GameEvents
       observer_ptr<Notifications::NotificationManager> getNotificationManager() const { return m_notificationManager; }
       MCFLibraryDllExport void setNotificationManager(observer_ptr<Notifications::NotificationManager> notificationManager);
 
+      MCFLibraryDllExport void checkEventsForTriggering();
+
       static const char* const GAME_EVENTS_ELEMENT_NAME;
       static const char* const GAME_EVENT_ELEMENT_NAME;
 
@@ -64,8 +66,6 @@ namespace MCF::GameEvents
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
-      void checkEventsForTriggering();
-
       observer_ptr<Family::FamilyManager> m_familyManager;
       observer_ptr<Time::TimeManager> m_timeManager;
       observer_ptr<Money::MoneyManager> m_moneyManager;

@@ -18,6 +18,12 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
   namespace Internals
   {
     //------------------------------------------------------------------------------------------------
+    void sendNotification(NotificationManager& notificationManager, std::unique_ptr<Notification>& notification)
+    {
+      notificationManager.sendNotification(std::move(notification));
+    }
+
+    //------------------------------------------------------------------------------------------------
     void subscribeOnNotificationSentCallback(
       NotificationManager& notificationManager,
       sol::protected_function callback,
@@ -37,7 +43,10 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
       state,
       NotificationManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-      "sendNotification", &NotificationManager::sendNotification,
+      "getNotificationCount", &NotificationManager::getNotificationCount,
+      "getNotification", &NotificationManager::getNotification,
+      "sendNotification", &Internals::sendNotification,
+      "removeNotification", &NotificationManager::removeNotification,
       "subscribeOnNotificationSentCallback", &Internals::subscribeOnNotificationSentCallback);
   }
 }

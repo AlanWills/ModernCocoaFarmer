@@ -58,9 +58,6 @@ function Gameplay.show(state)
     Gameplay._state = state
     Gameplay._commandManager = commandManager
 
-    -- Family Initialization
-    commandManager:execute(AddChild)
-
     -- Location Initialization
     for k, v in pairs(LocationNames) do
         commandManager:execute(ActivateLocation, v)

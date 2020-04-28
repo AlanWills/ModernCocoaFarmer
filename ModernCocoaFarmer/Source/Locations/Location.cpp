@@ -161,7 +161,7 @@ namespace MCF::Locations
 
       if (child != nullptr)
       {
-        m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(*child), 0U));
+        m_childrenAtLocation.emplace_back(std::make_tuple(std::reference_wrapper(*child), std::get<1>(childWaitingToArrive)));
         child->setCurrentLocation(getName());
         m_onChildSentEvent.invoke(*child);
       }
@@ -196,7 +196,7 @@ namespace MCF::Locations
         notification->setDescription(Utils::substituteLocaTokens(description, locaTokens));
         notification->setIcon(getChildLeavesNotificationIcon());
 
-        notificationManager.sendNotification(*notification);
+        notificationManager.sendNotification(std::move(notification));
         m_onChildLeftEvent.invoke(std::get<0>(childDaysSpent));
       }
     }

@@ -45,6 +45,20 @@
                     </GameObject>
                   </GameObjects>
                 </GameObject>
+                <GameObject name="ContinueButton">
+                  <Components>
+                    <SpriteRenderer size="200,40"/>
+                    <MouseInteractionHandler/>
+                    <Button/>
+                  </Components>
+                  <GameObjects>
+                    <GameObject name="ContinueText" position="0,1,0">
+                      <Components>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Continue"/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
                 <GameObject name="OptionsButton">
                   <Components>
                     <SpriteRenderer size="200,40"/>

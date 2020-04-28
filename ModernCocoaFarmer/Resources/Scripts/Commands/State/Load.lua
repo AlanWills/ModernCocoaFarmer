@@ -1,15 +1,15 @@
 local GameplayState = require 'State.GameplayState'
 local Class = require 'OOP.Class'
 
-local LoadGameplayCommand = {}
+local Load = {}
 
 ---------------------------------------------------------------------------------
-function LoadGameplayCommand:new(saveDirectory)
+function Load:new(saveDirectory)
     self._saveDirectory = saveDirectory
 end
 
 ---------------------------------------------------------------------------------
-function LoadGameplayCommand:execute()
+function Load:execute()
     local gameplayState = Class.new(GameplayState)
     gameplayState.timeManagerPath = path.combine(self._saveDirectory, "TimeManager.asset")
     gameplayState.moneyManagerPath = path.combine(self._saveDirectory, "MoneyManager.asset")
@@ -22,4 +22,4 @@ function LoadGameplayCommand:execute()
     gameplayScene.show(gameplayState)
 end
 
-return LoadGameplayCommand
+return Load

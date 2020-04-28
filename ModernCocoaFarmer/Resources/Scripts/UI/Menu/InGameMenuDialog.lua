@@ -2,6 +2,7 @@ local Class = require 'OOP.Class'
 local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
 local GameSettings = require 'Settings.GameSettings'
 local Save = require 'Commands.State.Save'
+local Load = require 'Commands.State.Load'
 local GameplayStateConstants = require 'State.GameplayStateConstants'
 
 ---------------------------------------------------------------------------------
@@ -9,8 +10,8 @@ local InGameMenuDialog = Class.inheritsFrom(ModalDialogBase)
 
 InGameMenuDialog.IN_GAME_MENU_PREFAB_PATH = path.combine("Prefabs", "UI", "Menu", "InGameMenuDialog.prefab")
 InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME = "ToggleAudioButton"
-InGameMenuDialog.RESUME_GAME_BUTTON_NAME = "ResumeGameButton"
 InGameMenuDialog.SAVE_GAME_BUTTON_NAME = "SaveGameButton"
+InGameMenuDialog.LOAD_GAME_BUTTON_NAME = "LoadGameButton"
 InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME = "ToMainMenuButton"
 InGameMenuDialog.QUIT_GAME_BUTTON_NAME = "QuitGameButton"
 InGameMenuDialog.AUDIO_MUTED_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioMuted.png")
@@ -52,15 +53,20 @@ local function toggleAudio(caller)
 end
 
 ---------------------------------------------------------------------------------
-local function resumeGame(caller, self)
-    close(caller, self)
-end
-
----------------------------------------------------------------------------------
 local function saveGame(caller, self)
     close(caller, self)
 
     self._commandManager:execute(Save, GameplayStateConstants.SAVE_DIRECTORY)
+end
+
+---------------------------------------------------------------------------------
+local function loadGame(caller, self)
+    close(caller, self)
+    
+    local Gameplay = require 'Scenes.Gameplay'
+    Gameplay.hide()
+
+    Class.new(Load, GameplayStateConstants.SAVE_DIRECTORY):execute()
 end
 
 ---------------------------------------------------------------------------------
@@ -92,12 +98,20 @@ function InGameMenuDialog:new(commandManager)
     ModalDialogBase.new(self, commandManager, self._gameObject)
 
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.RESUME_GAME_BUTTON_NAME, resumeGame, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.SAVE_GAME_BUTTON_NAME, saveGame, self)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.LOAD_GAME_BUTTON_NAME, loadGame, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME, toMainMenu, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.QUIT_GAME_BUTTON_NAME, quitGame)
 
     setToggleAudioButtonTexture(self._gameObject:findChild(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME), Audio.getMasterVolume())
+    self:updateLoadGameButtonVisibility()
+end
+
+---------------------------------------------------------------------------------
+function InGameMenuDialog:updateLoadGameButtonVisibility()
+    local loadGameButton = self._gameObject:findChild(InGameMenuDialog.LOAD_GAME_BUTTON_NAME)
+    loadGameButton:setActive(Directory.exists(GameplayStateConstants.SAVE_DIRECTORY))
+    self._gameObject:findComponent("StackPanel"):layout()
 end
 
 return InGameMenuDialog
