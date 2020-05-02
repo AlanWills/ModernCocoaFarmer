@@ -54,11 +54,12 @@ namespace MCF::Family
   {
     if (modifier.getChangeType() == Stats::ChangeType::kAbsolute)
     {
-      attributeToModify.setValue(static_cast<float>(modifier.getAmount()));
+      // Absolute values aren't normalized - this doesn't make sense
+      attributeToModify.setValue(modifier.getAmount());
     }
     else if (modifier.getChangeType() == Stats::ChangeType::kDelta)
     {
-      attributeToModify.setValue(attributeToModify.getValue() + static_cast<float>(modifier.getAmount()));
+      attributeToModify.setValue(attributeToModify.getValue() + modifier.getNormalizedAmount());
     }
     else
     {

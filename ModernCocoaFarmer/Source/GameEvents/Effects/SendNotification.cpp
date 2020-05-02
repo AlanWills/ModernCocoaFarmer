@@ -24,7 +24,11 @@ namespace MCF::GameEvents::Effects
     NotificationManager& notificationManager) const
   {
     const Notification& notification = getNotification();
-    
+    if (notification.getDescription().empty())
+    {
+      ASSERT_FAIL();
+    }
+
     std::unique_ptr<Notification> newNotification = ScriptableObject::create<Notification>(notification.getName());
     newNotification->setDescription(notification.getDescription());
     newNotification->setIcon(notification.getIcon());

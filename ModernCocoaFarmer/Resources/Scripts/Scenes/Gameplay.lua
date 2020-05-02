@@ -9,6 +9,7 @@ local ActivateLocation = require 'Commands.Locations.ActivateLocation'
 local ElapseTime = require 'Commands.Time.ElapseTime'
 local GetPaidSalary = require 'GameEvents.Money.GetPaidSalary'
 local PayBills = require 'GameEvents.Money.PayBills'
+local ActivateFirstChild = require 'GameEvents.Family.ActivateFirstChild'
 
 ---------------------------------------------------------------------------------
 local Gameplay = 
@@ -50,6 +51,7 @@ function Gameplay.show(state)
     -- Event Initialization
     GetPaidSalary.register(state.gameEventManager)
     PayBills.register(state.gameEventManager)
+    ActivateFirstChild.register(state.gameEventManager)
 
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
     state.modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)

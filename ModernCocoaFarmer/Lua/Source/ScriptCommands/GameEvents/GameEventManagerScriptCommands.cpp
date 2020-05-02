@@ -1,5 +1,5 @@
 #include "ScriptCommands/GameEvents/GameEventManagerScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "GameEvents/GameEventManager.h"
 #include "GameEvents/GameEvent.h"

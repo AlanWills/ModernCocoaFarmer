@@ -1,5 +1,5 @@
 #include "ScriptCommands/Locations/LocationScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "Locations/Location.h"
 #include "Family/Child.h"

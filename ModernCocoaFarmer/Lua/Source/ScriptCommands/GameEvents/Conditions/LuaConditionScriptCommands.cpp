@@ -1,5 +1,5 @@
 #include "ScriptCommands/GameEvents/Conditions/LuaConditionScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "GameEvents/Conditions/LuaCondition.h"
 

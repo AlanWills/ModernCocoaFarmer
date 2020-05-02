@@ -1,5 +1,5 @@
 #include "ScriptCommands/GameEvents/Effects/LuaEffectScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "GameEvents/Effects/LuaEffect.h"
 

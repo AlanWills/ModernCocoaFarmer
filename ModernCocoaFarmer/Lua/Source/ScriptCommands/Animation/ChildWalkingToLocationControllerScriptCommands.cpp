@@ -1,5 +1,5 @@
 #include "ScriptCommands/Animation/ChildWalkingToLocationControllerScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 #include "Animation/ChildWalkingToLocationController.h"
 
 

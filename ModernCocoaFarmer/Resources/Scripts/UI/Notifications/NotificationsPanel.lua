@@ -48,10 +48,10 @@ function NotificationsPanel:createNotificationIcon(notification)
 end
 
 ---------------------------------------------------------------------------------
-function NotificationsPanel:removeNotification(notification)
-    self._commandManager.notificationManager:removeNotification(notification)
-    self._notificationsAnchor:findComponent("StackPanel"):removeChild(notification._gameObject)
-    notification._gameObject:destroy()
+function NotificationsPanel:removeNotification(notificationIcon)
+    self._commandManager.notificationManager:removeNotification(notificationIcon._notification)
+    self._notificationsAnchor:findComponent("StackPanel"):removeChild(notificationIcon._gameObject)
+    notificationIcon._gameObject:destroy()
 end
 
 return NotificationsPanel

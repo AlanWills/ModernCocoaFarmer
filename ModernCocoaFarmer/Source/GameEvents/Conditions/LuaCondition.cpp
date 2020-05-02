@@ -31,6 +31,8 @@ namespace MCF::GameEvents::Conditions
 
         return false;
       }
+
+      return result.get<bool>();
     }
 
     return true;

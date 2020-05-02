@@ -1,7 +1,9 @@
 #include "MCFGame.h"
 #include "Lua/LuaState.h"
-#include "ScriptCommands/CelesteScriptCommands.h"
+#include "ScriptCommands/Celeste/CelesteScriptCommands.h"
 #include "ScriptCommands/MCFScriptCommands.h"
+
+using namespace Celeste;
 
 
 namespace MCF
@@ -9,8 +11,12 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   MCFGame::MCFGame()
   {
+    // Will need to make this for just VS
+    Path pathToResources = Path(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING, "ModernCocoaFarmer", "Resources");
+    getResourceManager().setResourcesDirectory(pathToResources);
+
     Celeste::Lua::LuaState::appendToLuaPackagePath(
-      Celeste::Path(Celeste::Resources::getResourcesDirectory(), "..", "..", "Celeste", "Celeste", "Lua", "Resources", "Scripts", "?.lua;"));
+      Celeste::Path(pathToResources, UPDIR_STRING, UPDIR_STRING, "Celeste", "Celeste", "Lua", "Resources", "Scripts", "?.lua;"));
   }
 
   //------------------------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 #include "ScriptCommands/Persistence/DataStoreScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 #include "Persistence/DataStore.h"
 #include "Persistence/DataObjectHandle.h"
 #include "Persistence/DataArrayHandle.h"

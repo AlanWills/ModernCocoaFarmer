@@ -5,14 +5,13 @@ local NotificationIcon = {}
 
 ---------------------------------------------------------------------------------
 local function showNotificationDialogCallback(caller, self)
-    self._commandManager:execute(ShowNotificationDialog, self._title, self._description)
+    self._commandManager:execute(ShowNotificationDialog, self._notification:getName(), self._notification:getDescription())
 end
 
 ---------------------------------------------------------------------------------
 function NotificationIcon:new(commandManager, notification, gameObject)
     self._commandManager = commandManager
-    self._title = notification:getName()
-    self._description = notification:getDescription()
+    self._notification = notification
     self._gameObject = gameObject   -- Needed by NotificationsPanel, do not delete
 
     local notificationInteractionHandler = gameObject:findComponent("MouseInteractionHandler")

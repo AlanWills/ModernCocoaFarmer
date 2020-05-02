@@ -42,7 +42,7 @@ namespace MCF::Locations
     m_educationModifier(createScriptableObject<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),
     m_happinessModifier(createScriptableObject<Stats::Modifier>(HAPPINESS_MODIFIER_FIELD_NAME)),
     m_moneyModifier(createScriptableObject<Stats::Modifier>(MONEY_MODIFIER_FIELD_NAME)),
-    m_daysToComplete(createValueField<unsigned int>(DAYS_TO_COMPLETE_FIELD_NAME)),
+    m_daysToComplete(createValueField<unsigned int>(DAYS_TO_COMPLETE_FIELD_NAME, 1U)),
     m_childrenWaitingToArrive(),
     m_childrenAtLocation(),
     m_childLeavesEffects(),
@@ -55,6 +55,12 @@ namespace MCF::Locations
   bool Location::doDeserialize(const tinyxml2::XMLElement* element)
   {
     bool result = true;
+
+    float daysToCompleteNormalizer = static_cast<float>(getDaysToComplete());
+    m_healthModifier.setNormalizer(daysToCompleteNormalizer);
+    m_safetyModifier.setNormalizer(daysToCompleteNormalizer);
+    m_educationModifier.setNormalizer(daysToCompleteNormalizer);
+    m_happinessModifier.setNormalizer(daysToCompleteNormalizer);
 
     for (const tinyxml2::XMLElement* childAtLocation : children(element, CHILD_AT_LOCATION_ELEMENT_NAME))
     {

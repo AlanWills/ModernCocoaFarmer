@@ -1,5 +1,5 @@
 #include "ScriptCommands/Money/MoneyManagerScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 #include "Money/MoneyManager.h"
 #include "Stats/Modifier.h"
 #include "sol/sol.hpp"

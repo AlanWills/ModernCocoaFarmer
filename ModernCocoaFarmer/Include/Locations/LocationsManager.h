@@ -2,7 +2,7 @@
 
 #include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
-#include "Memory/ObserverPtr.h"
+#include "CelesteStl/Memory/ObserverPtr.h"
 #include "Events/Event.h"
 #include "UID/StringId.h"
 

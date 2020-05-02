@@ -1,5 +1,5 @@
 #include "ScriptCommands/Locations/LocationManagerScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "Locations/LocationsManager.h"
 #include "Locations/Location.h"

@@ -1,5 +1,5 @@
 #include "ScriptCommands/Notifications/NotificationManagerScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "Notifications/NotificationManager.h"
 #include "Notifications/Notification.h"

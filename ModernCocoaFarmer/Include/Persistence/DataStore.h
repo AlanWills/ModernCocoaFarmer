@@ -4,7 +4,7 @@
 #include "tinyxml2.h"
 #include "Assert/Assert.h"
 #include "XML/tinyxml2_ext.h"
-#include "Templates/Variant.h"
+#include "CelesteStl/Templates/Variant.h"
 
 #include <unordered_map>
 #include <string>

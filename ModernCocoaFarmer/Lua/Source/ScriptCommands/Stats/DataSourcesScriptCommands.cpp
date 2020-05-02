@@ -1,5 +1,5 @@
 #include "ScriptCommands/Stats/DataSourcesScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "Stats/DataSources.h"
 

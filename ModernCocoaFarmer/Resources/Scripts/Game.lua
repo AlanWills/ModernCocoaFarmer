@@ -7,7 +7,7 @@ local GameplayStateConstants = require 'State.GameplayStateConstants'
 Mouse.setCursor(path.combine("Textures", "UI", "Utility", "Cursor.png"))
 
 local quickStart = true
-local loadGame = true
+local loadGame = false
 
 if not quickStart then
     Splash.show()

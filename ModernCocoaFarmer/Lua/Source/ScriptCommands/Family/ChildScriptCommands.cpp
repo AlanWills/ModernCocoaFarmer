@@ -1,5 +1,5 @@
 #include "ScriptCommands/Family/ChildScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "Family/Child.h"
 #include "Stats/Modifier.h"

@@ -1,5 +1,5 @@
 #include "ScriptCommands/Time/TimeManagerScriptCommands.h"
-#include "ScriptCommands/ScriptCommandUtils.h"
+#include "ScriptCommands/Utils/ScriptCommandUtils.h"
 
 #include "Time/TimeManager.h"
 
