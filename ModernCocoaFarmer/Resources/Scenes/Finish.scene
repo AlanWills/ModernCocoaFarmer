@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scene>
+  <GameObjects>
+    <GameObject name="FinishScene">
+      <Components>
+        <Canvas/>
+        <GraphicsRaycaster/>
+      </Components>
+      <GameObjects>
+        <GameObject position="960,640,0" name="ThankYouText">
+          <Components>
+            <TextRenderer text="Thanks For Playing!"/>
+          </Components>
+        </GameObject>
+        <GameObject name="ToMainMenuButton" position="960,540">
+          <Components>
+            <SpriteRenderer size="200,40"/>
+            <MouseInteractionHandler/>
+            <Button/>
+          </Components>
+          <GameObjects>
+            <GameObject name="ToMainMenuButtonText" position="0,1,0">
+              <Components>
+                <TextRenderer font_height="24" colour="0,0,0" text="To Main Menu"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Scene>

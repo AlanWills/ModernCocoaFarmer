@@ -34,9 +34,9 @@ local LocationNames =
 
 ---------------------------------------------------------------------------------
 local function onTimeChanged(deltaTime, commandManager)
-    commandManager:execute(ElapseTime, deltaTime)
-
     Gameplay.updateUI()
+
+    commandManager:execute(ElapseTime, deltaTime)
 end
 
 ---------------------------------------------------------------------------------
@@ -82,6 +82,12 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.hide()
+    Gameplay._state = nil
+    Gameplay._commandManager = nil
+    Gameplay._gameEventManager = nil
+    Gameplay._locationsUI = nil
+    Gameplay._topBar = nil
+    Gameplay._notificationsBar = nil
     GameObject.find(Gameplay.GAMEPLAY_ROOT_NAME):destroy()
 end
 
