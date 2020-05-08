@@ -4,12 +4,9 @@ local TopBar = require "UI.TopBar"
 local NotificationsPanel = require 'UI.Notifications.NotificationsPanel'
 local ModalDialogManager = require 'UI.Dialogs.ModalDialogManager'
 local CommandManager = require 'Commands.CommandManager'
-local AddChild = require 'Commands.Family.AddChild'
 local ActivateLocation = require 'Commands.Locations.ActivateLocation'
 local ElapseTime = require 'Commands.Time.ElapseTime'
-local GetPaidSalary = require 'GameEvents.Money.GetPaidSalary'
-local PayBills = require 'GameEvents.Money.PayBills'
-local ActivateFirstChild = require 'GameEvents.Family.ActivateFirstChild'
+local GameEventManager = require 'GameEvents.GameEventManager'
 
 ---------------------------------------------------------------------------------
 local Gameplay = 
@@ -38,7 +35,6 @@ local LocationNames =
 ---------------------------------------------------------------------------------
 local function onTimeChanged(deltaTime, commandManager)
     commandManager:execute(ElapseTime, deltaTime)
-    commandManager:update()
 
     Gameplay.updateUI()
 end
@@ -48,39 +44,38 @@ function Gameplay.show(state)
     -- Scene Initialization
     Scene.load(Gameplay.GAMEPLAY_SCENE_PATH)
     
-    -- Event Initialization
-    GetPaidSalary.register(state.gameEventManager)
-    PayBills.register(state.gameEventManager)
-    ActivateFirstChild.register(state.gameEventManager)
-
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
     state.modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
 
     local commandManager = Class.new(CommandManager, state)
+    local gameEventManager = Class.new(GameEventManager, commandManager)
+    local dataSystem = System.getDataSystem()
+
     Gameplay._state = state
     Gameplay._commandManager = commandManager
-
-    -- Location Initialization
-    for k, v in pairs(LocationNames) do
-        commandManager:execute(ActivateLocation, v)
-    end
+    Gameplay._gameEventManager = gameEventManager
 
     -- Extra UI initialization
     local timeComponent = GameObject.find(Gameplay.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, commandManager)
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
-    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, state.dataStore, locationsUI)
+    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, dataSystem, locationsUI)
 
     local topBarGameObject = GameObject.find(Gameplay.TOP_BAR_NAME)
     Gameplay._topBar = Class.new(
         TopBar,
         commandManager,
-        state.dataStore,
+        dataSystem,
         topBarGameObject)
       
     local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsPanel, commandManager, notificationsPanel)
+    
+    -- Location Initialization
+    for k, v in pairs(LocationNames) do
+        commandManager:execute(ActivateLocation, v)
+    end
 
     Gameplay.updateUI()
 end

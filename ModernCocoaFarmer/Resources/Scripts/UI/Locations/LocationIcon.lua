@@ -44,6 +44,14 @@ function LocationIcon:new(commandManager, dataStore, location, gameObject)
 
     location:subscribeOnChildSentCallback(onChildSentCallback, self)
     location:subscribeOnChildLeftCallback(onChildLeftCallback, self)
+
+    for childIndex = 0, (commandManager.familyManager:getChildCount() - 1) do
+        local child = commandManager.familyManager:getChild(childIndex)
+            
+        if child:getCurrentLocation() == self._locationName then
+            self:addChildLocationProgress(child)    
+        end
+    end
 end
 
 ----------------------------------------------------------------------------------------
@@ -85,8 +93,10 @@ function LocationIcon:updateUI()
     local locationDaysToComplete = locationObject:getUnsignedInt(LocationsDataSources.DAYS_TO_COMPLETE)
 
     for childName, locationProgress in pairs(self._locationProgressBars) do
-        local childDaysSpent = locationObject:getUnsignedInt(childName .. "." .. LocationsDataSources.DAYS_AT_LOCATION)
-        locationProgress:updateUI((100 * childDaysSpent) / locationDaysToComplete)
+        local childObject = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. childName)
+        local childTimeSpent = childObject:getFloat(FamilyDataSources.TIME_AT_LOCATION)
+        local progress = (100 * childTimeSpent) / locationDaysToComplete
+        locationProgress:updateUI(progress)
     end
 end
 

@@ -14,8 +14,14 @@ function SendChildToLocation:execute(commandManager)
         return
     end
 
+    local child = commandManager.familyManager:findChild(self._childName)
+    if child == nil then
+        log("Could not find child " .. self._childName)
+        return
+    end
+
     commandManager.moneyManager:applyMoneyModifier(location:getMoneyModifier())
-    location:sendChild(self._childName)
+    location:sendChild(child)
 end
 
 return SendChildToLocation

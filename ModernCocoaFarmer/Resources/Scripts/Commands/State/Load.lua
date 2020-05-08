@@ -11,6 +11,7 @@ end
 ---------------------------------------------------------------------------------
 function Load:execute()
     local gameplayState = Class.new(GameplayState)
+    gameplayState.persistencePath = path.combine(self._saveDirectory, "Persistence.xml")
     gameplayState.timeManagerPath = path.combine(self._saveDirectory, "TimeManager.asset")
     gameplayState.moneyManagerPath = path.combine(self._saveDirectory, "MoneyManager.asset")
     gameplayState.familyManagerPath = path.combine(self._saveDirectory, "FamilyManager.asset")

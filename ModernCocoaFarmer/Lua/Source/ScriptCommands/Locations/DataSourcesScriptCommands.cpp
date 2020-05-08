@@ -16,6 +16,5 @@ namespace MCF::Lua::Locations::DataSourcesScriptCommands
     dataSources["NAME"] = DataSources::NAME;
     dataSources["DESCRIPTION"] = DataSources::DESCRIPTION;
     dataSources["DAYS_TO_COMPLETE"] = DataSources::DAYS_TO_COMPLETE;
-    dataSources["DAYS_AT_LOCATION"] = DataSources::DAYS_AT_LOCATION;
   }
 }

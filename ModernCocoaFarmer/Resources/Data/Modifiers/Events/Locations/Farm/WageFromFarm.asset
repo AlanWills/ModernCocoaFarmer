@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Modifier name="SalaryModifier"
-        guid="a4737c11-768c-42ef-b9eb-4aa247f52040"
-        amount="116850"
-        change_type="Delta"
-        occurrence="Instant"/>

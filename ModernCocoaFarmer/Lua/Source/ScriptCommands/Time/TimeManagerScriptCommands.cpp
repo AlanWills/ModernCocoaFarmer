@@ -27,6 +27,42 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
     {
       timeManager.setPaused(false);
     }
+
+    //------------------------------------------------------------------------------------------------
+    void subscribeOnTimePassedCallback(
+      TimeManager& timeManager,
+      sol::protected_function callback,
+      sol::object extraArgs)
+    {
+      Celeste::Lua::subscribeToEvent<Celeste::Event<float>, float>(timeManager.getOnTimePassedEvent(), callback, extraArgs);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void subscribeOnDayPassedCallback(
+      TimeManager& timeManager,
+      sol::protected_function callback,
+      sol::object extraArgs)
+    {
+      Celeste::Lua::subscribeToEvent(timeManager.getOnDayPassedEvent(), callback, extraArgs);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void subscribeOnMonthPassedCallback(
+      TimeManager& timeManager,
+      sol::protected_function callback,
+      sol::object extraArgs)
+    {
+      Celeste::Lua::subscribeToEvent(timeManager.getOnMonthPassedEvent(), callback, extraArgs);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void subscribeOnYearPassedCallback(
+      TimeManager& timeManager,
+      sol::protected_function callback,
+      sol::object extraArgs)
+    {
+      Celeste::Lua::subscribeToEvent(timeManager.getOnYearPassedEvent(), callback, extraArgs);
+    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -43,6 +79,10 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
       "pause", &Internals::pause,
       "play", &Internals::play,
       "isPaused", &TimeManager::isPaused,
-      "update", &TimeManager::update);
+      "update", &TimeManager::update,
+      "subscribeOnTimePassedCallback", &Internals::subscribeOnTimePassedCallback,
+      "subscribeOnDayPassedCallback", &Internals::subscribeOnDayPassedCallback,
+      "subscribeOnMonthPassedCallback", &Internals::subscribeOnMonthPassedCallback,
+      "subscribeOnYearPassedCallback", &Internals::subscribeOnYearPassedCallback);
   }
 }

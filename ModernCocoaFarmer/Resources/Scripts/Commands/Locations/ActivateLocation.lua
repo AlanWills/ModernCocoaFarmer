@@ -7,6 +7,7 @@ end
 
 ---------------------------------------------------------------------------------
 function ActivateLocation:execute(commandManager)
+    log("Activating Location " .. self._locationName)
     commandManager.locationsManager:activateLocation(self._locationName)
 end
 

@@ -36,6 +36,9 @@ namespace MCF::Lua::Money::MoneyManagerScriptCommands
       "setMoney", &MoneyManager::setMoney,
       "addMoney", &Internals::addMoney,
       "applyMoneyModifier", &MoneyManager::applyMoneyModifier,
-      "getSalaryLevel", &MoneyManager::getSalaryLevel);
+      "getSalaryLevel", &MoneyManager::getSalaryLevel,
+      "setSalaryLevel", &MoneyManager::setSalaryLevel,
+      "incrementSalaryLevel", &MoneyManager::incrementSalaryLevel,
+      "decrementSalaryLevel", &MoneyManager::decrementSalaryLevel);
   }
 }

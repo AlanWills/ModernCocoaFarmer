@@ -43,9 +43,10 @@ namespace MCF::Family
       MCFLibraryDllExport bool hasSelectedChild() const;
       MCFLibraryDllExport observer_ptr<Child> getSelectedChild();
 
+      bool canAddChild() const { return !m_childrenNames.empty(); }
       MCFLibraryDllExport void addChild();
-      MCFLibraryDllExport void selectOnlyThisChild(Child& childToSelect);
-      MCFLibraryDllExport void deselectOnlyThisChild(Child& childToSelect);
+      MCFLibraryDllExport void selectChild(Child& childToSelect);
+      MCFLibraryDllExport void deselectChild(Child& childToSelect);
 
       MCFLibraryDllExport void applyHealthModifier(const Stats::Modifier& modifier);
       MCFLibraryDllExport void applySafetyModifier(const Stats::Modifier& modifier);

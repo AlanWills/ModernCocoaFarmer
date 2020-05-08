@@ -52,10 +52,10 @@ namespace MCF::Lua::Locations::LocationScriptCommands
       "getHappinessModifier", &Location::getHappinessModifier,
       "getMoneyModifier", &Location::getMoneyModifier,
       "getDaysToComplete", &Location::getDaysToComplete,
-      "getChildTime", &Location::getChildTime,
+      "applyModifiers", &Location::applyModifiers,
       "sendChild", &Location::sendChild,
+      "leaveChild", &Location::leaveChild,
       "subscribeOnChildSentCallback", &Internals::subscribeOnChildSentCallback,
       "subscribeOnChildLeftCallback", &Internals::subscribeOnChildLeftCallback);
-
   }
 }

@@ -58,7 +58,7 @@ end
 
 ---------------------------------------------------------------------------------
 function FamilyPanel:toggleChildSelection(child)
-    self._commandManager:execute(ToggleChildSelection, child)
+    self._commandManager:execute(ToggleChildSelection, child:getName())
 end
 
 return FamilyPanel

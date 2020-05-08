@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<SendNotification name="SendSalaryDecreasedNotification" guid="0c05a1b7-c8d4-43a5-aa99-1e30bb06846f" notification="cd8969f2-bf0a-496d-af17-c9bcc49b7278">
-  <Notification description="Your partner's pay has been cut..." name="Salary Decreased" guid="cd8969f2-bf0a-496d-af17-c9bcc49b7278"
-                icon="Textures\Icons\Events\SalaryDecreaseIcon.png"/>
-</SendNotification>

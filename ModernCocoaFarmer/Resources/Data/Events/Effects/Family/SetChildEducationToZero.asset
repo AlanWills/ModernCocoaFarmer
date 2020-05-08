@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ModifyChildLocationStatEffect 
-  modifier_path="Data\Modifiers\Events\Family\SetChildEducationToZero.asset"
-  name="SetChildEducationToZero" location="School"
-  stat="education" guid="bda2f397-3d82-4534-8725-8b9f9de3be11"/>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<CheckDataStoreBoolValue name="CheckUNPeaceKeepersArrivedNotOccurred" guid="8f516f41-f9b6-43ba-a0db-380a6fb57bcb"
-                                  data_store_path="Data\Gameplay\GameplayDataStore.xml"
-                                  value_name="UNPeaceKeepersArrivedOccurred"
-                                  comparison_operator="Equals"
-                                  expected_value="false"
-                                  default_value="false"/>

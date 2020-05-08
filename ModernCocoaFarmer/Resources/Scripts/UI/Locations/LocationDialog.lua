@@ -1,6 +1,7 @@
 local Class = require 'OOP.Class'
 local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
 local SendChildToLocation = require 'Commands.Locations.SendChildToLocation'
+local DeselectChild = require 'Commands.Family.DeselectChild'
 
 ----------------------------------------------------------------------------------------
 local LocationDialog = Class.inheritsFrom(ModalDialogBase)
@@ -109,6 +110,7 @@ end
 local function sendChildToLocation(caller, self)
     local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
     self._commandManager:execute(SendChildToLocation, self._locationName, selectedChildName)
+    self._commandManager:execute(DeselectChild, selectedChildName)
     self:hide()
 end
 

@@ -54,6 +54,7 @@ namespace MCF::Lua::Locations::LocationManagerScriptCommands
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "setDataStore", &LocationsManager::setDataStore,
       "getNumLocations", &LocationsManager::getNumLocations,
+      "getLocation", &LocationsManager::getLocation,
       "findLocation", &LocationsManager::findLocation,
       "activateLocation", &Internals::activateLocation,
       "subscribeOnLocationActivatedCallback", &Internals::subscribeOnLocationActivatedCallback);

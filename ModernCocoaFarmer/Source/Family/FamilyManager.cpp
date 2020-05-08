@@ -112,7 +112,7 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::addChild()
   {
-    if (m_childrenNames.empty())
+    if (!canAddChild())
     {
       ASSERT_FAIL();
       return;
@@ -121,15 +121,16 @@ namespace MCF::Family
     const std::string name = m_childrenNames.back();
     m_childrenNames.pop_back();
     
-    // add loadScriptableObject function too
     m_children.push_back(createScriptableObject<Child>(name));
+    m_children.back().get().setDataStore(*m_dataStore);
+
     updateDataStore();
 
     m_childAddedEvent.invoke(m_children.back());
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::selectOnlyThisChild(Child& childToSelect)
+  void FamilyManager::selectChild(Child& childToSelect)
   {
     for (Child& child : m_children)
     {
@@ -153,7 +154,7 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::deselectOnlyThisChild(Child& childToSelect)
+  void FamilyManager::deselectChild(Child& childToSelect)
   {
     for (Child& child : m_children)
     {
@@ -232,6 +233,12 @@ namespace MCF::Family
   void FamilyManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
   {
     m_dataStore = dataStore;
+
+    for (Child& child : m_children)
+    {
+      child.setDataStore(*dataStore);
+    }
+
     updateDataStore();
   }
 
@@ -243,22 +250,6 @@ namespace MCF::Family
       bool hasSC = hasSelectedChild();
       m_dataStore->set(DataSources::HAS_SELECTED_CHILD, hasSC);
       m_dataStore->set(DataSources::SELECTED_CHILD_NAME, hasSC ? getSelectedChild()->getName() : std::string());
-
-      for (const Child& child : m_children)
-      {
-        std::string childKey(DataSources::CHILDREN);
-        childKey.push_back('.');
-        childKey.append(child.getName());
-
-        Persistence::DataObjectHandle childObject(*m_dataStore, childKey);
-        childObject.set(Stats::DataSources::HEALTH, child.getHealth());
-        childObject.set(Stats::DataSources::SAFETY, child.getSafety());
-        childObject.set(Stats::DataSources::EDUCATION, child.getEducation());
-        childObject.set(Stats::DataSources::HAPPINESS, child.getHappiness());
-        childObject.set(DataSources::IS_SELECTED, child.isSelected());
-        childObject.set(DataSources::IS_AT_LOCATION, child.isAtLocation());
-        childObject.set(DataSources::CURRENT_LOCATION, child.getCurrentLocation());
-      }
     }
   }
 }

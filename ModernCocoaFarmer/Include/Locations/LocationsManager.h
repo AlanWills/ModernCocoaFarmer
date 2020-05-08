@@ -7,27 +7,6 @@
 #include "UID/StringId.h"
 
 
-namespace MCF::Time
-{
-  class TimeManager;
-}
-
-namespace MCF::Money
-{
-  class MoneyManager;
-}
-
-namespace MCF::Family
-{
-  class Child;
-  class FamilyManager;
-}
-
-namespace MCF::Notifications
-{
-  class NotificationManager;
-}
-
 namespace MCF::Persistence
 {
   class DataStore;
@@ -47,7 +26,7 @@ namespace MCF::Locations
     DECLARE_SCRIPTABLE_OBJECT(LocationsManager, MCFLibraryDllExport);
 
     private:
-      using LocationsInformation = std::unordered_map<std::string, std::reference_wrapper<Location>>;
+      using LocationsInformation = std::vector<std::reference_wrapper<Location>>;
 
     public:
       using LocationActivatedEvent = Celeste::Event<Location&>;
@@ -55,22 +34,12 @@ namespace MCF::Locations
       MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
       size_t getNumLocations() const { return m_locations.size(); }
+      MCFLibraryDllExport observer_ptr<Location> getLocation(size_t index);
       MCFLibraryDllExport observer_ptr<Location> findLocation(const std::string& locationName) const;
 
       const LocationActivatedEvent& getOnLocationActivatedEvent() const { return m_onLocationActivatedEvent; }
 
       MCFLibraryDllExport void activateLocation(Location& location);
-      MCFLibraryDllExport void onDayPassed();
-
-      MCFLibraryDllExport void checkLocationsForChildrenArriving(
-        Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager,
-        Notifications::NotificationManager& notificationManager);
-
-      MCFLibraryDllExport void checkLocationsForChildrenLeaving(
-        Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager,
-        Notifications::NotificationManager& notificationManager);
 
       static const char* const LOCATION_ELEMENT_NAME;
 

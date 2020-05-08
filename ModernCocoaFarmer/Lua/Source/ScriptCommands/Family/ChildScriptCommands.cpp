@@ -36,6 +36,9 @@ namespace MCF::Lua::Family::ChildScriptCommands
       "applyHappinessModifier", &Child::applyHappinessModifier,
       "isAtLocation", &Child::isAtLocation,
       "getCurrentLocation", &Child::getCurrentLocation,
+      "getTimeAtLocation", &Child::getTimeAtLocation,
+      "setTimeAtLocation", &Child::setTimeAtLocation,
+      "incrementTimeAtLocation", &Child::incrementTimeAtLocation,
       "isSelected", &Child::isSelected);
   }
 }

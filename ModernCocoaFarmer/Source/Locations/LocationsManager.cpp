@@ -4,11 +4,8 @@
 #include "Locations/DataSources.h"
 #include "Stats/DataSources.h"
 #include "Stats/Modifier.h"
-#include "Family/Child.h"
 #include "Persistence/DataObjectHandle.h"
 #include "Persistence/DataArrayHandle.h"
-#include "Time/TimeManager.h"
-#include "Money/MoneyManager.h"
 
 using namespace Celeste::XML;
 
@@ -32,18 +29,27 @@ namespace MCF::Locations
   {
     for (const tinyxml2::XMLElement* locationElement : children(element, Location::type_name()))
     {
-      Location& location = deserializeScriptableObject<Location>(locationElement);
-      m_locations.emplace(location.getName(), location);
+      m_locations.push_back(deserializeScriptableObject<Location>(locationElement));
     }
 
     return true;
   }
 
   //------------------------------------------------------------------------------------------------
+  observer_ptr<Location> LocationsManager::getLocation(size_t index)
+  {
+    return index < m_locations.size() ? &m_locations[index].get() : nullptr;
+  }
+
+  //------------------------------------------------------------------------------------------------
   observer_ptr<Location> LocationsManager::findLocation(const std::string& locationName) const
   {
-    auto locationIt = m_locations.find(locationName);
-    return locationIt != m_locations.end() ? &locationIt->second.get() : nullptr;
+    auto locationIt = std::find_if(m_locations.begin(), m_locations.end(),
+      [&locationName](const std::reference_wrapper<Location>& location)
+      {
+        return location.get().getName() == locationName;
+      });
+    return locationIt != m_locations.end() ? &locationIt->get() : nullptr;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -51,41 +57,6 @@ namespace MCF::Locations
   {
     m_onLocationActivatedEvent.invoke(location);
     updateDataStore();
-  }
-
-  //------------------------------------------------------------------------------------------------
-  void LocationsManager::onDayPassed()
-  {
-    for (const auto& locationPair : m_locations)
-    {
-      locationPair.second.get().onDayPassed();
-    }
-
-    updateDataStore();
-  }
-
-  //------------------------------------------------------------------------------------------------
-  void LocationsManager::checkLocationsForChildrenArriving(
-    Money::MoneyManager& moneyManager,
-    Family::FamilyManager& familyManager,
-    Notifications::NotificationManager& notificationManager)
-  {
-    for (const auto& locationPair : m_locations)
-    {
-      locationPair.second.get().checkForChildrenArriving(moneyManager, familyManager, *this, notificationManager);
-    }
-  }
-
-  //------------------------------------------------------------------------------------------------
-  void LocationsManager::checkLocationsForChildrenLeaving(
-    Money::MoneyManager& moneyManager,
-    Family::FamilyManager& familyManager,
-    Notifications::NotificationManager& notificationManager)
-  {
-    for (const auto& locationPair : m_locations)
-    {
-      locationPair.second.get().checkForChildrenLeaving(moneyManager, familyManager, *this, notificationManager);
-    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -100,9 +71,9 @@ namespace MCF::Locations
   {
     if (m_dataStore != nullptr && !m_suspendDataStoreUpdates)
     {
-      for (const auto& locationPair : m_locations)
+      for (const auto& locationRef : m_locations)
       {
-        Location& location = locationPair.second;
+        Location& location = locationRef.get();
         
         std::string locationKey(DataSources::LOCATIONS);
         locationKey.push_back('.');
@@ -118,17 +89,6 @@ namespace MCF::Locations
         writeModifier(locationKey, Stats::DataSources::HEALTH, location.getHealthModifier());
         writeModifier(locationKey, Stats::DataSources::MONEY, location.getMoneyModifier());
         writeModifier(locationKey, Stats::DataSources::SAFETY, location.getSafetyModifier());
-
-        for (size_t childIndex = 0; childIndex < location.getChildrenAtLocationCount(); ++childIndex)
-        {
-          const Family::Child& child = location.getChildAtLocation(childIndex);
-
-          std::string daysAtLocationKey(child.getName());
-          daysAtLocationKey.push_back('.');
-          daysAtLocationKey.append(DataSources::DAYS_AT_LOCATION);
-
-          locationObject.set(daysAtLocationKey, location.getChildTime(child.getName()));
-        }
       }
     }
   }

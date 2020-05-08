@@ -19,7 +19,8 @@
         </GameObject>
         <GameObject name="DescriptionText" position="0,-50,0">
           <Components>
-            <TextRenderer font_height="20" colour="0.2,0.2,0.2" horizontal_alignment="Centre" vertical_alignment="Top"/>
+            <TextRenderer font_height="20" colour="0.2,0.2,0.2" horizontal_alignment="Centre" vertical_alignment="Top"
+                          horizontal_wrap_mode="Wrap" max_width="350"/>
           </Components>
         </GameObject>
         <GameObject name="LocationStats">
@@ -98,7 +99,8 @@
           <GameObjects>
             <GameObject name="SendChildHelpText" active="false">
               <Components>
-                <TextRenderer font_height="18" colour="0.2,0.2,0.2" text="Select a Child to send\nthem to this location." horizontal_alignment="centre" vertical_alignment="Top"/>
+                <TextRenderer font_height="18" colour="0.2,0.2,0.2" text="Select a Child to send them to this location." horizontal_alignment="centre" vertical_alignment="Top"
+                              horizontal_wrap_mode="Wrap" max_width="300"/>
               </Components>
             </GameObject>
             <GameObject name="SendChildButton" position="0,0,0.01">

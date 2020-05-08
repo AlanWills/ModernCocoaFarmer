@@ -11,43 +11,14 @@ namespace Celeste::Resources
   class Texture2D;
 }
 
-namespace MCF::Money
-{
-  class MoneyManager;
-}
-
 namespace MCF::Family
 {
   class Child;
-  class FamilyManager;
-}
-
-namespace MCF::Locations
-{
-  class LocationsManager;
-}
-
-namespace MCF::Notifications
-{
-  class NotificationManager;
 }
 
 namespace MCF::Stats
 {
   class Modifier;
-}
-
-namespace MCF::GameEvents
-{
-  namespace Conditions
-  {
-    class Condition;
-  }
-
-  namespace Effects
-  {
-    class Effect;
-  }
 }
 
 namespace MCF::Locations
@@ -70,26 +41,12 @@ namespace MCF::Locations
       inline const Stats::Modifier& getHappinessModifier() const { return m_happinessModifier; }
       inline const Stats::Modifier& getMoneyModifier() const { return m_moneyModifier; }
 
-      MCFLibraryDllExport void onDayPassed();
+      MCFLibraryDllExport void applyModifiers(Family::Child& child);
 
       inline unsigned int getDaysToComplete() const { return m_daysToComplete.getValue(); }
-      MCFLibraryDllExport unsigned int getChildTime(const std::string& childName) const;
 
-      MCFLibraryDllExport void sendChild(const std::string& childName);
-      size_t getChildrenAtLocationCount() const { return m_childrenAtLocation.size(); }
-      MCFLibraryDllExport const Family::Child& getChildAtLocation(size_t index) const;
-
-      MCFLibraryDllExport void checkForChildrenArriving(
-        Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager,
-        Locations::LocationsManager& locationsManager,
-        Notifications::NotificationManager& notificationManager);
-
-      MCFLibraryDllExport void checkForChildrenLeaving(
-        Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager,
-        Locations::LocationsManager& locationsManager,
-        Notifications::NotificationManager& notificationManager);
+      MCFLibraryDllExport void sendChild(Family::Child& child);
+      MCFLibraryDllExport void leaveChild(Family::Child& child);
 
       inline const ChildSentEvent& getOnChildSentEvent() const { return m_onChildSentEvent; }
       inline const ChildLeftEvent& getOnChildLeftEvent() const { return m_onChildLeftEvent; }
@@ -103,27 +60,11 @@ namespace MCF::Locations
       static const std::string HAPPINESS_MODIFIER_FIELD_NAME;
       static const std::string MONEY_MODIFIER_FIELD_NAME;
       static const std::string DAYS_TO_COMPLETE_FIELD_NAME;
-      static const std::string CHILD_AT_LOCATION_ELEMENT_NAME;
-      static const std::string CHILD_AT_LOCATION_NAME_ELEMENT_NAME;
-      static const std::string CHILD_AT_LOCATION_TIME_ELEMENT_NAME;
-      static const std::string CHILD_LEAVES_EFFECTS_ELEMENT_NAME;
-      static const std::string CHILD_LEAVES_EFFECT_ELEMENT_NAME;
 
     protected:
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
-      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
-      using Effects = std::vector<std::reference_wrapper<GameEvents::Effects::Effect>>;
-      using ChildWaitingToArrive = std::tuple<std::string, unsigned int>;
-      using ChildAtLocation = std::tuple<std::reference_wrapper<Family::Child>, unsigned int>;
-
-      void triggerChildLeavesEffects(
-        Money::MoneyManager& moneyManager,
-        Family::FamilyManager& familyManager,
-        Locations::LocationsManager& locationsManager,
-        Notifications::NotificationManager& notificationManager) const;
-
       Celeste::ReferenceField<std::string>& m_description;
       Celeste::ReferenceField<std::string>& m_childLeavesNotificationDescription;
       Celeste::ValueField<observer_ptr<Celeste::Resources::Texture2D>>& m_childLeavesNotificationIcon;
@@ -133,10 +74,6 @@ namespace MCF::Locations
       Stats::Modifier& m_happinessModifier;
       Stats::Modifier& m_moneyModifier;
       Celeste::ValueField<unsigned int>& m_daysToComplete;
-
-      std::vector<ChildWaitingToArrive> m_childrenWaitingToArrive;
-      std::vector<ChildAtLocation> m_childrenAtLocation;
-      Effects m_childLeavesEffects;
 
       ChildSentEvent m_onChildSentEvent;
       ChildLeftEvent m_onChildLeftEvent;

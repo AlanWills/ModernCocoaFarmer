@@ -14,7 +14,8 @@
         </GameObject>
         <GameObject name="NotificationDialogDescription">
           <Components>
-            <TextRenderer font_height="24" colour="0,0,0" text="Event Text" horizontal_alignment="Centre" vertical_alignment="Top"/>
+            <TextRenderer font_height="24" colour="0,0,0" text="Event Text" horizontal_alignment="Centre" vertical_alignment="Top"
+                          max_width="400" horizontal_wrap_mode="Wrap"/>
           </Components>
         </GameObject>
         <GameObject name="CloseNotificationDialogButton" position="220,120,0.01">

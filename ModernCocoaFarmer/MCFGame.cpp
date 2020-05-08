@@ -1,5 +1,7 @@
 #include "MCFGame.h"
 #include "Lua/LuaState.h"
+#include "Persistence/DataSystem.h"
+
 #include "ScriptCommands/Celeste/CelesteScriptCommands.h"
 #include "ScriptCommands/MCFScriptCommands.h"
 
@@ -11,6 +13,8 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   MCFGame::MCFGame()
   {
+    addSystem<Persistence::DataSystem>();
+
     // Will need to make this for just VS
     Path pathToResources = Path(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING, "ModernCocoaFarmer", "Resources");
     getResourceManager().setResourcesDirectory(pathToResources);

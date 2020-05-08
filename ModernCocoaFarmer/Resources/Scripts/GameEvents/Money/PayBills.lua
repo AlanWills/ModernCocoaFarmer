@@ -1,6 +1,12 @@
+local GameEventPeriod = require 'GameEvents.GameEventPeriod'
+local AddMoney = require 'Commands.Money.AddMoney'
+local SendNotification = require 'Commands.Notifications.SendNotification'
+
 local PayBills = {}
 
-PayBills.TIME_CONDITION_PATH = path.combine("Data", "Events", "Conditions", "Time", "Day0.asset")
+---------------------------------------------------------------------------------
+PayBills.NAME = "PayBills"
+PayBills.PERIOD = GameEventPeriod.EVERY_MONTH
 PayBills.BASE_BILLS_MODIFIER_PATH = path.combine("Data", "Modifiers", "Events", "Money", "BaseBillsModifier.asset")
 PayBills.CHILD_DEPENDENT_BILLS_MODIFIER_PATH = path.combine("Data", "Modifiers", "Events", "Money", "ChildDependentBillsModifier.asset")
 PayBills.ICON_PATH = path.combine("Textures", "Icons", "Events", "PayBillsIcon.png")
@@ -23,38 +29,15 @@ function PayBills.getTotalBillsAmount(familyManager)
 end
 
 ---------------------------------------------------------------------------------
-function PayBills.payBills(moneyManager, familyManager, locationManager, notificationManager)
-    moneyManager:addMoney(PayBills.getTotalBillsAmount(familyManager))
-end
+function PayBills.trigger(commandManager)
+    local amount = math.abs(PayBills.getTotalBillsAmount(commandManager.familyManager))
 
----------------------------------------------------------------------------------
-function PayBills.showNotification(moneyManager, familyManager, locationManager, notificationManager)
-    local notification = Notification.create("Bills Are Due")
-
-    notification:setDescription(string.format("You fork out %d for essentials", math.abs(PayBills.getTotalBillsAmount(familyManager))))
-    notification:setIcon(PayBills.ICON_PATH)
-
-    notificationManager:sendNotification(notification)
-end
-
----------------------------------------------------------------------------------
-function PayBills.register(gameEventManager)
-    local gameEvent = GameEvent.create("Pay Bills")
-
-    -- Conditions
-    gameEvent:addCondition(PayBills.TIME_CONDITION_PATH)
-
-    -- Effects
-    local payBills = LuaEffect.create("Bills")
-    payBills:setTriggerFunc(PayBills.payBills)
-    
-    local showNotificationEffect = LuaEffect.create("Show Notification")
-    showNotificationEffect:setTriggerFunc(PayBills.showNotification)
-
-    gameEvent:addEffect(payBills)
-    gameEvent:addEffect(showNotificationEffect)
-
-    gameEventManager:registerGameEvent(gameEvent)
+    commandManager:execute(AddMoney, amount)
+    commandManager:execute(
+        SendNotification,
+        "Bills Are Due",
+        string.format("You fork out %d for essentials", amount),
+        PayBills.ICON_PATH)
 end
 
 return PayBills

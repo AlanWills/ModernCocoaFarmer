@@ -1,7 +1,6 @@
 #include "ScriptCommands/MCFScriptCommands.h"
 #include "ScriptCommands/Animation/ScriptCommands.h"
 #include "ScriptCommands/Locations/LocationsScriptCommands.h"
-#include "ScriptCommands/GameEvents/GameEventsScriptCommands.h"
 #include "ScriptCommands/Notifications/NotificationsScriptCommands.h"
 #include "ScriptCommands/Family/FamilyScriptCommands.h"
 #include "ScriptCommands/Money/MoneyScriptCommands.h"
@@ -17,7 +16,6 @@ namespace MCF::Lua::MCFScriptCommands
   {
     Animation::ScriptCommands::initialize(state);
     Locations::ScriptCommands::initialize(state);
-    GameEvents::ScriptCommands::initialize(state);
     Notifications::ScriptCommands::initialize(state);
     Family::ScriptCommands::initialize(state);
     Money::ScriptCommands::initialize(state);

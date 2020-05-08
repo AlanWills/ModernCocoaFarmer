@@ -32,6 +32,7 @@ namespace MCF::Time
       unsigned int getCurrentMonth() const { return m_currentMonth; }
       unsigned int getCurrentYear() const { return m_currentYear; }
 
+      const Celeste::Event<float>& getOnTimePassedEvent() const { return m_onTimePassed; }
       const TimeEvent& getOnDayPassedEvent() const { return m_onDayPassed; }
       const TimeEvent& getOnMonthPassedEvent() const { return m_onMonthPassed; }
       const TimeEvent& getOnYearPassedEvent() const { return m_onYearPassed; }
@@ -50,6 +51,7 @@ namespace MCF::Time
 
       observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
 
+      Celeste::Event<float> m_onTimePassed;
       TimeEvent m_onDayPassed;
       TimeEvent m_onMonthPassed;
       TimeEvent m_onYearPassed;

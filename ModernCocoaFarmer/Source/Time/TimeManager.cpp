@@ -17,6 +17,7 @@ namespace MCF::Time
   //------------------------------------------------------------------------------------------------
   TimeManager::TimeManager() :
     m_secondsPerDay(createValueField<float>(SECONDS_PER_DAY_ATTRIBUTE_NAME, 1.0f)),
+    m_onTimePassed(),
     m_onDayPassed(),
     m_onMonthPassed(),
     m_onYearPassed()
@@ -54,6 +55,9 @@ namespace MCF::Time
     if (!m_paused)
     {
       m_currentDayTimer += elapsedGameTime;
+      
+      // Fix the time to be inline with our changed scale for game time
+      m_onTimePassed.invoke(elapsedGameTime / m_secondsPerDay.getValue());
 
       // In case our timestep is bigger than our seconds per day value
       while (m_currentDayTimer > m_secondsPerDay.getValue())
