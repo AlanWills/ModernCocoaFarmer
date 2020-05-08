@@ -39,6 +39,14 @@ namespace MCF::Lua::Family::ChildScriptCommands
       "getTimeAtLocation", &Child::getTimeAtLocation,
       "setTimeAtLocation", &Child::setTimeAtLocation,
       "incrementTimeAtLocation", &Child::incrementTimeAtLocation,
+      "isNotBorn", &Child::isNotBorn,
+      "isActivated", &Child::isActivated,
+      "canGraduate", &Child::canGraduate,
+      "isGraduated", &Child::isGraduated,
+      "graduate", &Child::graduate,
+      "canDie", &Child::canDie,
+      "isDead", &Child::isDead,
+      "die", &Child::die,
       "isSelected", &Child::isSelected);
   }
 }

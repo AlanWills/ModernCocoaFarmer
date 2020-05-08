@@ -19,8 +19,6 @@ namespace MCF::Family
   const char* const FamilyManager::DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME = "daily_safety_modifier";
   const char* const FamilyManager::DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME = "daily_education_modifier";
   const char* const FamilyManager::DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME = "daily_happiness_modifier";
-  const char* const FamilyManager::CHILDREN_NAMES_ELEMENT_NAME = "ChildrenNames";
-  const char* const FamilyManager::NAME_ELEMENT_NAME = "Name";
 
   //------------------------------------------------------------------------------------------------
   FamilyManager::FamilyManager() :
@@ -28,7 +26,6 @@ namespace MCF::Family
     m_dailySafetyModifier(createScriptableObject<Stats::Modifier>(DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME)),
     m_dailyEducationModifier(createScriptableObject<Stats::Modifier>(DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME)),
     m_dailyHappinessModifier(createScriptableObject<Stats::Modifier>(DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME)),
-    m_childrenNames(),
     m_children(),
     m_childAddedEvent()
   {
@@ -39,35 +36,12 @@ namespace MCF::Family
   {
     Inherited::doDeserialize(element);
 
-    XMLValueError error = getChildElementDataAsVector(
-      element,
-      CHILDREN_NAMES_ELEMENT_NAME,
-      NAME_ELEMENT_NAME,
-      m_childrenNames);
-
     for (const tinyxml2::XMLElement* childElement : children(element, Child::type_name()))
     {
       m_children.push_back(deserializeScriptableObject<Child>(childElement));
     }
 
-    ASSERT(error != XMLValueError::kError);
-    return error != XMLValueError::kError;
-  }
-
-  //------------------------------------------------------------------------------------------------
-  void FamilyManager::doSerialize(tinyxml2::XMLElement* element) const
-  {
-    tinyxml2::XMLDocument* document = element->GetDocument();
-
-    tinyxml2::XMLElement* childrenNamesElement = document->NewElement(CHILDREN_NAMES_ELEMENT_NAME);
-    element->InsertEndChild(childrenNamesElement);
-
-    for (const std::string& name : m_childrenNames)
-    {
-      tinyxml2::XMLElement* childNameElement = document->NewElement(NAME_ELEMENT_NAME);
-      childNameElement->SetText(name.c_str());
-      childrenNamesElement->InsertEndChild(childNameElement);
-    }
+    return true;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -110,6 +84,20 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
+  bool FamilyManager::canAddChild() const
+  {
+    for (const auto& child : m_children)
+    {
+      if (child.get().canActivate())
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  //------------------------------------------------------------------------------------------------
   void FamilyManager::addChild()
   {
     if (!canAddChild())
@@ -118,15 +106,14 @@ namespace MCF::Family
       return;
     }
 
-    const std::string name = m_childrenNames.back();
-    m_childrenNames.pop_back();
-    
-    m_children.push_back(createScriptableObject<Child>(name));
-    m_children.back().get().setDataStore(*m_dataStore);
+    auto childIt = std::find_if(m_children.begin(), m_children.end(),
+      [](const std::reference_wrapper<Child>& child)
+      {
+        return child.get().canActivate();
+      });
 
-    updateDataStore();
-
-    m_childAddedEvent.invoke(m_children.back());
+    childIt->get().activate();
+    m_childAddedEvent.invoke(childIt->get());
   }
 
   //------------------------------------------------------------------------------------------------
@@ -177,8 +164,6 @@ namespace MCF::Family
     {
       child.applyHealthModifier(modifier);
     }
-
-    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -188,8 +173,6 @@ namespace MCF::Family
     {
       child.applySafetyModifier(modifier);
     }
-  
-    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -199,8 +182,6 @@ namespace MCF::Family
     {
       child.applyEducationModifier(modifier);
     }
-
-    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -210,22 +191,15 @@ namespace MCF::Family
     {
       child.applyHappinessModifier(modifier);
     }
-
-    updateDataStore();
   }
 
   //------------------------------------------------------------------------------------------------
   void FamilyManager::applyDailyModifiers()
   {
-    // Prevent multiple data store updates in one go
-    m_suspendDataStoreUpdates = true;
-
     applyHealthModifier(m_dailyHealthModifier);
     applyEducationModifier(m_dailyEducationModifier);
     applySafetyModifier(m_dailySafetyModifier);
     applyHappinessModifier(m_dailyHappinessModifier);
-
-    m_suspendDataStoreUpdates = false;
     updateDataStore();
   }
 
@@ -245,7 +219,7 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void FamilyManager::updateDataStore()
   {
-    if (m_dataStore != nullptr && !m_suspendDataStoreUpdates)
+    if (m_dataStore != nullptr)
     {
       bool hasSC = hasSelectedChild();
       m_dataStore->set(DataSources::HAS_SELECTED_CHILD, hasSC);

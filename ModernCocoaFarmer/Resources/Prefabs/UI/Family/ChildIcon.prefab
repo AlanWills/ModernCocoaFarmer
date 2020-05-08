@@ -1,25 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Prefab>
   <GameObjects>
-    <GameObject name="ChildImage" position="0,5,0" active="false">
+    <GameObject name="ChildIcon">
       <Components>
-        <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="384,86" preserve_aspect_ratio="true"/>
-        <MouseInteractionHandler/>
-        <Animator sprite_sheet_dimensions="4,1"
-                  looping="true"
-                  seconds_per_frame="0.16"
-                  play_immediately="false"/>
+        <!--Need this for stack panel-->
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="86,86" opacity="0"/>
       </Components>
       <GameObjects>
-        <GameObject name="ChildName" position="0,-49,0">
+        <GameObject name="ChildActiveImage" position="0,5,0.01" active="false">
           <Components>
-            <TextRenderer text="Name" colour="0.2,0.2,0.2"/>
+            <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="384,86" preserve_aspect_ratio="true"/>
+            <MouseInteractionHandler/>
+            <Animator sprite_sheet_dimensions="4,1"
+                      looping="true"
+                      seconds_per_frame="0.16"
+                      play_immediately="false"/>
           </Components>
+          <GameObjects>
+            <GameObject name="ChildName" position="0,-49,0">
+              <Components>
+                <TextRenderer text="Name" colour="0.2,0.2,0.2"/>
+              </Components>
+            </GameObject>
+            <GameObject name="ChildSelectedIcon" position="0,-5, 0" active="false">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\Outline.png" size="96, 108"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
         </GameObject>
-        <GameObject name="ChildSelectedIcon" position="0,-5, 0" active="false">
+        <GameObject name="ChildGraduatedImage" position="0,5,0.01" active="false">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\Outline.png" size="96, 108"/>
+            <SpriteRenderer sprite="Textures\UI\ChildIcons\ChildGraduated.png" size="50,50" preserve_aspect_ratio="true"/>
           </Components>
+          <GameObjects>
+            <GameObject name="ChildName" position="0,-49,0">
+              <Components>
+                <TextRenderer text="Name" colour="0.2,0.2,0.2"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="ChildDeadImage" position="0,5,0.01" active="false">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\ChildIcons\ChildDead.png" size="50,50" preserve_aspect_ratio="true"/>
+          </Components>
+          <GameObjects>
+            <GameObject name="ChildName" position="0,-49,0">
+              <Components>
+                <TextRenderer text="Name" colour="0.2,0.2,0.2"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>

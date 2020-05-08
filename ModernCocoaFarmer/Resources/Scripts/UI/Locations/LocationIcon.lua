@@ -19,13 +19,13 @@ end
 
 ----------------------------------------------------------------------------------------
 local function onChildSentCallback(child, self)
-    self:addChildWalking("Home", self._locationName)
+    --self:addChildWalking("Home", self._locationName)
     self:addChildLocationProgress(child)
 end
 
 ----------------------------------------------------------------------------------------
 local function onChildLeftCallback(child, self)
-    self:addChildWalking(self._locationName, "Home")
+    --self:addChildWalking(self._locationName, "Home")
     self:removeChildLocationProgress(child)
 end
 

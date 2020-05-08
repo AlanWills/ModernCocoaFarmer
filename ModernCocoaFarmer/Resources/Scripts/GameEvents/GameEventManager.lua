@@ -6,6 +6,7 @@ local SalaryDecreased = require 'GameEvents.Money.SalaryDecreased'
 local AddFirstChild = require 'GameEvents.Family.AddFirstChild'
 local TryAddChild = require 'GameEvents.Family.TryAddChild'
 local ApplyFamilyModifiers = require 'GameEvents.Family.ApplyFamilyModifiers'
+local UpdateChildrenStates = require 'GameEvents.Family.UpdateChildrenStates'
 local UpdateChildrenTimes = require 'GameEvents.Locations.UpdateChildrenTimes'
 local ApplyLocationModifiers = require 'GameEvents.Locations.ApplyLocationModifiers'
 local CheckForChildrenLeaving = require 'GameEvents.Locations.CheckForChildrenLeaving'
@@ -58,6 +59,7 @@ function GameEventManager:new(commandManager)
     self:registerEvent(AddFirstChild)
     self:registerEvent(TryAddChild)
     self:registerEvent(ApplyFamilyModifiers)
+    self:registerEvent(UpdateChildrenStates)
     self:registerEvent(UpdateChildrenTimes)
     self:registerEvent(ApplyLocationModifiers)
     self:registerEvent(CheckForChildrenLeaving)

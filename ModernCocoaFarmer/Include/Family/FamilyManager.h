@@ -28,7 +28,6 @@ namespace MCF::Family
 
     private:
       using Inherited = Celeste::ScriptableObject;
-      using ChildrenNames = std::vector<std::string>;
       using Children = std::vector<std::reference_wrapper<Child>>;
 
     public:
@@ -43,7 +42,7 @@ namespace MCF::Family
       MCFLibraryDllExport bool hasSelectedChild() const;
       MCFLibraryDllExport observer_ptr<Child> getSelectedChild();
 
-      bool canAddChild() const { return !m_childrenNames.empty(); }
+      MCFLibraryDllExport bool canAddChild() const;
       MCFLibraryDllExport void addChild();
       MCFLibraryDllExport void selectChild(Child& childToSelect);
       MCFLibraryDllExport void deselectChild(Child& childToSelect);
@@ -66,12 +65,9 @@ namespace MCF::Family
       static const char* const DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME;
       static const char* const DAILY_EDUCATION_MODIFIER_ATTRIBUTE_NAME;
       static const char* const DAILY_HAPPINESS_MODIFIER_ATTRIBUTE_NAME;
-      static const char* const CHILDREN_NAMES_ELEMENT_NAME;
-      static const char* const NAME_ELEMENT_NAME;
 
     protected:
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
-      void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
       void updateDataStore();
@@ -81,10 +77,8 @@ namespace MCF::Family
       Stats::Modifier& m_dailyEducationModifier;
       Stats::Modifier& m_dailyHappinessModifier;
 
-      bool m_suspendDataStoreUpdates = false;
       observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
 
-      ChildrenNames m_childrenNames;
       Children m_children;
       ChildAddedEvent m_childAddedEvent;
   };

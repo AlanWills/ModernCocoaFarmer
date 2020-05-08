@@ -2,6 +2,7 @@
 
 #include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
+#include "Family/ChildState.h"
 
 
 namespace MCF::Stats
@@ -42,6 +43,20 @@ namespace MCF::Family
       MCFLibraryDllExport void setTimeAtLocation(float timeAtLocation);
       void incrementTimeAtLocation(float increment) { setTimeAtLocation(m_timeAtLocation.getValue() + increment); }
 
+      bool isNotBorn() const { return getState() == ChildState::kNotBorn; }
+
+      bool canActivate() const { return getState() == ChildState::kNotBorn; }
+      bool isActivated() const { return getState() == ChildState::kActive; }
+      void activate();
+
+      MCFLibraryDllExport bool canGraduate() const;
+      bool isGraduated() const { return getState() == ChildState::kGraduated; }
+      MCFLibraryDllExport void graduate();
+
+      bool canDie() const { return getHealth() <= 0; }
+      bool isDead() const { return getState() == ChildState::kDead; }
+      MCFLibraryDllExport void die();
+
       bool isSelected() const { return m_isSelected; }
       MCFLibraryDllExport void setSelected(bool isSelected);
 
@@ -52,14 +67,23 @@ namespace MCF::Family
 
       void setDataStore(Persistence::DataStore& dataStore);
 
+      static const float MAX_STAT_VALUE;
       static const char* const HEALTH_FIELD_NAME;
       static const char* const SAFETY_FIELD_NAME;
       static const char* const EDUCATION_FIELD_NAME;
       static const char* const HAPPINESS_FIELD_NAME;
       static const char* const CURRENT_LOCATION_FIELD_NAME;
       static const char* const TIME_AT_LOCATION_FIELD_NAME;
+      static const char* const STATE_FIELD_NAME;
 
     private:
+      ChildState getState() const { return m_state.getValue(); }
+
+      void setStat(
+        float value,
+        Celeste::ValueField<float>& attributeToModify,
+        const std::string& dataSource);
+
       void applyModifier(
         const Stats::Modifier& modifier, 
         Celeste::ValueField<float>& attributeToModify, 
@@ -73,6 +97,7 @@ namespace MCF::Family
       Celeste::ValueField<float>& m_happiness;
       Celeste::ReferenceField<std::string>& m_currentLocation;
       Celeste::ValueField<float>& m_timeAtLocation;
+      Celeste::ValueField<ChildState>& m_state;
 
       std::unique_ptr<Persistence::DataObjectHandle> m_dataObjectHandle;
       bool m_isSelected;
