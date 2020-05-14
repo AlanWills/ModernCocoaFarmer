@@ -68,35 +68,35 @@ namespace MCF::Debug
     }
   };
 
-  template <typename VariantFunctions, size_t index>
+  template <typename VariantFunctions, size_t index, template <typename> class Functor>
   struct SetVariantFunction
   {
     static constexpr void _(VariantFunctions& renderFunctions)
     {
-      renderFunctions.m_functions[index] = &RenderFunctor<typename std::variant_alternative<index, typename VariantFunctions::Variant>::type>::execute;
-      SetVariantFunction<VariantFunctions, index - 1>::_(renderFunctions);
+      renderFunctions.m_functions[index] = &Functor<typename std::variant_alternative<index, typename VariantFunctions::Variant>::type>::execute;
+      SetVariantFunction<VariantFunctions, index - 1, Functor>::_(renderFunctions);
     }
   };
 
-  template <typename VariantFunctions>
-  struct SetVariantFunction<VariantFunctions, 0>
+  template <typename VariantFunctions, template <typename> class Functor>
+  struct SetVariantFunction<VariantFunctions, 0, Functor>
   {
     static constexpr void _(VariantFunctions& renderFunctions)
     {
-      renderFunctions.m_functions[0] = &RenderFunctor<typename std::variant_alternative<0, typename VariantFunctions::Variant>::type>::execute;
+      renderFunctions.m_functions[0] = &Functor<typename std::variant_alternative<0, typename VariantFunctions::Variant>::type>::execute;
     }
   };
 
-  template <typename VariantFunctions>
+  template <typename VariantFunctions, template <typename> class Functor>
   constexpr VariantFunctions createVariantFunctions()
   {
     VariantFunctions variantFunctions = VariantFunctions();
-    SetVariantFunction<VariantFunctions, variantFunctions.size() - 1>::_(variantFunctions);
+    SetVariantFunction<VariantFunctions, variantFunctions.size() - 1, Functor>::_(variantFunctions);
 
     return variantFunctions;
   }
 
-  static RenderFunctions s_renderFunctions = createVariantFunctions<RenderFunctions>();
+  static RenderFunctions s_renderFunctions = createVariantFunctions<RenderFunctions, RenderFunctor>();
 
   //------------------------------------------------------------------------------------------------
   DataSystemDolceWindow::DataSystemDolceWindow(Persistence::DataSystem& dataSystem) :
