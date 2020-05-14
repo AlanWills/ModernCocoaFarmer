@@ -1,4 +1,4 @@
-require 'Settings.GameSettings'
+require 'Settings.GameSettingsUtils'
 
 ---------------------------------------------------------------------------------
 local Options = 
@@ -16,7 +16,7 @@ local Options =
 
 ---------------------------------------------------------------------------------
 local function setValueText(gameObject, value)
-    gameObject:findComponent("TextRenderer"):setText(tostring(value))
+    gameObject:findComponent("TextRenderer"):setText(string.format("%d", math.round(value * 100)))
 end
 
 ---------------------------------------------------------------------------------

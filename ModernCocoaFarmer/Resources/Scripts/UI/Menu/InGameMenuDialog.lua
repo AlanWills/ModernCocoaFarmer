@@ -1,15 +1,17 @@
 local Class = require 'OOP.Class'
 local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
-local GameSettings = require 'Settings.GameSettings'
 local Save = require 'Commands.State.Save'
 local Load = require 'Commands.State.Load'
 local GameplayStateConstants = require 'State.GameplayStateConstants'
+
+require 'Settings.GameSettingsUtils'
 
 ---------------------------------------------------------------------------------
 local InGameMenuDialog = Class.inheritsFrom(ModalDialogBase)
 
 InGameMenuDialog.IN_GAME_MENU_PREFAB_PATH = path.combine("Prefabs", "UI", "Menu", "InGameMenuDialog.prefab")
 InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME = "ToggleAudioButton"
+InGameMenuDialog.RESUME_GAME_BUTTON_NAME = "ResumeGameButton"
 InGameMenuDialog.SAVE_GAME_BUTTON_NAME = "SaveGameButton"
 InGameMenuDialog.LOAD_GAME_BUTTON_NAME = "LoadGameButton"
 InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME = "ToMainMenuButton"
@@ -98,6 +100,7 @@ function InGameMenuDialog:new(commandManager)
     ModalDialogBase.new(self, commandManager, self._gameObject)
 
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.RESUME_GAME_BUTTON_NAME, close, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.SAVE_GAME_BUTTON_NAME, saveGame, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.LOAD_GAME_BUTTON_NAME, loadGame, self)
     self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME, toMainMenu, self)

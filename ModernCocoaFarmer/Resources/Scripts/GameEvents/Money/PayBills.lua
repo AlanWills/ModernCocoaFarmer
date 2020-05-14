@@ -30,13 +30,13 @@ end
 
 ---------------------------------------------------------------------------------
 function PayBills.trigger(commandManager)
-    local amount = math.abs(PayBills.getTotalBillsAmount(commandManager.familyManager))
+    local amount = PayBills.getTotalBillsAmount(commandManager.familyManager)
 
     commandManager:execute(AddMoney, amount)
     commandManager:execute(
         SendNotification,
         "Bills Are Due",
-        string.format("You fork out %d for essentials", amount),
+        string.format("You fork out %d for essentials", math.abs(amount)),
         PayBills.ICON_PATH)
 end
 

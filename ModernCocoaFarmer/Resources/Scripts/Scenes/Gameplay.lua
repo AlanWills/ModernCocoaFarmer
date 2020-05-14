@@ -78,6 +78,7 @@ function Gameplay.show(state)
     end
 
     Gameplay.updateUI()
+    Gameplay.addDolceWindows();
 end
 
 ---------------------------------------------------------------------------------
@@ -88,6 +89,8 @@ function Gameplay.hide()
     Gameplay._locationsUI = nil
     Gameplay._topBar = nil
     Gameplay._notificationsBar = nil
+    Gameplay.removeDolceWindows();
+
     GameObject.find(Gameplay.GAMEPLAY_ROOT_NAME):destroy()
 end
 
@@ -97,6 +100,24 @@ function Gameplay.updateUI()
     Gameplay._topBar:updateUI()
 
     Gameplay._state.modalDialogManager:destroyDialogs()
+end
+
+---------------------------------------------------------------------------------
+function Gameplay.addDolceWindows()
+    local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
+    local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
+    local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
+
+    Dolce.instance:addWindow(MoneyManagerDolceWindow.NAME, Class.new(MoneyManagerDolceWindow, Gameplay._state.moneyManager))
+    Dolce.instance:addWindow(TimeManagerDolceWindow.NAME, Class.new(TimeManagerDolceWindow, Gameplay._state.timeManager))
+    Dolce.instance:addWindow(FamilyManagerDolceWindow.NAME, Class.new(FamilyManagerDolceWindow, Gameplay._state.familyManager))
+end
+
+---------------------------------------------------------------------------------
+function Gameplay.removeDolceWindows()
+    Dolce.instance:removeWindow(MoneyManagerDolceWindow.NAME)
+    Dolce.instance:removeWindow(TimeManagerDolceWindow.NAME)
+    Dolce.instance:removeWindow(FamilyManagerDolceWindow.NAME)
 end
 
 return Gameplay

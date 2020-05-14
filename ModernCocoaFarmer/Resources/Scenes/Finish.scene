@@ -7,12 +7,22 @@
         <GraphicsRaycaster/>
       </Components>
       <GameObjects>
-        <GameObject position="960,640,0" name="ThankYouText">
+        <GameObject position="960,900,0" name="ThankYouText">
           <Components>
             <TextRenderer text="Thanks For Playing!"/>
           </Components>
         </GameObject>
-        <GameObject name="ToMainMenuButton" position="960,540">
+        <GameObject position="950,540,0" name="ChildrenFinishNameStackPanel">
+          <Components>
+            <StackPanel orientation="vertical" horizontal_alignment="centre" padding="10"/>
+          </Components>
+        </GameObject>
+        <GameObject position="970,540,0" name="ChildrenFinishStatusStackPanel">
+          <Components>
+            <StackPanel orientation="vertical" horizontal_alignment="centre" padding="10"/>
+          </Components>
+        </GameObject>
+        <GameObject name="ToMainMenuButton" position="960,200">
           <Components>
             <SpriteRenderer size="200,40"/>
             <MouseInteractionHandler/>

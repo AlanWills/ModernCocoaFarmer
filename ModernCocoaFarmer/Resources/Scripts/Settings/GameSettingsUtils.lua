@@ -3,7 +3,12 @@ GameSettings.GAME_SETTINGS_FILE_PATH = path.combine("Data", "Settings", "GameSet
 
 ---------------------------------------------------------------------------------
 function GameSettings.loadFromDefaultOrCreate()
-    return GameSettings.load(GameSettings.GAME_SETTINGS_FILE_PATH) or GameSettings.create("GameSettings")
+    local load = GameSettings.load(GameSettings.GAME_SETTINGS_FILE_PATH)
+    if load ~= nil then
+        return load
+    end
+    
+    return GameSettings.create("GameSettings")
 end
 
 ---------------------------------------------------------------------------------

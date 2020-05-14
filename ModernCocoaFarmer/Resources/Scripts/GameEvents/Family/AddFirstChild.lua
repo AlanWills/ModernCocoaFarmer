@@ -26,7 +26,7 @@ function ActivateFirstChild.trigger(commandManager)
     commandManager:execute(AddChild)
 
     local familyManager = commandManager.familyManager
-    local child = familyManager:getChild(familyManager:getChildCount() - 1)
+    local child = familyManager:getChild(0)
 
     commandManager:execute(
         SendNotification,

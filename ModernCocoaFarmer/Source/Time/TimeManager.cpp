@@ -113,4 +113,13 @@ namespace MCF::Time
       m_dataStore->set(DataSources::CURRENT_MONTH, static_cast<unsigned int>(getCurrentMonth()));
     }
   }
+
+  //------------------------------------------------------------------------------------------------
+  void TimeManager::setSecondsPerDay(float secondsPerDay)
+  {
+    if (secondsPerDay > 0)
+    {
+      m_secondsPerDay.setValue(secondsPerDay);
+    }
+  }
 }

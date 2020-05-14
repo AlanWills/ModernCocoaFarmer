@@ -23,8 +23,10 @@ namespace MCF::Persistence
 {
   class DataStore
   {
-    private:
+    public:
       using Data = std::variant<bool, int, unsigned int, float, std::string>;
+
+    private:
       using DataLookup = std::unordered_map<std::string, Data>;
       using SerializeFunction = void (*)(tinyxml2::XMLElement& value, const Data& data);
       using DeserializeFunction = bool (*)(const tinyxml2::XMLAttribute& value, Data& data);
@@ -69,6 +71,10 @@ namespace MCF::Persistence
       MCFLibraryDllExport static const char* const DATA_TYPE_ATTRIBUTE_NAME;
       MCFLibraryDllExport static const char* const KEY_ATTRIBUTE_NAME;
       MCFLibraryDllExport static const char* const VALUE_ATTRIBUTE_NAME;
+
+#if _DEBUG
+      DataLookup& getDataStore_DebugOnly() { return m_dataLookup; }
+#endif
 
     private:
       DataStore(const std::unordered_map<std::string, Data>& data);

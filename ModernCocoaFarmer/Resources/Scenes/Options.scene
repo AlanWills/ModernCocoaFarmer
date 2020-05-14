@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Scene>
   <GameObjects>
-    <GameObject name="OptionsScene">
+    <GameObject name="OptionsScene" position="960,540,0">
       <Components>
         <Canvas/>
         <GraphicsRaycaster/>
@@ -26,6 +26,7 @@
             <GameObject name="MasterVolumeSlider">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="1,0,0"/>
+                <MouseInteractionHandler/>
                 <Slider min="0" max="1" value="1"/>
               </Components>
               <GameObjects>
@@ -50,6 +51,7 @@
             <GameObject name="MusicVolumeSlider">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,1,0"/>
+                <MouseInteractionHandler/>
                 <Slider min="0" max="1" value="0"/>
               </Components>
               <GameObjects>
@@ -74,6 +76,7 @@
             <GameObject name="SFXVolumeSlider">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="400,30" scissor_rectangle_dimensions="30,30" colour="0,0,1"/>
+                <MouseInteractionHandler/>
                 <Slider min="0" max="1" value="0"/>
               </Components>
               <GameObjects>
@@ -96,12 +99,12 @@
                   <Components>
                     <SpriteRenderer/>
                     <MouseInteractionHandler/>
-                    <Button font_height="20"/>
+                    <Button/>
                   </Components>
                   <GameObjects>
                     <GameObject name="CloseButtonText">
                       <Components>
-                        <TextRenderer text="Close"/>
+                        <TextRenderer text="Close" colour="0,0,0" font_height="20"/>
                       </Components>
                     </GameObject>
                   </GameObjects>

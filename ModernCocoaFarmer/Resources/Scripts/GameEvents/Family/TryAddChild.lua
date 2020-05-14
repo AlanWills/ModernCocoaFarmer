@@ -29,8 +29,17 @@ function TryAddChild.trigger(commandManager)
     commandManager:execute(AddChild)
 
     local familyManager = commandManager.familyManager
-    local child = familyManager:getChild(familyManager:getChildCount() - 1)
+    local child = nil
 
+    -- No need to check the 0th child as it's activated in a different event
+    for childIndex = familyManager:getChildCount() - 1, 1, -1 do
+        local currentChild = familyManager:getChild(childIndex)
+        if currentChild:isActive() then
+            child = currentChild
+        end
+    end
+
+    assert(child ~= nil)
     commandManager:execute(
         SendNotification,
         "A Child!",

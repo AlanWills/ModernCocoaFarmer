@@ -16,6 +16,7 @@ namespace MCF
 
     protected:
       void onInitialize() override;
+      void onInitializeDolce(Dolce::IDolce& dolce) override;
 
     private:
       using Inherited = Celeste::Game;

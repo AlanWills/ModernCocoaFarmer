@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Prefab>
+  <GameObjects>
+    <GameObject name="ChildFinishStatus">
+      <Components>
+        <TextRenderer text="Child: Deceased" font_height="20" horizontal_alignment="left"/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Prefab>

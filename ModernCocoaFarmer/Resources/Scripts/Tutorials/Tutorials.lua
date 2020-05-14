@@ -18,7 +18,7 @@ function tuts.setIntroVideoAsShown()
     
     if not dataStore:save(tuts.DATA_STORE_PATH) then
         log("Failed to save tutorial data store")
-        assertFail()
+        assertFailMessage("Failed to save tutorial data store")
     end
 end
 

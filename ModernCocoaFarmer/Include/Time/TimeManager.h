@@ -25,6 +25,9 @@ namespace MCF::Time
 
       MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
 
+      float getSecondsPerDay() const { return m_secondsPerDay.getValue(); }
+      MCFLibraryDllExport void setSecondsPerDay(float secondsPerDay);
+
       bool isPaused() const { return m_paused; }
       void setPaused(bool isPaused) { m_paused = isPaused; }
 

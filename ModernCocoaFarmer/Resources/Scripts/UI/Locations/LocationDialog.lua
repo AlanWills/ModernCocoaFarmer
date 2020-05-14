@@ -95,7 +95,9 @@ local function formatModifierString(isDeltaChange, amount)
     local modifierText = "";
 
     if isDeltaChange then
-        modifierText = modifierText .. "+"
+        if amount >= 0 then
+            modifierText = modifierText .. "+"
+        end
     else
         modifierText = modifierText .. "set to "
     end
@@ -178,7 +180,8 @@ function LocationDialog:setUpChildSelectionUI()
     local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
     local selectedChildObject = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. selectedChildName)
 
-    local isChildAlreadyAtLocation = isChildSelected and selectedChildObject:getBool(FamilyDataSources.IS_AT_LOCATION)
+    local currentLocation = selectedChildObject:getString(FamilyDataSources.CURRENT_LOCATION)
+    local isChildAlreadyAtLocation = isChildSelected and currentLocation ~= ""
     log("LocationDialog.isChildAlreadyAtLocation " .. tostring(isChildAlreadyAtLocation))
 
     local isChildAbleToBeSent = isChildSelected and not isChildAlreadyAtLocation
@@ -194,8 +197,7 @@ function LocationDialog:setUpChildSelectionUI()
         local sendChildButtonText = sendChildButton:findChild(self.SEND_CHILD_BUTTON_TEXT_NAME)
         sendChildButtonText:findComponent("TextRenderer"):setText("Send " .. selectedChildName)
     elseif isChildAlreadyAtLocation then
-        local selectedChildLocation = selectedChildObject:getString(FamilyDataSources.CURRENT_LOCATION)
-        sendChildHelpText:findComponent("TextRenderer"):setText(selectedChildName .. " is already at\nthe " .. selectedChildLocation)
+        sendChildHelpText:findComponent("TextRenderer"):setText(selectedChildName .. " is already at\nthe " .. currentLocation)
     else
         sendChildHelpText:findComponent("TextRenderer"):setText("Select a Child to send\nthem to this location")
     end

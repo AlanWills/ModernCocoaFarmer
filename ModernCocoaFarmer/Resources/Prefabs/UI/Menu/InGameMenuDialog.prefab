@@ -13,6 +13,20 @@
             <MouseInteractionHandler/>
           </Components>
         </GameObject>
+        <GameObject name="ResumeGameButton" position="0,0,0.01">
+          <Components>
+            <SpriteRenderer/>
+            <MouseInteractionHandler/>
+            <Button/>
+          </Components>
+          <GameObjects>
+            <GameObject name="ResumeGameButtonText">
+              <Components>
+                <TextRenderer font_height="24" colour="0,0,0" text="Resume"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
         <GameObject name="SaveGameButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>

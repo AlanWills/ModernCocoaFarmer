@@ -1,6 +1,8 @@
 #include "MCFGame.h"
 #include "Lua/LuaState.h"
 #include "Persistence/DataSystem.h"
+#include "Debug/Windows/DataSystemDolceWindow.h"
+#include "Dolce/IDolce.h"
 
 #include "ScriptCommands/Celeste/CelesteScriptCommands.h"
 #include "ScriptCommands/MCFScriptCommands.h"
@@ -35,5 +37,11 @@ namespace MCF
 
     Celeste::Lua::CelesteScriptCommands::initialize(state);
     MCF::Lua::MCFScriptCommands::initialize(state);
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void MCFGame::onInitializeDolce(Dolce::IDolce& dolce)
+  {
+    dolce.addWindow(std::make_unique<Debug::DataSystemDolceWindow>(*getSystem<Persistence::DataSystem>()));
   }
 }

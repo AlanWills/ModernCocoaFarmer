@@ -62,9 +62,9 @@ function ChildStatsPanel:updateUI()
     self._educationProgressBar:setProgress(childData:getFloat(StatsDataSources.EDUCATION))
     self._happinessProgressBar:setProgress(childData:getFloat(StatsDataSources.HAPPINESS))
 
-    local locationText = "Not at location"
-    if childData:getBool(FamilyDataSources.IS_AT_LOCATION) then
-        locationText = childData:getString(FamilyDataSources.CURRENT_LOCATION)
+    local locationText = childData:getString(FamilyDataSources.CURRENT_LOCATION)
+    if locationText == "" then
+        locationText = "Not at location"
     end
 
     self._childLocationText:setText(locationText)

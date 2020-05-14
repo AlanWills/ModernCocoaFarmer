@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="InteractableLocationBackground">
       <Components>
-        <SpriteRenderer sprite="Textures\UI\Utility\DialogBackground.png" size="400,600"/>
+        <SpriteRenderer sprite="Textures\UI\Utility\DialogBackground.png" size="400,600" preserve_aspect_ratio="false"/>
       </Components>
       <GameObjects>
         <GameObject name="TitleText" position="0,250,0">

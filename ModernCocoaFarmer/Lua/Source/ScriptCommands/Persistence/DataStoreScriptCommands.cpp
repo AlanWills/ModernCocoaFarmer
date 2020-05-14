@@ -34,7 +34,7 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       {
         return DataStore();
       }
-
+      
       return DataStore::deserialize(*data->getDocumentRoot());
     }
 
@@ -44,17 +44,35 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       using namespace Celeste;
       using namespace Celeste::Resources;
       using namespace MCF::Persistence;
+      
+      observer_ptr<Data> data = getResourceManager().load<Data>(filePath);
+      if (data == nullptr)
+      {
+        data = getResourceManager().create(filePath);
+        if (data == nullptr)
+        {
+          ASSERT_FAIL();
+          return false;
+        }
+      }
 
-      tinyxml2::XMLDocument document;
-      tinyxml2::XMLElement* element = document.NewElement("DataStore");
-      document.InsertEndChild(element);
+      tinyxml2::XMLDocument& document = data->getDocument();
+      tinyxml2::XMLElement* element = data->getDocumentRoot();
+
+      if (element != nullptr)
+      {
+        // Clear all already saved data if the document already exists
+        element->DeleteChildren();
+      }
+      else
+      {
+        element = document.NewElement("DataStore");
+        document.InsertEndChild(element);
+      }
+
       dataStore.serialize(*element);
 
-      // Ensures that all parent directories are created too
-      Path path(getResourcesDirectory(), filePath);
-      File(path).create();
-
-      return document.SaveFile(path.c_str()) == XML_SUCCESS;
+      return data->saveToFile(Path(getResourcesDirectory(), filePath));
     }
 
     //------------------------------------------------------------------------------------------------
