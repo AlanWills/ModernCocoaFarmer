@@ -10,15 +10,8 @@ end
 
 ---------------------------------------------------------------------------------
 function MoneyManagerDolceWindow:render()
-    local moneyChanged, newMoney = ImGui.inputInt("Money", self._moneyManager:getMoney())
-    if moneyChanged then
-        self._moneyManager:setMoney(newMoney)
-    end
-
-    local salaryLevelChanged, newSalaryLevel = ImGui.inputUInt("Salary Level", self._moneyManager:getSalaryLevel())
-    if salaryLevelChanged then
-        self._moneyManager:setSalaryLevel(newSalaryLevel)
-    end
+    self._moneyManager:setMoney(ImGui.inputInt("Money", self._moneyManager:getMoney()))
+    self._moneyManager:setSalaryLevel(ImGui.inputUInt("Salary Level", self._moneyManager:getSalaryLevel()))
 end
 
 return MoneyManagerDolceWindow

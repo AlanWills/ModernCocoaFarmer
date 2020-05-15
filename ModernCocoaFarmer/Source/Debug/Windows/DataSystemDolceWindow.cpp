@@ -1,116 +1,140 @@
 #include "Debug/Windows/DataSystemDolceWindow.h"
-#include "Persistence/DataSystem.h"
+#include "CelesteStl/Templates/Variant.h"
+#include "Utils/StringUtils.h"
 
 #include "imgui/imgui_stdlib.h"
+#include "imgui/DefaultInput.h"
+
+#include <vector>
 
 
 namespace MCF::Debug
 {
   //------------------------------------------------------------------------------------------------
   using Data = Persistence::DataStore::Data;
+  using InputFunctions = celstl::VariantFunctions<Data, void, const std::string&, const Data&, Persistence::DataStore&>;
 
-  template <class VariantType, typename ReturnType, typename... Args>
-  struct VariantFunctions
-  {
-    using Variant = VariantType;
-    using Function = ReturnType(*)(Args...);
-
-    constexpr size_t size() const { return std::variant_size<Data>::value; }
-
-    Function m_functions[std::variant_size<Data>::value];
-  };
-
-  using RenderFunctions = VariantFunctions<Data, void, const std::string&, const Data&, Persistence::DataStore&>;
-
-  bool render(const std::string& key, bool& value)
-  {
-    return ImGui::Checkbox(key.c_str(), &value);
-  }
-
-  bool render(const std::string& key, int& value)
-  {
-    return ImGui::InputInt(key.c_str(), &value);
-  }
-
-  bool render(const std::string& key, unsigned int& value)
-  {
-    int iValue = static_cast<int>(value);
-    if (ImGui::InputInt(key.c_str(), &iValue))
-    {
-      value = static_cast<unsigned int>(iValue);
-      return true;
-    }
-
-    return false;
-  }
-
-  bool render(const std::string& key, float& value)
-  {
-    return ImGui::InputFloat(key.c_str(), &value);
-  }
-
-  bool render(const std::string& key, std::string& value)
-  {
-    return ImGui::InputText(key.c_str(), &value);
-  }
-
+  //------------------------------------------------------------------------------------------------
   template <typename T>
-  struct RenderFunctor
+  struct InputFunctor
   {
     static void execute(const std::string& key, const Data& data, Persistence::DataStore& dataStore)
     {
       T tempData = std::get<T>(data);
 
-      if (render(key, tempData))
+      if (Dolce::input(key.substr(key.find_last_of('.') + 1), tempData))
       {
         dataStore.set(key, tempData);
       }
     }
   };
 
-  template <typename VariantFunctions, size_t index, template <typename> class Functor>
-  struct SetVariantFunction
-  {
-    static constexpr void _(VariantFunctions& renderFunctions)
-    {
-      renderFunctions.m_functions[index] = &Functor<typename std::variant_alternative<index, typename VariantFunctions::Variant>::type>::execute;
-      SetVariantFunction<VariantFunctions, index - 1, Functor>::_(renderFunctions);
-    }
-  };
-
-  template <typename VariantFunctions, template <typename> class Functor>
-  struct SetVariantFunction<VariantFunctions, 0, Functor>
-  {
-    static constexpr void _(VariantFunctions& renderFunctions)
-    {
-      renderFunctions.m_functions[0] = &Functor<typename std::variant_alternative<0, typename VariantFunctions::Variant>::type>::execute;
-    }
-  };
-
-  template <typename VariantFunctions, template <typename> class Functor>
-  constexpr VariantFunctions createVariantFunctions()
-  {
-    VariantFunctions variantFunctions = VariantFunctions();
-    SetVariantFunction<VariantFunctions, variantFunctions.size() - 1, Functor>::_(variantFunctions);
-
-    return variantFunctions;
-  }
-
-  static RenderFunctions s_renderFunctions = createVariantFunctions<RenderFunctions, RenderFunctor>();
+  static InputFunctions s_inputFunctions = celstl::createVariantFunctions<InputFunctions, InputFunctor>();
 
   //------------------------------------------------------------------------------------------------
   DataSystemDolceWindow::DataSystemDolceWindow(Persistence::DataSystem& dataSystem) :
     Inherited("Data System"),
-    m_dataSystem(dataSystem)
+    m_dataSystem(dataSystem),
+    m_dataSystemRoot()
   {
   }
 
   //------------------------------------------------------------------------------------------------
   void DataSystemDolceWindow::render()
   {
-    for (const auto& keyData : m_dataSystem.getDataStore_DebugOnly())
+    Dolce::input("Search", m_searchString);
+
+    m_dataSystemRoot.m_children.clear();
+
+    for (auto& keyData : m_dataSystem.getDataStore_DebugOnly())
     {
-      s_renderFunctions.m_functions[keyData.second.index()](keyData.first, keyData.second, m_dataSystem);
+      size_t previousIndex = static_cast<size_t>(-1);
+      size_t currentIndex = keyData.first.find('.');
+      DataSystemNode* currentNode = &m_dataSystemRoot;
+
+      while (currentIndex < keyData.first.size())
+      {
+        std::string key = keyData.first.substr(previousIndex + 1, currentIndex - (previousIndex + 1));
+        if (currentNode->m_children.find(key) == currentNode->m_children.end())
+        {
+          ASSERT(currentNode->m_children.find(key) == currentNode->m_children.end());
+          currentNode->m_children.emplace(key, DataSystemNode(key, currentNode, nullptr));
+        }
+        
+        currentNode = &currentNode->m_children[key];
+        previousIndex = currentIndex;
+        currentIndex = keyData.first.find('.', previousIndex + 1);
+      }
+
+      std::string key = keyData.first.substr(previousIndex + 1);
+      ASSERT(currentNode->m_children.find(key) == currentNode->m_children.end());
+      currentNode->m_children.emplace(key, DataSystemNode(key, currentNode, &keyData.second));
+    }
+   
+    std::vector<std::string> words;
+    Celeste::split(m_searchString, words, '.');
+    DataSystemNode* currentNode = &m_dataSystemRoot;
+
+    for (const std::string& word : words)
+    {
+      if (currentNode->m_children.find(word) == currentNode->m_children.end())
+      {
+        break;
+      }
+
+      currentNode = &currentNode->m_children.at(word);
+    }
+
+    for (auto& children : currentNode->m_children)
+    {
+      renderNode(children.second);
+    }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  std::string DataSystemDolceWindow::getFullKey(const DataSystemNode& dataSystemNode)
+  {
+    std::vector<std::string> nodes;
+    const DataSystemNode* current = &dataSystemNode;
+
+    while (current != &m_dataSystemRoot)
+    {
+      nodes.push_back(current->m_relativeKey);
+      current = current->m_parent;
+    }
+
+    std::string str;
+    str.reserve(128);
+
+    for (size_t i = nodes.size() - 1; i >= 1; --i)
+    {
+      str.append(nodes[i]);
+      str.push_back('.');
+    }
+    str.append(nodes.front());
+
+    return str;
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void DataSystemDolceWindow::renderNode(DataSystemNode& dataSystemNode)
+  {
+    if (dataSystemNode.m_children.empty())
+    {
+      ASSERT_NOT_NULL(dataSystemNode.m_data);
+      s_inputFunctions.m_functions[dataSystemNode.m_data->index()](getFullKey(dataSystemNode), *dataSystemNode.m_data, m_dataSystem);
+    }
+    else
+    {
+      if (ImGui::TreeNode(dataSystemNode.m_relativeKey.c_str()))
+      {
+        for (auto& children : dataSystemNode.m_children)
+        {
+          renderNode(children.second);
+        }
+
+        ImGui::TreePop();
+      }
     }
   }
 }

@@ -104,10 +104,14 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.addDolceWindows()
+    local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
+    local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
     local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
     local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
     local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
 
+    Dolce.instance:addWindow(GameEventManagerDolceWindow.NAME, Class.new(GameEventManagerDolceWindow, Gameplay._gameEventManager))
+    Dolce.instance:addWindow(CommandManagerDolceWindow.NAME, Class.new(CommandManagerDolceWindow, Gameplay._commandManager))
     Dolce.instance:addWindow(MoneyManagerDolceWindow.NAME, Class.new(MoneyManagerDolceWindow, Gameplay._state.moneyManager))
     Dolce.instance:addWindow(TimeManagerDolceWindow.NAME, Class.new(TimeManagerDolceWindow, Gameplay._state.timeManager))
     Dolce.instance:addWindow(FamilyManagerDolceWindow.NAME, Class.new(FamilyManagerDolceWindow, Gameplay._state.familyManager))
@@ -115,6 +119,7 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.removeDolceWindows()
+    Dolce.instance:removeWindow(CommandManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(MoneyManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(TimeManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(FamilyManagerDolceWindow.NAME)

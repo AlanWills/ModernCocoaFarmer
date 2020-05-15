@@ -91,6 +91,7 @@ namespace MCF::Time
           m_onYearPassed.invoke();
         }
 
+        LOG("D/M/Y " + std::to_string(getCurrentDay()) + "/" + std::to_string(getCurrentMonth()) + "/" + std::to_string(getCurrentYear()));
         updateDataStore();
       }
     }
@@ -106,11 +107,10 @@ namespace MCF::Time
   //------------------------------------------------------------------------------------------------
   void TimeManager::updateDataStore() const
   {
-    LOG("D/M/Y " + std::to_string(getCurrentDay()) + "/" + std::to_string(getCurrentMonth()) + "/" + std::to_string(getCurrentYear()));
-
     if (m_dataStore != nullptr)
     {
       m_dataStore->set(DataSources::CURRENT_MONTH, static_cast<unsigned int>(getCurrentMonth()));
+      m_dataStore->set(DataSources::IS_PAUSED, isPaused());
     }
   }
 
@@ -121,5 +121,12 @@ namespace MCF::Time
     {
       m_secondsPerDay.setValue(secondsPerDay);
     }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void TimeManager::setPaused(bool isPaused)
+  {
+    m_paused = isPaused;
+    updateDataStore();
   }
 }

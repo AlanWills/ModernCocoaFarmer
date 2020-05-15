@@ -13,5 +13,6 @@ namespace MCF::Lua::Time::DataSourcesScriptCommands
   {
     sol::table dataSources = state.create_named_table("TimeDataSources");
     dataSources["CURRENT_MONTH"] = DataSources::CURRENT_MONTH;
+    dataSources["IS_PAUSED"] = DataSources::IS_PAUSED;
   }
 }

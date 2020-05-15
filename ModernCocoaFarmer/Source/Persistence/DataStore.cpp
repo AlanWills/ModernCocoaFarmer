@@ -10,8 +10,49 @@ namespace MCF::Persistence
   const char* const DataStore::VALUE_ATTRIBUTE_NAME = "value";
 
   //------------------------------------------------------------------------------------------------
-  DataStore::SerializeFunctions DataStore::m_serializeFunctions = DataStore::createSerializeFunctions();
-  DataStore::DeserializeFunctions DataStore::m_deserializeFunctions = DataStore::createDeserializeFunctions();
+  using SerializeFunctions = celstl::VariantFunctions<DataStore::Data, void, tinyxml2::XMLElement&, const DataStore::Data&>;
+  using DeserializeFunctions = celstl::VariantFunctions<DataStore::Data, bool, const tinyxml2::XMLAttribute&, DataStore::Data&>;
+
+  //------------------------------------------------------------------------------------------------
+  template <typename T>
+  struct SerializeFunctor
+  {
+    static void execute(tinyxml2::XMLElement& element, const DataStore::Data& data)
+    {
+      element.SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, std::get<T>(data));
+    }
+  };
+
+  //------------------------------------------------------------------------------------------------
+  template <>
+  struct SerializeFunctor<std::string>
+  {
+    static void execute(tinyxml2::XMLElement& element, const DataStore::Data& data)
+    {
+      element.SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, std::get<std::string>(data).c_str());
+    }
+  };
+
+  //------------------------------------------------------------------------------------------------
+  template <typename T>
+  struct DeserializeFunctor
+  {
+    static bool execute(const tinyxml2::XMLAttribute& attribute, DataStore::Data& data)
+    {
+      T t;
+      if (Celeste::XML::getAttributeData(&attribute, t) == Celeste::XML::XMLValueError::kSuccess)
+      {
+        data.emplace<T>(t);
+        return true;
+      }
+
+      ASSERT_FAIL();
+      return false;
+    }
+  };
+  
+  static SerializeFunctions s_serializeFunctions = celstl::createVariantFunctions<SerializeFunctions, SerializeFunctor>();
+  static DeserializeFunctions s_deserializeFunctions = celstl::createVariantFunctions<DeserializeFunctions, DeserializeFunctor>();
 
   //------------------------------------------------------------------------------------------------
   DataStore::DataStore() :
@@ -20,8 +61,8 @@ namespace MCF::Persistence
   }
 
   //------------------------------------------------------------------------------------------------
-  DataStore::DataStore(const std::unordered_map<std::string, Data>& data) :
-    m_dataLookup(data)
+  DataStore::DataStore(DataLookup&& data) :
+    m_dataLookup(std::move(data))
   {
   }
 
@@ -29,38 +70,6 @@ namespace MCF::Persistence
   DataStore::DataStore(DataStore&& rhs) noexcept :
     m_dataLookup(std::move(rhs.m_dataLookup))
   {
-  }
-
-  //------------------------------------------------------------------------------------------------
-  constexpr DataStore::SerializeFunctions DataStore::createSerializeFunctions()
-  {
-    DataStore::SerializeFunctions serializeFunctions = DataStore::SerializeFunctions();
-    setSerializeFunction<serializeFunctions.size() - 1>(serializeFunctions);
-
-    return serializeFunctions;
-  }
-
-  //------------------------------------------------------------------------------------------------
-  constexpr DataStore::DeserializeFunctions DataStore::createDeserializeFunctions()
-  {
-    DataStore::DeserializeFunctions deserializeFunctions = DataStore::DeserializeFunctions();
-    setDeserializeFunction<deserializeFunctions.size() - 1>(deserializeFunctions);
-
-    return deserializeFunctions;
-  }
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  constexpr void DataStore::setSerializeFunction<0>(SerializeFunctions& serializeFunctions)
-  {
-    serializeFunctions.m_functions[0] = &DataStore::serialize<typename std::variant_alternative<0, Data>::type>;
-  }
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  constexpr void DataStore::setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions)
-  {
-    deserializeFunctions.m_functions[0] = &DataStore::deserialize<typename std::variant_alternative<0, Data>::type>;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -84,7 +93,7 @@ namespace MCF::Persistence
 
       if (typeIndex < std::variant_size<DataStore::Data>())
       {
-        m_serializeFunctions.m_functions[typeIndex](*element, dataPair.second);
+        s_serializeFunctions.m_functions[typeIndex](*element, dataPair.second);
       }
     }
   }
@@ -92,12 +101,12 @@ namespace MCF::Persistence
   //------------------------------------------------------------------------------------------------
   DataStore DataStore::deserialize(const tinyxml2::XMLElement& dataElementRoot)
   {
-    std::unordered_map<std::string, Data> dataLookup;
+    DataLookup dataLookup;
 
     for (const auto& element : Celeste::XML::children(&dataElementRoot))
     {
-      size_t dataType = static_cast<size_t>(element->UnsignedAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(m_deserializeFunctions.size())));
-      bool deserializeFuncExists = dataType < m_deserializeFunctions.size();
+      size_t dataType = static_cast<size_t>(element->UnsignedAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(s_deserializeFunctions.size())));
+      bool deserializeFuncExists = dataType < s_deserializeFunctions.size();
 
       ASSERT(deserializeFuncExists);
       if (deserializeFuncExists)
@@ -112,13 +121,13 @@ namespace MCF::Persistence
         Data data;
         if (key != nullptr && valueAttr != nullptr &&
           dataLookup.find(key) == dataLookup.end() &&
-          m_deserializeFunctions.m_functions[dataType](*valueAttr, data))
+          s_deserializeFunctions.m_functions[dataType](*valueAttr, data))
         {
           dataLookup.insert(std::make_pair(key, data));
         }
       }
     }
 
-    return DataStore(dataLookup);
+    return DataStore(std::move(dataLookup));
   }
 }

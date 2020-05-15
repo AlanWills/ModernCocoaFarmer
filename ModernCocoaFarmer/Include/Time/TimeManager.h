@@ -29,7 +29,7 @@ namespace MCF::Time
       MCFLibraryDllExport void setSecondsPerDay(float secondsPerDay);
 
       bool isPaused() const { return m_paused; }
-      void setPaused(bool isPaused) { m_paused = isPaused; }
+      MCFLibraryDllExport void setPaused(bool isPaused);
 
       unsigned int getCurrentDay() const { return m_currentDay; }
       unsigned int getCurrentMonth() const { return m_currentMonth; }

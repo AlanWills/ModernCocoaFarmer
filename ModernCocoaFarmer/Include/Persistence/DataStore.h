@@ -6,7 +6,11 @@
 #include "XML/tinyxml2_ext.h"
 #include "CelesteStl/Templates/Variant.h"
 
+#if _DEBUG
+#include <map>
+#else
 #include <unordered_map>
+#endif
 #include <string>
 #include <functional>
 #include <memory>
@@ -27,24 +31,12 @@ namespace MCF::Persistence
       using Data = std::variant<bool, int, unsigned int, float, std::string>;
 
     private:
+#if _DEBUG
+      using DataLookup = std::map<std::string, Data>;
+#else
       using DataLookup = std::unordered_map<std::string, Data>;
-      using SerializeFunction = void (*)(tinyxml2::XMLElement& value, const Data& data);
-      using DeserializeFunction = bool (*)(const tinyxml2::XMLAttribute& value, Data& data);
-
-      struct SerializeFunctions
-      {
-        constexpr size_t size() const { return std::variant_size<Data>(); }
-
-        SerializeFunction m_functions[std::variant_size<Data>()];
-      };
-
-      struct DeserializeFunctions
-      {
-        constexpr size_t size() const { return std::variant_size<Data>(); }
-
-        DeserializeFunction m_functions[std::variant_size<Data>()];
-      };
-
+#endif
+      
     public:
       MCFLibraryDllExport DataStore();
       MCFLibraryDllExport ~DataStore() = default;
@@ -77,56 +69,13 @@ namespace MCF::Persistence
 #endif
 
     private:
-      DataStore(const std::unordered_map<std::string, Data>& data);
-
-      static constexpr SerializeFunctions createSerializeFunctions();
-      static constexpr DeserializeFunctions createDeserializeFunctions();
-
-      template <size_t index>
-      static constexpr void setSerializeFunction(SerializeFunctions& serializeFunctions);
-
-      template <>
-      static constexpr void setSerializeFunction<0>(SerializeFunctions& serializeFunctions);
-
-      template <size_t index>
-      static constexpr void setDeserializeFunction(DeserializeFunctions& deserializeFunctions);
-
-      template <>
-      static constexpr void setDeserializeFunction<0>(DeserializeFunctions& deserializeFunctions);
+      DataStore(DataLookup&& data);
 
       template <typename T>
       bool unsafe_is(const std::string& dataKey) const;
 
-      template <typename T>
-      static void serialize(tinyxml2::XMLElement& element, const Data& data);
-
-      template <>
-      static void serialize<std::string>(tinyxml2::XMLElement& element, const Data& data);
-
-      template <typename T>
-      static bool deserialize(const tinyxml2::XMLAttribute& attribute, Data& data);
-
       DataLookup m_dataLookup;
-
-      static SerializeFunctions m_serializeFunctions;
-      static DeserializeFunctions m_deserializeFunctions;
   };
-
-  //------------------------------------------------------------------------------------------------
-  template <size_t index>
-  static constexpr void DataStore::setSerializeFunction(SerializeFunctions& serializeFunctions)
-  {
-    serializeFunctions.m_functions[index] = &DataStore::serialize<typename std::variant_alternative<index, Data>::type>;
-    setSerializeFunction<index - 1>(serializeFunctions);
-  }
-
-  //------------------------------------------------------------------------------------------------
-  template <size_t index>
-  static constexpr void DataStore::setDeserializeFunction(DeserializeFunctions& deserializeFunctions)
-  {
-    deserializeFunctions.m_functions[index] = &DataStore::deserialize<typename std::variant_alternative<index, Data>::type>;
-    setDeserializeFunction<index - 1>(deserializeFunctions);
-  }
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
@@ -176,35 +125,6 @@ namespace MCF::Persistence
     }
 
     ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<DataStore::Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
-    return false;
-  }
-
-  //------------------------------------------------------------------------------------------------
-  template <typename T>
-  void DataStore::serialize(tinyxml2::XMLElement& element, const Data& data)
-  {
-    element.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<T>(data));
-  }
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  void DataStore::serialize<std::string>(tinyxml2::XMLElement& element, const Data& data)
-  {
-    element.SetAttribute(VALUE_ATTRIBUTE_NAME, std::get<std::string>(data).c_str());
-  }
-
-  //------------------------------------------------------------------------------------------------
-  template <typename T>
-  bool DataStore::deserialize(const tinyxml2::XMLAttribute& attribute, Data& data)
-  {
-    T t;
-    if (Celeste::XML::getAttributeData(&attribute, t) == Celeste::XML::XMLValueError::kSuccess)
-    {
-      data.emplace<T>(t);
-      return true;
-    }
-
-    ASSERT_FAIL();
     return false;
   }
 }
