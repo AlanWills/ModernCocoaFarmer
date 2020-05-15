@@ -15,8 +15,10 @@ ActivateFirstChild.ICON_PATH = path.combine("Textures", "Icons", "Events", "Chil
 ---------------------------------------------------------------------------------
 function ActivateFirstChild.canTrigger(commandManager)
     local timeManager = commandManager.timeManager
+    local familyManager = commandManager.familyManager
 
-    return timeManager:getCurrentDay() == ActivateFirstChild.DAY_TO_TRIGGER and
+    return familyManager:getChildCount() == 0 and
+           timeManager:getCurrentDay() == ActivateFirstChild.DAY_TO_TRIGGER and
            timeManager:getCurrentMonth() == ActivateFirstChild.MONTH_TO_TRIGGER and
            timeManager:getCurrentYear() == ActivateFirstChild.YEAR_TO_TRIGGER
 end
