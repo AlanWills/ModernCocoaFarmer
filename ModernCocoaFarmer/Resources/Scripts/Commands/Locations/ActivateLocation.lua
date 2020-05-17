@@ -11,4 +11,13 @@ function ActivateLocation:execute(commandManager)
     commandManager.locationsManager:activateLocation(self._locationName)
 end
 
+---------------------------------------------------------------------------------
+function ActivateLocation.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing location name argument"
+    end
+
+    return args
+end
+
 return ActivateLocation

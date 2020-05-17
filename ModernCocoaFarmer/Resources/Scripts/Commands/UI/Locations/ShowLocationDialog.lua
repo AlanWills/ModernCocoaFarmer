@@ -14,4 +14,19 @@ function ShowLocationDialog:execute(commandManager)
     ShowModalDialog.execute(self, commandManager)
 end
 
+---------------------------------------------------------------------------------
+function ShowLocationDialog.parseArgs(args)
+    local argCount = #args
+    
+    if argCount < 1 then
+        return nil, "Missing notification title argument"
+    end
+
+    if argCount < 2 then
+        return nil, "Missing notification description argument"
+    end
+
+    return args
+end
+
 return ShowLocationDialog

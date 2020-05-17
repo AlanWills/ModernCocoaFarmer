@@ -15,4 +15,17 @@ function DeselectChild:execute(commandManager)
     location:leaveChild(child)
 end
 
+---------------------------------------------------------------------------------
+function DeselectChild.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing location name argument"
+    end
+
+    if #args < 2 then
+        return nil, "Missing child name argument"
+    end
+
+    return args
+end
+
 return DeselectChild

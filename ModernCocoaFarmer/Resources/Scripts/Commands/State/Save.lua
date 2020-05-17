@@ -21,4 +21,13 @@ function Save:execute(commandManager)
     log("Game saved successfully in " .. self._saveDirectory)
 end
 
+---------------------------------------------------------------------------------
+function Save.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing save directory argument"
+    end
+
+    return args
+end
+
 return Save

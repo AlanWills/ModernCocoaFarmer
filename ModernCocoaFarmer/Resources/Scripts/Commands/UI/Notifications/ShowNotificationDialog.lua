@@ -14,4 +14,19 @@ function ShowNotificationDialog:execute(commandManager)
     ShowModalDialog.execute(self, commandManager)
 end
 
+---------------------------------------------------------------------------------
+function ShowNotificationDialog.parseArgs(args)
+    local argCount = #args
+    
+    if argCount < 1 then
+        return nil, "Missing notification title argument"
+    end
+
+    if argCount < 2 then
+        return nil, "Missing notification description argument"
+    end
+
+    return args
+end
+
 return ShowNotificationDialog

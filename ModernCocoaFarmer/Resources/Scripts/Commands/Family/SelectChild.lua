@@ -11,4 +11,13 @@ function SelectChild:execute(commandManager)
     commandManager.familyManager:selectChild(self._childName)
 end
 
+---------------------------------------------------------------------------------
+function SelectChild.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing child name argument"
+    end
+
+    return args
+end
+
 return SelectChild

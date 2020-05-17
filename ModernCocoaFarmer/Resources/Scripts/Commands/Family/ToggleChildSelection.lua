@@ -11,4 +11,13 @@ function ToggleChildSelection:execute(commandManager)
     commandManager.familyManager:toggleChildSelection(self._childName)
 end
 
+---------------------------------------------------------------------------------
+function ToggleChildSelection.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing child name argument"
+    end
+
+    return args
+end
+
 return ToggleChildSelection

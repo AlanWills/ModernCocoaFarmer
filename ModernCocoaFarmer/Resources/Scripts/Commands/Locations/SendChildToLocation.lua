@@ -24,4 +24,17 @@ function SendChildToLocation:execute(commandManager)
     location:sendChild(child)
 end
 
+---------------------------------------------------------------------------------
+function SendChildToLocation.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing location name argument"
+    end
+
+    if #args < 2 then
+        return nil, "Missing child name argument"
+    end
+
+    return args
+end
+
 return SendChildToLocation

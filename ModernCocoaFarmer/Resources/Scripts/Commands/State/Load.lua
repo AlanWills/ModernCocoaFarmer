@@ -23,4 +23,13 @@ function Load:execute()
     gameplayScene.show(gameplayState)
 end
 
+---------------------------------------------------------------------------------
+function Load.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing load directory argument"
+    end
+
+    return args
+end
+
 return Load

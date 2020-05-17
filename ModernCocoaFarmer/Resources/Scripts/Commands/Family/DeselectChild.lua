@@ -11,4 +11,13 @@ function DeselectChild:execute(commandManager)
     commandManager.familyManager:deselectChild(self._childName)
 end
 
+---------------------------------------------------------------------------------
+function DeselectChild.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing child name argument"
+    end
+
+    return args
+end
+
 return DeselectChild

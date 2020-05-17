@@ -18,4 +18,14 @@ function UpdateChildrenTimes:execute(commandManager)
     end
 end
 
+---------------------------------------------------------------------------------
+function UpdateChildrenTimes.parseArgs(args)
+    if #args < 1 then
+        return nil, "Missing elapsed time argument"
+    end
+
+    args[1] = tonumber(args[1])
+    return args
+end
+
 return UpdateChildrenTimes
