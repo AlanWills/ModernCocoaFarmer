@@ -1,6 +1,6 @@
 #include "MCFGame.h"
 #include "Lua/LuaState.h"
-#include "Persistence/DataSystem.h"
+#include "Data/DataSystem.h"
 #include "Debug/Windows/DataSystemDolceWindow.h"
 #include "Dolce/IDolce.h"
 
@@ -15,7 +15,7 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   MCFGame::MCFGame()
   {
-    addSystem<Persistence::DataSystem>();
+    addSystem<Data::DataSystem>();
 
     // Will need to make this for just VS
     Path pathToResources = Path(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING, "ModernCocoaFarmer", "Resources");
@@ -42,6 +42,6 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   void MCFGame::onInitializeDolce(Dolce::IDolce& dolce)
   {
-    dolce.addWindow(std::make_unique<Debug::DataSystemDolceWindow>(*getSystem<Persistence::DataSystem>()));
+    dolce.addWindow(std::make_unique<Debug::DataSystemDolceWindow>(*getSystem<Data::DataSystem>()));
   }
 }

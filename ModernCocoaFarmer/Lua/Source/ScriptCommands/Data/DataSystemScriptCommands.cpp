@@ -1,17 +1,17 @@
-#include "ScriptCommands/Persistence/DataSystemScriptCommands.h"
+#include "ScriptCommands/Data/DataSystemScriptCommands.h"
 #include "Game/Game.h"
-#include "Persistence/DataSystem.h"
+#include "Data/DataSystem.h"
 #include "sol/sol.hpp"
 
 
-namespace MCF::Lua::Persistence::DataSystemScriptCommands
+namespace MCF::Lua::Data::DataSystemScriptCommands
 {
   namespace Internals
   {
     //------------------------------------------------------------------------------------------------
-    MCF::Persistence::DataSystem* getDataSystem()
+    MCF::Data::DataSystem* getDataSystem()
     {
-      return Celeste::Game::current().getSystem<MCF::Persistence::DataSystem>();
+      return Celeste::Game::current().getSystem<MCF::Data::DataSystem>();
     }
   }
 
@@ -25,7 +25,7 @@ namespace MCF::Lua::Persistence::DataSystemScriptCommands
 
     state["System"]["getDataSystem"] = &Internals::getDataSystem;
 
-    state.new_usertype<MCF::Persistence::DataSystem>(
+    state.new_usertype<MCF::Data::DataSystem>(
       "DataSystem",
       sol::base_classes, sol::bases<MCF::Persistence::DataStore, Celeste::System::ISystem>());
   }

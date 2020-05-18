@@ -1,7 +1,7 @@
-#include "Persistence/DataSystem.h"
+#include "Data/DataSystem.h"
 
 
-namespace MCF::Persistence
+namespace MCF::Data
 {
   //------------------------------------------------------------------------------------------------
   void DataSystem::update(float /*elapsedGameTime*/)

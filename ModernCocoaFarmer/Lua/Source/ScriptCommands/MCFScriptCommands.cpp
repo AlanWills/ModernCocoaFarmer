@@ -6,6 +6,7 @@
 #include "ScriptCommands/Money/MoneyScriptCommands.h"
 #include "ScriptCommands/Stats/StatsScriptCommands.h"
 #include "ScriptCommands/Persistence/PersistenceScriptCommands.h"
+#include "ScriptCommands/Data/DataScriptCommands.h"
 #include "ScriptCommands/Time/TimeScriptCommands.h"
 
 
@@ -21,6 +22,7 @@ namespace MCF::Lua::MCFScriptCommands
     Money::ScriptCommands::initialize(state);
     Stats::ScriptCommands::initialize(state);
     Persistence::ScriptCommands::initialize(state);
+    Data::ScriptCommands::initialize(state);
     Time::ScriptCommands::initialize(state);
   }
 }

@@ -10,14 +10,14 @@ namespace MCF::Persistence
   const char* const DataStore::VALUE_ATTRIBUTE_NAME = "value";
 
   //------------------------------------------------------------------------------------------------
-  using SerializeFunctions = celstl::VariantFunctions<DataStore::Data, void, tinyxml2::XMLElement&, const DataStore::Data&>;
-  using DeserializeFunctions = celstl::VariantFunctions<DataStore::Data, bool, const tinyxml2::XMLAttribute&, DataStore::Data&>;
+  using SerializeFunctions = celstl::VariantFunctions<Data, void, tinyxml2::XMLElement&, const Data&>;
+  using DeserializeFunctions = celstl::VariantFunctions<Data, bool, const tinyxml2::XMLAttribute&, Data&>;
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
   struct SerializeFunctor
   {
-    static void execute(tinyxml2::XMLElement& element, const DataStore::Data& data)
+    static void execute(tinyxml2::XMLElement& element, const Data& data)
     {
       element.SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, std::get<T>(data));
     }
@@ -27,7 +27,7 @@ namespace MCF::Persistence
   template <>
   struct SerializeFunctor<std::string>
   {
-    static void execute(tinyxml2::XMLElement& element, const DataStore::Data& data)
+    static void execute(tinyxml2::XMLElement& element, const Data& data)
     {
       element.SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, std::get<std::string>(data).c_str());
     }
@@ -37,7 +37,7 @@ namespace MCF::Persistence
   template <typename T>
   struct DeserializeFunctor
   {
-    static bool execute(const tinyxml2::XMLAttribute& attribute, DataStore::Data& data)
+    static bool execute(const tinyxml2::XMLAttribute& attribute, Data& data)
     {
       T t;
       if (Celeste::XML::getAttributeData(&attribute, t) == Celeste::XML::XMLValueError::kSuccess)
@@ -91,7 +91,7 @@ namespace MCF::Persistence
       element->SetAttribute(KEY_ATTRIBUTE_NAME, dataPair.first.c_str());
       element->SetAttribute(DATA_TYPE_ATTRIBUTE_NAME, static_cast<unsigned int>(typeIndex));
 
-      if (typeIndex < std::variant_size<DataStore::Data>())
+      if (typeIndex < std::variant_size<Data>())
       {
         s_serializeFunctions.m_functions[typeIndex](*element, dataPair.second);
       }

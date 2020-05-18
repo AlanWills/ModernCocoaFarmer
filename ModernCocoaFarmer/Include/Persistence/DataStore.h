@@ -5,17 +5,15 @@
 #include "Assert/Assert.h"
 #include "XML/tinyxml2_ext.h"
 #include "CelesteStl/Templates/Variant.h"
+#include "Persistence/Data.h"
 
 #if _DEBUG
 #include <map>
 #else
 #include <unordered_map>
 #endif
-#include <string>
 #include <functional>
 #include <memory>
-#include <variant>
-#include <array>
 
 
 namespace Celeste
@@ -27,9 +25,6 @@ namespace MCF::Persistence
 {
   class DataStore
   {
-    public:
-      using Data = std::variant<bool, int, unsigned int, float, std::string>;
-
     private:
 #if _DEBUG
       using DataLookup = std::map<std::string, Data>;
@@ -102,7 +97,7 @@ namespace MCF::Persistence
 
     if (!unsafe_is<T>(dataKey))
     {
-      ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<DataStore::Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
+      ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
       return defaultValue;
     }
 
@@ -124,7 +119,7 @@ namespace MCF::Persistence
       return true;
     }
 
-    ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<DataStore::Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
+    ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
     return false;
   }
 }

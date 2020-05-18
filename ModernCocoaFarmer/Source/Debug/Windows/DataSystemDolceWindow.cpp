@@ -1,6 +1,7 @@
 #include "Debug/Windows/DataSystemDolceWindow.h"
 #include "CelesteStl/Templates/Variant.h"
 #include "Utils/StringUtils.h"
+#include "Data/DataSystem.h"
 
 #include "imgui/imgui_stdlib.h"
 #include "imgui/DefaultInput.h"
@@ -11,7 +12,7 @@
 namespace MCF::Debug
 {
   //------------------------------------------------------------------------------------------------
-  using Data = Persistence::DataStore::Data;
+  using Data = Persistence::Data;
   using InputFunctions = celstl::VariantFunctions<Data, void, const std::string&, const Data&, Persistence::DataStore&>;
 
   //------------------------------------------------------------------------------------------------
@@ -32,7 +33,7 @@ namespace MCF::Debug
   static InputFunctions s_inputFunctions = celstl::createVariantFunctions<InputFunctions, InputFunctor>();
 
   //------------------------------------------------------------------------------------------------
-  DataSystemDolceWindow::DataSystemDolceWindow(Persistence::DataSystem& dataSystem) :
+  DataSystemDolceWindow::DataSystemDolceWindow(MCF::Data::DataSystem& dataSystem) :
     Inherited("Data System"),
     m_dataSystem(dataSystem),
     m_dataSystemRoot()
