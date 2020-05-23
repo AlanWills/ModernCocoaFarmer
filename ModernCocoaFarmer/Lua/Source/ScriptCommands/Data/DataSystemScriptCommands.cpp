@@ -1,20 +1,11 @@
 #include "ScriptCommands/Data/DataSystemScriptCommands.h"
-#include "Game/Game.h"
+#include "Data/DataUtils.h"
 #include "Data/DataSystem.h"
 #include "sol/sol.hpp"
 
 
 namespace MCF::Lua::Data::DataSystemScriptCommands
 {
-  namespace Internals
-  {
-    //------------------------------------------------------------------------------------------------
-    MCF::Data::DataSystem* getDataSystem()
-    {
-      return Celeste::Game::current().getSystem<MCF::Data::DataSystem>();
-    }
-  }
-
   //------------------------------------------------------------------------------------------------
   void initialize(sol::state& state)
   {
@@ -23,7 +14,7 @@ namespace MCF::Lua::Data::DataSystemScriptCommands
       state.create_named_table("System");
     }
 
-    state["System"]["getDataSystem"] = &Internals::getDataSystem;
+    state["System"]["getDataSystem"] = &MCF::Data::getDataSystem;
 
     state.new_usertype<MCF::Data::DataSystem>(
       "DataSystem",

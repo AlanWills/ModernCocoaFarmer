@@ -21,7 +21,23 @@
         <GameObject name="MonthText" position="-20,-2,0.01">
           <Components>
             <TextRenderer text="September" font_height="24" horizontal_alignment="left" colour="0.2,0.2,0.2"/>
+            <TextNode guid="d8c8ee56-c887-43ea-bd51-dcc7893e59d9">
+              <StringInputPort name="text"/>
+            </TextNode>
           </Components>
+        </GameObject>
+        <GameObject name="DataSources">
+          <GameObjects>
+            <GameObject name="#Month">
+              <Components>
+                <StringDataReader guid="b3fd453a-7edd-4ead-87d1-6b5fe2dcbd17" key="time.current_month">
+                  <StringOutputPort name="value">
+                    <Connection>d8c8ee56-c887-43ea-bd51-dcc7893e59d9::text</Connection>
+                  </StringOutputPort>
+                </StringDataReader>
+              </Components>
+            </GameObject>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>

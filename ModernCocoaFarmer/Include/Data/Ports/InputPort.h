@@ -7,22 +7,52 @@
 
 namespace MCF::Data
 {
-  template <typename T>
-  class InputPort : public Port
+  class DataNodeComponent;
+
+  class InputPortBase : public Port
   {
     public:
-      InputPort(const std::string& name) :
-        Port(name)
+      InputPortBase(const std::string& name, DataNodeComponent& node) :
+        Port(name),
+        m_node(node)
+      {
+      }
+
+    protected:
+      DataNodeComponent& getNode() { return m_node; }
+
+      void notifyNodeOnValueChange();
+
+    private:
+      DataNodeComponent& m_node;
+  };
+
+  template <typename T>
+  class InputPort : public InputPortBase
+  {
+    public:
+      InputPort(const std::string& name, DataNodeComponent& node) :
+        InputPortBase(name, node)
       {
       }
       
       size_t getType() const override { return celstl::variant_index<Persistence::Data, T>(); }
-      
       const T& getValue() const { return m_value; }
-      void setValue(T value) { m_value = value; }
+      
+      void setValue(T value) 
+      { 
+        m_value = value;
+        notifyNodeOnValueChange();
+      }
 
     private:
       T m_value;
-      //DataNode m_node;  // Next step is to notify owner that value has changed
   };
+
+  //------------------------------------------------------------------------------------------------
+  using BoolInputPort = InputPort<bool>;
+  using IntInputPort = InputPort<int>;
+  using UIntInputPort = InputPort<unsigned int>;
+  using FloatInputPort = InputPort<float>;
+  using StringInputPort = InputPort<std::string>;
 }

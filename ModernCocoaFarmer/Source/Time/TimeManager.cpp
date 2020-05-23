@@ -13,6 +13,22 @@ namespace MCF::Time
   //------------------------------------------------------------------------------------------------
   const char* const TimeManager::SECONDS_PER_DAY_ATTRIBUTE_NAME = "seconds_per_day";
   const char* const TimeManager::TOTAL_DAYS_PASSED_ATTRIBUTE_NAME = "total_days_passed";
+  
+  const std::vector<std::string> MONTHS =
+  {
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  };
 
   //------------------------------------------------------------------------------------------------
   TimeManager::TimeManager() :
@@ -109,7 +125,7 @@ namespace MCF::Time
   {
     if (m_dataStore != nullptr)
     {
-      m_dataStore->set(DataSources::CURRENT_MONTH, static_cast<unsigned int>(getCurrentMonth()));
+      m_dataStore->set(DataSources::CURRENT_MONTH, MONTHS[getCurrentMonth()]);
       m_dataStore->set(DataSources::IS_PAUSED, isPaused());
     }
   }

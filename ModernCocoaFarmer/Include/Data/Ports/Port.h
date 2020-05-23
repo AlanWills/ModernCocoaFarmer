@@ -10,15 +10,25 @@ namespace MCF::Data
 {
   class Port
   {
-  public:
-    Port(const std::string& name) : m_name(name) {}
-    virtual ~Port() = default;
+    public:
+      Port(const std::string& name) : 
+        m_name(name) 
+      {
+      }
 
-    virtual size_t getType() const = 0;
+      Port(const Port&) = delete;
+      Port(Port&&) = default;
+      
+      virtual ~Port() = default;
 
-    const std::string& getName() const { return m_name; }
+      Port& operator=(const Port&) = delete;
+      Port& operator=(Port&&) = default;
 
-  private:
-    std::string m_name;
+      virtual size_t getType() const = 0;
+
+      const std::string& getName() const { return m_name; }
+
+    private:
+      std::string m_name;
   };
 }

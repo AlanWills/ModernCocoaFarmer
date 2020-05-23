@@ -6,22 +6,7 @@ local TimePanel =
 {
     MONTH_TEXT_NAME = "MonthText",
     PLAY_BUTTON_NAME = "PlayButton",
-    PAUSE_BUTTON_NAME = "PauseButton",
-    MONTHS = 
-    {
-        [0] = "January",
-        [1] = "February",
-        [2] = "March",
-        [3] = "April",
-        [4] = "May",
-        [5] = "June",
-        [6] = "July",
-        [7] = "August",
-        [8] = "September",
-        [9] = "October",
-        [10] = "November",
-        [11] = "December"
-    }
+    PAUSE_BUTTON_NAME = "PauseButton"
 }
 
 ---------------------------------------------------------------------------------
@@ -48,13 +33,7 @@ end
 
 ---------------------------------------------------------------------------------
 function TimePanel:updateUI()
-    self:setMonthText(self.MONTHS[self._dataStore:getUnsignedInt(TimeDataSources.CURRENT_MONTH)])
     self:setTimeButtonColours(self._dataStore:getBool(TimeDataSources.IS_PAUSED))
-end
-
----------------------------------------------------------------------------------
-function TimePanel:setMonthText(monthText)
-    self._monthText:setText(monthText)
 end
 
 ---------------------------------------------------------------------------------
