@@ -10,9 +10,9 @@ namespace MCF::Stats
   class Modifier;
 }
 
-namespace MCF::Persistence
+namespace MCF::Data
 {
-  class DataStore;
+  class DataSystem;
 }
 
 namespace MCF::Money
@@ -24,7 +24,7 @@ namespace MCF::Money
     public:
       using MoneyChangedEvent = Celeste::Event<int>;
 
-      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataSystem(observer_ptr<Data::DataSystem> dataSystem);
 
       int getMoney() const { return m_money.getValue(); }
       MCFLibraryDllExport void setMoney(int money);
@@ -40,11 +40,11 @@ namespace MCF::Money
       static const char* const SALARY_LEVEL_ATTRIBUTE_NAME;
 
     private:
-      void updateDataStore() const;
+      void updateDataSystem() const;
 
       Celeste::ValueField<int>& m_money;
       Celeste::ValueField<unsigned int>& m_salaryLevel;
 
-      observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
+      observer_ptr<Data::DataSystem> m_dataSystem = nullptr;
   };
 }

@@ -1,9 +1,9 @@
+#include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Family/Child.h"
 #include "Family/DataSources.h"
 #include "Stats/DataSources.h"
-#include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Stats/Modifier.h"
-#include "Persistence/DataObjectHandle.h"
+#include "Data/DataSystem.h"
 
 
 namespace MCF::Family
@@ -34,13 +34,13 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void Child::setDataStore(Persistence::DataStore& dataStore)
+  void Child::setDataSystem(Data::DataSystem& dataSystem)
   {
     std::string key = DataSources::CHILDREN;
     key.push_back('.');
     key.append(getName());
 
-    m_dataObjectHandle = std::make_unique<Persistence::DataObjectHandle>(dataStore, key);
+    m_dataObjectHandle = std::make_unique<Persistence::DataObjectHandle>(dataSystem.getObject(key));
     updateDataObject();
   }
 

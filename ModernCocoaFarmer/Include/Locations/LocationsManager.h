@@ -7,9 +7,9 @@
 #include "UID/StringId.h"
 
 
-namespace MCF::Persistence
+namespace MCF::Data
 {
-  class DataStore;
+  class DataSystem;
 }
 
 namespace MCF::Stats
@@ -31,7 +31,7 @@ namespace MCF::Locations
     public:
       using LocationActivatedEvent = Celeste::Event<Location&>;
 
-      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataSystem(observer_ptr<Data::DataSystem> dataSystem);
 
       size_t getNumLocations() const { return m_locations.size(); }
       MCFLibraryDllExport observer_ptr<Location> getLocation(size_t index);
@@ -47,11 +47,10 @@ namespace MCF::Locations
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
-      void updateDataStore();
+      void updateDataSystem();
       void writeModifier(const std::string& locationKey, const char* const modifierKey, const Stats::Modifier& modifier);
       
-      bool m_suspendDataStoreUpdates = false;
-      observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
+      observer_ptr<Data::DataSystem> m_dataSystem = nullptr;
 
       LocationsInformation m_locations;
       LocationActivatedEvent m_onLocationActivatedEvent;

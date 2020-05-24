@@ -7,9 +7,9 @@
 #include <array>
 
 
-namespace MCF::Persistence
+namespace MCF::Data
 {
-  class DataStore;
+  class DataSystem;
 }
 
 namespace MCF::Time
@@ -23,7 +23,7 @@ namespace MCF::Time
 
       MCFLibraryDllExport void update(float elapsedGameTime);
 
-      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataSystem(observer_ptr<MCF::Data::DataSystem> dataSystem);
 
       float getSecondsPerDay() const { return m_secondsPerDay.getValue(); }
       MCFLibraryDllExport void setSecondsPerDay(float secondsPerDay);
@@ -48,11 +48,11 @@ namespace MCF::Time
       void doSerialize(tinyxml2::XMLElement* element) const override;
 
     private:
-      void updateDataStore() const;
+      void updateDataSystem() const;
 
       Celeste::ValueField<float>& m_secondsPerDay;
 
-      observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
+      observer_ptr<MCF::Data::DataSystem> m_dataSystem = nullptr;
 
       Celeste::Event<float> m_onTimePassed;
       TimeEvent m_onDayPassed;

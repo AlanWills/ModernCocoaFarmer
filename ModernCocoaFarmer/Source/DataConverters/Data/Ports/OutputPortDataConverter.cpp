@@ -4,17 +4,19 @@
 namespace MCF::DataConverters::Data
 {
   //------------------------------------------------------------------------------------------------
-  const char* const OutputPortBaseDataConverter::CONNECTION_ELEMENT_NAME = "Connection";
+  const char* const OutputPortDataConverter::PORT_NAME_ATTRIBUTE_NAME = "name";
+  const char* const OutputPortDataConverter::CONNECTION_ELEMENT_NAME = "Connection";
 
   //------------------------------------------------------------------------------------------------
-  OutputPortBaseDataConverter::OutputPortBaseDataConverter(const std::string& name) :
-    Inherited(name),
+  OutputPortDataConverter::OutputPortDataConverter() :
+    Inherited("OutputPort"),
+    m_portName(createReferenceAttribute<std::string>(PORT_NAME_ATTRIBUTE_NAME, "", Celeste::DeserializationRequirement::kRequired)),
     m_connectionNames()
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  bool OutputPortBaseDataConverter::doConvertFromXML(const XMLElement* objectElement)
+  bool OutputPortDataConverter::doConvertFromXML(const XMLElement* objectElement)
   {
     for (const tinyxml2::XMLElement* connection : Celeste::XML::children(objectElement, CONNECTION_ELEMENT_NAME))
     {

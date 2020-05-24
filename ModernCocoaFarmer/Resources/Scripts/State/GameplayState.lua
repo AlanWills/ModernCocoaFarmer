@@ -21,10 +21,10 @@ function GameplayState:load()
 
     local dataSystem = System.getDataSystem()
 
-    self.timeManager:setDataStore(dataSystem)
-    self.moneyManager:setDataStore(dataSystem)
-    self.familyManager:setDataStore(dataSystem)
-    self.locationsManager:setDataStore(dataSystem)
+    self.timeManager:setDataSystem(dataSystem)
+    self.moneyManager:setDataSystem(dataSystem)
+    self.familyManager:setDataSystem(dataSystem)
+    self.locationsManager:setDataSystem(dataSystem)
 end
 
 return GameplayState

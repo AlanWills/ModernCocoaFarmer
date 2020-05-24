@@ -2,7 +2,6 @@
 
 #include "MCFLibraryDllExport.h"
 #include "DataConverters/Objects/ComponentDataConverter.h"
-#include "DataConverters/Data/Ports/InputPortDataConverter.h"
 #include "DataConverters/Data/Ports/OutputPortDataConverter.h"
 
 
@@ -32,7 +31,6 @@ namespace MCF::DataConverters::Data
 
       Celeste::XML::ReferenceAttribute<std::string>& m_guid;
 
-      std::vector<std::unique_ptr<InputPortBaseDataConverter>> m_inputPortDataConverters;
-      std::vector<std::unique_ptr<OutputPortBaseDataConverter>> m_outputPortDataConverters;
+      std::vector<std::unique_ptr<OutputPortDataConverter>> m_outputPortDataConverters;
   };
 }

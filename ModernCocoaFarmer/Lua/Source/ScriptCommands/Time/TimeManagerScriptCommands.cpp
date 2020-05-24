@@ -72,7 +72,7 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
       state,
       TimeManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-      "setDataStore", &TimeManager::setDataStore,
+      "setDataSystem", &TimeManager::setDataSystem,
       "getSecondsPerDay", &TimeManager::getSecondsPerDay,
       "setSecondsPerDay", &TimeManager::setSecondsPerDay,
       "getCurrentDay", &TimeManager::getCurrentDay,

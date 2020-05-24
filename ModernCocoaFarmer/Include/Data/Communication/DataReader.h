@@ -2,6 +2,8 @@
 
 #include "MCFLibraryDllExport.h"
 #include "Data/DataNodeComponent.h"
+#include "Data/Ports/OutputPort.h"
+
 
 namespace MCF::System
 {
@@ -10,51 +12,43 @@ namespace MCF::System
 
 namespace MCF::Data::Communication
 {
-  template <typename T>
   class DataReader : public DataNodeComponent
   {
-    public:
-      DataReader(Celeste::GameObject& gameObject);
+    DECLARE_MANAGED_COMPONENT(DataReader, DataSystem, MCFLibraryDllExport)
 
+    public:
       const std::string& getKey() const { return m_key; }
       void setKey(const std::string& key) { m_key = key; }
 
+      size_t getType() const { return m_value->getType(); }
+      void setType(size_t type) { m_value->setType(type); }
+
+      template <typename T>
+      void setType();
+
+      template <typename T>
       void setValue(T newValue);
+
+      static const std::string VALUE_PORT_NAME;
 
     private:
       using Inherited = DataNodeComponent;
 
-      OutputPort<T>& m_value;
+      observer_ptr<OutputPort> m_value;
       std::string m_key;
   };
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
-  DataReader<T>::DataReader(Celeste::GameObject& gameObject) :
-    Inherited(gameObject),
-    m_value(createOutputPort<T>("value"))
+  void DataReader::setType()
   {
+    setType(type<T>());
   }
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
-  void DataReader<T>::setValue(T newValue)
+  void DataReader::setValue(T newValue)
   {
-    m_value.setValue(newValue);
+    m_value->setValue(newValue);
   }
-
-  //------------------------------------------------------------------------------------------------
-  class BoolDataReader : public DataReader<bool> { DECLARE_MANAGED_COMPONENT(BoolDataReader, DataSystem, MCFLibraryDllExport) };
-
-  //------------------------------------------------------------------------------------------------
-  class IntDataReader : public DataReader<int> { DECLARE_MANAGED_COMPONENT(IntDataReader, DataSystem, MCFLibraryDllExport) };
-
-  //------------------------------------------------------------------------------------------------
-  class UIntDataReader : public DataReader<unsigned int> { DECLARE_MANAGED_COMPONENT(UIntDataReader, DataSystem, MCFLibraryDllExport) };
-
-  //------------------------------------------------------------------------------------------------
-  class FloatDataReader : public DataReader<float> { DECLARE_MANAGED_COMPONENT(FloatDataReader, DataSystem, MCFLibraryDllExport) };
-
-  //------------------------------------------------------------------------------------------------
-  class StringDataReader : public DataReader<std::string> { DECLARE_MANAGED_COMPONENT(StringDataReader, DataSystem, MCFLibraryDllExport) };
 }

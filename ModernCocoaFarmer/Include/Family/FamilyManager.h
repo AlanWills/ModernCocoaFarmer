@@ -13,9 +13,9 @@ namespace MCF::Stats
   class Modifier;
 }
 
-namespace MCF::Persistence
+namespace MCF::Data
 {
-  class DataStore;
+  class DataSystem;
 }
 
 namespace MCF::Family
@@ -33,7 +33,7 @@ namespace MCF::Family
     public:
       using ChildAddedEvent = Celeste::Event<Child&>;
 
-      MCFLibraryDllExport void setDataStore(observer_ptr<Persistence::DataStore> dataStore);
+      MCFLibraryDllExport void setDataSystem(observer_ptr<Data::DataSystem> dataSystem);
 
       size_t getChildCount() const { return m_children.size(); }
       MCFLibraryDllExport observer_ptr<Child> getChild(size_t childIndex) const;
@@ -70,14 +70,14 @@ namespace MCF::Family
       bool doDeserialize(const tinyxml2::XMLElement* element) override;
 
     private:
-      void updateDataStore();
+      void updateDataSystem();
 
       Stats::Modifier& m_dailyHealthModifier;
       Stats::Modifier& m_dailySafetyModifier;
       Stats::Modifier& m_dailyEducationModifier;
       Stats::Modifier& m_dailyHappinessModifier;
 
-      observer_ptr<Persistence::DataStore> m_dataStore = nullptr;
+      observer_ptr<Data::DataSystem> m_dataSystem = nullptr;
 
       Children m_children;
       ChildAddedEvent m_childAddedEvent;

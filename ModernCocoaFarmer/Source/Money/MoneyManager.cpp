@@ -1,6 +1,6 @@
 #include "Money/MoneyManager.h"
 #include "Money/DataSources.h"
-#include "Persistence/DataStore.h"
+#include "Data/DataSystem.h"
 #include "Stats/Modifier.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 
@@ -24,14 +24,14 @@ namespace MCF::Money
   void MoneyManager::setMoney(int money)
   {
     m_money.setValue(money);
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
   void MoneyManager::setSalaryLevel(unsigned int salaryLevel)
   {
     m_salaryLevel.setValue(salaryLevel);
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -52,19 +52,19 @@ namespace MCF::Money
   }
 
   //------------------------------------------------------------------------------------------------
-  void MoneyManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  void MoneyManager::setDataSystem(observer_ptr<Data::DataSystem> dataSystem)
   {
-    m_dataStore = dataStore;
-    updateDataStore();
+    m_dataSystem = dataSystem;
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
-  void MoneyManager::updateDataStore() const
+  void MoneyManager::updateDataSystem() const
   {
-    if (m_dataStore != nullptr)
+    if (m_dataSystem != nullptr)
     {
-      m_dataStore->set(DataSources::CURRENT_MONEY, getMoney());
-      m_dataStore->set(DataSources::CURRENT_SALARY_LEVEL, getSalaryLevel());
+      m_dataSystem->set(DataSources::CURRENT_MONEY, getMoney());
+      m_dataSystem->set(DataSources::CURRENT_SALARY_LEVEL, getSalaryLevel());
     }
   }
 }

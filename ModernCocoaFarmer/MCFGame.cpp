@@ -1,11 +1,15 @@
 #include "MCFGame.h"
 #include "Lua/LuaState.h"
 #include "Data/DataSystem.h"
-#include "Debug/Windows/DataSystemDolceWindow.h"
 #include "Dolce/IDolce.h"
+#include "CelesteStl/Templates/Unused.h"
 
 #include "ScriptCommands/Celeste/CelesteScriptCommands.h"
 #include "ScriptCommands/MCFScriptCommands.h"
+
+#if _DEBUG
+#include "Debug/Windows/DataSystemDolceWindow.h"
+#endif
 
 using namespace Celeste;
 
@@ -42,6 +46,10 @@ namespace MCF
   //------------------------------------------------------------------------------------------------
   void MCFGame::onInitializeDolce(Dolce::IDolce& dolce)
   {
+#if _DEBUG
     dolce.addWindow(std::make_unique<Debug::DataSystemDolceWindow>(*getSystem<Data::DataSystem>()));
+#else
+    celstl::unused(dolce);
+#endif
   }
 }

@@ -3,6 +3,8 @@
 #include "Data/DataNodeComponent.h"
 #include "Data/DataSystem.h"
 #include "Data/DataUtils.h"
+#include "Data/Ports/InputPort.h"
+#include "Data/Ports/OutputPort.h"
 
 
 namespace MCF::DataConverters::Data
@@ -11,24 +13,7 @@ namespace MCF::DataConverters::Data
 
   //------------------------------------------------------------------------------------------------
   const char* const DataNodeComponentDataConverter::GUID_ATTRIBUTE_NAME("guid");
-
-  const std::unordered_map<std::string, std::function<std::unique_ptr<InputPortBaseDataConverter>()>> s_inputPortDataConverterFactory
-  {
-    { "BoolInputPort", []() { return std::make_unique<InputPortDataConverter<bool>>("BoolInputPort"); } },
-    { "IntInputPort", []() { return std::make_unique<InputPortDataConverter<int>>("IntInputPort"); } },
-    { "UIntInputPort", []() { return std::make_unique<InputPortDataConverter<unsigned int>>("UIntInputPort"); } },
-    { "FloatInputPort", []() { return std::make_unique<InputPortDataConverter<float>>("FloatInputPort"); } },
-    { "StringInputPort", []() { return std::make_unique<InputPortDataConverter<std::string>>("StringInputPort"); } },
-  };
-
-  const std::unordered_map<std::string, std::function<std::unique_ptr<OutputPortBaseDataConverter>()>> s_outputPortDataConverterFactory
-  {
-    { "BoolOutputPort", []() { return std::make_unique<OutputPortBaseDataConverter>("BoolOutputPort"); } },
-    { "IntOutputPort", []() { return std::make_unique<OutputPortBaseDataConverter>("IntOutputPort"); } },
-    { "UIntOutputPort", []() { return std::make_unique<OutputPortBaseDataConverter>("UIntOutputPort"); } },
-    { "FloatOutputPort", []() { return std::make_unique<OutputPortBaseDataConverter>("FloatOutputPort"); } },
-    { "StringOutputPort", []() { return std::make_unique<OutputPortBaseDataConverter>("StringOutputPort"); } },
-  };
+  const std::string OUTPUT_PORT_NAME = "OutputPort";
 
   //------------------------------------------------------------------------------------------------
   DataNodeComponentDataConverter::DataNodeComponentDataConverter(const std::string& elementName) :
@@ -40,19 +25,12 @@ namespace MCF::DataConverters::Data
   //------------------------------------------------------------------------------------------------
   bool DataNodeComponentDataConverter::DataNodeComponentDataConverter::doConvertFromXML(const XMLElement* objectElement)
   { 
-    for (const tinyxml2::XMLElement* element : Celeste::XML::children(objectElement))
+    for (const tinyxml2::XMLElement* element : Celeste::XML::children(objectElement, OUTPUT_PORT_NAME))
     {
-      if (s_inputPortDataConverterFactory.find(element->Name()) != s_inputPortDataConverterFactory.end())
+      std::unique_ptr<OutputPortDataConverter> outputPortDataConverter = std::make_unique<OutputPortDataConverter>();
+      if (outputPortDataConverter->convertFromXML(element))
       {
-        // TODO CHECK CONVERT FROM XML
-        m_inputPortDataConverters.emplace_back(s_inputPortDataConverterFactory.at(element->Name())());
-        m_inputPortDataConverters.back()->convertFromXML(element);
-      }
-      else if (s_outputPortDataConverterFactory.find(element->Name()) != s_outputPortDataConverterFactory.end())
-      {
-        // TODO CHECK CONVERT FROM XML
-        m_outputPortDataConverters.emplace_back(s_outputPortDataConverterFactory.at(element->Name())());
-        m_outputPortDataConverters.back()->convertFromXML(element);
+        m_outputPortDataConverters.emplace_back(std::move(outputPortDataConverter));
       }
     }
 
@@ -75,24 +53,13 @@ namespace MCF::DataConverters::Data
     // Tell data system about new input ports that can potentially resolve pending connections
     for (size_t i = 0; i < dataNodeComponent.getInputPortCount(); ++i)
     {
-      InputPortBase& port = *dataNodeComponent.getInputPort(i);
+      InputPort& port = *dataNodeComponent.getInputPort(i);
       dataSystem.addInputPort(dataNodeComponent.getGuid().str() + "::" + port.getName(), port);
     }
 
-    for (const std::unique_ptr<InputPortBaseDataConverter>& inputPortDataConverter : m_inputPortDataConverters)
+    for (const std::unique_ptr<OutputPortDataConverter>& outputPortDataConverter : m_outputPortDataConverters)
     {
-      observer_ptr<MCF::Data::InputPortBase> port = dataNodeComponent.findInputPort(inputPortDataConverter->getPortName());
-      ASSERT_NOT_NULL(port);
-
-      if (port != nullptr)
-      {
-        inputPortDataConverter->setValues(*port);
-      }
-    }
-
-    for (const std::unique_ptr<OutputPortBaseDataConverter>& outputPortDataConverter : m_outputPortDataConverters)
-    {
-      observer_ptr<MCF::Data::OutputPortBase> port = dataNodeComponent.findOutputPort(outputPortDataConverter->getPortName());
+      observer_ptr<MCF::Data::OutputPort> port = dataNodeComponent.findOutputPort(outputPortDataConverter->getPortName());
       ASSERT_NOT_NULL(port);
 
       if (port != nullptr)

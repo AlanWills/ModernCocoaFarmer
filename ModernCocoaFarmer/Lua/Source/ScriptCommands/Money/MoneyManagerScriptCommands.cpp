@@ -31,7 +31,7 @@ namespace MCF::Lua::Money::MoneyManagerScriptCommands
       state,
       MoneyManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-      "setDataStore", &MoneyManager::setDataStore,
+      "setDataSystem", &MoneyManager::setDataSystem,
       "getMoney", &MoneyManager::getMoney,
       "setMoney", &MoneyManager::setMoney,
       "addMoney", &Internals::addMoney,

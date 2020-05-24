@@ -10,7 +10,7 @@ namespace MCF::Data
 {
   //------------------------------------------------------------------------------------------------
   template <typename VariantType, typename ReturnType, typename... Args>
-  struct SetterFunctions
+  struct VariadicSetterFunctions
   {
     using Variant = VariantType;
     using Function = ReturnType(*)(Args...);
@@ -55,9 +55,9 @@ namespace MCF::Data
   template <typename From, typename To>
   struct Setter
   {
-    static void execute(From from, InputPortBase& port)
+    static void execute(From from, InputPort& port)
     {
-      static_cast<InputPort<To>&>(port).setValue(static_cast<To>(from));
+      port.setValue(static_cast<To>(from));
     }
   };
 
@@ -65,41 +65,53 @@ namespace MCF::Data
   template <>
   struct Setter<std::string, std::string> 
   { 
-    static void execute(std::string from, InputPortBase& port) 
+    static void execute(std::string from, InputPort& port) 
     { 
-      static_cast<InputPort<std::string>&>(port).setValue(from);
+      port.setValue(from);
     } 
   };
 
   //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<bool, std::string> { static void execute(bool /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'bool' value to 'string' port"); } };
+  template <typename T>
+  using SetterFunctions = MCF::Data::VariadicSetterFunctions<Persistence::Data, void, T, InputPort&>;
+
+  //------------------------------------------------------------------------------------------------
+  template <typename T>
+  static const SetterFunctions<T>& getSetterFunctions()
+  {
+    static SetterFunctions<T> setterFunctions = createSetterFunctions<typename MCF::Data::VariadicSetterFunctions<Persistence::Data, void, T, InputPort&>, T, Setter>();
+    return setterFunctions;
+  }
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<int, std::string> { static void execute(int /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'int' value to 'string' port"); } };
+  struct Setter<bool, std::string> { static void execute(bool /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'bool' value to 'string' port"); } };
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<unsigned int, std::string> { static void execute(unsigned int /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'unsigned int' value to 'string' port"); } };
+  struct Setter<int, std::string> { static void execute(int /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'int' value to 'string' port"); } };
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<float, std::string> { static void execute(float /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'float' value to 'string' port"); } };
+  struct Setter<unsigned int, std::string> { static void execute(unsigned int /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'unsigned int' value to 'string' port"); } };
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<std::string, bool> { static void execute(std::string /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'bool' port"); } };
+  struct Setter<float, std::string> { static void execute(float /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'float' value to 'string' port"); } };
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<std::string, int> { static void execute(std::string /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'int' port"); } };
+  struct Setter<std::string, bool> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'bool' port"); } };
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<std::string, unsigned int> { static void execute(std::string /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'unsigned int' port"); } };
+  struct Setter<std::string, int> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'int' port"); } };
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<std::string, float> { static void execute(std::string /*from*/, InputPortBase& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'float' port"); } };
+  struct Setter<std::string, unsigned int> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'unsigned int' port"); } };
+
+  //------------------------------------------------------------------------------------------------
+  template <>
+  struct Setter<std::string, float> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'float' port"); } };
 }

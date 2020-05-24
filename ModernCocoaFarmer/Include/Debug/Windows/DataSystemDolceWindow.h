@@ -3,7 +3,7 @@
 #include "MCFLibraryDllExport.h"
 #include "Dolce/Windows/LuaDolceWindow.h"
 #include "CelesteStl/Memory/ObserverPtr.h"
-#include "Persistence/Data.h"
+#include "Data/DataSystem.h"
 
 #include <map>
 #include <string>
@@ -52,7 +52,7 @@ namespace MCF::Debug
       void renderNode(DataSystemNode& dataSystemNode);
       std::string getFullKey(const DataSystemDolceWindow::DataSystemNode& dataSystemNode);
 
-      MCF::Data::DataSystem& m_dataSystem;
+      MCF::Data::DebugDataSystem m_dataSystem;
       std::string m_searchString;
       DataSystemNode m_dataSystemRoot;
   };

@@ -4,8 +4,7 @@
 #include "Locations/DataSources.h"
 #include "Stats/DataSources.h"
 #include "Stats/Modifier.h"
-#include "Persistence/DataObjectHandle.h"
-#include "Persistence/DataArrayHandle.h"
+#include "Data/DataSystem.h"
 
 using namespace Celeste::XML;
 
@@ -56,20 +55,20 @@ namespace MCF::Locations
   void LocationsManager::activateLocation(Location& location)
   {
     m_onLocationActivatedEvent.invoke(location);
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
-  void LocationsManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  void LocationsManager::setDataSystem(observer_ptr<Data::DataSystem> dataSystem)
   {
-    m_dataStore = dataStore;
-    updateDataStore();
+    m_dataSystem = dataSystem;
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
-  void LocationsManager::updateDataStore()
+  void LocationsManager::updateDataSystem()
   {
-    if (m_dataStore != nullptr && !m_suspendDataStoreUpdates)
+    if (m_dataSystem != nullptr)
     {
       for (const auto& locationRef : m_locations)
       {
@@ -79,7 +78,7 @@ namespace MCF::Locations
         locationKey.push_back('.');
         locationKey.append(location.getName());
 
-        Persistence::DataObjectHandle locationObject(*m_dataStore, locationKey);
+        Persistence::DataObjectHandle locationObject = m_dataSystem->getObject(locationKey);
         locationObject.set(DataSources::NAME, location.getName());
         locationObject.set(DataSources::DESCRIPTION, location.getDescription());
         locationObject.set(DataSources::DAYS_TO_COMPLETE, location.getDaysToComplete());
@@ -103,7 +102,7 @@ namespace MCF::Locations
     key.push_back('.');
     key.append(modifierKey);
 
-    Persistence::DataObjectHandle locationObject(*m_dataStore, key);
+    Persistence::DataObjectHandle locationObject = m_dataSystem->getObject(key);
     locationObject.set(Stats::DataSources::IS_DELTA, modifier.getChangeType() == Stats::ChangeType::kDelta);
     locationObject.set(Stats::DataSources::AMOUNT, modifier.getAmount());
   }

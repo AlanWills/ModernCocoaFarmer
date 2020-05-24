@@ -52,7 +52,7 @@ namespace MCF::Lua::Locations::LocationManagerScriptCommands
       state,
       LocationsManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-      "setDataStore", &LocationsManager::setDataStore,
+      "setDataSystem", &LocationsManager::setDataSystem,
       "getNumLocations", &LocationsManager::getNumLocations,
       "getLocation", &LocationsManager::getLocation,
       "findLocation", &LocationsManager::findLocation,

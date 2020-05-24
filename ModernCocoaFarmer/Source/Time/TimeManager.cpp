@@ -1,6 +1,7 @@
 #include "Time/TimeManager.h"
 #include "Time/DataSources.h"
-#include "Persistence/DataStore.h"
+#include "Data/DataSystem.h"
+#include "Data/DataUtils.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 
 using namespace Celeste::XML;
@@ -108,25 +109,25 @@ namespace MCF::Time
         }
 
         LOG("D/M/Y " + std::to_string(getCurrentDay()) + "/" + std::to_string(getCurrentMonth()) + "/" + std::to_string(getCurrentYear()));
-        updateDataStore();
+        updateDataSystem();
       }
     }
   }
 
   //------------------------------------------------------------------------------------------------
-  void TimeManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  void TimeManager::setDataSystem(observer_ptr<MCF::Data::DataSystem> dataSystem)
   {
-    m_dataStore = dataStore;
-    updateDataStore();
+    m_dataSystem = dataSystem;
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
-  void TimeManager::updateDataStore() const
+  void TimeManager::updateDataSystem() const
   {
-    if (m_dataStore != nullptr)
+    if (m_dataSystem != nullptr)
     {
-      m_dataStore->set(DataSources::CURRENT_MONTH, MONTHS[getCurrentMonth()]);
-      m_dataStore->set(DataSources::IS_PAUSED, isPaused());
+      m_dataSystem->set(DataSources::CURRENT_MONTH, MONTHS[getCurrentMonth()]);
+      m_dataSystem->set(DataSources::IS_PAUSED, isPaused());
     }
   }
 
@@ -143,6 +144,6 @@ namespace MCF::Time
   void TimeManager::setPaused(bool isPaused)
   {
     m_paused = isPaused;
-    updateDataStore();
+    updateDataSystem();
   }
 }

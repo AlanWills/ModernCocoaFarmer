@@ -75,7 +75,7 @@ namespace MCF::Lua::Family::FamilyManagerScriptCommands
       state,
       FamilyManager::type_name(),
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
-      "setDataStore", &FamilyManager::setDataStore,
+      "setDataSystem", &FamilyManager::setDataSystem,
       "canAddChild", &FamilyManager::canAddChild,
       "addChild", &FamilyManager::addChild,
       "getChildCount", &FamilyManager::getChildCount,

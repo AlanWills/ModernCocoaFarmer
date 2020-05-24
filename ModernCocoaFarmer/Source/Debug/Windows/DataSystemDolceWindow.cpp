@@ -13,19 +13,19 @@ namespace MCF::Debug
 {
   //------------------------------------------------------------------------------------------------
   using Data = Persistence::Data;
-  using InputFunctions = celstl::VariantFunctions<Data, void, const std::string&, const Data&, Persistence::DataStore&>;
+  using InputFunctions = celstl::VariantFunctions<Data, void, const std::string&, const Data&, MCF::Data::DataSystem&>;
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
   struct InputFunctor
   {
-    static void execute(const std::string& key, const Data& data, Persistence::DataStore& dataStore)
+    static void execute(const std::string& key, const Data& data, MCF::Data::DataSystem& dataSystem)
     {
       T tempData = std::get<T>(data);
 
       if (Dolce::input(key.substr(key.find_last_of('.') + 1), tempData))
       {
-        dataStore.set(key, tempData);
+        dataSystem.set(key, tempData);
       }
     }
   };
@@ -47,7 +47,7 @@ namespace MCF::Debug
 
     m_dataSystemRoot.m_children.clear();
 
-    for (auto& keyData : m_dataSystem.getDataStore_DebugOnly())
+    for (auto& keyData : m_dataSystem.getData())
     {
       size_t previousIndex = static_cast<size_t>(-1);
       size_t currentIndex = keyData.first.find('.');
@@ -123,7 +123,7 @@ namespace MCF::Debug
     if (dataSystemNode.m_children.empty())
     {
       ASSERT_NOT_NULL(dataSystemNode.m_data);
-      s_inputFunctions.m_functions[dataSystemNode.m_data->index()](getFullKey(dataSystemNode), *dataSystemNode.m_data, m_dataSystem);
+      s_inputFunctions.m_functions[dataSystemNode.m_data->index()](getFullKey(dataSystemNode), *dataSystemNode.m_data, m_dataSystem.getDataSystem());
     }
     else
     {

@@ -2,6 +2,7 @@
 #include "Family/Child.h"
 #include "Family/DataSources.h"
 #include "Stats/DataSources.h"
+#include "Data/DataSystem.h"
 #include "Persistence/DataObjectHandle.h"
 #include "UtilityHeaders/ScriptableObjectHeaders.h"
 #include "Stats/Modifier.h"
@@ -137,7 +138,7 @@ namespace MCF::Family
       }
     }
 
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -154,7 +155,7 @@ namespace MCF::Family
       }
     }
 
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -200,30 +201,30 @@ namespace MCF::Family
     applyEducationModifier(m_dailyEducationModifier);
     applySafetyModifier(m_dailySafetyModifier);
     applyHappinessModifier(m_dailyHappinessModifier);
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::setDataStore(observer_ptr<Persistence::DataStore> dataStore)
+  void FamilyManager::setDataSystem(observer_ptr<Data::DataSystem> dataSystem)
   {
-    m_dataStore = dataStore;
+    m_dataSystem = dataSystem;
 
     for (Child& child : m_children)
     {
-      child.setDataStore(*dataStore);
+      child.setDataSystem(*m_dataSystem);
     }
 
-    updateDataStore();
+    updateDataSystem();
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::updateDataStore()
+  void FamilyManager::updateDataSystem()
   {
-    if (m_dataStore != nullptr)
+    if (m_dataSystem != nullptr)
     {
       bool hasSC = hasSelectedChild();
-      m_dataStore->set(DataSources::HAS_SELECTED_CHILD, hasSC);
-      m_dataStore->set(DataSources::SELECTED_CHILD_NAME, hasSC ? getSelectedChild()->getName() : std::string());
+      m_dataSystem->set(DataSources::HAS_SELECTED_CHILD, hasSC);
+      m_dataSystem->set(DataSources::SELECTED_CHILD_NAME, hasSC ? getSelectedChild()->getName() : std::string());
     }
   }
 }

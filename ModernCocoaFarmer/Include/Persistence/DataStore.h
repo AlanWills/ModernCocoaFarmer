@@ -59,10 +59,6 @@ namespace MCF::Persistence
       MCFLibraryDllExport static const char* const KEY_ATTRIBUTE_NAME;
       MCFLibraryDllExport static const char* const VALUE_ATTRIBUTE_NAME;
 
-#if _DEBUG
-      DataLookup& getDataStore_DebugOnly() { return m_dataLookup; }
-#endif
-
     private:
       DataStore(DataLookup&& data);
 
@@ -70,6 +66,10 @@ namespace MCF::Persistence
       bool unsafe_is(const std::string& dataKey) const;
 
       DataLookup m_dataLookup;
+
+#if _DEBUG
+      friend class DebugDataStore;
+#endif
   };
 
   //------------------------------------------------------------------------------------------------
@@ -122,4 +122,17 @@ namespace MCF::Persistence
     ASSERT_FAIL_MSG(("Type Mismatch.  Expected " + std::to_string(celstl::variant_index<Data, T>()) + ", Actual " + std::to_string(m_dataLookup.at(dataKey).index())).c_str());
     return false;
   }
+
+#if _DEBUG
+  class DebugDataStore
+  {
+    public:
+      DebugDataStore(DataStore& dataStore) : m_dataStore(dataStore) {}
+
+      DataStore::DataLookup& getData() { return m_dataStore.m_dataLookup; }
+
+    private:
+      DataStore& m_dataStore;
+  };
+#endif
 }

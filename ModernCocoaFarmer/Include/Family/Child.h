@@ -12,8 +12,12 @@ namespace MCF::Stats
 
 namespace MCF::Persistence
 {
-  class DataStore;
   class DataObjectHandle;
+}
+
+namespace MCF::Data
+{
+  class DataSystem;
 }
 
 namespace MCF::Family
@@ -65,7 +69,7 @@ namespace MCF::Family
       MCFLibraryDllExport void applySafetyModifier(const Stats::Modifier& modifier);
       MCFLibraryDllExport void applyHappinessModifier(const Stats::Modifier& modifier);
 
-      void setDataStore(Persistence::DataStore& dataStore);
+      void setDataSystem(Data::DataSystem& dataSystem);
 
       static const float MAX_STAT_VALUE;
       static const char* const HEALTH_FIELD_NAME;

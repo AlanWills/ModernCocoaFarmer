@@ -1,26 +1,28 @@
 #pragma once
 
-#include "DataConverters/Data/Ports/PortDataConverter.h"
-#include "Data/Ports/OutputPort.h"
+#include "DataConverters/DataConverter.h"
 
 
 namespace MCF::DataConverters::Data
 {
-  class OutputPortBaseDataConverter : public PortDataConverter
+  class OutputPortDataConverter : public Celeste::DataConverter
   {
     public:
-      OutputPortBaseDataConverter(const std::string& name);
+      OutputPortDataConverter();
 
+      const std::string& getPortName() const { return m_portName.getValue(); }
       const std::vector<std::string>& getConnectionNames() const { return m_connectionNames; }
 
+      static const char* const PORT_NAME_ATTRIBUTE_NAME;
       static const char* const CONNECTION_ELEMENT_NAME;
 
     protected:
       bool doConvertFromXML(const XMLElement* objectElement) override;
 
     private:
-      using Inherited = PortDataConverter;
+      using Inherited = Celeste::DataConverter;
 
+      Celeste::XML::ReferenceAttribute<std::string>& m_portName;
       std::vector<std::string> m_connectionNames;
   };
 }

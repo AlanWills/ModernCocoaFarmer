@@ -29,7 +29,7 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       using namespace Celeste::Resources;
       using namespace MCF::Persistence;
 
-      observer_ptr<Data> data = getResourceManager().load<Data>(filePath);
+      observer_ptr<Celeste::Resources::Data> data = getResourceManager().load<Celeste::Resources::Data>(filePath);
       if (data == nullptr || data->getDocumentRoot() == nullptr)
       {
         return DataStore();
@@ -45,7 +45,7 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       using namespace Celeste::Resources;
       using namespace MCF::Persistence;
       
-      observer_ptr<Data> data = getResourceManager().load<Data>(filePath);
+      observer_ptr<Celeste::Resources::Data> data = getResourceManager().load<Celeste::Resources::Data>(filePath);
       if (data == nullptr)
       {
         data = getResourceManager().create(filePath);
