@@ -1,6 +1,4 @@
 #include "Data/DataNodeComponent.h"
-#include "Data/Ports/InputPort.h"
-#include "Data/Ports/OutputPort.h"
 
 
 namespace MCF::Data
@@ -9,22 +7,6 @@ namespace MCF::Data
   DataNodeComponent::DataNodeComponent(Celeste::GameObject& gameObject) :
     Celeste::Component(gameObject) 
   {
-  }
-
-  //------------------------------------------------------------------------------------------------
-  InputPort& DataNodeComponent::createInputPort(const std::string& name, size_t type)
-  {
-    ASSERT(findInputPort(name) == nullptr);
-    m_inputs.emplace_back(std::make_unique<InputPort>(name, type, *this));
-    return static_cast<InputPort&>(*m_inputs.back());
-  }
-
-  //------------------------------------------------------------------------------------------------
-  OutputPort& DataNodeComponent::createOutputPort(const std::string& name, size_t type)
-  {
-    ASSERT(findOutputPort(name) == nullptr);
-    m_outputs.emplace_back(std::make_unique<OutputPort>(name, type));
-    return static_cast<OutputPort&>(*m_outputs.back());
   }
 
   //------------------------------------------------------------------------------------------------

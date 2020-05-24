@@ -1,7 +1,5 @@
 #include "Data/Rendering/TextNode.h"
 #include "UtilityHeaders/ComponentHeaders.h"
-#include "Data/Ports/InputPort.h"
-#include "Data/Ports/OutputPort.h"
 #include "Objects/GameObject.h"
 #include "Rendering/TextRenderer.h"
 
@@ -16,23 +14,19 @@ namespace MCF::Data::Rendering
   //------------------------------------------------------------------------------------------------
   TextNode::TextNode(Celeste::GameObject& gameObject) :
     Inherited(gameObject),
-    m_text(createInputPort(TEXT_PORT_NAME, type<std::string>()))
+    m_text(createInputPort<std::string>(TEXT_PORT_NAME, [this](const NewValue& newValue) { onTextChanged(newValue); }))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void TextNode::OnInputPortValueChanged(const std::string& portName, const std::string& newValue)
+  void TextNode::onTextChanged(const NewValue& newValue)
   {
-    ASSERT(portName == TEXT_PORT_NAME);
-    if (portName == TEXT_PORT_NAME)
-    {
-      auto textRenderer = getGameObject()->findComponent<Celeste::Rendering::TextRenderer>();
-      ASSERT_NOT_NULL(textRenderer);
+    auto textRenderer = getGameObject()->findComponent<Celeste::Rendering::TextRenderer>();
+    ASSERT_NOT_NULL(textRenderer);
 
-      if (textRenderer != nullptr)
-      {
-        textRenderer->setText(newValue);
-      }
+    if (textRenderer != nullptr)
+    {
+      textRenderer->setText(newValue.get<std::string>());
     }
   }
 }

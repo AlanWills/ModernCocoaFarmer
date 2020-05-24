@@ -29,6 +29,7 @@ namespace MCF::Data
         m_type(type)
       {
       }
+      ~Port() = default;  // Prevent deletion through base pointer
 
     private:
       std::string m_name;

@@ -1,5 +1,4 @@
 #include "Data/Communication/DataReader.h"
-#include "Data/Ports/OutputPort.h"
 #include "UtilityHeaders/ComponentHeaders.h"
 
 
@@ -14,7 +13,7 @@ namespace MCF::Data::Communication
   //------------------------------------------------------------------------------------------------
   DataReader::DataReader(Celeste::GameObject& gameObject) :
     Inherited(gameObject),
-    m_value(&createOutputPort(VALUE_PORT_NAME, type<bool>()))
+    m_value(&createOutputPort<bool>(VALUE_PORT_NAME))
   {
   }
 }

@@ -16,7 +16,7 @@ namespace MCF::Data::Rendering
     DECLARE_MANAGED_COMPONENT(TextNode, DataSystem, MCFLibraryDllExport);
 
     public:
-      void OnInputPortValueChanged(const std::string& portName, const std::string& newValue) override;
+      void onTextChanged(const NewValue& newValue);
 
       static const std::string TEXT_PORT_NAME;
 

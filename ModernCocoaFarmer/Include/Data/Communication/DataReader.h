@@ -42,7 +42,7 @@ namespace MCF::Data::Communication
   template <typename T>
   void DataReader::setType()
   {
-    setType(type<T>());
+    setType(PortType<T>::value());
   }
 
   //------------------------------------------------------------------------------------------------

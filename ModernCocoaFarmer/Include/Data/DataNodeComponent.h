@@ -4,6 +4,8 @@
 #include "CelesteStl/Templates/Variant.h"
 #include "Persistence/Data.h"
 #include "crossguid/guid.hpp"
+#include "Data/Ports/InputPort.h"
+#include "Data/Ports/OutputPort.h"
 
 #include <glm/glm.hpp>
 #include <memory>
@@ -13,16 +15,16 @@
 
 namespace MCF::Data
 {
-  class InputPort;
-  class OutputPort;
-
   //------------------------------------------------------------------------------------------------
   template <typename T>
-  constexpr size_t type()
+  struct PortType
   {
-    return celstl::variant_index<Persistence::Data, T>();
-  }
+    using type = T;
 
+    static constexpr size_t value() { return celstl::variant_index<Persistence::Data, T>(); }
+  };
+
+  //------------------------------------------------------------------------------------------------
   class DataNodeComponent : public Celeste::Component
   {
     public:
@@ -43,20 +45,34 @@ namespace MCF::Data
       void removeInputPort(const std::string& name);
       void removeOutputPort(const std::string& name);
 
-      virtual void OnInputPortValueChanged(const std::string& /*portName*/, bool /*newValue*/) {}
-      virtual void OnInputPortValueChanged(const std::string& /*portName*/, int /*newValue*/) {}
-      virtual void OnInputPortValueChanged(const std::string& /*portName*/, unsigned int /*newValue*/) {}
-      virtual void OnInputPortValueChanged(const std::string& /*portName*/, float /*newValue*/) {}
-      virtual void OnInputPortValueChanged(const std::string& /*portName*/, const std::string& /*newValue*/) {}
-      virtual void OnInputPortValueChanged(const std::string& /*portName*/, const glm::vec3& /*newValue*/) {}
-
     protected:
-      InputPort& createInputPort(const std::string& name, size_t type);
-      OutputPort& createOutputPort(const std::string& name, size_t type);
+      template <typename T>
+      InputPort& createInputPort(const std::string& name, InputPort::ValueChangedCallback valueChanged);
+
+      template <typename T>
+      OutputPort& createOutputPort(const std::string& name);
 
     private:
       xg::Guid m_guid;
       std::vector<std::unique_ptr<InputPort>> m_inputs;
       std::vector<std::unique_ptr<OutputPort>> m_outputs;
   };
+
+  //------------------------------------------------------------------------------------------------
+  template <typename T>
+  InputPort& DataNodeComponent::createInputPort(const std::string& name, InputPort::ValueChangedCallback valueChanged)
+  {
+    ASSERT(findInputPort(name) == nullptr);
+    m_inputs.emplace_back(std::make_unique<InputPort>(name, PortType<T>::value(), valueChanged));
+    return static_cast<InputPort&>(*m_inputs.back());
+  }
+
+  //------------------------------------------------------------------------------------------------
+  template <typename T>
+  OutputPort& DataNodeComponent::createOutputPort(const std::string& name)
+  {
+    ASSERT(findOutputPort(name) == nullptr);
+    m_outputs.emplace_back(std::make_unique<OutputPort>(name, PortType<T>::value()));
+    return static_cast<OutputPort&>(*m_outputs.back());
+  }
 }

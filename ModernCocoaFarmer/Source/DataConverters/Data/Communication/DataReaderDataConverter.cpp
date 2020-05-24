@@ -14,7 +14,7 @@ namespace MCF::DataConverters::Data::Communication
   //------------------------------------------------------------------------------------------------
   DataReaderDataConverter::DataReaderDataConverter() :
     Inherited(MCF::Data::Communication::DataReader::type_name()),
-    m_type(createValueAttribute<size_t>(TYPE_ATTRIBUTE_NAME, MCF::Data::type<bool>(), Celeste::DeserializationRequirement::kRequired)),
+    m_type(createValueAttribute<size_t>(TYPE_ATTRIBUTE_NAME, MCF::Data::PortType<bool>::value(), Celeste::DeserializationRequirement::kRequired)),
     m_key(createReferenceAttribute<std::string>(KEY_ATTRIBUTE_NAME, "", Celeste::DeserializationRequirement::kRequired))
   {
   }
