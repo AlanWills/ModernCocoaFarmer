@@ -57,3 +57,5 @@ namespace MCF::Data::Constants
     m_valuePort.setValue(newValue);
   }
 }
+
+// Detemplatize this too?

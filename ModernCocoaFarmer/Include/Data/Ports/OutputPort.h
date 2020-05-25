@@ -24,6 +24,19 @@ namespace MCF::Data
 
       template <typename T>
       void setValue(T newValue);
+      void setValue(const Persistence::Data& data)
+      {
+        for (const auto& port : m_connections)
+        {
+          const Setter2Functions& setterFunctions = getSetter2Functions();
+          ASSERT(data.index() < setterFunctions.size());
+
+          if (data.index() < setterFunctions.size())
+          {
+            setterFunctions.m_functions[data.index()](data, *port);
+          }
+        }
+      }
       
     private:
       std::vector<observer_ptr<InputPort>> m_connections;

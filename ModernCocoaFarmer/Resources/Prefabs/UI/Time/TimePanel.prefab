@@ -11,16 +11,16 @@
             <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="25,25" colour="0.35,0.7,0" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
             <Sprite guid="22209d02-7ded-4626-bd0e-3de6c2a0cd71"/>
-            <Vec3ValueForwarder guid="18428297-3f01-400b-883a-dd405b1b904b">
+            <ValueForwarder guid="18428297-3f01-400b-883a-dd405b1b904b" type="5">
               <OutputPort name="output">
                 <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71::colour</Connection>
               </OutputPort>
-            </Vec3ValueForwarder>
-            <Vec3ValueForwarder guid="576fb015-34a2-49ca-87a2-e7295a6d791d">
+            </ValueForwarder>
+            <ValueForwarder guid="576fb015-34a2-49ca-87a2-e7295a6d791d" type="5">
               <OutputPort name="output">
                 <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71::colour</Connection>
               </OutputPort>
-            </Vec3ValueForwarder>
+            </ValueForwarder>
           </Components>
         </GameObject>
         <GameObject name="PauseButton" position="-50,2,0.01">
@@ -28,16 +28,16 @@
             <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="25,25" colour="0.4,0.4,0.4" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
             <Sprite guid="d44267e9-ae5f-4320-b990-a89bd5d10d47"/>
-            <Vec3ValueForwarder guid="00630d7a-1059-4459-a8d2-8f17686af92d">
+            <ValueForwarder guid="00630d7a-1059-4459-a8d2-8f17686af92d" type="5">
               <OutputPort name="output">
                 <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47::colour</Connection>
               </OutputPort>
-            </Vec3ValueForwarder>
-            <Vec3ValueForwarder guid="fe80ae24-3708-4139-bbaf-fac5842a228d">
+            </ValueForwarder>
+            <ValueForwarder guid="fe80ae24-3708-4139-bbaf-fac5842a228d" type="5">
               <OutputPort name="output">
                 <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47::colour</Connection>
               </OutputPort>
-            </Vec3ValueForwarder>
+            </ValueForwarder>
           </Components>
         </GameObject>
         <GameObject name="MonthText" position="-20,-2,0.01">

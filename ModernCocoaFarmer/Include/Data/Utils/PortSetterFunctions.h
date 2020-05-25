@@ -2,6 +2,7 @@
 
 #include "Data/Ports/InputPort.h"
 #include "Log/Log.h"
+#include "CelesteStl/Templates/Variant.h"
 
 #include <variant>
 
@@ -80,46 +81,34 @@ namespace MCF::Data
   };
 
   //------------------------------------------------------------------------------------------------
-  template <typename T>
-  using SetterFunctions = MCF::Data::VariadicSetterFunctions<Persistence::Data, void, T, InputPort&>;
+  template <typename From>
+  using SetterFunctions = MCF::Data::VariadicSetterFunctions<Persistence::Data, void, From, InputPort&>;
 
   //------------------------------------------------------------------------------------------------
-  template <typename T>
-  static const SetterFunctions<T>& getSetterFunctions()
+  template <typename From>
+  static const SetterFunctions<From>& getSetterFunctions()
   {
-    static SetterFunctions<T> setterFunctions = createSetterFunctions<typename MCF::Data::VariadicSetterFunctions<Persistence::Data, void, T, InputPort&>, T, Setter>();
+    static SetterFunctions<From> setterFunctions = createSetterFunctions<typename MCF::Data::VariadicSetterFunctions<Persistence::Data, void, From, InputPort&>, From, Setter>();
     return setterFunctions;
   }
 
   //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<bool, std::string> { static void execute(bool /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'bool' value to 'string' port"); } };
+  template <typename TData>
+  struct Setter2
+  {
+    static void execute(const Persistence::Data& data, InputPort& port)
+    {
+      port.setValue<TData>(std::get<TData>(data));
+    }
+  };
 
   //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<int, std::string> { static void execute(int /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'int' value to 'string' port"); } };
+  using Setter2Functions = celstl::VariantFunctions<Persistence::Data, void, const Persistence::Data&, InputPort&>;
 
   //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<unsigned int, std::string> { static void execute(unsigned int /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'unsigned int' value to 'string' port"); } };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<float, std::string> { static void execute(float /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'float' value to 'string' port"); } };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<std::string, bool> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'bool' port"); } };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<std::string, int> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'int' port"); } };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<std::string, unsigned int> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'unsigned int' port"); } };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct Setter<std::string, float> { static void execute(std::string /*from*/, InputPort& /*port*/) { LOG_ERROR("Invalid Port Setter: 'string' value to 'float' port"); } };
+  static const Setter2Functions& getSetter2Functions()
+  {
+    static Setter2Functions setterFunctions = celstl::createVariantFunctions<Setter2Functions, Setter2>();
+    return setterFunctions;
+  }
 }

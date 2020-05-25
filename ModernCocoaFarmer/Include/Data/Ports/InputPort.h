@@ -1,34 +1,26 @@
 #pragma once
 
 #include "Data/Ports/Port.h"
+#include "Persistence/Data.h"
 #include "glm/glm.hpp"
 
 
 namespace MCF::Data
 {
   //------------------------------------------------------------------------------------------------
-  template <typename T>
-  struct item_return { using type = T; };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct item_return<std::string> { using type = const std::string&; };
-
-  //------------------------------------------------------------------------------------------------
-  template <>
-  struct item_return<glm::vec3> { using type = const glm::vec3&; };
-
-  //------------------------------------------------------------------------------------------------
   struct NewValue
   {
     public:
-      NewValue(void* value) : m_value(value) {}
+      template <typename T>
+      NewValue(T&& value) : m_value(value) {}
+
+      const Persistence::Data& get() const { return m_value; }
 
       template <typename T>
-      typename item_return<T>::type get() const { return *reinterpret_cast<T*>(m_value); }
+      typename Persistence::data_return<T>::type get() const { return std::get<T>(m_value); }
 
     private:
-      void* m_value;
+      Persistence::Data m_value;
   };
 
   //------------------------------------------------------------------------------------------------
@@ -46,7 +38,7 @@ namespace MCF::Data
       template <typename T>
       void setValue(T value) 
       {
-        m_caller(NewValue(&value));
+        m_caller(std::move(value));
       }
 
     private:
