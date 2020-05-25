@@ -31,20 +31,4 @@ function TimePanel:new(commandManager, dataStore, timePanelGameObject)
     timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, pause, self)
 end
 
----------------------------------------------------------------------------------
-function TimePanel:updateUI()
-    self:setTimeButtonColours(self._dataStore:getBool(TimeDataSources.IS_PAUSED))
-end
-
----------------------------------------------------------------------------------
-function TimePanel:setTimeButtonColours(isPaused)
-    if isPaused then
-        self._playButtonRenderer:setColour(0.4,0.4,0.4)
-        self._pauseButtonRenderer:setColour(0.35,0.7,0)
-    else
-        self._pauseButtonRenderer:setColour(0.4,0.4,0.4)
-        self._playButtonRenderer:setColour(0.35,0.7,0)
-    end
-end
-
 return TimePanel

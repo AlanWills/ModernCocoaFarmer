@@ -14,6 +14,7 @@ namespace MCF::Data
 {
   class InputPort;
   class OutputPort;
+  class DataNodeComponent;
 
   class DataSystem : public Celeste::System::ISystem
   {
@@ -34,12 +35,14 @@ namespace MCF::Data
 
       void addInputPort(const std::string& fullPath, InputPort& inputPort);
       void addPendingConnection(const std::string& fullPath, OutputPort& outputPort);
+      void queueUpdate(DataNodeComponent& dataNodeComponent);
 
     private:
       void tryResolvePendingConnections();
 
       std::unordered_map<std::string, observer_ptr<InputPort>> m_inputPortLookup;
       std::vector<std::tuple<std::string, observer_ptr<OutputPort>>> m_pendingConnections;
+      std::vector<observer_ptr<DataNodeComponent>> m_queuedUpdates;
       std::unordered_set<std::string> m_changedKeys;
 
       MCF::Persistence::DataStore m_dataStore;

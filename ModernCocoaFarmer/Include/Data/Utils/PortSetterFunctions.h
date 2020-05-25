@@ -57,7 +57,15 @@ namespace MCF::Data
   {
     static void execute(From from, InputPort& port)
     {
-      port.setValue(static_cast<To>(from));
+      if constexpr (std::is_convertible<From, To>::value)
+      {
+        port.setValue(static_cast<To>(from));
+      }
+      else
+      {
+        celstl::unused(from);
+        celstl::unused(port);
+      }
     }
   };
 

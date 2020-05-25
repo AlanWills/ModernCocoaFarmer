@@ -25,7 +25,6 @@ end
 function TopBar:updateUI()
     self._moneyPanel:updateUI()
     self._familyPanel:updateUI()
-    self._timePanel:updateUI()
     self._menuPanel:updateUI()
 end
 

@@ -1,6 +1,7 @@
 #include "Persistence/DataStore.h"
 #include "Assert/Assert.h"
 #include "XML/ChildXMLElementWalker.h"
+#include "Serialization/MathsSerializers.h"
 
 
 namespace MCF::Persistence
@@ -30,6 +31,18 @@ namespace MCF::Persistence
     static void execute(tinyxml2::XMLElement& element, const Data& data)
     {
       element.SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, std::get<std::string>(data).c_str());
+    }
+  };
+
+  //------------------------------------------------------------------------------------------------
+  template <>
+  struct SerializeFunctor<glm::vec3>
+  {
+    static void execute(tinyxml2::XMLElement& element, const Data& data)
+    {
+      std::string output;
+      Celeste::serialize<const glm::vec3&>(std::get<glm::vec3>(data), output);
+      element.SetAttribute(DataStore::VALUE_ATTRIBUTE_NAME, output.c_str());
     }
   };
 

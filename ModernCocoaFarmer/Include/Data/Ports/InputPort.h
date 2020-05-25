@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Data/Ports/Port.h"
+#include "glm/glm.hpp"
 
 
 namespace MCF::Data
@@ -12,6 +13,10 @@ namespace MCF::Data
   //------------------------------------------------------------------------------------------------
   template <>
   struct item_return<std::string> { using type = const std::string&; };
+
+  //------------------------------------------------------------------------------------------------
+  template <>
+  struct item_return<glm::vec3> { using type = const glm::vec3&; };
 
   //------------------------------------------------------------------------------------------------
   struct NewValue

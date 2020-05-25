@@ -1,6 +1,8 @@
 #include "DataConverters/Data/Communication/DataReaderDataConverter.h"
 #include "Registries/ComponentDataConverterRegistry.h"
 #include "Data/Communication/DataReader.h"
+#include "Data/DataUtils.h"
+#include "Data/DataSystem.h"
 
 
 namespace MCF::DataConverters::Data::Communication
@@ -26,5 +28,7 @@ namespace MCF::DataConverters::Data::Communication
 
     dataReader.setType(getType());
     dataReader.setKey(getKey());
+
+    MCF::Data::getDataSystem().queueUpdate(dataReader);
   }
 }

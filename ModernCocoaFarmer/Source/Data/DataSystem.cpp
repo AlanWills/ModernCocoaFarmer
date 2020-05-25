@@ -1,46 +1,33 @@
 #include "Data/DataSystem.h"
 #include "Data/Ports/OutputPort.h"
 #include "Data/Communication/DataReader.h"
-#include "CelesteStl/Templates/Variant.h"
 
 
 namespace MCF::Data
 {
   //------------------------------------------------------------------------------------------------
-  using Data = Persistence::Data;
-  using DataReaderSetters = celstl::VariantFunctions<Data, void, Persistence::DataStore&, Communication::DataReader&>;
-
-  //------------------------------------------------------------------------------------------------
-  template <typename T>
-  struct DataReaderSetter
-  {
-    static void execute(Persistence::DataStore& dataStore, Communication::DataReader& reader)
-    {
-      reader.setValue(dataStore.get<T>(reader.getKey()));
-    }
-  };
-
-  static DataReaderSetters s_dataReaderSetters = celstl::createVariantFunctions<DataReaderSetters, DataReaderSetter>();
-
-  //------------------------------------------------------------------------------------------------
-  void DataSystem::update(float /*elapsedGameTime*/)
+  void DataSystem::update(float elapsedGameTime)
   {
     m_inputPortLookup.clear();
     ASSERT(m_pendingConnections.empty());
-    
+
     for (auto& reader : Communication::DataReader::m_allocator)
     {
       auto changedKeyIt = m_changedKeys.find(reader.getKey());
       if (changedKeyIt != m_changedKeys.end())
       {
-        if (reader.getType() < s_dataReaderSetters.size())
-        {
-          s_dataReaderSetters.m_functions[reader.getType()](m_dataStore, reader);
-        }
+        queueUpdate(reader);
       }
     }
 
     m_changedKeys.clear();
+
+    for (observer_ptr<DataNodeComponent> queuedUpdate : m_queuedUpdates)
+    {
+      queuedUpdate->update(elapsedGameTime);
+    }
+
+    m_queuedUpdates.clear();
   }
 
   //------------------------------------------------------------------------------------------------
@@ -77,6 +64,12 @@ namespace MCF::Data
         m_pendingConnections.erase(std::next(m_pendingConnections.begin(), i - 1));
       }
     }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void DataSystem::queueUpdate(DataNodeComponent& dataNodeComponent)
+  {
+    m_queuedUpdates.push_back(&dataNodeComponent);
   }
 
   //------------------------------------------------------------------------------------------------

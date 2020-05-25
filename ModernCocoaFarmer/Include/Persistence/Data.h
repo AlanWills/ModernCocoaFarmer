@@ -7,5 +7,5 @@
 
 namespace MCF::Persistence
 {
-  using Data = std::variant<bool, int, unsigned int, float, std::string>;
+  using Data = std::variant<bool, int, unsigned int, float, std::string, glm::vec3>;
 }

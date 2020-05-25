@@ -10,18 +10,40 @@
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="25,25" colour="0.35,0.7,0" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
+            <Sprite guid="22209d02-7ded-4626-bd0e-3de6c2a0cd71"/>
+            <Vec3ValueForwarder guid="18428297-3f01-400b-883a-dd405b1b904b">
+              <OutputPort name="output">
+                <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71::colour</Connection>
+              </OutputPort>
+            </Vec3ValueForwarder>
+            <Vec3ValueForwarder guid="576fb015-34a2-49ca-87a2-e7295a6d791d">
+              <OutputPort name="output">
+                <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71::colour</Connection>
+              </OutputPort>
+            </Vec3ValueForwarder>
           </Components>
         </GameObject>
         <GameObject name="PauseButton" position="-50,2,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="25,25" colour="0.4,0.4,0.4" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
+            <Sprite guid="d44267e9-ae5f-4320-b990-a89bd5d10d47"/>
+            <Vec3ValueForwarder guid="00630d7a-1059-4459-a8d2-8f17686af92d">
+              <OutputPort name="output">
+                <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47::colour</Connection>
+              </OutputPort>
+            </Vec3ValueForwarder>
+            <Vec3ValueForwarder guid="fe80ae24-3708-4139-bbaf-fac5842a228d">
+              <OutputPort name="output">
+                <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47::colour</Connection>
+              </OutputPort>
+            </Vec3ValueForwarder>
           </Components>
         </GameObject>
         <GameObject name="MonthText" position="-20,-2,0.01">
           <Components>
             <TextRenderer text="September" font_height="24" horizontal_alignment="left" colour="0.2,0.2,0.2"/>
-            <TextNode guid="d8c8ee56-c887-43ea-bd51-dcc7893e59d9"/>
+            <Text guid="d8c8ee56-c887-43ea-bd51-dcc7893e59d9"/>
           </Components>
         </GameObject>
         <GameObject name="DataSources">
@@ -33,6 +55,51 @@
                     <Connection>d8c8ee56-c887-43ea-bd51-dcc7893e59d9::text</Connection>
                   </OutputPort>
                 </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="#IsPaused">
+              <Components>
+                <DataReader guid="8d8d53e3-c1db-4709-a2f0-6e9c698dc900" type="0" key="time.is_paused">
+                  <OutputPort name="value">
+                    <Connection>576fb015-34a2-49ca-87a2-e7295a6d791d::trigger</Connection>
+                    <Connection>00630d7a-1059-4459-a8d2-8f17686af92d::trigger</Connection>
+                    <Connection>9f86c04b-f57a-4f5d-9757-5fb2eab05aa7::input</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="#IsNotPaused">
+              <Components>
+                <Not guid="9f86c04b-f57a-4f5d-9757-5fb2eab05aa7">
+                  <OutputPort name="output">
+                    <Connection>18428297-3f01-400b-883a-dd405b1b904b::trigger</Connection>
+                    <Connection>fe80ae24-3708-4139-bbaf-fac5842a228d::trigger</Connection>
+                  </OutputPort>
+                </Not>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="Constants">
+          <GameObjects>
+            <GameObject name="#SelectedButtonColour">
+              <Components>
+                <Vec3Constant guid="04620b34-b6e0-4b07-91ec-fb0fe6374d80" type="5" value="0.35,0.7,0">
+                  <OutputPort name="value">
+                    <Connection>18428297-3f01-400b-883a-dd405b1b904b::value</Connection>
+                    <Connection>00630d7a-1059-4459-a8d2-8f17686af92d::value</Connection>
+                  </OutputPort>
+                </Vec3Constant>
+              </Components>
+            </GameObject>
+            <GameObject name="#UnselectedButtonColour">
+              <Components>
+                <Vec3Constant guid="a610de0a-1d74-49c6-b17d-02a81e0902cf" type="5" value="0.4,0.4,0.4">
+                  <OutputPort name="value">
+                    <Connection>576fb015-34a2-49ca-87a2-e7295a6d791d::value</Connection>
+                    <Connection>fe80ae24-3708-4139-bbaf-fac5842a228d::value</Connection>
+                  </OutputPort>
+                </Vec3Constant>
               </Components>
             </GameObject>
           </GameObjects>

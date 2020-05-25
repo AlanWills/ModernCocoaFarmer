@@ -11,18 +11,18 @@ namespace MCF::Data
 
 namespace MCF::Data::Rendering
 {
-  class TextNode : public DataNodeComponent
+  class Sprite : public DataNodeComponent
   {
-    DECLARE_MANAGED_COMPONENT(TextNode, DataSystem, MCFLibraryDllExport);
+    DECLARE_MANAGED_COMPONENT(Sprite, DataSystem, MCFLibraryDllExport)
 
     public:
-      void onTextChanged(const NewValue& newValue);
-
-      static const std::string TEXT_PORT_NAME;
+      static const std::string COLOUR_PORT_NAME;
 
     private:
       using Inherited = DataNodeComponent;
 
-      InputPort& m_text;
+      void onColourChanged(const NewValue& newValue);
+
+      InputPort& m_colour;
   };
 }

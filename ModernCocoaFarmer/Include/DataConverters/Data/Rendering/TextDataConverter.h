@@ -5,14 +5,14 @@
 
 namespace MCF::Data::Rendering
 {
-  class TextNode;
+  class Text;
 }
 
 namespace MCF::DataConverters::Data::Rendering
 {
-  class TextNodeDataConverter : public DataNodeComponentDataConverter
+  class TextDataConverter : public DataNodeComponentDataConverter
   {
-    DECLARE_COMPONENT_DATA_CONVERTER(TextNodeDataConverter, MCF::Data::Rendering::TextNode, MCFLibraryDllExport);
+    DECLARE_COMPONENT_DATA_CONVERTER(TextDataConverter, MCF::Data::Rendering::Text, MCFLibraryDllExport);
 
     private:
       using Inherited = DataNodeComponentDataConverter;
