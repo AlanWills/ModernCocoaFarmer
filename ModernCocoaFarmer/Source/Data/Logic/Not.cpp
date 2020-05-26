@@ -13,14 +13,14 @@ namespace MCF::Data::Logic
   //------------------------------------------------------------------------------------------------
   Not::Not(Celeste::GameObject& gameObject) :
     Inherited(gameObject),
-    m_inputPort(createInputPort<bool>(INPUT_PORT_NAME, [this](const NewValue& newValue) { onInputChanged(newValue); })),
+    m_inputPort(createInputPort<bool>(INPUT_PORT_NAME, [this](Persistence::Data&& newValue) { onInputChanged(std::move(newValue)); })),
     m_outputPort(createOutputPort<bool>(OUTPUT_PORT_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void Not::onInputChanged(const NewValue& newValue)
+  void Not::onInputChanged(Persistence::Data&& newValue)
   {
-    m_outputPort.setValue(!newValue.get<bool>());
+    m_outputPort.setValue(!std::get<bool>(newValue));
   }
 }

@@ -22,7 +22,7 @@ namespace MCF::Data::Logic
   private:
       using Inherited = DataNodeComponent;
 
-      void onInputChanged(const NewValue& newValue);
+      void onInputChanged(Persistence::Data&& newValue);
 
       InputPort& m_inputPort;
       OutputPort& m_outputPort;

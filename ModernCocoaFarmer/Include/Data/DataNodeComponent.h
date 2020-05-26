@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Objects/Component.h"
-#include "CelesteStl/Templates/Variant.h"
-#include "Persistence/Data.h"
 #include "crossguid/guid.hpp"
+#include "Data/Ports/PortType.h"
 #include "Data/Ports/InputPort.h"
 #include "Data/Ports/OutputPort.h"
 
@@ -15,16 +14,6 @@
 
 namespace MCF::Data
 {
-  //------------------------------------------------------------------------------------------------
-  template <typename T>
-  struct PortType
-  {
-    using type = T;
-
-    static constexpr size_t value() { return celstl::variant_index<Persistence::Data, T>(); }
-  };
-
-  //------------------------------------------------------------------------------------------------
   class DataNodeComponent : public Celeste::Component
   {
     public:
@@ -47,7 +36,7 @@ namespace MCF::Data
 
     protected:
       template <typename T>
-      InputPort& createInputPort(const std::string& name, InputPort::ValueChangedCallback valueChanged);
+      InputPort& createInputPort(const std::string& name, InputPort::ValueChangedCallback&& valueChanged);
 
       template <typename T>
       OutputPort& createOutputPort(const std::string& name);
@@ -60,10 +49,10 @@ namespace MCF::Data
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
-  InputPort& DataNodeComponent::createInputPort(const std::string& name, InputPort::ValueChangedCallback valueChanged)
+  InputPort& DataNodeComponent::createInputPort(const std::string& name, InputPort::ValueChangedCallback&& valueChanged)
   {
     ASSERT(findInputPort(name) == nullptr);
-    m_inputs.emplace_back(std::make_unique<InputPort>(name, PortType<T>::value(), valueChanged));
+    m_inputs.emplace_back(std::make_unique<InputPort>(name, PortType<T>::value(), std::move(valueChanged)));
     return static_cast<InputPort&>(*m_inputs.back());
   }
 

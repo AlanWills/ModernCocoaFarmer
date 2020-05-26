@@ -1,10 +1,8 @@
 #pragma once
 
 #include "Data/Ports/InputPort.h"
-#include "Log/Log.h"
 #include "CelesteStl/Templates/Variant.h"
-
-#include <variant>
+#include "CelesteStl/Templates/Unused.h"
 
 
 namespace MCF::Data
@@ -54,7 +52,7 @@ namespace MCF::Data
 
   //------------------------------------------------------------------------------------------------
   template <typename From, typename To>
-  struct Setter
+  struct TypedSetter
   {
     static void execute(From from, InputPort& port)
     {
@@ -72,7 +70,7 @@ namespace MCF::Data
 
   //------------------------------------------------------------------------------------------------
   template <>
-  struct Setter<std::string, std::string> 
+  struct TypedSetter<std::string, std::string>
   { 
     static void execute(std::string from, InputPort& port) 
     { 
@@ -81,20 +79,8 @@ namespace MCF::Data
   };
 
   //------------------------------------------------------------------------------------------------
-  template <typename From>
-  using SetterFunctions = MCF::Data::VariadicSetterFunctions<Persistence::Data, void, From, InputPort&>;
-
-  //------------------------------------------------------------------------------------------------
-  template <typename From>
-  static const SetterFunctions<From>& getSetterFunctions()
-  {
-    static SetterFunctions<From> setterFunctions = createSetterFunctions<typename MCF::Data::VariadicSetterFunctions<Persistence::Data, void, From, InputPort&>, From, Setter>();
-    return setterFunctions;
-  }
-
-  //------------------------------------------------------------------------------------------------
   template <typename TData>
-  struct Setter2
+  struct TypelessSetter
   {
     static void execute(const Persistence::Data& data, InputPort& port)
     {
@@ -103,12 +89,20 @@ namespace MCF::Data
   };
 
   //------------------------------------------------------------------------------------------------
-  using Setter2Functions = celstl::VariantFunctions<Persistence::Data, void, const Persistence::Data&, InputPort&>;
+  template <typename From>
+  using TypedSetterFunctions = MCF::Data::VariadicSetterFunctions<Persistence::Data, void, From, InputPort&>;
 
   //------------------------------------------------------------------------------------------------
-  static const Setter2Functions& getSetter2Functions()
+  using TypelessSetterFunctions = celstl::VariantFunctions<Persistence::Data, void, const Persistence::Data&, InputPort&>;
+
+  //------------------------------------------------------------------------------------------------
+  template <typename From>
+  static const TypedSetterFunctions<From>& getSetterFunctions()
   {
-    static Setter2Functions setterFunctions = celstl::createVariantFunctions<Setter2Functions, Setter2>();
+    static TypedSetterFunctions<From> setterFunctions = createSetterFunctions<typename MCF::Data::VariadicSetterFunctions<Persistence::Data, void, From, InputPort&>, From, TypedSetter>();
     return setterFunctions;
   }
+
+  //------------------------------------------------------------------------------------------------
+  const TypelessSetterFunctions& getSetterFunctions();
 }

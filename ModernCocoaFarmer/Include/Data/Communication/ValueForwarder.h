@@ -26,8 +26,8 @@ namespace MCF::Data::Communication
     private:
       using Inherited = DataNodeComponent;
 
-      void onValuePortChanged(const NewValue& newValue);
-      void onTriggerPortChanged(const NewValue& newValue);
+      void onValuePortChanged(Persistence::Data&& newValue);
+      void onTriggerPortChanged(Persistence::Data&& newValue);
 
       InputPort& m_valuePort;
       InputPort& m_triggerPort;

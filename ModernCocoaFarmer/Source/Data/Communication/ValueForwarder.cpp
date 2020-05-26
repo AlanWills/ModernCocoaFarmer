@@ -14,22 +14,22 @@ namespace MCF::Data::Communication
   //------------------------------------------------------------------------------------------------
   ValueForwarder::ValueForwarder(Celeste::GameObject& gameObject) :
     Inherited(gameObject),
-    m_valuePort(createInputPort<bool>(VALUE_PORT_NAME, [this](const NewValue& newValue) { onValuePortChanged(newValue); })),
-    m_triggerPort(createInputPort<bool>(TRIGGER_PORT_NAME, [this](const NewValue& newValue) { onTriggerPortChanged(newValue); })),
+    m_valuePort(createInputPort<bool>(VALUE_PORT_NAME, [this](Persistence::Data&& newValue) { onValuePortChanged(std::move(newValue)); })),
+    m_triggerPort(createInputPort<bool>(TRIGGER_PORT_NAME, [this](Persistence::Data&& newValue) { onTriggerPortChanged(std::move(newValue)); })),
     m_outputPort(createOutputPort<bool>(OUTPUT_PORT_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void ValueForwarder::onValuePortChanged(const NewValue& newValue)
+  void ValueForwarder::onValuePortChanged(Persistence::Data&& newValue)
   {
-    m_value = newValue.get();
+    m_value = std::move(newValue);
   }
 
   //------------------------------------------------------------------------------------------------
-  void ValueForwarder::onTriggerPortChanged(const NewValue& newValue)
+  void ValueForwarder::onTriggerPortChanged(Persistence::Data&& newValue)
   {
-    if (newValue.get<bool>())
+    if (std::get<bool>(newValue))
     {
       m_outputPort.setValue(m_value);
     }

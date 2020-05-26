@@ -14,19 +14,19 @@ namespace MCF::Data::Rendering
   //------------------------------------------------------------------------------------------------
   Text::Text(Celeste::GameObject& gameObject) :
     Inherited(gameObject),
-    m_text(createInputPort<std::string>(TEXT_PORT_NAME, [this](const NewValue& newValue) { onTextChanged(newValue); }))
+    m_text(createInputPort<std::string>(TEXT_PORT_NAME, [this](Persistence::Data&& newValue) { onTextChanged(std::move(newValue)); }))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void Text::onTextChanged(const NewValue& newValue)
+  void Text::onTextChanged(Persistence::Data&& newValue)
   {
     auto textRenderer = getGameObject()->findComponent<Celeste::Rendering::TextRenderer>();
     ASSERT_NOT_NULL(textRenderer);
 
     if (textRenderer != nullptr)
     {
-      textRenderer->setText(newValue.get<std::string>());
+      textRenderer->setText(std::get<std::string>(newValue));
     }
   }
 }

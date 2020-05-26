@@ -21,7 +21,7 @@ namespace MCF::Data::Rendering
     private:
       using Inherited = DataNodeComponent;
 
-      void onColourChanged(const NewValue& newValue);
+      void onColourChanged(Persistence::Data&& newValue);
 
       InputPort& m_colour;
   };

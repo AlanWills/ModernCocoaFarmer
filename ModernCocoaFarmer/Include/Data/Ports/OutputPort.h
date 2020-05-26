@@ -12,33 +12,17 @@ namespace MCF::Data
   class OutputPort : public Port
   {
     public:
-      OutputPort(const std::string& name, size_t type) : 
-        Port(name, type)
-      {
-      }
+      OutputPort(const std::string& name, size_t type);
 
-      void connect(InputPort& port) 
-      { 
-        m_connections.push_back(&port); 
-      }
+      void connect(InputPort& port);
 
       template <typename T>
       void setValue(T newValue);
-      void setValue(const Persistence::Data& data)
-      {
-        for (const auto& port : m_connections)
-        {
-          const Setter2Functions& setterFunctions = getSetter2Functions();
-          ASSERT(data.index() < setterFunctions.size());
-
-          if (data.index() < setterFunctions.size())
-          {
-            setterFunctions.m_functions[data.index()](data, *port);
-          }
-        }
-      }
+      void setValue(const Persistence::Data& data);
       
     private:
+      using Inherited = Port;
+
       std::vector<observer_ptr<InputPort>> m_connections;
   };
 
@@ -48,7 +32,7 @@ namespace MCF::Data
   {
     for (const auto& port : m_connections)
     {
-      const SetterFunctions<T>& setterFunctions = getSetterFunctions<T>();
+      const auto& setterFunctions = getSetterFunctions<T>();
 
       size_t portType = port->getType();
       ASSERT(portType < setterFunctions.size());

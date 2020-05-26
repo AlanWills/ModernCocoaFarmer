@@ -84,22 +84,22 @@
           <GameObjects>
             <GameObject name="#SelectedButtonColour">
               <Components>
-                <Vec3Constant guid="04620b34-b6e0-4b07-91ec-fb0fe6374d80" type="5" value="0.35,0.7,0">
+                <Constant guid="04620b34-b6e0-4b07-91ec-fb0fe6374d80" type="5" value="0.35,0.7,0">
                   <OutputPort name="value">
                     <Connection>18428297-3f01-400b-883a-dd405b1b904b::value</Connection>
                     <Connection>00630d7a-1059-4459-a8d2-8f17686af92d::value</Connection>
                   </OutputPort>
-                </Vec3Constant>
+                </Constant>
               </Components>
             </GameObject>
             <GameObject name="#UnselectedButtonColour">
               <Components>
-                <Vec3Constant guid="a610de0a-1d74-49c6-b17d-02a81e0902cf" type="5" value="0.4,0.4,0.4">
+                <Constant guid="a610de0a-1d74-49c6-b17d-02a81e0902cf" type="5" value="0.4,0.4,0.4">
                   <OutputPort name="value">
                     <Connection>576fb015-34a2-49ca-87a2-e7295a6d791d::value</Connection>
                     <Connection>fe80ae24-3708-4139-bbaf-fac5842a228d::value</Connection>
                   </OutputPort>
-                </Vec3Constant>
+                </Constant>
               </Components>
             </GameObject>
           </GameObjects>

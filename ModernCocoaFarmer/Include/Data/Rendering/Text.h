@@ -21,7 +21,7 @@ namespace MCF::Data::Rendering
     private:
       using Inherited = DataNodeComponent;
       
-      void onTextChanged(const NewValue& newValue);
+      void onTextChanged(Persistence::Data&& newValue);
 
       InputPort& m_text;
   };
