@@ -4,7 +4,6 @@ local Pause = require 'Commands.Time.Pause'
 ---------------------------------------------------------------------------------
 local TimePanel = 
 {
-    MONTH_TEXT_NAME = "MonthText",
     PLAY_BUTTON_NAME = "PlayButton",
     PAUSE_BUTTON_NAME = "PauseButton"
 }
@@ -20,12 +19,8 @@ local function pause(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-function TimePanel:new(commandManager, dataStore, timePanelGameObject)
+function TimePanel:new(commandManager, timePanelGameObject)
     self._commandManager = commandManager
-    self._dataStore = dataStore
-    self._monthText = timePanelGameObject:findChild(self.MONTH_TEXT_NAME):findComponent("TextRenderer")
-    self._playButtonRenderer = timePanelGameObject:findChild(self.PLAY_BUTTON_NAME):findComponent("SpriteRenderer")
-    self._pauseButtonRenderer = timePanelGameObject:findChild(self.PAUSE_BUTTON_NAME):findComponent("SpriteRenderer")
 
     timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, play, self)
     timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, pause, self)

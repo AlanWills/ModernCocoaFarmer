@@ -15,7 +15,30 @@
         <GameObject name="MoneyText" position="-30,-2,0.01">
           <Components>
             <TextRenderer text="10000000000" font_height="24" horizontal_alignment="left" colour="1,1,0"/>
+            <Text guid="318e1141-a23e-4405-a682-bc8ab9301e17"/>
           </Components>
+        </GameObject>
+        <GameObject name="DataSources">
+          <GameObjects>
+            <GameObject name="#CurrentMoney">
+              <Components>
+                <DataReader guid="8456defd-ed79-49bd-90ee-4d4f45d45d48" type="1" key="money.current_money">
+                  <OutputPort name="value">
+                    <Connection>f18ed8dd-2c99-4213-8315-794d5db34bd0::value</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="#CurrentMoneyString">
+              <Components>
+                <ToString guid="f18ed8dd-2c99-4213-8315-794d5db34bd0" type="1">
+                  <OutputPort name="output">
+                    <Connection>318e1141-a23e-4405-a682-bc8ab9301e17::text</Connection>
+                  </OutputPort>
+                </ToString>
+              </Components>
+            </GameObject>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>
