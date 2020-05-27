@@ -23,7 +23,7 @@ namespace MCF::Animation
 
     if (distanceLeft < (m_speed * elapsedGameTime))
     {
-      delete getGameObject();
+      delete &getGameObject();
     }
     else
     {

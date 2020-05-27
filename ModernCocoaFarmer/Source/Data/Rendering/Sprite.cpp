@@ -20,7 +20,7 @@ namespace MCF::Data::Rendering
   //------------------------------------------------------------------------------------------------
   void Sprite::onColourChanged(Persistence::Data&& newValue)
   {
-    Celeste::Rendering::SpriteRenderer* renderer = getGameObject()->findComponent<Celeste::Rendering::SpriteRenderer>();
+    Celeste::Rendering::SpriteRenderer* renderer = getGameObject().findComponent<Celeste::Rendering::SpriteRenderer>();
     ASSERT_NOT_NULL(renderer);
 
     if (renderer != nullptr)

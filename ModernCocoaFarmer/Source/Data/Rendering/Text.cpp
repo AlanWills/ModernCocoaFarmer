@@ -21,7 +21,7 @@ namespace MCF::Data::Rendering
   //------------------------------------------------------------------------------------------------
   void Text::onTextChanged(Persistence::Data&& newValue)
   {
-    auto textRenderer = getGameObject()->findComponent<Celeste::Rendering::TextRenderer>();
+    auto textRenderer = getGameObject().findComponent<Celeste::Rendering::TextRenderer>();
     ASSERT_NOT_NULL(textRenderer);
 
     if (textRenderer != nullptr)
