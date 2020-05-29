@@ -6,7 +6,7 @@
 namespace MCF::Data
 {
   //------------------------------------------------------------------------------------------------
-  void DataSystem::update(float elapsedGameTime)
+  void DataSystem::update(float /*elapsedGameTime*/)
   {
     m_inputPortLookup.clear();
     ASSERT(m_pendingConnections.empty());
@@ -24,7 +24,7 @@ namespace MCF::Data
 
     for (observer_ptr<DataNodeComponent> queuedUpdate : m_queuedUpdates)
     {
-      queuedUpdate->update(elapsedGameTime);
+      queuedUpdate->update();
     }
 
     m_queuedUpdates.clear();

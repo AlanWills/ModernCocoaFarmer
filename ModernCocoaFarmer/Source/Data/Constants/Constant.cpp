@@ -18,7 +18,7 @@ namespace MCF::Data::Constants
   }
 
   //------------------------------------------------------------------------------------------------
-  void Constant::update(float /*elapsedGameTime*/)
+  void Constant::update()
   {
     m_valuePort.setValue(m_value);
   }

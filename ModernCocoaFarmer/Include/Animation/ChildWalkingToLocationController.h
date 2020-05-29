@@ -18,7 +18,7 @@ namespace MCF::Animation
       const glm::vec3& getLocation() const { return m_location; }
       void setLocation(const glm::vec3& location) { m_location = location; }
 
-      void update(float elapsedGameTime) override;
+      void update() override;
 
     private:
       using Inherited = Celeste::Component;

@@ -20,7 +20,7 @@ namespace MCF::Data::Constants
       void setValue(T newValue);
       void setValue(const Persistence::Data& newValue);
 
-      void update(float elapsedGameTime) override;
+      void update() override;
 
       static const std::string VALUE_PORT_NAME;
 

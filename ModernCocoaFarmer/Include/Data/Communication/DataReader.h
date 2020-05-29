@@ -29,7 +29,7 @@ namespace MCF::Data::Communication
       template <typename T>
       void setValue(T value);
 
-      void update(float elapsedGameTime) override;
+      void update() override;
 
       static const std::string VALUE_PORT_NAME;
 

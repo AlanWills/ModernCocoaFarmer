@@ -1,4 +1,5 @@
 #include "Time/TimeNotifier.h"
+#include "Time/TimeUtils.h"
 #include "UtilityHeaders/ComponentHeaders.h"
 
 
@@ -14,10 +15,10 @@ namespace MCF::Time
   }
 
   //------------------------------------------------------------------------------------------------
-  void TimeNotifier::update(float elapsedGameTime)
+  void TimeNotifier::update()
   {
-    Inherited::update(elapsedGameTime);
+    Inherited::update();
 
-    m_onTimeChangedEvent.invoke(elapsedGameTime);
+    m_onTimeChangedEvent.invoke(Celeste::Time::getElapsedDeltaTime());
   }
 }

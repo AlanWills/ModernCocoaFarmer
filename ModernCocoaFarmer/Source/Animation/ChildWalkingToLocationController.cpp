@@ -1,5 +1,6 @@
 #include "Animation/ChildWalkingToLocationController.h"
 #include "UtilityHeaders/ComponentHeaders.h"
+#include "Time/TimeUtils.h"
 
 
 namespace MCF::Animation
@@ -13,13 +14,14 @@ namespace MCF::Animation
   }
 
   //------------------------------------------------------------------------------------------------
-  void ChildWalkingToLocationController::update(float elapsedGameTime)
+  void ChildWalkingToLocationController::update()
   {
-    Inherited::update(elapsedGameTime);
+    Inherited::update();
 
     glm::vec3 delta = m_location - getTransform()->getWorldTranslation();
     float distanceLeft = glm::length(delta);
     glm::vec3 normalizedDelta = delta / distanceLeft;
+    float elapsedGameTime = Time::getElapsedDeltaTime();
 
     if (distanceLeft < (m_speed * elapsedGameTime))
     {

@@ -37,7 +37,7 @@ namespace MCF::Data::Communication
   }
 
   //------------------------------------------------------------------------------------------------
-  void DataReader::update(float /*elapsedGameTime*/)
+  void DataReader::update()
   {
     if (getType() < s_dataReaderSetters.size())
     {

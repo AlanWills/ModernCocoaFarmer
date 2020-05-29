@@ -16,7 +16,7 @@ namespace MCF::Time
 
       const TimeChangedEvent& getOnTimeChangedEvent() const { return m_onTimeChangedEvent; }
 
-      MCFLibraryDllExport void update(float elapsedGameTime) override;
+      MCFLibraryDllExport void update() override;
 
     private:
       using Inherited = Celeste::Component;
