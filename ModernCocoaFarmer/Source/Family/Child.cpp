@@ -4,6 +4,7 @@
 #include "Stats/DataSources.h"
 #include "Stats/Modifier.h"
 #include "Data/DataSystem.h"
+#include "Data/ObjectRef.h"
 
 
 namespace MCF::Family
@@ -40,7 +41,7 @@ namespace MCF::Family
     key.push_back('.');
     key.append(getName());
 
-    m_dataObjectHandle = std::make_unique<Persistence::DataObjectHandle>(dataSystem.getObject(key));
+    m_childObjectRef = std::make_unique<Data::ObjectRef>(dataSystem, key);
     updateDataObject();
   }
 
@@ -74,7 +75,7 @@ namespace MCF::Family
     if (isActivated())
     {
       m_currentLocation.setValue(currentLocation);
-      m_dataObjectHandle->set(DataSources::CURRENT_LOCATION, getCurrentLocation());
+      m_childObjectRef->set(DataSources::CURRENT_LOCATION, getCurrentLocation());
     }
   }
   
@@ -84,7 +85,7 @@ namespace MCF::Family
     if (isActivated())
     {
       m_timeAtLocation.setValue(timeAtLocation);
-      m_dataObjectHandle->set(DataSources::TIME_AT_LOCATION, getTimeAtLocation());
+      m_childObjectRef->set(DataSources::TIME_AT_LOCATION, getTimeAtLocation());
     }
   }
 
@@ -94,14 +95,14 @@ namespace MCF::Family
     if (isActivated())
     {
       m_isSelected = selected;
-      m_dataObjectHandle->set(DataSources::IS_SELECTED, isSelected());
+      m_childObjectRef->set(DataSources::IS_SELECTED, isSelected());
     }
   }
 
   //------------------------------------------------------------------------------------------------
   void Child::activate()
   {
-    m_state.setValue(ChildState::kActive);
+    setState(ChildState::kActive);
   }
 
   //------------------------------------------------------------------------------------------------
@@ -113,13 +114,22 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void Child::graduate()
   {
-    m_state.setValue(ChildState::kGraduated);
+    setState(ChildState::kGraduated);
   }
 
   //------------------------------------------------------------------------------------------------
   void Child::die()
   {
-    m_state.setValue(ChildState::kDead);
+    setState(ChildState::kDead);
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void Child::setState(ChildState childState)
+  {
+    m_state.setValue(childState);
+    m_childObjectRef->set(DataSources::IS_ACTIVATED, childState == ChildState::kActive);
+    m_childObjectRef->set(DataSources::IS_GRADUATED, childState == ChildState::kGraduated);
+    m_childObjectRef->set(DataSources::IS_DEAD, childState == ChildState::kDead);
   }
 
   //------------------------------------------------------------------------------------------------
@@ -155,7 +165,7 @@ namespace MCF::Family
     if (isActivated())
     {
       attributeToModify.setValue(std::clamp(value, 0.0f, MAX_STAT_VALUE));
-      m_dataObjectHandle->set(dataSource, attributeToModify.getValue());
+      m_childObjectRef->set(dataSource, attributeToModify.getValue());
     }
   }
 
@@ -183,13 +193,16 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void Child::updateDataObject()
   {
-    m_dataObjectHandle->set(DataSources::CHILD_NAME, getName());
-    m_dataObjectHandle->set(Stats::DataSources::HEALTH, getHealth());
-    m_dataObjectHandle->set(Stats::DataSources::SAFETY, getSafety());
-    m_dataObjectHandle->set(Stats::DataSources::EDUCATION, getEducation());
-    m_dataObjectHandle->set(Stats::DataSources::HAPPINESS, getHappiness());
-    m_dataObjectHandle->set(DataSources::CURRENT_LOCATION, getCurrentLocation());
-    m_dataObjectHandle->set(DataSources::TIME_AT_LOCATION, getTimeAtLocation());
-    m_dataObjectHandle->set(DataSources::IS_SELECTED, isSelected());
+    m_childObjectRef->set(DataSources::CHILD_NAME, getName());
+    m_childObjectRef->set(Stats::DataSources::HEALTH, getHealth());
+    m_childObjectRef->set(Stats::DataSources::SAFETY, getSafety());
+    m_childObjectRef->set(Stats::DataSources::EDUCATION, getEducation());
+    m_childObjectRef->set(Stats::DataSources::HAPPINESS, getHappiness());
+    m_childObjectRef->set(DataSources::CURRENT_LOCATION, getCurrentLocation());
+    m_childObjectRef->set(DataSources::TIME_AT_LOCATION, getTimeAtLocation());
+    m_childObjectRef->set(DataSources::IS_SELECTED, isSelected());
+    m_childObjectRef->set(DataSources::IS_ACTIVATED, isActivated());
+    m_childObjectRef->set(DataSources::IS_GRADUATED, isGraduated());
+    m_childObjectRef->set(DataSources::IS_DEAD, isDead());
   }
 }

@@ -71,16 +71,4 @@ namespace MCF::Data
   {
     m_queuedUpdates.push_back(&dataNodeComponent);
   }
-
-  //------------------------------------------------------------------------------------------------
-  Persistence::DataObjectHandle DataSystem::getObject(const std::string& dataKey)
-  {
-    return Persistence::DataObjectHandle(m_dataStore, dataKey);
-  }
-
-  //------------------------------------------------------------------------------------------------
-  Persistence::DataArrayHandle DataSystem::getArray(const std::string& dataKey)
-  {
-    return Persistence::DataArrayHandle(m_dataStore, dataKey);
-  }
 }

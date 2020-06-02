@@ -10,14 +10,10 @@ namespace MCF::Stats
   class Modifier;
 }
 
-namespace MCF::Persistence
-{
-  class DataObjectHandle;
-}
-
 namespace MCF::Data
 {
   class DataSystem;
+  class ObjectRef;
 }
 
 namespace MCF::Family
@@ -82,6 +78,7 @@ namespace MCF::Family
 
     private:
       ChildState getState() const { return m_state.getValue(); }
+      void setState(ChildState childState);
 
       void setStat(
         float value,
@@ -103,7 +100,7 @@ namespace MCF::Family
       Celeste::ValueField<float>& m_timeAtLocation;
       Celeste::ValueField<ChildState>& m_state;
 
-      std::unique_ptr<Persistence::DataObjectHandle> m_dataObjectHandle;
+      std::unique_ptr<Data::ObjectRef> m_childObjectRef;
       bool m_isSelected;
   };
 }

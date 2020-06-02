@@ -44,7 +44,7 @@ function FamilyPanel:addChildIcon(child)
     log("Activating ChildIcon " .. tostring(numChildren))
 
     local childIconGameObject = self._childStackPanel:getChild(numChildren)
-    self._childIcons[child:getName()] = Class.new(ChildIcon, self._commandManager, self._dataStore, childIconGameObject, child)
+    self._childIcons[child:getName()] = Class.new(ChildIcon, self._commandManager, self._dataStore, childIconGameObject, child:getName())
     log("ChildIcon " .. tostring(numChildren) .. " activated")
 
     local familyPanelStackPanel = self._childStackPanel:findComponent("StackPanel"):layout()

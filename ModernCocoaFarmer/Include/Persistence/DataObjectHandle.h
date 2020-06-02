@@ -29,7 +29,6 @@ namespace MCF::Persistence
       std::string m_key;
   };
 
-
   //------------------------------------------------------------------------------------------------
   template <typename T>
   bool DataObjectHandle::is(const std::string& elementKey) const

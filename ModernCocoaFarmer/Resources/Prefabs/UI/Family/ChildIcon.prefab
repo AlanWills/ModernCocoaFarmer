@@ -15,6 +15,11 @@
                       looping="true"
                       seconds_per_frame="0.16"
                       play_immediately="false"/>
+            <ActivityController>
+              <InputPort name="is_active" guid="5ed176b9-ad03-49c9-bbf6-341d7c86e558">
+                <Connection>987f75e5-5c1e-4db0-88e8-0dfd1f61610f</Connection>
+              </InputPort>
+            </ActivityController>
           </Components>
           <GameObjects>
             <GameObject name="ChildName" position="0,-49,0">
@@ -37,6 +42,11 @@
         <GameObject name="ChildGraduatedImage" position="0,5,0.01" active="false">
           <Components>
             <SpriteRenderer sprite="Textures\UI\ChildIcons\ChildGraduated.png" size="50,50" preserve_aspect_ratio="true"/>
+            <ActivityController>
+              <InputPort name="is_active" guid="b13806da-b8e4-4340-8f01-281f8ac00667">
+                <Connection>6ac76106-5950-47e5-a319-6e025d44a410</Connection>
+              </InputPort>
+            </ActivityController>
           </Components>
           <GameObjects>
             <GameObject name="ChildName" position="0,-49,0">
@@ -54,6 +64,11 @@
         <GameObject name="ChildDeadImage" position="0,5,0.01" active="false">
           <Components>
             <SpriteRenderer sprite="Textures\UI\ChildIcons\ChildDead.png" size="50,50" preserve_aspect_ratio="true"/>
+            <ActivityController>
+              <InputPort name="is_active" guid="4f93bbf8-653e-4f56-8ed0-a1dc5b6245d3">
+                <Connection>d8c96d2c-49a2-4caf-a38f-ab4fd4645da1</Connection>
+              </InputPort>
+            </ActivityController>
           </Components>
           <GameObjects>
             <GameObject name="ChildName" position="0,-49,0">
@@ -79,6 +94,15 @@
                   <OutputPort name="child_name" guid="bb50ebf3-c503-4ec8-95cf-0913649d43bb">
                     <Connection>a3838c26-69bc-4ab9-ae4b-b32300165d81</Connection>
                   </OutputPort>
+                  <OutputPort name="is_activated" guid="d38561aa-73d4-45f5-8791-a571a6fe5406">
+                    <Connection>610d0683-97c9-4d30-97ed-3cc31e9a91e2</Connection>
+                  </OutputPort>
+                  <OutputPort name="is_graduated" guid="a25956d8-b983-438f-a704-802a06011271">
+                    <Connection>cdd3e3af-d8ad-499e-b479-ea2b12002955</Connection>
+                  </OutputPort>
+                  <OutputPort name="is_dead" guid="dd2d0e8d-227c-4b03-bc75-6f877c2ed4b4">
+                    <Connection>1af299a9-2d1a-48fd-8d1f-a12a9d8de41a</Connection>
+                  </OutputPort>
                 </DataObjectKey>
               </Components>
             </GameObject>
@@ -92,6 +116,42 @@
                     <Connection>78a0a399-0be7-4280-aad2-4a8c43f5c622</Connection>
                     <Connection>6681e9eb-7658-41fe-825f-a9f144a4fe64</Connection>
                     <Connection>544def88-9d47-4d1f-babf-0c0797cfb277</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="IsActivated">
+              <Components>
+                <DataReader key="" type="0">
+                  <InputPort name="key" guid="610d0683-97c9-4d30-97ed-3cc31e9a91e2">
+                    <Connection>d38561aa-73d4-45f5-8791-a571a6fe5406</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="987f75e5-5c1e-4db0-88e8-0dfd1f61610f">
+                    <Connection>5ed176b9-ad03-49c9-bbf6-341d7c86e558</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="IsGraduated">
+              <Components>
+                <DataReader key="" type="0">
+                  <InputPort name="key" guid="cdd3e3af-d8ad-499e-b479-ea2b12002955">
+                    <Connection>a25956d8-b983-438f-a704-802a06011271</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="6ac76106-5950-47e5-a319-6e025d44a410">
+                    <Connection>b13806da-b8e4-4340-8f01-281f8ac00667</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="IsDead">
+              <Components>
+                <DataReader key="" type="0">
+                  <InputPort name="key" guid="1af299a9-2d1a-48fd-8d1f-a12a9d8de41a">
+                    <Connection>dd2d0e8d-227c-4b03-bc75-6f877c2ed4b4</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="d8c96d2c-49a2-4caf-a38f-ab4fd4645da1">
+                    <Connection>4f93bbf8-653e-4f56-8ed0-a1dc5b6245d3</Connection>
                   </OutputPort>
                 </DataReader>
               </Components>

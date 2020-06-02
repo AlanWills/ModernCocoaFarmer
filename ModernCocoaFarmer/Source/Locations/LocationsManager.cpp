@@ -5,6 +5,7 @@
 #include "Stats/DataSources.h"
 #include "Stats/Modifier.h"
 #include "Data/DataSystem.h"
+#include "Data/ObjectRef.h"
 
 using namespace Celeste::XML;
 
@@ -78,7 +79,7 @@ namespace MCF::Locations
         locationKey.push_back('.');
         locationKey.append(location.getName());
 
-        Persistence::DataObjectHandle locationObject = m_dataSystem->getObject(locationKey);
+        Data::ObjectRef locationObject(*m_dataSystem, locationKey);
         locationObject.set(DataSources::NAME, location.getName());
         locationObject.set(DataSources::DESCRIPTION, location.getDescription());
         locationObject.set(DataSources::DAYS_TO_COMPLETE, location.getDaysToComplete());
@@ -102,7 +103,7 @@ namespace MCF::Locations
     key.push_back('.');
     key.append(modifierKey);
 
-    Persistence::DataObjectHandle locationObject = m_dataSystem->getObject(key);
+    Data::ObjectRef locationObject(*m_dataSystem, key);
     locationObject.set(Stats::DataSources::IS_DELTA, modifier.getChangeType() == Stats::ChangeType::kDelta);
     locationObject.set(Stats::DataSources::AMOUNT, modifier.getAmount());
   }

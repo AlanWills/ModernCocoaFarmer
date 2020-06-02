@@ -1,6 +1,7 @@
 #include "ScriptCommands/Data/DataSystemScriptCommands.h"
 #include "Data/DataUtils.h"
 #include "Data/DataSystem.h"
+#include "Data/ObjectRef.h"
 #include "sol/sol.hpp"
 
 
@@ -13,6 +14,12 @@ namespace MCF::Lua::Data::DataSystemScriptCommands
     T get(MCF::Data::DataSystem& dataSystem, const char* const key)
     {
       return dataSystem.get<T>(key, T());
+    }
+
+    //------------------------------------------------------------------------------------------------
+    MCF::Data::ObjectRef getObject(MCF::Data::DataSystem& dataSystem, const char* const key)
+    {
+      return MCF::Data::ObjectRef(dataSystem, key);
     }
   }
 
@@ -34,7 +41,6 @@ namespace MCF::Lua::Data::DataSystemScriptCommands
       "getUInt", &Internals::get<unsigned int>,
       "getFloat", &Internals::get<float>,
       "getString", &Internals::get<std::string>,
-      "getObject", &MCF::Data::DataSystem::getObject,
-      "getArray", &MCF::Data::DataSystem::getArray);
+      "getObject", &Internals::getObject);
   }
 }

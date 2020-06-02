@@ -3,8 +3,6 @@
 #include "MCFLibraryDllExport.h"
 #include "System/ISystem.h"
 #include "Persistence/DataStore.h"
-#include "Persistence/DataObjectHandle.h"
-#include "Persistence/DataArrayHandle.h"
 #include "CelesteStl/Memory/ObserverPtr.h"
 
 #include <unordered_set>
@@ -24,9 +22,6 @@ namespace MCF::Data
       {
         return m_dataStore.get<T>(dataKey, defaultValue);
       }
-
-      MCFLibraryDllExport Persistence::DataObjectHandle getObject(const std::string& dataKey);
-      MCFLibraryDllExport Persistence::DataArrayHandle getArray(const std::string& dataKey);
 
       template <typename T>
       bool set(const std::string& dataKey, T value);
