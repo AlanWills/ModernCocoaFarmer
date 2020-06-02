@@ -10,6 +10,8 @@ local ChildIcon =
     CHILD_DEAD_IMAGE = "ChildDeadImage",
     CHILD_SELECTED_ICON_NAME = "ChildSelectedIcon",
     CHILD_NAME_NAME = "ChildName",
+    CONSTANTS_NAME = "Constants",
+    CHILD_ROOT_KEY_NAME = "ChildRootKey",
 }
 
 ---------------------------------------------------------------------------------
@@ -46,15 +48,8 @@ function ChildIcon:new(commandManager, dataStore, gameObject, child)
     childInteractionHandler:subscribeOnLeaveCallback(hideChildStats, self)
     childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, self)
 
-    self:setNameText(child:getName())
-end
-
----------------------------------------------------------------------------------
-function ChildIcon:setNameText(childName)
-    -- Hook these up to the data system when we implement the components
-    self._gameObject:findChild(self.CHILD_ACTIVE_IMAGE):findChild(self.CHILD_NAME_NAME):findComponent("TextRenderer"):setText(childName)
-    self._gameObject:findChild(self.CHILD_GRADUATED_IMAGE):findChild(self.CHILD_NAME_NAME):findComponent("TextRenderer"):setText(childName)
-    self._gameObject:findChild(self.CHILD_DEAD_IMAGE):findChild(self.CHILD_NAME_NAME):findComponent("TextRenderer"):setText(childName)
+    local childRootKeyGameObject = gameObject:findChild(self.CONSTANTS_NAME):findChild(self.CHILD_ROOT_KEY_NAME)
+    childRootKeyGameObject:findComponent("Constant"):setValue(FamilyDataSources.CHILDREN .. "." .. child:getName())
 end
 
 ---------------------------------------------------------------------------------

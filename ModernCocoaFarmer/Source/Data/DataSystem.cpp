@@ -8,8 +8,8 @@ namespace MCF::Data
   //------------------------------------------------------------------------------------------------
   void DataSystem::update(float /*elapsedGameTime*/)
   {
-    m_inputPortLookup.clear();
-    ASSERT(m_pendingConnections.empty());
+    ASSERT(m_pendingInputPortConnections.empty());
+    ASSERT(m_pendingOutputPortConnections.empty());
 
     for (auto& reader : Communication::DataReader::m_allocator)
     {
@@ -24,45 +24,45 @@ namespace MCF::Data
 
     for (observer_ptr<DataNodeComponent> queuedUpdate : m_queuedUpdates)
     {
-      queuedUpdate->update();
+      queuedUpdate->update(*this);
     }
 
     m_queuedUpdates.clear();
   }
 
   //------------------------------------------------------------------------------------------------
-  void DataSystem::addInputPort(const std::string& fullPath, InputPort& inputPort)
+  void DataSystem::addInputPortConnection(InputPort& inputPort, const std::string& fullConnectionPath)
   {
-    auto exists = m_inputPortLookup.find(fullPath);
-    ASSERT(exists == m_inputPortLookup.end());
+    auto exists = m_pendingOutputPortConnections.find(fullConnectionPath);
 
-    if (exists == m_inputPortLookup.end())
+    if (exists == m_pendingOutputPortConnections.end())
     {
-      m_inputPortLookup.emplace(fullPath, &inputPort);
-      tryResolvePendingConnections();
+      // We do not have a pending output port with the same registered connection so we cache the input port
+      m_pendingInputPortConnections.emplace(fullConnectionPath, &inputPort);
+    }
+    else
+    {
+      // We have a pending output port with the same registered connection so we resolve and remove
+      exists->second->connect(inputPort);
+      m_pendingOutputPortConnections.erase(exists);
     }
   }
 
   //------------------------------------------------------------------------------------------------
-  void DataSystem::addPendingConnection(const std::string& fullPath, OutputPort& outputPort)
+  void DataSystem::addOutputPortConnection(OutputPort& outputPort, const std::string& fullConnectionPath)
   {
-    m_pendingConnections.push_back(std::make_tuple(fullPath, &outputPort));
-    tryResolvePendingConnections();
-  }
+    auto exists = m_pendingInputPortConnections.find(fullConnectionPath);
 
-  //------------------------------------------------------------------------------------------------
-  void DataSystem::tryResolvePendingConnections()
-  {
-    for (size_t i = m_pendingConnections.size(); i > 0; --i)
+    if (exists == m_pendingInputPortConnections.end())
     {
-      auto& pendingConnection = m_pendingConnections[i - 1];
-      auto inputPortIt = m_inputPortLookup.find(std::get<0>(pendingConnection));
-
-      if (inputPortIt != m_inputPortLookup.end())
-      {
-        std::get<1>(pendingConnection)->connect(*inputPortIt->second);
-        m_pendingConnections.erase(std::next(m_pendingConnections.begin(), i - 1));
-      }
+      // We do not have a pending input port with the same registered connection so we cache the output port
+      m_pendingOutputPortConnections.emplace(fullConnectionPath, &outputPort);
+    }
+    else
+    {
+      // We have a pending input port with the same registered connection so we resolve and remove
+      outputPort.connect(*exists->second);
+      m_pendingInputPortConnections.erase(exists);
     }
   }
 

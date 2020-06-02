@@ -10,15 +10,32 @@
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\Play.png" size="25,25" colour="0.35,0.7,0" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
-            <Sprite guid="22209d02-7ded-4626-bd0e-3de6c2a0cd71"/>
-            <ValueForwarder guid="18428297-3f01-400b-883a-dd405b1b904b" type="5">
-              <OutputPort name="output">
-                <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71::colour</Connection>
+            <Sprite>
+              <InputPort name="colour" guid="22209d02-7ded-4626-bd0e-3de6c2a0cd71">
+                <Connection>62917577-19ca-4440-b822-ce1ee7eae809</Connection>
+                <Connection>d55738d5-981e-4a17-af52-e07969590a72</Connection>
+              </InputPort>
+            </Sprite>
+            <ValueForwarder type="5">
+              <InputPort name="trigger" guid="e8404223-177d-475a-a94a-289c1eb4037a">
+                <Connection>c207945c-fa4d-43cd-8a86-f2969eef43ca</Connection>
+              </InputPort>
+              <InputPort name="value" guid="18428297-3f01-400b-883a-dd405b1b904b">
+                <Connection>04620b34-b6e0-4b07-91ec-fb0fe6374d80</Connection>
+              </InputPort>
+              <OutputPort name="output" guid="62917577-19ca-4440-b822-ce1ee7eae809">
+                <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71</Connection>
               </OutputPort>
             </ValueForwarder>
-            <ValueForwarder guid="576fb015-34a2-49ca-87a2-e7295a6d791d" type="5">
-              <OutputPort name="output">
-                <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71::colour</Connection>
+            <ValueForwarder type="5">
+              <InputPort name="trigger" guid="f3fcc578-2c37-4b56-83a3-2ed7caff12db">
+                <Connection>8d8d53e3-c1db-4709-a2f0-6e9c698dc900</Connection>
+              </InputPort>
+              <InputPort name="value" guid="4a0cc402-d39d-4cba-a88e-59ebdb6dc176">
+                <Connection>a610de0a-1d74-49c6-b17d-02a81e0902cf</Connection>
+              </InputPort>
+              <OutputPort name="output" guid="d55738d5-981e-4a17-af52-e07969590a72">
+                <Connection>22209d02-7ded-4626-bd0e-3de6c2a0cd71</Connection>
               </OutputPort>
             </ValueForwarder>
           </Components>
@@ -27,15 +44,32 @@
           <Components>
             <SpriteRenderer sprite="Textures\UI\Settings\Pause.png" size="25,25" colour="0.4,0.4,0.4" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
-            <Sprite guid="d44267e9-ae5f-4320-b990-a89bd5d10d47"/>
-            <ValueForwarder guid="00630d7a-1059-4459-a8d2-8f17686af92d" type="5">
-              <OutputPort name="output">
-                <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47::colour</Connection>
+            <Sprite>
+              <InputPort name="colour" guid="d44267e9-ae5f-4320-b990-a89bd5d10d47">
+                <Connection>f0922b79-0261-487f-82d5-bcccd5a0a036</Connection>
+                <Connection>2851f7b2-8c41-4174-a1bf-0de100485ab9</Connection>
+              </InputPort>
+            </Sprite>
+            <ValueForwarder type="5">
+              <InputPort name="trigger" guid="ed8036b6-d788-4f39-b41b-5dbfe6380e55">
+                <Connection>8d8d53e3-c1db-4709-a2f0-6e9c698dc900</Connection>
+              </InputPort>
+              <InputPort name="value" guid="6c904fd7-bf7d-44c2-ba0c-9739fdc00224">
+                <Connection>04620b34-b6e0-4b07-91ec-fb0fe6374d80</Connection>
+              </InputPort>
+              <OutputPort name="output" guid="f0922b79-0261-487f-82d5-bcccd5a0a036">
+                <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47</Connection>
               </OutputPort>
             </ValueForwarder>
-            <ValueForwarder guid="fe80ae24-3708-4139-bbaf-fac5842a228d" type="5">
-              <OutputPort name="output">
-                <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47::colour</Connection>
+            <ValueForwarder type="5">
+              <InputPort name="trigger" guid="086bc1eb-a788-4b75-8ee4-c93c1f217460">
+                <Connection>c207945c-fa4d-43cd-8a86-f2969eef43ca</Connection>
+              </InputPort>
+              <InputPort name="value" guid="235bb07e-79bf-458f-a743-79993fbe2c28">
+                <Connection>a610de0a-1d74-49c6-b17d-02a81e0902cf</Connection>
+              </InputPort>
+              <OutputPort name="output" guid="2851f7b2-8c41-4174-a1bf-0de100485ab9">
+                <Connection>d44267e9-ae5f-4320-b990-a89bd5d10d47</Connection>
               </OutputPort>
             </ValueForwarder>
           </Components>
@@ -43,37 +77,44 @@
         <GameObject name="MonthText" position="-20,-2,0.01">
           <Components>
             <TextRenderer text="September" font_height="24" horizontal_alignment="left" colour="0.2,0.2,0.2"/>
-            <Text guid="d8c8ee56-c887-43ea-bd51-dcc7893e59d9"/>
+            <Text>
+              <InputPort name="text" guid="d8c8ee56-c887-43ea-bd51-dcc7893e59d9">
+                <Connection>b3fd453a-7edd-4ead-87d1-6b5fe2dcbd17</Connection>
+              </InputPort>
+            </Text>
           </Components>
         </GameObject>
         <GameObject name="DataSources">
           <GameObjects>
             <GameObject name="#Month">
               <Components>
-                <DataReader guid="b3fd453a-7edd-4ead-87d1-6b5fe2dcbd17" type="4" key="time.current_month">
-                  <OutputPort name="value">
-                    <Connection>d8c8ee56-c887-43ea-bd51-dcc7893e59d9::text</Connection>
+                <DataReader type="4" key="time.current_month">
+                  <OutputPort name="value" guid="b3fd453a-7edd-4ead-87d1-6b5fe2dcbd17">
+                    <Connection>d8c8ee56-c887-43ea-bd51-dcc7893e59d9</Connection>
                   </OutputPort>
                 </DataReader>
               </Components>
             </GameObject>
             <GameObject name="#IsPaused">
               <Components>
-                <DataReader guid="8d8d53e3-c1db-4709-a2f0-6e9c698dc900" type="0" key="time.is_paused">
-                  <OutputPort name="value">
-                    <Connection>576fb015-34a2-49ca-87a2-e7295a6d791d::trigger</Connection>
-                    <Connection>00630d7a-1059-4459-a8d2-8f17686af92d::trigger</Connection>
-                    <Connection>9f86c04b-f57a-4f5d-9757-5fb2eab05aa7::input</Connection>
+                <DataReader type="0" key="time.is_paused">
+                  <OutputPort name="value" guid="8d8d53e3-c1db-4709-a2f0-6e9c698dc900">
+                    <Connection>2dd05add-c83e-4fcf-b98f-110a09e127d3</Connection>
+                    <Connection>ed8036b6-d788-4f39-b41b-5dbfe6380e55</Connection>
+                    <Connection>f3fcc578-2c37-4b56-83a3-2ed7caff12db</Connection>
                   </OutputPort>
                 </DataReader>
               </Components>
             </GameObject>
             <GameObject name="#IsNotPaused">
               <Components>
-                <Not guid="9f86c04b-f57a-4f5d-9757-5fb2eab05aa7">
-                  <OutputPort name="output">
-                    <Connection>18428297-3f01-400b-883a-dd405b1b904b::trigger</Connection>
-                    <Connection>fe80ae24-3708-4139-bbaf-fac5842a228d::trigger</Connection>
+                <Not>
+                  <InputPort name="input" guid="2dd05add-c83e-4fcf-b98f-110a09e127d3">
+                    <Connection>8d8d53e3-c1db-4709-a2f0-6e9c698dc900</Connection>
+                  </InputPort>
+                  <OutputPort name="output" guid="c207945c-fa4d-43cd-8a86-f2969eef43ca">
+                    <Connection>086bc1eb-a788-4b75-8ee4-c93c1f217460</Connection>
+                    <Connection>e8404223-177d-475a-a94a-289c1eb4037a</Connection>
                   </OutputPort>
                 </Not>
               </Components>
@@ -84,20 +125,20 @@
           <GameObjects>
             <GameObject name="#SelectedButtonColour">
               <Components>
-                <Constant guid="04620b34-b6e0-4b07-91ec-fb0fe6374d80" type="5" value="0.35,0.7,0">
-                  <OutputPort name="value">
-                    <Connection>18428297-3f01-400b-883a-dd405b1b904b::value</Connection>
-                    <Connection>00630d7a-1059-4459-a8d2-8f17686af92d::value</Connection>
+                <Constant type="5" value="0.35,0.7,0">
+                  <OutputPort name="value" guid="04620b34-b6e0-4b07-91ec-fb0fe6374d80">
+                    <Connection>6c904fd7-bf7d-44c2-ba0c-9739fdc00224</Connection>
+                    <Connection>18428297-3f01-400b-883a-dd405b1b904b</Connection>
                   </OutputPort>
                 </Constant>
               </Components>
             </GameObject>
             <GameObject name="#UnselectedButtonColour">
               <Components>
-                <Constant guid="a610de0a-1d74-49c6-b17d-02a81e0902cf" type="5" value="0.4,0.4,0.4">
-                  <OutputPort name="value">
-                    <Connection>576fb015-34a2-49ca-87a2-e7295a6d791d::value</Connection>
-                    <Connection>fe80ae24-3708-4139-bbaf-fac5842a228d::value</Connection>
+                <Constant type="5" value="0.4,0.4,0.4">
+                  <OutputPort name="value" guid="a610de0a-1d74-49c6-b17d-02a81e0902cf">
+                    <Connection>235bb07e-79bf-458f-a743-79993fbe2c28</Connection>
+                    <Connection>4a0cc402-d39d-4cba-a88e-59ebdb6dc176</Connection>
                   </OutputPort>
                 </Constant>
               </Components>

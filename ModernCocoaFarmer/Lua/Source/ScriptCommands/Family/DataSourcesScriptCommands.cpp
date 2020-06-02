@@ -18,5 +18,6 @@ namespace MCF::Lua::Family::DataSourcesScriptCommands
     dataSources["IS_SELECTED"] = DataSources::IS_SELECTED;
     dataSources["CURRENT_LOCATION"] = DataSources::CURRENT_LOCATION;
     dataSources["TIME_AT_LOCATION"] = DataSources::TIME_AT_LOCATION;
+    dataSources["CHILD_NAME"] = DataSources::CHILD_NAME;
   }
 }

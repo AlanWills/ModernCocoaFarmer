@@ -33,15 +33,13 @@ namespace MCF::Data
 
       MCFLibraryDllExport void update(float elapsedGameTime) override;
 
-      void addInputPort(const std::string& fullPath, InputPort& inputPort);
-      void addPendingConnection(const std::string& fullPath, OutputPort& outputPort);
+      void addInputPortConnection(InputPort& inputPort, const std::string& fullConnectionPath);
+      void addOutputPortConnection(OutputPort& outputPort, const std::string& fullConnectionPath);
       void queueUpdate(DataNodeComponent& dataNodeComponent);
 
     private:
-      void tryResolvePendingConnections();
-
-      std::unordered_map<std::string, observer_ptr<InputPort>> m_inputPortLookup;
-      std::vector<std::tuple<std::string, observer_ptr<OutputPort>>> m_pendingConnections;
+      std::unordered_map<std::string, observer_ptr<InputPort>> m_pendingInputPortConnections;
+      std::unordered_map<std::string, observer_ptr<OutputPort>> m_pendingOutputPortConnections;
       std::vector<observer_ptr<DataNodeComponent>> m_queuedUpdates;
       std::unordered_set<std::string> m_changedKeys;
 

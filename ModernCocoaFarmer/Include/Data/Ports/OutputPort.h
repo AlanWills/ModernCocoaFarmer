@@ -13,6 +13,10 @@ namespace MCF::Data
   {
     public:
       OutputPort(const std::string& name, size_t type);
+      OutputPort(OutputPort&&) = default;
+      ~OutputPort() = default;
+
+      OutputPort& operator=(OutputPort&&) = default;
 
       void connect(InputPort& port);
 

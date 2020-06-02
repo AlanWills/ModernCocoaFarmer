@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Objects/Component.h"
-#include "crossguid/guid.hpp"
 #include "Data/Ports/PortType.h"
 #include "Data/Ports/InputPort.h"
 #include "Data/Ports/OutputPort.h"
@@ -14,13 +13,17 @@
 
 namespace MCF::Data
 {
+  class DataSystem;
+
   class DataNodeComponent : public Celeste::Component
   {
     public:
       DataNodeComponent(Celeste::GameObject& gameObject);
+      DataNodeComponent(const DataNodeComponent&) = delete;
+      DataNodeComponent(DataNodeComponent&&) = default;
 
-      const xg::Guid& getGuid() const { return m_guid; }
-      void setGuid(const xg::Guid& guid) { m_guid = guid; }
+      DataNodeComponent& operator=(const DataNodeComponent&) = delete;
+      DataNodeComponent& operator=(DataNodeComponent&&) = default;
 
       size_t getInputPortCount() const { return m_inputs.size(); }
       size_t getOutputPortCount() const { return m_outputs.size(); }
@@ -34,6 +37,8 @@ namespace MCF::Data
       void removeInputPort(const std::string& name);
       void removeOutputPort(const std::string& name);
 
+      virtual void update(const DataSystem& /*dataSystem*/) {}
+
     protected:
       template <typename T>
       InputPort& createInputPort(const std::string& name, InputPort::ValueChangedCallback&& valueChanged);
@@ -42,7 +47,8 @@ namespace MCF::Data
       OutputPort& createOutputPort(const std::string& name);
 
     private:
-      xg::Guid m_guid;
+      void update() override {}
+
       std::vector<std::unique_ptr<InputPort>> m_inputs;
       std::vector<std::unique_ptr<OutputPort>> m_outputs;
   };

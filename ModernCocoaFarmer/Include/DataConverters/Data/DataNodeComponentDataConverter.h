@@ -2,7 +2,7 @@
 
 #include "MCFLibraryDllExport.h"
 #include "DataConverters/Objects/ComponentDataConverter.h"
-#include "DataConverters/Data/Ports/OutputPortDataConverter.h"
+#include "DataConverters/Data/Ports/PortDataConverter.h"
 
 
 namespace MCF::Data
@@ -17,20 +17,18 @@ namespace MCF::DataConverters::Data
     public:
       DataNodeComponentDataConverter(const std::string& elementName);
 
-      const std::string& getGuid() const { return m_guid.getValue(); }
-
-      MCFLibraryDllExport static const char* const GUID_ATTRIBUTE_NAME;
-
     protected:
       bool doConvertFromXML(const XMLElement* objectElement) override;
       void doSetValues(Celeste::Component& component) const override;
       void doSetValues(MCF::Data::DataNodeComponent& dataNodeComponent) const;
 
+      const std::vector<std::unique_ptr<PortDataConverter>>& getInputPortDataConverters() const { return m_inputPortDataConverters; }
+      const std::vector<std::unique_ptr<PortDataConverter>>& getOutputPortDataConverters() const { return m_outputPortDataConverters; }
+
     private:
       using Inherited = Celeste::ComponentDataConverter;
 
-      Celeste::XML::ReferenceAttribute<std::string>& m_guid;
-
-      std::vector<std::unique_ptr<OutputPortDataConverter>> m_outputPortDataConverters;
+      std::vector<std::unique_ptr<PortDataConverter>> m_inputPortDataConverters;
+      std::vector<std::unique_ptr<PortDataConverter>> m_outputPortDataConverters;
   };
 }

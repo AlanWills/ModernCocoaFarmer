@@ -20,6 +20,12 @@ namespace MCF::Data
         m_valueChanged(std::move(valueChangedCallback))
       {
       }
+      InputPort(const InputPort&) = delete;
+      InputPort(InputPort&&) = default;
+      ~InputPort() = default;
+
+      InputPort& operator=(const InputPort&) = delete;
+      InputPort& operator=(InputPort&&) = default;
 
       template <typename T>
       void setValue(T value) 

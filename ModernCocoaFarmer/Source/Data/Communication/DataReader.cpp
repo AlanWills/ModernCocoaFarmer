@@ -9,13 +9,13 @@ namespace MCF::Data::Communication
 {
   //------------------------------------------------------------------------------------------------
   using Data = Persistence::Data;
-  using DataReaderSetters = celstl::VariantFunctions<Data, void, DataSystem&, Communication::DataReader&>;
+  using DataReaderSetters = celstl::VariantFunctions<Data, void, const DataSystem&, Communication::DataReader&>;
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
   struct DataReaderSetter
   {
-    static void execute(DataSystem& dataSystem, Communication::DataReader& reader)
+    static void execute(const DataSystem& dataSystem, Communication::DataReader& reader)
     {
       reader.setValue(dataSystem.get<T>(reader.getKey()));
     }
@@ -27,21 +27,30 @@ namespace MCF::Data::Communication
   REGISTER_COMPONENT(DataReader, 30);
 
   //------------------------------------------------------------------------------------------------
+  const std::string DataReader::KEY_PORT_NAME = "key";
   const std::string DataReader::VALUE_PORT_NAME = "value";
 
   //------------------------------------------------------------------------------------------------
   DataReader::DataReader(Celeste::GameObject& gameObject) :
     Inherited(gameObject),
-    m_value(createOutputPort<bool>(VALUE_PORT_NAME))
+    m_keyPort(createInputPort<std::string>(KEY_PORT_NAME, [this](Persistence::Data&& newValue) { onKeyPortChanged(std::move(newValue)); })),
+    m_valuePort(createOutputPort<bool>(VALUE_PORT_NAME))
   {
   }
 
   //------------------------------------------------------------------------------------------------
-  void DataReader::update()
+  void DataReader::update(const DataSystem& dataSystem)
   {
     if (getType() < s_dataReaderSetters.size())
     {
-      s_dataReaderSetters.m_functions[getType()](getDataSystem(), *this);
+      s_dataReaderSetters.m_functions[getType()](dataSystem, *this);
     }
+  }
+
+  //------------------------------------------------------------------------------------------------
+  void DataReader::onKeyPortChanged(Persistence::Data&& newValue)
+  {
+    m_key = std::get<std::string>(newValue);
+    getDataSystem().queueUpdate(*this);
   }
 }

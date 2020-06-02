@@ -24,7 +24,6 @@ end
 ---------------------------------------------------------------------------------
 function TopBar:updateUI()
     self._familyPanel:updateUI()
-    self._menuPanel:updateUI()
 end
 
 return TopBar

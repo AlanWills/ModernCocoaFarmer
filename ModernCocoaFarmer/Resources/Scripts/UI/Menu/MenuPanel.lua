@@ -28,8 +28,4 @@ function MenuPanel:new(commandManager, dataStore, menuPanelGameObject)
     menuPanelGameObject:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, showInGameMenu, self)
 end
 
----------------------------------------------------------------------------------
-function MenuPanel:updateUI()
-end
-
 return MenuPanel

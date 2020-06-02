@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CelesteStl/Memory/ObserverPtr.h"
+#include "crossguid/guid.hpp"
 
 #include <vector>
 #include <string>
@@ -23,10 +24,14 @@ namespace MCF::Data
       size_t getType() const { return m_type; }
       void setType(size_t type) { m_type = type; }
 
+      const xg::Guid& getGuid() const { return m_guid; }
+      void setGuid(const xg::Guid& guid) { m_guid = guid; }
+
     protected:
       Port(const std::string& name, size_t type) :
         m_name(name),
-        m_type(type)
+        m_type(type),
+        m_guid(xg::newGuid())
       {
       }
       ~Port() = default;  // Prevent deletion through base pointer
@@ -34,5 +39,6 @@ namespace MCF::Data
     private:
       std::string m_name;
       size_t m_type;
+      xg::Guid m_guid;
   };
 }

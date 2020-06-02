@@ -183,6 +183,7 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void Child::updateDataObject()
   {
+    m_dataObjectHandle->set(DataSources::CHILD_NAME, getName());
     m_dataObjectHandle->set(Stats::DataSources::HEALTH, getHealth());
     m_dataObjectHandle->set(Stats::DataSources::SAFETY, getSafety());
     m_dataObjectHandle->set(Stats::DataSources::EDUCATION, getEducation());
