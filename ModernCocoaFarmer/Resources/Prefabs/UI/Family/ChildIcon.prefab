@@ -58,6 +58,23 @@
                 </ActivityController>
               </Components>
             </GameObject>
+            <GameObject name="ChildLocation" position="28,8,0" active="true">
+              <Components>
+                <SpriteRenderer sprite="" size="38,38" preserve_aspect_ratio="true"/>
+                <ResourceDictionary type="0">
+                  <Resource key="Farm" path="Textures\UI\LocationIcons\Farm.png"/>
+                  <Resource key="Home" path="Textures\UI\LocationIcons\Home.png"/>
+                  <Resource key="Hospital" path="Textures\UI\LocationIcons\Hospital.png"/>
+                  <Resource key="Market" path="Textures\UI\LocationIcons\Market.png"/>
+                  <Resource key="Mosque" path="Textures\UI\LocationIcons\Mosque.png"/>
+                  <Resource key="School" path="Textures\UI\LocationIcons\School.png"/>
+                  <Resource key="Well" path="Textures\UI\LocationIcons\Well.png"/>
+                  <InputPort name="key" guid="a043d3f0-f6f4-423b-9f53-bc0c6554ea6a">
+                    <Connection>84e71376-83eb-4cf0-b9f4-8ac50d3a7096</Connection>
+                  </InputPort>
+                </ResourceDictionary>
+              </Components>
+            </GameObject>
           </GameObjects>
         </GameObject>
         <GameObject name="ChildGraduatedImage" position="0,5,0.01" active="false">
@@ -128,6 +145,9 @@
                   <OutputPort name="is_selected" guid="efbcf06a-9c8e-4d97-94c0-0ed428369e13">
                     <Connection>54371eb1-5dfe-4231-994d-5b8dea9ca887</Connection>
                   </OutputPort>
+                  <OutputPort name="current_location" guid="355eba1b-4d42-4dcc-97f6-79fbbef2c4d0">
+                    <Connection>2df3a1a1-683a-425c-ab32-56ef3a8e162f</Connection>
+                  </OutputPort>
                 </DataObjectKey>
               </Components>
             </GameObject>
@@ -191,6 +211,18 @@
                     <Connection>db556453-294b-468b-bba7-1156c98a8ab8</Connection>
                     <Connection>0cf605ec-48fc-4557-b866-3ec8730d31b2</Connection>
                     <Connection>2c25f5dc-11d4-43e8-af92-77345913c674</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="CurrentLocation">
+              <Components>
+                <DataReader key="" type="4">
+                  <InputPort name="key" guid="2df3a1a1-683a-425c-ab32-56ef3a8e162f">
+                    <Connection>355eba1b-4d42-4dcc-97f6-79fbbef2c4d0</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="84e71376-83eb-4cf0-b9f4-8ac50d3a7096">
+                    <Connection>a043d3f0-f6f4-423b-9f53-bc0c6554ea6a</Connection>
                   </OutputPort>
                 </DataReader>
               </Components>
