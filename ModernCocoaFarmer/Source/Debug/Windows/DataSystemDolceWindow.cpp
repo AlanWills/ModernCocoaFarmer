@@ -1,3 +1,4 @@
+#if _DEBUG
 #include "Debug/Windows/DataSystemDolceWindow.h"
 #include "CelesteStl/Templates/Variant.h"
 #include "Utils/StringUtils.h"
@@ -139,3 +140,4 @@ namespace MCF::Debug
     }
   }
 }
+#endif

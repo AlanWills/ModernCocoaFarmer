@@ -1,5 +1,6 @@
 #pragma once
 
+#if _DEBUG
 #include "MCFLibraryDllExport.h"
 #include "Dolce/Windows/LuaDolceWindow.h"
 #include "CelesteStl/Memory/ObserverPtr.h"
@@ -57,3 +58,4 @@ namespace MCF::Debug
       DataSystemNode m_dataSystemRoot;
   };
 }
+#endif
