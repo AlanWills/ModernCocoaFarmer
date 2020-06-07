@@ -9,6 +9,11 @@
         <GameObject name="TitleText" position="0,250,0">
           <Components>
             <TextRenderer font_height="30" colour="0.2,0.2,0.2"/>
+            <Text>
+              <InputPort name="text" guid="e6f32ed1-73f5-4d62-8779-b3a7b6e5d7c1">
+                <Connection>2ab77b0f-4dd6-4d2e-87cb-663419a8ef88</Connection>
+              </InputPort>
+            </Text>
           </Components>
         </GameObject>
         <GameObject name="CloseButton" position="196,296,0.01">
@@ -21,6 +26,11 @@
           <Components>
             <TextRenderer font_height="20" colour="0.2,0.2,0.2" horizontal_alignment="Centre" vertical_alignment="Top"
                           horizontal_wrap_mode="Wrap" max_width="350"/>
+            <Text>
+              <InputPort name="text" guid="9d9d20b9-f3c1-4842-a467-fe228352fca3">
+                <Connection>d40b78b1-cf45-4753-8548-9f8a2a3b23a1</Connection>
+              </InputPort>
+            </Text>
           </Components>
         </GameObject>
         <GameObject name="LocationStats">
@@ -116,6 +126,62 @@
                   </Components>
                 </GameObject>
               </GameObjects>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="DataSources">
+          <GameObjects>
+            <GameObject name="LocationObjectKey">
+              <Components>
+                <DataObjectKey>
+                  <InputPort name="root_key" guid="2fba0af2-8d38-4cbf-8cb9-569271ee14d9">
+                    <Connection>974bc943-41fa-4e34-8dea-9f42bef036e2</Connection>
+                  </InputPort>
+                  <OutputPort name="name" guid="e0b1627a-764d-4d90-9468-5e50672e3fe5">
+                    <Connection>014c8cca-e48d-44c4-b9a2-aff02f80b040</Connection>
+                  </OutputPort>
+                  <OutputPort name="description" guid="cc8fec2f-f79d-4919-bf0f-f68c676167d3">
+                    <Connection>838f555e-f481-4ece-8b1d-22809f0a4250</Connection>
+                  </OutputPort>
+                </DataObjectKey>
+              </Components>
+            </GameObject>
+            <GameObject name="Name">
+              <Components>
+                <DataReader key="" type="4">
+                  <InputPort name="key" guid="014c8cca-e48d-44c4-b9a2-aff02f80b040">
+                    <Connection>e0b1627a-764d-4d90-9468-5e50672e3fe5</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="2ab77b0f-4dd6-4d2e-87cb-663419a8ef88">
+                    <Connection>e6f32ed1-73f5-4d62-8779-b3a7b6e5d7c1</Connection>
+                  </OutputPort>
+                </DataReader>
+                </Components>
+            </GameObject>
+            <GameObject name="Description">
+              <Components>
+                <DataReader key="" type="4">
+                  <InputPort name="key" guid="838f555e-f481-4ece-8b1d-22809f0a4250">
+                    <Connection>cc8fec2f-f79d-4919-bf0f-f68c676167d3</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="d40b78b1-cf45-4753-8548-9f8a2a3b23a1">
+                    <Connection>9d9d20b9-f3c1-4842-a467-fe228352fca3</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="Constants">
+          <GameObjects>
+            <GameObject name="LocationRootKey">
+              <Components>
+                <Constant type="4" value="">
+                  <OutputPort name="value" guid="974bc943-41fa-4e34-8dea-9f42bef036e2">
+                    <Connection>2fba0af2-8d38-4cbf-8cb9-569271ee14d9</Connection>
+                  </OutputPort>
+                </Constant>
+              </Components>
             </GameObject>
           </GameObjects>
         </GameObject>

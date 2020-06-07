@@ -21,7 +21,7 @@ local function showInGameMenu(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-function MenuPanel:new(commandManager, dataStore, menuPanelGameObject)
+function MenuPanel:new(commandManager, menuPanelGameObject)
     self._commandManager = commandManager
 
     menuPanelGameObject:setupChildLeftButtonUpCallback(self.SAVE_BUTTON_NAME, save, self)

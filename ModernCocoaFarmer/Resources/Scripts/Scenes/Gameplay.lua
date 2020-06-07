@@ -65,7 +65,6 @@ function Gameplay.show(state)
     Gameplay._topBar = Class.new(
         TopBar,
         commandManager,
-        System.getDataSystem(),
         topBarGameObject)
       
     local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)

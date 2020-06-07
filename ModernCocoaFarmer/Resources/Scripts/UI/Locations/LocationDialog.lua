@@ -24,6 +24,8 @@ LocationDialog.SEND_CHILD_BACKGROUND_NAME = "SendChild"
 LocationDialog.SEND_CHILD_HELP_TEXT_NAME = "SendChildHelpText"
 LocationDialog.SEND_CHILD_BUTTON_NAME = "SendChildButton"
 LocationDialog.SEND_CHILD_BUTTON_TEXT_NAME = "SendChildButtonText"
+LocationDialog.CONSTANTS_NAME = "Constants"
+LocationDialog.LOCATION_ROOT_KEY_NAME = "LocationRootKey"
 
 ----------------------------------------------------------------------------------------
 function LocationDialog:new(commandManager, dataStore, locationName)
@@ -34,6 +36,9 @@ function LocationDialog:new(commandManager, dataStore, locationName)
 
     self._dataStore = dataStore
     self._locationName = locationName
+
+    local locationRootKeyGameObject = self._gameObject:findChild(self.CONSTANTS_NAME):findChild(self.LOCATION_ROOT_KEY_NAME)
+    locationRootKeyGameObject:findComponent("Constant"):setValue(LocationsDataSources.LOCATIONS .. "." .. locationName)
 
     self:setUpLocationInfoUI()
     self:setUpCloseButton()
@@ -120,12 +125,6 @@ end
 function LocationDialog:setUpLocationInfoUI()
     local locationKey = LocationsDataSources.LOCATIONS .. "." .. self._locationName
     local locationDataObject = self._dataStore:getObject(locationKey)
-
-    local titleText = self._gameObject:findChild(self.TITLE_TEXT_NAME)
-    titleText:findComponent("TextRenderer"):setText(locationDataObject:getString(LocationsDataSources.NAME))
-
-    local descriptionText = self._gameObject:findChild(self.DESCRIPTION_TEXT_NAME)
-    descriptionText:findComponent("TextRenderer"):setText(locationDataObject:getString(LocationsDataSources.DESCRIPTION))
 
     local locationStats = self._gameObject:findChild(self.LOCATION_STATS_NAME)
     local timeIcon = locationStats:findChild(self.TIME_ICON_NAME)
