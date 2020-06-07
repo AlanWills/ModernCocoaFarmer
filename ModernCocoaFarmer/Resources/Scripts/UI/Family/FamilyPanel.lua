@@ -11,9 +11,8 @@ local function onChildAddedCallback(child, self)
 end
 
 ---------------------------------------------------------------------------------
-function FamilyPanel:new(commandManager, dataStore, familyPanelGameObject)
+function FamilyPanel:new(commandManager, familyPanelGameObject)
     self._commandManager = commandManager
-    self._dataStore = dataStore
     self._childStackPanel = familyPanelGameObject:findChild(self.CHILD_STACK_PANEL)
     self._childIcons = {}
 
@@ -44,7 +43,7 @@ function FamilyPanel:addChildIcon(child)
     log("Activating ChildIcon " .. tostring(numChildren))
 
     local childIconGameObject = self._childStackPanel:getChild(numChildren)
-    self._childIcons[child:getName()] = Class.new(ChildIcon, self._commandManager, self._dataStore, childIconGameObject, child:getName())
+    self._childIcons[child:getName()] = Class.new(ChildIcon, self._commandManager, childIconGameObject, child:getName())
     log("ChildIcon " .. tostring(numChildren) .. " activated")
 
     local familyPanelStackPanel = self._childStackPanel:findComponent("StackPanel"):layout()

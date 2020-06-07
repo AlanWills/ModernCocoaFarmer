@@ -18,12 +18,14 @@ namespace MCF::DataConverters::Data
 
       const std::string& getPortName() const { return m_portName.getValue(); }
       const std::string& getGuid() const { return m_guid.getValue(); }
+      size_t getType() const { return m_type.getValue(); }
       const std::vector<std::string>& getConnectionNames() const { return m_connectionNames; }
 
       void setValues(MCF::Data::Port& port) const;
 
       MCFLibraryDllExport static const char* const PORT_NAME_ATTRIBUTE_NAME;
       MCFLibraryDllExport static const char* const GUID_ATTRIBUTE_NAME;
+      MCFLibraryDllExport static const char* const TYPE_ATTRIBUTE_NAME;
       MCFLibraryDllExport static const char* const CONNECTION_ELEMENT_NAME;
 
     protected:
@@ -34,6 +36,7 @@ namespace MCF::DataConverters::Data
 
       Celeste::XML::ReferenceAttribute<std::string>& m_portName;
       Celeste::XML::ReferenceAttribute<std::string>& m_guid;
+      Celeste::XML::ValueAttribute<size_t>& m_type;
       
       std::vector<std::string> m_connectionNames;
   };

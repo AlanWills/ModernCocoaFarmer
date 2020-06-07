@@ -32,7 +32,10 @@ namespace MCF::Data
       observer_ptr<OutputPort> getOutputPort(size_t index) const;
 
       observer_ptr<InputPort> findInputPort(const std::string& name) const;
+      observer_ptr<InputPort> findInputPort(const xg::Guid& guid) const;
+      
       observer_ptr<OutputPort> findOutputPort(const std::string& name) const;
+      observer_ptr<OutputPort> findOutputPort(const xg::Guid& guid) const;
 
       void removeInputPort(const std::string& name);
       void removeOutputPort(const std::string& name);
@@ -42,9 +45,11 @@ namespace MCF::Data
     protected:
       template <typename T>
       InputPort& createInputPort(const std::string& name, InputPort::ValueChangedCallback&& valueChanged);
+      InputPort& createInputPort(const std::string& name, size_t type, InputPort::ValueChangedCallback&& valueChanged);
 
       template <typename T>
       OutputPort& createOutputPort(const std::string& name);
+      OutputPort& createOutputPort(const std::string& name, size_t type);
 
     private:
       void update() override {}
@@ -57,17 +62,13 @@ namespace MCF::Data
   template <typename T>
   InputPort& DataNodeComponent::createInputPort(const std::string& name, InputPort::ValueChangedCallback&& valueChanged)
   {
-    ASSERT(findInputPort(name) == nullptr);
-    m_inputs.emplace_back(std::make_unique<InputPort>(name, PortType<T>::value(), std::move(valueChanged)));
-    return static_cast<InputPort&>(*m_inputs.back());
+    return createInputPort(name, PortType<T>::value(), std::move(valueChanged));
   }
 
   //------------------------------------------------------------------------------------------------
   template <typename T>
   OutputPort& DataNodeComponent::createOutputPort(const std::string& name)
   {
-    ASSERT(findOutputPort(name) == nullptr);
-    m_outputs.emplace_back(std::make_unique<OutputPort>(name, PortType<T>::value()));
-    return static_cast<OutputPort&>(*m_outputs.back());
+    return createOutputPort(name, PortType<T>::value());
   }
 }

@@ -7,6 +7,7 @@ namespace MCF::DataConverters::Data
   //------------------------------------------------------------------------------------------------
   const char* const PortDataConverter::PORT_NAME_ATTRIBUTE_NAME = "name";
   const char* const PortDataConverter::GUID_ATTRIBUTE_NAME("guid");
+  const char* const PortDataConverter::TYPE_ATTRIBUTE_NAME("type");
   const char* const PortDataConverter::CONNECTION_ELEMENT_NAME = "Connection";
 
   //------------------------------------------------------------------------------------------------
@@ -14,6 +15,7 @@ namespace MCF::DataConverters::Data
     Inherited("OutputPort"),
     m_portName(createReferenceAttribute<std::string>(PORT_NAME_ATTRIBUTE_NAME, "", Celeste::DeserializationRequirement::kRequired)),
     m_guid(createReferenceAttribute<std::string>(GUID_ATTRIBUTE_NAME, "", Celeste::DeserializationRequirement::kRequired)),
+    m_type(createValueAttribute<size_t>(TYPE_ATTRIBUTE_NAME, std::numeric_limits<size_t>::max())),
     m_connectionNames()
   {
   }
@@ -33,5 +35,10 @@ namespace MCF::DataConverters::Data
   void PortDataConverter::setValues(MCF::Data::Port& port) const
   {
     port.setGuid(xg::Guid(getGuid()));
+
+    if (!m_type.isUsingDefaultValue())
+    {
+      port.setType(getType());
+    }
   }
 }

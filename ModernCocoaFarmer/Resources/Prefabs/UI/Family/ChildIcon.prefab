@@ -10,16 +10,32 @@
         <GameObject name="ChildActiveImage" position="0,5,0.01" active="false">
           <Components>
             <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="384,86" preserve_aspect_ratio="true"/>
-            <MouseInteractionHandler/>
-            <Animator sprite_sheet_dimensions="4,1"
-                      looping="true"
-                      seconds_per_frame="0.16"
-                      play_immediately="false"/>
             <ActivityController>
               <InputPort name="is_active" guid="5ed176b9-ad03-49c9-bbf6-341d7c86e558">
                 <Connection>987f75e5-5c1e-4db0-88e8-0dfd1f61610f</Connection>
               </InputPort>
             </ActivityController>
+            <MouseInteractionHandler/>
+            <MouseInput>
+              <OutputPort name="on_enter" guid="d5c1c83a-5728-472e-a2ce-35ad372ac29e">
+                <Connection>08bd29e7-7051-4a58-a9b6-153a9511ac85</Connection>
+              </OutputPort>
+              <OutputPort name="on_leave" guid="3c700b4f-d4a0-4da5-901f-a07e9dcfc1d0">
+                <Connection>43a520ad-c09d-4a7e-b4ff-edf925d9c551</Connection>
+              </OutputPort>
+            </MouseInput>
+            <Animator sprite_sheet_dimensions="4,1"
+                      looping="true"
+                      seconds_per_frame="0.16"
+                      play_immediately="false"/>
+            <AnimatorController>
+              <InputPort name="play" guid="0cf605ec-48fc-4557-b866-3ec8730d31b2">
+                <Connection>00a736a9-ea77-41dd-8fe0-ced8372d1e44</Connection>
+              </InputPort>
+              <InputPort name="stop" guid="c3ccb2f5-0c50-4563-8ab3-29b887166606">
+                <Connection>cce95068-b774-4f63-b613-a4993ec77cae</Connection>
+              </InputPort>
+            </AnimatorController>
           </Components>
           <GameObjects>
             <GameObject name="ChildName" position="0,-49,0">
@@ -35,6 +51,11 @@
             <GameObject name="ChildSelectedIcon" position="0,-5, 0" active="false">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\Outline.png" size="96, 108"/>
+                <ActivityController>
+                  <InputPort name="is_active" guid="2c25f5dc-11d4-43e8-af92-77345913c674">
+                    <Connection>00a736a9-ea77-41dd-8fe0-ced8372d1e44</Connection>
+                  </InputPort>
+                </ActivityController>
               </Components>
             </GameObject>
           </GameObjects>
@@ -83,6 +104,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
+        <Prefab name="ChildStatsDialog" path="Prefabs\UI\Family\ChildStatsPanel.prefab"/>
         <GameObject name="DataSources">
           <GameObjects>
             <GameObject name="ChildObjectKey">
@@ -102,6 +124,9 @@
                   </OutputPort>
                   <OutputPort name="is_dead" guid="dd2d0e8d-227c-4b03-bc75-6f877c2ed4b4">
                     <Connection>1af299a9-2d1a-48fd-8d1f-a12a9d8de41a</Connection>
+                  </OutputPort>
+                  <OutputPort name="is_selected" guid="efbcf06a-9c8e-4d97-94c0-0ed428369e13">
+                    <Connection>54371eb1-5dfe-4231-994d-5b8dea9ca887</Connection>
                   </OutputPort>
                 </DataObjectKey>
               </Components>
@@ -156,6 +181,20 @@
                 </DataReader>
               </Components>
             </GameObject>
+            <GameObject name="IsSelected">
+              <Components>
+                <DataReader key="" type="0">
+                  <InputPort name="key" guid="54371eb1-5dfe-4231-994d-5b8dea9ca887">
+                    <Connection>efbcf06a-9c8e-4d97-94c0-0ed428369e13</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="00a736a9-ea77-41dd-8fe0-ced8372d1e44">
+                    <Connection>db556453-294b-468b-bba7-1156c98a8ab8</Connection>
+                    <Connection>0cf605ec-48fc-4557-b866-3ec8730d31b2</Connection>
+                    <Connection>2c25f5dc-11d4-43e8-af92-77345913c674</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
           </GameObjects>
         </GameObject>
         <GameObject name="Constants">
@@ -165,8 +204,25 @@
                 <Constant type="4" value="">
                   <OutputPort name="value" guid="628711b7-f53a-4e2c-8598-06e46c672974">
                     <Connection>caf89664-45bc-4817-a358-aaf0caf17761</Connection>
+                    <Connection>ffa581e6-1fbd-4d0c-b7ff-8550b05b1126</Connection>
                   </OutputPort>
                 </Constant>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="Logic">
+          <GameObjects>
+            <GameObject name="IsNotSelected">
+              <Components>
+                <Not>
+                  <InputPort name="input" guid="db556453-294b-468b-bba7-1156c98a8ab8">
+                    <Connection>00a736a9-ea77-41dd-8fe0-ced8372d1e44</Connection>
+                  </InputPort>
+                  <OutputPort name="output" guid="cce95068-b774-4f63-b613-a4993ec77cae">
+                    <Connection>c3ccb2f5-0c50-4563-8ab3-29b887166606</Connection>
+                  </OutputPort>
+                </Not>
               </Components>
             </GameObject>
           </GameObjects>

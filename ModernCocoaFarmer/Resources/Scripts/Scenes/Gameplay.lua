@@ -49,7 +49,6 @@ function Gameplay.show(state)
 
     local commandManager = Class.new(CommandManager, state)
     local gameEventManager = Class.new(GameEventManager, commandManager)
-    local dataSystem = System.getDataSystem()
 
     Gameplay._state = state
     Gameplay._commandManager = commandManager
@@ -60,13 +59,13 @@ function Gameplay.show(state)
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, commandManager)
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
-    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, dataSystem, locationsUI)
+    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, System.getDataSystem(), locationsUI)
 
     local topBarGameObject = GameObject.find(Gameplay.TOP_BAR_NAME)
     Gameplay._topBar = Class.new(
         TopBar,
         commandManager,
-        dataSystem,
+        System.getDataSystem(),
         topBarGameObject)
       
     local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)
@@ -89,7 +88,7 @@ function Gameplay.hide()
     Gameplay._locationsUI = nil
     Gameplay._topBar = nil
     Gameplay._notificationsBar = nil
-    Gameplay.removeDolceWindows();
+    Gameplay.removeDolceWindows()
 
     GameObject.find(Gameplay.GAMEPLAY_ROOT_NAME):destroy()
 end
@@ -97,7 +96,6 @@ end
 ---------------------------------------------------------------------------------
 function Gameplay.updateUI()
     Gameplay._locationsUI:updateUI()
-    Gameplay._topBar:updateUI()
 
     Gameplay._state.modalDialogManager:destroyDialogs()
 end
