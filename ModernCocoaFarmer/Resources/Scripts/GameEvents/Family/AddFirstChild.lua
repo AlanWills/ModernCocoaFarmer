@@ -1,6 +1,7 @@
 local GameEventPeriod = require 'GameEvents.GameEventPeriod'
 local AddChild = require 'Commands.Family.AddChild'
 local SendNotification = require 'Commands.Notifications.SendNotification'
+local FamilyUtils = require 'Utility.FamilyUtils'
 
 local ActivateFirstChild = {}
 
@@ -17,7 +18,7 @@ function ActivateFirstChild.canTrigger(commandManager)
     local timeManager = commandManager.timeManager
     local familyManager = commandManager.familyManager
 
-    return familyManager:getChildCount() == 0 and
+    return FamilyUtils.getActivatedChildCount(familyManager) == 0 and
            timeManager:getCurrentDay() == ActivateFirstChild.DAY_TO_TRIGGER and
            timeManager:getCurrentMonth() == ActivateFirstChild.MONTH_TO_TRIGGER and
            timeManager:getCurrentYear() == ActivateFirstChild.YEAR_TO_TRIGGER
