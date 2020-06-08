@@ -6,6 +6,7 @@
 #include "Stats/Modifier.h"
 #include "Data/DataSystem.h"
 #include "Data/ObjectRef.h"
+#include "Persistence/DataPath.h"
 
 using namespace Celeste::XML;
 
@@ -75,35 +76,26 @@ namespace MCF::Locations
       {
         Location& location = locationRef.get();
         
-        std::string locationKey(DataSources::LOCATIONS);
-        locationKey.push_back('.');
-        locationKey.append(location.getName());
-
-        Data::ObjectRef locationObject(*m_dataSystem, locationKey);
+        Data::ObjectRef locationObject(*m_dataSystem, Persistence::DataPath::combine(DataSources::LOCATIONS, location.getName()));
         locationObject.set(DataSources::NAME, location.getName());
         locationObject.set(DataSources::DESCRIPTION, location.getDescription());
         locationObject.set(DataSources::DAYS_TO_COMPLETE, location.getDaysToComplete());
 
-        writeModifier(locationKey, Stats::DataSources::EDUCATION, location.getEducationModifier());
-        writeModifier(locationKey, Stats::DataSources::HAPPINESS, location.getHappinessModifier());
-        writeModifier(locationKey, Stats::DataSources::HEALTH, location.getHealthModifier());
-        writeModifier(locationKey, Stats::DataSources::MONEY, location.getMoneyModifier());
-        writeModifier(locationKey, Stats::DataSources::SAFETY, location.getSafetyModifier());
+        writeModifier(locationObject, Stats::DataSources::EDUCATION, location.getEducationModifier());
+        writeModifier(locationObject, Stats::DataSources::HAPPINESS, location.getHappinessModifier());
+        writeModifier(locationObject, Stats::DataSources::HEALTH, location.getHealthModifier());
+        writeModifier(locationObject, Stats::DataSources::MONEY, location.getMoneyModifier());
+        writeModifier(locationObject, Stats::DataSources::SAFETY, location.getSafetyModifier());
       }
     }
   }
 
   //------------------------------------------------------------------------------------------------
   void LocationsManager::writeModifier(
-    const std::string& locationKey, 
+    Data::ObjectRef& locationObject, 
     const char* const modifierKey, 
     const Stats::Modifier& modifier)
   {
-    std::string key(locationKey);
-    key.push_back('.');
-    key.append(modifierKey);
-
-    Data::ObjectRef locationObject(*m_dataSystem, key);
     locationObject.set(Stats::DataSources::IS_DELTA, modifier.getChangeType() == Stats::ChangeType::kDelta);
     locationObject.set(Stats::DataSources::AMOUNT, modifier.getAmount());
   }

@@ -1,4 +1,5 @@
 #include "Data/ObjectRef.h"
+#include "Persistence/DataPath.h"
 
 
 namespace MCF::Data
@@ -13,10 +14,6 @@ namespace MCF::Data
   //------------------------------------------------------------------------------------------------
   std::string ObjectRef::createFormattedElementKey(const std::string& elementKey) const
   {
-    std::string key(m_key);
-    key.push_back('.');
-    key.append(elementKey);
-
-    return key;
+    return Persistence::DataPath::combine(m_key, elementKey);
   }
 }

@@ -1,4 +1,5 @@
 #include "Persistence/DataObjectHandle.h"
+#include "Persistence/DataPath.h"
 
 
 namespace MCF::Persistence
@@ -19,10 +20,6 @@ namespace MCF::Persistence
   //------------------------------------------------------------------------------------------------
   std::string DataObjectHandle::createFormattedElementKey(const std::string& elementKey) const
   {
-    std::string key(m_key);
-    key.push_back('.');
-    key.append(elementKey);
-
-    return key;
+    return DataPath::combine(m_key, elementKey);
   }
 }

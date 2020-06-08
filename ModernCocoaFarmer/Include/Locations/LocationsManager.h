@@ -10,6 +10,7 @@
 namespace MCF::Data
 {
   class DataSystem;
+  class ObjectRef;
 }
 
 namespace MCF::Stats
@@ -48,7 +49,7 @@ namespace MCF::Locations
 
     private:
       void updateDataSystem();
-      void writeModifier(const std::string& locationKey, const char* const modifierKey, const Stats::Modifier& modifier);
+      void writeModifier(Data::ObjectRef& locationObject, const char* const modifierKey, const Stats::Modifier& modifier);
       
       observer_ptr<Data::DataSystem> m_dataSystem = nullptr;
 

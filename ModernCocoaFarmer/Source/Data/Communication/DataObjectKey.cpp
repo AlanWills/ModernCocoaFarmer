@@ -1,5 +1,6 @@
 #include "Data/Communication/DataObjectKey.h"
 #include "UtilityHeaders/ComponentHeaders.h"
+#include "Persistence/DataPath.h"
 
 
 namespace MCF::Data::Communication
@@ -14,16 +15,6 @@ namespace MCF::Data::Communication
     Inherited(gameObject),
     m_rootKeyPort(createInputPort<std::string>(ROOT_KEY_PORT_NAME, [this](Persistence::Data&& newValue) { onRootKeyPortChanged(std::move(newValue)); }))
   {
-  }
-
-  //------------------------------------------------------------------------------------------------
-  std::string createFullKey(const std::string& rootPath, const std::string& subPath)
-  {
-    std::string fullKey(rootPath);
-    fullKey.push_back('.');
-    fullKey.append(subPath);
-
-    return fullKey;
   }
 
   //------------------------------------------------------------------------------------------------
@@ -43,7 +34,7 @@ namespace MCF::Data::Communication
   {
     for (auto& subKeyPort : m_subKeyPorts)
     {
-      subKeyPort.second.get().setValue(createFullKey(std::get<std::string>(newValue), subKeyPort.first));
+      subKeyPort.second.get().setValue(Persistence::DataPath::combine(std::get<std::string>(newValue), subKeyPort.first));
     }
   }
 }

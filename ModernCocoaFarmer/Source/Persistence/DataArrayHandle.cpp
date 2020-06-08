@@ -1,4 +1,5 @@
 #include "Persistence/DataArrayHandle.h"
+#include "Persistence/DataPath.h"
 
 
 namespace MCF::Persistence
@@ -22,11 +23,7 @@ namespace MCF::Persistence
   //------------------------------------------------------------------------------------------------
   std::string DataArrayHandle::createFormattedSizeKey() const
   {
-    std::string key(m_key);
-    key.push_back('.');
-    key.append("size");
-
-    return key;
+    return DataPath::combine(m_key, "size");
   }
 
   //------------------------------------------------------------------------------------------------

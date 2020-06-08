@@ -5,6 +5,7 @@
 #include "Stats/Modifier.h"
 #include "Data/DataSystem.h"
 #include "Data/ObjectRef.h"
+#include "Persistence/DataPath.h"
 
 
 namespace MCF::Family
@@ -37,11 +38,7 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void Child::setDataSystem(Data::DataSystem& dataSystem)
   {
-    std::string key = DataSources::CHILDREN;
-    key.push_back('.');
-    key.append(getName());
-
-    m_childObjectRef = std::make_unique<Data::ObjectRef>(dataSystem, key);
+    m_childObjectRef = std::make_unique<Data::ObjectRef>(dataSystem, Persistence::DataPath::combine(DataSources::CHILDREN, getName()));
     updateDataObject();
   }
 

@@ -3,6 +3,7 @@
 #include "CelesteStl/Templates/Variant.h"
 #include "Utils/StringUtils.h"
 #include "Data/DataSystem.h"
+#include "Persistence/DataPath.h"
 
 #include "imgui/imgui_stdlib.h"
 #include "imgui/DefaultInput.h"
@@ -24,7 +25,7 @@ namespace MCF::Debug
     {
       T tempData = std::get<T>(data);
 
-      if (Dolce::input(key.substr(key.find_last_of('.') + 1), tempData))
+      if (Dolce::input(key.substr(key.find_last_of(Persistence::DataPath::DataPathDelimiter) + 1), tempData))
       {
         dataSystem.set(key, tempData);
       }
@@ -51,7 +52,7 @@ namespace MCF::Debug
     for (auto& keyData : m_dataSystem.getData())
     {
       size_t previousIndex = static_cast<size_t>(-1);
-      size_t currentIndex = keyData.first.find('.');
+      size_t currentIndex = keyData.first.find(Persistence::DataPath::DataPathDelimiter);
       DataSystemNode* currentNode = &m_dataSystemRoot;
 
       while (currentIndex < keyData.first.size())
@@ -65,7 +66,7 @@ namespace MCF::Debug
         
         currentNode = &currentNode->m_children[key];
         previousIndex = currentIndex;
-        currentIndex = keyData.first.find('.', previousIndex + 1);
+        currentIndex = keyData.first.find(Persistence::DataPath::DataPathDelimiter, previousIndex + 1);
       }
 
       std::string key = keyData.first.substr(previousIndex + 1);
@@ -74,7 +75,7 @@ namespace MCF::Debug
     }
    
     std::vector<std::string> words;
-    Celeste::split(m_searchString, words, '.');
+    Celeste::split(m_searchString, words, Persistence::DataPath::DataPathDelimiter);
     DataSystemNode* currentNode = &m_dataSystemRoot;
 
     for (const std::string& word : words)
@@ -111,7 +112,7 @@ namespace MCF::Debug
     for (size_t i = nodes.size() - 1; i >= 1; --i)
     {
       str.append(nodes[i]);
-      str.push_back('.');
+      str.push_back(Persistence::DataPath::DataPathDelimiter);
     }
     str.append(nodes.front());
 
