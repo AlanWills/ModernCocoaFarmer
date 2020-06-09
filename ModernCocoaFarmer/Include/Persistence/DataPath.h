@@ -9,13 +9,18 @@ namespace MCF::Persistence::DataPath
   static constexpr const char DataPathDelimiter = '.';
 
   //------------------------------------------------------------------------------------------------
-  std::string combine(const std::string& mainPath, const std::string& extraPath)
+  inline std::string combine(const std::string& mainPath, const std::string& extraPath)
   {
-    return mainPath + extraPath;
+    std::string whole;
+    whole.reserve(mainPath.size() + extraPath.size() + 1);
+    whole.append(mainPath);
+    whole.push_back(DataPathDelimiter);
+    whole.append(extraPath);
+    return whole;
   }
 
   //------------------------------------------------------------------------------------------------
-  void combine(std::string& mainPath, const std::string& extraPath)
+  inline void combine(std::string& mainPath, const std::string& extraPath)
   {
     mainPath.push_back(DataPathDelimiter);
     mainPath.append(extraPath);

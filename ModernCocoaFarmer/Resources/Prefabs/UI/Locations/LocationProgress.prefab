@@ -5,6 +5,11 @@
       <Components>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="100,19" scissor_rectangle_dimensions="100,19" colour="0,1,0"/>
         <ProgressBar min="0" max="100" value="0"/>
+        <ProgressBarController>
+          <InputPort name="progress" guid="c52b9e97-95d1-4ce4-9168-adeaab3bda7e">
+            <Connection>d6e02004-e9f9-47aa-8e52-7a5f1d5e0f57</Connection>
+          </InputPort>
+        </ProgressBarController>
       </Components>
       <GameObjects>
         <GameObject name="LocationProgressBackground" position="0,0,-0.1">
@@ -15,7 +20,98 @@
         <GameObject name="ChildNameText" position="0,0,0.1">
           <Components>
             <TextRenderer font_height="16" horizontal_alignment="Centre" text="test" colour="0,0,0"/>
+            <Text>
+              <InputPort name="text" guid="6c3b5213-8273-47bc-b544-2019b63a754a">
+                <Connection>49933881-b52d-4f04-92b7-7ff695e0ca58</Connection>
+              </InputPort>
+            </Text>
           </Components>
+        </GameObject>
+        <GameObject name="Constants">
+          <GameObjects>
+            <GameObject name="ChildNameKey">
+              <Components>
+                <Constant type="4" value="">
+                  <OutputPort name="value" guid="222ffdee-91ed-4d09-9155-e2d60e503948">
+                    <Connection>2ba8307e-691c-4648-9200-57baf0f09134</Connection>
+                  </OutputPort>
+                </Constant>
+              </Components>
+            </GameObject>
+            <GameObject name="ChildTimeKey">
+              <Components>
+                <Constant type="4" value="">
+                  <OutputPort name="value" guid="0bd47511-c765-4e98-9595-48b499e41fbc">
+                    <Connection>00c5064f-e2d3-4282-b35c-26d4252222da</Connection>
+                  </OutputPort>
+                </Constant>
+              </Components>
+            </GameObject>
+            <GameObject name="LocationCompletionTimeKey">
+              <Components>
+                <Constant type="4" value="">
+                  <OutputPort name="value" guid="0853a09c-7254-4f51-8df0-70398a4703ab">
+                    <Connection>8fe186e1-ad39-4249-a032-24667ae931ce</Connection>
+                  </OutputPort>
+                </Constant>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="DataSources">
+          <GameObjects>
+            <GameObject name="ChildName">
+              <Components>
+                <DataReader key="" type="4">
+                  <InputPort name="key" guid="2ba8307e-691c-4648-9200-57baf0f09134">
+                    <Connection>222ffdee-91ed-4d09-9155-e2d60e503948</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="49933881-b52d-4f04-92b7-7ff695e0ca58">
+                    <Connection>6c3b5213-8273-47bc-b544-2019b63a754a</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="ChildTimeAtLocation">
+              <Components>
+                <DataReader key="" type="3">
+                  <InputPort name="key" guid="00c5064f-e2d3-4282-b35c-26d4252222da">
+                    <Connection>0bd47511-c765-4e98-9595-48b499e41fbc</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="2be2eae0-f969-4dbf-8e28-d234fd7b0df6">
+                    <Connection>1d4e3297-b0bb-4cce-9dcf-0f9bf7a782e4</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="LocationDaysToComplete">
+              <Components>
+                <DataReader key="" type="2">
+                  <InputPort name="key" guid="8fe186e1-ad39-4249-a032-24667ae931ce">
+                    <Connection>0853a09c-7254-4f51-8df0-70398a4703ab</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="2d5dd1e6-63ef-4c15-bb39-bdfff8c0f728">
+                    <Connection>fed3e127-9977-4bca-9aa2-54266a0c1cf1</Connection>
+                  </OutputPort>
+                </DataReader>
+              </Components>
+            </GameObject>
+            <GameObject name="ChildProgress">
+              <Components>
+                <Division>
+                  <InputPort name="x" guid="1d4e3297-b0bb-4cce-9dcf-0f9bf7a782e4">
+                    <Connection>2be2eae0-f969-4dbf-8e28-d234fd7b0df6</Connection>
+                  </InputPort>
+                  <InputPort name="y" guid="fed3e127-9977-4bca-9aa2-54266a0c1cf1">
+                    <Connection>2d5dd1e6-63ef-4c15-bb39-bdfff8c0f728</Connection>
+                  </InputPort>
+                  <OutputPort name="value" guid="d6e02004-e9f9-47aa-8e52-7a5f1d5e0f57">
+                    <Connection>c52b9e97-95d1-4ce4-9168-adeaab3bda7e</Connection>
+                  </OutputPort>
+                </Division>
+              </Components>
+            </GameObject>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>

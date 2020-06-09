@@ -96,7 +96,7 @@ namespace MCF::Locations
     const char* const modifierKey, 
     const Stats::Modifier& modifier)
   {
-    locationObject.set(Stats::DataSources::IS_DELTA, modifier.getChangeType() == Stats::ChangeType::kDelta);
-    locationObject.set(Stats::DataSources::AMOUNT, modifier.getAmount());
+    locationObject.set(Persistence::DataPath::combine(modifierKey, Stats::DataSources::IS_DELTA), modifier.getChangeType() == Stats::ChangeType::kDelta);
+    locationObject.set(Persistence::DataPath::combine(modifierKey, Stats::DataSources::AMOUNT), modifier.getAmount());
   }
 }

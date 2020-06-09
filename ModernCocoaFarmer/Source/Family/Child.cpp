@@ -82,7 +82,7 @@ namespace MCF::Family
     if (isActivated())
     {
       m_timeAtLocation.setValue(timeAtLocation);
-      m_childObjectRef->set(DataSources::TIME_AT_LOCATION, getTimeAtLocation());
+      m_childObjectRef->set(DataSources::TIME_AT_LOCATION, getTimeAtLocation() * 100);
     }
   }
 

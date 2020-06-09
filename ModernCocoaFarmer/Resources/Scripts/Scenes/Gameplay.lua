@@ -34,8 +34,7 @@ local LocationNames =
 
 ---------------------------------------------------------------------------------
 local function onTimeChanged(deltaTime, commandManager)
-    Gameplay.updateUI()
-
+    Gameplay._state.modalDialogManager:destroyDialogs()
     commandManager:execute(ElapseTime, deltaTime)
 end
 
@@ -75,7 +74,6 @@ function Gameplay.show(state)
         commandManager:execute(ActivateLocation, v)
     end
 
-    Gameplay.updateUI()
     Gameplay.addDolceWindows();
 end
 
@@ -90,13 +88,6 @@ function Gameplay.hide()
     Gameplay.removeDolceWindows()
 
     GameObject.find(Gameplay.GAMEPLAY_ROOT_NAME):destroy()
-end
-
----------------------------------------------------------------------------------
-function Gameplay.updateUI()
-    Gameplay._locationsUI:updateUI()
-
-    Gameplay._state.modalDialogManager:destroyDialogs()
 end
 
 ---------------------------------------------------------------------------------

@@ -34,7 +34,10 @@ namespace MCF::Data::Communication
   {
     for (auto& subKeyPort : m_subKeyPorts)
     {
-      subKeyPort.second.get().setValue(Persistence::DataPath::combine(std::get<std::string>(newValue), subKeyPort.first));
+      std::string value = std::get<std::string>(newValue);
+      Persistence::DataPath::combine(value, subKeyPort.first);
+
+      subKeyPort.second.get().setValue(value);
     }
   }
 }

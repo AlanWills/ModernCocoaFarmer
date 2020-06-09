@@ -19,13 +19,6 @@ function LocationsUI:new(commandManager, dataStore, gameObject)
 end
 
 ---------------------------------------------------------------------------------
-function LocationsUI:updateUI()
-    for k, locationIcon in pairs(self._locationIcons) do
-        locationIcon:updateUI()
-    end
-end
-
----------------------------------------------------------------------------------
 function LocationsUI:addLocationIcon(location)
     local locationName = location:getName()
     local locationGameObject = self._gameObject:findChild(locationName)

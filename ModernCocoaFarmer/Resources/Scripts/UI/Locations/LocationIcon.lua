@@ -1,12 +1,16 @@
 local Class = require 'OOP.Class'
-local LocationProgress = require 'UI.Locations.LocationProgress'
 local ShowLocationDialog = require 'Commands.UI.Locations.ShowLocationDialog'
 
 local LocationIcon = 
 {
+    CHILD_WALKING_PREFAB_PATH = path.combine("Prefabs", "Gameplay", "Family", "ChildWalkingToLocation.prefab"),
+    LOCATION_PROGRESS_PREFAB_PATH = path.combine("Prefabs", "UI", "Locations", "LocationProgress.prefab"),
     ICON_NAME = "Icon",
     PROGRESS_STACK_PANEL_NAME = "ProgressStackPanel",
-    CHILD_WALKING_PREFAB_PATH = path.combine("Prefabs", "Gameplay", "Family", "ChildWalkingToLocation.prefab"),
+    CONSTANTS_NAME = "Constants",
+    CHILD_NAME_KEY_NAME = "ChildNameKey",
+    CHILD_TIME_KEY_NAME = "ChildTimeKey",
+    LOCATION_COMPLETION_TIME_KEY_NAME = "LocationCompletionTimeKey",
 }
 
 ---------------------------------------------------------------------------------
@@ -61,8 +65,8 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:addChildWalking(from, to)
-    local childWalkingPrefab = Resources.loadPrefab(LocationIcon.CHILD_WALKING_PREFAB_PATH);
-    local childWalkingInstance = childWalkingPrefab:instantiate();
+    local childWalkingPrefab = Resources.loadPrefab(LocationIcon.CHILD_WALKING_PREFAB_PATH)
+    local childWalkingInstance = childWalkingPrefab:instantiate()
     childWalkingInstance:setParent(self._gameObject)
 
     local childWalking = childWalkingInstance:findComponent("ChildWalkingToLocationController")
@@ -73,9 +77,19 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationIcon:addChildLocationProgress(child)
-    local locationProgress = Class.new(LocationProgress, child:getName())
-    self._locationProgressBars[child:getName()] = locationProgress
-    self._locationProgressStackPanel:addChild(locationProgress.gameObject)
+    local locationProgressPrefab = Resources.loadPrefab(self.LOCATION_PROGRESS_PREFAB_PATH)
+    local locationProgressGameObject = locationProgressPrefab:instantiate()
+    self._locationProgressBars[child:getName()] = locationProgressGameObject
+    self._locationProgressStackPanel:addChild(locationProgressGameObject)
+
+    local constantsGameObject = locationProgressGameObject:findChild(self.CONSTANTS_NAME)
+    local childNameKeyGameObject = constantsGameObject:findChild(self.CHILD_NAME_KEY_NAME)
+    local childTimeKeyGameObject = constantsGameObject:findChild(self.CHILD_TIME_KEY_NAME)
+    local locationTimeKeyGameObject = constantsGameObject:findChild(self.LOCATION_COMPLETION_TIME_KEY_NAME)
+
+    childNameKeyGameObject:findComponent("Constant"):setValue(FamilyDataSources.CHILDREN .. "." .. child:getName() .. "." .. FamilyDataSources.CHILD_NAME)
+    childTimeKeyGameObject:findComponent("Constant"):setValue(FamilyDataSources.CHILDREN .. "." .. child:getName() .. "." .. FamilyDataSources.TIME_AT_LOCATION)
+    locationTimeKeyGameObject:findComponent("Constant"):setValue(LocationsDataSources.LOCATIONS .. "." .. self._locationName .. "." .. LocationsDataSources.DAYS_TO_COMPLETE)
 end
 
 ----------------------------------------------------------------------------------------
@@ -85,19 +99,6 @@ function LocationIcon:removeChildLocationProgress(child)
 
     locationProgress.gameObject:destroy()
     self._locationProgressBars[child:getName()] = nil
-end
-
-----------------------------------------------------------------------------------------
-function LocationIcon:updateUI()
-    local locationObject = self._dataStore:getObject(LocationsDataSources.LOCATIONS .. "." .. self._locationName)
-    local locationDaysToComplete = locationObject:getUnsignedInt(LocationsDataSources.DAYS_TO_COMPLETE)
-
-    for childName, locationProgress in pairs(self._locationProgressBars) do
-        local childObject = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. childName)
-        local childTimeSpent = childObject:getFloat(FamilyDataSources.TIME_AT_LOCATION)
-        local progress = (100 * childTimeSpent) / locationDaysToComplete
-        locationProgress:updateUI(progress)
-    end
 end
 
 return LocationIcon
