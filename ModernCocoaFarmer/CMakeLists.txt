@@ -1,8 +1,8 @@
 set(LIBS 
     Dolce
-    DolceLua
+    DolceScriptCommands
     Celeste
-    CelesteLua
+    CelesteScriptCommands
     curlpp)
     
 set(TEST_LIBS
