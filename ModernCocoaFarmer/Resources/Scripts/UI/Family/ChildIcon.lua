@@ -25,7 +25,7 @@ function ChildIcon:new(commandManager, gameObject, childName)
     childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, self)
 
     local childRootKeyGameObject = gameObject:findChild(self.CONSTANTS_NAME):findChild(self.CHILD_ROOT_KEY_NAME)
-    childRootKeyGameObject:findComponent("Constant"):setValue(FamilyDataSources.CHILDREN .. "." .. childName)
+    childRootKeyGameObject:findComponent("Constant"):setValue(datapath.combine(FamilyDataSources.CHILDREN, childName))
 end
 
 return ChildIcon

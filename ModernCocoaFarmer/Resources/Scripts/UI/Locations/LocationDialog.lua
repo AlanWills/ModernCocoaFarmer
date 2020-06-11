@@ -38,7 +38,7 @@ function LocationDialog:new(commandManager, locationName)
     self._locationName = locationName
 
     local locationRootKeyGameObject = self._gameObject:findChild(self.CONSTANTS_NAME):findChild(self.LOCATION_ROOT_KEY_NAME)
-    locationRootKeyGameObject:findComponent("Constant"):setValue(LocationsDataSources.LOCATIONS .. "." .. locationName)
+    locationRootKeyGameObject:findComponent("Constant"):setValue(datapath.combine(LocationsDataSources.LOCATIONS, locationName))
 
     self:setUpLocationInfoUI()
     self:setUpCloseButton()
@@ -123,7 +123,7 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationDialog:setUpLocationInfoUI()
-    local locationKey = LocationsDataSources.LOCATIONS .. "." .. self._locationName
+    local locationKey = datapath.combine(LocationsDataSources.LOCATIONS, self._locationName)
     local locationDataObject = self._dataStore:getObject(locationKey)
 
     local locationStats = self._gameObject:findChild(self.LOCATION_STATS_NAME)
@@ -131,7 +131,7 @@ function LocationDialog:setUpLocationInfoUI()
     local timeText = timeIcon:findChild(self.TIME_TEXT_NAME):findComponent("TextRenderer")
     timeText:setText(formatTimeString(locationDataObject:getUnsignedInt(LocationsDataSources.DAYS_TO_COMPLETE)))
 
-    local moneyDataObject = self._dataStore:getObject(locationKey .. "." .. StatsDataSources.MONEY)
+    local moneyDataObject = self._dataStore:getObject(datapath.combine(locationKey, StatsDataSources.MONEY))
     
     local costIcon = locationStats:findChild(self.COST_ICON_NAME)
     local costText = costIcon:findChild(self.COST_TEXT_NAME):findComponent("TextRenderer")
@@ -147,14 +147,14 @@ end
 
 ----------------------------------------------------------------------------------------
 function LocationDialog:setUpModifierUI()
-    local locationKey = LocationsDataSources.LOCATIONS .. "." .. self._locationName
+    local locationKey = datapath.combine(LocationsDataSources.LOCATIONS, self._locationName)
     local locationStats = self._gameObject:findChild(self.LOCATION_STATS_NAME)
     local childStats = locationStats:findChild(self.CHILD_STATS_NAME)
 
-    self:setModifierText(childStats, self.HEALTH_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HEALTH)
-    self:setModifierText(childStats, self.SAFETY_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.SAFETY)
-    self:setModifierText(childStats, self.EDUCATION_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.EDUCATION)
-    self:setModifierText(childStats, self.HAPPINESS_MODIFIER_TEXT_NAME, locationKey .. "." .. StatsDataSources.HAPPINESS)
+    self:setModifierText(childStats, self.HEALTH_MODIFIER_TEXT_NAME, datapath.combine(locationKey, StatsDataSources.HEALTH))
+    self:setModifierText(childStats, self.SAFETY_MODIFIER_TEXT_NAME, datapath.combine(locationKey, StatsDataSources.SAFETY))
+    self:setModifierText(childStats, self.EDUCATION_MODIFIER_TEXT_NAME, datapath.combine(locationKey , StatsDataSources.EDUCATION))
+    self:setModifierText(childStats, self.HAPPINESS_MODIFIER_TEXT_NAME, datapath.combine(locationKey , StatsDataSources.HAPPINESS))
 end
 
 ----------------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ function LocationDialog:setUpChildSelectionUI()
     log("LocationDialog.isChildSelected " .. tostring(isChildSelected))
 
     local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
-    local selectedChildObject = self._dataStore:getObject(FamilyDataSources.CHILDREN .. "." .. selectedChildName)
+    local selectedChildObject = self._dataStore:getObject(datapath.combine(FamilyDataSources.CHILDREN, selectedChildName))
 
     local currentLocation = selectedChildObject:getString(FamilyDataSources.CURRENT_LOCATION)
     local isChildAlreadyAtLocation = isChildSelected and currentLocation ~= ""

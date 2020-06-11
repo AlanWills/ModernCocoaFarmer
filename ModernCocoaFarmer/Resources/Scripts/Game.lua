@@ -1,3 +1,6 @@
+-- Bootstrap
+require 'Utility.DataPath'
+
 local Splash = require 'Scenes.Splash'
 local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 local Class = require 'OOP.Class'

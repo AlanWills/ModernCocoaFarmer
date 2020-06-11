@@ -4,7 +4,7 @@
     <GameObject name="LocationProgress">
       <Components>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="100,19" scissor_rectangle_dimensions="100,19" colour="0,1,0"/>
-        <ProgressBar min="0" max="100" value="0"/>
+        <ProgressBar min="0" max="1" value="0"/>
         <ProgressBarController>
           <InputPort name="progress" guid="c52b9e97-95d1-4ce4-9168-adeaab3bda7e">
             <Connection>d6e02004-e9f9-47aa-8e52-7a5f1d5e0f57</Connection>

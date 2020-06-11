@@ -86,9 +86,9 @@ function LocationIcon:addChildLocationProgress(child)
     local childTimeKeyGameObject = constantsGameObject:findChild(self.CHILD_TIME_KEY_NAME)
     local locationTimeKeyGameObject = constantsGameObject:findChild(self.LOCATION_COMPLETION_TIME_KEY_NAME)
 
-    childNameKeyGameObject:findComponent("Constant"):setValue(FamilyDataSources.CHILDREN .. "." .. child:getName() .. "." .. FamilyDataSources.CHILD_NAME)
-    childTimeKeyGameObject:findComponent("Constant"):setValue(FamilyDataSources.CHILDREN .. "." .. child:getName() .. "." .. FamilyDataSources.TIME_AT_LOCATION)
-    locationTimeKeyGameObject:findComponent("Constant"):setValue(LocationsDataSources.LOCATIONS .. "." .. self._locationName .. "." .. LocationsDataSources.DAYS_TO_COMPLETE)
+    childNameKeyGameObject:findComponent("Constant"):setValue(datapath.combine(FamilyDataSources.CHILDREN, child:getName(), FamilyDataSources.CHILD_NAME))
+    childTimeKeyGameObject:findComponent("Constant"):setValue(datapath.combine(FamilyDataSources.CHILDREN, child:getName(), FamilyDataSources.TIME_AT_LOCATION))
+    locationTimeKeyGameObject:findComponent("Constant"):setValue(datapath.combine(LocationsDataSources.LOCATIONS, self._locationName, LocationsDataSources.DAYS_TO_COMPLETE))
 end
 
 ----------------------------------------------------------------------------------------
