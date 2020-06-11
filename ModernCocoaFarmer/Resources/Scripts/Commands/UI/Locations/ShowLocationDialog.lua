@@ -19,11 +19,7 @@ function ShowLocationDialog.parseArgs(args)
     local argCount = #args
     
     if argCount < 1 then
-        return nil, "Missing notification title argument"
-    end
-
-    if argCount < 2 then
-        return nil, "Missing notification description argument"
+        return nil, "Missing location name argument"
     end
 
     return args

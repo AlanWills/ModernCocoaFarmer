@@ -28,13 +28,13 @@ LocationDialog.CONSTANTS_NAME = "Constants"
 LocationDialog.LOCATION_ROOT_KEY_NAME = "LocationRootKey"
 
 ----------------------------------------------------------------------------------------
-function LocationDialog:new(commandManager, dataStore, locationName)
+function LocationDialog:new(commandManager, locationName)
     local dialogPrefab = Resources.loadPrefab(self.DIALOG_PREFAB_PATH)
     self._gameObject = dialogPrefab:instantiate()
 
     ModalDialogBase.new(self, commandManager, self._gameObject)
 
-    self._dataStore = dataStore
+    self._dataStore = System.getDataSystem()
     self._locationName = locationName
 
     local locationRootKeyGameObject = self._gameObject:findChild(self.CONSTANTS_NAME):findChild(self.LOCATION_ROOT_KEY_NAME)

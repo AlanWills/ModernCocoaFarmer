@@ -15,7 +15,7 @@ local LocationIcon =
 
 ---------------------------------------------------------------------------------
 local function onIconClicked(caller, self)
-    self._commandManager:execute(ShowLocationDialog, self._dataStore, self._locationName)
+    self._commandManager:execute(ShowLocationDialog, self._locationName)
     
     local icon = self._gameObject:findChild(self.ICON_NAME)
     icon:findComponent("AudioSource"):play()
@@ -34,9 +34,8 @@ local function onChildLeftCallback(child, self)
 end
 
 ---------------------------------------------------------------------------------
-function LocationIcon:new(commandManager, dataStore, location, gameObject)
+function LocationIcon:new(commandManager, location, gameObject)
     self._commandManager = commandManager
-    self._dataStore = dataStore
     self._locationName = location:getName()
     self._gameObject = gameObject
     self._locationProgressBars = {}

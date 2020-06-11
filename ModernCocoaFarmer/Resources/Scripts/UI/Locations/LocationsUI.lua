@@ -9,9 +9,8 @@ local function onLocationActivatedCallback(location, self)
 end
 
 ---------------------------------------------------------------------------------
-function LocationsUI:new(commandManager, dataStore, gameObject)
+function LocationsUI:new(commandManager, gameObject)
     self._commandManager = commandManager
-    self._dataStore = dataStore
     self._gameObject = gameObject
     self._locationIcons = {}
 
@@ -28,7 +27,7 @@ function LocationsUI:addLocationIcon(location)
         return
     end
 
-    self._locationIcons[locationName] = Class.new(LocationIcon, self._commandManager, self._dataStore, location, locationGameObject)
+    self._locationIcons[locationName] = Class.new(LocationIcon, self._commandManager, location, locationGameObject)
     log("Added location icon for " .. locationName)
 end
 

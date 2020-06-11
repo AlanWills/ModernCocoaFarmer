@@ -58,7 +58,7 @@ function Gameplay.show(state)
     timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, commandManager)
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
-    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, System.getDataSystem(), locationsUI)
+    Gameplay._locationsUI = Class.new(LocationsUI, commandManager, locationsUI)
 
     local topBarGameObject = GameObject.find(Gameplay.TOP_BAR_NAME)
     Gameplay._topBar = Class.new(
