@@ -107,6 +107,13 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.removeDolceWindows()
+    local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
+    local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
+    local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
+    local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
+    local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
+    
+    Dolce.instance:removeWindow(GameEventManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(CommandManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(MoneyManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(TimeManagerDolceWindow.NAME)

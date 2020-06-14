@@ -3,7 +3,7 @@
   <GameObjects>
     <GameObject name="ChildFinishName">
       <Components>
-        <TextRenderer text="ChildName: " font_height="20" horizontal_alignment="right"/>
+        <TextRenderer text="ChildName" font_height="20" horizontal_alignment="centre"/>
       </Components>
     </GameObject>
   </GameObjects>

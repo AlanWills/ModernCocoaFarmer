@@ -7,19 +7,47 @@
         <GraphicsRaycaster/>
       </Components>
       <GameObjects>
+        <GameObject name="FullCocoaTree" position="640, 675">
+          <Components>
+            <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="200,200"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-150,0" name="ChildrenGraduatedStackPanel">
+              <Components>
+                <StackPanel orientation="vertical" horizontal_alignment="centre" vertical_alignment="top" padding="10"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="GraduatedText">
+                  <Components>
+                    <TextRenderer text="Graduated" font_height="28"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="BareCocoaTree" position="1280, 675">
+          <Components>
+            <SpriteRenderer sprite="Textures\Village\Locations\Decals\BareCocoaTree.png" preserve_aspect_ratio="true" size="200,200"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-150,0" name="ChildrenDiedStackPanel">
+              <Components>
+                <StackPanel orientation="vertical" horizontal_alignment="centre" vertical_alignment="top" padding="10"/>
+              </Components>
+              <GameObjects>
+                <GameObject name="DiedText">
+                  <Components>
+                    <TextRenderer text="Died" font_height="28"/>
+                  </Components>
+                </GameObject>
+              </GameObjects>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
         <GameObject position="960,900,0" name="ThankYouText">
           <Components>
-            <TextRenderer text="Thanks For Playing!"/>
-          </Components>
-        </GameObject>
-        <GameObject position="950,540,0" name="ChildrenFinishNameStackPanel">
-          <Components>
-            <StackPanel orientation="vertical" horizontal_alignment="centre" padding="10"/>
-          </Components>
-        </GameObject>
-        <GameObject position="970,540,0" name="ChildrenFinishStatusStackPanel">
-          <Components>
-            <StackPanel orientation="vertical" horizontal_alignment="centre" padding="10"/>
+            <TextRenderer text="Thanks For Playing!" font_height="30" />
           </Components>
         </GameObject>
         <GameObject name="ToMainMenuButton" position="960,200">

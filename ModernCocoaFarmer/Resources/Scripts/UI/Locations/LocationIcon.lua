@@ -94,9 +94,9 @@ end
 ----------------------------------------------------------------------------------------
 function LocationIcon:removeChildLocationProgress(child)
     local locationProgress = self._locationProgressBars[child:getName()]
-    self._locationProgressStackPanel:removeChild(locationProgress.gameObject)
+    self._locationProgressStackPanel:removeChild(locationProgress)
 
-    locationProgress.gameObject:destroy()
+    locationProgress:destroy()
     self._locationProgressBars[child:getName()] = nil
 end
 

@@ -22,7 +22,6 @@ function AddMoney.parseArgs(args)
         return nil, "Missing amount argument"
     end
 
-    log(args[1])
     args[1] = tonumber(args[1])
     return args
 end
