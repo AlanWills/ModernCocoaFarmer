@@ -1,6 +1,9 @@
 local LeaveChild = require 'Commands.Locations.LeaveChild'
+local SendNotification = require 'Commands.Notifications.SendNotification'
 
 local UpdateChildrenStates = {}
+UpdateChildrenStates.CHILD_DECEASED_ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png")
+UpdateChildrenStates.CHILD_GRADUATED_ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildGraduated.png")
 
 ---------------------------------------------------------------------------------
 function UpdateChildrenStates:execute(commandManager)
@@ -19,8 +22,20 @@ function UpdateChildrenStates:execute(commandManager)
             
             if child:canDie() then
                 child:die()
+
+                commandManager:execute(
+                    SendNotification,
+                    "A Child Dies...",
+                    "After lingering on death's door, " .. child:getName() .. " has finally stepped over.  Your family bitterly rues their passing.",
+                    UpdateChildrenStates.CHILD_DECEASED_ICON_PATH)
             elseif child:canGraduate() then
                 child:graduate()
+
+                commandManager:execute(
+                    SendNotification,
+                    "Graduation Day!",
+                    "School is never easy, but " .. child:getName() .. " has successfully graduated.  Their education gives them hope for a better life.",
+                    UpdateChildrenStates.CHILD_GRADUATED_ICON_PATH)
             end
         end
     end
