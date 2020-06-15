@@ -73,6 +73,20 @@
                     </GameObject>
                   </GameObjects>
                 </GameObject>
+                <GameObject name="CreditsButton">
+                  <Components>
+                    <SpriteRenderer size="200,40"/>
+                    <MouseInteractionHandler/>
+                    <Button/>
+                  </Components>
+                  <GameObjects>
+                    <GameObject name="CreditsText" position="0,1,0">
+                      <Components>
+                        <TextRenderer font_height="24" colour="0,0,0" text="Credits"/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
                 <GameObject name="ExitButton">
                   <Components>
                     <SpriteRenderer size="200,40"/>

@@ -40,5 +40,9 @@ add_subdirectory(${CELESTE_DIR} ${CELESTE_DIR}/Build ${EXCLUDE})
 ##------------------------------ Modern Cocoa Farmer ------------------------------##
 add_subdirectory(${MCF_DIR} ${MCF_DIR}/Build ${EXCLUDE})
 
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ModernCocoaFarmer)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY 
+    VS_STARTUP_PROJECT ModernCocoaFarmer)
+
+set_target_properties(ModernCocoaFarmer PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 ##------------------------------ end Modern Cocoa Farmer ------------------------------##

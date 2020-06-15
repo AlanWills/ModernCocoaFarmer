@@ -21,12 +21,11 @@ namespace MCF
   {
     addSystem<Data::DataSystem>();
 
-    // Will need to make this for just VS
-    Path pathToResources = Path(Directory::getExecutingAppDirectory(), UPDIR_STRING, UPDIR_STRING, UPDIR_STRING, "ModernCocoaFarmer", "Resources");
+    Path pathToResources = Path(Directory::getExecutingAppDirectory(), "ModernCocoaFarmer", "Resources");
     getResourceManager().setResourcesDirectory(pathToResources);
 
     Celeste::Lua::LuaState::appendToLuaPackagePath(
-      Celeste::Path(pathToResources, UPDIR_STRING, UPDIR_STRING, "Celeste", "Celeste", "Lua", "Resources", "Scripts", "?.lua;"));
+      Celeste::Path(Directory::getExecutingAppDirectory(), "Celeste", "Celeste", "Lua", "Resources", "Scripts", "?.lua;"));
   }
 
   //------------------------------------------------------------------------------------------------

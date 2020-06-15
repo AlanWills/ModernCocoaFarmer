@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scene>
+  <GameObjects>
+    <GameObject name="CreditsScene" position="960,540">
+      <Components>
+        <Canvas/>
+        <GraphicsRaycaster/>
+        <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080" opacity="1" colour="1,1,1"/>
+      </Components>
+      <GameObjects>
+        <GameObject position="-480,270,0" name="DavidFenton">
+          <Components>
+            <TextRenderer text="DAVID FENTON" font_height="30" colour="0,0,0"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-50,0" name="Role">
+              <Components>
+                <TextRenderer text="Concept and Design" font_height="24" colour="0,0,0"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject position="480,270,0" name="AlanWills">
+          <Components>
+            <TextRenderer text="ALAN WILLS" font_height="30" colour="0,0,0"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-50,0" name="Role">
+              <Components>
+                <TextRenderer text="Programming" font_height="24" colour="0,0,0"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject position="-480,-270,0" name="InesNg">
+          <Components>
+            <TextRenderer text="INES NG" font_height="30" colour="0,0,0"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-50,0" name="Role">
+              <Components>
+                <TextRenderer text="Art" font_height="24" colour="0,0,0"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject position="480,-270,0" name="JDWasabi">
+          <Components>
+            <TextRenderer text="JD WASABI" font_height="30" colour="0,0,0"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-50,0" name="Role">
+              <Components>
+                <TextRenderer text="Music and SFX" font_height="24" colour="0,0,0"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="CloseButton" position="920,500,0.01">
+          <Components>
+            <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="32,32" preserve_aspect_ratio="true"/>
+            <MouseInteractionHandler/>
+          </Components>
+        </GameObject>
+      </GameObjects>
+    </GameObject>
+  </GameObjects>
+</Scene>

@@ -11,6 +11,7 @@ local MainMenu =
     PLAY_BUTTON_NAME = "PlayButton",
     CONTINUE_BUTTON_NAME = "ContinueButton",
     OPTIONS_BUTTON_NAME = "OptionsButton",
+    CREDITS_BUTTON_NAME = "CreditsButton",
     EXIT_BUTTON_NAME = "ExitButton",
 }
 
@@ -38,6 +39,15 @@ local function toOptions(caller)
 end
 
 ---------------------------------------------------------------------------------
+local function toCredits(caller)
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.hide()
+
+    local Credits = require 'Scenes.Credits'
+    Credits.show()
+end
+
+---------------------------------------------------------------------------------
 local function exitGame(caller)
     exit()
 end
@@ -50,6 +60,7 @@ function MainMenu.show()
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.PLAY_BUTTON_NAME, play)
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.CONTINUE_BUTTON_NAME, continue)
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.OPTIONS_BUTTON_NAME, toOptions)
+    layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.CREDITS_BUTTON_NAME, toCredits)
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.EXIT_BUTTON_NAME, exitGame)
 
     local continueButton = layoutStackPanel:findChild(MainMenu.CONTINUE_BUTTON_NAME)

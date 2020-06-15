@@ -1,12 +1,15 @@
 local GameEventPeriod = require 'GameEvents.GameEventPeriod'
 local LeaveChild = require 'Commands.Locations.LeaveChild'
 local SendNotification = require 'Commands.Notifications.SendNotification'
+local AddMoney = require 'Commands.Money.AddMoney'
 
 ---------------------------------------------------------------------------------
 local CheckForChildrenLeaving = {}
 CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png")
+CheckForChildrenLeaving.CHILD_PAID_ICON_PATH = path.combine("Textures", "UI", "Utility", "Money.png")
 CheckForChildrenLeaving.NAME = "CheckForChildrenLeaving"
 CheckForChildrenLeaving.PERIOD = GameEventPeriod.EVERY_DAY
+CheckForChildrenLeaving.SALARY = 9740
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.trigger(commandManager)
@@ -34,6 +37,14 @@ function CheckForChildrenLeaving.trigger(commandManager)
                             "Child Trafficked...",
                             "The unthinkable has happened.  On the return journey from the Cocoa Farm " .. child:getName() .. " was taken.  You pray you will see them again, but deep down you know you won't.",
                             CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH)
+                    else
+                        commandManager:execute(AddMoney, CheckForChildrenLeaving.SALARY)
+
+                        commandManager:execute(
+                            SendNotification,
+                            "Child Paid",
+                            "After a bitter month's work, " .. child:getName() .. " has been paid " .. tostring(CheckForChildrenLeaving.SALARY) .. ".",
+                            CheckForChildrenLeaving.CHILD_PAID_ICON_PATH)
                     end
                 end
             end
