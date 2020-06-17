@@ -12,9 +12,9 @@
             <TextRenderer font_height="30" colour="0,0,0" text="Event Name" horizontal_alignment="Centre" vertical_alignment="Centre"/>
           </Components>
         </GameObject>
-        <GameObject name="NotificationDialogDescription">
+        <GameObject name="NotificationDialogDescription" position="0,-20,0">
           <Components>
-            <TextRenderer font_height="24" colour="0,0,0" text="Event Text" horizontal_alignment="Centre" vertical_alignment="Top"
+            <TextRenderer font_height="24" colour="0,0,0" text="Event Text" horizontal_alignment="Centre" vertical_alignment="Centre"
                           max_width="400" horizontal_wrap_mode="Wrap"/>
           </Components>
         </GameObject>
