@@ -28,19 +28,19 @@ function CheckForChildrenLeaving.trigger(commandManager)
                 local locationName = location:getName()
 
                 if locationName == "Farm" then
-                    handleLeavingFarm(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
                 elseif locationName == "Home" then
-                    handleChildLeavingHome(commandManager, child)
+                    CheckForChildrenLeaving.handleChildLeavingHome(commandManager, child)
                 elseif locationName == "Hospital" then
-                    handleChildLeavingHospital(commandManager, child)
+                    CheckForChildrenLeaving.handleChildLeavingHospital(commandManager, child)
                 elseif locationName == "Market" then
-                    handleChildLeavingMarket(commandManager, child)
+                    CheckForChildrenLeaving.handleChildLeavingMarket(commandManager, child)
                 elseif locationName == "Mosque" then
-                    handleChildLeavingMosque(commandManager, child)
+                    CheckForChildrenLeaving.handleChildLeavingMosque(commandManager, child)
                 elseif locationName == "School" then
-                    handleChildLeavingSchool(commandManager, child)
+                    CheckForChildrenLeaving.handleChildLeavingSchool(commandManager, child)
                 elseif locationName == "Well" then
-                    handleChildLeavingWell(commandManager, child)
+                    CheckForChildrenLeaving.handleChildLeavingWell(commandManager, child)
                 end
             end
         end
