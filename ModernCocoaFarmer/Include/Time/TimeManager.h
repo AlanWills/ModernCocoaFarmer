@@ -63,6 +63,6 @@ namespace MCF::Time
       unsigned int m_currentDay = 0;
       unsigned int m_currentMonth = 0;
       unsigned int m_currentYear = 0;
-      bool m_paused = false;
+      bool m_paused = true;
   };
 }

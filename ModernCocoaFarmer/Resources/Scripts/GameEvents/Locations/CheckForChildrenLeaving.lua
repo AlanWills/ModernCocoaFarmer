@@ -74,7 +74,7 @@ function CheckForChildrenLeaving.handleLeavingHome(commandManager, child)
     commandManager:execute(
         SendNotification,
         "Home Chores Complete",
-        "The errands " .. child:getName() .. " has done may not change the world, but will make it more bearable."
+        "The errands " .. child:getName() .. " has done may not change the world, but will make it more bearable.",
         "")
 end
 

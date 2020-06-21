@@ -2,7 +2,7 @@ local Class = require 'OOP.Class'
 local ModalDialogBase = require 'UI.Dialogs.ModalDialogBase'
 local Save = require 'Commands.State.Save'
 local Load = require 'Commands.State.Load'
-local GameplayStateConstants = require 'State.GameplayStateConstants'
+local GameplayState = require 'State.GameplayState'
 
 require 'Settings.GameSettingsUtils'
 
@@ -58,7 +58,7 @@ end
 local function saveGame(caller, self)
     close(caller, self)
 
-    self._commandManager:execute(Save, GameplayStateConstants.SAVE_DIRECTORY)
+    self._commandManager:execute(Save, GameplayState.SAVE_DIRECTORY)
 end
 
 ---------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ local function loadGame(caller, self)
     local Gameplay = require 'Scenes.Gameplay'
     Gameplay.hide()
 
-    Class.new(Load, GameplayStateConstants.SAVE_DIRECTORY):execute()
+    Class.new(Load, GameplayState.SAVE_DIRECTORY):execute()
 end
 
 ---------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ end
 ---------------------------------------------------------------------------------
 function InGameMenuDialog:updateLoadGameButtonVisibility()
     local loadGameButton = self._gameObject:findChild(InGameMenuDialog.LOAD_GAME_BUTTON_NAME)
-    loadGameButton:setActive(Directory.exists(GameplayStateConstants.SAVE_DIRECTORY))
+    loadGameButton:setActive(Directory.exists(GameplayState.SAVE_DIRECTORY))
     self._gameObject:findComponent("StackPanel"):layout()
 end
 

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Scene>
   <GameObjects>
-    <GameObject name="Canvas">
+    <GameObject name="LoadingScene">
       <Components>
         <Canvas/>
       </Components>
       <GameObjects>
-        <GameObject name="Background" position="960,540">
+        <GameObject name="Background" position="960,540,0">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1,1"/>
+            <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080"/>
           </Components>
           <GameObjects>
             <GameObject name="WalkingChildAnimation" position="0, 270,1">
@@ -20,24 +20,46 @@
                           play_immediately="true"/>
               </Components>
             </GameObject>
-            <GameObject name="WebsiteText" position="0,162,1">
+            <GameObject name="LoadingText" position="800,-400,1">
               <Components>
-                <TextRenderer text="Loading...\n\nGo to www.moderncocoafarmer.org to find out more"
+                <TextRenderer text="Loading..."
                               horizontal_alignment="centre"
-                              colour="0,0,0"/>
+                              colour="0,0,0"
+                              font_height="30"/>
+              </Components>
+            </GameObject>
+            <GameObject name="FactText" position="0,-160,1">
+              <Components>
+                <TextRenderer text=""
+                              horizontal_alignment="centre"
+                              colour="0,0,0"
+                              font_height="30"/>
+                <Text>
+                  <InputPort name="text" guid="7413dfe3-7950-44d6-b09c-cdc827c87752">
+                    <Connection>a926b5a5-9c69-4196-967b-a2c9c471d650</Connection>
+                  </InputPort>
+                </Text>
               </Components>
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="SceneKiller">
+        <GameObject name="TimeNotifier">
           <Components>
-            <LimitedLifeTime lifetime="3" trigger_key="esc">
-              <OnDeathCallbacks>
-                <Callback name="KillOwnerScene" arg=""/>
-                <Callback name="ExecuteLuaScript" arg="Scripts\Gameplay\StartGameplay.lua"/>
-              </OnDeathCallbacks>
-            </LimitedLifeTime>
+            <TimeNotifier/>
           </Components>
+        </GameObject>
+        <GameObject name="Constants">
+          <GameObjects>
+            <GameObject name="Fact">
+              <Components>
+                <Constant type="4" value="">
+                  <OutputPort name="value" guid="a926b5a5-9c69-4196-967b-a2c9c471d650">
+                    <Connection>7413dfe3-7950-44d6-b09c-cdc827c87752</Connection>
+                  </OutputPort>
+                </Constant>
+              </Components>
+            </GameObject>
+          </GameObjects>
         </GameObject>
       </GameObjects>
     </GameObject>

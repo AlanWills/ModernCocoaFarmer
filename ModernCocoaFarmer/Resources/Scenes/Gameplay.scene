@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Scene>
   <GameObjects>
-    <GameObject name="GameplayScene">
+    <GameObject name="GameplayScene" active="false">
       <Components>
         <Canvas/>
         <GraphicsRaycaster/>

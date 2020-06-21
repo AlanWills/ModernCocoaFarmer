@@ -19,8 +19,8 @@ function Load:execute()
     gameplayState.notificationManagerPath = path.combine(self._saveDirectory, "NotificationsManager.asset")
     gameplayState:load()
 
-    local gameplayScene = require "Scenes.Gameplay"
-    gameplayScene.show(gameplayState)
+    local GameplayScene = require "Scenes.Gameplay"
+    GameplayScene.new(gameplayState)
 end
 
 ---------------------------------------------------------------------------------

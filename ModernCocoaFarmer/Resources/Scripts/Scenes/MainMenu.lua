@@ -1,7 +1,8 @@
 local Class = require 'OOP.Class'
-local StartGameplayCommand = require 'Commands.StartGameplayCommand'
 local Load = require 'Commands.State.Load'
-local GameplayStateConstants = require 'State.GameplayStateConstants'
+local GameplayState = require 'State.GameplayState'
+local Gameplay = require 'Scenes.Gameplay'
+local ShowIntroVideo = require 'Commands.Tutorials.ShowIntroVideo'
 
 ---------------------------------------------------------------------------------
 local MainMenu = 
@@ -18,15 +19,25 @@ local MainMenu =
 ---------------------------------------------------------------------------------
 local function play(caller)
     local MainMenu = require 'Scenes.MainMenu'
-    MainMenu.hide()
+    local Loading = require 'Scenes.Loading'
 
-    StartGameplayCommand.execute()
+    MainMenu.hide()
+    Loading.show(Gameplay.new,
+        function() 
+            Class.new(ShowIntroVideo, Gameplay.show):execute() 
+        end)
 end
 
 ---------------------------------------------------------------------------------
 local function continue(caller)
-    local load = Class.new(Load, GameplayStateConstants.SAVE_DIRECTORY)
-    load:execute()
+    local MainMenu = require 'Scenes.MainMenu'
+    local Loading = require 'Scenes.Loading'
+
+    MainMenu.hide()
+    Loading.show(Gameplay.new, 
+        function() 
+            Class.new(ShowIntroVideo, Gameplay.show):execute() 
+        end)
 end
 
 ---------------------------------------------------------------------------------
@@ -64,7 +75,7 @@ function MainMenu.show()
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.EXIT_BUTTON_NAME, exitGame)
 
     local continueButton = layoutStackPanel:findChild(MainMenu.CONTINUE_BUTTON_NAME)
-    continueButton:setActive(Directory.exists(GameplayStateConstants.SAVE_DIRECTORY))
+    continueButton:setActive(Directory.exists(GameplayState.SAVE_DIRECTORY))
     layoutStackPanel:findComponent("StackPanel"):layout()
 end
 

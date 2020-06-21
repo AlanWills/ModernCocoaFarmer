@@ -7,26 +7,22 @@ local Splash =
 }
 
 ---------------------------------------------------------------------------------
-function transitionToMainMenu(caller)
-    local Splash = require 'Scenes.Splash'
-    Splash.hide()
-
-    local MainMenu = require 'Scenes.MainMenu'
-    MainMenu.show()
-end
-
----------------------------------------------------------------------------------
-function Splash.show()
+function Splash.new()
     Scene.load(Splash.SPLASH_SCENE_SCREEN_PATH)
+    Splash._root = GameObject.find(Splash.SPLASH_ROOT_NAME)
 
-    local screenTransitioner = GameObject.find(Splash.SCREEN_TRANSITIONER_NAME)
+    local screenTransitioner = Splash._root:findChild(Splash.SCREEN_TRANSITIONER_NAME)
     local eventTriggerer = screenTransitioner:findComponent("EventTriggerer")
-    eventTriggerer:subscribeOnEventTriggeredCallback(transitionToMainMenu)
+    eventTriggerer:subscribeOnEventTriggeredCallback(Splash.hide)
 end
 
 ---------------------------------------------------------------------------------
 function Splash.hide()
-    GameObject.find(Splash.SPLASH_ROOT_NAME):destroy()
+    Splash._root:destroy()
+    Splash._root = nil
+    
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.show()
 end
 
 return Splash
