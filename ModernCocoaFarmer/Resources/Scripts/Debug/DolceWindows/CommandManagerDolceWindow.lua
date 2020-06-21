@@ -19,12 +19,15 @@ end
 ---------------------------------------------------------------------------------
 function CommandManagerDolceWindow:addCommands()
     self._commands["AddChild"] = require 'Commands.Family.AddChild'
+    self._commands["KillChild"] = require 'Commands.Family.KillChild'
+    self._commands["GraduateChild"] = require 'Commands.Family.GraduateChild'
     self._commands["ApplyFamilyModifiers"] = require 'Commands.Family.ApplyFamilyModifiers'
     self._commands["DeselectChild"] = require 'Commands.Family.DeselectChild'
     self._commands["SelectChild"] = require 'Commands.Family.SelectChild'
     self._commands["ToggleChildSelection"] = require 'Commands.Family.ToggleChildSelection'
     self._commands["UpdateChildrenStates"] = require 'Commands.Family.ToggleChildSelection'
     self._commands["UpdateChildrenTimes"] = require 'Commands.Family.UpdateChildrenTimes'
+    self._commands["IncrementTimeAtLocation"] = require 'Commands.Locations.IncrementTimeAtLocation'
     self._commands["ActivateLocation"] = require 'Commands.Locations.ActivateLocation'
     self._commands["ApplyLocationModifiers"] = require 'Commands.Locations.ApplyLocationModifiers'
     self._commands["LeaveChild"] = require 'Commands.Locations.LeaveChild'
