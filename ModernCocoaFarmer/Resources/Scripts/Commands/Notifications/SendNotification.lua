@@ -13,6 +13,7 @@ function SendNotification:execute(commandManager)
     notification:setDescription(self._description)
     notification:setIcon(self._icon)
 
+    log("Sending notification: " .. self._name)
     commandManager.notificationManager:sendNotification(notification)
 end
 

@@ -11,6 +11,7 @@ end
 
 ---------------------------------------------------------------------------------
 function ShowInGameMenuDialog:execute(commandManager)
+    log("Launching In Game Menu Dialog")
     ShowModalDialog.execute(self, commandManager)
 end
 

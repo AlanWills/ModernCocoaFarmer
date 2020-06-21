@@ -20,6 +20,7 @@ function SendChildToLocation:execute(commandManager)
         return
     end
 
+    log(self._childName .. " is being sent to " .. self._locationName)
     commandManager.moneyManager:applyMoneyModifier(location:getMoneyModifier())
     location:sendChild(child)
 end

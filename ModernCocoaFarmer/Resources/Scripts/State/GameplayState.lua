@@ -40,4 +40,9 @@ function GameplayState:load()
     self.locationsManager:setDataSystem(dataSystem)
 end
 
+---------------------------------------------------------------------------------
+function GameplayState.hasSave(directory)
+    return Directory.exists(directory or GameplayState.SAVE_DIRECTORY)
+end
+
 return GameplayState

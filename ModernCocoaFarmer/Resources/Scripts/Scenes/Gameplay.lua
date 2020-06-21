@@ -41,18 +41,9 @@ local function onTimeChanged(deltaTime, commandManager)
 end
 
 ---------------------------------------------------------------------------------
-function Gameplay.new()
-    coroutine.yield()
-        
-    if Directory.exists(GameplayState.SAVE_DIRECTORY) then
-        log("Restoring saved state")
-        Gameplay._state = Class.new(GameplayState, saveDirectory)
-    else
-        log("Creating fresh state")
-        Gameplay._state = Class.new(GameplayState)
-    end
-
+function Gameplay.new(saveDirectory)
     log("Loading state")
+    Gameplay._state = Class.new(GameplayState, saveDirectory)
     Gameplay._state:load()
 
     coroutine.yield()
@@ -83,6 +74,7 @@ function Gameplay.new()
     coroutine.yield()
 
     log("Loading gameplay scene")
+
     Scene.load(Gameplay.GAMEPLAY_SCENE_PATH)
     Gameplay._root = GameObject.find(Gameplay.GAMEPLAY_ROOT_NAME)
 

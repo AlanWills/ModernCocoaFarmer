@@ -1,12 +1,15 @@
-local Save = {}
+local GameplayState = require 'State.GameplayState'
 
 ---------------------------------------------------------------------------------
-function Save:new(saveDirectory)
-    self._saveDirectory = saveDirectory
+local SaveGame = {}
+
+---------------------------------------------------------------------------------
+function SaveGame:new(saveDirectory)
+    self._saveDirectory = saveDirectory or GameplayState.SAVE_DIRECTORY
 end
 
 ---------------------------------------------------------------------------------
-function Save:execute(commandManager)
+function SaveGame:execute(commandManager)
     local saveDirectory = Directory.new(self._saveDirectory)
     if not saveDirectory:exists() then
         saveDirectory:create()
@@ -21,13 +24,4 @@ function Save:execute(commandManager)
     log("Game saved successfully in " .. self._saveDirectory)
 end
 
----------------------------------------------------------------------------------
-function Save.parseArgs(args)
-    if #args < 1 then
-        return nil, "Missing save directory argument"
-    end
-
-    return args
-end
-
-return Save
+return SaveGame

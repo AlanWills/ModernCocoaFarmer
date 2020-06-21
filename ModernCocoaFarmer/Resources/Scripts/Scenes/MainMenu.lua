@@ -1,8 +1,5 @@
 local Class = require 'OOP.Class'
-local Load = require 'Commands.State.Load'
 local GameplayState = require 'State.GameplayState'
-local Gameplay = require 'Scenes.Gameplay'
-local ShowIntroVideo = require 'Commands.Tutorials.ShowIntroVideo'
 
 ---------------------------------------------------------------------------------
 local MainMenu = 
@@ -19,25 +16,19 @@ local MainMenu =
 ---------------------------------------------------------------------------------
 local function play(caller)
     local MainMenu = require 'Scenes.MainMenu'
-    local Loading = require 'Scenes.Loading'
+    local NewGame = require 'Commands.State.NewGame'
 
     MainMenu.hide()
-    Loading.show(Gameplay.new,
-        function() 
-            Class.new(ShowIntroVideo, Gameplay.show):execute() 
-        end)
+    Class.new(NewGame):execute()
 end
 
 ---------------------------------------------------------------------------------
 local function continue(caller)
     local MainMenu = require 'Scenes.MainMenu'
-    local Loading = require 'Scenes.Loading'
+    local LoadGame = require 'Commands.State.LoadGame'
 
     MainMenu.hide()
-    Loading.show(Gameplay.new, 
-        function() 
-            Class.new(ShowIntroVideo, Gameplay.show):execute() 
-        end)
+    Class.new(LoadGame):execute()
 end
 
 ---------------------------------------------------------------------------------
@@ -75,7 +66,7 @@ function MainMenu.show()
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.EXIT_BUTTON_NAME, exitGame)
 
     local continueButton = layoutStackPanel:findChild(MainMenu.CONTINUE_BUTTON_NAME)
-    continueButton:setActive(Directory.exists(GameplayState.SAVE_DIRECTORY))
+    continueButton:setActive(GameplayState.hasSave())
     layoutStackPanel:findComponent("StackPanel"):layout()
 end
 

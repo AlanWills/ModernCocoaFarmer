@@ -2,6 +2,8 @@ local ApplyLocationModifiers = {}
 
 ---------------------------------------------------------------------------------
 function ApplyLocationModifiers:execute(commandManager)
+    log("Applying location modifiers")
+
     local locationsManager = commandManager.locationsManager
     local familyManager = commandManager.familyManager
 
@@ -11,6 +13,8 @@ function ApplyLocationModifiers:execute(commandManager)
         if child:isAtLocation() then
             local location = locationsManager:findLocation(child:getCurrentLocation())
             location:applyModifiers(child)
+            
+            log(location:getName() .. " modifiers applied to " ..  child:getName())
         end
     end
 end

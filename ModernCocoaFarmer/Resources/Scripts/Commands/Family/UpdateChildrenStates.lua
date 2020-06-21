@@ -7,6 +7,7 @@ UpdateChildrenStates.CHILD_GRADUATED_ICON_PATH = path.combine("Textures", "UI", 
 
 ---------------------------------------------------------------------------------
 function UpdateChildrenStates:execute(commandManager)
+    log("Updating children states")
     local familyManager = commandManager.familyManager
 
     for childIndex = 0, (familyManager:getChildCount() - 1) do
@@ -21,6 +22,7 @@ function UpdateChildrenStates:execute(commandManager)
             end
             
             if child:canDie() then
+                log(child:getName() .. " is now dead")
                 child:die()
 
                 commandManager:execute(
@@ -29,6 +31,7 @@ function UpdateChildrenStates:execute(commandManager)
                     "After lingering on death's door, " .. child:getName() .. " has finally stepped over.  Your family bitterly rues their passing.",
                     UpdateChildrenStates.CHILD_DECEASED_ICON_PATH)
             elseif child:canGraduate() then
+                log(child:getName() .. " is now graduated")
                 child:graduate()
 
                 commandManager:execute(

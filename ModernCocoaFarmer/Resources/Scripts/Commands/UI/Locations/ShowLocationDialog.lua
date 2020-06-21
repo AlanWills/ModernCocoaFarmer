@@ -11,6 +11,7 @@ end
 
 ---------------------------------------------------------------------------------
 function ShowLocationDialog:execute(commandManager)
+    log("Launching Location Dialog")
     ShowModalDialog.execute(self, commandManager)
 end
 

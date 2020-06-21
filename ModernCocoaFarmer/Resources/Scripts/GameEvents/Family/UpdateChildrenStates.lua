@@ -1,6 +1,6 @@
 local GameEventPeriod = require 'GameEvents.GameEventPeriod'
 local UpdateChildrenStatesCommand = require 'Commands.Family.UpdateChildrenStates'
-local Finish = require 'Commands.State.Finish'
+local FinishGame = require 'Commands.State.FinishGame'
 
 local UpdateChildrenStates = {}
 
@@ -29,7 +29,7 @@ function UpdateChildrenStates.trigger(commandManager)
         end
     end
 
-    commandManager:execute(Finish, graduatedChildren, deadChildren)
+    commandManager:execute(FinishGame, graduatedChildren, deadChildren)
 end
 
 return UpdateChildrenStates

@@ -1,6 +1,6 @@
 local Class = require 'OOP.Class'
 local ShowInGameMenuDialog = require 'Commands.UI.Menu.ShowInGameMenuDialog'
-local Save = require 'Commands.State.Save'
+local SaveGame = require 'Commands.State.SaveGame'
 local GameplayState = require 'State.GameplayState'
 
 ---------------------------------------------------------------------------------
@@ -12,7 +12,7 @@ local MenuPanel =
 
 ---------------------------------------------------------------------------------
 local function save(caller, self)
-    self._commandManager:execute(Save, GameplayState.SAVE_DIRECTORY)
+    self._commandManager:execute(SaveGame)
 end
 
 ---------------------------------------------------------------------------------

@@ -11,6 +11,7 @@ end
 
 ---------------------------------------------------------------------------------
 function ShowNotificationDialog:execute(commandManager)
+    log("Launching Notification Dialog")
     ShowModalDialog.execute(self, commandManager)
 end
 
