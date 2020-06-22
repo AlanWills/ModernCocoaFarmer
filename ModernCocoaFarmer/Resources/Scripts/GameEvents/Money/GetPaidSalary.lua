@@ -9,6 +9,7 @@ GetPaidSalary.NAME = "GetPaidSalary"
 GetPaidSalary.PERIOD = GameEventPeriod.EVERY_MONTH
 GetPaidSalary.BASE_SALARY_MODIFIER = path.combine("Data", "Modifiers", "Events", "Money", "BaseSalaryLevel.asset")
 GetPaidSalary.ICON_PATH = path.combine("Textures", "UI", "Utility", "Money.png")
+GetPaidSalary.SFX_PATH = path.combine("Audio", "SFX", "Money.wav")
 
 ---------------------------------------------------------------------------------
 function GetPaidSalary.getBaseSalaryAmount()
@@ -30,7 +31,8 @@ function GetPaidSalary.trigger(commandManager)
         SendNotification,
         "Pay Day!",
         string.format("Your partner's salary of %d has been paid", amount),
-        GetPaidSalary.ICON_PATH)
+        GetPaidSalary.ICON_PATH,
+        GetPaidSalary.SFX_PATH)
 end
 
 return GetPaidSalary

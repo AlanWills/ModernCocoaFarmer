@@ -6,7 +6,9 @@ local AddMoney = require 'Commands.Money.AddMoney'
 ---------------------------------------------------------------------------------
 local CheckForChildrenLeaving = {}
 CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png")
+CheckForChildrenLeaving.CHILD_TRAFFICKED_SFX_PATH = path.combine("Audio", "SFX", "ChildTrafficked.wav")
 CheckForChildrenLeaving.CHILD_PAID_ICON_PATH = path.combine("Textures", "UI", "Utility", "Money.png")
+CheckForChildrenLeaving.CHILD_PAID_SFX_PATH = path.combine("Audio", "SFX", "Money.wav")
 CheckForChildrenLeaving.NAME = "CheckForChildrenLeaving"
 CheckForChildrenLeaving.PERIOD = GameEventPeriod.EVERY_DAY
 CheckForChildrenLeaving.SALARY = 9740
@@ -57,7 +59,8 @@ function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
             SendNotification,
             "Child Trafficked...",
             "The unthinkable has happened.  On the return journey from the Cocoa Farm " .. child:getName() .. " was taken.  You pray you will see them again, but deep down you know you won't.",
-            CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH)
+            CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH,
+            CheckForChildrenLeaving.CHILD_TRAFFICKED_SFX_PATH)
     else
         commandManager:execute(AddMoney, CheckForChildrenLeaving.SALARY)
 
@@ -65,7 +68,8 @@ function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
             SendNotification,
             "Child Paid",
             "After a bitter month's work, " .. child:getName() .. " has been paid " .. tostring(CheckForChildrenLeaving.SALARY) .. ".",
-            CheckForChildrenLeaving.CHILD_PAID_ICON_PATH)
+            CheckForChildrenLeaving.CHILD_PAID_ICON_PATH,
+            CheckForChildrenLeaving.CHILD_PAID_SFX_PATH)
     end
 end
 

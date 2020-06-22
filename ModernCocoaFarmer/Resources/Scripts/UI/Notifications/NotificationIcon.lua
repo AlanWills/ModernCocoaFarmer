@@ -5,7 +5,17 @@ local NotificationIcon = {}
 
 ---------------------------------------------------------------------------------
 local function showNotificationDialogCallback(caller, self)
-    self._commandManager:execute(ShowNotificationDialog, self._notification:getName(), self._notification:getDescription())
+    local sfxPath = self._notification:getSfxPath()
+
+    if sfxPath == "" then
+        sfxPath = nil
+    end
+
+    self._commandManager:execute(
+        ShowNotificationDialog, 
+        self._notification:getName(), 
+        self._notification:getDescription(),
+        sfxPath)
 end
 
 ---------------------------------------------------------------------------------

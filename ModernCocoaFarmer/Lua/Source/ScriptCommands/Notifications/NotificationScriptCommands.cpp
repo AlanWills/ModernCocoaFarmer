@@ -40,6 +40,8 @@ namespace MCF::Lua::Notifications::NotificationScriptCommands
       "getDescription", &Notification::getDescription,
       "setDescription", &Notification::setDescription,
       "getIcon", &Notification::getIcon,
-      "setIcon", &Internals::setIcon);
+      "setIcon", &Internals::setIcon,
+      "getSfxPath", &Notification::getSfxPath,
+      "setSfxPath", &Notification::setSfxPath);
   }
 }

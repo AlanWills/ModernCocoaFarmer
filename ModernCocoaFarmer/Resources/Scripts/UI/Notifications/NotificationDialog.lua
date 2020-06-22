@@ -8,6 +8,7 @@ NotificationDialog.NOTIFICATION_DIALOG_PREFAB_PATH = path.combine("Prefabs", "UI
 NotificationDialog.NOTIFICATION_TITLE_NAME = "NotificationDialogTitle"
 NotificationDialog.NOTIFICATION_DESCRIPTION_NAME = "NotificationDialogDescription"
 NotificationDialog.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME = "CloseNotificationDialogButton"
+NotificationDialog.DEFAULT_SFX_PATH = path.combine("Audio", "SFX", "Notification.wav")
 
 ---------------------------------------------------------------------------------
 local function closeDialog(caller, self)
@@ -15,17 +16,22 @@ local function closeDialog(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-function NotificationDialog:new(commandManager, notificationTitle, notificationDescription)
+function NotificationDialog:new(commandManager, notificationTitle, notificationDescription, notificationSfx)
     local dialogPrefab = Resources.loadPrefab(self.NOTIFICATION_DIALOG_PREFAB_PATH)
     self._gameObject = dialogPrefab:instantiate()
 
     ModalDialogBase.new(self, commandManager, self._gameObject)
 
-    local notificationTitleGameObject = self._gameObject:findChild(self.NOTIFICATION_TITLE_NAME)
-    
-    notificationTitleGameObject:findComponent("TextRenderer"):setText(notificationTitle)
+    self._gameObject:findChild(self.NOTIFICATION_TITLE_NAME):findComponent("TextRenderer"):setText(notificationTitle)
     self._gameObject:findChild(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notificationDescription)
     self._gameObject:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, closeDialog, self)
+    
+    local notificationAudioSource = self._gameObject:findComponent("AudioSource")
+    log("Before " .. notificationSfx)
+    notificationSfx = notificationSfx or NotificationDialog.DEFAULT_SFX_PATH
+    log("After " .. notificationSfx)
+    notificationAudioSource:setSound(notificationSfx)
+    notificationAudioSource:play()
 end
 
 return NotificationDialog

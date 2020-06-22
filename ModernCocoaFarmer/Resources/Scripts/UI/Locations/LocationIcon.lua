@@ -3,7 +3,6 @@ local ShowLocationDialog = require 'Commands.UI.Locations.ShowLocationDialog'
 
 local LocationIcon = 
 {
-    CHILD_WALKING_PREFAB_PATH = path.combine("Prefabs", "Gameplay", "Family", "ChildWalkingToLocation.prefab"),
     LOCATION_PROGRESS_PREFAB_PATH = path.combine("Prefabs", "UI", "Locations", "LocationProgress.prefab"),
     ICON_NAME = "Icon",
     PROGRESS_STACK_PANEL_NAME = "ProgressStackPanel",
@@ -23,13 +22,11 @@ end
 
 ----------------------------------------------------------------------------------------
 local function onChildSentCallback(child, self)
-    --self:addChildWalking("Home", self._locationName)
     self:addChildLocationProgress(child)
 end
 
 ----------------------------------------------------------------------------------------
 local function onChildLeftCallback(child, self)
-    --self:addChildWalking(self._locationName, "Home")
     self:removeChildLocationProgress(child)
 end
 
@@ -60,18 +57,6 @@ end
 ----------------------------------------------------------------------------------------
 local function onLeftButtonUp(caller, extraArgs)
     extraArgs.callback(extraArgs.locationIcon, extraArgs.extraArgs)
-end
-
-----------------------------------------------------------------------------------------
-function LocationIcon:addChildWalking(from, to)
-    local childWalkingPrefab = Resources.loadPrefab(LocationIcon.CHILD_WALKING_PREFAB_PATH)
-    local childWalkingInstance = childWalkingPrefab:instantiate()
-    childWalkingInstance:setParent(self._gameObject)
-
-    local childWalking = childWalkingInstance:findComponent("ChildWalkingToLocationController")
-    childWalkingInstance:getTransform():setWorldTranslation(GameObject.find(from):getTransform():getWorldTranslation())
-    childWalking:setLocation(GameObject.find(to):getTransform():getWorldTranslation())
-    childWalking:setSpeed(100)
 end
 
 ----------------------------------------------------------------------------------------

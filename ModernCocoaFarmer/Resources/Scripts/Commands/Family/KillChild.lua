@@ -3,7 +3,8 @@ local SendNotification = require 'Commands.Notifications.SendNotification'
 ---------------------------------------------------------------------------------
 local KillChild =
 {
-    ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png")
+    ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png"),
+    SFX_PATH = path.combine("Audio", "SFX", "Death.wav"),
 }
 
 ---------------------------------------------------------------------------------

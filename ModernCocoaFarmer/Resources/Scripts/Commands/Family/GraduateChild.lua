@@ -3,7 +3,8 @@ local SendNotification = require 'Commands.Notifications.SendNotification'
 ---------------------------------------------------------------------------------
 local GraduateChild =
 {
-    ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildGraduated.png")
+    ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildGraduated.png"),
+    SFX_PATH = path.combine("Audio", "SFX", "Notification.wav"),  -- Replace
 }
 
 ---------------------------------------------------------------------------------
@@ -27,7 +28,8 @@ function GraduateChild:execute(commandManager)
         SendNotification,
         "Graduation Day!",
         "School is never easy, but " .. self._childName .. " has successfully graduated.  Their education gives them hope for a better life.",
-        GraduateChild.ICON_PATH)
+        GraduateChild.ICON_PATH,
+        GraduateChild.SFX_PATH)
 end
 
 ---------------------------------------------------------------------------------
