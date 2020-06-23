@@ -4,7 +4,7 @@ local SendNotification = require 'Commands.Notifications.SendNotification'
 local GraduateChild =
 {
     ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildGraduated.png"),
-    SFX_PATH = path.combine("Audio", "SFX", "Notification.wav"),  -- Replace
+    SFX_PATH = path.combine("Audio", "SFX", "Graduated.wav"),
 }
 
 ---------------------------------------------------------------------------------

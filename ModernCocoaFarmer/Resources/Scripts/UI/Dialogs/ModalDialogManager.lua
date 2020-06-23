@@ -1,5 +1,4 @@
 local Class = require 'OOP.Class'
-local Queue = require 'Containers.Queue'
 
 ---------------------------------------------------------------------------------
 local ModalDialogManager =
@@ -14,7 +13,6 @@ local ModalDialogManager =
 function ModalDialogManager:new(rootGameObject)
     self._rootGameObject = rootGameObject
     self._dialogGraveyard = rootGameObject:findChild(self.DIALOG_GRAVEYARD_NAME)
-    self._dialogQueue = Class.new(Queue)
 end
 
 ---------------------------------------------------------------------------------
@@ -31,17 +29,10 @@ function ModalDialogManager:showDialog(dialogType, ...)
 
     inputBlocker:setActive(true)
     modalDialogBase:setParent(self._rootGameObject)
-
-    dialog:onShow()
 end
 
 ---------------------------------------------------------------------------------
 function ModalDialogManager:hideDialog(dialog)
-    dialog:onHide()
-
-    -- dialogRoot parent = DIALOG_ROOT_NAME
-    -- DIALOG_ROOT_NAME parent = MODAL_DIALOG_BASE
-
     -- This section is a workaround for a bug where managed components are still active and updated when
     -- active game objects are added to an inactive tree
     local modalDialogBase = dialog.dialogRoot:getParent():getParent()

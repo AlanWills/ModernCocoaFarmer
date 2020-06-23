@@ -25,9 +25,6 @@ function Loading.new()
     Loading._numFacts = #Loading.FACTS
     Loading._root = GameObject.find(Loading.LOADING_ROOT_NAME)
     Loading._root:setActive(false)
-
-    local timeNotifier = Loading._root:findChild(Loading.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
-    timeNotifier:subscribeOnTimeChangedCallback(Loading.update)
 end
 
 ---------------------------------------------------------------------------------
@@ -61,6 +58,7 @@ function Loading.show(loadFunction, loadCompleteFunction)
     local fact = Loading._root:findChild(Loading.CONSTANTS_NAME):findChild(Loading.FACT_NAME)
     fact:findComponent("Constant"):setValue(Loading.getFact())
 
+    Loading._timeNotifierHandle = System.getTimeNotifierSystem():subscribe(Loading.update)
     Loading._root:setActive(true)
     Loading._loadCoroutine = coroutine.create(loadFunction)
     Loading._loadCompleteFunction = loadCompleteFunction
@@ -73,6 +71,9 @@ function Loading.hide()
         Loading._loadCompleteFunction()
     end
 
+    System.getTimeNotifierSystem():unsubscribe(Loading._timeNotifierHandle)
+
+    Loading._timeNotifierHandle = 0
     Loading._root:setActive(false)
     Loading._loadCoroutine = nil
     Loading._loadCompleteFunction = nil

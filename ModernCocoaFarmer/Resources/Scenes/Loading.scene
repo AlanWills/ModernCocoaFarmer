@@ -43,11 +43,6 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="TimeNotifier">
-          <Components>
-            <TimeNotifier/>
-          </Components>
-        </GameObject>
         <GameObject name="Constants">
           <GameObjects>
             <GameObject name="Fact">

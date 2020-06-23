@@ -26,11 +26,7 @@ namespace MCF::Lua::Data::DataSystemScriptCommands
   //------------------------------------------------------------------------------------------------
   void initialize(sol::state& state)
   {
-    if (!state["System"].valid())
-    {
-      state.create_named_table("System");
-    }
-
+    ASSERT(state["System"].valid());
     state["System"]["getDataSystem"] = &MCF::Data::getDataSystem;
 
     state.new_usertype<MCF::Data::DataSystem>(

@@ -14,12 +14,4 @@ function ModalDialogBase:hide()
     self._commandManager:execute(HideModalDialog, self)
 end
 
----------------------------------------------------------------------------------
-function ModalDialogBase:onShow()
-end
-
----------------------------------------------------------------------------------
-function ModalDialogBase:onHide()
-end
-
 return ModalDialogBase

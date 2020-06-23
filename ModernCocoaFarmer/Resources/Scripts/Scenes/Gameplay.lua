@@ -35,12 +35,6 @@ local LocationNames =
 }
 
 ---------------------------------------------------------------------------------
-local function onTimeChanged(deltaTime, commandManager)
-    Gameplay._state.modalDialogManager:destroyDialogs()
-    commandManager:execute(ElapseTime, deltaTime)
-end
-
----------------------------------------------------------------------------------
 function Gameplay.new(saveDirectory)
     log("Loading state")
     Gameplay._state = Class.new(GameplayState, saveDirectory)
@@ -95,9 +89,6 @@ function Gameplay.new(saveDirectory)
 
     log("Initializing UI")
 
-    local timeComponent = Gameplay._root:findChild(Gameplay.TIME_NOTIFIER_NAME):findComponent("TimeNotifier")
-    timeComponent:subscribeOnTimeChangedCallback(onTimeChanged, commandManager)
-
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
     Gameplay._locationsUI = Class.new(LocationsUI, commandManager, locationsUI)
 
@@ -126,13 +117,25 @@ function Gameplay.new(saveDirectory)
 end
 
 ---------------------------------------------------------------------------------
+function Gameplay.update(deltaTime)
+    Gameplay._state.modalDialogManager:destroyDialogs()
+    Gameplay._commandManager:execute(ElapseTime, deltaTime)
+end
+
+---------------------------------------------------------------------------------
 function Gameplay.show()
+    log("Showing Gameplay scene")
+    Gameplay._timeNotifierHandle = System.getTimeNotifierSystem():subscribe(Gameplay.update)
     Gameplay._root:setActive(true)
     Gameplay._commandManager:execute(Play)
 end
 
 ---------------------------------------------------------------------------------
 function Gameplay.hide()
+    log("Hiding Gameplay scene")
+    System.getTimeNotifierSystem():unsubscribe(Gameplay._timeNotifierHandle)
+
+    Gameplay._timeNotifierHandle = 0
     Gameplay._state = nil
     Gameplay._commandManager = nil
     Gameplay._gameEventManager = nil

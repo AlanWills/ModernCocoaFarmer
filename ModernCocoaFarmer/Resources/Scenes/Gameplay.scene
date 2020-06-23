@@ -54,11 +54,6 @@
         <Prefab name="TopBar" path="Prefabs\UI\TopBar.prefab"/>
         <Prefab name="NotificationsPanel" path="Prefabs\UI\Notifications\NotificationsPanel.prefab"/>
         <Prefab name="ModalDialogManager" path="Prefabs\UI\Dialogs\ModalDialogManager.prefab"/>
-        <GameObject name="TimeNotifier">
-          <Components>
-            <TimeNotifier/>
-          </Components>
-        </GameObject>
       </GameObjects>
     </GameObject>
   </GameObjects>

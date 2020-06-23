@@ -3,6 +3,7 @@
 #include "Data/DataSystem.h"
 #include "Dolce/IDolce.h"
 #include "CelesteStl/Templates/Unused.h"
+#include "Time/TimeNotifierSystem.h"
 
 #include "ScriptCommands/Celeste/CelesteScriptCommands.h"
 #include "ScriptCommands/MCFScriptCommands.h"
@@ -20,6 +21,7 @@ namespace MCF
   MCFGame::MCFGame()
   {
     addSystem<Data::DataSystem>();
+    addSystem<Time::TimeNotifierSystem>();
 
     Path pathToResources = Path(Directory::getExecutingAppDirectory(), "ModernCocoaFarmer", "Resources");
     getResourceManager().setResourcesDirectory(pathToResources);
