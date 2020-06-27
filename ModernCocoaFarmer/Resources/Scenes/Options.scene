@@ -5,6 +5,7 @@
       <Components>
         <Canvas/>
         <GraphicsRaycaster/>
+        <ResolutionScaler target_resolution="1920,1080"/>
       </Components>
       <GameObjects>
         <GameObject position="0,300,0" name="Title">

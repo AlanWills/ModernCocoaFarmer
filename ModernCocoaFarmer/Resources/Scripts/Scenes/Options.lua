@@ -59,29 +59,30 @@ local function formatResolutionText(resolution)
 end
 
 ---------------------------------------------------------------------------------
-local function previousResolution(caller)
-    if Options._currentResolutionIndex == 1 then
-        Options._currentResolutionIndex = #Options.RESOLUTIONS
-    else
-        Options._currentResolutionIndex = Options._currentResolutionIndex - 1
-    end
+local function setResolution(resolutionIndex)
+    Options._currentResolutionIndex = resolutionIndex
 
     local resolution = Options.RESOLUTIONS[Options._currentResolutionIndex]
     Options._resolutionText:setText(formatResolutionText(resolution))
-    Viewport.setDimensions(resolution)
+    Viewport.setResolution(resolution)
+end
+
+---------------------------------------------------------------------------------
+local function previousResolution(caller)
+    if Options._currentResolutionIndex == 1 then
+        setResolution(#Options.RESOLUTIONS)
+    else
+        setResolution(Options._currentResolutionIndex - 1)
+    end
 end
 
 ---------------------------------------------------------------------------------
 local function nextResolution(caller)
     if Options._currentResolutionIndex == #Options.RESOLUTIONS then
-        Options._currentResolutionIndex = 1
+        setResolution(1)
     else
-        Options._currentResolutionIndex = Options._currentResolutionIndex + 1
+        setResolution(Options._currentResolutionIndex + 1)
     end
-
-    local resolution = Options.RESOLUTIONS[Options._currentResolutionIndex]
-    Options._resolutionText:setText(formatResolutionText(resolution))
-    Viewport.setDimensions(resolution)
 end
 
 ---------------------------------------------------------------------------------
@@ -104,6 +105,17 @@ local function close(caller)
 end
 
 ---------------------------------------------------------------------------------
+local function findResolutionIndex(resolution)
+    for i, res in ipairs(Options.RESOLUTIONS) do
+        if res == resolution then
+            return i
+        end
+    end
+
+    return 1
+end
+
+---------------------------------------------------------------------------------
 function Options.show()
     Scene.load(Options.OPTIONS_SCENE_PATH)
 
@@ -122,13 +134,13 @@ function Options.show()
     sfxVolumeSlider:findComponent("Slider"):subscribeOnValueChangedCallback(sfxVolumeSliderValueChanged)
     setValueText(sfxVolumeSlider:findChild(Options.SFX_VOLUME_VALUE_NAME), Audio.getSFXVolume())
     
-    local resolution = Viewport.getDimensions()
+    local resolution = Viewport.getResolution()
     local resolutionGameObject = GameObject.find(Options.RESOLUTION_NAME)
     local resolutionText = resolutionGameObject:findChild(Options.RESOLUTION_TEXT_NAME):findComponent("TextRenderer")
     resolutionText:setText(formatResolutionText(resolution))
     
     Options._resolutionText = resolutionText
-    Options._currentResolutionIndex = 1
+    Options._currentResolutionIndex = findResolutionIndex(resolution)
 
     local previousResolutionButton = GameObject.find(Options.PREVIOUS_RESOLUTION_BUTTON_NAME)
     previousResolutionButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(previousResolution)

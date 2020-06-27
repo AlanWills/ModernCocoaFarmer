@@ -18,7 +18,7 @@ end
 
 ---------------------------------------------------------------------------------
 function GameSettings:synchronizeSettingsFromGame()
-    self:setResolution(Viewport.getDimensions())
+    self:setResolution(Viewport.getResolution())
     self:setMasterVolume(Audio.getMasterVolume())
     self:setMusicVolume(Audio.getMusicVolume())
     self:setSFXVolume(Audio.getSFXVolume())
@@ -26,7 +26,7 @@ end
 
 ---------------------------------------------------------------------------------
 function GameSettings:synchronizeSettingsToGame()
-    Viewport.setDimensions(self:getResolution())
+    Viewport.setResolution(self:getResolution())
     Audio.setMasterVolume(self:getMasterVolume())
     Audio.setMusicVolume(self:getMusicVolume())
     Audio.setSFXVolume(self:getSFXVolume())
