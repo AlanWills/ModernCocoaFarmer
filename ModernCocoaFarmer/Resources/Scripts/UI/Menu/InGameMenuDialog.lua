@@ -50,7 +50,7 @@ local function toggleAudio(caller)
     setToggleAudioButtonTexture(caller, masterVolume)
 
     local gameSettings = GameSettings.loadFromDefaultOrCreate()
-    gameSettings:synchronizeAudioSettings()
+    gameSettings:synchronizeSettingsFromGame()
     gameSettings:saveToDefault()
 end
 

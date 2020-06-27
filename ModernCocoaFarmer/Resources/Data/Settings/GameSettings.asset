@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GameSettings name="GameSettings" guid="9e223f1e-e8bc-4bb6-9cb7-d5e056641364" master_volume="1.000000" music_volume="0.979730" sfx_volume="0.474324" vsync_enabled="false"/>
+<GameSettings name="GameSettings" guid="9e223f1e-e8bc-4bb6-9cb7-d5e056641364" window_title="Modern Cocoa Farmer" window_icon="Textures\Icons\DesktopIcon.png" resolution="1920,1080" windowed="true" vsync_enabled="false" master_volume="0.114865" music_volume="0.606757" sfx_volume="0.474324"/>

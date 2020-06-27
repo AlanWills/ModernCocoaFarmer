@@ -7,17 +7,13 @@
         <GraphicsRaycaster/>
       </Components>
       <GameObjects>
-        <GameObject position="0.5, 0.8, 0" name="Title">
+        <GameObject position="0,300,0" name="Title">
           <Components>
-            <TextRenderer font_height="30">
-              <Lines>
-                <Line>Options</Line>
-              </Lines>
-            </TextRenderer>
+            <TextRenderer text="Options" font_height="30"/>
           </Components>
         </GameObject>
         <!--Volume Grouper-->
-        <GameObject name="VolumeStackPanel" position="0.5,0.5,0">
+        <GameObject name="VolumeStackPanel" position="0,100,0">
           <Components>
             <StackPanel orientation="vertical" vertical_alignment="centre" padding="50"/>
           </Components>
@@ -95,21 +91,65 @@
                     <TextRenderer font_height="16" horizontal_alignment="right" text="SFX Volume"/>
                   </Components>
                 </GameObject>
-                <GameObject name="CloseButton" parent="SFXVolumeSlider" position="0,-200,0">
-                  <Components>
-                    <SpriteRenderer/>
-                    <MouseInteractionHandler/>
-                    <Button/>
-                  </Components>
-                  <GameObjects>
-                    <GameObject name="CloseButtonText">
-                      <Components>
-                        <TextRenderer text="Close" colour="0,0,0" font_height="20"/>
-                      </Components>
-                    </GameObject>
-                  </GameObjects>
-                </GameObject>
               </GameObjects>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <!--Screen Resolution-->
+        <GameObject name="Resolution" position="0,-120,0">
+          <Components>
+            <StackPanel orientation="horizontal" horizontal_alignment="centre" padding="50"/>
+          </Components>
+          <GameObjects>
+            <GameObject name="ResolutionLabel" position="0,0,0">
+              <Components>
+                <TextRenderer text="Screen Resolution: " font_height="20"/>
+              </Components>
+            </GameObject>
+            <GameObject name="PreviousResolutionButton" position="-250,3,0">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhiteArrowLeft.png"/>
+                <MouseInteractionHandler/>
+              </Components>
+            </GameObject>
+            <GameObject name="ResolutionText" position="0,0,0">
+              <Components>
+                <TextRenderer text="1920 x 1080" font_height="20"/>
+              </Components>
+            </GameObject>
+            <GameObject name="NextResolutionButton" position="250,3,0">
+              <Components>
+                <SpriteRenderer sprite="Textures\UI\Utility\WhiteArrowRight.png"/>
+                <MouseInteractionHandler/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="CloseButton" position="-200,-350,0">
+          <Components>
+            <SpriteRenderer/>
+            <MouseInteractionHandler/>
+            <Button/>
+          </Components>
+          <GameObjects>
+            <GameObject name="CloseButtonText">
+              <Components>
+                <TextRenderer text="Close" colour="0,0,0" font_height="20"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
+        <GameObject name="ApplyButton" position="200,-350,0">
+          <Components>
+            <SpriteRenderer/>
+            <MouseInteractionHandler/>
+            <Button/>
+          </Components>
+          <GameObjects>
+            <GameObject name="ApplyButtonText">
+              <Components>
+                <TextRenderer text="Apply" colour="0,0,0" font_height="20"/>
+              </Components>
             </GameObject>
           </GameObjects>
         </GameObject>

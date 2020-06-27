@@ -17,8 +17,17 @@ function GameSettings:saveToDefault()
 end
 
 ---------------------------------------------------------------------------------
-function GameSettings:synchronizeAudioSettings()
+function GameSettings:synchronizeSettingsFromGame()
+    self:setResolution(Viewport.getDimensions())
     self:setMasterVolume(Audio.getMasterVolume())
     self:setMusicVolume(Audio.getMusicVolume())
     self:setSFXVolume(Audio.getSFXVolume())
+end
+
+---------------------------------------------------------------------------------
+function GameSettings:synchronizeSettingsToGame()
+    Viewport.setDimensions(self:getResolution())
+    Audio.setMasterVolume(self:getMasterVolume())
+    Audio.setMusicVolume(self:getMusicVolume())
+    Audio.setSFXVolume(self:getSFXVolume())
 end

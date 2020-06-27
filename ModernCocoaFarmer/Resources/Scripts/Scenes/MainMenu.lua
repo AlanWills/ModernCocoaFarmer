@@ -57,8 +57,9 @@ end
 ---------------------------------------------------------------------------------
 function MainMenu.show()
     Scene.load(MainMenu.MAIN_MENU_SCENE_PATH)
+
     local layoutStackPanel = GameObject.find("Canvas2"):findChild("LayoutStackPanel")
-    
+
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.PLAY_BUTTON_NAME, play)
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.CONTINUE_BUTTON_NAME, continue)
     layoutStackPanel:setupChildLeftButtonUpCallback(MainMenu.OPTIONS_BUTTON_NAME, toOptions)

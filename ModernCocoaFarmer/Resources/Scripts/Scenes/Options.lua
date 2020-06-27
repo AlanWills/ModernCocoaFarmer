@@ -11,7 +11,17 @@ local Options =
     MUSIC_VOLUME_VALUE_NAME = "MusicVolumeValueText",
     SFX_VOLUME_SLIDER_NAME = "SFXVolumeSlider",
     SFX_VOLUME_VALUE_NAME = "SFXVolumeValueText",
+    RESOLUTION_NAME = "Resolution",
+    RESOLUTION_TEXT_NAME = "ResolutionText",
+    PREVIOUS_RESOLUTION_BUTTON_NAME = "PreviousResolutionButton",
+    NEXT_RESOLUTION_BUTTON_NAME = "NextResolutionButton",
+    APPLY_BUTTON_NAME = "ApplyButton",
     CLOSE_BUTTON_NAME = "CloseButton",
+    RESOLUTIONS = 
+    {
+        vec2.new(1920, 1080),
+        vec2.new(1280, 720),
+    }
 }
 
 ---------------------------------------------------------------------------------
@@ -44,11 +54,48 @@ local function sfxVolumeSliderValueChanged(caller, newValue)
 end
 
 ---------------------------------------------------------------------------------
-local function saveAndTransitionToMainMenu(caller)
-    local gameSettings = GameSettings.loadFromDefaultOrCreate()
-    gameSettings:synchronizeAudioSettings()
-    gameSettings:saveToDefault()
+local function formatResolutionText(resolution)
+    return string.format("%d x %d", resolution.x, resolution.y)
+end
 
+---------------------------------------------------------------------------------
+local function previousResolution(caller)
+    if Options._currentResolutionIndex == 1 then
+        Options._currentResolutionIndex = #Options.RESOLUTIONS
+    else
+        Options._currentResolutionIndex = Options._currentResolutionIndex - 1
+    end
+
+    local resolution = Options.RESOLUTIONS[Options._currentResolutionIndex]
+    Options._resolutionText:setText(formatResolutionText(resolution))
+    Viewport.setDimensions(resolution)
+end
+
+---------------------------------------------------------------------------------
+local function nextResolution(caller)
+    if Options._currentResolutionIndex == #Options.RESOLUTIONS then
+        Options._currentResolutionIndex = 1
+    else
+        Options._currentResolutionIndex = Options._currentResolutionIndex + 1
+    end
+
+    local resolution = Options.RESOLUTIONS[Options._currentResolutionIndex]
+    Options._resolutionText:setText(formatResolutionText(resolution))
+    Viewport.setDimensions(resolution)
+end
+
+---------------------------------------------------------------------------------
+local function apply(caller)
+    local gameSettings = GameSettings.loadFromDefaultOrCreate()
+    gameSettings:synchronizeSettingsFromGame()
+    gameSettings:saveToDefault()
+end
+
+---------------------------------------------------------------------------------
+local function close(caller)
+    local gameSettings = GameSettings.loadFromDefaultOrCreate()
+    gameSettings:synchronizeSettingsToGame()
+    
     local Options = require 'Scenes.Options'
     Options.hide()
 
@@ -74,14 +121,33 @@ function Options.show()
     sfxVolumeSlider:findComponent("Slider"):setCurrentValue(Audio.getSFXVolume())
     sfxVolumeSlider:findComponent("Slider"):subscribeOnValueChangedCallback(sfxVolumeSliderValueChanged)
     setValueText(sfxVolumeSlider:findChild(Options.SFX_VOLUME_VALUE_NAME), Audio.getSFXVolume())
+    
+    local resolution = Viewport.getDimensions()
+    local resolutionGameObject = GameObject.find(Options.RESOLUTION_NAME)
+    local resolutionText = resolutionGameObject:findChild(Options.RESOLUTION_TEXT_NAME):findComponent("TextRenderer")
+    resolutionText:setText(formatResolutionText(resolution))
+    
+    Options._resolutionText = resolutionText
+    Options._currentResolutionIndex = 1
+
+    local previousResolutionButton = GameObject.find(Options.PREVIOUS_RESOLUTION_BUTTON_NAME)
+    previousResolutionButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(previousResolution)
+    
+    local nextResolutionButton = GameObject.find(Options.NEXT_RESOLUTION_BUTTON_NAME)
+    nextResolutionButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(nextResolution)
+
+    local applyButton = GameObject.find(Options.APPLY_BUTTON_NAME)
+    applyButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(apply)
 
     local closeButton = GameObject.find(Options.CLOSE_BUTTON_NAME)
-    closeButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(saveAndTransitionToMainMenu)
+    closeButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(close)
 end
 
 ---------------------------------------------------------------------------------
 function Options.hide()
     GameObject.find(Options.OPTIONS_ROOT_NAME):destroy()
+
+    Options._resolutionText = nil
 end
 
 return Options
