@@ -4,6 +4,7 @@
     <GameObject name="LoadingScene">
       <Components>
         <Canvas/>
+        <ResolutionScaler target_resolution="1920,1080"/>
       </Components>
       <GameObjects>
         <GameObject name="Background" position="960,540,0">

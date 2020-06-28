@@ -6,6 +6,7 @@
         <Canvas/>
         <GraphicsRaycaster/>
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080" opacity="1" colour="1,1,1"/>
+        <ResolutionScaler target_resolution="1920,1080"/>
       </Components>
       <GameObjects>
         <GameObject position="-480,270,0" name="DavidFenton">

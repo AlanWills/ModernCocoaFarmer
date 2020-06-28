@@ -26,10 +26,8 @@ function NotificationDialog:new(commandManager, notificationTitle, notificationD
     self._gameObject:findChild(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notificationDescription)
     self._gameObject:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, closeDialog, self)
     
-    local notificationAudioSource = self._gameObject:findComponent("AudioSource")
-    log("Before " .. notificationSfx)
     notificationSfx = notificationSfx or NotificationDialog.DEFAULT_SFX_PATH
-    log("After " .. notificationSfx)
+    local notificationAudioSource = self._gameObject:findComponent("AudioSource")
     notificationAudioSource:setSound(notificationSfx)
     notificationAudioSource:play()
 end

@@ -29,34 +29,6 @@
                 <TextRenderer font_height="32" horizontal_alignment="centre" colour="0,0,0" text="Modern Cocoa Farmer"/>
               </Components>
             </GameObject>
-            <GameObject name="Test" position="960,540">
-              <Components>
-                <SpriteRenderer size="200,40"/>
-                <MouseInteractionHandler/>
-                <Button/>
-              </Components>
-              <GameObjects>
-                <GameObject name="PlayText" position="0,1,1">
-                  <Components>
-                    <TextRenderer font_height="24" colour="0,0,0" text="Test1"/>
-                  </Components>
-                </GameObject>
-              </GameObjects>
-            </GameObject>
-            <GameObject name="Test2" position="-960,-540">
-              <Components>
-                <SpriteRenderer size="200,40"/>
-                <MouseInteractionHandler/>
-                <Button/>
-              </Components>
-              <GameObjects>
-                <GameObject name="PlayText" position="0,1,1">
-                  <Components>
-                    <TextRenderer font_height="24" colour="0,0,0" text="Test2"/>
-                  </Components>
-                </GameObject>
-              </GameObjects>
-            </GameObject>
             <GameObject name="LayoutStackPanel">
               <Components>
                 <StackPanel orientation="vertical" vertical_alignment="centre" padding="20"/>

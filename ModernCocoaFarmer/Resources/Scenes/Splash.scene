@@ -9,6 +9,7 @@
     <GameObject name="SplashScene">
       <Components>
         <Canvas/>
+        <ResolutionScaler target_resolution="1920,1080"/>
       </Components>
       <GameObjects>
         <GameObject position="960,540,0" name="Logo1">
