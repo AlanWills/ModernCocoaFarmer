@@ -23,7 +23,7 @@ namespace MCF::Notifications
       MCFLibraryDllExport void sendNotification(std::unique_ptr<Notification>&& notification);
       MCFLibraryDllExport void removeNotification(const Notification& notification);
 
-      const NotificationSentEvent& getNotificationSentEvent() const { return m_onNotificationSentEvent; }
+      NotificationSentEvent& getNotificationSentEvent() { return m_onNotificationSentEvent; }
 
       static const char* const NOTIFICATION_ELEMENT_NAME;
 

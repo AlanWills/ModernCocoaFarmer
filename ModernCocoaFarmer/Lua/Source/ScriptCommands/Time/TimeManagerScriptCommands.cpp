@@ -63,6 +63,15 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
     {
       Celeste::Lua::subscribeToEvent(timeManager.getOnYearPassedEvent(), callback, extraArgs);
     }
+
+    //------------------------------------------------------------------------------------------------
+    void unsubscribeAll(TimeManager& timeManager)
+    {
+      timeManager.getOnTimePassedEvent().unsubscribeAll();
+      timeManager.getOnDayPassedEvent().unsubscribeAll();
+      timeManager.getOnMonthPassedEvent().unsubscribeAll();
+      timeManager.getOnYearPassedEvent().unsubscribeAll();
+    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -86,6 +95,7 @@ namespace MCF::Lua::Time::TimeManagerScriptCommands
       "subscribeOnTimePassedCallback", &Internals::subscribeOnTimePassedCallback,
       "subscribeOnDayPassedCallback", &Internals::subscribeOnDayPassedCallback,
       "subscribeOnMonthPassedCallback", &Internals::subscribeOnMonthPassedCallback,
-      "subscribeOnYearPassedCallback", &Internals::subscribeOnYearPassedCallback);
+      "subscribeOnYearPassedCallback", &Internals::subscribeOnYearPassedCallback,
+      "unsubscribeAll", &Internals::unsubscribeAll);
   }
 }

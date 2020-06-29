@@ -12,11 +12,8 @@ function NewGame:execute()
     local Loading = require 'Scenes.Loading'
     local ShowIntroVideo = require 'Commands.Tutorials.ShowIntroVideo'
 
-    Loading.show(
+    Loading.show(Gameplay.new, 
         function()
-            Gameplay.new()
-        end, 
-        function() 
             Class.new(ShowIntroVideo, Gameplay.show):execute() 
         end)
 end

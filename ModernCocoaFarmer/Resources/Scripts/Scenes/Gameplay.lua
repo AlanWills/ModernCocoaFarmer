@@ -85,15 +85,27 @@ function Gameplay.new(saveDirectory)
 
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
     Gameplay._state.modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
+    Gameplay._commandManager = Class.new(CommandManager, Gameplay._state)
+end
 
-    local commandManager = Class.new(CommandManager, Gameplay._state)
-    local gameEventManager = Class.new(GameEventManager, commandManager)
+---------------------------------------------------------------------------------
+function Gameplay.update(deltaTime)
+    Gameplay._state.modalDialogManager:destroyDialogs()
+    Gameplay._commandManager:execute(ElapseTime, deltaTime)
+end
 
-    Gameplay._commandManager = commandManager
-    Gameplay._gameEventManager = gameEventManager
+---------------------------------------------------------------------------------
+function Gameplay.show()
+    -- Everything from here onwards utilises callbacks
+    -- I've found that if using a coroutine for loading
+    -- Lua garbage collects the callbacks, so we have to set them up here
+    -- as we're just about to kick things off
 
-    coroutine.yield()
+    log("Initializing game events")
 
+    local commandManager = Gameplay._commandManager
+    Gameplay._gameEventManager = Class.new(GameEventManager, commandManager)
+    
     log("Initializing UI")
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
@@ -108,8 +120,6 @@ function Gameplay.new(saveDirectory)
     local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsPanel, commandManager, notificationsPanel)
     
-    coroutine.yield()
-
     log("Initializing locations")
 
     -- Location Initialization
@@ -117,20 +127,9 @@ function Gameplay.new(saveDirectory)
         commandManager:execute(ActivateLocation, v)
     end
 
-    coroutine.yield()
-
     log("Adding Dolce windows")
     Gameplay.addDolceWindows()
-end
-
----------------------------------------------------------------------------------
-function Gameplay.update(deltaTime)
-    Gameplay._state.modalDialogManager:destroyDialogs()
-    Gameplay._commandManager:execute(ElapseTime, deltaTime)
-end
-
----------------------------------------------------------------------------------
-function Gameplay.show()
+    
     log("Showing Gameplay scene")
     Gameplay._timeNotifierHandle = System.getTimeNotifierSystem():subscribe(Gameplay.update)
     Gameplay._root:setActive(true)
@@ -142,6 +141,9 @@ end
 function Gameplay.hide()
     log("Hiding Gameplay scene")
     System.getTimeNotifierSystem():unsubscribe(Gameplay._timeNotifierHandle)
+
+    --Gameplay._state.timeManager:unsubscribeAll()
+    --Gameplay._state.notificationManager:unsubscribeAll()
 
     Gameplay._timeNotifierHandle = 0
     Gameplay._state = nil

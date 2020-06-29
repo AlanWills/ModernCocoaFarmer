@@ -75,9 +75,9 @@ function Loading.hide()
 
     Loading._timeNotifierHandle = 0
     Loading._root:setActive(false)
-    --[[Loading._loadCompleteFunction = nil
     Loading._loadCoroutine = nil
-    Loading._loadingTime = 0--]]
+    Loading._loadCompleteFunction = nil
+    Loading._loadingTime = 0
 end
 
 return Loading
