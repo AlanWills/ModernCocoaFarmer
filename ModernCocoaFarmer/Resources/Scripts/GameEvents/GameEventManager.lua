@@ -17,22 +17,22 @@ local UNPeaceKeepersArrive = require 'GameEvents.OneUse.UNPeaceKeepersArrive'
 local GameEventManager = {}
 
 ---------------------------------------------------------------------------------
-local function onTimePassedCallback(elapsedWorldTime, gameEventManager)
+function GameEventManager.onTimePassedCallback(elapsedWorldTime, gameEventManager)
     gameEventManager:onTimePassed(elapsedWorldTime)
 end
 
 ---------------------------------------------------------------------------------
-local function onDayPassedCallback(gameEventManager)
+function GameEventManager.onDayPassedCallback(gameEventManager)
     gameEventManager:onDayPassed()
 end
 
 ---------------------------------------------------------------------------------
-local function onMonthPassedCallback(gameEventManager)
+function GameEventManager.onMonthPassedCallback(gameEventManager)
     gameEventManager:onMonthPassed()
 end
 
 ---------------------------------------------------------------------------------
-local function onYearPassedCallback(gameEventManager)
+function GameEventManager.onYearPassedCallback(gameEventManager)
     gameEventManager:onYearPassed()
 end
 
@@ -46,10 +46,10 @@ function GameEventManager:new(commandManager)
     end
 
     local timeManager = self._commandManager.timeManager
-    timeManager:subscribeOnTimePassedCallback(onTimePassedCallback, self)
-    timeManager:subscribeOnDayPassedCallback(onDayPassedCallback, self)
-    timeManager:subscribeOnMonthPassedCallback(onMonthPassedCallback, self)
-    timeManager:subscribeOnYearPassedCallback(onYearPassedCallback, self)
+    timeManager:subscribeOnTimePassedCallback(GameEventManager.onTimePassedCallback, self)
+    timeManager:subscribeOnDayPassedCallback(GameEventManager.onDayPassedCallback, self)
+    timeManager:subscribeOnMonthPassedCallback(GameEventManager.onMonthPassedCallback, self)
+    timeManager:subscribeOnYearPassedCallback(GameEventManager.onYearPassedCallback, self)
 
     -- Event Initialization
     self:registerEvent(GetPaidSalary)

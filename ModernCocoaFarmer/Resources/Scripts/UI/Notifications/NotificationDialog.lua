@@ -11,7 +11,7 @@ NotificationDialog.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME = "CloseNotificationDia
 NotificationDialog.DEFAULT_SFX_PATH = path.combine("Audio", "SFX", "Notification.wav")
 
 ---------------------------------------------------------------------------------
-local function closeDialog(caller, self)
+function NotificationDialog.closeDialog(caller, self)
     self:hide()
 end
 
@@ -24,7 +24,7 @@ function NotificationDialog:new(commandManager, notificationTitle, notificationD
 
     self._gameObject:findChild(self.NOTIFICATION_TITLE_NAME):findComponent("TextRenderer"):setText(notificationTitle)
     self._gameObject:findChild(self.NOTIFICATION_DESCRIPTION_NAME):findComponent("TextRenderer"):setText(notificationDescription)
-    self._gameObject:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, closeDialog, self)
+    self._gameObject:setupChildLeftButtonUpCallback(self.CLOSE_NOTIFICATION_DIALOG_BUTTON_NAME, NotificationDialog.closeDialog, self)
     
     notificationSfx = notificationSfx or NotificationDialog.DEFAULT_SFX_PATH
     local notificationAudioSource = self._gameObject:findComponent("AudioSource")

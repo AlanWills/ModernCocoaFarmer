@@ -10,6 +10,13 @@ local ElapseTime = require 'Commands.Time.ElapseTime'
 local Play = require 'Commands.Time.Play'
 local GameEventManager = require 'GameEvents.GameEventManager'
 
+-- Dolce Windows
+local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
+local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
+local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
+local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
+local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
+
 ---------------------------------------------------------------------------------
 local Gameplay = 
 {
@@ -127,6 +134,7 @@ function Gameplay.show()
     log("Showing Gameplay scene")
     Gameplay._timeNotifierHandle = System.getTimeNotifierSystem():subscribe(Gameplay.update)
     Gameplay._root:setActive(true)
+    Gameplay._root:findComponent("AudioSource"):play()
     Gameplay._commandManager:execute(Play)
 end
 
@@ -148,12 +156,6 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.addDolceWindows()
-    local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
-    local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
-    local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
-    local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
-    local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
-
     Dolce.instance:addWindow(GameEventManagerDolceWindow.NAME, Class.new(GameEventManagerDolceWindow, Gameplay._gameEventManager))
     Dolce.instance:addWindow(CommandManagerDolceWindow.NAME, Class.new(CommandManagerDolceWindow, Gameplay._commandManager))
     Dolce.instance:addWindow(MoneyManagerDolceWindow.NAME, Class.new(MoneyManagerDolceWindow, Gameplay._state.moneyManager))
@@ -163,12 +165,6 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.removeDolceWindows()
-    local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
-    local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
-    local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
-    local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
-    local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
-    
     Dolce.instance:removeWindow(GameEventManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(CommandManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(MoneyManagerDolceWindow.NAME)

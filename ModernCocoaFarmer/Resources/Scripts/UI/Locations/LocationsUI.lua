@@ -4,7 +4,7 @@ local Class = require 'OOP.Class'
 local LocationsUI = {}
 
 ---------------------------------------------------------------------------------
-local function onLocationActivatedCallback(location, self)
+function LocationsUI.onLocationActivatedCallback(location, self)
     self:addLocationIcon(location)
 end
 
@@ -14,7 +14,7 @@ function LocationsUI:new(commandManager, gameObject)
     self._gameObject = gameObject
     self._locationIcons = {}
 
-    commandManager.locationsManager:subscribeOnLocationActivatedCallback(onLocationActivatedCallback, self)
+    commandManager.locationsManager:subscribeOnLocationActivatedCallback(LocationsUI.onLocationActivatedCallback, self)
 end
 
 ---------------------------------------------------------------------------------

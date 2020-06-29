@@ -47,11 +47,6 @@ function LocationDialog:new(commandManager, locationName)
 end
 
 ----------------------------------------------------------------------------------------
-local function closeCallback(caller, self)
-    self:hide()
-end
-
-----------------------------------------------------------------------------------------
 local function formatCostString(cost)
     if cost ~= 0 then
         return string.format("%d", cost)
@@ -114,14 +109,6 @@ local function formatModifierString(isDeltaChange, amount)
 end
 
 ----------------------------------------------------------------------------------------
-local function sendChildToLocation(caller, self)
-    local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
-    self._commandManager:execute(SendChildToLocation, self._locationName, selectedChildName)
-    self._commandManager:execute(DeselectChild, selectedChildName)
-    self:hide()
-end
-
-----------------------------------------------------------------------------------------
 function LocationDialog:setUpLocationInfoUI()
     local locationKey = datapath.combine(LocationsDataSources.LOCATIONS, self._locationName)
     local locationDataObject = self._dataStore:getObject(locationKey)
@@ -139,10 +126,15 @@ function LocationDialog:setUpLocationInfoUI()
 end
 
 ----------------------------------------------------------------------------------------
+function LocationDialog.closeCallback(caller, self)
+    self:hide()
+end
+
+----------------------------------------------------------------------------------------
 function LocationDialog:setUpCloseButton()
     local closeButton = self._gameObject:findChild(self.CLOSE_BUTTON_NAME)
     local mouseInteractionHandler = closeButton:findComponent("MouseInteractionHandler")
-    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(closeCallback, self)
+    mouseInteractionHandler:subscribeOnLeftButtonUpCallback(LocationDialog.closeCallback, self)
 end
 
 ----------------------------------------------------------------------------------------
@@ -165,6 +157,14 @@ function LocationDialog:setModifierText(stats, textName, modifierKey)
     local amount = modifierObject:getFloat(StatsDataSources.AMOUNT)
 
     text:setText(formatModifierString(isDeltaChange, amount))
+end
+
+----------------------------------------------------------------------------------------
+function LocationDialog.sendChildToLocation(caller, self)
+    local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
+    self._commandManager:execute(SendChildToLocation, self._locationName, selectedChildName)
+    self._commandManager:execute(DeselectChild, selectedChildName)
+    self:hide()
 end
 
 ----------------------------------------------------------------------------------------
@@ -191,7 +191,7 @@ function LocationDialog:setUpChildSelectionUI()
     
     if isChildAbleToBeSent then
         local sendChildButtonInteractionHandler = sendChildButton:findComponent("MouseInteractionHandler")
-        sendChildButtonInteractionHandler:subscribeOnLeftButtonUpCallback(sendChildToLocation, self)
+        sendChildButtonInteractionHandler:subscribeOnLeftButtonUpCallback(LocationDialog.sendChildToLocation, self)
 
         local sendChildButtonText = sendChildButton:findChild(self.SEND_CHILD_BUTTON_TEXT_NAME)
         sendChildButtonText:findComponent("TextRenderer"):setText("Send " .. selectedChildName)

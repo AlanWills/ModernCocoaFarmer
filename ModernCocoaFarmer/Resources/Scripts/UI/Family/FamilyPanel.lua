@@ -6,11 +6,6 @@ local FamilyPanel = {}
 FamilyPanel.CHILD_STACK_PANEL = "ChildStackPanel"
 
 ---------------------------------------------------------------------------------
-local function onChildAddedCallback(child, self)
-    self:addChildIcon(child)
-end
-
----------------------------------------------------------------------------------
 function FamilyPanel:new(commandManager, familyPanelGameObject)
     self._commandManager = commandManager
     self._childStackPanel = familyPanelGameObject:findChild(self.CHILD_STACK_PANEL)
@@ -22,7 +17,7 @@ function FamilyPanel:new(commandManager, familyPanelGameObject)
         self:addChildIcon(familyManager:getChild(childCount))
     end
 
-    familyManager:subscribeOnChildAddedCallback(onChildAddedCallback, self)
+    familyManager:subscribeOnChildAddedCallback(FamilyPanel.onChildAddedCallback, self)
 end
 
 ---------------------------------------------------------------------------------
@@ -30,6 +25,11 @@ function FamilyPanel:updateUI()
     for k, childIcon in pairs(self._childIcons) do
         childIcon:updateUI()
     end
+end
+
+---------------------------------------------------------------------------------
+function FamilyPanel.onChildAddedCallback(child, self)
+    self:addChildIcon(child)
 end
 
 ---------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ local LocationIcon =
 }
 
 ---------------------------------------------------------------------------------
-local function onIconClicked(caller, self)
+function LocationIcon.onIconClicked(caller, self)
     self._commandManager:execute(ShowLocationDialog, self._locationName)
     
     local icon = self._gameObject:findChild(self.ICON_NAME)
@@ -21,12 +21,12 @@ local function onIconClicked(caller, self)
 end
 
 ----------------------------------------------------------------------------------------
-local function onChildSentCallback(child, self)
+function LocationIcon.onChildSentCallback(child, self)
     self:addChildLocationProgress(child)
 end
 
 ----------------------------------------------------------------------------------------
-local function onChildLeftCallback(child, self)
+function LocationIcon.onChildLeftCallback(child, self)
     self:removeChildLocationProgress(child)
 end
 
@@ -38,12 +38,12 @@ function LocationIcon:new(commandManager, location, gameObject)
     self._locationProgressBars = {}
 
     local icon = self._gameObject:findChild(self.ICON_NAME)
-    icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(onIconClicked, self)
+    icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(LocationIcon.onIconClicked, self)
 
     self._locationProgressStackPanel = icon:findChild(self.PROGRESS_STACK_PANEL_NAME):findComponent("StackPanel")
 
-    location:subscribeOnChildSentCallback(onChildSentCallback, self)
-    location:subscribeOnChildLeftCallback(onChildLeftCallback, self)
+    location:subscribeOnChildSentCallback(LocationIcon.onChildSentCallback, self)
+    location:subscribeOnChildLeftCallback(LocationIcon.onChildLeftCallback, self)
 
     for childIndex = 0, (commandManager.familyManager:getChildCount() - 1) do
         local child = commandManager.familyManager:getChild(childIndex)
@@ -52,11 +52,6 @@ function LocationIcon:new(commandManager, location, gameObject)
             self:addChildLocationProgress(child)    
         end
     end
-end
-
-----------------------------------------------------------------------------------------
-local function onLeftButtonUp(caller, extraArgs)
-    extraArgs.callback(extraArgs.locationIcon, extraArgs.extraArgs)
 end
 
 ----------------------------------------------------------------------------------------

@@ -9,12 +9,12 @@ local TimePanel =
 }
 
 ---------------------------------------------------------------------------------
-local function play(caller, self)
+function TimePanel.play(caller, self)
     self._commandManager:execute(Play)
 end
 
 ---------------------------------------------------------------------------------
-local function pause(caller, self)
+function TimePanel.pause(caller, self)
     self._commandManager:execute(Pause)
 end
 
@@ -22,8 +22,8 @@ end
 function TimePanel:new(commandManager, timePanelGameObject)
     self._commandManager = commandManager
 
-    timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, play, self)
-    timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, pause, self)
+    timePanelGameObject:setupChildLeftButtonUpCallback(self.PLAY_BUTTON_NAME, TimePanel.play, self)
+    timePanelGameObject:setupChildLeftButtonUpCallback(self.PAUSE_BUTTON_NAME, TimePanel.pause, self)
 end
 
 return TimePanel

@@ -20,14 +20,13 @@ InGameMenuDialog.AUDIO_MUTED_TEXTURE_PATH = path.combine("Textures", "UI", "Sett
 InGameMenuDialog.AUDIO_PLAYING_TEXTURE_PATH = path.combine("Textures", "UI", "Settings", "AudioPlaying.png")
 InGameMenuDialog.oldMasterVolume = 1
 
-
 ----------------------------------------------------------------------------------------
-local function close(caller, self)
+function InGameMenuDialog.close(caller, self)
     self:hide()
 end
 
 ---------------------------------------------------------------------------------
-local function setToggleAudioButtonTexture(audioButton, volume)
+function InGameMenuDialog.setToggleAudioButtonTexture(audioButton, volume)
     if volume > 0 then
         audioButton:findComponent("SpriteRenderer"):setTexture(InGameMenuDialog.AUDIO_PLAYING_TEXTURE_PATH)
     else
@@ -36,7 +35,7 @@ local function setToggleAudioButtonTexture(audioButton, volume)
 end
 
 ----------------------------------------------------------------------------------------
-local function toggleAudio(caller)
+function InGameMenuDialog.toggleAudio(caller)
     local masterVolume = Audio.getMasterVolume()
 
     if masterVolume > 0 then
@@ -47,7 +46,7 @@ local function toggleAudio(caller)
     end
 
     Audio.setMasterVolume(masterVolume)
-    setToggleAudioButtonTexture(caller, masterVolume)
+    InGameMenuDialog.setToggleAudioButtonTexture(caller, masterVolume)
 
     local gameSettings = GameSettings.loadFromDefaultOrCreate()
     gameSettings:synchronizeSettingsFromGame()
@@ -55,15 +54,15 @@ local function toggleAudio(caller)
 end
 
 ---------------------------------------------------------------------------------
-local function saveGame(caller, self)
-    close(caller, self)
+function InGameMenuDialog.saveGame(caller, self)
+    InGameMenuDialog.close(caller, self)
 
     self._commandManager:execute(SaveGame)
 end
 
 ---------------------------------------------------------------------------------
-local function loadGame(caller, self)
-    close(caller, self)
+function InGameMenuDialog.loadGame(caller, self)
+    InGameMenuDialog.close(caller, self)
     
     local Gameplay = require 'Scenes.Gameplay'
     Gameplay.hide()
@@ -72,8 +71,8 @@ local function loadGame(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-local function toMainMenu(caller, self)
-    close(caller, self)
+function InGameMenuDialog.toMainMenu(caller, self)
+    InGameMenuDialog.close(caller, self)
 
     local Gameplay = require 'Scenes.Gameplay'
     Gameplay.hide()
@@ -83,7 +82,7 @@ local function toMainMenu(caller, self)
 end
 
 ---------------------------------------------------------------------------------
-local function quitGame(caller)
+function InGameMenuDialog.quitGame(caller)
     exit()
 end
 
@@ -99,14 +98,14 @@ function InGameMenuDialog:new(commandManager)
 
     ModalDialogBase.new(self, commandManager, self._gameObject)
 
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME, toggleAudio)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.RESUME_GAME_BUTTON_NAME, close, self)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.SAVE_GAME_BUTTON_NAME, saveGame, self)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.LOAD_GAME_BUTTON_NAME, loadGame, self)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME, toMainMenu, self)
-    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.QUIT_GAME_BUTTON_NAME, quitGame)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME, InGameMenuDialog.toggleAudio)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.RESUME_GAME_BUTTON_NAME, InGameMenuDialog.close, self)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.SAVE_GAME_BUTTON_NAME, InGameMenuDialog.saveGame, self)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.LOAD_GAME_BUTTON_NAME, InGameMenuDialog.loadGame, self)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.TO_MAIN_MENU_BUTTON_NAME, InGameMenuDialog.toMainMenu, self)
+    self._gameObject:setupChildLeftButtonUpCallback(InGameMenuDialog.QUIT_GAME_BUTTON_NAME, InGameMenuDialog.quitGame)
 
-    setToggleAudioButtonTexture(self._gameObject:findChild(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME), Audio.getMasterVolume())
+    InGameMenuDialog.setToggleAudioButtonTexture(self._gameObject:findChild(InGameMenuDialog.TOGGLE_AUDIO_BUTTON_NAME), Audio.getMasterVolume())
     self:updateLoadGameButtonVisibility()
 end
 

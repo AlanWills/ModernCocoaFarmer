@@ -70,14 +70,14 @@ function Loading.hide()
     if Loading._loadCompleteFunction ~= nil then
         Loading._loadCompleteFunction()
     end
-
+    
     System.getTimeNotifierSystem():unsubscribe(Loading._timeNotifierHandle)
 
     Loading._timeNotifierHandle = 0
     Loading._root:setActive(false)
+    --[[Loading._loadCompleteFunction = nil
     Loading._loadCoroutine = nil
-    Loading._loadCompleteFunction = nil
-    Loading._loadingTime = 0
+    Loading._loadingTime = 0--]]
 end
 
 return Loading

@@ -32,17 +32,17 @@ function CheckForChildrenLeaving.trigger(commandManager)
                 if locationName == "Farm" then
                     CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
                 elseif locationName == "Home" then
-                    CheckForChildrenLeaving.handleChildLeavingHome(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingHome(commandManager, child)
                 elseif locationName == "Hospital" then
-                    CheckForChildrenLeaving.handleChildLeavingHospital(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingHospital(commandManager, child)
                 elseif locationName == "Market" then
-                    CheckForChildrenLeaving.handleChildLeavingMarket(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingMarket(commandManager, child)
                 elseif locationName == "Mosque" then
-                    CheckForChildrenLeaving.handleChildLeavingMosque(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingMosque(commandManager, child)
                 elseif locationName == "School" then
-                    CheckForChildrenLeaving.handleChildLeavingSchool(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingSchool(commandManager, child)
                 elseif locationName == "Well" then
-                    CheckForChildrenLeaving.handleChildLeavingWell(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingWell(commandManager, child)
                 end
             end
         end

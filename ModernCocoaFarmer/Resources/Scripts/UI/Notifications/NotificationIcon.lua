@@ -4,7 +4,7 @@ local ShowNotificationDialog = require 'Commands.UI.Notifications.ShowNotificati
 local NotificationIcon = {}
 
 ---------------------------------------------------------------------------------
-local function showNotificationDialogCallback(caller, self)
+function NotificationIcon.showNotificationDialogCallback(caller, self)
     local sfxPath = self._notification:getSfxPath()
 
     if sfxPath == "" then
@@ -25,7 +25,7 @@ function NotificationIcon:new(commandManager, notification, gameObject)
     self._gameObject = gameObject   -- Needed by NotificationsPanel, do not delete
 
     local notificationInteractionHandler = gameObject:findComponent("MouseInteractionHandler")
-    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(showNotificationDialogCallback, self)
+    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(NotificationIcon.showNotificationDialogCallback, self)
     
     local spriteRenderer = gameObject:findComponent("SpriteRenderer")
     spriteRenderer:setTexture(notification:getIcon())

@@ -15,7 +15,6 @@ end
 ---------------------------------------------------------------------------------
 function GameEventManagerDolceWindow:render()
     if ImGui.beginCombo("Game Event", self._currentEvent.NAME) then
-
         for timePeriod, events in pairs(self._gameEventManager._events) do
             for eventName, event in pairs(events) do
                 local selectableChanged, isSelected = ImGui.selectable(eventName, self._currentEvent == event)
@@ -28,7 +27,7 @@ function GameEventManagerDolceWindow:render()
         ImGui.endCombo()
     end
 
-    if self._currentEvent.NAME ~= "" then
+    if self._currentEvent.NAME ~= nil then
         local commandManager = self._gameEventManager._commandManager
         local canTrigger = self._currentEvent.canTrigger == nil or self._currentEvent.canTrigger(commandManager)
 

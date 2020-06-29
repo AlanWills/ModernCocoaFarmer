@@ -8,12 +8,12 @@ local NotificationsPanel =
 }
 
 ---------------------------------------------------------------------------------
-local function createNotificationIconCallback(notification, self)
+function NotificationsPanel.createNotificationIconCallback(notification, self)
     self:createNotificationIcon(notification) 
 end
 
 ---------------------------------------------------------------------------------
-local function removeNotificationCallback(caller, extraArgs)
+function NotificationsPanel.removeNotificationCallback(caller, extraArgs)
     extraArgs.self:removeNotification(extraArgs.notificationIcon)
 end
 
@@ -31,7 +31,7 @@ function NotificationsPanel:new(commandManager, notificationsPanelGameObject)
         notificationCount = notificationCount + 1
     end
 
-    notificationManager:subscribeOnNotificationSentCallback(createNotificationIconCallback, self)
+    notificationManager:subscribeOnNotificationSentCallback(NotificationsPanel.createNotificationIconCallback, self)
 end
 
 ---------------------------------------------------------------------------------
@@ -41,8 +41,8 @@ function NotificationsPanel:createNotificationIcon(notification)
     local notificationIcon = Class.new(NotificationIcon, self._commandManager, notification, notificationGameObject)
 
     local notificationInteractionHandler = notificationGameObject:findComponent("MouseInteractionHandler")
-    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(removeNotificationCallback, { self = self, notificationIcon = notificationIcon })
-    notificationInteractionHandler:subscribeOnRightButtonUpCallback(removeNotificationCallback, { self = self, notificationIcon = notificationIcon })
+    notificationInteractionHandler:subscribeOnLeftButtonUpCallback(NotificationsPanel.removeNotificationCallback, { self = self, notificationIcon = notificationIcon })
+    notificationInteractionHandler:subscribeOnRightButtonUpCallback(NotificationsPanel.removeNotificationCallback, { self = self, notificationIcon = notificationIcon })
 
     self._notificationsAnchor:findComponent("StackPanel"):addChild(notificationGameObject)
 end
