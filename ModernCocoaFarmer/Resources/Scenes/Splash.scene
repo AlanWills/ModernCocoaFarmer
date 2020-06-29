@@ -14,8 +14,7 @@
       <GameObjects>
         <GameObject position="960,540,0" name="Logo1">
           <Components>
-            <SpriteRenderer sprite="Textures\Scenes\SplashSmall.png" size="1920,1080" opacity="0" preserve_aspect_ratio="true"/>
-            <OpacityLerper lerping_up="true" lerp_down_time="0" lerp_up_time="1" min_wait_time="0" max_wait_time="2.2"/>
+            <SpriteRenderer sprite="Textures\Scenes\SplashSmall.png" size="1920,1080" opacity="1" preserve_aspect_ratio="true"/>
           </Components>
         </GameObject>
         <GameObject name="SceneTransitioner">

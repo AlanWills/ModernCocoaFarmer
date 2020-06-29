@@ -12,8 +12,8 @@ namespace MCF::Locations
 
   //------------------------------------------------------------------------------------------------
   const std::string Location::DESCRIPTION_FIELD_NAME = "description";
-  const std::string Location::CHILD_LEAVES_NOTIFICATION_DESCRIPTION_FIELD_NAME = "child_leaves_notification_description";
-  const std::string Location::CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME = "child_leaves_notification_icon";
+  const std::string Location::ICON_FIELD_NAME = "icon";
+  const std::string Location::SFX_FIELD_NAME = "sfx";
   const std::string Location::HEALTH_MODIFIER_FIELD_NAME = "HealthModifier";
   const std::string Location::SAFETY_MODIFIER_FIELD_NAME = "SafetyModifier";
   const std::string Location::EDUCATION_MODIFIER_FIELD_NAME = "EducationModifier";
@@ -24,8 +24,8 @@ namespace MCF::Locations
   //------------------------------------------------------------------------------------------------
   Location::Location() :
     m_description(createReferenceField<std::string>(DESCRIPTION_FIELD_NAME)),
-    m_childLeavesNotificationDescription(createReferenceField<std::string>(CHILD_LEAVES_NOTIFICATION_DESCRIPTION_FIELD_NAME)),
-    m_childLeavesNotificationIcon(createValueField<observer_ptr<Celeste::Resources::Texture2D>>(CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME)),
+    m_icon(createReferenceField<std::string>(ICON_FIELD_NAME)),
+    m_sfx(createReferenceField<std::string>(SFX_FIELD_NAME)),
     m_healthModifier(createScriptableObject<Stats::Modifier>(HEALTH_MODIFIER_FIELD_NAME)),
     m_safetyModifier(createScriptableObject<Stats::Modifier>(SAFETY_MODIFIER_FIELD_NAME)),
     m_educationModifier(createScriptableObject<Stats::Modifier>(EDUCATION_MODIFIER_FIELD_NAME)),

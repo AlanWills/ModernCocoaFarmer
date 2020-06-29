@@ -38,6 +38,8 @@ function LocationIcon:new(commandManager, location, gameObject)
     self._locationProgressBars = {}
 
     local icon = self._gameObject:findChild(self.ICON_NAME)
+    icon:findComponent("SpriteRenderer"):setTexture(location:getIcon())
+    icon:findComponent("AudioSource"):setSound(location:getSfx())
     icon:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(LocationIcon.onIconClicked, self)
 
     self._locationProgressStackPanel = icon:findChild(self.PROGRESS_STACK_PANEL_NAME):findComponent("StackPanel")

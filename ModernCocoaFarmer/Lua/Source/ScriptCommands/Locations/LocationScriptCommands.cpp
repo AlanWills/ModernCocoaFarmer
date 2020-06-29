@@ -46,6 +46,8 @@ namespace MCF::Lua::Locations::LocationScriptCommands
       "LocationInformation",
       sol::base_classes, sol::bases<Celeste::ScriptableObject>(),
       "getDescription", &Location::getDescription,
+      "getIcon", &Location::getIcon,
+      "getSfx", &Location::getSfx,
       "getHealthModifier", &Location::getHealthModifier,
       "getSafetyModifier", &Location::getSafetyModifier,
       "getEducationModifier", &Location::getEducationModifier,

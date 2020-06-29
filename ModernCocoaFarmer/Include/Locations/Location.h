@@ -32,8 +32,8 @@ namespace MCF::Locations
       using ChildLeftEvent = Celeste::Event<const Family::Child&>;
 
       inline const std::string& getDescription() const { return m_description.getValue(); }
-      inline const std::string& getChildLeavesNotificationDescription() const { return m_childLeavesNotificationDescription.getValue(); }
-      inline observer_ptr<Celeste::Resources::Texture2D> getChildLeavesNotificationIcon() const { return m_childLeavesNotificationIcon.getValue(); }
+      inline const std::string& getIcon() const { return m_icon.getValue(); }
+      inline const std::string& getSfx() const { return m_sfx.getValue(); }
 
       inline const Stats::Modifier& getHealthModifier() const { return m_healthModifier; }
       inline const Stats::Modifier& getSafetyModifier() const { return m_safetyModifier; }
@@ -52,8 +52,8 @@ namespace MCF::Locations
       inline const ChildLeftEvent& getOnChildLeftEvent() const { return m_onChildLeftEvent; }
 
       static const std::string DESCRIPTION_FIELD_NAME;
-      static const std::string CHILD_LEAVES_NOTIFICATION_DESCRIPTION_FIELD_NAME;
-      static const std::string CHILD_LEAVES_NOTIFICATION_ICON_FIELD_NAME;
+      static const std::string ICON_FIELD_NAME;
+      static const std::string SFX_FIELD_NAME;
       static const std::string HEALTH_MODIFIER_FIELD_NAME;
       static const std::string SAFETY_MODIFIER_FIELD_NAME;
       static const std::string EDUCATION_MODIFIER_FIELD_NAME;
@@ -66,8 +66,8 @@ namespace MCF::Locations
 
     private:
       Celeste::ReferenceField<std::string>& m_description;
-      Celeste::ReferenceField<std::string>& m_childLeavesNotificationDescription;
-      Celeste::ValueField<observer_ptr<Celeste::Resources::Texture2D>>& m_childLeavesNotificationIcon;
+      Celeste::ReferenceField<std::string>& m_icon;
+      Celeste::ReferenceField<std::string>& m_sfx;
       Stats::Modifier& m_healthModifier;
       Stats::Modifier& m_safetyModifier;
       Stats::Modifier& m_educationModifier;
