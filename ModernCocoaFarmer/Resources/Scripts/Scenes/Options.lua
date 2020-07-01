@@ -90,12 +90,14 @@ local function apply(caller)
     local gameSettings = GameSettings.loadFromDefaultOrCreate()
     gameSettings:synchronizeSettingsFromGame()
     gameSettings:saveToDefault()
+    gameSettings:destroy()
 end
 
 ---------------------------------------------------------------------------------
 local function close(caller)
     local gameSettings = GameSettings.loadFromDefaultOrCreate()
     gameSettings:synchronizeSettingsToGame()
+    gameSettings:destroy()
     
     local Options = require 'Scenes.Options'
     Options.hide()

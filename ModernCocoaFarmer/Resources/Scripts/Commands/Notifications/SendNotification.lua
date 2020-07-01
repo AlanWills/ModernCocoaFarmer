@@ -5,7 +5,7 @@ function SendNotification:new(name, description, icon, sfx)
     self._name = name
     self._description = description
     self._icon = icon
-    self._sfx = sfx or nil
+    self._sfx = sfx
 end
 
 ---------------------------------------------------------------------------------

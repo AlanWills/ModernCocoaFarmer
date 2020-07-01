@@ -35,10 +35,10 @@ namespace MCF::Time
       unsigned int getCurrentMonth() const { return m_currentMonth; }
       unsigned int getCurrentYear() const { return m_currentYear; }
 
-      const Celeste::Event<float>& getOnTimePassedEvent() const { return m_onTimePassed; }
-      const TimeEvent& getOnDayPassedEvent() const { return m_onDayPassed; }
-      const TimeEvent& getOnMonthPassedEvent() const { return m_onMonthPassed; }
-      const TimeEvent& getOnYearPassedEvent() const { return m_onYearPassed; }
+      Celeste::Event<float>& getOnTimePassedEvent() { return m_onTimePassed; }
+      TimeEvent& getOnDayPassedEvent() { return m_onDayPassed; }
+      TimeEvent& getOnMonthPassedEvent() { return m_onMonthPassed; }
+      TimeEvent& getOnYearPassedEvent() { return m_onYearPassed; }
 
       static const char* const SECONDS_PER_DAY_ATTRIBUTE_NAME;
       static const char* const TOTAL_DAYS_PASSED_ATTRIBUTE_NAME;

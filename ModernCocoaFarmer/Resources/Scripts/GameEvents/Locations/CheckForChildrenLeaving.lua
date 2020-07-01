@@ -30,19 +30,19 @@ function CheckForChildrenLeaving.trigger(commandManager)
                 local locationName = location:getName()
 
                 if locationName == "Farm" then
-                    CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingFarm(commandManager, child, location)
                 elseif locationName == "Home" then
-                    CheckForChildrenLeaving.handleChildLeavingHome(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingHome(commandManager, child, location)
                 elseif locationName == "Hospital" then
-                    CheckForChildrenLeaving.handleChildLeavingHospital(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingHospital(commandManager, child, location)
                 elseif locationName == "Market" then
-                    CheckForChildrenLeaving.handleChildLeavingMarket(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingMarket(commandManager, child, location)
                 elseif locationName == "Mosque" then
-                    CheckForChildrenLeaving.handleChildLeavingMosque(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingMosque(commandManager, child, location)
                 elseif locationName == "School" then
-                    CheckForChildrenLeaving.handleChildLeavingSchool(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingSchool(commandManager, child, location)
                 elseif locationName == "Well" then
-                    CheckForChildrenLeaving.handleChildLeavingWell(commandManager, child)
+                    CheckForChildrenLeaving.handleLeavingWell(commandManager, child, location)
                 end
             end
         end
@@ -50,7 +50,7 @@ function CheckForChildrenLeaving.trigger(commandManager)
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child, location)
     if math.random() > child:getSafety() then
         -- Child is trafficked
         child:die()
@@ -74,57 +74,63 @@ function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child)
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingHome(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingHome(commandManager, child, location)
     commandManager:execute(
         SendNotification,
         "Home Chores Complete",
         "The errands " .. child:getName() .. " has done may not change the world, but will make it more bearable.",
-        "")
+        location:getIcon(),
+        location:getSfx())
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingHospital(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingHospital(commandManager, child, location)
     commandManager:execute(
         SendNotification,
         "Hospital Visit Complete",
         "Fully recovered from their ailments, " .. child:getName() .. " heads for home.",
-        "")
+        location:getIcon(),
+        location:getSfx())
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingMarket(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingMarket(commandManager, child, location)
     commandManager:execute(
         SendNotification,
         "Market Visit Complete",
         child:getName() .. " has brought back all manner of food from the market.",
-        "")
+        location:getIcon(),
+        location:getSfx())
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingMosque(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingMosque(commandManager, child, location)
     commandManager:execute(
         SendNotification,
         "Mosque Visit Complete",
         "Inspired and with a little more understanding of the world, " .. child:getName() .. " is ready to take it head on.",
-        "")
+        location:getIcon(),
+        location:getSfx())
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingSchool(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingSchool(commandManager, child, location)
     commandManager:execute(
         SendNotification,
         "School Visit Complete",
         "Facts and figures all add up.  Some day, " .. child:getName() .. " will put them to incredible use.",
-        "")
+        location:getIcon(),
+        location:getSfx())
 end
 
 ---------------------------------------------------------------------------------
-function CheckForChildrenLeaving.handleLeavingWell(commandManager, child)
+function CheckForChildrenLeaving.handleLeavingWell(commandManager, child, location)
     commandManager:execute(
         SendNotification,
         "Well Visit Complete",
         "Carrying water is tough.  " .. child:getName() .. "knows it's worth it.",
-        "")
+        location:getIcon(),
+        location:getSfx())
 end
 
 return CheckForChildrenLeaving

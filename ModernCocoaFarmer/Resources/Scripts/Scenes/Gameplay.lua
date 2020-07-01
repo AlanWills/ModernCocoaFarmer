@@ -10,6 +10,13 @@ local ElapseTime = require 'Commands.Time.ElapseTime'
 local Play = require 'Commands.Time.Play'
 local GameEventManager = require 'GameEvents.GameEventManager'
 
+-- Dolce Windows
+local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
+local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
+local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
+local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
+local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
+
 ---------------------------------------------------------------------------------
 local Gameplay = 
 {
@@ -36,12 +43,6 @@ local LocationNames =
 
 ---------------------------------------------------------------------------------
 function Gameplay.new(saveDirectory)
-    log("Loading state")
-    Gameplay._state = Class.new(GameplayState, saveDirectory)
-    Gameplay._state:load()
-
-    coroutine.yield()
-
     -- Sound loading
     for i, soundPath in ipairs(Gameplay.REQUIRED_SOUNDS) do
         log("Loading " .. soundPath)
@@ -74,19 +75,38 @@ function Gameplay.new(saveDirectory)
 
     coroutine.yield()
 
-    log("Initializing managers")
-
+    log("Creating dialog manager")
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
-    Gameplay._state.modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
-
-    local commandManager = Class.new(CommandManager, Gameplay._state)
-    local gameEventManager = Class.new(GameEventManager, commandManager)
-
-    Gameplay._commandManager = commandManager
-    Gameplay._gameEventManager = gameEventManager
+    local modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
+    
+    log("Loading state")
+    Gameplay._state = Class.new(GameplayState, saveDirectory, modalDialogManager)
+    Gameplay._state:load()
 
     coroutine.yield()
 
+    log("Creating command manager")
+    Gameplay._commandManager = Class.new(CommandManager, Gameplay._state)
+end
+
+---------------------------------------------------------------------------------
+function Gameplay.update(deltaTime)
+    Gameplay._state.modalDialogManager:destroyDialogs()
+    Gameplay._commandManager:execute(ElapseTime, deltaTime)
+end
+
+---------------------------------------------------------------------------------
+function Gameplay.show()
+    -- Everything from here onwards utilises callbacks
+    -- I've found that if using a coroutine for loading
+    -- Lua garbage collects the callbacks, so we have to set them up here
+    -- as we're just about to kick things off
+
+    log("Initializing game events")
+
+    local commandManager = Gameplay._commandManager
+    Gameplay._gameEventManager = Class.new(GameEventManager, commandManager)
+    
     log("Initializing UI")
 
     local locationsUI = GameObject.find(Gameplay.LOCATIONS_UI_NAME)
@@ -101,8 +121,6 @@ function Gameplay.new(saveDirectory)
     local notificationsPanel = GameObject.find(Gameplay.NOTIFICATIONS_PANEL_NAME)
     Gameplay._notificationsBar = Class.new(NotificationsPanel, commandManager, notificationsPanel)
     
-    coroutine.yield()
-
     log("Initializing locations")
 
     -- Location Initialization
@@ -110,30 +128,29 @@ function Gameplay.new(saveDirectory)
         commandManager:execute(ActivateLocation, v)
     end
 
-    coroutine.yield()
-
     log("Adding Dolce windows")
     Gameplay.addDolceWindows()
-end
-
----------------------------------------------------------------------------------
-function Gameplay.update(deltaTime)
-    Gameplay._state.modalDialogManager:destroyDialogs()
-    Gameplay._commandManager:execute(ElapseTime, deltaTime)
-end
-
----------------------------------------------------------------------------------
-function Gameplay.show()
+    
     log("Showing Gameplay scene")
     Gameplay._timeNotifierHandle = System.getTimeNotifierSystem():subscribe(Gameplay.update)
     Gameplay._root:setActive(true)
+    Gameplay._root:findComponent("AudioSource"):play()
     Gameplay._commandManager:execute(Play)
 end
 
 ---------------------------------------------------------------------------------
 function Gameplay.hide()
-    log("Hiding Gameplay scene")
+    log("Removing dolce windows")
+    Gameplay.removeDolceWindows()
+
+    log("Unsubscribing from notifier")
     System.getTimeNotifierSystem():unsubscribe(Gameplay._timeNotifierHandle)
+
+    log("Destroying state")
+    Gameplay._state:destroy()
+    
+    log("Hiding gameplay scene")
+    Gameplay._root:destroy()
 
     Gameplay._timeNotifierHandle = 0
     Gameplay._state = nil
@@ -142,18 +159,11 @@ function Gameplay.hide()
     Gameplay._locationsUI = nil
     Gameplay._topBar = nil
     Gameplay._notificationsBar = nil
-    Gameplay._root:destroy()
-    Gameplay.removeDolceWindows()
+    Gameplay._root = nil
 end
 
 ---------------------------------------------------------------------------------
 function Gameplay.addDolceWindows()
-    local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
-    local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
-    local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
-    local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
-    local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
-
     Dolce.instance:addWindow(GameEventManagerDolceWindow.NAME, Class.new(GameEventManagerDolceWindow, Gameplay._gameEventManager))
     Dolce.instance:addWindow(CommandManagerDolceWindow.NAME, Class.new(CommandManagerDolceWindow, Gameplay._commandManager))
     Dolce.instance:addWindow(MoneyManagerDolceWindow.NAME, Class.new(MoneyManagerDolceWindow, Gameplay._state.moneyManager))
@@ -163,12 +173,6 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.removeDolceWindows()
-    local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
-    local CommandManagerDolceWindow = require 'Debug.DolceWindows.CommandManagerDolceWindow'
-    local MoneyManagerDolceWindow = require 'Debug.DolceWindows.MoneyManagerDolceWindow'
-    local TimeManagerDolceWindow = require 'Debug.DolceWindows.TimeManagerDolceWindow'
-    local FamilyManagerDolceWindow = require 'Debug.DolceWindows.FamilyManagerDolceWindow'
-    
     Dolce.instance:removeWindow(GameEventManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(CommandManagerDolceWindow.NAME)
     Dolce.instance:removeWindow(MoneyManagerDolceWindow.NAME)

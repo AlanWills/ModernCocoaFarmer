@@ -6,14 +6,9 @@
         <Canvas/>
         <GraphicsRaycaster/>
         <ResolutionScaler target_resolution="1920,1080"/>
+        <AudioSource sound="Audio\Music\KalimbaBreeze.wav" is_playing="false" is_looping="true" audio_type="Music"/>
       </Components>
       <GameObjects>
-        <!--Music-->
-        <GameObject name="AmbientMusic">
-          <Components>
-            <AudioSource sound="Audio\Music\KalimbaBreeze.wav" is_playing="true" is_looping="true" audio_type="Music"/>
-          </Components>
-        </GameObject>
         <!--Background-->
         <GameObject name="GameplayBackground" position="960,540,-1">
           <Components>

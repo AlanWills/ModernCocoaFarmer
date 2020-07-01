@@ -11,12 +11,12 @@ local MenuPanel =
 }
 
 ---------------------------------------------------------------------------------
-local function save(caller, self)
+function MenuPanel.save(caller, self)
     self._commandManager:execute(SaveGame)
 end
 
 ---------------------------------------------------------------------------------
-local function showInGameMenu(caller, self)
+function MenuPanel.showInGameMenu(caller, self)
     self._commandManager:execute(ShowInGameMenuDialog)
 end
 
@@ -24,8 +24,8 @@ end
 function MenuPanel:new(commandManager, menuPanelGameObject)
     self._commandManager = commandManager
 
-    menuPanelGameObject:setupChildLeftButtonUpCallback(self.SAVE_BUTTON_NAME, save, self)
-    menuPanelGameObject:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, showInGameMenu, self)
+    menuPanelGameObject:setupChildLeftButtonUpCallback(self.SAVE_BUTTON_NAME, MenuPanel.save, self)
+    menuPanelGameObject:setupChildLeftButtonUpCallback(self.MENU_BUTTON_NAME, MenuPanel.showInGameMenu, self)
 end
 
 return MenuPanel

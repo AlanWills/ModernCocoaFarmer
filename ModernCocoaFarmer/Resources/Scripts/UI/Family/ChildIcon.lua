@@ -10,7 +10,7 @@ local ChildIcon =
 }
 
 ---------------------------------------------------------------------------------
-local function childIconLeftClickedCallback(caller, self)
+function ChildIcon.childIconLeftClickedCallback(caller, self)
     self._commandManager:execute(ToggleChildSelection, self._childName)
 end
 
@@ -22,7 +22,7 @@ function ChildIcon:new(commandManager, gameObject, childName)
     gameObject:setName(childName)
 
     local childInteractionHandler = gameObject:findChild(self.CHILD_ACTIVE_IMAGE):findComponent("MouseInteractionHandler")
-    childInteractionHandler:subscribeOnLeftButtonUpCallback(childIconLeftClickedCallback, self)
+    childInteractionHandler:subscribeOnLeftButtonUpCallback(ChildIcon.childIconLeftClickedCallback, self)
 
     local childRootKeyGameObject = gameObject:findChild(self.CONSTANTS_NAME):findChild(self.CHILD_ROOT_KEY_NAME)
     childRootKeyGameObject:findComponent("Constant"):setValue(datapath.combine(FamilyDataSources.CHILDREN, childName))
