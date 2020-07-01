@@ -34,12 +34,6 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
         callback,
         extraArgs);
     }
-
-    //------------------------------------------------------------------------------------------------
-    void unsubscribeAll(NotificationManager& notificationManager)
-    {
-      notificationManager.getNotificationSentEvent().unsubscribeAll();
-    }
   }
 
   //------------------------------------------------------------------------------------------------
@@ -53,7 +47,6 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
       "getNotification", &NotificationManager::getNotification,
       "sendNotification", &Internals::sendNotification,
       "removeNotification", &NotificationManager::removeNotification,
-      "subscribeOnNotificationSentCallback", &Internals::subscribeOnNotificationSentCallback,
-      "unsubscribeAll", &Internals::unsubscribeAll);
+      "subscribeOnNotificationSentCallback", &Internals::subscribeOnNotificationSentCallback);
   }
 }

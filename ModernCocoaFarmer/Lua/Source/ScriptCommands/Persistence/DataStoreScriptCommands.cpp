@@ -104,7 +104,6 @@ namespace MCF::Lua::Persistence::DataStoreScriptCommands
       state,
       "DataStore",
       "loadOrCreate", sol::factories(&Internals::loadOrCreate),
-      "create", &Internals::create,
       "save", &Internals::save,
       // Is
       "isBool", &DataStore::is<bool>,

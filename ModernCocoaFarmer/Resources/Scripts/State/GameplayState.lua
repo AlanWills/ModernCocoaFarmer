@@ -5,7 +5,9 @@ local GameplayState =
 }
 
 ---------------------------------------------------------------------------------
-function GameplayState:new(saveDirectory)
+function GameplayState:new(saveDirectory, modalDialogManager)
+    self.modalDialogManager = modalDialogManager
+
     if saveDirectory ~= nil then
         self.persistencePath = path.combine(saveDirectory, "Persistence.xml")
         self.timeManagerPath = path.combine(saveDirectory, "TimeManager.asset")
@@ -38,6 +40,18 @@ function GameplayState:load()
     self.moneyManager:setDataSystem(dataSystem)
     self.familyManager:setDataSystem(dataSystem)
     self.locationsManager:setDataSystem(dataSystem)
+end
+
+---------------------------------------------------------------------------------
+function GameplayState:destroy()
+    self.modalDialogManager:destroyDialogs()
+    self.modalDialogManager = nil
+    self.persistence = nil
+    self.timeManager:destroy()
+    self.moneyManager:destroy()
+    self.familyManager:destroy()
+    self.locationsManager:destroy()
+    self.notificationManager:destroy()
 end
 
 ---------------------------------------------------------------------------------

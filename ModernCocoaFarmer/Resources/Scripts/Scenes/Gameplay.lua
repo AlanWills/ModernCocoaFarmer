@@ -43,12 +43,6 @@ local LocationNames =
 
 ---------------------------------------------------------------------------------
 function Gameplay.new(saveDirectory)
-    log("Loading state")
-    Gameplay._state = Class.new(GameplayState, saveDirectory)
-    Gameplay._state:load()
-
-    coroutine.yield()
-
     -- Sound loading
     for i, soundPath in ipairs(Gameplay.REQUIRED_SOUNDS) do
         log("Loading " .. soundPath)
@@ -81,10 +75,17 @@ function Gameplay.new(saveDirectory)
 
     coroutine.yield()
 
-    log("Initializing managers")
-
+    log("Creating dialog manager")
     local modalDialogManagerGameObject = GameObject.find(Gameplay.MODAL_DIALOG_MANAGER_NAME)
-    Gameplay._state.modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
+    local modalDialogManager = Class.new(ModalDialogManager, modalDialogManagerGameObject)
+    
+    log("Loading state")
+    Gameplay._state = Class.new(GameplayState, saveDirectory, modalDialogManager)
+    Gameplay._state:load()
+
+    coroutine.yield()
+
+    log("Creating command manager")
     Gameplay._commandManager = Class.new(CommandManager, Gameplay._state)
 end
 
@@ -139,11 +140,17 @@ end
 
 ---------------------------------------------------------------------------------
 function Gameplay.hide()
-    log("Hiding Gameplay scene")
+    log("Removing dolce windows")
+    Gameplay.removeDolceWindows()
+
+    log("Unsubscribing from notifier")
     System.getTimeNotifierSystem():unsubscribe(Gameplay._timeNotifierHandle)
 
-    --Gameplay._state.timeManager:unsubscribeAll()
-    --Gameplay._state.notificationManager:unsubscribeAll()
+    log("Destroying state")
+    Gameplay._state:destroy()
+    
+    log("Hiding gameplay scene")
+    Gameplay._root:destroy()
 
     Gameplay._timeNotifierHandle = 0
     Gameplay._state = nil
@@ -152,8 +159,7 @@ function Gameplay.hide()
     Gameplay._locationsUI = nil
     Gameplay._topBar = nil
     Gameplay._notificationsBar = nil
-    Gameplay._root:destroy()
-    Gameplay.removeDolceWindows()
+    Gameplay._root = nil
 end
 
 ---------------------------------------------------------------------------------
