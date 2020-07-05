@@ -15,6 +15,9 @@ local Options =
     RESOLUTION_TEXT_NAME = "ResolutionText",
     PREVIOUS_RESOLUTION_BUTTON_NAME = "PreviousResolutionButton",
     NEXT_RESOLUTION_BUTTON_NAME = "NextResolutionButton",
+    FULL_SCREEN_NAME = "FullScreen",
+    FULL_SCREEN_CHECKED_NAME = "FullScreenChecked",
+    FULL_SCREEN_UNCHECKED_NAME = "FullScreenUnchecked",
     APPLY_BUTTON_NAME = "ApplyButton",
     CLOSE_BUTTON_NAME = "CloseButton",
     RESOLUTIONS = 
@@ -86,6 +89,22 @@ local function nextResolution(caller)
 end
 
 ---------------------------------------------------------------------------------
+local function toggleToWindowed(caller)
+    caller:setActive(false)
+    GameObject.find(Options.FULL_SCREEN_UNCHECKED_NAME):setActive(true)
+
+    Viewport.setWindowed(true)
+end
+
+---------------------------------------------------------------------------------
+local function toggleToFullscreen(caller)
+    caller:setActive(false)
+    GameObject.find(Options.FULL_SCREEN_CHECKED_NAME):setActive(true)
+
+    Viewport.setWindowed(false)
+end
+
+---------------------------------------------------------------------------------
 local function apply(caller)
     local gameSettings = GameSettings.loadFromDefaultOrCreate()
     gameSettings:synchronizeSettingsFromGame()
@@ -152,6 +171,14 @@ function Options.show()
 
     local applyButton = GameObject.find(Options.APPLY_BUTTON_NAME)
     applyButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(apply)
+    
+    local fullScreenChecked = GameObject.find(Options.FULL_SCREEN_CHECKED_NAME)
+    fullScreenChecked:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(toggleToWindowed)
+    fullScreenChecked:setActive(not Viewport.isWindowed())
+    
+    local fullScreenUnchecked = GameObject.find(Options.FULL_SCREEN_UNCHECKED_NAME)
+    fullScreenUnchecked:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(toggleToFullscreen)
+    fullScreenUnchecked:setActive(Viewport.isWindowed())
 
     local closeButton = GameObject.find(Options.CLOSE_BUTTON_NAME)
     closeButton:findComponent("MouseInteractionHandler"):subscribeOnLeftButtonUpCallback(close)
