@@ -15,12 +15,15 @@
 *Log.txt
 *Profiler.txt
 
-# Dolce Files
+# Dolce files
 *imgui.ini
 DolceSettings.asset
 
 # MCF files
 AppData/
+
+# Installer files
+Install/
 
 # Build results
 CMakeFiles/
