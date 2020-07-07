@@ -36,7 +36,7 @@ set(CPACK_INSTALLED_DIRECTORIES
 # Define NSIS installation types
 set(CPACK_ALL_INSTALL_TYPES Full)
 set(CPACK_PACKAGE_FILE_NAME "ModernCocoaFarmerSetup")
-set(CPACK_PACKAGE_DIRECTORY "${PROJECT_SOURCE_DIR}/Install")
+set(CPACK_PACKAGE_DIRECTORY "${PROJECT_SOURCE_DIR}/Install/${CMAKE_BUILD_TYPE}")
  
 # Must be after the last CPACK macros
 include(CPack)
