@@ -47,9 +47,9 @@ set(CPACK_PACKAGE_FILE_NAME "ModernCocoaFarmerSetup")
 set(CPACK_PACKAGE_DIRECTORY "${PROJECT_SOURCE_DIR}/Install/${CMAKE_BUILD_TYPE}")
 
 # Installer Icons
-set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Resources/Installer\\\\InstallerIcon.bmp")
-set(CPACK_NSIS_MUI_ICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Resources/Installer/InstallerIcon.ico")
-set(CPACK_NSIS_MUI_UNIICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Resources/Installer/InstallerIcon.ico")
+set(CPACK_PACKAGE_ICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Installer\\\\InstallerIcon.bmp")
+set(CPACK_NSIS_MUI_ICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Installer/InstallerIcon.ico")
+set(CPACK_NSIS_MUI_UNIICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Installer/InstallerIcon.ico")
 
 set(CPACK_NSIS_MENU_LINKS "ModernCocoaFarmer.exe" "Modern Cocoa Farmer")
 set(CPACK_NSIS_MUI_FINISHPAGE_RUN "ModernCocoaFarmer.exe")
