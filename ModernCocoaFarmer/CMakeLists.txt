@@ -53,10 +53,7 @@ set(CPACK_NSIS_MUI_UNIICON "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Installer/In
 
 set(CPACK_NSIS_MENU_LINKS "ModernCocoaFarmer.exe" "Modern Cocoa Farmer")
 set(CPACK_NSIS_MUI_FINISHPAGE_RUN "ModernCocoaFarmer.exe")
-set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS 
-    "Delete \\\"$INSTDIR\\\\Log.txt\\\"
-     Delete \\\"$INSTDIR\\\\Profiler.txt\\\"
-     RMDir /r \\\"$INSTDIR\\\\ModernCocoaFarmer\\\\Resources\\\\Data\\\\AppData\\\"")
+set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "RMDir /r \\\"$INSTDIR\\\"")
  
 set(CPACK_ARCHIVE_COMPONENT_INSTALL ON)
 set(CPACK_COMPONENTS_ALL applications)
