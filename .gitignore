@@ -21,6 +21,7 @@ DolceSettings.asset
 
 # MCF files
 AppData/
+GameSettings.asset
 
 # Installer files
 Install/
