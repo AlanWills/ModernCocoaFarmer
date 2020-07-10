@@ -10,7 +10,6 @@ local UpdateChildrenStates = require 'GameEvents.Family.UpdateChildrenStates'
 local UpdateChildrenTimes = require 'GameEvents.Locations.UpdateChildrenTimes'
 local ApplyLocationModifiers = require 'GameEvents.Locations.ApplyLocationModifiers'
 local CheckForChildrenLeaving = require 'GameEvents.Locations.CheckForChildrenLeaving'
-local ChildExpelledFromSchool = require 'GameEvents.Locations.ChildExpelledFromSchool'
 local WelcomeToZegoua = require 'GameEvents.OneUse.WelcomeToZegoua'
 local UNPeaceKeepersArrive = require 'GameEvents.OneUse.UNPeaceKeepersArrive'
 
@@ -63,7 +62,6 @@ function GameEventManager:new(commandManager)
     self:registerEvent(UpdateChildrenTimes)
     self:registerEvent(ApplyLocationModifiers)
     self:registerEvent(CheckForChildrenLeaving)
-    self:registerEvent(ChildExpelledFromSchool)
     self:registerEvent(WelcomeToZegoua)
     self:registerEvent(UNPeaceKeepersArrive)
 end
