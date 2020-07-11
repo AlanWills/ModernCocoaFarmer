@@ -3,7 +3,6 @@
 #include "MCFLibraryDllExport.h"
 #include "Objects/ScriptableObject.h"
 #include "ModifierEnums.h"
-#include "Bindings/Stats/ModifierEnumsDataBindingGenerators.h"
 #include "Deserialization/Stats/ModifierEnumsDeserializers.h"
 
 
