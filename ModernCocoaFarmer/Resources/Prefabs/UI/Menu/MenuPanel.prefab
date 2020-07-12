@@ -11,12 +11,22 @@
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\Save.png" size="32,32" colour="0,0,0"/>
             <MouseInteractionHandler/>
+            <AudioSource audio_type="SFX"/>
+            <Button idle_texture="Textures\UI\Utility\Save.png"
+                    highlighted_texture="Textures\UI\Utility\Save.png"
+                    clicked_texture="Textures\UI\Utility\Save.png"
+                    clicked_sound="Audio\SFX\Click.wav"/>
           </Components>
         </GameObject>
         <GameObject name="MenuButton" position="0,0,0.01">
           <Components>
-            <SpriteRenderer sprite="Textures\UI\Utility\Menu.png" size="32,32" colour="0,0,0"/>
+            <SpriteRenderer size="32,32" colour="0,0,0"/>
             <MouseInteractionHandler/>
+            <AudioSource audio_type="SFX"/>
+            <Button idle_texture="Textures\UI\Utility\Menu.png"
+                    highlighted_texture="Textures\UI\Utility\Menu.png"
+                    clicked_texture="Textures\UI\Utility\Menu.png"
+                    clicked_sound="Audio\SFX\Click.wav"/>
           </Components>
         </GameObject>
       </GameObjects>

@@ -6,7 +6,6 @@ math.randomseed(os.time())
 local Splash = require 'Scenes.Splash'
 local Loading = require 'Scenes.Loading'
 
-Mouse.setCursor(path.combine("Textures", "UI", "Utility", "Cursor.png"))
 Splash.new()
 
 -- Pre-load the loading scene

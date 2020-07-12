@@ -9,7 +9,7 @@
         <ResolutionScaler target_resolution="1920,1080"/>
       </Components>
       <GameObjects>
-        <GameObject position="-480,270,0" name="DavidFenton">
+        <GameObject position="-600,270,0" name="DavidFenton">
           <Components>
             <TextRenderer text="DAVID FENTON" font_height="30" colour="0,0,0"/>
           </Components>
@@ -21,7 +21,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject position="480,270,0" name="AlanWills">
+        <GameObject position="-100,270,0" name="AlanWills">
           <Components>
             <TextRenderer text="ALAN WILLS" font_height="30" colour="0,0,0"/>
           </Components>
@@ -33,7 +33,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject position="-480,-270,0" name="InesNg">
+        <GameObject position="-600,-270,0" name="InesNg">
           <Components>
             <TextRenderer text="INES NG" font_height="30" colour="0,0,0"/>
           </Components>
@@ -45,7 +45,7 @@
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject position="480,-270,0" name="JDWasabi">
+        <GameObject position="-100,-270,0" name="JDWasabi">
           <Components>
             <TextRenderer text="JD WASABI" font_height="30" colour="0,0,0"/>
           </Components>
@@ -57,10 +57,26 @@
             </GameObject>
           </GameObjects>
         </GameObject>
+        <GameObject position="480,270,0" name="OtherAssets">
+          <Components>
+            <TextRenderer text="Other Asset Credits" font_height="24" colour="0,0,0"/>
+          </Components>
+          <GameObjects>
+            <GameObject position="0,-50,0" name="Role">
+              <Components>
+                <TextRenderer font_height="18" colour="0,0,0"/>
+              </Components>
+            </GameObject>
+          </GameObjects>
+        </GameObject>
         <GameObject name="CloseButton" position="920,500,0.01">
           <Components>
             <SpriteRenderer sprite="Textures\UI\Utility\Cross.png" size="32,32" preserve_aspect_ratio="true"/>
             <MouseInteractionHandler/>
+            <AudioSource audio_type="SFX"/>
+            <Button idle_texture="Textures\UI\Utility\Cross.png"
+                    highlighted_texture="Textures\UI\Utility\Cross.png"
+                    clicked_texture="Textures\UI\Utility\Cross.png"/>
           </Components>
         </GameObject>
       </GameObjects>

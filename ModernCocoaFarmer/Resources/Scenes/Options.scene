@@ -149,7 +149,10 @@
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
-            <Button/>
+            <AudioSource audio_type="SFX"/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="CloseButtonText">
@@ -163,7 +166,10 @@
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
-            <Button/>
+            <AudioSource audio_type="SFX"/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="ApplyButtonText">

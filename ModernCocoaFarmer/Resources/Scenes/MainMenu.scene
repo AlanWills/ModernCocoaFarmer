@@ -15,10 +15,61 @@
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="1920,1080"/>
               </Components>
+              <GameObjects>
+                <GameObject name="Decals" position="-340,140,0">
+                  <GameObjects>
+                    <GameObject name="FullCocoaTree" position="20,40">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="FullCocoaTree" position="-160,-70">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="FullCocoaTree" position="200,-90">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="FullCocoaTree" position="30,100,-0.01">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="FullCocoaTree" position="300,-200,0">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="FullCocoaTree" position="-150,-320,0.01">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\CocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="BareCocoaTree" position="-250,-230,0">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\BareCocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="BareCocoaTree" position="0,-150,0">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\BareCocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                    <GameObject name="BareCocoaTree" position="60,-280,0">
+                      <Components>
+                        <SpriteRenderer sprite="Textures\Village\Locations\Decals\BareCocoaTree.png" preserve_aspect_ratio="true" size="300,300"/>
+                      </Components>
+                    </GameObject>
+                  </GameObjects>
+                </GameObject>
+              </GameObjects>
             </GameObject>
           </GameObjects>
         </GameObject>
-        <GameObject name="Canvas2">
+        <GameObject name="Canvas2" position="480,0,0">
           <Components>
             <Canvas/>
             <GraphicsRaycaster/>
@@ -38,7 +89,10 @@
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
-                    <Button/>
+                    <AudioSource audio_type="SFX"/>
+                    <Button idle_texture="Textures\UI\ButtonIdle.png"
+                            highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                            clicked_texture="Textures\UI\ButtonClicked.png"/>
                   </Components>
                   <GameObjects>
                     <GameObject name="PlayText" position="0,1,0">
@@ -52,7 +106,10 @@
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
-                    <Button/>
+                    <AudioSource audio_type="SFX"/>
+                    <Button idle_texture="Textures\UI\ButtonIdle.png"
+                            highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                            clicked_texture="Textures\UI\ButtonClicked.png"/>
                   </Components>
                   <GameObjects>
                     <GameObject name="ContinueText" position="0,1,0">
@@ -66,7 +123,10 @@
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
-                    <Button/>
+                    <AudioSource audio_type="SFX"/>
+                    <Button idle_texture="Textures\UI\ButtonIdle.png"
+                            highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                            clicked_texture="Textures\UI\ButtonClicked.png"/>
                   </Components>
                   <GameObjects>
                     <GameObject name="OptionsText" position="0,1,0">
@@ -80,7 +140,10 @@
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
-                    <Button/>
+                    <AudioSource audio_type="SFX"/>
+                    <Button idle_texture="Textures\UI\ButtonIdle.png"
+                            highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                            clicked_texture="Textures\UI\ButtonClicked.png"/>
                   </Components>
                   <GameObjects>
                     <GameObject name="CreditsText" position="0,1,0">
@@ -94,7 +157,10 @@
                   <Components>
                     <SpriteRenderer size="200,40"/>
                     <MouseInteractionHandler/>
-                    <Button/>
+                    <AudioSource audio_type="SFX"/>
+                    <Button idle_texture="Textures\UI\ButtonIdle.png"
+                            highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                            clicked_texture="Textures\UI\ButtonClicked.png"/>
                   </Components>
                   <GameObjects>
                     <GameObject name="ExitText" position="0,1,0">

@@ -110,6 +110,12 @@ local function apply(caller)
     gameSettings:synchronizeSettingsFromGame()
     gameSettings:saveToDefault()
     gameSettings:destroy()
+    
+    local Options = require 'Scenes.Options'
+    Options.hide()
+
+    local MainMenu = require 'Scenes.MainMenu'
+    MainMenu.show()
 end
 
 ---------------------------------------------------------------------------------

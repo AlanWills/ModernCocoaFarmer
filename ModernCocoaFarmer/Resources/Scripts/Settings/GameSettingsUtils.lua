@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------
-GameSettings.GAME_SETTINGS_FILE_PATH = path.combine("Data", "Settings", "GameSettings.asset")
+GameSettings.GAME_SETTINGS_FILE_PATH = path.combine("Data", "AppData", "GameSettings.asset")
 
 ---------------------------------------------------------------------------------
 function GameSettings.loadFromDefaultOrCreate()

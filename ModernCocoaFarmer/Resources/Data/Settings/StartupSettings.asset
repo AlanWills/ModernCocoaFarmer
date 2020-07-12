@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StartupSettings name="StartupSettings" guid="96050fd7-e577-4d77-a0dc-563dddefb6fe"
+                 window_title="Modern Cocoa Farmer" 
+                 window_icon="Textures\Icons\DesktopIcon.png"
+                 cursor="Textures\UI\Utility\Cursor.png"/>

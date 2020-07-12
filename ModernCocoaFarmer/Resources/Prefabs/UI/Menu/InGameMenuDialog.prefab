@@ -17,7 +17,9 @@
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
-            <Button/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="ResumeGameButtonText">
@@ -31,7 +33,9 @@
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
-            <Button/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="SaveGameButtonText">
@@ -45,7 +49,9 @@
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
-            <Button/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="LoadGameButtonText">
@@ -59,7 +65,9 @@
           <Components>
             <SpriteRenderer/>
             <MouseInteractionHandler/>
-            <Button/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="ToMainMenuButtonText">
@@ -72,9 +80,10 @@
         <GameObject name="QuitGameButton" position="0,0,0.01">
           <Components>
             <SpriteRenderer/>
-            <RectangleCollider/>
             <MouseInteractionHandler/>
-            <Button/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="QuitGameButtonText">
