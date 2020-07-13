@@ -55,7 +55,9 @@
           <Components>
             <SpriteRenderer size="200,40"/>
             <MouseInteractionHandler/>
-            <Button/>
+            <Button idle_texture="Textures\UI\ButtonIdle.png"
+                    highlighted_texture="Textures\UI\ButtonHighlighted.png"
+                    clicked_texture="Textures\UI\ButtonClicked.png"/>
           </Components>
           <GameObjects>
             <GameObject name="ToMainMenuButtonText" position="0,1,0">

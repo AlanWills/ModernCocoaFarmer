@@ -8,8 +8,8 @@ local TryAddChild = {}
 ---------------------------------------------------------------------------------
 TryAddChild.NAME = "TryAddChild"
 TryAddChild.PERIOD = GameEventPeriod.EVERY_YEAR
-TryAddChild.YEARLY_PERIOD = 2
-TryAddChild.PROBABILITY = 0.5
+TryAddChild.YEARLY_PERIOD = 1
+TryAddChild.BASE_PROBABILITY = 0.4
 TryAddChild.ICON_PATH = path.combine("Textures", "Icons", "Events", "ChildBorn.png")
 
 ---------------------------------------------------------------------------------
@@ -21,8 +21,17 @@ function TryAddChild.canTrigger(commandManager)
         return false
     end
 
+    local numActiveChildren = FamilyUtils.getActivatedChildCount(familyManager)
+    if numActiveChildren == 1 then
+        return true
+    end
+
     local correctTimeToTrigger = (timeManager:getCurrentYear() % TryAddChild.YEARLY_PERIOD) == 0
-    return correctTimeToTrigger and TryAddChild.PROBABILITY >= math.random()
+    local probability = TryAddChild.BASE_PROBABILITY + (1 - TryAddChild.BASE_PROBABILITY) * (familyManager:getChildCount() - numActiveChildren - 1) / (familyManager:getChildCount() - 2)
+    assert(probability <= 1)
+    assert(probability >= TryAddChild.BASE_PROBABILITY)
+
+    return correctTimeToTrigger and probability >= math.random()
 end
 
 ---------------------------------------------------------------------------------

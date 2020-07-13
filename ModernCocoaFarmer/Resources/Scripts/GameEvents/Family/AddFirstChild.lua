@@ -8,7 +8,7 @@ local ActivateFirstChild = {}
 ---------------------------------------------------------------------------------
 ActivateFirstChild.NAME = "ActivateFirstChild"
 ActivateFirstChild.PERIOD = GameEventPeriod.EVERY_DAY
-ActivateFirstChild.DAY_TO_TRIGGER = 20
+ActivateFirstChild.DAY_TO_TRIGGER = 15
 ActivateFirstChild.MONTH_TO_TRIGGER = 0
 ActivateFirstChild.YEAR_TO_TRIGGER = 0
 ActivateFirstChild.ICON_PATH = path.combine("Textures", "Icons", "Events", "ChildBorn.png")

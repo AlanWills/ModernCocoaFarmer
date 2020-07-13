@@ -7,7 +7,7 @@
         <SpriteRenderer sprite="Textures\UI\Utility\WhitePixel.png" size="86,86" opacity="0"/>
       </Components>
       <GameObjects>
-        <GameObject name="ChildActiveImage" position="0,5,0.01" active="false">
+        <GameObject name="ChildActiveImage" position="0,17,0.01" active="false">
           <Components>
             <SpriteRenderer sprite="Textures\Worker\WalkingNoMachete\WalkingNoMacheteAnimation.png" size="384,86" preserve_aspect_ratio="true"/>
             <ActivityController>
@@ -38,9 +38,9 @@
             </AnimatorController>
           </Components>
           <GameObjects>
-            <GameObject name="ChildName" position="0,-49,0">
+            <GameObject name="ChildName" position="0,-54,0">
               <Components>
-                <TextRenderer text="Name" colour="0.2,0.2,0.2"/>
+                <TextRenderer text="Name" colour="0.2,0.2,0.2" font_height="20"/>
                 <Text>
                   <InputPort name="text" guid="78a0a399-0be7-4280-aad2-4a8c43f5c622">
                     <Connection>6d2b6afc-8418-4f26-82ea-238440f732a1</Connection>
@@ -48,7 +48,7 @@
                 </Text>
               </Components>
             </GameObject>
-            <GameObject name="ChildSelectedIcon" position="0,-5, 0" active="false">
+            <GameObject name="ChildSelectedIcon" position="0,-17, 0" active="false">
               <Components>
                 <SpriteRenderer sprite="Textures\UI\Utility\Outline.png" size="96, 108"/>
                 <ActivityController>

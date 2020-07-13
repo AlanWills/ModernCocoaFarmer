@@ -61,7 +61,7 @@
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"
               guid="7fea2dc0-54b3-4cc7-8948-36067163b1c2"
-              amount="2"
+              amount="7"
               change_type="Delta"
               occurrence="Periodic"/>
     <Modifier name="HappinessModifier"
@@ -107,7 +107,7 @@
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
               guid="42a58cb3-1138-4d94-826d-a29c768a133f"
-              amount="135300"
+              amount="-135300"
               change_type="Delta"
               occurrence="Instant"/>
   </Location>
@@ -128,7 +128,7 @@
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
               guid="8ecb2ab8-7adc-4eaf-8729-539cbf7cc651"
-              amount="31980"
+              amount="-31980"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"

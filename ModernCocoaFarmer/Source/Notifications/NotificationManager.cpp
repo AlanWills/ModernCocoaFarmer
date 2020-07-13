@@ -56,4 +56,14 @@ namespace MCF::Notifications
       }
     }
   }
+
+  //------------------------------------------------------------------------------------------------
+  void NotificationManager::removeNotification(size_t notificationIndex)
+  {
+    ASSERT(notificationIndex < m_notifications.size());
+    if (notificationIndex < m_notifications.size())
+    {
+      m_notifications.erase(m_notifications.begin() + notificationIndex);
+    }
+  }
 }

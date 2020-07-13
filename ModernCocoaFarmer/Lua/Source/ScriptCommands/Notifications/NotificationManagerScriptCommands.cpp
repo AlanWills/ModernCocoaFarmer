@@ -24,6 +24,18 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
     }
 
     //------------------------------------------------------------------------------------------------
+    void removeNotification_Notification(NotificationManager& notificationManager, const Notification& notification)
+    {
+      notificationManager.removeNotification(notification);
+    }
+
+    //------------------------------------------------------------------------------------------------
+    void removeNotification_Index(NotificationManager& notificationManager, size_t notificationIndex)
+    {
+      notificationManager.removeNotification(notificationIndex);
+    }
+
+    //------------------------------------------------------------------------------------------------
     void subscribeOnNotificationSentCallback(
       NotificationManager& notificationManager,
       sol::protected_function callback,
@@ -46,7 +58,7 @@ namespace MCF::Lua::Notifications::NotificationManagerScriptCommands
       "getNotificationCount", &NotificationManager::getNotificationCount,
       "getNotification", &NotificationManager::getNotification,
       "sendNotification", &Internals::sendNotification,
-      "removeNotification", &NotificationManager::removeNotification,
+      "removeNotification", sol::overload(&Internals::removeNotification_Notification, &Internals::removeNotification_Index),
       "subscribeOnNotificationSentCallback", &Internals::subscribeOnNotificationSentCallback);
   }
 }

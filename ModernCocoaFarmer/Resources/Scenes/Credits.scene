@@ -59,12 +59,12 @@
         </GameObject>
         <GameObject position="480,270,0" name="OtherAssets">
           <Components>
-            <TextRenderer text="Other Asset Credits" font_height="24" colour="0,0,0"/>
+            <TextRenderer text="Other Asset Credits" font_height="26" colour="0,0,0"/>
           </Components>
           <GameObjects>
             <GameObject position="0,-50,0" name="Role">
               <Components>
-                <TextRenderer font_height="18" colour="0,0,0"/>
+                <TextRenderer font_height="21" colour="0,0,0"/>
               </Components>
             </GameObject>
           </GameObjects>
