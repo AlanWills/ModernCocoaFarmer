@@ -1,7 +1,6 @@
 local GameEventPeriod = require 'GameEvents.GameEventPeriod'
 local LeaveChild = require 'Commands.Locations.LeaveChild'
 local SendNotification = require 'Commands.Notifications.SendNotification'
-local AddMoney = require 'Commands.Money.AddMoney'
 
 ---------------------------------------------------------------------------------
 local CheckForChildrenLeaving = {}
@@ -13,7 +12,6 @@ CheckForChildrenLeaving.CHILD_PAID_ICON_PATH = path.combine("Textures", "UI", "U
 CheckForChildrenLeaving.CHILD_PAID_SFX_PATH = path.combine("Audio", "SFX", "Money.wav")
 CheckForChildrenLeaving.NAME = "CheckForChildrenLeaving"
 CheckForChildrenLeaving.PERIOD = GameEventPeriod.EVERY_DAY
-CheckForChildrenLeaving.SALARY = 9740
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.trigger(commandManager)
@@ -64,12 +62,10 @@ function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child, locati
             CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH,
             CheckForChildrenLeaving.CHILD_TRAFFICKED_SFX_PATH)
     else
-        commandManager:execute(AddMoney, CheckForChildrenLeaving.SALARY)
-
         commandManager:execute(
             SendNotification,
             "Child Paid",
-            "After a bitter month's work, " .. child:getName() .. " has been paid " .. tostring(CheckForChildrenLeaving.SALARY) .. ".",
+            string.format("After a bitter month's work, %s has been paid %d.", child:getName(), location:getMoneyModifier():getAmount()),
             CheckForChildrenLeaving.CHILD_PAID_ICON_PATH,
             CheckForChildrenLeaving.CHILD_PAID_SFX_PATH)
     end

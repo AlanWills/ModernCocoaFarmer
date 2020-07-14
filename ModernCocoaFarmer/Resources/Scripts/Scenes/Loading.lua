@@ -13,6 +13,7 @@ local Loading =
         "Modern Cocoa Farmer has been designed by carefully studying the impact of child trafficking in Mali",
         "As much as possible, monetary values in this game are the real averages for people living in Mali",
         "Some monetary values could not be based on real averages - using them made the game impossible",
+        "In real life, only 5% of children get paid for their work on Cocoa Farms",
     }
 }
 

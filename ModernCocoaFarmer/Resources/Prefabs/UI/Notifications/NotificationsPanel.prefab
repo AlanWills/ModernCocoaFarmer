@@ -11,6 +11,17 @@
             <StackPanel orientation="vertical" vertical_alignment="bottom" padding="10"/>
           </Components>
         </GameObject>
+        <GameObject name="RemoveAllNotificationsButton" position="70,520,0.01">
+          <Components>
+            <SpriteRenderer size="32,32" preserve_aspect_ratio="true"/>
+            <MouseInteractionHandler/>
+            <AudioSource audio_type="SFX"/>
+            <Button idle_texture="Textures\UI\Utility\Cross.png"
+                    highlighted_texture="Textures\UI\Utility\Cross.png"
+                    clicked_texture="Textures\UI\Utility\Cross.png"
+                    clicked_sound="Audio\SFX\Click.wav"/>
+          </Components>
+        </GameObject>
       </GameObjects>
     </GameObject>
   </GameObjects>

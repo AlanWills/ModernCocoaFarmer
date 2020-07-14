@@ -16,12 +16,12 @@ function TimeManagerDolceWindow:render()
     local secondsPerDay = self._timeManager:getSecondsPerDay()
 
     local newCurrentDay, currentDayChanged = ImGui.inputUInt("Current Day", self._timeManager:getCurrentDay())
-    if currentDayChanged and newCurrentDay < 30 then
+    if currentDayChanged and newCurrentDay <= 30 then
         self._timeManager:update((newCurrentDay - self._timeManager:getCurrentDay()) * secondsPerDay)
     end
 
     local newCurrentMonth, currentMonthChanged = ImGui.inputUInt("Current Month", self._timeManager:getCurrentMonth())
-    if currentMonthChanged and newCurrentMonth < 12 then
+    if currentMonthChanged and newCurrentMonth <= 12 then
         self._timeManager:update((newCurrentMonth - self._timeManager:getCurrentMonth()) * secondsPerDay * 30)
     end
 

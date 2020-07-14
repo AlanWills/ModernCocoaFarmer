@@ -12,17 +12,17 @@
           MoneyModifier="0e185032-0d97-4d1d-8107-eededf0ecc96" >
     <Modifier name="HealthModifier"
               guid="593cafa8-b6fc-44fc-ac67-6511b8f75a87"
-              amount="-5"
+              amount="-8"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
               guid="0e185032-0d97-4d1d-8107-eededf0ecc96"
-              amount="0"
+              amount="9740"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"
               guid="96b1b1bb-5af3-4325-955a-1aa3e8495518"
-              amount="-5"
+              amount="-8"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="HappinessModifier"
@@ -179,7 +179,7 @@
               occurrence="Instant"/>
     <Modifier name="EducationModifier"
               guid="ff23b057-77e8-4c87-ac89-1c2ec8fa124b"
-              amount="1"
+              amount="3"
               change_type="Delta"
               occurrence="Instant"/>
   </Location>
@@ -200,7 +200,7 @@
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
               guid="f4d5b0c2-8dde-45fd-b161-241c3ee9abd8"
-              amount="-10000"
+              amount="-28800"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"
@@ -231,7 +231,7 @@
           MoneyModifier="0d109b06-9ddf-4b50-8522-ee5ee26eeafb">
     <Modifier name="HealthModifier"
               guid="0ad0a21a-9889-4d05-8fca-dd0e0ed79b46"
-              amount="1"
+              amount="4"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
@@ -241,7 +241,7 @@
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"
               guid="8127b173-a5b6-41f3-87d8-6c659211df68"
-              amount="-1"
+              amount="-5"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="HappinessModifier"

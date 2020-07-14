@@ -8,6 +8,7 @@ local CommandManager = require 'Commands.CommandManager'
 local ActivateLocation = require 'Commands.Locations.ActivateLocation'
 local ElapseTime = require 'Commands.Time.ElapseTime'
 local Play = require 'Commands.Time.Play'
+local AddChild = require 'Commands.Family.AddChild'
 local GameEventManager = require 'GameEvents.GameEventManager'
 
 -- Dolce Windows
@@ -127,6 +128,11 @@ function Gameplay.show()
     for k, v in pairs(LocationNames) do
         commandManager:execute(ActivateLocation, v)
     end
+
+    log("Initializing family")
+
+    -- Family Initialization
+    commandManager:execute(AddChild)
 
     log("Adding Dolce windows")
     Gameplay.addDolceWindows()

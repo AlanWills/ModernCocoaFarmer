@@ -3,7 +3,6 @@ local GetPaidSalary = require 'GameEvents.Money.GetPaidSalary'
 local PayBills = require 'GameEvents.Money.PayBills'
 local SalaryIncreased = require 'GameEvents.Money.SalaryIncreased'
 local SalaryDecreased = require 'GameEvents.Money.SalaryDecreased'
-local AddFirstChild = require 'GameEvents.Family.AddFirstChild'
 local TryAddChild = require 'GameEvents.Family.TryAddChild'
 local ApplyFamilyModifiers = require 'GameEvents.Family.ApplyFamilyModifiers'
 local UpdateChildrenStates = require 'GameEvents.Family.UpdateChildrenStates'
@@ -55,7 +54,6 @@ function GameEventManager:new(commandManager)
     self:registerEvent(PayBills)
     self:registerEvent(SalaryIncreased)
     self:registerEvent(SalaryDecreased)
-    self:registerEvent(AddFirstChild)
     self:registerEvent(TryAddChild)
     self:registerEvent(ApplyFamilyModifiers)
     self:registerEvent(UpdateChildrenStates)
