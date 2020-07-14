@@ -21,7 +21,7 @@ function LoadGame:execute()
         function()
             Gameplay.new(self._saveDirectory)
         end, 
-        function() 
+        function()
             Class.new(ShowIntroVideo, Gameplay.show):execute() 
         end)
 end
