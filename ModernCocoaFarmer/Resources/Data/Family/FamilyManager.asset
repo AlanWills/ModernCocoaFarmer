@@ -4,7 +4,7 @@
   <Modifier name="daily_safety_modifier" guid="df15a1ac-0629-40de-a08b-2ad30e3fc689" amount="-0.200000" change_type="Delta"/>
   <Modifier name="daily_health_modifier" guid="18cf8cd2-d6df-430b-85dd-19d59087ab6e" amount="-0.100000" change_type="Delta"/>
   <Modifier name="daily_happiness_modifier" guid="ae4d3f2f-d292-4db1-85c9-08f0f6fbc018" amount="-0.200000" change_type="Delta"/>
-  <Child name="Siaka" guid="30cdf8f0-de86-41f0-bcd3-16e265f9e5ac" health="100.000000" safety="100.000000" education="0.000000" happiness="100.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
+  <Child name="Siaka" guid="30cdf8f0-de86-41f0-bcd3-16e265f9e5ac" health="100.000000" safety="100.000000" education="0.000000" happiness="100.000000" current_location="" time_at_location="0.000000" state="Active"/>
   <Child name="Sekou" guid="9130cc9a-1151-45af-9554-a59bed397f3d" health="100.000000" safety="70.000000" education="0.000000" happiness="90.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
   <Child name="Salif" guid="c7ed6a43-2356-401c-b4ac-227fcac929d3" health="30.000000" safety="100.000000" education="0.000000" happiness="100.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
   <Child name="Oumar" guid="df674461-3db3-4560-91c8-7886bb2c5e38" health="80.000000" safety="80.000000" education="0.000000" happiness="80.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
