@@ -52,6 +52,7 @@ namespace MCF::Notifications
       if (&m_notifications[i].get() == &notification)
       {
         m_notifications.erase(m_notifications.begin() + i);
+        removeScriptableObject(notification);
         return;
       }
     }
@@ -64,6 +65,7 @@ namespace MCF::Notifications
     if (notificationIndex < m_notifications.size())
     {
       m_notifications.erase(m_notifications.begin() + notificationIndex);
+      removeScriptableObject(notificationIndex);
     }
   }
 }

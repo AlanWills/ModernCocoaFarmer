@@ -64,7 +64,7 @@ function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child, locati
     else
         commandManager:execute(
             SendNotification,
-            "Child Paid",
+            "Work Complete",
             string.format("After a bitter month's work, %s has been paid %d.", child:getName(), location:getMoneyModifier():getAmount()),
             CheckForChildrenLeaving.CHILD_PAID_ICON_PATH,
             CheckForChildrenLeaving.CHILD_PAID_SFX_PATH)
