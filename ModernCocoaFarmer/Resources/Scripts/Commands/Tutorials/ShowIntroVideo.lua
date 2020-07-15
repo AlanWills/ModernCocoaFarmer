@@ -4,7 +4,7 @@ local Tutorials = require "Tutorials.Tutorials"
 ---------------------------------------------------------------------------------
 local ShowIntroVideo =
 {
-    INTRO_VIDEO_PATH = path.combine(Resources.getResourcesDirectory(), "Videos", "IntroMovie.mp4"),
+    INTRO_VIDEO_PATH = "\"" .. path.combine(Resources.getResourcesDirectory(), "Videos", "IntroMovie.mp4") .. "\"",
 }
 
 ---------------------------------------------------------------------------------
