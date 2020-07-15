@@ -145,8 +145,8 @@ function LocationDialog:setUpModifierUI()
 
     self:setModifierText(childStats, self.HEALTH_MODIFIER_TEXT_NAME, datapath.combine(locationKey, StatsDataSources.HEALTH))
     self:setModifierText(childStats, self.SAFETY_MODIFIER_TEXT_NAME, datapath.combine(locationKey, StatsDataSources.SAFETY))
-    self:setModifierText(childStats, self.EDUCATION_MODIFIER_TEXT_NAME, datapath.combine(locationKey , StatsDataSources.EDUCATION))
-    self:setModifierText(childStats, self.HAPPINESS_MODIFIER_TEXT_NAME, datapath.combine(locationKey , StatsDataSources.HAPPINESS))
+    self:setModifierText(childStats, self.EDUCATION_MODIFIER_TEXT_NAME, datapath.combine(locationKey, StatsDataSources.EDUCATION))
+    self:setModifierText(childStats, self.HAPPINESS_MODIFIER_TEXT_NAME, datapath.combine(locationKey, StatsDataSources.HAPPINESS))
 end
 
 ----------------------------------------------------------------------------------------
@@ -176,6 +176,15 @@ function LocationDialog:setUpChildSelectionUI()
     local isChildSelected = self._dataStore:getBool(FamilyDataSources.HAS_SELECTED_CHILD)
     log("LocationDialog.isChildSelected " .. tostring(isChildSelected))
 
+    local locationKey = datapath.combine(LocationsDataSources.LOCATIONS, self._locationName)
+    local currentMoney = self._dataStore:getInt(MoneyDataSources.CURRENT_MONEY)
+    local moneyModifierObject = self._dataStore:getObject(datapath.combine(locationKey, StatsDataSources.MONEY))
+    local locationCost = moneyModifierObject:getFloat(StatsDataSources.AMOUNT)
+    local canAfford = currentMoney + locationCost >= 0  -- To deal with -ve and +ve money modifiers
+    log(string.format("LocationDialog.currentMoney %d", currentMoney))
+    log(string.format("LocationDialog.locationCost %d", locationCost))
+    log(string.format("LocationDialog.canAfford %s", tostring(canAfford)))
+
     local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)
     local selectedChildObject = self._dataStore:getObject(datapath.combine(FamilyDataSources.CHILDREN, selectedChildName))
 
@@ -183,7 +192,7 @@ function LocationDialog:setUpChildSelectionUI()
     local isChildAlreadyAtLocation = isChildSelected and currentLocation ~= ""
     log("LocationDialog.isChildAlreadyAtLocation " .. tostring(isChildAlreadyAtLocation))
 
-    local isChildAbleToBeSent = isChildSelected and not isChildAlreadyAtLocation
+    local isChildAbleToBeSent = canAfford and isChildSelected and not isChildAlreadyAtLocation
     log("LocationDialog.isChildAbleToBeSent " .. tostring(isChildAbleToBeSent))
 
     sendChildHelpText:setActive(not isChildAbleToBeSent)
@@ -195,6 +204,8 @@ function LocationDialog:setUpChildSelectionUI()
 
         local sendChildButtonText = sendChildButton:findChild(self.SEND_CHILD_BUTTON_TEXT_NAME)
         sendChildButtonText:findComponent("TextRenderer"):setText("Send " .. selectedChildName)
+    elseif not canAfford then
+        sendChildHelpText:findComponent("TextRenderer"):setText("You cannot afford the cost of this location")
     elseif isChildAlreadyAtLocation then
         sendChildHelpText:findComponent("TextRenderer"):setText(selectedChildName .. " is already at\nthe " .. currentLocation)
     else

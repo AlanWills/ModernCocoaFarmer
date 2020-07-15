@@ -70,7 +70,7 @@
                   <Components>
                     <TextRenderer text="Health Modifier" colour="0.2,0.2,0.2" 
                                   horizontal_alignment="left" vertical_alignment="centre"
-                                  font_height="20"/>
+                                  font_height="18"/>
                   </Components>
                 </GameObject>
                 <GameObject name="SafetyModifierIcon" position="-96,22">
@@ -82,7 +82,7 @@
                   <Components>
                     <TextRenderer text="Safety Modifier" colour="0.2,0.2,0.2" 
                                   horizontal_alignment="left" vertical_alignment="centre"
-                                  font_height="20"/>
+                                  font_height="18"/>
                   </Components>
                 </GameObject>
                 <GameObject name="EducationModifierIcon" position="-96,-22">
@@ -94,7 +94,7 @@
                   <Components>
                     <TextRenderer text="Education Modifier" colour="0.2,0.2,0.2" 
                                   horizontal_alignment="left" vertical_alignment="centre"
-                                  font_height="20"/>
+                                  font_height="18"/>
                   </Components>
                 </GameObject>
                 <GameObject name="HappinessModifierIcon" position="-96,-65">
@@ -106,7 +106,7 @@
                   <Components>
                     <TextRenderer text="Happiness Modifier" colour="0.2,0.2,0.2" 
                                   horizontal_alignment="left" vertical_alignment="centre"
-                                  font_height="20"/>
+                                  font_height="18"/>
                   </Components>
                 </GameObject>
               </GameObjects>

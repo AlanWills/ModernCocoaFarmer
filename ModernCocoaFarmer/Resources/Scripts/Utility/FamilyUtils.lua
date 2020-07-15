@@ -15,6 +15,18 @@ end
 
 ---------------------------------------------------------------------------------
 function FamilyUtils.getFirstNotBornChild(familyManager)
+    for childIndex = 0, (familyManager:getChildCount() - 1) do
+        local child = familyManager:getChild(childIndex)
+        if child:isNotBorn() then
+            return child
+        end
+    end
+
+    return nil
+end
+
+---------------------------------------------------------------------------------
+function FamilyUtils.getLastNotBornChild(familyManager)
     for childIndex = familyManager:getChildCount() - 1, 1, -1 do
         local child = familyManager:getChild(childIndex)
         if child:isNotBorn() then

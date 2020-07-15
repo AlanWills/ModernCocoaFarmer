@@ -22,7 +22,7 @@ function GraduateChild:execute(commandManager)
     end
 
     log("Graduating child " .. self._childName)
-    child:die()
+    child:graduate()
 
     commandManager:execute(
         SendNotification,

@@ -4,6 +4,7 @@ local SendNotification = require 'Commands.Notifications.SendNotification'
 
 ---------------------------------------------------------------------------------
 local CheckForChildrenLeaving = {}
+CheckForChildrenLeaving.MIN_SAFETY_FOR_TRAFFICKING = 40
 CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png")
 CheckForChildrenLeaving.CHILD_TRAFFICKED_SFX_PATH = path.combine("Audio", "SFX", "ChildTrafficked.wav")
 CheckForChildrenLeaving.CHILD_EXPELLED_ICON_PATH = path.combine("Textures", "Icons", "Events", "ChildExpelled.png")
@@ -51,7 +52,11 @@ end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child, location)
-    if math.random() > child:getSafety() then
+    local randomCheck = math.random(0, CheckForChildrenLeaving.MIN_SAFETY_FOR_TRAFFICKING)
+    log(string.format("Farm randomCheck %f", randomCheck))
+    log(string.format("%s safety %f", child:getName(), child:getSafety()))
+
+    if randomCheck > child:getSafety() then
         -- Child is trafficked
         child:die()
 

@@ -46,12 +46,11 @@ end
 
 ---------------------------------------------------------------------------------
 function TryAddChild.trigger(commandManager)
-    commandManager:execute(AddChild)
-
     local familyManager = commandManager.familyManager
     local child = FamilyUtils.getFirstNotBornChild(familyManager)
     assert(child ~= nil)
 
+    commandManager:execute(AddChild)
     commandManager:execute(
         SendNotification,
         "A Child!",
