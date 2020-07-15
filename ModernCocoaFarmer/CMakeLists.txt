@@ -29,6 +29,9 @@ install(DIRECTORY "${PROJECT_SOURCE_DIR}/ModernCocoaFarmer/Resources"
 install(DIRECTORY "${PROJECT_SOURCE_DIR}/Celeste/Celeste/Lua/Resources"
         DESTINATION "Celeste/Celeste/Lua"
         COMPONENT applications)
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/Celeste/3rdParty/Resources"
+        DESTINATION "Celeste/3rdParty"
+        COMPONENT applications)
 
 set(CPACK_PACKAGE_NAME "Modern Cocoa Farmer")
 set(CPACK_PACKAGE_VENDOR "CMake.org")
