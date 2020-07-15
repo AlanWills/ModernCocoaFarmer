@@ -27,7 +27,7 @@ function ShowIntroVideo:execute()
         videoSettings["Volume"] = 1
         videoSettings["OnVideoComplete"] = self._onVideoComplete
 
-        Video.play(ShowIntroVideo.INTRO_VIDEO_PATH, videoSettings)
+        Video.playAsync(ShowIntroVideo.INTRO_VIDEO_PATH, videoSettings)
     else
         log("Skipping intro video: force = " .. tostring(self._forceShow) .. " is_shown = " .. tostring(isIntroVideoShown))
         self._onVideoComplete()
