@@ -6,7 +6,8 @@ local GetPaidSalary = {}
 
 ---------------------------------------------------------------------------------
 GetPaidSalary.NAME = "GetPaidSalary"
-GetPaidSalary.PERIOD = GameEventPeriod.EVERY_MONTH
+GetPaidSalary.PERIOD = GameEventPeriod.EVERY_DAY
+GetPaidSalary.DAY_TO_TRIGGER = 28
 GetPaidSalary.BASE_SALARY_MODIFIER = path.combine("Data", "Modifiers", "Events", "Money", "BaseSalaryLevel.asset")
 GetPaidSalary.ICON_PATH = path.combine("Textures", "UI", "Utility", "Money.png")
 GetPaidSalary.SFX_PATH = path.combine("Audio", "SFX", "Money.wav")
@@ -20,6 +21,11 @@ end
 ---------------------------------------------------------------------------------
 function GetPaidSalary.getSalaryAmount(moneyManager)
     return GetPaidSalary.getBaseSalaryAmount() * moneyManager:getSalaryLevel()
+end
+
+---------------------------------------------------------------------------------
+function GetPaidSalary.canTrigger(commandManager)
+    return commandManager.timeManager:getCurrentDay() == GetPaidSalary.DAY_TO_TRIGGER
 end
 
 ---------------------------------------------------------------------------------

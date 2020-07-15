@@ -6,7 +6,8 @@ local PayBills = {}
 
 ---------------------------------------------------------------------------------
 PayBills.NAME = "PayBills"
-PayBills.PERIOD = GameEventPeriod.EVERY_MONTH
+PayBills.PERIOD = GameEventPeriod.EVERY_DAY
+PayBills.DAY_TO_TRIGGER = 29
 PayBills.BASE_BILLS_MODIFIER_PATH = path.combine("Data", "Modifiers", "Events", "Money", "BaseBillsModifier.asset")
 PayBills.CHILD_DEPENDENT_BILLS_MODIFIER_PATH = path.combine("Data", "Modifiers", "Events", "Money", "ChildDependentBillsModifier.asset")
 PayBills.DONT_PAY_BILLS_HEALTH_MODIFIER_PATH = path.combine("Data", "Modifiers", "Events", "Family", "DontPayBillsHealthModifier.asset")
@@ -30,6 +31,11 @@ end
 ---------------------------------------------------------------------------------
 function PayBills.getTotalBillsAmount(familyManager)
     return PayBills.getBaseBillsAmount() + PayBills.getChildDependentBillsAmount(familyManager)
+end
+
+---------------------------------------------------------------------------------
+function PayBills.canTrigger(commandManager)
+    return commandManager.timeManager:getCurrentDay() == PayBills.DAY_TO_TRIGGER
 end
 
 ---------------------------------------------------------------------------------

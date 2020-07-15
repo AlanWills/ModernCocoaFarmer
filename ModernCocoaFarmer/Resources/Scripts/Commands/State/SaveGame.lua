@@ -15,6 +15,7 @@ function SaveGame:execute(commandManager)
         saveDirectory:create()
     end
 
+    commandManager.persistence:save(path.combine(self._saveDirectory, "Persistence.xml"))
     commandManager.timeManager:save(path.combine(self._saveDirectory, "TimeManager.asset"))
     commandManager.moneyManager:save(path.combine(self._saveDirectory, "MoneyManager.asset"))
     commandManager.familyManager:save(path.combine(self._saveDirectory, "FamilyManager.asset"))

@@ -8,12 +8,13 @@ UNPeaceKeepersArrive.NAME = "UNPeaceKeepersArrive"
 UNPeaceKeepersArrive.CHILD_SAFETY_THRESHOLD = 0
 UNPeaceKeepersArrive.PERIOD = GameEventPeriod.EVERY_DAY
 UNPeaceKeepersArrive.DATA_STORE_KEY = "UNPeaceKeepersArrivedOccurred"
-UNPeaceKeepersArrive.ICON_PATH = path.combine("Textures", "UI", "Utility", "WhitePixel.png")
+UNPeaceKeepersArrive.ICON_PATH = path.combine("Textures", "Icons", "Events", "UNPeacekeepers.png")
 
 ---------------------------------------------------------------------------------
 function UNPeaceKeepersArrive.canTrigger(commandManager)
     -- Check we haven't already triggered this
     if commandManager.persistence:getBool(UNPeaceKeepersArrive.DATA_STORE_KEY, false) then
+        log("UNPeaceKeepersArrive already triggered")
         return false
     end
 
@@ -46,7 +47,7 @@ function UNPeaceKeepersArrive.trigger(commandManager)
     commandManager:execute(
         SendNotification,
         "UN Peace Keepers Arrive",
-        "TODO",
+        "UN Peacekeeping helps countries navigate the difficult path from conflict to peace",
         UNPeaceKeepersArrive.ICON_PATH)
 end
 
