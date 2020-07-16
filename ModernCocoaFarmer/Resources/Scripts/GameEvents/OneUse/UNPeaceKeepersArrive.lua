@@ -5,7 +5,7 @@ local UNPeaceKeepersArrive = {}
 
 ---------------------------------------------------------------------------------
 UNPeaceKeepersArrive.NAME = "UNPeaceKeepersArrive"
-UNPeaceKeepersArrive.CHILD_SAFETY_THRESHOLD = 0
+UNPeaceKeepersArrive.CHILD_SAFETY_THRESHOLD = 10
 UNPeaceKeepersArrive.PERIOD = GameEventPeriod.EVERY_DAY
 UNPeaceKeepersArrive.DATA_STORE_KEY = "UNPeaceKeepersArrivedOccurred"
 UNPeaceKeepersArrive.ICON_PATH = path.combine("Textures", "Icons", "Events", "UNPeacekeepers.png")

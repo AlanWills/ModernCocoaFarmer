@@ -11,5 +11,5 @@
   <Child name="Maria" guid="26d34cc5-79ea-4ddb-a63f-28e6f53e0817" health="70.000000" safety="100.000000" education="0.000000" happiness="45.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
   <Child name="Kilia" guid="8dab57e5-1959-47df-9502-36b709e40d1a" health="100.000000" safety="100.000000" education="0.000000" happiness="100.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
   <Child name="Jacob" guid="6c9e0fcd-c0da-4184-b1ba-16b2a596992a" health="50.000000" safety="50.000000" education="0.000000" happiness="100.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
-  <Child name="Adama" guid="a6b188e9-582f-41f7-92c1-80dddd1d63b6" health="10.000000" safety="10.000000" education="0.000000" happiness="10.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
+  <Child name="Adama" guid="a6b188e9-582f-41f7-92c1-80dddd1d63b6" health="10.000000" safety="100.000000" education="0.000000" happiness="10.000000" current_location="" time_at_location="0.000000" state="NotBorn"/>
 </FamilyManager>
