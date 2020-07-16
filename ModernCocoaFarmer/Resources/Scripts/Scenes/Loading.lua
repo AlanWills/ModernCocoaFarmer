@@ -1,3 +1,5 @@
+local MenuMusic = require "Scenes.MenuMusic"
+
 local Loading = 
 {
     SCENE_PATH = path.combine("Scenes", "Loading.scene"),
@@ -42,6 +44,8 @@ end
 
 ---------------------------------------------------------------------------------
 function Loading.update(deltaTime)
+    MenuMusic.decreaseVolume(deltaTime / Loading.MIN_LOADING_TIME)
+
     Loading._loadingTime = Loading._loadingTime + deltaTime
 
     if coroutine.status(Loading._loadCoroutine) ~= 'dead' then

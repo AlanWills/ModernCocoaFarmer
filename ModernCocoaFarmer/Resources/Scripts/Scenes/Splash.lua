@@ -7,7 +7,7 @@ local Splash =
 }
 
 ---------------------------------------------------------------------------------
-function Splash.new()
+function Splash.show()
     Scene.load(Splash.SPLASH_SCENE_SCREEN_PATH)
     Splash._root = GameObject.find(Splash.SPLASH_ROOT_NAME)
 

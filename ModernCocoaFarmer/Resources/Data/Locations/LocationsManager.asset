@@ -2,7 +2,7 @@
 <LocationsManager name="LocationsManager" guid="d5114f3d-82e6-42c3-afb3-9a0337a8ad5e">
   <Location name="Farm"
           description="Work won't set you free, but money might"
-          days_to_complete="30"
+          days_to_complete="14"
           icon="Textures\UI\LocationIcons\Farm.png"
           sfx="Audio\SFX\Work.wav"
           HealthModifier="593cafa8-b6fc-44fc-ac67-6511b8f75a87"
@@ -12,7 +12,7 @@
           MoneyModifier="0e185032-0d97-4d1d-8107-eededf0ecc96" >
     <Modifier name="HealthModifier"
               guid="593cafa8-b6fc-44fc-ac67-6511b8f75a87"
-              amount="-8"
+              amount="-7"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
@@ -22,7 +22,7 @@
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"
               guid="96b1b1bb-5af3-4325-955a-1aa3e8495518"
-              amount="-8"
+              amount="-5"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="HappinessModifier"

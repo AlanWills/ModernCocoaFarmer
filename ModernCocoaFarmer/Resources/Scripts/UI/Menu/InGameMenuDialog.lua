@@ -77,6 +77,9 @@ function InGameMenuDialog.toMainMenu(caller, self)
     local Gameplay = require 'Scenes.Gameplay'
     Gameplay.hide()
 
+    local MenuMusic = require 'Scenes.MenuMusic'
+    MenuMusic.show()
+
     local MainMenu = require 'Scenes.MainMenu'
     MainMenu.show()
 end

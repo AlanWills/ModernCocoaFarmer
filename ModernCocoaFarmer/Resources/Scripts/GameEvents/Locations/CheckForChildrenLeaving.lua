@@ -4,6 +4,7 @@ local SendNotification = require 'Commands.Notifications.SendNotification'
 
 ---------------------------------------------------------------------------------
 local CheckForChildrenLeaving = {}
+CheckForChildrenLeaving.MIN_HAPPINESS_FOR_EXPULSION = 40
 CheckForChildrenLeaving.MIN_SAFETY_FOR_TRAFFICKING = 40
 CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH = path.combine("Textures", "UI", "ChildIcons", "ChildDead.png")
 CheckForChildrenLeaving.CHILD_TRAFFICKED_SFX_PATH = path.combine("Audio", "SFX", "ChildTrafficked.wav")
@@ -118,7 +119,11 @@ end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingSchool(commandManager, child, location)
-    if math.random() > child:getHappiness() then
+    local randomCheck = math.random(0, CheckForChildrenLeaving.MIN_HAPPINESS_FOR_EXPULSION)
+    log(string.format("School randomCheck %f", randomCheck))
+    log(string.format("%s happiness %f", child:getName(), child:getHappiness()))
+    
+    if randomCheck > child:getHappiness() then
         child:setEducation(child:getEducation() * 0.5)
 
         commandManager:execute(

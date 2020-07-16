@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scene>
+  <GameObjects>
+    <GameObject name="MenuMusic">
+      <Components>
+        <AudioSource sound="Audio\Music\MalianPercussion.wav" is_playing="true" is_looping="true" audio_type="Music"/>
+      </Components>
+    </GameObject>
+  </GameObjects>
+</Scene>
