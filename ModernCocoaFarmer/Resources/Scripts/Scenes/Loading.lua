@@ -72,6 +72,8 @@ end
 
 ---------------------------------------------------------------------------------
 function Loading.hide()
+    MenuMusic.hide()
+
     if Loading._loadCompleteFunction ~= nil then
         Loading._loadCompleteFunction()
     end

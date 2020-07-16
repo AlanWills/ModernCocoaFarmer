@@ -179,10 +179,10 @@ function LocationDialog:setUpChildSelectionUI()
     local locationKey = datapath.combine(LocationsDataSources.LOCATIONS, self._locationName)
     local currentMoney = self._dataStore:getInt(MoneyDataSources.CURRENT_MONEY)
     local moneyModifierObject = self._dataStore:getObject(datapath.combine(locationKey, StatsDataSources.MONEY))
-    local locationCost = moneyModifierObject:getFloat(StatsDataSources.AMOUNT)
-    local canAfford = currentMoney + locationCost >= 0  -- To deal with -ve and +ve money modifiers
+    local locationMoneyModifier = moneyModifierObject:getFloat(StatsDataSources.AMOUNT)
+    local canAfford = locationMoneyModifier >= 0 or currentMoney >= math.abs(locationMoneyModifier) -- To deal with -ve and +ve money modifiers
     log(string.format("LocationDialog.currentMoney %d", currentMoney))
-    log(string.format("LocationDialog.locationCost %d", locationCost))
+    log(string.format("LocationDialog.locationMoneyModifier %d", locationMoneyModifier))
     log(string.format("LocationDialog.canAfford %s", tostring(canAfford)))
 
     local selectedChildName = self._dataStore:getString(FamilyDataSources.SELECTED_CHILD_NAME)

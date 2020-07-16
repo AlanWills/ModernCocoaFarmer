@@ -231,7 +231,7 @@
           MoneyModifier="0d109b06-9ddf-4b50-8522-ee5ee26eeafb">
     <Modifier name="HealthModifier"
               guid="0ad0a21a-9889-4d05-8fca-dd0e0ed79b46"
-              amount="4"
+              amount="8"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"

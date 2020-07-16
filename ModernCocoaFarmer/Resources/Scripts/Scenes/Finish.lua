@@ -12,8 +12,10 @@ local FinishScene =
 ---------------------------------------------------------------------------------
 local function toMainMenuButtonCallback(caller)
     local MainMenuScene = require 'Scenes.MainMenu'
+    local MenuMusic = require 'Scenes.MenuMusic'
 
     FinishScene.hide()
+    MenuMusic.show()
     MainMenuScene.show()
 end
 

@@ -9,6 +9,7 @@ local ActivateLocation = require 'Commands.Locations.ActivateLocation'
 local ElapseTime = require 'Commands.Time.ElapseTime'
 local Play = require 'Commands.Time.Play'
 local GameEventManager = require 'GameEvents.GameEventManager'
+local CheckForGameEnd = require 'Commands.State.CheckForGameEnd'
 
 -- Dolce Windows
 local GameEventManagerDolceWindow = require 'Debug.DolceWindows.GameEventManagerDolceWindow'
@@ -93,6 +94,10 @@ end
 function Gameplay.update(deltaTime)
     Gameplay._state.modalDialogManager:destroyDialogs()
     Gameplay._commandManager:execute(ElapseTime, deltaTime)
+
+    if CheckForGameEnd.canExecute(Gameplay._commandManager) then
+        CheckForGameEnd.execute(Gameplay._commandManager)
+    end
 end
 
 ---------------------------------------------------------------------------------
@@ -145,21 +150,22 @@ function Gameplay.hide()
 
     log("Unsubscribing from notifier")
     System.getTimeNotifierSystem():unsubscribe(Gameplay._timeNotifierHandle)
+    Gameplay._timeNotifierHandle = 0
 
-    log("Destroying state")
-    Gameplay._state:destroy()
-    
     log("Hiding gameplay scene")
     Gameplay._root:destroy()
 
-    Gameplay._timeNotifierHandle = 0
-    Gameplay._state = nil
-    Gameplay._commandManager = nil
     Gameplay._gameEventManager = nil
+    Gameplay._commandManager = nil
     Gameplay._locationsUI = nil
     Gameplay._topBar = nil
     Gameplay._notificationsBar = nil
     Gameplay._root = nil
+
+    log("Destroying state")
+    Gameplay._state:destroy()
+    
+    Gameplay._state = nil
 end
 
 ---------------------------------------------------------------------------------

@@ -15,12 +15,12 @@
           <GameObjects>
             <GameObject position="0,-150,0" name="ChildrenGraduatedStackPanel">
               <Components>
-                <StackPanel orientation="vertical" horizontal_alignment="centre" vertical_alignment="top" padding="10"/>
+                <StackPanel orientation="vertical" horizontal_alignment="centre" vertical_alignment="top" padding="15"/>
               </Components>
               <GameObjects>
                 <GameObject name="GraduatedText">
                   <Components>
-                    <TextRenderer text="Graduated" font_height="28"/>
+                    <TextRenderer text="Graduated" font_height="32"/>
                   </Components>
                 </GameObject>
               </GameObjects>
@@ -34,12 +34,12 @@
           <GameObjects>
             <GameObject position="0,-150,0" name="ChildrenDiedStackPanel">
               <Components>
-                <StackPanel orientation="vertical" horizontal_alignment="centre" vertical_alignment="top" padding="10"/>
+                <StackPanel orientation="vertical" horizontal_alignment="centre" vertical_alignment="top" padding="15"/>
               </Components>
               <GameObjects>
                 <GameObject name="DiedText">
                   <Components>
-                    <TextRenderer text="Died" font_height="28"/>
+                    <TextRenderer text="Died" font_height="32"/>
                   </Components>
                 </GameObject>
               </GameObjects>
@@ -48,7 +48,7 @@
         </GameObject>
         <GameObject position="960,900,0" name="ThankYouText">
           <Components>
-            <TextRenderer text="Thanks For Playing!" font_height="30" />
+            <TextRenderer text="Thanks For Playing!" font_height="34" />
           </Components>
         </GameObject>
         <GameObject name="ToMainMenuButton" position="960,200">

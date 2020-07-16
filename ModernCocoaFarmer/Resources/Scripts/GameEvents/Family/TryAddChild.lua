@@ -22,6 +22,12 @@ function TryAddChild.canTrigger(commandManager)
         return false
     end
 
+    local numActiveChildren = FamilyUtils.getActivatedChildCount(familyManager)
+    if numActiveChildren == 0 and timeManager:getCurrentDay() == 0 then
+        -- Bit of a hack in case the player has run out of children (they are all dead or graduated)
+        return true
+    end
+
     local correctTimeToTrigger = ((timeManager:getCurrentYear() % TryAddChild.YEARLY_PERIOD) == 0) and 
                                   (timeManager:getCurrentMonth() == TryAddChild.MONTH_TO_TRIGGER)
     log("TryAddChild correctTimeToTrigger: " .. tostring(correctTimeToTrigger))
