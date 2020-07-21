@@ -1,6 +1,7 @@
 local Class = require 'OOP.Class'
 local ChildIcon = require 'UI.Family.ChildIcon'
 local Algorithm = require 'Containers.Algorithm'
+local ToggleChildSelection = require 'Commands.Family.ToggleChildSelection'
 
 local FamilyPanel = {}
 FamilyPanel.CHILD_STACK_PANEL = "ChildStackPanel"
@@ -10,6 +11,7 @@ function FamilyPanel:new(commandManager, familyPanelGameObject)
     self._commandManager = commandManager
     self._childStackPanel = familyPanelGameObject:findChild(self.CHILD_STACK_PANEL)
     self._childIcons = {}
+    self._selectChildHandle = Keyboard.subscribeOnKeyPressedCallback(FamilyPanel.selectChildCallback, self)
 
     local familyManager = commandManager.familyManager
 
@@ -21,9 +23,19 @@ function FamilyPanel:new(commandManager, familyPanelGameObject)
 end
 
 ---------------------------------------------------------------------------------
-function FamilyPanel:updateUI()
-    for k, childIcon in pairs(self._childIcons) do
-        childIcon:updateUI()
+function FamilyPanel:destroy()
+    Keyboard.unsubscribeOnKeyPressedCallback(self._selectChildHandle)
+end
+
+---------------------------------------------------------------------------------
+function FamilyPanel.selectChildCallback(key, self)
+    if Key.isNumber(key) then
+        local number = Key.getNumber(key)
+        local familyManager = self._commandManager.familyManager
+        
+        if number > 0 and number <= familyManager:getChildCount() and familyManager:getChild(number - 1):isActivated() then
+           self._commandManager:execute(ToggleChildSelection, familyManager:getChild(number - 1):getName())
+        end
     end
 end
 

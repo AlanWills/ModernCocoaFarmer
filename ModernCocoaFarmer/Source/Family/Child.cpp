@@ -111,12 +111,14 @@ namespace MCF::Family
   //------------------------------------------------------------------------------------------------
   void Child::graduate()
   {
+    setSelected(false);
     setState(ChildState::kGraduated);
   }
 
   //------------------------------------------------------------------------------------------------
   void Child::die()
   {
+    setSelected(false);
     setState(ChildState::kDead);
   }
 

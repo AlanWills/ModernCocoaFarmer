@@ -68,53 +68,53 @@ function CheckForChildrenLeaving.handleLeavingFarm(commandManager, child, locati
             CheckForChildrenLeaving.CHILD_TRAFFICKED_ICON_PATH,
             CheckForChildrenLeaving.CHILD_TRAFFICKED_SFX_PATH)
     else
-        commandManager:execute(
+        --[[commandManager:execute(
             SendNotification,
             "Work Complete",
             string.format("After a bitter month's work, %s has been paid %d.", child:getName(), location:getMoneyModifier():getAmount()),
             CheckForChildrenLeaving.CHILD_PAID_ICON_PATH,
-            CheckForChildrenLeaving.CHILD_PAID_SFX_PATH)
+            CheckForChildrenLeaving.CHILD_PAID_SFX_PATH)--]]
     end
 end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingHome(commandManager, child, location)
-    commandManager:execute(
+    --[[commandManager:execute(
         SendNotification,
         "Home Chores Complete",
         "The errands " .. child:getName() .. " has done may not change the world, but will make it more bearable.",
         location:getIcon(),
-        location:getSfx())
+        location:getSfx())--]]
 end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingHospital(commandManager, child, location)
-    commandManager:execute(
+    --[[commandManager:execute(
         SendNotification,
         "Hospital Visit Complete",
         "Fully recovered from their ailments, " .. child:getName() .. " heads for home.",
         location:getIcon(),
-        location:getSfx())
+        location:getSfx())--]]
 end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingMarket(commandManager, child, location)
-    commandManager:execute(
+    --[[commandManager:execute(
         SendNotification,
         "Market Visit Complete",
         child:getName() .. " has brought back all manner of food from the market.",
         location:getIcon(),
-        location:getSfx())
+        location:getSfx())--]]
 end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingMosque(commandManager, child, location)
-    commandManager:execute(
+    --[[commandManager:execute(
         SendNotification,
         "Mosque Visit Complete",
         "Inspired and with a little more understanding of the world, " .. child:getName() .. " is ready to take it head on.",
         location:getIcon(),
-        location:getSfx())
+        location:getSfx())--]]
 end
 
 ---------------------------------------------------------------------------------
@@ -133,23 +133,23 @@ function CheckForChildrenLeaving.handleLeavingSchool(commandManager, child, loca
             CheckForChildrenLeaving.CHILD_EXPELLED_ICON_PATH,
             CheckForChildrenLeaving.CHILD_EXPELLED_SFX_PATH)
     else
-        commandManager:execute(
+        --[[commandManager:execute(
             SendNotification,
             "School Visit Complete",
             "Facts and figures all add up.  Some day, " .. child:getName() .. " will put them to incredible use.",
             location:getIcon(),
-            location:getSfx())
+            location:getSfx())--]]
     end
 end
 
 ---------------------------------------------------------------------------------
 function CheckForChildrenLeaving.handleLeavingWell(commandManager, child, location)
-    commandManager:execute(
+    --[[commandManager:execute(
         SendNotification,
         "Well Visit Complete",
         "Carrying water is tough.  " .. child:getName() .. "knows it's worth it.",
         location:getIcon(),
-        location:getSfx())
+        location:getSfx())--]]
 end
 
 return CheckForChildrenLeaving

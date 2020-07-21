@@ -5,7 +5,7 @@ local SendNotification = require 'Commands.Notifications.SendNotification'
 local SalaryDecreased = {}
 
 ---------------------------------------------------------------------------------
-SalaryDecreased.NAME = "SalaryIncreased"
+SalaryDecreased.NAME = "SalaryDecreased"
 SalaryDecreased.PERIOD = GameEventPeriod.EVERY_MONTH
 SalaryDecreased.MONTH_TO_TRIGGER = 11
 SalaryDecreased.PROBABILITY_TO_TRIGGER = 0.4
@@ -14,6 +14,7 @@ SalaryDecreased.ICON_PATH = path.combine("Textures", "Icons", "Events", "SalaryD
 ---------------------------------------------------------------------------------
 function SalaryDecreased.canTrigger(commandManager)
     return commandManager.timeManager:getCurrentMonth() == SalaryDecreased.MONTH_TO_TRIGGER and
+           commandManager.moneyManager:getSalaryLevel() > 1 and 
            SalaryDecreased.PROBABILITY_TO_TRIGGER >= math.random()
 end
 

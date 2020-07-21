@@ -10,7 +10,7 @@ TryAddChild.NAME = "TryAddChild"
 TryAddChild.PERIOD = GameEventPeriod.EVERY_MONTH
 TryAddChild.YEARLY_PERIOD = 1
 TryAddChild.MONTH_TO_TRIGGER = 2
-TryAddChild.BASE_PROBABILITY = 0.4
+TryAddChild.BASE_PROBABILITY = 1
 TryAddChild.ICON_PATH = path.combine("Textures", "Icons", "Events", "ChildBorn.png")
 
 ---------------------------------------------------------------------------------

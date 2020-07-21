@@ -142,15 +142,15 @@ namespace MCF::Family
   }
 
   //------------------------------------------------------------------------------------------------
-  void FamilyManager::deselectChild(Child& childToSelect)
+  void FamilyManager::deselectChild(Child& childToDeselect)
   {
     for (Child& child : m_children)
     {
-      if (&child == &childToSelect)
+      if (&child == &childToDeselect)
       {
-        if (childToSelect.isSelected())
+        if (childToDeselect.isSelected())
         {
-          childToSelect.setSelected(false);
+          childToDeselect.setSelected(false);
         }
       }
     }

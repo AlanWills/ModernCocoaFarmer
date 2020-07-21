@@ -45,7 +45,7 @@ namespace MCF::Family
       MCFLibraryDllExport bool canAddChild() const;
       MCFLibraryDllExport void addChild();
       MCFLibraryDllExport void selectChild(Child& childToSelect);
-      MCFLibraryDllExport void deselectChild(Child& childToSelect);
+      MCFLibraryDllExport void deselectChild(Child& childToDeselect);
 
       MCFLibraryDllExport void applyHealthModifier(const Stats::Modifier& modifier);
       MCFLibraryDllExport void applySafetyModifier(const Stats::Modifier& modifier);
@@ -59,7 +59,7 @@ namespace MCF::Family
       Children::const_iterator begin() const { return m_children.begin(); }
       Children::const_iterator end() const { return m_children.end(); }
 
-      const ChildAddedEvent& getChildAddedEvent() const { return m_childAddedEvent; }
+      ChildAddedEvent& getChildAddedEvent() { return m_childAddedEvent; }
 
       static const char* const DAILY_HEALTH_MODIFIER_ATTRIBUTE_NAME;
       static const char* const DAILY_SAFETY_MODIFIER_ATTRIBUTE_NAME;

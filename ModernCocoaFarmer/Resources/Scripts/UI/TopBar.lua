@@ -21,4 +21,9 @@ function TopBar:new(commandManager, topBarGameObject)
     self._menuPanel = Class.new(MenuPanel, commandManager, topBarGameObject:findChild(self.MENU_PANEL_NAME))
 end
 
+---------------------------------------------------------------------------------
+function TopBar:destroy()
+    self._familyPanel:destroy()
+end
+
 return TopBar

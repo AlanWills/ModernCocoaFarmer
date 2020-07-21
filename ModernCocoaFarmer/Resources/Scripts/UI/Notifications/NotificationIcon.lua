@@ -1,21 +1,11 @@
 local Class = require 'OOP.Class'
-local ShowNotificationDialog = require 'Commands.UI.Notifications.ShowNotificationDialog'
+local NotificationUtils = require 'Utility.NotificationUtils'
 
 local NotificationIcon = {}
 
 ---------------------------------------------------------------------------------
 function NotificationIcon.showNotificationDialogCallback(caller, self)
-    local sfxPath = self._notification:getSfxPath()
-
-    if sfxPath == "" then
-        sfxPath = nil
-    end
-
-    self._commandManager:execute(
-        ShowNotificationDialog, 
-        self._notification:getName(), 
-        self._notification:getDescription(),
-        sfxPath)
+    NotificationUtils.showNotificationDialog(self._commandManager, self._notification)
 end
 
 ---------------------------------------------------------------------------------

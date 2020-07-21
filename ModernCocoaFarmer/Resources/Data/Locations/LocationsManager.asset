@@ -66,7 +66,7 @@
               occurrence="Periodic"/>
     <Modifier name="HappinessModifier"
               guid="2fc5865d-2d10-48e7-a5aa-a5e6f2f9a917"
-              amount="2"
+              amount="3"
               change_type="Delta"
               occurrence="Periodic"/>
     <Modifier name="EducationModifier"
@@ -123,7 +123,7 @@
           MoneyModifier="8ecb2ab8-7adc-4eaf-8729-539cbf7cc651">
     <Modifier name="HealthModifier"
               guid="40b135bd-eb85-42eb-befa-eb2853831b79"
-              amount="5"
+              amount="10"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="MoneyModifier"
@@ -138,7 +138,7 @@
               occurrence="Instant"/>
     <Modifier name="HappinessModifier"
               guid="b04868f7-7a11-4c08-b7b8-2fe60dba7f30"
-              amount="10"
+              amount="15"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="EducationModifier"
@@ -169,12 +169,12 @@
               occurrence="Instant"/>
     <Modifier name="SafetyModifier"
               guid="d78bb240-83b1-41fa-a3f8-34eb21e85396"
-              amount="2"
+              amount="4"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="HappinessModifier"
               guid="c3bada8d-178e-4c23-abb5-df5c609e4c46"
-              amount="3"
+              amount="6"
               change_type="Delta"
               occurrence="Instant"/>
     <Modifier name="EducationModifier"

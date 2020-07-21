@@ -48,8 +48,8 @@ namespace MCF::Locations
       MCFLibraryDllExport void sendChild(Family::Child& child);
       MCFLibraryDllExport void leaveChild(Family::Child& child);
 
-      inline const ChildSentEvent& getOnChildSentEvent() const { return m_onChildSentEvent; }
-      inline const ChildLeftEvent& getOnChildLeftEvent() const { return m_onChildLeftEvent; }
+      inline ChildSentEvent& getOnChildSentEvent() { return m_onChildSentEvent; }
+      inline ChildLeftEvent& getOnChildLeftEvent() { return m_onChildLeftEvent; }
 
       static const std::string DESCRIPTION_FIELD_NAME;
       static const std::string ICON_FIELD_NAME;

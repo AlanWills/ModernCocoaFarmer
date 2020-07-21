@@ -38,7 +38,7 @@ namespace MCF::Locations
       MCFLibraryDllExport observer_ptr<Location> getLocation(size_t index);
       MCFLibraryDllExport observer_ptr<Location> findLocation(const std::string& locationName) const;
 
-      const LocationActivatedEvent& getOnLocationActivatedEvent() const { return m_onLocationActivatedEvent; }
+      LocationActivatedEvent& getOnLocationActivatedEvent() { return m_onLocationActivatedEvent; }
 
       MCFLibraryDllExport void activateLocation(Location& location);
 

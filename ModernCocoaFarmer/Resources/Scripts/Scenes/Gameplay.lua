@@ -155,6 +155,12 @@ function Gameplay.hide()
     log("Hiding gameplay scene")
     Gameplay._root:destroy()
 
+    log("Destroying notifications panel")
+    Gameplay._notificationsBar:destroy()
+
+    log("Destroying top bar")
+    Gameplay._topBar:destroy()
+
     Gameplay._gameEventManager = nil
     Gameplay._commandManager = nil
     Gameplay._locationsUI = nil

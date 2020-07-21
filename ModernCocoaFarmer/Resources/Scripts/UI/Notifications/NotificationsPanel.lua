@@ -1,5 +1,6 @@
 local Class = require 'OOP.Class'
 local NotificationIcon = require 'UI.Notifications.NotificationIcon'
+local NotificationUtils = require 'Utility.NotificationUtils'
 
 local NotificationsPanel = 
 {
@@ -25,6 +26,13 @@ function NotificationsPanel.removeAllNotificationsCallback(caller, self)
 end
 
 ---------------------------------------------------------------------------------
+function NotificationsPanel.showNextNotificationCallback(key, self)
+    if key == Key.N then
+        self:showNotification(0)
+    end
+end
+
+---------------------------------------------------------------------------------
 function NotificationsPanel:new(commandManager, notificationsPanelGameObject)
     self._commandManager = commandManager
     self._gameObject = notificationsPanelGameObject
@@ -41,6 +49,12 @@ function NotificationsPanel:new(commandManager, notificationsPanelGameObject)
     notificationManager:subscribeOnNotificationSentCallback(NotificationsPanel.createNotificationIconCallback, self)
 
     self._gameObject:setupChildLeftButtonUpCallback(self.REMOVE_ALL_NOTIFICATIONS_BUTTON_NAME, NotificationsPanel.removeAllNotificationsCallback, self)
+    self._nextNotificationHandle = Keyboard.subscribeOnKeyPressedCallback(NotificationsPanel.showNextNotificationCallback, self)
+end
+
+---------------------------------------------------------------------------------
+function NotificationsPanel:destroy()
+    Keyboard.unsubscribeOnKeyPressedCallback(self._nextNotificationHandle)
 end
 
 ---------------------------------------------------------------------------------
@@ -89,6 +103,19 @@ function NotificationsPanel:removeAllNotifications()
     
     for i = numNotificationIcons - 1, 0, -1 do
         self:removeNotificationViaIndex(i)
+    end
+end
+
+---------------------------------------------------------------------------------
+function NotificationsPanel:showNotification(notificationIndex)
+    local notificationManager = self._commandManager.notificationManager
+
+    if notificationIndex < notificationManager:getNotificationCount() then
+        NotificationUtils.showNotificationDialog(
+            self._commandManager, 
+            notificationManager:getNotification(notificationIndex))
+
+        self:removeNotificationViaIndex(notificationIndex)
     end
 end
 
